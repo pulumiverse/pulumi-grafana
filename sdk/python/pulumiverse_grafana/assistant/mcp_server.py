@@ -12,28 +12,28 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['AssistantMcpServerArgs', 'AssistantMcpServer']
+__all__ = ['McpServerArgs', 'McpServer']
 
 @pulumi.input_type
-class AssistantMcpServerArgs:
+class McpServerArgs:
     def __init__(__self__, *,
                  scope: pulumi.Input[_builtins.str],
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 configuration: Optional[pulumi.Input['AssistantMcpServerConfigurationArgs']] = None,
+                 configuration: Optional[pulumi.Input['McpServerConfigurationArgs']] = None,
                  custom_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        The set of arguments for constructing a AssistantMcpServer resource.
+        The set of arguments for constructing a McpServer resource.
 
         :param pulumi.Input[_builtins.str] scope: Whether the resource is visible to the whole tenant (`tenant`) or only the creating user (`user`).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] applications: Applications where this resource applies. Valid values: `assistant`, `loop`, `all`. Defaults to all applications when unset.
-        :param pulumi.Input['AssistantMcpServerConfigurationArgs'] configuration: MCP server configuration.
+        :param pulumi.Input['McpServerConfigurationArgs'] configuration: MCP server configuration.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_headers: Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.
         :param pulumi.Input[_builtins.str] description: Optional description.
         :param pulumi.Input[_builtins.bool] enabled: Whether the resource is enabled.
@@ -79,14 +79,14 @@ class AssistantMcpServerArgs:
 
     @_builtins.property
     @pulumi.getter
-    def configuration(self) -> Optional[pulumi.Input['AssistantMcpServerConfigurationArgs']]:
+    def configuration(self) -> Optional[pulumi.Input['McpServerConfigurationArgs']]:
         """
         MCP server configuration.
         """
         return pulumi.get(self, "configuration")
 
     @configuration.setter
-    def configuration(self, value: Optional[pulumi.Input['AssistantMcpServerConfigurationArgs']]):
+    def configuration(self, value: Optional[pulumi.Input['McpServerConfigurationArgs']]):
         pulumi.set(self, "configuration", value)
 
     @_builtins.property
@@ -139,20 +139,20 @@ class AssistantMcpServerArgs:
 
 
 @pulumi.input_type
-class _AssistantMcpServerState:
+class _McpServerState:
     def __init__(__self__, *,
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 configuration: Optional[pulumi.Input['AssistantMcpServerConfigurationArgs']] = None,
+                 configuration: Optional[pulumi.Input['McpServerConfigurationArgs']] = None,
                  custom_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  scope: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering AssistantMcpServer resources.
+        Input properties used for looking up and filtering McpServer resources.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] applications: Applications where this resource applies. Valid values: `assistant`, `loop`, `all`. Defaults to all applications when unset.
-        :param pulumi.Input['AssistantMcpServerConfigurationArgs'] configuration: MCP server configuration.
+        :param pulumi.Input['McpServerConfigurationArgs'] configuration: MCP server configuration.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_headers: Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.
         :param pulumi.Input[_builtins.str] description: Optional description.
         :param pulumi.Input[_builtins.bool] enabled: Whether the resource is enabled.
@@ -188,14 +188,14 @@ class _AssistantMcpServerState:
 
     @_builtins.property
     @pulumi.getter
-    def configuration(self) -> Optional[pulumi.Input['AssistantMcpServerConfigurationArgs']]:
+    def configuration(self) -> Optional[pulumi.Input['McpServerConfigurationArgs']]:
         """
         MCP server configuration.
         """
         return pulumi.get(self, "configuration")
 
     @configuration.setter
-    def configuration(self, value: Optional[pulumi.Input['AssistantMcpServerConfigurationArgs']]):
+    def configuration(self, value: Optional[pulumi.Input['McpServerConfigurationArgs']]):
         pulumi.set(self, "configuration", value)
 
     @_builtins.property
@@ -259,14 +259,14 @@ class _AssistantMcpServerState:
         pulumi.set(self, "scope", value)
 
 
-@pulumi.type_token("grafana:index/assistantMcpServer:AssistantMcpServer")
-class AssistantMcpServer(pulumi.CustomResource):
+@pulumi.type_token("grafana:assistant/mcpServer:McpServer")
+class McpServer(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 configuration: Optional[pulumi.Input[Union['AssistantMcpServerConfigurationArgs', 'AssistantMcpServerConfigurationArgsDict']]] = None,
+                 configuration: Optional[pulumi.Input[Union['McpServerConfigurationArgs', 'McpServerConfigurationArgsDict']]] = None,
                  custom_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -284,7 +284,7 @@ class AssistantMcpServer(pulumi.CustomResource):
 
         config = pulumi.Config()
         mcp_token = config.require("mcpToken")
-        example = grafana.AssistantMcpServer("example",
+        example = grafana.assistant.McpServer("example",
             name="Example MCP server",
             scope="tenant",
             applications=["assistant"],
@@ -306,7 +306,7 @@ class AssistantMcpServer(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] applications: Applications where this resource applies. Valid values: `assistant`, `loop`, `all`. Defaults to all applications when unset.
-        :param pulumi.Input[Union['AssistantMcpServerConfigurationArgs', 'AssistantMcpServerConfigurationArgsDict']] configuration: MCP server configuration.
+        :param pulumi.Input[Union['McpServerConfigurationArgs', 'McpServerConfigurationArgsDict']] configuration: MCP server configuration.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_headers: Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.
         :param pulumi.Input[_builtins.str] description: Optional description.
         :param pulumi.Input[_builtins.bool] enabled: Whether the resource is enabled.
@@ -317,7 +317,7 @@ class AssistantMcpServer(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: AssistantMcpServerArgs,
+                 args: McpServerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages a Grafana Assistant MCP server integration.
@@ -330,7 +330,7 @@ class AssistantMcpServer(pulumi.CustomResource):
 
         config = pulumi.Config()
         mcp_token = config.require("mcpToken")
-        example = grafana.AssistantMcpServer("example",
+        example = grafana.assistant.McpServer("example",
             name="Example MCP server",
             scope="tenant",
             applications=["assistant"],
@@ -350,12 +350,12 @@ class AssistantMcpServer(pulumi.CustomResource):
 
 
         :param str resource_name: The name of the resource.
-        :param AssistantMcpServerArgs args: The arguments to use to populate this resource's properties.
+        :param McpServerArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(AssistantMcpServerArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(McpServerArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -365,7 +365,7 @@ class AssistantMcpServer(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 configuration: Optional[pulumi.Input[Union['AssistantMcpServerConfigurationArgs', 'AssistantMcpServerConfigurationArgsDict']]] = None,
+                 configuration: Optional[pulumi.Input[Union['McpServerConfigurationArgs', 'McpServerConfigurationArgsDict']]] = None,
                  custom_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -378,7 +378,7 @@ class AssistantMcpServer(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = AssistantMcpServerArgs.__new__(AssistantMcpServerArgs)
+            __props__ = McpServerArgs.__new__(McpServerArgs)
 
             __props__.__dict__["applications"] = applications
             __props__.__dict__["configuration"] = configuration
@@ -391,8 +391,8 @@ class AssistantMcpServer(pulumi.CustomResource):
             __props__.__dict__["scope"] = scope
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["customHeaders"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
-        super(AssistantMcpServer, __self__).__init__(
-            'grafana:index/assistantMcpServer:AssistantMcpServer',
+        super(McpServer, __self__).__init__(
+            'grafana:assistant/mcpServer:McpServer',
             resource_name,
             __props__,
             opts)
@@ -402,21 +402,21 @@ class AssistantMcpServer(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             applications: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            configuration: Optional[pulumi.Input[Union['AssistantMcpServerConfigurationArgs', 'AssistantMcpServerConfigurationArgsDict']]] = None,
+            configuration: Optional[pulumi.Input[Union['McpServerConfigurationArgs', 'McpServerConfigurationArgsDict']]] = None,
             custom_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
-            scope: Optional[pulumi.Input[_builtins.str]] = None) -> 'AssistantMcpServer':
+            scope: Optional[pulumi.Input[_builtins.str]] = None) -> 'McpServer':
         """
-        Get an existing AssistantMcpServer resource's state with the given name, id, and optional extra
+        Get an existing McpServer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] applications: Applications where this resource applies. Valid values: `assistant`, `loop`, `all`. Defaults to all applications when unset.
-        :param pulumi.Input[Union['AssistantMcpServerConfigurationArgs', 'AssistantMcpServerConfigurationArgsDict']] configuration: MCP server configuration.
+        :param pulumi.Input[Union['McpServerConfigurationArgs', 'McpServerConfigurationArgsDict']] configuration: MCP server configuration.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_headers: Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.
         :param pulumi.Input[_builtins.str] description: Optional description.
         :param pulumi.Input[_builtins.bool] enabled: Whether the resource is enabled.
@@ -425,7 +425,7 @@ class AssistantMcpServer(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _AssistantMcpServerState.__new__(_AssistantMcpServerState)
+        __props__ = _McpServerState.__new__(_McpServerState)
 
         __props__.__dict__["applications"] = applications
         __props__.__dict__["configuration"] = configuration
@@ -434,7 +434,7 @@ class AssistantMcpServer(pulumi.CustomResource):
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["name"] = name
         __props__.__dict__["scope"] = scope
-        return AssistantMcpServer(resource_name, opts=opts, __props__=__props__)
+        return McpServer(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter
@@ -446,7 +446,7 @@ class AssistantMcpServer(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def configuration(self) -> pulumi.Output[Optional['outputs.AssistantMcpServerConfiguration']]:
+    def configuration(self) -> pulumi.Output[Optional['outputs.McpServerConfiguration']]:
         """
         MCP server configuration.
         """

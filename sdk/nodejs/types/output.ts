@@ -5,36 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface AssistantMcpServerConfiguration {
-    /**
-     * Built-in provider ID (e.g. cursor). When set, tools are provided locally.
-     */
-    builtinId?: string;
-    /**
-     * Tool approval policies keyed by tool name (`autoApprove`, `alwaysAsk`, or empty for default).
-     */
-    toolApprovalPolicies?: {[key: string]: string};
-    /**
-     * Tool preferences keyed by tool name (`enabled` or `disabled`).
-     */
-    toolPreferences?: {[key: string]: string};
-    /**
-     * MCP server URL.
-     */
-    url?: string;
-}
-
-export interface AssistantSkillAllowedTool {
-    /**
-     * Integration UUID.
-     */
-    integrationId: string;
-    /**
-     * MCP tool name.
-     */
-    toolName: string;
-}
-
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**
@@ -4166,6 +4136,39 @@ export namespace assert {
          * Values to match against.
          */
         values: string[];
+    }
+
+}
+
+export namespace assistant {
+    export interface McpServerConfiguration {
+        /**
+         * Built-in provider ID (e.g. cursor). When set, tools are provided locally.
+         */
+        builtinId?: string;
+        /**
+         * Tool approval policies keyed by tool name (`autoApprove`, `alwaysAsk`, or empty for default).
+         */
+        toolApprovalPolicies?: {[key: string]: string};
+        /**
+         * Tool preferences keyed by tool name (`enabled` or `disabled`).
+         */
+        toolPreferences?: {[key: string]: string};
+        /**
+         * MCP server URL.
+         */
+        url?: string;
+    }
+
+    export interface SkillAllowedTool {
+        /**
+         * Integration UUID.
+         */
+        integrationId: string;
+        /**
+         * MCP tool name.
+         */
+        toolName: string;
     }
 
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Assistant
 {
     /// <summary>
     /// Manages a Grafana Assistant quickstart prompt shown to users.
@@ -23,7 +23,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Grafana.AssistantQuickstart("example", new()
+    ///     var example = new Grafana.Assistant.Quickstart("example", new()
     ///     {
     ///         Scope = "tenant",
     ///         Title = "SLO health",
@@ -39,8 +39,8 @@ namespace Pulumiverse.Grafana
     /// terraform import grafana_assistant_quickstart.name "{{ id }}"
     /// ```
     /// </summary>
-    [GrafanaResourceType("grafana:index/assistantQuickstart:AssistantQuickstart")]
-    public partial class AssistantQuickstart : global::Pulumi.CustomResource
+    [GrafanaResourceType("grafana:assistant/quickstart:Quickstart")]
+    public partial class Quickstart : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Optional JSON array of context items for the quickstart.
@@ -74,19 +74,19 @@ namespace Pulumiverse.Grafana
 
 
         /// <summary>
-        /// Create a AssistantQuickstart resource with the given unique name, arguments, and options.
+        /// Create a Quickstart resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AssistantQuickstart(string name, AssistantQuickstartArgs args, CustomResourceOptions? options = null)
-            : base("grafana:index/assistantQuickstart:AssistantQuickstart", name, args ?? new AssistantQuickstartArgs(), MakeResourceOptions(options, ""))
+        public Quickstart(string name, QuickstartArgs args, CustomResourceOptions? options = null)
+            : base("grafana:assistant/quickstart:Quickstart", name, args ?? new QuickstartArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private AssistantQuickstart(string name, Input<string> id, AssistantQuickstartState? state = null, CustomResourceOptions? options = null)
-            : base("grafana:index/assistantQuickstart:AssistantQuickstart", name, state, MakeResourceOptions(options, id))
+        private Quickstart(string name, Input<string> id, QuickstartState? state = null, CustomResourceOptions? options = null)
+            : base("grafana:assistant/quickstart:Quickstart", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -103,7 +103,7 @@ namespace Pulumiverse.Grafana
             return merged;
         }
         /// <summary>
-        /// Get an existing AssistantQuickstart resource's state with the given name, ID, and optional extra
+        /// Get an existing Quickstart resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -111,13 +111,13 @@ namespace Pulumiverse.Grafana
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static AssistantQuickstart Get(string name, Input<string> id, AssistantQuickstartState? state = null, CustomResourceOptions? options = null)
+        public static Quickstart Get(string name, Input<string> id, QuickstartState? state = null, CustomResourceOptions? options = null)
         {
-            return new AssistantQuickstart(name, id, state, options);
+            return new Quickstart(name, id, state, options);
         }
     }
 
-    public sealed class AssistantQuickstartArgs : global::Pulumi.ResourceArgs
+    public sealed class QuickstartArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Optional JSON array of context items for the quickstart.
@@ -149,13 +149,13 @@ namespace Pulumiverse.Grafana
         [Input("title")]
         public Input<string>? Title { get; set; }
 
-        public AssistantQuickstartArgs()
+        public QuickstartArgs()
         {
         }
-        public static new AssistantQuickstartArgs Empty => new AssistantQuickstartArgs();
+        public static new QuickstartArgs Empty => new QuickstartArgs();
     }
 
-    public sealed class AssistantQuickstartState : global::Pulumi.ResourceArgs
+    public sealed class QuickstartState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Optional JSON array of context items for the quickstart.
@@ -187,9 +187,9 @@ namespace Pulumiverse.Grafana
         [Input("title")]
         public Input<string>? Title { get; set; }
 
-        public AssistantQuickstartState()
+        public QuickstartState()
         {
         }
-        public static new AssistantQuickstartState Empty => new AssistantQuickstartState();
+        public static new QuickstartState Empty => new QuickstartState();
     }
 }

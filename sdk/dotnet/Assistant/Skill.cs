@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Assistant
 {
     /// <summary>
     /// Manages a Grafana Assistant skill.
@@ -23,7 +23,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Grafana.AssistantSkill("example", new()
+    ///     var example = new Grafana.Assistant.Skill("example", new()
     ///     {
     ///         Name = "Deploy readiness check",
     ///         Body = @"1. Check deployment pipeline status.
@@ -41,14 +41,14 @@ namespace Pulumiverse.Grafana
     /// terraform import grafana_assistant_skill.name "{{ id }}"
     /// ```
     /// </summary>
-    [GrafanaResourceType("grafana:index/assistantSkill:AssistantSkill")]
-    public partial class AssistantSkill : global::Pulumi.CustomResource
+    [GrafanaResourceType("grafana:assistant/skill:Skill")]
+    public partial class Skill : global::Pulumi.CustomResource
     {
         /// <summary>
         /// MCP tools to auto-approve when this skill is invoked.
         /// </summary>
         [Output("allowedTools")]
-        public Output<ImmutableArray<Outputs.AssistantSkillAllowedTool>> AllowedTools { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.SkillAllowedTool>> AllowedTools { get; private set; } = null!;
 
         /// <summary>
         /// The skill content.
@@ -82,19 +82,19 @@ namespace Pulumiverse.Grafana
 
 
         /// <summary>
-        /// Create a AssistantSkill resource with the given unique name, arguments, and options.
+        /// Create a Skill resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AssistantSkill(string name, AssistantSkillArgs args, CustomResourceOptions? options = null)
-            : base("grafana:index/assistantSkill:AssistantSkill", name, args ?? new AssistantSkillArgs(), MakeResourceOptions(options, ""))
+        public Skill(string name, SkillArgs args, CustomResourceOptions? options = null)
+            : base("grafana:assistant/skill:Skill", name, args ?? new SkillArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private AssistantSkill(string name, Input<string> id, AssistantSkillState? state = null, CustomResourceOptions? options = null)
-            : base("grafana:index/assistantSkill:AssistantSkill", name, state, MakeResourceOptions(options, id))
+        private Skill(string name, Input<string> id, SkillState? state = null, CustomResourceOptions? options = null)
+            : base("grafana:assistant/skill:Skill", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -111,7 +111,7 @@ namespace Pulumiverse.Grafana
             return merged;
         }
         /// <summary>
-        /// Get an existing AssistantSkill resource's state with the given name, ID, and optional extra
+        /// Get an existing Skill resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -119,23 +119,23 @@ namespace Pulumiverse.Grafana
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static AssistantSkill Get(string name, Input<string> id, AssistantSkillState? state = null, CustomResourceOptions? options = null)
+        public static Skill Get(string name, Input<string> id, SkillState? state = null, CustomResourceOptions? options = null)
         {
-            return new AssistantSkill(name, id, state, options);
+            return new Skill(name, id, state, options);
         }
     }
 
-    public sealed class AssistantSkillArgs : global::Pulumi.ResourceArgs
+    public sealed class SkillArgs : global::Pulumi.ResourceArgs
     {
         [Input("allowedTools")]
-        private InputList<Inputs.AssistantSkillAllowedToolArgs>? _allowedTools;
+        private InputList<Inputs.SkillAllowedToolArgs>? _allowedTools;
 
         /// <summary>
         /// MCP tools to auto-approve when this skill is invoked.
         /// </summary>
-        public InputList<Inputs.AssistantSkillAllowedToolArgs> AllowedTools
+        public InputList<Inputs.SkillAllowedToolArgs> AllowedTools
         {
-            get => _allowedTools ?? (_allowedTools = new InputList<Inputs.AssistantSkillAllowedToolArgs>());
+            get => _allowedTools ?? (_allowedTools = new InputList<Inputs.SkillAllowedToolArgs>());
             set => _allowedTools = value;
         }
 
@@ -169,23 +169,23 @@ namespace Pulumiverse.Grafana
         [Input("scope", required: true)]
         public Input<string> Scope { get; set; } = null!;
 
-        public AssistantSkillArgs()
+        public SkillArgs()
         {
         }
-        public static new AssistantSkillArgs Empty => new AssistantSkillArgs();
+        public static new SkillArgs Empty => new SkillArgs();
     }
 
-    public sealed class AssistantSkillState : global::Pulumi.ResourceArgs
+    public sealed class SkillState : global::Pulumi.ResourceArgs
     {
         [Input("allowedTools")]
-        private InputList<Inputs.AssistantSkillAllowedToolGetArgs>? _allowedTools;
+        private InputList<Inputs.SkillAllowedToolGetArgs>? _allowedTools;
 
         /// <summary>
         /// MCP tools to auto-approve when this skill is invoked.
         /// </summary>
-        public InputList<Inputs.AssistantSkillAllowedToolGetArgs> AllowedTools
+        public InputList<Inputs.SkillAllowedToolGetArgs> AllowedTools
         {
-            get => _allowedTools ?? (_allowedTools = new InputList<Inputs.AssistantSkillAllowedToolGetArgs>());
+            get => _allowedTools ?? (_allowedTools = new InputList<Inputs.SkillAllowedToolGetArgs>());
             set => _allowedTools = value;
         }
 
@@ -219,9 +219,9 @@ namespace Pulumiverse.Grafana
         [Input("scope")]
         public Input<string>? Scope { get; set; }
 
-        public AssistantSkillState()
+        public SkillState()
         {
         }
-        public static new AssistantSkillState Empty => new AssistantSkillState();
+        public static new SkillState Empty => new SkillState();
     }
 }

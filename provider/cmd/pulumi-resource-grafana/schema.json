@@ -6309,6 +6309,50 @@
                 "values"
             ]
         },
+        "grafana:assistant/McpServerConfiguration:McpServerConfiguration": {
+            "properties": {
+                "builtinId": {
+                    "type": "string",
+                    "description": "Built-in provider ID (e.g. cursor). When set, tools are provided locally.\n"
+                },
+                "toolApprovalPolicies": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Tool approval policies keyed by tool name (\u003cspan pulumi-lang-nodejs=\"`autoApprove`\" pulumi-lang-dotnet=\"`AutoApprove`\" pulumi-lang-go=\"`autoApprove`\" pulumi-lang-python=\"`auto_approve`\" pulumi-lang-yaml=\"`autoApprove`\" pulumi-lang-java=\"`autoApprove`\"\u003e`autoApprove`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`alwaysAsk`\" pulumi-lang-dotnet=\"`AlwaysAsk`\" pulumi-lang-go=\"`alwaysAsk`\" pulumi-lang-python=\"`always_ask`\" pulumi-lang-yaml=\"`alwaysAsk`\" pulumi-lang-java=\"`alwaysAsk`\"\u003e`alwaysAsk`\u003c/span\u003e, or empty for default).\n"
+                },
+                "toolPreferences": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Tool preferences keyed by tool name (\u003cspan pulumi-lang-nodejs=\"`enabled`\" pulumi-lang-dotnet=\"`Enabled`\" pulumi-lang-go=\"`enabled`\" pulumi-lang-python=\"`enabled`\" pulumi-lang-yaml=\"`enabled`\" pulumi-lang-java=\"`enabled`\"\u003e`enabled`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`disabled`\" pulumi-lang-dotnet=\"`Disabled`\" pulumi-lang-go=\"`disabled`\" pulumi-lang-python=\"`disabled`\" pulumi-lang-yaml=\"`disabled`\" pulumi-lang-java=\"`disabled`\"\u003e`disabled`\u003c/span\u003e).\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "MCP server URL.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:assistant/SkillAllowedTool:SkillAllowedTool": {
+            "properties": {
+                "integrationId": {
+                    "type": "string",
+                    "description": "Integration UUID.\n"
+                },
+                "toolName": {
+                    "type": "string",
+                    "description": "MCP tool name.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "integrationId",
+                "toolName"
+            ]
+        },
         "grafana:cloud/AccessPolicyCondition:AccessPolicyCondition": {
             "properties": {
                 "allowedSubnets": {
@@ -8116,50 +8160,6 @@
                     "requiredInputs": []
                 }
             }
-        },
-        "grafana:index/AssistantMcpServerConfiguration:AssistantMcpServerConfiguration": {
-            "properties": {
-                "builtinId": {
-                    "type": "string",
-                    "description": "Built-in provider ID (e.g. cursor). When set, tools are provided locally.\n"
-                },
-                "toolApprovalPolicies": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "Tool approval policies keyed by tool name (\u003cspan pulumi-lang-nodejs=\"`autoApprove`\" pulumi-lang-dotnet=\"`AutoApprove`\" pulumi-lang-go=\"`autoApprove`\" pulumi-lang-python=\"`auto_approve`\" pulumi-lang-yaml=\"`autoApprove`\" pulumi-lang-java=\"`autoApprove`\"\u003e`autoApprove`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`alwaysAsk`\" pulumi-lang-dotnet=\"`AlwaysAsk`\" pulumi-lang-go=\"`alwaysAsk`\" pulumi-lang-python=\"`always_ask`\" pulumi-lang-yaml=\"`alwaysAsk`\" pulumi-lang-java=\"`alwaysAsk`\"\u003e`alwaysAsk`\u003c/span\u003e, or empty for default).\n"
-                },
-                "toolPreferences": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "Tool preferences keyed by tool name (\u003cspan pulumi-lang-nodejs=\"`enabled`\" pulumi-lang-dotnet=\"`Enabled`\" pulumi-lang-go=\"`enabled`\" pulumi-lang-python=\"`enabled`\" pulumi-lang-yaml=\"`enabled`\" pulumi-lang-java=\"`enabled`\"\u003e`enabled`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`disabled`\" pulumi-lang-dotnet=\"`Disabled`\" pulumi-lang-go=\"`disabled`\" pulumi-lang-python=\"`disabled`\" pulumi-lang-yaml=\"`disabled`\" pulumi-lang-java=\"`disabled`\"\u003e`disabled`\u003c/span\u003e).\n"
-                },
-                "url": {
-                    "type": "string",
-                    "description": "MCP server URL.\n"
-                }
-            },
-            "type": "object"
-        },
-        "grafana:index/AssistantSkillAllowedTool:AssistantSkillAllowedTool": {
-            "properties": {
-                "integrationId": {
-                    "type": "string",
-                    "description": "Integration UUID.\n"
-                },
-                "toolName": {
-                    "type": "string",
-                    "description": "MCP tool name.\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "integrationId",
-                "toolName"
-            ]
         },
         "grafana:k6/ScheduleCron:ScheduleCron": {
             "properties": {
@@ -14211,6 +14211,437 @@
                 "type": "object"
             }
         },
+        "grafana:assistant/mcpServer:McpServer": {
+            "description": "Manages a Grafana Assistant MCP server integration.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst config = new pulumi.Config();\nconst mcpToken = config.require(\"mcpToken\");\nconst example = new grafana.assistant.McpServer(\"example\", {\n    name: \"Example MCP server\",\n    scope: \"tenant\",\n    applications: [\"assistant\"],\n    configuration: {\n        url: \"https://example.com/mcp/\",\n    },\n    customHeaders: {\n        Authorization: `Bearer ${mcpToken}`,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nconfig = pulumi.Config()\nmcp_token = config.require(\"mcpToken\")\nexample = grafana.assistant.McpServer(\"example\",\n    name=\"Example MCP server\",\n    scope=\"tenant\",\n    applications=[\"assistant\"],\n    configuration={\n        \"url\": \"https://example.com/mcp/\",\n    },\n    custom_headers={\n        \"Authorization\": f\"Bearer {mcp_token}\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var mcpToken = config.Require(\"mcpToken\");\n    var example = new Grafana.Assistant.McpServer(\"example\", new()\n    {\n        Name = \"Example MCP server\",\n        Scope = \"tenant\",\n        Applications = new[]\n        {\n            \"assistant\",\n        },\n        Configuration = new Grafana.Assistant.Inputs.McpServerConfigurationArgs\n        {\n            Url = \"https://example.com/mcp/\",\n        },\n        CustomHeaders = \n        {\n            { \"Authorization\", $\"Bearer {mcpToken}\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/assistant\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tmcpToken := cfg.Require(\"mcpToken\")\n\t\t_, err := assistant.NewMcpServer(ctx, \"example\", \u0026assistant.McpServerArgs{\n\t\t\tName:  pulumi.String(\"Example MCP server\"),\n\t\t\tScope: pulumi.String(\"tenant\"),\n\t\t\tApplications: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"assistant\"),\n\t\t\t},\n\t\t\tConfiguration: \u0026assistant.McpServerConfigurationArgs{\n\t\t\t\tUrl: pulumi.String(\"https://example.com/mcp/\"),\n\t\t\t},\n\t\t\tCustomHeaders: pulumi.StringMap{\n\t\t\t\t\"Authorization\": pulumi.Sprintf(\"Bearer %v\", mcpToken),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.assistant.McpServer;\nimport com.pulumi.grafana.assistant.McpServerArgs;\nimport com.pulumi.grafana.assistant.inputs.McpServerConfigurationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var mcpToken = config.require(\"mcpToken\");\n        var example = new McpServer(\"example\", McpServerArgs.builder()\n            .name(\"Example MCP server\")\n            .scope(\"tenant\")\n            .applications(\"assistant\")\n            .configuration(McpServerConfigurationArgs.builder()\n                .url(\"https://example.com/mcp/\")\n                .build())\n            .customHeaders(Map.of(\"Authorization\", String.format(\"Bearer %s\", mcpToken)))\n            .build());\n\n    }\n}\n```\n```yaml\nconfiguration:\n  mcpToken:\n    type: string\nresources:\n  example:\n    type: grafana:assistant:McpServer\n    properties:\n      name: Example MCP server\n      scope: tenant\n      applications:\n        - assistant\n      configuration:\n        url: https://example.com/mcp/\n      customHeaders:\n        Authorization: Bearer ${mcpToken}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_assistant_mcp_server.name \"{{ id }}\"\n```\n\n",
+            "properties": {
+                "applications": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Applications where this resource applies. Valid values: \u003cspan pulumi-lang-nodejs=\"`assistant`\" pulumi-lang-dotnet=\"`Assistant`\" pulumi-lang-go=\"`assistant`\" pulumi-lang-python=\"`assistant`\" pulumi-lang-yaml=\"`assistant`\" pulumi-lang-java=\"`assistant`\"\u003e`assistant`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`loop`\" pulumi-lang-dotnet=\"`Loop`\" pulumi-lang-go=\"`loop`\" pulumi-lang-python=\"`loop`\" pulumi-lang-yaml=\"`loop`\" pulumi-lang-java=\"`loop`\"\u003e`loop`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`all`\" pulumi-lang-dotnet=\"`All`\" pulumi-lang-go=\"`all`\" pulumi-lang-python=\"`all`\" pulumi-lang-yaml=\"`all`\" pulumi-lang-java=\"`all`\"\u003e`all`\u003c/span\u003e. Defaults to all applications when unset.\n"
+                },
+                "configuration": {
+                    "$ref": "#/types/grafana:assistant/McpServerConfiguration:McpServerConfiguration",
+                    "description": "MCP server configuration.\n"
+                },
+                "customHeaders": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.\n",
+                    "secret": true
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Optional description.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether the resource is enabled.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The MCP server integration name.\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
+                }
+            },
+            "required": [
+                "applications",
+                "enabled",
+                "name",
+                "scope"
+            ],
+            "inputProperties": {
+                "applications": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Applications where this resource applies. Valid values: \u003cspan pulumi-lang-nodejs=\"`assistant`\" pulumi-lang-dotnet=\"`Assistant`\" pulumi-lang-go=\"`assistant`\" pulumi-lang-python=\"`assistant`\" pulumi-lang-yaml=\"`assistant`\" pulumi-lang-java=\"`assistant`\"\u003e`assistant`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`loop`\" pulumi-lang-dotnet=\"`Loop`\" pulumi-lang-go=\"`loop`\" pulumi-lang-python=\"`loop`\" pulumi-lang-yaml=\"`loop`\" pulumi-lang-java=\"`loop`\"\u003e`loop`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`all`\" pulumi-lang-dotnet=\"`All`\" pulumi-lang-go=\"`all`\" pulumi-lang-python=\"`all`\" pulumi-lang-yaml=\"`all`\" pulumi-lang-java=\"`all`\"\u003e`all`\u003c/span\u003e. Defaults to all applications when unset.\n"
+                },
+                "configuration": {
+                    "$ref": "#/types/grafana:assistant/McpServerConfiguration:McpServerConfiguration",
+                    "description": "MCP server configuration.\n"
+                },
+                "customHeaders": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.\n",
+                    "secret": true
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Optional description.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether the resource is enabled.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The MCP server integration name.\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
+                }
+            },
+            "requiredInputs": [
+                "scope"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering McpServer resources.\n",
+                "properties": {
+                    "applications": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Applications where this resource applies. Valid values: \u003cspan pulumi-lang-nodejs=\"`assistant`\" pulumi-lang-dotnet=\"`Assistant`\" pulumi-lang-go=\"`assistant`\" pulumi-lang-python=\"`assistant`\" pulumi-lang-yaml=\"`assistant`\" pulumi-lang-java=\"`assistant`\"\u003e`assistant`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`loop`\" pulumi-lang-dotnet=\"`Loop`\" pulumi-lang-go=\"`loop`\" pulumi-lang-python=\"`loop`\" pulumi-lang-yaml=\"`loop`\" pulumi-lang-java=\"`loop`\"\u003e`loop`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`all`\" pulumi-lang-dotnet=\"`All`\" pulumi-lang-go=\"`all`\" pulumi-lang-python=\"`all`\" pulumi-lang-yaml=\"`all`\" pulumi-lang-java=\"`all`\"\u003e`all`\u003c/span\u003e. Defaults to all applications when unset.\n"
+                    },
+                    "configuration": {
+                        "$ref": "#/types/grafana:assistant/McpServerConfiguration:McpServerConfiguration",
+                        "description": "MCP server configuration.\n"
+                    },
+                    "customHeaders": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.\n",
+                        "secret": true
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Optional description.\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "Whether the resource is enabled.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The MCP server integration name.\n"
+                    },
+                    "scope": {
+                        "type": "string",
+                        "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:assistant/quickstart:Quickstart": {
+            "description": "Manages a Grafana Assistant quickstart prompt shown to users.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.assistant.Quickstart(\"example\", {\n    scope: \"tenant\",\n    title: \"SLO health\",\n    prompt: \"How healthy are my SLOs right now?\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nexample = grafana.assistant.Quickstart(\"example\",\n    scope=\"tenant\",\n    title=\"SLO health\",\n    prompt=\"How healthy are my SLOs right now?\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Assistant.Quickstart(\"example\", new()\n    {\n        Scope = \"tenant\",\n        Title = \"SLO health\",\n        Prompt = \"How healthy are my SLOs right now?\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/assistant\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := assistant.NewQuickstart(ctx, \"example\", \u0026assistant.QuickstartArgs{\n\t\t\tScope:  pulumi.String(\"tenant\"),\n\t\t\tTitle:  pulumi.String(\"SLO health\"),\n\t\t\tPrompt: pulumi.String(\"How healthy are my SLOs right now?\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.assistant.Quickstart;\nimport com.pulumi.grafana.assistant.QuickstartArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Quickstart(\"example\", QuickstartArgs.builder()\n            .scope(\"tenant\")\n            .title(\"SLO health\")\n            .prompt(\"How healthy are my SLOs right now?\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:assistant:Quickstart\n    properties:\n      scope: tenant\n      title: SLO health\n      prompt: How healthy are my SLOs right now?\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_assistant_quickstart.name \"{{ id }}\"\n```\n\n",
+            "properties": {
+                "contextItems": {
+                    "type": "string",
+                    "description": "Optional JSON array of context items for the quickstart.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether the resource is enabled.\n"
+                },
+                "prompt": {
+                    "type": "string",
+                    "description": "The quickstart question text.\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "Optional title for the quickstart.\n"
+                }
+            },
+            "required": [
+                "enabled",
+                "prompt",
+                "scope"
+            ],
+            "inputProperties": {
+                "contextItems": {
+                    "type": "string",
+                    "description": "Optional JSON array of context items for the quickstart.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether the resource is enabled.\n"
+                },
+                "prompt": {
+                    "type": "string",
+                    "description": "The quickstart question text.\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "Optional title for the quickstart.\n"
+                }
+            },
+            "requiredInputs": [
+                "prompt",
+                "scope"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Quickstart resources.\n",
+                "properties": {
+                    "contextItems": {
+                        "type": "string",
+                        "description": "Optional JSON array of context items for the quickstart.\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "Whether the resource is enabled.\n"
+                    },
+                    "prompt": {
+                        "type": "string",
+                        "description": "The quickstart question text.\n"
+                    },
+                    "scope": {
+                        "type": "string",
+                        "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
+                    },
+                    "title": {
+                        "type": "string",
+                        "description": "Optional title for the quickstart.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:assistant/rule:Rule": {
+            "description": "Manages a Grafana Assistant rule that is injected into the assistant system prompt.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.assistant.Rule(\"example\", {\n    name: \"Prefer RED metrics\",\n    ruleContent: \"When summarizing service health, prefer RED metrics.\",\n    scope: \"tenant\",\n    priority: 10,\n    applications: [\"assistant\"],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nexample = grafana.assistant.Rule(\"example\",\n    name=\"Prefer RED metrics\",\n    rule_content=\"When summarizing service health, prefer RED metrics.\",\n    scope=\"tenant\",\n    priority=10,\n    applications=[\"assistant\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Assistant.Rule(\"example\", new()\n    {\n        Name = \"Prefer RED metrics\",\n        RuleContent = \"When summarizing service health, prefer RED metrics.\",\n        Scope = \"tenant\",\n        Priority = 10,\n        Applications = new[]\n        {\n            \"assistant\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/assistant\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := assistant.NewRule(ctx, \"example\", \u0026assistant.RuleArgs{\n\t\t\tName:        pulumi.String(\"Prefer RED metrics\"),\n\t\t\tRuleContent: pulumi.String(\"When summarizing service health, prefer RED metrics.\"),\n\t\t\tScope:       pulumi.String(\"tenant\"),\n\t\t\tPriority:    pulumi.Int(10),\n\t\t\tApplications: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"assistant\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.assistant.Rule;\nimport com.pulumi.grafana.assistant.RuleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Rule(\"example\", RuleArgs.builder()\n            .name(\"Prefer RED metrics\")\n            .ruleContent(\"When summarizing service health, prefer RED metrics.\")\n            .scope(\"tenant\")\n            .priority(10)\n            .applications(\"assistant\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:assistant:Rule\n    properties:\n      name: Prefer RED metrics\n      ruleContent: When summarizing service health, prefer RED metrics.\n      scope: tenant\n      priority: 10\n      applications:\n        - assistant\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_assistant_rule.name \"{{ id }}\"\n```\n\n",
+            "properties": {
+                "applications": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Applications where this resource applies. Valid values: \u003cspan pulumi-lang-nodejs=\"`assistant`\" pulumi-lang-dotnet=\"`Assistant`\" pulumi-lang-go=\"`assistant`\" pulumi-lang-python=\"`assistant`\" pulumi-lang-yaml=\"`assistant`\" pulumi-lang-java=\"`assistant`\"\u003e`assistant`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`loop`\" pulumi-lang-dotnet=\"`Loop`\" pulumi-lang-go=\"`loop`\" pulumi-lang-python=\"`loop`\" pulumi-lang-yaml=\"`loop`\" pulumi-lang-java=\"`loop`\"\u003e`loop`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`infrastructureMemory`\" pulumi-lang-dotnet=\"`InfrastructureMemory`\" pulumi-lang-go=\"`infrastructureMemory`\" pulumi-lang-python=\"`infrastructure_memory`\" pulumi-lang-yaml=\"`infrastructureMemory`\" pulumi-lang-java=\"`infrastructureMemory`\"\u003e`infrastructureMemory`\u003c/span\u003e (rules only), \u003cspan pulumi-lang-nodejs=\"`all`\" pulumi-lang-dotnet=\"`All`\" pulumi-lang-go=\"`all`\" pulumi-lang-python=\"`all`\" pulumi-lang-yaml=\"`all`\" pulumi-lang-java=\"`all`\"\u003e`all`\u003c/span\u003e. Defaults to all applications when unset.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Optional description of the rule.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether the resource is enabled.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The rule name.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Rule priority (lower values apply first).\n"
+                },
+                "ruleContent": {
+                    "type": "string",
+                    "description": "The rule text included in the assistant system prompt.\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
+                }
+            },
+            "required": [
+                "applications",
+                "enabled",
+                "name",
+                "priority",
+                "ruleContent",
+                "scope"
+            ],
+            "inputProperties": {
+                "applications": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Applications where this resource applies. Valid values: \u003cspan pulumi-lang-nodejs=\"`assistant`\" pulumi-lang-dotnet=\"`Assistant`\" pulumi-lang-go=\"`assistant`\" pulumi-lang-python=\"`assistant`\" pulumi-lang-yaml=\"`assistant`\" pulumi-lang-java=\"`assistant`\"\u003e`assistant`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`loop`\" pulumi-lang-dotnet=\"`Loop`\" pulumi-lang-go=\"`loop`\" pulumi-lang-python=\"`loop`\" pulumi-lang-yaml=\"`loop`\" pulumi-lang-java=\"`loop`\"\u003e`loop`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`infrastructureMemory`\" pulumi-lang-dotnet=\"`InfrastructureMemory`\" pulumi-lang-go=\"`infrastructureMemory`\" pulumi-lang-python=\"`infrastructure_memory`\" pulumi-lang-yaml=\"`infrastructureMemory`\" pulumi-lang-java=\"`infrastructureMemory`\"\u003e`infrastructureMemory`\u003c/span\u003e (rules only), \u003cspan pulumi-lang-nodejs=\"`all`\" pulumi-lang-dotnet=\"`All`\" pulumi-lang-go=\"`all`\" pulumi-lang-python=\"`all`\" pulumi-lang-yaml=\"`all`\" pulumi-lang-java=\"`all`\"\u003e`all`\u003c/span\u003e. Defaults to all applications when unset.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Optional description of the rule.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether the resource is enabled.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The rule name.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Rule priority (lower values apply first).\n"
+                },
+                "ruleContent": {
+                    "type": "string",
+                    "description": "The rule text included in the assistant system prompt.\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
+                }
+            },
+            "requiredInputs": [
+                "ruleContent",
+                "scope"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Rule resources.\n",
+                "properties": {
+                    "applications": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Applications where this resource applies. Valid values: \u003cspan pulumi-lang-nodejs=\"`assistant`\" pulumi-lang-dotnet=\"`Assistant`\" pulumi-lang-go=\"`assistant`\" pulumi-lang-python=\"`assistant`\" pulumi-lang-yaml=\"`assistant`\" pulumi-lang-java=\"`assistant`\"\u003e`assistant`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`loop`\" pulumi-lang-dotnet=\"`Loop`\" pulumi-lang-go=\"`loop`\" pulumi-lang-python=\"`loop`\" pulumi-lang-yaml=\"`loop`\" pulumi-lang-java=\"`loop`\"\u003e`loop`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`infrastructureMemory`\" pulumi-lang-dotnet=\"`InfrastructureMemory`\" pulumi-lang-go=\"`infrastructureMemory`\" pulumi-lang-python=\"`infrastructure_memory`\" pulumi-lang-yaml=\"`infrastructureMemory`\" pulumi-lang-java=\"`infrastructureMemory`\"\u003e`infrastructureMemory`\u003c/span\u003e (rules only), \u003cspan pulumi-lang-nodejs=\"`all`\" pulumi-lang-dotnet=\"`All`\" pulumi-lang-go=\"`all`\" pulumi-lang-python=\"`all`\" pulumi-lang-yaml=\"`all`\" pulumi-lang-java=\"`all`\"\u003e`all`\u003c/span\u003e. Defaults to all applications when unset.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Optional description of the rule.\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "Whether the resource is enabled.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The rule name.\n"
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "description": "Rule priority (lower values apply first).\n"
+                    },
+                    "ruleContent": {
+                        "type": "string",
+                        "description": "The rule text included in the assistant system prompt.\n"
+                    },
+                    "scope": {
+                        "type": "string",
+                        "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:assistant/skill:Skill": {
+            "description": "Manages a Grafana Assistant skill.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.assistant.Skill(\"example\", {\n    name: \"Deploy readiness check\",\n    body: `1. Check deployment pipeline status.\n2. Verify SLO error budget before promoting.\n`,\n    scope: \"tenant\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nexample = grafana.assistant.Skill(\"example\",\n    name=\"Deploy readiness check\",\n    body=\"\"\"1. Check deployment pipeline status.\n2. Verify SLO error budget before promoting.\n\"\"\",\n    scope=\"tenant\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Assistant.Skill(\"example\", new()\n    {\n        Name = \"Deploy readiness check\",\n        Body = @\"1. Check deployment pipeline status.\n2. Verify SLO error budget before promoting.\n\",\n        Scope = \"tenant\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/assistant\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := assistant.NewSkill(ctx, \"example\", \u0026assistant.SkillArgs{\n\t\t\tName:  pulumi.String(\"Deploy readiness check\"),\n\t\t\tBody:  pulumi.String(\"1. Check deployment pipeline status.\\n2. Verify SLO error budget before promoting.\\n\"),\n\t\t\tScope: pulumi.String(\"tenant\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.assistant.Skill;\nimport com.pulumi.grafana.assistant.SkillArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Skill(\"example\", SkillArgs.builder()\n            .name(\"Deploy readiness check\")\n            .body(\"\"\"\n1. Check deployment pipeline status.\n2. Verify SLO error budget before promoting.\n            \"\"\")\n            .scope(\"tenant\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:assistant:Skill\n    properties:\n      name: Deploy readiness check\n      body: |\n        1. Check deployment pipeline status.\n        2. Verify SLO error budget before promoting.\n      scope: tenant\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_assistant_skill.name \"{{ id }}\"\n```\n\n",
+            "properties": {
+                "allowedTools": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:assistant/SkillAllowedTool:SkillAllowedTool"
+                    },
+                    "description": "MCP tools to auto-approve when this skill is invoked.\n"
+                },
+                "body": {
+                    "type": "string",
+                    "description": "The skill content.\n"
+                },
+                "contextItems": {
+                    "type": "string",
+                    "description": "Optional JSON array of context items referenced by the skill.\n"
+                },
+                "includeInKnowledgebase": {
+                    "type": "boolean",
+                    "description": "Whether the skill is included in the knowledgebase.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The skill name.\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
+                }
+            },
+            "required": [
+                "body",
+                "includeInKnowledgebase",
+                "name",
+                "scope"
+            ],
+            "inputProperties": {
+                "allowedTools": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:assistant/SkillAllowedTool:SkillAllowedTool"
+                    },
+                    "description": "MCP tools to auto-approve when this skill is invoked.\n"
+                },
+                "body": {
+                    "type": "string",
+                    "description": "The skill content.\n"
+                },
+                "contextItems": {
+                    "type": "string",
+                    "description": "Optional JSON array of context items referenced by the skill.\n"
+                },
+                "includeInKnowledgebase": {
+                    "type": "boolean",
+                    "description": "Whether the skill is included in the knowledgebase.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The skill name.\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
+                }
+            },
+            "requiredInputs": [
+                "body",
+                "scope"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Skill resources.\n",
+                "properties": {
+                    "allowedTools": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/grafana:assistant/SkillAllowedTool:SkillAllowedTool"
+                        },
+                        "description": "MCP tools to auto-approve when this skill is invoked.\n"
+                    },
+                    "body": {
+                        "type": "string",
+                        "description": "The skill content.\n"
+                    },
+                    "contextItems": {
+                        "type": "string",
+                        "description": "Optional JSON array of context items referenced by the skill.\n"
+                    },
+                    "includeInKnowledgebase": {
+                        "type": "boolean",
+                        "description": "Whether the skill is included in the knowledgebase.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The skill name.\n"
+                    },
+                    "scope": {
+                        "type": "string",
+                        "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:cloud/accessPolicy:AccessPolicy": {
             "description": "* [Official documentation](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/)\n* [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-an-access-policy)\n\nRequired access policy scopes:\n\n* accesspolicies:read\n* accesspolicies:write\n* accesspolicies:delete\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst current = grafana.cloud.getOrganization({\n    slug: \"\u003cyour org slug\u003e\",\n});\nconst test = new grafana.cloud.AccessPolicy(\"test\", {\n    region: \"prod-us-east-0\",\n    name: \"my-policy\",\n    displayName: \"My Policy\",\n    scopes: [\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms: [{\n        type: \"org\",\n        identifier: current.then(current =\u003e current.id),\n        labelPolicies: [{\n            selector: \"{namespace=\\\"default\\\"}\",\n        }],\n    }],\n});\nconst testAccessPolicyToken = new grafana.cloud.AccessPolicyToken(\"test\", {\n    region: \"prod-us-east-0\",\n    accessPolicyId: test.policyId,\n    name: \"my-policy-token\",\n    displayName: \"My Policy Token\",\n    expiresAt: \"2023-01-01T00:00:00Z\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ncurrent = grafana.cloud.get_organization(slug=\"\u003cyour org slug\u003e\")\ntest = grafana.cloud.AccessPolicy(\"test\",\n    region=\"prod-us-east-0\",\n    name=\"my-policy\",\n    display_name=\"My Policy\",\n    scopes=[\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms=[{\n        \"type\": \"org\",\n        \"identifier\": current.id,\n        \"label_policies\": [{\n            \"selector\": \"{namespace=\\\"default\\\"}\",\n        }],\n    }])\ntest_access_policy_token = grafana.cloud.AccessPolicyToken(\"test\",\n    region=\"prod-us-east-0\",\n    access_policy_id=test.policy_id,\n    name=\"my-policy-token\",\n    display_name=\"My Policy Token\",\n    expires_at=\"2023-01-01T00:00:00Z\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var current = Grafana.Cloud.GetOrganization.Invoke(new()\n    {\n        Slug = \"\u003cyour org slug\u003e\",\n    });\n\n    var test = new Grafana.Cloud.AccessPolicy(\"test\", new()\n    {\n        Region = \"prod-us-east-0\",\n        Name = \"my-policy\",\n        DisplayName = \"My Policy\",\n        Scopes = new[]\n        {\n            \"metrics:read\",\n            \"logs:read\",\n        },\n        Realms = new[]\n        {\n            new Grafana.Cloud.Inputs.AccessPolicyRealmArgs\n            {\n                Type = \"org\",\n                Identifier = current.Apply(getOrganizationResult =\u003e getOrganizationResult.Id),\n                LabelPolicies = new[]\n                {\n                    new Grafana.Cloud.Inputs.AccessPolicyRealmLabelPolicyArgs\n                    {\n                        Selector = \"{namespace=\\\"default\\\"}\",\n                    },\n                },\n            },\n        },\n    });\n\n    var testAccessPolicyToken = new Grafana.Cloud.AccessPolicyToken(\"test\", new()\n    {\n        Region = \"prod-us-east-0\",\n        AccessPolicyId = test.PolicyId,\n        Name = \"my-policy-token\",\n        DisplayName = \"My Policy Token\",\n        ExpiresAt = \"2023-01-01T00:00:00Z\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcurrent, err := cloud.GetOrganization(ctx, \u0026cloud.GetOrganizationArgs{\n\t\t\tSlug: pulumi.StringRef(\"\u003cyour org slug\u003e\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttest, err := cloud.NewAccessPolicy(ctx, \"test\", \u0026cloud.AccessPolicyArgs{\n\t\t\tRegion:      pulumi.String(\"prod-us-east-0\"),\n\t\t\tName:        pulumi.String(\"my-policy\"),\n\t\t\tDisplayName: pulumi.String(\"My Policy\"),\n\t\t\tScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"metrics:read\"),\n\t\t\t\tpulumi.String(\"logs:read\"),\n\t\t\t},\n\t\t\tRealms: cloud.AccessPolicyRealmArray{\n\t\t\t\t\u0026cloud.AccessPolicyRealmArgs{\n\t\t\t\t\tType:       pulumi.String(\"org\"),\n\t\t\t\t\tIdentifier: pulumi.String(current.Id),\n\t\t\t\t\tLabelPolicies: cloud.AccessPolicyRealmLabelPolicyArray{\n\t\t\t\t\t\t\u0026cloud.AccessPolicyRealmLabelPolicyArgs{\n\t\t\t\t\t\t\tSelector: pulumi.String(\"{namespace=\\\"default\\\"}\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloud.NewAccessPolicyToken(ctx, \"test\", \u0026cloud.AccessPolicyTokenArgs{\n\t\t\tRegion:         pulumi.String(\"prod-us-east-0\"),\n\t\t\tAccessPolicyId: test.PolicyId,\n\t\t\tName:           pulumi.String(\"my-policy-token\"),\n\t\t\tDisplayName:    pulumi.String(\"My Policy Token\"),\n\t\t\tExpiresAt:      pulumi.String(\"2023-01-01T00:00:00Z\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.CloudFunctions;\nimport com.pulumi.grafana.cloud.inputs.GetOrganizationArgs;\nimport com.pulumi.grafana.cloud.AccessPolicy;\nimport com.pulumi.grafana.cloud.AccessPolicyArgs;\nimport com.pulumi.grafana.cloud.inputs.AccessPolicyRealmArgs;\nimport com.pulumi.grafana.cloud.AccessPolicyToken;\nimport com.pulumi.grafana.cloud.AccessPolicyTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var current = CloudFunctions.getOrganization(GetOrganizationArgs.builder()\n            .slug(\"\u003cyour org slug\u003e\")\n            .build());\n\n        var test = new AccessPolicy(\"test\", AccessPolicyArgs.builder()\n            .region(\"prod-us-east-0\")\n            .name(\"my-policy\")\n            .displayName(\"My Policy\")\n            .scopes(            \n                \"metrics:read\",\n                \"logs:read\")\n            .realms(AccessPolicyRealmArgs.builder()\n                .type(\"org\")\n                .identifier(current.id())\n                .labelPolicies(AccessPolicyRealmLabelPolicyArgs.builder()\n                    .selector(\"{namespace=\\\"default\\\"}\")\n                    .build())\n                .build())\n            .build());\n\n        var testAccessPolicyToken = new AccessPolicyToken(\"testAccessPolicyToken\", AccessPolicyTokenArgs.builder()\n            .region(\"prod-us-east-0\")\n            .accessPolicyId(test.policyId())\n            .name(\"my-policy-token\")\n            .displayName(\"My Policy Token\")\n            .expiresAt(\"2023-01-01T00:00:00Z\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:cloud:AccessPolicy\n    properties:\n      region: prod-us-east-0\n      name: my-policy\n      displayName: My Policy\n      scopes:\n        - metrics:read\n        - logs:read\n      realms:\n        - type: org\n          identifier: ${current.id}\n          labelPolicies:\n            - selector: '{namespace=\"default\"}'\n  testAccessPolicyToken:\n    type: grafana:cloud:AccessPolicyToken\n    name: test\n    properties:\n      region: prod-us-east-0\n      accessPolicyId: ${test.policyId}\n      name: my-policy-token\n      displayName: My Policy Token\n      expiresAt: 2023-01-01T00:00:00Z\nvariables:\n  current:\n    fn::invoke:\n      function: grafana:cloud:getOrganization\n      arguments:\n        slug: \u003cyour org slug\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_cloud_access_policy.name \"{{ region }}:{{ policyId }}\"\n```\n\n",
             "properties": {
@@ -19088,437 +19519,6 @@
                 "type": "object"
             }
         },
-        "grafana:index/assistantMcpServer:AssistantMcpServer": {
-            "description": "Manages a Grafana Assistant MCP server integration.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst config = new pulumi.Config();\nconst mcpToken = config.require(\"mcpToken\");\nconst example = new grafana.AssistantMcpServer(\"example\", {\n    name: \"Example MCP server\",\n    scope: \"tenant\",\n    applications: [\"assistant\"],\n    configuration: {\n        url: \"https://example.com/mcp/\",\n    },\n    customHeaders: {\n        Authorization: `Bearer ${mcpToken}`,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nconfig = pulumi.Config()\nmcp_token = config.require(\"mcpToken\")\nexample = grafana.AssistantMcpServer(\"example\",\n    name=\"Example MCP server\",\n    scope=\"tenant\",\n    applications=[\"assistant\"],\n    configuration={\n        \"url\": \"https://example.com/mcp/\",\n    },\n    custom_headers={\n        \"Authorization\": f\"Bearer {mcp_token}\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var mcpToken = config.Require(\"mcpToken\");\n    var example = new Grafana.AssistantMcpServer(\"example\", new()\n    {\n        Name = \"Example MCP server\",\n        Scope = \"tenant\",\n        Applications = new[]\n        {\n            \"assistant\",\n        },\n        Configuration = new Grafana.Inputs.AssistantMcpServerConfigurationArgs\n        {\n            Url = \"https://example.com/mcp/\",\n        },\n        CustomHeaders = \n        {\n            { \"Authorization\", $\"Bearer {mcpToken}\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tmcpToken := cfg.Require(\"mcpToken\")\n\t\t_, err := grafana.NewAssistantMcpServer(ctx, \"example\", \u0026grafana.AssistantMcpServerArgs{\n\t\t\tName:  pulumi.String(\"Example MCP server\"),\n\t\t\tScope: pulumi.String(\"tenant\"),\n\t\t\tApplications: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"assistant\"),\n\t\t\t},\n\t\t\tConfiguration: \u0026grafana.AssistantMcpServerConfigurationArgs{\n\t\t\t\tUrl: pulumi.String(\"https://example.com/mcp/\"),\n\t\t\t},\n\t\t\tCustomHeaders: pulumi.StringMap{\n\t\t\t\t\"Authorization\": pulumi.Sprintf(\"Bearer %v\", mcpToken),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.AssistantMcpServer;\nimport com.pulumi.grafana.AssistantMcpServerArgs;\nimport com.pulumi.grafana.inputs.AssistantMcpServerConfigurationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var mcpToken = config.require(\"mcpToken\");\n        var example = new AssistantMcpServer(\"example\", AssistantMcpServerArgs.builder()\n            .name(\"Example MCP server\")\n            .scope(\"tenant\")\n            .applications(\"assistant\")\n            .configuration(AssistantMcpServerConfigurationArgs.builder()\n                .url(\"https://example.com/mcp/\")\n                .build())\n            .customHeaders(Map.of(\"Authorization\", String.format(\"Bearer %s\", mcpToken)))\n            .build());\n\n    }\n}\n```\n```yaml\nconfiguration:\n  mcpToken:\n    type: string\nresources:\n  example:\n    type: grafana:AssistantMcpServer\n    properties:\n      name: Example MCP server\n      scope: tenant\n      applications:\n        - assistant\n      configuration:\n        url: https://example.com/mcp/\n      customHeaders:\n        Authorization: Bearer ${mcpToken}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_assistant_mcp_server.name \"{{ id }}\"\n```\n\n",
-            "properties": {
-                "applications": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "Applications where this resource applies. Valid values: \u003cspan pulumi-lang-nodejs=\"`assistant`\" pulumi-lang-dotnet=\"`Assistant`\" pulumi-lang-go=\"`assistant`\" pulumi-lang-python=\"`assistant`\" pulumi-lang-yaml=\"`assistant`\" pulumi-lang-java=\"`assistant`\"\u003e`assistant`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`loop`\" pulumi-lang-dotnet=\"`Loop`\" pulumi-lang-go=\"`loop`\" pulumi-lang-python=\"`loop`\" pulumi-lang-yaml=\"`loop`\" pulumi-lang-java=\"`loop`\"\u003e`loop`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`all`\" pulumi-lang-dotnet=\"`All`\" pulumi-lang-go=\"`all`\" pulumi-lang-python=\"`all`\" pulumi-lang-yaml=\"`all`\" pulumi-lang-java=\"`all`\"\u003e`all`\u003c/span\u003e. Defaults to all applications when unset.\n"
-                },
-                "configuration": {
-                    "$ref": "#/types/grafana:index/AssistantMcpServerConfiguration:AssistantMcpServerConfiguration",
-                    "description": "MCP server configuration.\n"
-                },
-                "customHeaders": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.\n",
-                    "secret": true
-                },
-                "description": {
-                    "type": "string",
-                    "description": "Optional description.\n"
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "description": "Whether the resource is enabled.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The MCP server integration name.\n"
-                },
-                "scope": {
-                    "type": "string",
-                    "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
-                }
-            },
-            "required": [
-                "applications",
-                "enabled",
-                "name",
-                "scope"
-            ],
-            "inputProperties": {
-                "applications": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "Applications where this resource applies. Valid values: \u003cspan pulumi-lang-nodejs=\"`assistant`\" pulumi-lang-dotnet=\"`Assistant`\" pulumi-lang-go=\"`assistant`\" pulumi-lang-python=\"`assistant`\" pulumi-lang-yaml=\"`assistant`\" pulumi-lang-java=\"`assistant`\"\u003e`assistant`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`loop`\" pulumi-lang-dotnet=\"`Loop`\" pulumi-lang-go=\"`loop`\" pulumi-lang-python=\"`loop`\" pulumi-lang-yaml=\"`loop`\" pulumi-lang-java=\"`loop`\"\u003e`loop`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`all`\" pulumi-lang-dotnet=\"`All`\" pulumi-lang-go=\"`all`\" pulumi-lang-python=\"`all`\" pulumi-lang-yaml=\"`all`\" pulumi-lang-java=\"`all`\"\u003e`all`\u003c/span\u003e. Defaults to all applications when unset.\n"
-                },
-                "configuration": {
-                    "$ref": "#/types/grafana:index/AssistantMcpServerConfiguration:AssistantMcpServerConfiguration",
-                    "description": "MCP server configuration.\n"
-                },
-                "customHeaders": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.\n",
-                    "secret": true
-                },
-                "description": {
-                    "type": "string",
-                    "description": "Optional description.\n"
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "description": "Whether the resource is enabled.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The MCP server integration name.\n"
-                },
-                "scope": {
-                    "type": "string",
-                    "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
-                }
-            },
-            "requiredInputs": [
-                "scope"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering AssistantMcpServer resources.\n",
-                "properties": {
-                    "applications": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "Applications where this resource applies. Valid values: \u003cspan pulumi-lang-nodejs=\"`assistant`\" pulumi-lang-dotnet=\"`Assistant`\" pulumi-lang-go=\"`assistant`\" pulumi-lang-python=\"`assistant`\" pulumi-lang-yaml=\"`assistant`\" pulumi-lang-java=\"`assistant`\"\u003e`assistant`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`loop`\" pulumi-lang-dotnet=\"`Loop`\" pulumi-lang-go=\"`loop`\" pulumi-lang-python=\"`loop`\" pulumi-lang-yaml=\"`loop`\" pulumi-lang-java=\"`loop`\"\u003e`loop`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`all`\" pulumi-lang-dotnet=\"`All`\" pulumi-lang-go=\"`all`\" pulumi-lang-python=\"`all`\" pulumi-lang-yaml=\"`all`\" pulumi-lang-java=\"`all`\"\u003e`all`\u003c/span\u003e. Defaults to all applications when unset.\n"
-                    },
-                    "configuration": {
-                        "$ref": "#/types/grafana:index/AssistantMcpServerConfiguration:AssistantMcpServerConfiguration",
-                        "description": "MCP server configuration.\n"
-                    },
-                    "customHeaders": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "type": "string"
-                        },
-                        "description": "Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.\n",
-                        "secret": true
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "Optional description.\n"
-                    },
-                    "enabled": {
-                        "type": "boolean",
-                        "description": "Whether the resource is enabled.\n"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "The MCP server integration name.\n"
-                    },
-                    "scope": {
-                        "type": "string",
-                        "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "grafana:index/assistantQuickstart:AssistantQuickstart": {
-            "description": "Manages a Grafana Assistant quickstart prompt shown to users.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.AssistantQuickstart(\"example\", {\n    scope: \"tenant\",\n    title: \"SLO health\",\n    prompt: \"How healthy are my SLOs right now?\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nexample = grafana.AssistantQuickstart(\"example\",\n    scope=\"tenant\",\n    title=\"SLO health\",\n    prompt=\"How healthy are my SLOs right now?\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.AssistantQuickstart(\"example\", new()\n    {\n        Scope = \"tenant\",\n        Title = \"SLO health\",\n        Prompt = \"How healthy are my SLOs right now?\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := grafana.NewAssistantQuickstart(ctx, \"example\", \u0026grafana.AssistantQuickstartArgs{\n\t\t\tScope:  pulumi.String(\"tenant\"),\n\t\t\tTitle:  pulumi.String(\"SLO health\"),\n\t\t\tPrompt: pulumi.String(\"How healthy are my SLOs right now?\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.AssistantQuickstart;\nimport com.pulumi.grafana.AssistantQuickstartArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new AssistantQuickstart(\"example\", AssistantQuickstartArgs.builder()\n            .scope(\"tenant\")\n            .title(\"SLO health\")\n            .prompt(\"How healthy are my SLOs right now?\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:AssistantQuickstart\n    properties:\n      scope: tenant\n      title: SLO health\n      prompt: How healthy are my SLOs right now?\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_assistant_quickstart.name \"{{ id }}\"\n```\n\n",
-            "properties": {
-                "contextItems": {
-                    "type": "string",
-                    "description": "Optional JSON array of context items for the quickstart.\n"
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "description": "Whether the resource is enabled.\n"
-                },
-                "prompt": {
-                    "type": "string",
-                    "description": "The quickstart question text.\n"
-                },
-                "scope": {
-                    "type": "string",
-                    "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
-                },
-                "title": {
-                    "type": "string",
-                    "description": "Optional title for the quickstart.\n"
-                }
-            },
-            "required": [
-                "enabled",
-                "prompt",
-                "scope"
-            ],
-            "inputProperties": {
-                "contextItems": {
-                    "type": "string",
-                    "description": "Optional JSON array of context items for the quickstart.\n"
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "description": "Whether the resource is enabled.\n"
-                },
-                "prompt": {
-                    "type": "string",
-                    "description": "The quickstart question text.\n"
-                },
-                "scope": {
-                    "type": "string",
-                    "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
-                },
-                "title": {
-                    "type": "string",
-                    "description": "Optional title for the quickstart.\n"
-                }
-            },
-            "requiredInputs": [
-                "prompt",
-                "scope"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering AssistantQuickstart resources.\n",
-                "properties": {
-                    "contextItems": {
-                        "type": "string",
-                        "description": "Optional JSON array of context items for the quickstart.\n"
-                    },
-                    "enabled": {
-                        "type": "boolean",
-                        "description": "Whether the resource is enabled.\n"
-                    },
-                    "prompt": {
-                        "type": "string",
-                        "description": "The quickstart question text.\n"
-                    },
-                    "scope": {
-                        "type": "string",
-                        "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
-                    },
-                    "title": {
-                        "type": "string",
-                        "description": "Optional title for the quickstart.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "grafana:index/assistantRule:AssistantRule": {
-            "description": "Manages a Grafana Assistant rule that is injected into the assistant system prompt.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.AssistantRule(\"example\", {\n    name: \"Prefer RED metrics\",\n    ruleContent: \"When summarizing service health, prefer RED metrics.\",\n    scope: \"tenant\",\n    priority: 10,\n    applications: [\"assistant\"],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nexample = grafana.AssistantRule(\"example\",\n    name=\"Prefer RED metrics\",\n    rule_content=\"When summarizing service health, prefer RED metrics.\",\n    scope=\"tenant\",\n    priority=10,\n    applications=[\"assistant\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.AssistantRule(\"example\", new()\n    {\n        Name = \"Prefer RED metrics\",\n        RuleContent = \"When summarizing service health, prefer RED metrics.\",\n        Scope = \"tenant\",\n        Priority = 10,\n        Applications = new[]\n        {\n            \"assistant\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := grafana.NewAssistantRule(ctx, \"example\", \u0026grafana.AssistantRuleArgs{\n\t\t\tName:        pulumi.String(\"Prefer RED metrics\"),\n\t\t\tRuleContent: pulumi.String(\"When summarizing service health, prefer RED metrics.\"),\n\t\t\tScope:       pulumi.String(\"tenant\"),\n\t\t\tPriority:    pulumi.Int(10),\n\t\t\tApplications: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"assistant\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.AssistantRule;\nimport com.pulumi.grafana.AssistantRuleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new AssistantRule(\"example\", AssistantRuleArgs.builder()\n            .name(\"Prefer RED metrics\")\n            .ruleContent(\"When summarizing service health, prefer RED metrics.\")\n            .scope(\"tenant\")\n            .priority(10)\n            .applications(\"assistant\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:AssistantRule\n    properties:\n      name: Prefer RED metrics\n      ruleContent: When summarizing service health, prefer RED metrics.\n      scope: tenant\n      priority: 10\n      applications:\n        - assistant\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_assistant_rule.name \"{{ id }}\"\n```\n\n",
-            "properties": {
-                "applications": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "Applications where this resource applies. Valid values: \u003cspan pulumi-lang-nodejs=\"`assistant`\" pulumi-lang-dotnet=\"`Assistant`\" pulumi-lang-go=\"`assistant`\" pulumi-lang-python=\"`assistant`\" pulumi-lang-yaml=\"`assistant`\" pulumi-lang-java=\"`assistant`\"\u003e`assistant`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`loop`\" pulumi-lang-dotnet=\"`Loop`\" pulumi-lang-go=\"`loop`\" pulumi-lang-python=\"`loop`\" pulumi-lang-yaml=\"`loop`\" pulumi-lang-java=\"`loop`\"\u003e`loop`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`infrastructureMemory`\" pulumi-lang-dotnet=\"`InfrastructureMemory`\" pulumi-lang-go=\"`infrastructureMemory`\" pulumi-lang-python=\"`infrastructure_memory`\" pulumi-lang-yaml=\"`infrastructureMemory`\" pulumi-lang-java=\"`infrastructureMemory`\"\u003e`infrastructureMemory`\u003c/span\u003e (rules only), \u003cspan pulumi-lang-nodejs=\"`all`\" pulumi-lang-dotnet=\"`All`\" pulumi-lang-go=\"`all`\" pulumi-lang-python=\"`all`\" pulumi-lang-yaml=\"`all`\" pulumi-lang-java=\"`all`\"\u003e`all`\u003c/span\u003e. Defaults to all applications when unset.\n"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "Optional description of the rule.\n"
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "description": "Whether the resource is enabled.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The rule name.\n"
-                },
-                "priority": {
-                    "type": "integer",
-                    "description": "Rule priority (lower values apply first).\n"
-                },
-                "ruleContent": {
-                    "type": "string",
-                    "description": "The rule text included in the assistant system prompt.\n"
-                },
-                "scope": {
-                    "type": "string",
-                    "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
-                }
-            },
-            "required": [
-                "applications",
-                "enabled",
-                "name",
-                "priority",
-                "ruleContent",
-                "scope"
-            ],
-            "inputProperties": {
-                "applications": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "Applications where this resource applies. Valid values: \u003cspan pulumi-lang-nodejs=\"`assistant`\" pulumi-lang-dotnet=\"`Assistant`\" pulumi-lang-go=\"`assistant`\" pulumi-lang-python=\"`assistant`\" pulumi-lang-yaml=\"`assistant`\" pulumi-lang-java=\"`assistant`\"\u003e`assistant`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`loop`\" pulumi-lang-dotnet=\"`Loop`\" pulumi-lang-go=\"`loop`\" pulumi-lang-python=\"`loop`\" pulumi-lang-yaml=\"`loop`\" pulumi-lang-java=\"`loop`\"\u003e`loop`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`infrastructureMemory`\" pulumi-lang-dotnet=\"`InfrastructureMemory`\" pulumi-lang-go=\"`infrastructureMemory`\" pulumi-lang-python=\"`infrastructure_memory`\" pulumi-lang-yaml=\"`infrastructureMemory`\" pulumi-lang-java=\"`infrastructureMemory`\"\u003e`infrastructureMemory`\u003c/span\u003e (rules only), \u003cspan pulumi-lang-nodejs=\"`all`\" pulumi-lang-dotnet=\"`All`\" pulumi-lang-go=\"`all`\" pulumi-lang-python=\"`all`\" pulumi-lang-yaml=\"`all`\" pulumi-lang-java=\"`all`\"\u003e`all`\u003c/span\u003e. Defaults to all applications when unset.\n"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "Optional description of the rule.\n"
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "description": "Whether the resource is enabled.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The rule name.\n"
-                },
-                "priority": {
-                    "type": "integer",
-                    "description": "Rule priority (lower values apply first).\n"
-                },
-                "ruleContent": {
-                    "type": "string",
-                    "description": "The rule text included in the assistant system prompt.\n"
-                },
-                "scope": {
-                    "type": "string",
-                    "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
-                }
-            },
-            "requiredInputs": [
-                "ruleContent",
-                "scope"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering AssistantRule resources.\n",
-                "properties": {
-                    "applications": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "Applications where this resource applies. Valid values: \u003cspan pulumi-lang-nodejs=\"`assistant`\" pulumi-lang-dotnet=\"`Assistant`\" pulumi-lang-go=\"`assistant`\" pulumi-lang-python=\"`assistant`\" pulumi-lang-yaml=\"`assistant`\" pulumi-lang-java=\"`assistant`\"\u003e`assistant`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`loop`\" pulumi-lang-dotnet=\"`Loop`\" pulumi-lang-go=\"`loop`\" pulumi-lang-python=\"`loop`\" pulumi-lang-yaml=\"`loop`\" pulumi-lang-java=\"`loop`\"\u003e`loop`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`infrastructureMemory`\" pulumi-lang-dotnet=\"`InfrastructureMemory`\" pulumi-lang-go=\"`infrastructureMemory`\" pulumi-lang-python=\"`infrastructure_memory`\" pulumi-lang-yaml=\"`infrastructureMemory`\" pulumi-lang-java=\"`infrastructureMemory`\"\u003e`infrastructureMemory`\u003c/span\u003e (rules only), \u003cspan pulumi-lang-nodejs=\"`all`\" pulumi-lang-dotnet=\"`All`\" pulumi-lang-go=\"`all`\" pulumi-lang-python=\"`all`\" pulumi-lang-yaml=\"`all`\" pulumi-lang-java=\"`all`\"\u003e`all`\u003c/span\u003e. Defaults to all applications when unset.\n"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "Optional description of the rule.\n"
-                    },
-                    "enabled": {
-                        "type": "boolean",
-                        "description": "Whether the resource is enabled.\n"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "The rule name.\n"
-                    },
-                    "priority": {
-                        "type": "integer",
-                        "description": "Rule priority (lower values apply first).\n"
-                    },
-                    "ruleContent": {
-                        "type": "string",
-                        "description": "The rule text included in the assistant system prompt.\n"
-                    },
-                    "scope": {
-                        "type": "string",
-                        "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "grafana:index/assistantSkill:AssistantSkill": {
-            "description": "Manages a Grafana Assistant skill.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.AssistantSkill(\"example\", {\n    name: \"Deploy readiness check\",\n    body: `1. Check deployment pipeline status.\n2. Verify SLO error budget before promoting.\n`,\n    scope: \"tenant\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nexample = grafana.AssistantSkill(\"example\",\n    name=\"Deploy readiness check\",\n    body=\"\"\"1. Check deployment pipeline status.\n2. Verify SLO error budget before promoting.\n\"\"\",\n    scope=\"tenant\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.AssistantSkill(\"example\", new()\n    {\n        Name = \"Deploy readiness check\",\n        Body = @\"1. Check deployment pipeline status.\n2. Verify SLO error budget before promoting.\n\",\n        Scope = \"tenant\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := grafana.NewAssistantSkill(ctx, \"example\", \u0026grafana.AssistantSkillArgs{\n\t\t\tName:  pulumi.String(\"Deploy readiness check\"),\n\t\t\tBody:  pulumi.String(\"1. Check deployment pipeline status.\\n2. Verify SLO error budget before promoting.\\n\"),\n\t\t\tScope: pulumi.String(\"tenant\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.AssistantSkill;\nimport com.pulumi.grafana.AssistantSkillArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new AssistantSkill(\"example\", AssistantSkillArgs.builder()\n            .name(\"Deploy readiness check\")\n            .body(\"\"\"\n1. Check deployment pipeline status.\n2. Verify SLO error budget before promoting.\n            \"\"\")\n            .scope(\"tenant\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:AssistantSkill\n    properties:\n      name: Deploy readiness check\n      body: |\n        1. Check deployment pipeline status.\n        2. Verify SLO error budget before promoting.\n      scope: tenant\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_assistant_skill.name \"{{ id }}\"\n```\n\n",
-            "properties": {
-                "allowedTools": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/grafana:index/AssistantSkillAllowedTool:AssistantSkillAllowedTool"
-                    },
-                    "description": "MCP tools to auto-approve when this skill is invoked.\n"
-                },
-                "body": {
-                    "type": "string",
-                    "description": "The skill content.\n"
-                },
-                "contextItems": {
-                    "type": "string",
-                    "description": "Optional JSON array of context items referenced by the skill.\n"
-                },
-                "includeInKnowledgebase": {
-                    "type": "boolean",
-                    "description": "Whether the skill is included in the knowledgebase.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The skill name.\n"
-                },
-                "scope": {
-                    "type": "string",
-                    "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
-                }
-            },
-            "required": [
-                "body",
-                "includeInKnowledgebase",
-                "name",
-                "scope"
-            ],
-            "inputProperties": {
-                "allowedTools": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/grafana:index/AssistantSkillAllowedTool:AssistantSkillAllowedTool"
-                    },
-                    "description": "MCP tools to auto-approve when this skill is invoked.\n"
-                },
-                "body": {
-                    "type": "string",
-                    "description": "The skill content.\n"
-                },
-                "contextItems": {
-                    "type": "string",
-                    "description": "Optional JSON array of context items referenced by the skill.\n"
-                },
-                "includeInKnowledgebase": {
-                    "type": "boolean",
-                    "description": "Whether the skill is included in the knowledgebase.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The skill name.\n"
-                },
-                "scope": {
-                    "type": "string",
-                    "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
-                }
-            },
-            "requiredInputs": [
-                "body",
-                "scope"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering AssistantSkill resources.\n",
-                "properties": {
-                    "allowedTools": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/grafana:index/AssistantSkillAllowedTool:AssistantSkillAllowedTool"
-                        },
-                        "description": "MCP tools to auto-approve when this skill is invoked.\n"
-                    },
-                    "body": {
-                        "type": "string",
-                        "description": "The skill content.\n"
-                    },
-                    "contextItems": {
-                        "type": "string",
-                        "description": "Optional JSON array of context items referenced by the skill.\n"
-                    },
-                    "includeInKnowledgebase": {
-                        "type": "boolean",
-                        "description": "Whether the skill is included in the knowledgebase.\n"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "The skill name.\n"
-                    },
-                    "scope": {
-                        "type": "string",
-                        "description": "Whether the resource is visible to the whole tenant (\u003cspan pulumi-lang-nodejs=\"`tenant`\" pulumi-lang-dotnet=\"`Tenant`\" pulumi-lang-go=\"`tenant`\" pulumi-lang-python=\"`tenant`\" pulumi-lang-yaml=\"`tenant`\" pulumi-lang-java=\"`tenant`\"\u003e`tenant`\u003c/span\u003e) or only the creating user (\u003cspan pulumi-lang-nodejs=\"`user`\" pulumi-lang-dotnet=\"`User`\" pulumi-lang-go=\"`user`\" pulumi-lang-python=\"`user`\" pulumi-lang-yaml=\"`user`\" pulumi-lang-java=\"`user`\"\u003e`user`\u003c/span\u003e).\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
         "grafana:k6/installation:Installation": {
             "description": "Sets up the k6 App on a Grafana Cloud instance and generates a token. \nOnce a Grafana Cloud stack is created, a user can either use this resource or go into the UI to install k6.\nThis resource cannot be imported but it can be used on an existing k6 App installation without issues.\n\n**Note that this resource must be used on a provider configured with Grafana Cloud credentials.**\n\n* [Official documentation](https://grafana.com/docs/grafana-cloud/testing/k6/)\n\nRequired access policy scopes:\n\n* stacks:read\n* stacks:write\n* subscriptions:read\n* orgs:read\n* stack-service-accounts:write\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst config = new pulumi.Config();\n// Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\nconst cloudAccessPolicyToken = config.requireObject\u003cany\u003e(\"cloudAccessPolicyToken\");\nconst stackSlug = config.requireObject\u003cany\u003e(\"stackSlug\");\nconst cloudRegion = config.get(\"cloudRegion\") || \"us\";\nconst k6Stack = new grafana.cloud.Stack(\"k6_stack\", {\n    name: stackSlug,\n    slug: stackSlug,\n    regionSlug: cloudRegion,\n});\n// Step 2: Create a Service Account and a token to install the k6 App\nconst k6Sa = new grafana.cloud.StackServiceAccount(\"k6_sa\", {\n    stackSlug: stackSlug,\n    name: `${stackSlug}-k6-app`,\n    role: \"Admin\",\n    isDisabled: false,\n});\nconst k6SaToken = new grafana.cloud.StackServiceAccountToken(\"k6_sa_token\", {\n    stackSlug: stackSlug,\n    name: `${stackSlug}-k6-app-token`,\n    serviceAccountId: k6Sa.id,\n});\n// Step 3: Install the k6 App on the stack\nconst k6Installation = new grafana.k6.Installation(\"k6_installation\", {\n    cloudAccessPolicyToken: cloudAccessPolicyToken,\n    stackId: k6Stack.id,\n    grafanaSaToken: k6SaToken.key,\n    grafanaUser: \"admin\",\n});\nconst myK6Project = new grafana.k6.Project(\"my_k6_project\", {name: \"k6 Project created with TF\"});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nconfig = pulumi.Config()\n# Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\ncloud_access_policy_token = config.require_object(\"cloudAccessPolicyToken\")\nstack_slug = config.require_object(\"stackSlug\")\ncloud_region = config.get(\"cloudRegion\")\nif cloud_region is None:\n    cloud_region = \"us\"\nk6_stack = grafana.cloud.Stack(\"k6_stack\",\n    name=stack_slug,\n    slug=stack_slug,\n    region_slug=cloud_region)\n# Step 2: Create a Service Account and a token to install the k6 App\nk6_sa = grafana.cloud.StackServiceAccount(\"k6_sa\",\n    stack_slug=stack_slug,\n    name=f\"{stack_slug}-k6-app\",\n    role=\"Admin\",\n    is_disabled=False)\nk6_sa_token = grafana.cloud.StackServiceAccountToken(\"k6_sa_token\",\n    stack_slug=stack_slug,\n    name=f\"{stack_slug}-k6-app-token\",\n    service_account_id=k6_sa.id)\n# Step 3: Install the k6 App on the stack\nk6_installation = grafana.k6.Installation(\"k6_installation\",\n    cloud_access_policy_token=cloud_access_policy_token,\n    stack_id=k6_stack.id,\n    grafana_sa_token=k6_sa_token.key,\n    grafana_user=\"admin\")\nmy_k6_project = grafana.k6.Project(\"my_k6_project\", name=\"k6 Project created with TF\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    // Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\n    var cloudAccessPolicyToken = config.RequireObject\u003cdynamic\u003e(\"cloudAccessPolicyToken\");\n    var stackSlug = config.RequireObject\u003cdynamic\u003e(\"stackSlug\");\n    var cloudRegion = config.Get(\"cloudRegion\") ?? \"us\";\n    var k6Stack = new Grafana.Cloud.Stack(\"k6_stack\", new()\n    {\n        Name = stackSlug,\n        Slug = stackSlug,\n        RegionSlug = cloudRegion,\n    });\n\n    // Step 2: Create a Service Account and a token to install the k6 App\n    var k6Sa = new Grafana.Cloud.StackServiceAccount(\"k6_sa\", new()\n    {\n        StackSlug = stackSlug,\n        Name = $\"{stackSlug}-k6-app\",\n        Role = \"Admin\",\n        IsDisabled = false,\n    });\n\n    var k6SaToken = new Grafana.Cloud.StackServiceAccountToken(\"k6_sa_token\", new()\n    {\n        StackSlug = stackSlug,\n        Name = $\"{stackSlug}-k6-app-token\",\n        ServiceAccountId = k6Sa.Id,\n    });\n\n    // Step 3: Install the k6 App on the stack\n    var k6Installation = new Grafana.K6.Installation(\"k6_installation\", new()\n    {\n        CloudAccessPolicyToken = cloudAccessPolicyToken,\n        StackId = k6Stack.Id,\n        GrafanaSaToken = k6SaToken.Key,\n        GrafanaUser = \"admin\",\n    });\n\n    var myK6Project = new Grafana.K6.Project(\"my_k6_project\", new()\n    {\n        Name = \"k6 Project created with TF\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\t// Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\n\t\tcloudAccessPolicyToken := cfg.RequireObject(\"cloudAccessPolicyToken\")\n\t\tstackSlug := cfg.RequireObject(\"stackSlug\")\n\t\tcloudRegion := \"us\"\n\t\tif param := cfg.Get(\"cloudRegion\"); param != \"\" {\n\t\t\tcloudRegion = param\n\t\t}\n\t\tk6Stack, err := cloud.NewStack(ctx, \"k6_stack\", \u0026cloud.StackArgs{\n\t\t\tName:       pulumi.Any(stackSlug),\n\t\t\tSlug:       pulumi.Any(stackSlug),\n\t\t\tRegionSlug: pulumi.String(pulumi.String(cloudRegion)),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Step 2: Create a Service Account and a token to install the k6 App\n\t\tk6Sa, err := cloud.NewStackServiceAccount(ctx, \"k6_sa\", \u0026cloud.StackServiceAccountArgs{\n\t\t\tStackSlug:  pulumi.Any(stackSlug),\n\t\t\tName:       pulumi.Sprintf(\"%v-k6-app\", stackSlug),\n\t\t\tRole:       pulumi.String(\"Admin\"),\n\t\t\tIsDisabled: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tk6SaToken, err := cloud.NewStackServiceAccountToken(ctx, \"k6_sa_token\", \u0026cloud.StackServiceAccountTokenArgs{\n\t\t\tStackSlug:        pulumi.Any(stackSlug),\n\t\t\tName:             pulumi.Sprintf(\"%v-k6-app-token\", stackSlug),\n\t\t\tServiceAccountId: k6Sa.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Step 3: Install the k6 App on the stack\n\t\t_, err = k6.NewInstallation(ctx, \"k6_installation\", \u0026k6.InstallationArgs{\n\t\t\tCloudAccessPolicyToken: pulumi.Any(cloudAccessPolicyToken),\n\t\t\tStackId:                k6Stack.ID(),\n\t\t\tGrafanaSaToken:         k6SaToken.Key,\n\t\t\tGrafanaUser:            pulumi.String(\"admin\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k6.NewProject(ctx, \"my_k6_project\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"k6 Project created with TF\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.Stack;\nimport com.pulumi.grafana.cloud.StackArgs;\nimport com.pulumi.grafana.cloud.StackServiceAccount;\nimport com.pulumi.grafana.cloud.StackServiceAccountArgs;\nimport com.pulumi.grafana.cloud.StackServiceAccountToken;\nimport com.pulumi.grafana.cloud.StackServiceAccountTokenArgs;\nimport com.pulumi.grafana.k6.Installation;\nimport com.pulumi.grafana.k6.InstallationArgs;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var cloudAccessPolicyToken = config.require(\"cloudAccessPolicyToken\");\n        final var stackSlug = config.require(\"stackSlug\");\n        final var cloudRegion = config.get(\"cloudRegion\").orElse(\"us\");\n        var k6Stack = new Stack(\"k6Stack\", StackArgs.builder()\n            .name(stackSlug)\n            .slug(stackSlug)\n            .regionSlug(cloudRegion)\n            .build());\n\n        // Step 2: Create a Service Account and a token to install the k6 App\n        var k6Sa = new StackServiceAccount(\"k6Sa\", StackServiceAccountArgs.builder()\n            .stackSlug(stackSlug)\n            .name(String.format(\"%s-k6-app\", stackSlug))\n            .role(\"Admin\")\n            .isDisabled(false)\n            .build());\n\n        var k6SaToken = new StackServiceAccountToken(\"k6SaToken\", StackServiceAccountTokenArgs.builder()\n            .stackSlug(stackSlug)\n            .name(String.format(\"%s-k6-app-token\", stackSlug))\n            .serviceAccountId(k6Sa.id())\n            .build());\n\n        // Step 3: Install the k6 App on the stack\n        var k6Installation = new Installation(\"k6Installation\", InstallationArgs.builder()\n            .cloudAccessPolicyToken(cloudAccessPolicyToken)\n            .stackId(k6Stack.id())\n            .grafanaSaToken(k6SaToken.key())\n            .grafanaUser(\"admin\")\n            .build());\n\n        var myK6Project = new Project(\"myK6Project\", ProjectArgs.builder()\n            .name(\"k6 Project created with TF\")\n            .build());\n\n    }\n}\n```\n```yaml\nconfiguration:\n  cloudAccessPolicyToken:\n    type: dynamic\n  stackSlug:\n    type: dynamic\n  cloudRegion:\n    type: string\n    default: us\nresources:\n  k6Stack:\n    type: grafana:cloud:Stack\n    name: k6_stack\n    properties:\n      name: ${stackSlug}\n      slug: ${stackSlug}\n      regionSlug: ${cloudRegion}\n  # Step 2: Create a Service Account and a token to install the k6 App\n  k6Sa:\n    type: grafana:cloud:StackServiceAccount\n    name: k6_sa\n    properties:\n      stackSlug: ${stackSlug}\n      name: ${stackSlug}-k6-app\n      role: Admin\n      isDisabled: false\n  k6SaToken:\n    type: grafana:cloud:StackServiceAccountToken\n    name: k6_sa_token\n    properties:\n      stackSlug: ${stackSlug}\n      name: ${stackSlug}-k6-app-token\n      serviceAccountId: ${k6Sa.id}\n  # Step 3: Install the k6 App on the stack\n  k6Installation:\n    type: grafana:k6:Installation\n    name: k6_installation\n    properties:\n      cloudAccessPolicyToken: ${cloudAccessPolicyToken}\n      stackId: ${k6Stack.id}\n      grafanaSaToken: ${k6SaToken.key}\n      grafanaUser: admin\n  myK6Project:\n    type: grafana:k6:Project\n    name: my_k6_project\n    properties:\n      name: k6 Project created with TF\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
@@ -22621,7 +22621,7 @@
             ]
         },
         "grafana:oss/dataSourceConfig:DataSourceConfig": {
-            "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/datasources/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/data_source/)\n\nThe required arguments for this resource vary depending on the type of data\nsource selected (via the 'type' argument).\n\nUse this resource for configuring multiple datasources, when that configuration (\u003cspan pulumi-lang-nodejs=\"`jsonDataEncoded`\" pulumi-lang-dotnet=\"`JsonDataEncoded`\" pulumi-lang-go=\"`jsonDataEncoded`\" pulumi-lang-python=\"`json_data_encoded`\" pulumi-lang-yaml=\"`jsonDataEncoded`\" pulumi-lang-java=\"`jsonDataEncoded`\"\u003e`jsonDataEncoded`\u003c/span\u003e field) requires circular references like in the example below.\n\n\u003e When using the \u003cspan pulumi-lang-nodejs=\"`grafana.oss.DataSourceConfig`\" pulumi-lang-dotnet=\"`grafana.oss.DataSourceConfig`\" pulumi-lang-go=\"`oss.DataSourceConfig`\" pulumi-lang-python=\"`oss.DataSourceConfig`\" pulumi-lang-yaml=\"`grafana.oss.DataSourceConfig`\" pulumi-lang-java=\"`grafana.oss.DataSourceConfig`\"\u003e`grafana.oss.DataSourceConfig`\u003c/span\u003e resource, the corresponding \u003cspan pulumi-lang-nodejs=\"`grafana.oss.DataSource`\" pulumi-lang-dotnet=\"`grafana.oss.DataSource`\" pulumi-lang-go=\"`oss.DataSource`\" pulumi-lang-python=\"`oss.DataSource`\" pulumi-lang-yaml=\"`grafana.oss.DataSource`\" pulumi-lang-java=\"`grafana.oss.DataSource`\"\u003e`grafana.oss.DataSource`\u003c/span\u003e resources must have the \u003cspan pulumi-lang-nodejs=\"`jsonDataEncoded`\" pulumi-lang-dotnet=\"`JsonDataEncoded`\" pulumi-lang-go=\"`jsonDataEncoded`\" pulumi-lang-python=\"`json_data_encoded`\" pulumi-lang-yaml=\"`jsonDataEncoded`\" pulumi-lang-java=\"`jsonDataEncoded`\"\u003e`jsonDataEncoded`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`httpHeaders`\" pulumi-lang-dotnet=\"`HttpHeaders`\" pulumi-lang-go=\"`httpHeaders`\" pulumi-lang-python=\"`http_headers`\" pulumi-lang-yaml=\"`httpHeaders`\" pulumi-lang-java=\"`httpHeaders`\"\u003e`httpHeaders`\u003c/span\u003e fields ignored. Otherwise, an infinite update loop will occur. See the example below.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst loki = new grafana.oss.DataSource(\"loki\", {\n    type: \"loki\",\n    name: \"loki\",\n    url: \"http://localhost:3100\",\n}, {\n    ignoreChanges: [\n        \"jsonDataEncoded\",\n        \"httpHeaders\",\n    ],\n});\nconst tempo = new grafana.oss.DataSource(\"tempo\", {\n    type: \"tempo\",\n    name: \"tempo\",\n    url: \"http://localhost:3200\",\n}, {\n    ignoreChanges: [\n        \"jsonDataEncoded\",\n        \"httpHeaders\",\n    ],\n});\nconst lokiDataSourceConfig = new grafana.oss.DataSourceConfig(\"loki\", {\n    uid: loki.uid,\n    jsonDataEncoded: pulumi.jsonStringify({\n        derivedFields: [{\n            datasourceUid: tempo.uid,\n            matcherRegex: \"[tT]race_?[iI][dD]\\\"?[:=]\\\"?(\\\\w+)\",\n            matcherType: \"regex\",\n            name: \"traceID\",\n            url: \"${__value.raw}\",\n        }],\n    }),\n});\nconst tempoDataSourceConfig = new grafana.oss.DataSourceConfig(\"tempo\", {\n    uid: tempo.uid,\n    jsonDataEncoded: pulumi.jsonStringify({\n        tracesToLogsV2: {\n            customQuery: true,\n            datasourceUid: loki.uid,\n            filterBySpanID: false,\n            filterByTraceID: false,\n            query: \"|=\\\"${__trace.traceId}\\\" | json\",\n        },\n    }),\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumiverse_grafana as grafana\n\nloki = grafana.oss.DataSource(\"loki\",\n    type=\"loki\",\n    name=\"loki\",\n    url=\"http://localhost:3100\",\n    opts = pulumi.ResourceOptions(ignore_changes=[\n            \"jsonDataEncoded\",\n            \"httpHeaders\",\n        ]))\ntempo = grafana.oss.DataSource(\"tempo\",\n    type=\"tempo\",\n    name=\"tempo\",\n    url=\"http://localhost:3200\",\n    opts = pulumi.ResourceOptions(ignore_changes=[\n            \"jsonDataEncoded\",\n            \"httpHeaders\",\n        ]))\nloki_data_source_config = grafana.oss.DataSourceConfig(\"loki\",\n    uid=loki.uid,\n    json_data_encoded=pulumi.Output.json_dumps({\n        \"derivedFields\": [{\n            \"datasourceUid\": tempo.uid,\n            \"matcherRegex\": \"[tT]race_?[iI][dD]\\\"?[:=]\\\"?(\\\\w+)\",\n            \"matcherType\": \"regex\",\n            \"name\": \"traceID\",\n            \"url\": \"${__value.raw}\",\n        }],\n    }))\ntempo_data_source_config = grafana.oss.DataSourceConfig(\"tempo\",\n    uid=tempo.uid,\n    json_data_encoded=pulumi.Output.json_dumps({\n        \"tracesToLogsV2\": {\n            \"customQuery\": True,\n            \"datasourceUid\": loki.uid,\n            \"filterBySpanID\": False,\n            \"filterByTraceID\": False,\n            \"query\": \"|=\\\"${__trace.traceId}\\\" | json\",\n        },\n    }))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var loki = new Grafana.Oss.DataSource(\"loki\", new()\n    {\n        Type = \"loki\",\n        Name = \"loki\",\n        Url = \"http://localhost:3100\",\n    }, new CustomResourceOptions\n    {\n        IgnoreChanges =\n        {\n            \"jsonDataEncoded\",\n            \"httpHeaders\",\n        },\n    });\n\n    var tempo = new Grafana.Oss.DataSource(\"tempo\", new()\n    {\n        Type = \"tempo\",\n        Name = \"tempo\",\n        Url = \"http://localhost:3200\",\n    }, new CustomResourceOptions\n    {\n        IgnoreChanges =\n        {\n            \"jsonDataEncoded\",\n            \"httpHeaders\",\n        },\n    });\n\n    var lokiDataSourceConfig = new Grafana.Oss.DataSourceConfig(\"loki\", new()\n    {\n        Uid = loki.Uid,\n        JsonDataEncoded = Output.JsonSerialize(Output.Create(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"derivedFields\"] = new[]\n            {\n                new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"datasourceUid\"] = tempo.Uid,\n                    [\"matcherRegex\"] = \"[tT]race_?[iI][dD]\\\"?[:=]\\\"?(\\\\w+)\",\n                    [\"matcherType\"] = \"regex\",\n                    [\"name\"] = \"traceID\",\n                    [\"url\"] = \"${__value.raw}\",\n                },\n            },\n        })),\n    });\n\n    var tempoDataSourceConfig = new Grafana.Oss.DataSourceConfig(\"tempo\", new()\n    {\n        Uid = tempo.Uid,\n        JsonDataEncoded = Output.JsonSerialize(Output.Create(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"tracesToLogsV2\"] = new Dictionary\u003cstring, object?\u003e\n            {\n                [\"customQuery\"] = true,\n                [\"datasourceUid\"] = loki.Uid,\n                [\"filterBySpanID\"] = false,\n                [\"filterByTraceID\"] = false,\n                [\"query\"] = \"|=\\\"${__trace.traceId}\\\" | json\",\n            },\n        })),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tloki, err := oss.NewDataSource(ctx, \"loki\", \u0026oss.DataSourceArgs{\n\t\t\tType: pulumi.String(\"loki\"),\n\t\t\tName: pulumi.String(\"loki\"),\n\t\t\tUrl:  pulumi.String(\"http://localhost:3100\"),\n\t\t}, pulumi.IgnoreChanges([]string{\n\t\t\t\"jsonDataEncoded\",\n\t\t\t\"httpHeaders\",\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttempo, err := oss.NewDataSource(ctx, \"tempo\", \u0026oss.DataSourceArgs{\n\t\t\tType: pulumi.String(\"tempo\"),\n\t\t\tName: pulumi.String(\"tempo\"),\n\t\t\tUrl:  pulumi.String(\"http://localhost:3200\"),\n\t\t}, pulumi.IgnoreChanges([]string{\n\t\t\t\"jsonDataEncoded\",\n\t\t\t\"httpHeaders\",\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oss.NewDataSourceConfig(ctx, \"loki\", \u0026oss.DataSourceConfigArgs{\n\t\t\tUid: loki.Uid,\n\t\t\tJsonDataEncoded: tempo.Uid.ApplyT(func(uid string) (pulumi.String, error) {\n\t\t\t\tvar _zero pulumi.String\n\t\t\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\t\t\"derivedFields\": []map[string]interface{}{\n\t\t\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\t\t\"datasourceUid\": uid,\n\t\t\t\t\t\t\t\"matcherRegex\":  \"[tT]race_?[iI][dD]\\\"?[:=]\\\"?(\\\\w+)\",\n\t\t\t\t\t\t\t\"matcherType\":   \"regex\",\n\t\t\t\t\t\t\t\"name\":          \"traceID\",\n\t\t\t\t\t\t\t\"url\":           \"${__value.raw}\",\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t})\n\t\t\t\tif err != nil {\n\t\t\t\t\treturn _zero, err\n\t\t\t\t}\n\t\t\t\tjson0 := string(tmpJSON0)\n\t\t\t\treturn pulumi.String(json0), nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oss.NewDataSourceConfig(ctx, \"tempo\", \u0026oss.DataSourceConfigArgs{\n\t\t\tUid: tempo.Uid,\n\t\t\tJsonDataEncoded: loki.Uid.ApplyT(func(uid string) (pulumi.String, error) {\n\t\t\t\tvar _zero pulumi.String\n\t\t\t\ttmpJSON1, err := json.Marshal(map[string]interface{}{\n\t\t\t\t\t\"tracesToLogsV2\": map[string]interface{}{\n\t\t\t\t\t\t\"customQuery\":     true,\n\t\t\t\t\t\t\"datasourceUid\":   uid,\n\t\t\t\t\t\t\"filterBySpanID\":  false,\n\t\t\t\t\t\t\"filterByTraceID\": false,\n\t\t\t\t\t\t\"query\":           \"|=\\\"${__trace.traceId}\\\" | json\",\n\t\t\t\t\t},\n\t\t\t\t})\n\t\t\t\tif err != nil {\n\t\t\t\t\treturn _zero, err\n\t\t\t\t}\n\t\t\t\tjson1 := string(tmpJSON1)\n\t\t\t\treturn pulumi.String(json1), nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.DataSource;\nimport com.pulumi.grafana.oss.DataSourceArgs;\nimport com.pulumi.grafana.oss.DataSourceConfig;\nimport com.pulumi.grafana.oss.DataSourceConfigArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var loki = new DataSource(\"loki\", DataSourceArgs.builder()\n            .type(\"loki\")\n            .name(\"loki\")\n            .url(\"http://localhost:3100\")\n            .build(), CustomResourceOptions.builder()\n                .ignoreChanges(\"jsonDataEncoded\", \"httpHeaders\")\n                .build());\n\n        var tempo = new DataSource(\"tempo\", DataSourceArgs.builder()\n            .type(\"tempo\")\n            .name(\"tempo\")\n            .url(\"http://localhost:3200\")\n            .build(), CustomResourceOptions.builder()\n                .ignoreChanges(\"jsonDataEncoded\", \"httpHeaders\")\n                .build());\n\n        var lokiDataSourceConfig = new DataSourceConfig(\"lokiDataSourceConfig\", DataSourceConfigArgs.builder()\n            .uid(loki.uid())\n            .jsonDataEncoded(tempo.uid().applyValue(_uid -\u003e serializeJson(\n                jsonObject(\n                    jsonProperty(\"derivedFields\", jsonArray(jsonObject(\n                        jsonProperty(\"datasourceUid\", _uid),\n                        jsonProperty(\"matcherRegex\", \"[tT]race_?[iI][dD]\\\"?[:=]\\\"?(\\\\w+)\"),\n                        jsonProperty(\"matcherType\", \"regex\"),\n                        jsonProperty(\"name\", \"traceID\"),\n                        jsonProperty(\"url\", \"${__value.raw}\")\n                    )))\n                ))))\n            .build());\n\n        var tempoDataSourceConfig = new DataSourceConfig(\"tempoDataSourceConfig\", DataSourceConfigArgs.builder()\n            .uid(tempo.uid())\n            .jsonDataEncoded(loki.uid().applyValue(_uid -\u003e serializeJson(\n                jsonObject(\n                    jsonProperty(\"tracesToLogsV2\", jsonObject(\n                        jsonProperty(\"customQuery\", true),\n                        jsonProperty(\"datasourceUid\", _uid),\n                        jsonProperty(\"filterBySpanID\", false),\n                        jsonProperty(\"filterByTraceID\", false),\n                        jsonProperty(\"query\", \"|=\\\"${__trace.traceId}\\\" | json\")\n                    ))\n                ))))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  loki:\n    type: grafana:oss:DataSource\n    properties:\n      type: loki\n      name: loki\n      url: http://localhost:3100\n    options:\n      ignoreChanges:\n        - jsonDataEncoded\n        - httpHeaders\n  tempo:\n    type: grafana:oss:DataSource\n    properties:\n      type: tempo\n      name: tempo\n      url: http://localhost:3200\n    options:\n      ignoreChanges:\n        - jsonDataEncoded\n        - httpHeaders\n  lokiDataSourceConfig:\n    type: grafana:oss:DataSourceConfig\n    name: loki\n    properties:\n      uid: ${loki.uid}\n      jsonDataEncoded:\n        fn::toJSON:\n          derivedFields:\n            - datasourceUid: ${tempo.uid}\n              matcherRegex: '[tT]race_?[iI][dD]\"?[:=]\"?(\\w+)'\n              matcherType: regex\n              name: traceID\n              url: $${__value.raw}\n  tempoDataSourceConfig:\n    type: grafana:oss:DataSourceConfig\n    name: tempo\n    properties:\n      uid: ${tempo.uid}\n      jsonDataEncoded:\n        fn::toJSON:\n          tracesToLogsV2:\n            customQuery: true\n            datasourceUid: ${loki.uid}\n            filterBySpanID: false\n            filterByTraceID: false\n            query: '|=\"$${__trace.traceId}\" | json'\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_data_source_config.name \"{{ uid }}\"\nterraform import grafana_data_source_config.name \"{{ orgID }}:{{ uid }}\"\n```\n\n",
+            "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/datasources/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/data_source/)\n\nThe required arguments for this resource vary depending on the type of data\nsource selected (via the 'type' argument).\n\nUse this resource for configuring multiple datasources, when that configuration (\u003cspan pulumi-lang-nodejs=\"`jsonDataEncoded`\" pulumi-lang-dotnet=\"`JsonDataEncoded`\" pulumi-lang-go=\"`jsonDataEncoded`\" pulumi-lang-python=\"`json_data_encoded`\" pulumi-lang-yaml=\"`jsonDataEncoded`\" pulumi-lang-java=\"`jsonDataEncoded`\"\u003e`jsonDataEncoded`\u003c/span\u003e field) requires circular references like in the example below.\n\n\u003e When using the \u003cspan pulumi-lang-nodejs=\"`grafana.oss.DataSourceConfig`\" pulumi-lang-dotnet=\"`grafana.oss.DataSourceConfig`\" pulumi-lang-go=\"`oss.DataSourceConfig`\" pulumi-lang-python=\"`oss.DataSourceConfig`\" pulumi-lang-yaml=\"`grafana.oss.DataSourceConfig`\" pulumi-lang-java=\"`grafana.oss.DataSourceConfig`\"\u003e`grafana.oss.DataSourceConfig`\u003c/span\u003e resource, the corresponding \u003cspan pulumi-lang-nodejs=\"`grafana.oss.DataSource`\" pulumi-lang-dotnet=\"`grafana.oss.DataSource`\" pulumi-lang-go=\"`oss.DataSource`\" pulumi-lang-python=\"`oss.DataSource`\" pulumi-lang-yaml=\"`grafana.oss.DataSource`\" pulumi-lang-java=\"`grafana.oss.DataSource`\"\u003e`grafana.oss.DataSource`\u003c/span\u003e resources must have the \u003cspan pulumi-lang-nodejs=\"`jsonDataEncoded`\" pulumi-lang-dotnet=\"`JsonDataEncoded`\" pulumi-lang-go=\"`jsonDataEncoded`\" pulumi-lang-python=\"`json_data_encoded`\" pulumi-lang-yaml=\"`jsonDataEncoded`\" pulumi-lang-java=\"`jsonDataEncoded`\"\u003e`jsonDataEncoded`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`httpHeaders`\" pulumi-lang-dotnet=\"`HttpHeaders`\" pulumi-lang-go=\"`httpHeaders`\" pulumi-lang-python=\"`http_headers`\" pulumi-lang-yaml=\"`httpHeaders`\" pulumi-lang-java=\"`httpHeaders`\"\u003e`httpHeaders`\u003c/span\u003e fields ignored. Otherwise, an infinite update loop will occur. See the example below.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst loki = new grafana.oss.DataSource(\"loki\", {\n    type: \"loki\",\n    name: \"loki\",\n    url: \"http://localhost:3100\",\n});\nconst tempo = new grafana.oss.DataSource(\"tempo\", {\n    type: \"tempo\",\n    name: \"tempo\",\n    url: \"http://localhost:3200\",\n});\nconst lokiDataSourceConfig = new grafana.oss.DataSourceConfig(\"loki\", {\n    uid: loki.uid,\n    jsonDataEncoded: pulumi.jsonStringify({\n        derivedFields: [{\n            datasourceUid: tempo.uid,\n            matcherRegex: \"[tT]race_?[iI][dD]\\\"?[:=]\\\"?(\\\\w+)\",\n            matcherType: \"regex\",\n            name: \"traceID\",\n            url: \"${__value.raw}\",\n        }],\n    }),\n});\nconst tempoDataSourceConfig = new grafana.oss.DataSourceConfig(\"tempo\", {\n    uid: tempo.uid,\n    jsonDataEncoded: pulumi.jsonStringify({\n        tracesToLogsV2: {\n            customQuery: true,\n            datasourceUid: loki.uid,\n            filterBySpanID: false,\n            filterByTraceID: false,\n            query: \"|=\\\"${__trace.traceId}\\\" | json\",\n        },\n    }),\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumiverse_grafana as grafana\n\nloki = grafana.oss.DataSource(\"loki\",\n    type=\"loki\",\n    name=\"loki\",\n    url=\"http://localhost:3100\")\ntempo = grafana.oss.DataSource(\"tempo\",\n    type=\"tempo\",\n    name=\"tempo\",\n    url=\"http://localhost:3200\")\nloki_data_source_config = grafana.oss.DataSourceConfig(\"loki\",\n    uid=loki.uid,\n    json_data_encoded=pulumi.Output.json_dumps({\n        \"derivedFields\": [{\n            \"datasourceUid\": tempo.uid,\n            \"matcherRegex\": \"[tT]race_?[iI][dD]\\\"?[:=]\\\"?(\\\\w+)\",\n            \"matcherType\": \"regex\",\n            \"name\": \"traceID\",\n            \"url\": \"${__value.raw}\",\n        }],\n    }))\ntempo_data_source_config = grafana.oss.DataSourceConfig(\"tempo\",\n    uid=tempo.uid,\n    json_data_encoded=pulumi.Output.json_dumps({\n        \"tracesToLogsV2\": {\n            \"customQuery\": True,\n            \"datasourceUid\": loki.uid,\n            \"filterBySpanID\": False,\n            \"filterByTraceID\": False,\n            \"query\": \"|=\\\"${__trace.traceId}\\\" | json\",\n        },\n    }))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var loki = new Grafana.Oss.DataSource(\"loki\", new()\n    {\n        Type = \"loki\",\n        Name = \"loki\",\n        Url = \"http://localhost:3100\",\n    });\n\n    var tempo = new Grafana.Oss.DataSource(\"tempo\", new()\n    {\n        Type = \"tempo\",\n        Name = \"tempo\",\n        Url = \"http://localhost:3200\",\n    });\n\n    var lokiDataSourceConfig = new Grafana.Oss.DataSourceConfig(\"loki\", new()\n    {\n        Uid = loki.Uid,\n        JsonDataEncoded = Output.JsonSerialize(Output.Create(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"derivedFields\"] = new[]\n            {\n                new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"datasourceUid\"] = tempo.Uid,\n                    [\"matcherRegex\"] = \"[tT]race_?[iI][dD]\\\"?[:=]\\\"?(\\\\w+)\",\n                    [\"matcherType\"] = \"regex\",\n                    [\"name\"] = \"traceID\",\n                    [\"url\"] = \"${__value.raw}\",\n                },\n            },\n        })),\n    });\n\n    var tempoDataSourceConfig = new Grafana.Oss.DataSourceConfig(\"tempo\", new()\n    {\n        Uid = tempo.Uid,\n        JsonDataEncoded = Output.JsonSerialize(Output.Create(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"tracesToLogsV2\"] = new Dictionary\u003cstring, object?\u003e\n            {\n                [\"customQuery\"] = true,\n                [\"datasourceUid\"] = loki.Uid,\n                [\"filterBySpanID\"] = false,\n                [\"filterByTraceID\"] = false,\n                [\"query\"] = \"|=\\\"${__trace.traceId}\\\" | json\",\n            },\n        })),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tloki, err := oss.NewDataSource(ctx, \"loki\", \u0026oss.DataSourceArgs{\n\t\t\tType: pulumi.String(\"loki\"),\n\t\t\tName: pulumi.String(\"loki\"),\n\t\t\tUrl:  pulumi.String(\"http://localhost:3100\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttempo, err := oss.NewDataSource(ctx, \"tempo\", \u0026oss.DataSourceArgs{\n\t\t\tType: pulumi.String(\"tempo\"),\n\t\t\tName: pulumi.String(\"tempo\"),\n\t\t\tUrl:  pulumi.String(\"http://localhost:3200\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oss.NewDataSourceConfig(ctx, \"loki\", \u0026oss.DataSourceConfigArgs{\n\t\t\tUid: loki.Uid,\n\t\t\tJsonDataEncoded: tempo.Uid.ApplyT(func(uid string) (pulumi.String, error) {\n\t\t\t\tvar _zero pulumi.String\n\t\t\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\t\t\"derivedFields\": []map[string]interface{}{\n\t\t\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\t\t\"datasourceUid\": uid,\n\t\t\t\t\t\t\t\"matcherRegex\":  \"[tT]race_?[iI][dD]\\\"?[:=]\\\"?(\\\\w+)\",\n\t\t\t\t\t\t\t\"matcherType\":   \"regex\",\n\t\t\t\t\t\t\t\"name\":          \"traceID\",\n\t\t\t\t\t\t\t\"url\":           \"${__value.raw}\",\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t})\n\t\t\t\tif err != nil {\n\t\t\t\t\treturn _zero, err\n\t\t\t\t}\n\t\t\t\tjson0 := string(tmpJSON0)\n\t\t\t\treturn pulumi.String(json0), nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oss.NewDataSourceConfig(ctx, \"tempo\", \u0026oss.DataSourceConfigArgs{\n\t\t\tUid: tempo.Uid,\n\t\t\tJsonDataEncoded: loki.Uid.ApplyT(func(uid string) (pulumi.String, error) {\n\t\t\t\tvar _zero pulumi.String\n\t\t\t\ttmpJSON1, err := json.Marshal(map[string]interface{}{\n\t\t\t\t\t\"tracesToLogsV2\": map[string]interface{}{\n\t\t\t\t\t\t\"customQuery\":     true,\n\t\t\t\t\t\t\"datasourceUid\":   uid,\n\t\t\t\t\t\t\"filterBySpanID\":  false,\n\t\t\t\t\t\t\"filterByTraceID\": false,\n\t\t\t\t\t\t\"query\":           \"|=\\\"${__trace.traceId}\\\" | json\",\n\t\t\t\t\t},\n\t\t\t\t})\n\t\t\t\tif err != nil {\n\t\t\t\t\treturn _zero, err\n\t\t\t\t}\n\t\t\t\tjson1 := string(tmpJSON1)\n\t\t\t\treturn pulumi.String(json1), nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.DataSource;\nimport com.pulumi.grafana.oss.DataSourceArgs;\nimport com.pulumi.grafana.oss.DataSourceConfig;\nimport com.pulumi.grafana.oss.DataSourceConfigArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var loki = new DataSource(\"loki\", DataSourceArgs.builder()\n            .type(\"loki\")\n            .name(\"loki\")\n            .url(\"http://localhost:3100\")\n            .build());\n\n        var tempo = new DataSource(\"tempo\", DataSourceArgs.builder()\n            .type(\"tempo\")\n            .name(\"tempo\")\n            .url(\"http://localhost:3200\")\n            .build());\n\n        var lokiDataSourceConfig = new DataSourceConfig(\"lokiDataSourceConfig\", DataSourceConfigArgs.builder()\n            .uid(loki.uid())\n            .jsonDataEncoded(tempo.uid().applyValue(_uid -\u003e serializeJson(\n                jsonObject(\n                    jsonProperty(\"derivedFields\", jsonArray(jsonObject(\n                        jsonProperty(\"datasourceUid\", _uid),\n                        jsonProperty(\"matcherRegex\", \"[tT]race_?[iI][dD]\\\"?[:=]\\\"?(\\\\w+)\"),\n                        jsonProperty(\"matcherType\", \"regex\"),\n                        jsonProperty(\"name\", \"traceID\"),\n                        jsonProperty(\"url\", \"${__value.raw}\")\n                    )))\n                ))))\n            .build());\n\n        var tempoDataSourceConfig = new DataSourceConfig(\"tempoDataSourceConfig\", DataSourceConfigArgs.builder()\n            .uid(tempo.uid())\n            .jsonDataEncoded(loki.uid().applyValue(_uid -\u003e serializeJson(\n                jsonObject(\n                    jsonProperty(\"tracesToLogsV2\", jsonObject(\n                        jsonProperty(\"customQuery\", true),\n                        jsonProperty(\"datasourceUid\", _uid),\n                        jsonProperty(\"filterBySpanID\", false),\n                        jsonProperty(\"filterByTraceID\", false),\n                        jsonProperty(\"query\", \"|=\\\"${__trace.traceId}\\\" | json\")\n                    ))\n                ))))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  loki:\n    type: grafana:oss:DataSource\n    properties:\n      type: loki\n      name: loki\n      url: http://localhost:3100\n  tempo:\n    type: grafana:oss:DataSource\n    properties:\n      type: tempo\n      name: tempo\n      url: http://localhost:3200\n  lokiDataSourceConfig:\n    type: grafana:oss:DataSourceConfig\n    name: loki\n    properties:\n      uid: ${loki.uid}\n      jsonDataEncoded:\n        fn::toJSON:\n          derivedFields:\n            - datasourceUid: ${tempo.uid}\n              matcherRegex: '[tT]race_?[iI][dD]\"?[:=]\"?(\\w+)'\n              matcherType: regex\n              name: traceID\n              url: $${__value.raw}\n  tempoDataSourceConfig:\n    type: grafana:oss:DataSourceConfig\n    name: tempo\n    properties:\n      uid: ${tempo.uid}\n      jsonDataEncoded:\n        fn::toJSON:\n          tracesToLogsV2:\n            customQuery: true\n            datasourceUid: ${loki.uid}\n            filterBySpanID: false\n            filterByTraceID: false\n            query: '|=\"$${__trace.traceId}\" | json'\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_data_source_config.name \"{{ uid }}\"\nterraform import grafana_data_source_config.name \"{{ orgID }}:{{ uid }}\"\n```\n\n",
             "properties": {
                 "httpHeaders": {
                     "type": "object",

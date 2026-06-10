@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Assistant.Inputs
 {
 
-    public sealed class AssistantMcpServerConfigurationGetArgs : global::Pulumi.ResourceArgs
+    public sealed class McpServerConfigurationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Built-in provider ID (e.g. cursor). When set, tools are provided locally.
@@ -49,9 +49,9 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("url")]
         public Input<string>? Url { get; set; }
 
-        public AssistantMcpServerConfigurationGetArgs()
+        public McpServerConfigurationArgs()
         {
         }
-        public static new AssistantMcpServerConfigurationGetArgs Empty => new AssistantMcpServerConfigurationGetArgs();
+        public static new McpServerConfigurationArgs Empty => new McpServerConfigurationArgs();
     }
 }

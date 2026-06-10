@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * Manages a Grafana Assistant skill.
@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const example = new grafana.AssistantSkill("example", {
+ * const example = new grafana.assistant.Skill("example", {
  *     name: "Deploy readiness check",
  *     body: `1. Check deployment pipeline status.
  * 2. Verify SLO error budget before promoting.
@@ -30,9 +30,9 @@ import * as utilities from "./utilities";
  * terraform import grafana_assistant_skill.name "{{ id }}"
  * ```
  */
-export class AssistantSkill extends pulumi.CustomResource {
+export class Skill extends pulumi.CustomResource {
     /**
-     * Get an existing AssistantSkill resource's state with the given name, ID, and optional extra
+     * Get an existing Skill resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -40,28 +40,28 @@ export class AssistantSkill extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AssistantSkillState, opts?: pulumi.CustomResourceOptions): AssistantSkill {
-        return new AssistantSkill(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SkillState, opts?: pulumi.CustomResourceOptions): Skill {
+        return new Skill(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/assistantSkill:AssistantSkill';
+    public static readonly __pulumiType = 'grafana:assistant/skill:Skill';
 
     /**
-     * Returns true if the given object is an instance of AssistantSkill.  This is designed to work even
+     * Returns true if the given object is an instance of Skill.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is AssistantSkill {
+    public static isInstance(obj: any): obj is Skill {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === AssistantSkill.__pulumiType;
+        return obj['__pulumiType'] === Skill.__pulumiType;
     }
 
     /**
      * MCP tools to auto-approve when this skill is invoked.
      */
-    declare public readonly allowedTools: pulumi.Output<outputs.AssistantSkillAllowedTool[] | undefined>;
+    declare public readonly allowedTools: pulumi.Output<outputs.assistant.SkillAllowedTool[] | undefined>;
     /**
      * The skill content.
      */
@@ -84,18 +84,18 @@ export class AssistantSkill extends pulumi.CustomResource {
     declare public readonly scope: pulumi.Output<string>;
 
     /**
-     * Create a AssistantSkill resource with the given unique name, arguments, and options.
+     * Create a Skill resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: AssistantSkillArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: AssistantSkillArgs | AssistantSkillState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: SkillArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: SkillArgs | SkillState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as AssistantSkillState | undefined;
+            const state = argsOrState as SkillState | undefined;
             resourceInputs["allowedTools"] = state?.allowedTools;
             resourceInputs["body"] = state?.body;
             resourceInputs["contextItems"] = state?.contextItems;
@@ -103,7 +103,7 @@ export class AssistantSkill extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["scope"] = state?.scope;
         } else {
-            const args = argsOrState as AssistantSkillArgs | undefined;
+            const args = argsOrState as SkillArgs | undefined;
             if (args?.body === undefined && !opts.urn) {
                 throw new Error("Missing required property 'body'");
             }
@@ -118,18 +118,18 @@ export class AssistantSkill extends pulumi.CustomResource {
             resourceInputs["scope"] = args?.scope;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(AssistantSkill.__pulumiType, name, resourceInputs, opts);
+        super(Skill.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering AssistantSkill resources.
+ * Input properties used for looking up and filtering Skill resources.
  */
-export interface AssistantSkillState {
+export interface SkillState {
     /**
      * MCP tools to auto-approve when this skill is invoked.
      */
-    allowedTools?: pulumi.Input<pulumi.Input<inputs.AssistantSkillAllowedTool>[]>;
+    allowedTools?: pulumi.Input<pulumi.Input<inputs.assistant.SkillAllowedTool>[]>;
     /**
      * The skill content.
      */
@@ -153,13 +153,13 @@ export interface AssistantSkillState {
 }
 
 /**
- * The set of arguments for constructing a AssistantSkill resource.
+ * The set of arguments for constructing a Skill resource.
  */
-export interface AssistantSkillArgs {
+export interface SkillArgs {
     /**
      * MCP tools to auto-approve when this skill is invoked.
      */
-    allowedTools?: pulumi.Input<pulumi.Input<inputs.AssistantSkillAllowedTool>[]>;
+    allowedTools?: pulumi.Input<pulumi.Input<inputs.assistant.SkillAllowedTool>[]>;
     /**
      * The skill content.
      */

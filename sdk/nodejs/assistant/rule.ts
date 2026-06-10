@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Manages a Grafana Assistant rule that is injected into the assistant system prompt.
@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const example = new grafana.AssistantRule("example", {
+ * const example = new grafana.assistant.Rule("example", {
  *     name: "Prefer RED metrics",
  *     ruleContent: "When summarizing service health, prefer RED metrics.",
  *     scope: "tenant",
@@ -28,9 +28,9 @@ import * as utilities from "./utilities";
  * terraform import grafana_assistant_rule.name "{{ id }}"
  * ```
  */
-export class AssistantRule extends pulumi.CustomResource {
+export class Rule extends pulumi.CustomResource {
     /**
-     * Get an existing AssistantRule resource's state with the given name, ID, and optional extra
+     * Get an existing Rule resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -38,22 +38,22 @@ export class AssistantRule extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AssistantRuleState, opts?: pulumi.CustomResourceOptions): AssistantRule {
-        return new AssistantRule(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RuleState, opts?: pulumi.CustomResourceOptions): Rule {
+        return new Rule(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/assistantRule:AssistantRule';
+    public static readonly __pulumiType = 'grafana:assistant/rule:Rule';
 
     /**
-     * Returns true if the given object is an instance of AssistantRule.  This is designed to work even
+     * Returns true if the given object is an instance of Rule.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is AssistantRule {
+    public static isInstance(obj: any): obj is Rule {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === AssistantRule.__pulumiType;
+        return obj['__pulumiType'] === Rule.__pulumiType;
     }
 
     /**
@@ -86,18 +86,18 @@ export class AssistantRule extends pulumi.CustomResource {
     declare public readonly scope: pulumi.Output<string>;
 
     /**
-     * Create a AssistantRule resource with the given unique name, arguments, and options.
+     * Create a Rule resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: AssistantRuleArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: AssistantRuleArgs | AssistantRuleState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: RuleArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: RuleArgs | RuleState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as AssistantRuleState | undefined;
+            const state = argsOrState as RuleState | undefined;
             resourceInputs["applications"] = state?.applications;
             resourceInputs["description"] = state?.description;
             resourceInputs["enabled"] = state?.enabled;
@@ -106,7 +106,7 @@ export class AssistantRule extends pulumi.CustomResource {
             resourceInputs["ruleContent"] = state?.ruleContent;
             resourceInputs["scope"] = state?.scope;
         } else {
-            const args = argsOrState as AssistantRuleArgs | undefined;
+            const args = argsOrState as RuleArgs | undefined;
             if (args?.ruleContent === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ruleContent'");
             }
@@ -122,14 +122,14 @@ export class AssistantRule extends pulumi.CustomResource {
             resourceInputs["scope"] = args?.scope;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(AssistantRule.__pulumiType, name, resourceInputs, opts);
+        super(Rule.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering AssistantRule resources.
+ * Input properties used for looking up and filtering Rule resources.
  */
-export interface AssistantRuleState {
+export interface RuleState {
     /**
      * Applications where this resource applies. Valid values: `assistant`, `loop`, `infrastructureMemory` (rules only), `all`. Defaults to all applications when unset.
      */
@@ -161,9 +161,9 @@ export interface AssistantRuleState {
 }
 
 /**
- * The set of arguments for constructing a AssistantRule resource.
+ * The set of arguments for constructing a Rule resource.
  */
-export interface AssistantRuleArgs {
+export interface RuleArgs {
     /**
      * Applications where this resource applies. Valid values: `assistant`, `loop`, `infrastructureMemory` (rules only), `all`. Defaults to all applications when unset.
      */

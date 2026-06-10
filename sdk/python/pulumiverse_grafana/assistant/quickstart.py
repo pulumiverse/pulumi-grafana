@@ -12,12 +12,12 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
-__all__ = ['AssistantQuickstartArgs', 'AssistantQuickstart']
+__all__ = ['QuickstartArgs', 'Quickstart']
 
 @pulumi.input_type
-class AssistantQuickstartArgs:
+class QuickstartArgs:
     def __init__(__self__, *,
                  prompt: pulumi.Input[_builtins.str],
                  scope: pulumi.Input[_builtins.str],
@@ -25,7 +25,7 @@ class AssistantQuickstartArgs:
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  title: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        The set of arguments for constructing a AssistantQuickstart resource.
+        The set of arguments for constructing a Quickstart resource.
 
         :param pulumi.Input[_builtins.str] prompt: The quickstart question text.
         :param pulumi.Input[_builtins.str] scope: Whether the resource is visible to the whole tenant (`tenant`) or only the creating user (`user`).
@@ -104,7 +104,7 @@ class AssistantQuickstartArgs:
 
 
 @pulumi.input_type
-class _AssistantQuickstartState:
+class _QuickstartState:
     def __init__(__self__, *,
                  context_items: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -112,7 +112,7 @@ class _AssistantQuickstartState:
                  scope: Optional[pulumi.Input[_builtins.str]] = None,
                  title: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering AssistantQuickstart resources.
+        Input properties used for looking up and filtering Quickstart resources.
 
         :param pulumi.Input[_builtins.str] context_items: Optional JSON array of context items for the quickstart.
         :param pulumi.Input[_builtins.bool] enabled: Whether the resource is enabled.
@@ -192,8 +192,8 @@ class _AssistantQuickstartState:
         pulumi.set(self, "title", value)
 
 
-@pulumi.type_token("grafana:index/assistantQuickstart:AssistantQuickstart")
-class AssistantQuickstart(pulumi.CustomResource):
+@pulumi.type_token("grafana:assistant/quickstart:Quickstart")
+class Quickstart(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -213,7 +213,7 @@ class AssistantQuickstart(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        example = grafana.AssistantQuickstart("example",
+        example = grafana.assistant.Quickstart("example",
             scope="tenant",
             title="SLO health",
             prompt="How healthy are my SLOs right now?")
@@ -238,7 +238,7 @@ class AssistantQuickstart(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: AssistantQuickstartArgs,
+                 args: QuickstartArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages a Grafana Assistant quickstart prompt shown to users.
@@ -249,7 +249,7 @@ class AssistantQuickstart(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        example = grafana.AssistantQuickstart("example",
+        example = grafana.assistant.Quickstart("example",
             scope="tenant",
             title="SLO health",
             prompt="How healthy are my SLOs right now?")
@@ -263,12 +263,12 @@ class AssistantQuickstart(pulumi.CustomResource):
 
 
         :param str resource_name: The name of the resource.
-        :param AssistantQuickstartArgs args: The arguments to use to populate this resource's properties.
+        :param QuickstartArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(AssistantQuickstartArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(QuickstartArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -289,7 +289,7 @@ class AssistantQuickstart(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = AssistantQuickstartArgs.__new__(AssistantQuickstartArgs)
+            __props__ = QuickstartArgs.__new__(QuickstartArgs)
 
             __props__.__dict__["context_items"] = context_items
             __props__.__dict__["enabled"] = enabled
@@ -300,8 +300,8 @@ class AssistantQuickstart(pulumi.CustomResource):
                 raise TypeError("Missing required property 'scope'")
             __props__.__dict__["scope"] = scope
             __props__.__dict__["title"] = title
-        super(AssistantQuickstart, __self__).__init__(
-            'grafana:index/assistantQuickstart:AssistantQuickstart',
+        super(Quickstart, __self__).__init__(
+            'grafana:assistant/quickstart:Quickstart',
             resource_name,
             __props__,
             opts)
@@ -314,9 +314,9 @@ class AssistantQuickstart(pulumi.CustomResource):
             enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             prompt: Optional[pulumi.Input[_builtins.str]] = None,
             scope: Optional[pulumi.Input[_builtins.str]] = None,
-            title: Optional[pulumi.Input[_builtins.str]] = None) -> 'AssistantQuickstart':
+            title: Optional[pulumi.Input[_builtins.str]] = None) -> 'Quickstart':
         """
-        Get an existing AssistantQuickstart resource's state with the given name, id, and optional extra
+        Get an existing Quickstart resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -330,14 +330,14 @@ class AssistantQuickstart(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _AssistantQuickstartState.__new__(_AssistantQuickstartState)
+        __props__ = _QuickstartState.__new__(_QuickstartState)
 
         __props__.__dict__["context_items"] = context_items
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["prompt"] = prompt
         __props__.__dict__["scope"] = scope
         __props__.__dict__["title"] = title
-        return AssistantQuickstart(resource_name, opts=opts, __props__=__props__)
+        return Quickstart(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="contextItems")

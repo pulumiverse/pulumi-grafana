@@ -12,16 +12,16 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
 __all__ = [
-    'AssistantMcpServerConfigurationArgs',
-    'AssistantMcpServerConfigurationArgsDict',
-    'AssistantSkillAllowedToolArgs',
-    'AssistantSkillAllowedToolArgsDict',
+    'McpServerConfigurationArgs',
+    'McpServerConfigurationArgsDict',
+    'SkillAllowedToolArgs',
+    'SkillAllowedToolArgsDict',
 ]
 
-class AssistantMcpServerConfigurationArgsDict(TypedDict):
+class McpServerConfigurationArgsDict(TypedDict):
     builtin_id: NotRequired[pulumi.Input[_builtins.str]]
     """
     Built-in provider ID (e.g. cursor). When set, tools are provided locally.
@@ -40,7 +40,7 @@ class AssistantMcpServerConfigurationArgsDict(TypedDict):
     """
 
 @pulumi.input_type
-class AssistantMcpServerConfigurationArgs:
+class McpServerConfigurationArgs:
     def __init__(__self__, *,
                  builtin_id: Optional[pulumi.Input[_builtins.str]] = None,
                  tool_approval_policies: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -110,7 +110,7 @@ class AssistantMcpServerConfigurationArgs:
         pulumi.set(self, "url", value)
 
 
-class AssistantSkillAllowedToolArgsDict(TypedDict):
+class SkillAllowedToolArgsDict(TypedDict):
     integration_id: pulumi.Input[_builtins.str]
     """
     Integration UUID.
@@ -121,7 +121,7 @@ class AssistantSkillAllowedToolArgsDict(TypedDict):
     """
 
 @pulumi.input_type
-class AssistantSkillAllowedToolArgs:
+class SkillAllowedToolArgs:
     def __init__(__self__, *,
                  integration_id: pulumi.Input[_builtins.str],
                  tool_name: pulumi.Input[_builtins.str]):

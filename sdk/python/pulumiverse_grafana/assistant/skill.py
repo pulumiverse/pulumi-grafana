@@ -12,27 +12,27 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['AssistantSkillArgs', 'AssistantSkill']
+__all__ = ['SkillArgs', 'Skill']
 
 @pulumi.input_type
-class AssistantSkillArgs:
+class SkillArgs:
     def __init__(__self__, *,
                  body: pulumi.Input[_builtins.str],
                  scope: pulumi.Input[_builtins.str],
-                 allowed_tools: Optional[pulumi.Input[Sequence[pulumi.Input['AssistantSkillAllowedToolArgs']]]] = None,
+                 allowed_tools: Optional[pulumi.Input[Sequence[pulumi.Input['SkillAllowedToolArgs']]]] = None,
                  context_items: Optional[pulumi.Input[_builtins.str]] = None,
                  include_in_knowledgebase: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        The set of arguments for constructing a AssistantSkill resource.
+        The set of arguments for constructing a Skill resource.
 
         :param pulumi.Input[_builtins.str] body: The skill content.
         :param pulumi.Input[_builtins.str] scope: Whether the resource is visible to the whole tenant (`tenant`) or only the creating user (`user`).
-        :param pulumi.Input[Sequence[pulumi.Input['AssistantSkillAllowedToolArgs']]] allowed_tools: MCP tools to auto-approve when this skill is invoked.
+        :param pulumi.Input[Sequence[pulumi.Input['SkillAllowedToolArgs']]] allowed_tools: MCP tools to auto-approve when this skill is invoked.
         :param pulumi.Input[_builtins.str] context_items: Optional JSON array of context items referenced by the skill.
         :param pulumi.Input[_builtins.bool] include_in_knowledgebase: Whether the skill is included in the knowledgebase.
         :param pulumi.Input[_builtins.str] name: The skill name.
@@ -74,14 +74,14 @@ class AssistantSkillArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedTools")
-    def allowed_tools(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AssistantSkillAllowedToolArgs']]]]:
+    def allowed_tools(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SkillAllowedToolArgs']]]]:
         """
         MCP tools to auto-approve when this skill is invoked.
         """
         return pulumi.get(self, "allowed_tools")
 
     @allowed_tools.setter
-    def allowed_tools(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AssistantSkillAllowedToolArgs']]]]):
+    def allowed_tools(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SkillAllowedToolArgs']]]]):
         pulumi.set(self, "allowed_tools", value)
 
     @_builtins.property
@@ -122,18 +122,18 @@ class AssistantSkillArgs:
 
 
 @pulumi.input_type
-class _AssistantSkillState:
+class _SkillState:
     def __init__(__self__, *,
-                 allowed_tools: Optional[pulumi.Input[Sequence[pulumi.Input['AssistantSkillAllowedToolArgs']]]] = None,
+                 allowed_tools: Optional[pulumi.Input[Sequence[pulumi.Input['SkillAllowedToolArgs']]]] = None,
                  body: Optional[pulumi.Input[_builtins.str]] = None,
                  context_items: Optional[pulumi.Input[_builtins.str]] = None,
                  include_in_knowledgebase: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  scope: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering AssistantSkill resources.
+        Input properties used for looking up and filtering Skill resources.
 
-        :param pulumi.Input[Sequence[pulumi.Input['AssistantSkillAllowedToolArgs']]] allowed_tools: MCP tools to auto-approve when this skill is invoked.
+        :param pulumi.Input[Sequence[pulumi.Input['SkillAllowedToolArgs']]] allowed_tools: MCP tools to auto-approve when this skill is invoked.
         :param pulumi.Input[_builtins.str] body: The skill content.
         :param pulumi.Input[_builtins.str] context_items: Optional JSON array of context items referenced by the skill.
         :param pulumi.Input[_builtins.bool] include_in_knowledgebase: Whether the skill is included in the knowledgebase.
@@ -155,14 +155,14 @@ class _AssistantSkillState:
 
     @_builtins.property
     @pulumi.getter(name="allowedTools")
-    def allowed_tools(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AssistantSkillAllowedToolArgs']]]]:
+    def allowed_tools(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SkillAllowedToolArgs']]]]:
         """
         MCP tools to auto-approve when this skill is invoked.
         """
         return pulumi.get(self, "allowed_tools")
 
     @allowed_tools.setter
-    def allowed_tools(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AssistantSkillAllowedToolArgs']]]]):
+    def allowed_tools(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SkillAllowedToolArgs']]]]):
         pulumi.set(self, "allowed_tools", value)
 
     @_builtins.property
@@ -226,13 +226,13 @@ class _AssistantSkillState:
         pulumi.set(self, "scope", value)
 
 
-@pulumi.type_token("grafana:index/assistantSkill:AssistantSkill")
-class AssistantSkill(pulumi.CustomResource):
+@pulumi.type_token("grafana:assistant/skill:Skill")
+class Skill(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allowed_tools: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AssistantSkillAllowedToolArgs', 'AssistantSkillAllowedToolArgsDict']]]]] = None,
+                 allowed_tools: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SkillAllowedToolArgs', 'SkillAllowedToolArgsDict']]]]] = None,
                  body: Optional[pulumi.Input[_builtins.str]] = None,
                  context_items: Optional[pulumi.Input[_builtins.str]] = None,
                  include_in_knowledgebase: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -248,7 +248,7 @@ class AssistantSkill(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        example = grafana.AssistantSkill("example",
+        example = grafana.assistant.Skill("example",
             name="Deploy readiness check",
             body=\"\"\"1. Check deployment pipeline status.
         2. Verify SLO error budget before promoting.
@@ -265,7 +265,7 @@ class AssistantSkill(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AssistantSkillAllowedToolArgs', 'AssistantSkillAllowedToolArgsDict']]]] allowed_tools: MCP tools to auto-approve when this skill is invoked.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SkillAllowedToolArgs', 'SkillAllowedToolArgsDict']]]] allowed_tools: MCP tools to auto-approve when this skill is invoked.
         :param pulumi.Input[_builtins.str] body: The skill content.
         :param pulumi.Input[_builtins.str] context_items: Optional JSON array of context items referenced by the skill.
         :param pulumi.Input[_builtins.bool] include_in_knowledgebase: Whether the skill is included in the knowledgebase.
@@ -276,7 +276,7 @@ class AssistantSkill(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: AssistantSkillArgs,
+                 args: SkillArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages a Grafana Assistant skill.
@@ -287,7 +287,7 @@ class AssistantSkill(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        example = grafana.AssistantSkill("example",
+        example = grafana.assistant.Skill("example",
             name="Deploy readiness check",
             body=\"\"\"1. Check deployment pipeline status.
         2. Verify SLO error budget before promoting.
@@ -303,12 +303,12 @@ class AssistantSkill(pulumi.CustomResource):
 
 
         :param str resource_name: The name of the resource.
-        :param AssistantSkillArgs args: The arguments to use to populate this resource's properties.
+        :param SkillArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(AssistantSkillArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(SkillArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -317,7 +317,7 @@ class AssistantSkill(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allowed_tools: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AssistantSkillAllowedToolArgs', 'AssistantSkillAllowedToolArgsDict']]]]] = None,
+                 allowed_tools: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SkillAllowedToolArgs', 'SkillAllowedToolArgsDict']]]]] = None,
                  body: Optional[pulumi.Input[_builtins.str]] = None,
                  context_items: Optional[pulumi.Input[_builtins.str]] = None,
                  include_in_knowledgebase: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -330,7 +330,7 @@ class AssistantSkill(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = AssistantSkillArgs.__new__(AssistantSkillArgs)
+            __props__ = SkillArgs.__new__(SkillArgs)
 
             __props__.__dict__["allowed_tools"] = allowed_tools
             if body is None and not opts.urn:
@@ -342,8 +342,8 @@ class AssistantSkill(pulumi.CustomResource):
             if scope is None and not opts.urn:
                 raise TypeError("Missing required property 'scope'")
             __props__.__dict__["scope"] = scope
-        super(AssistantSkill, __self__).__init__(
-            'grafana:index/assistantSkill:AssistantSkill',
+        super(Skill, __self__).__init__(
+            'grafana:assistant/skill:Skill',
             resource_name,
             __props__,
             opts)
@@ -352,20 +352,20 @@ class AssistantSkill(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            allowed_tools: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AssistantSkillAllowedToolArgs', 'AssistantSkillAllowedToolArgsDict']]]]] = None,
+            allowed_tools: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SkillAllowedToolArgs', 'SkillAllowedToolArgsDict']]]]] = None,
             body: Optional[pulumi.Input[_builtins.str]] = None,
             context_items: Optional[pulumi.Input[_builtins.str]] = None,
             include_in_knowledgebase: Optional[pulumi.Input[_builtins.bool]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
-            scope: Optional[pulumi.Input[_builtins.str]] = None) -> 'AssistantSkill':
+            scope: Optional[pulumi.Input[_builtins.str]] = None) -> 'Skill':
         """
-        Get an existing AssistantSkill resource's state with the given name, id, and optional extra
+        Get an existing Skill resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AssistantSkillAllowedToolArgs', 'AssistantSkillAllowedToolArgsDict']]]] allowed_tools: MCP tools to auto-approve when this skill is invoked.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SkillAllowedToolArgs', 'SkillAllowedToolArgsDict']]]] allowed_tools: MCP tools to auto-approve when this skill is invoked.
         :param pulumi.Input[_builtins.str] body: The skill content.
         :param pulumi.Input[_builtins.str] context_items: Optional JSON array of context items referenced by the skill.
         :param pulumi.Input[_builtins.bool] include_in_knowledgebase: Whether the skill is included in the knowledgebase.
@@ -374,7 +374,7 @@ class AssistantSkill(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _AssistantSkillState.__new__(_AssistantSkillState)
+        __props__ = _SkillState.__new__(_SkillState)
 
         __props__.__dict__["allowed_tools"] = allowed_tools
         __props__.__dict__["body"] = body
@@ -382,11 +382,11 @@ class AssistantSkill(pulumi.CustomResource):
         __props__.__dict__["include_in_knowledgebase"] = include_in_knowledgebase
         __props__.__dict__["name"] = name
         __props__.__dict__["scope"] = scope
-        return AssistantSkill(resource_name, opts=opts, __props__=__props__)
+        return Skill(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="allowedTools")
-    def allowed_tools(self) -> pulumi.Output[Optional[Sequence['outputs.AssistantSkillAllowedTool']]]:
+    def allowed_tools(self) -> pulumi.Output[Optional[Sequence['outputs.SkillAllowedTool']]]:
         """
         MCP tools to auto-approve when this skill is invoked.
         """

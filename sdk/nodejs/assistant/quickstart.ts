@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Manages a Grafana Assistant quickstart prompt shown to users.
@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const example = new grafana.AssistantQuickstart("example", {
+ * const example = new grafana.assistant.Quickstart("example", {
  *     scope: "tenant",
  *     title: "SLO health",
  *     prompt: "How healthy are my SLOs right now?",
@@ -26,9 +26,9 @@ import * as utilities from "./utilities";
  * terraform import grafana_assistant_quickstart.name "{{ id }}"
  * ```
  */
-export class AssistantQuickstart extends pulumi.CustomResource {
+export class Quickstart extends pulumi.CustomResource {
     /**
-     * Get an existing AssistantQuickstart resource's state with the given name, ID, and optional extra
+     * Get an existing Quickstart resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -36,22 +36,22 @@ export class AssistantQuickstart extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AssistantQuickstartState, opts?: pulumi.CustomResourceOptions): AssistantQuickstart {
-        return new AssistantQuickstart(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: QuickstartState, opts?: pulumi.CustomResourceOptions): Quickstart {
+        return new Quickstart(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/assistantQuickstart:AssistantQuickstart';
+    public static readonly __pulumiType = 'grafana:assistant/quickstart:Quickstart';
 
     /**
-     * Returns true if the given object is an instance of AssistantQuickstart.  This is designed to work even
+     * Returns true if the given object is an instance of Quickstart.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is AssistantQuickstart {
+    public static isInstance(obj: any): obj is Quickstart {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === AssistantQuickstart.__pulumiType;
+        return obj['__pulumiType'] === Quickstart.__pulumiType;
     }
 
     /**
@@ -76,25 +76,25 @@ export class AssistantQuickstart extends pulumi.CustomResource {
     declare public readonly title: pulumi.Output<string | undefined>;
 
     /**
-     * Create a AssistantQuickstart resource with the given unique name, arguments, and options.
+     * Create a Quickstart resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: AssistantQuickstartArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: AssistantQuickstartArgs | AssistantQuickstartState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: QuickstartArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: QuickstartArgs | QuickstartState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as AssistantQuickstartState | undefined;
+            const state = argsOrState as QuickstartState | undefined;
             resourceInputs["contextItems"] = state?.contextItems;
             resourceInputs["enabled"] = state?.enabled;
             resourceInputs["prompt"] = state?.prompt;
             resourceInputs["scope"] = state?.scope;
             resourceInputs["title"] = state?.title;
         } else {
-            const args = argsOrState as AssistantQuickstartArgs | undefined;
+            const args = argsOrState as QuickstartArgs | undefined;
             if (args?.prompt === undefined && !opts.urn) {
                 throw new Error("Missing required property 'prompt'");
             }
@@ -108,14 +108,14 @@ export class AssistantQuickstart extends pulumi.CustomResource {
             resourceInputs["title"] = args?.title;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(AssistantQuickstart.__pulumiType, name, resourceInputs, opts);
+        super(Quickstart.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering AssistantQuickstart resources.
+ * Input properties used for looking up and filtering Quickstart resources.
  */
-export interface AssistantQuickstartState {
+export interface QuickstartState {
     /**
      * Optional JSON array of context items for the quickstart.
      */
@@ -139,9 +139,9 @@ export interface AssistantQuickstartState {
 }
 
 /**
- * The set of arguments for constructing a AssistantQuickstart resource.
+ * The set of arguments for constructing a Quickstart resource.
  */
-export interface AssistantQuickstartArgs {
+export interface QuickstartArgs {
     /**
      * Optional JSON array of context items for the quickstart.
      */

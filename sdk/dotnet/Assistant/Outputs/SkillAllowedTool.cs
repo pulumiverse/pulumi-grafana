@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Assistant.Outputs
 {
 
     [OutputType]
-    public sealed class AssistantSkillAllowedTool
+    public sealed class SkillAllowedTool
     {
         /// <summary>
         /// Integration UUID.
@@ -24,7 +24,7 @@ namespace Pulumiverse.Grafana.Outputs
         public readonly string ToolName;
 
         [OutputConstructor]
-        private AssistantSkillAllowedTool(
+        private SkillAllowedTool(
             string integrationId,
 
             string toolName)

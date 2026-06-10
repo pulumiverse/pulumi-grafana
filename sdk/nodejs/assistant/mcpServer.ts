@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * Manages a Grafana Assistant MCP server integration.
@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  *
  * const config = new pulumi.Config();
  * const mcpToken = config.require("mcpToken");
- * const example = new grafana.AssistantMcpServer("example", {
+ * const example = new grafana.assistant.McpServer("example", {
  *     name: "Example MCP server",
  *     scope: "tenant",
  *     applications: ["assistant"],
@@ -36,9 +36,9 @@ import * as utilities from "./utilities";
  * terraform import grafana_assistant_mcp_server.name "{{ id }}"
  * ```
  */
-export class AssistantMcpServer extends pulumi.CustomResource {
+export class McpServer extends pulumi.CustomResource {
     /**
-     * Get an existing AssistantMcpServer resource's state with the given name, ID, and optional extra
+     * Get an existing McpServer resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -46,22 +46,22 @@ export class AssistantMcpServer extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AssistantMcpServerState, opts?: pulumi.CustomResourceOptions): AssistantMcpServer {
-        return new AssistantMcpServer(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: McpServerState, opts?: pulumi.CustomResourceOptions): McpServer {
+        return new McpServer(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/assistantMcpServer:AssistantMcpServer';
+    public static readonly __pulumiType = 'grafana:assistant/mcpServer:McpServer';
 
     /**
-     * Returns true if the given object is an instance of AssistantMcpServer.  This is designed to work even
+     * Returns true if the given object is an instance of McpServer.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is AssistantMcpServer {
+    public static isInstance(obj: any): obj is McpServer {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === AssistantMcpServer.__pulumiType;
+        return obj['__pulumiType'] === McpServer.__pulumiType;
     }
 
     /**
@@ -71,7 +71,7 @@ export class AssistantMcpServer extends pulumi.CustomResource {
     /**
      * MCP server configuration.
      */
-    declare public readonly configuration: pulumi.Output<outputs.AssistantMcpServerConfiguration | undefined>;
+    declare public readonly configuration: pulumi.Output<outputs.assistant.McpServerConfiguration | undefined>;
     /**
      * Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.
      */
@@ -94,18 +94,18 @@ export class AssistantMcpServer extends pulumi.CustomResource {
     declare public readonly scope: pulumi.Output<string>;
 
     /**
-     * Create a AssistantMcpServer resource with the given unique name, arguments, and options.
+     * Create a McpServer resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: AssistantMcpServerArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: AssistantMcpServerArgs | AssistantMcpServerState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: McpServerArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: McpServerArgs | McpServerState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as AssistantMcpServerState | undefined;
+            const state = argsOrState as McpServerState | undefined;
             resourceInputs["applications"] = state?.applications;
             resourceInputs["configuration"] = state?.configuration;
             resourceInputs["customHeaders"] = state?.customHeaders;
@@ -114,7 +114,7 @@ export class AssistantMcpServer extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["scope"] = state?.scope;
         } else {
-            const args = argsOrState as AssistantMcpServerArgs | undefined;
+            const args = argsOrState as McpServerArgs | undefined;
             if (args?.scope === undefined && !opts.urn) {
                 throw new Error("Missing required property 'scope'");
             }
@@ -129,14 +129,14 @@ export class AssistantMcpServer extends pulumi.CustomResource {
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["customHeaders"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
-        super(AssistantMcpServer.__pulumiType, name, resourceInputs, opts);
+        super(McpServer.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering AssistantMcpServer resources.
+ * Input properties used for looking up and filtering McpServer resources.
  */
-export interface AssistantMcpServerState {
+export interface McpServerState {
     /**
      * Applications where this resource applies. Valid values: `assistant`, `loop`, `all`. Defaults to all applications when unset.
      */
@@ -144,7 +144,7 @@ export interface AssistantMcpServerState {
     /**
      * MCP server configuration.
      */
-    configuration?: pulumi.Input<inputs.AssistantMcpServerConfiguration>;
+    configuration?: pulumi.Input<inputs.assistant.McpServerConfiguration>;
     /**
      * Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.
      */
@@ -168,9 +168,9 @@ export interface AssistantMcpServerState {
 }
 
 /**
- * The set of arguments for constructing a AssistantMcpServer resource.
+ * The set of arguments for constructing a McpServer resource.
  */
-export interface AssistantMcpServerArgs {
+export interface McpServerArgs {
     /**
      * Applications where this resource applies. Valid values: `assistant`, `loop`, `all`. Defaults to all applications when unset.
      */
@@ -178,7 +178,7 @@ export interface AssistantMcpServerArgs {
     /**
      * MCP server configuration.
      */
-    configuration?: pulumi.Input<inputs.AssistantMcpServerConfiguration>;
+    configuration?: pulumi.Input<inputs.assistant.McpServerConfiguration>;
     /**
      * Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.
      */

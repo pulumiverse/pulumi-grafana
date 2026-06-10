@@ -12,15 +12,15 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
 __all__ = [
-    'AssistantMcpServerConfiguration',
-    'AssistantSkillAllowedTool',
+    'McpServerConfiguration',
+    'SkillAllowedTool',
 ]
 
 @pulumi.output_type
-class AssistantMcpServerConfiguration(dict):
+class McpServerConfiguration(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -32,14 +32,14 @@ class AssistantMcpServerConfiguration(dict):
             suggest = "tool_preferences"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in AssistantMcpServerConfiguration. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in McpServerConfiguration. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        AssistantMcpServerConfiguration.__key_warning(key)
+        McpServerConfiguration.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        AssistantMcpServerConfiguration.__key_warning(key)
+        McpServerConfiguration.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -96,7 +96,7 @@ class AssistantMcpServerConfiguration(dict):
 
 
 @pulumi.output_type
-class AssistantSkillAllowedTool(dict):
+class SkillAllowedTool(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -106,14 +106,14 @@ class AssistantSkillAllowedTool(dict):
             suggest = "tool_name"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in AssistantSkillAllowedTool. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in SkillAllowedTool. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        AssistantSkillAllowedTool.__key_warning(key)
+        SkillAllowedTool.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        AssistantSkillAllowedTool.__key_warning(key)
+        SkillAllowedTool.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,

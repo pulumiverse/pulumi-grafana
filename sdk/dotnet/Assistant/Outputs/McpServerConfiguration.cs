@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Assistant.Outputs
 {
 
     [OutputType]
-    public sealed class AssistantMcpServerConfiguration
+    public sealed class McpServerConfiguration
     {
         /// <summary>
         /// Built-in provider ID (e.g. cursor). When set, tools are provided locally.
@@ -32,7 +32,7 @@ namespace Pulumiverse.Grafana.Outputs
         public readonly string? Url;
 
         [OutputConstructor]
-        private AssistantMcpServerConfiguration(
+        private McpServerConfiguration(
             string? builtinId,
 
             ImmutableDictionary<string, string>? toolApprovalPolicies,

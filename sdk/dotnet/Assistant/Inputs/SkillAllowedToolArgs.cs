@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Assistant.Inputs
 {
 
-    public sealed class AssistantSkillAllowedToolArgs : global::Pulumi.ResourceArgs
+    public sealed class SkillAllowedToolArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Integration UUID.
@@ -25,9 +25,9 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("toolName", required: true)]
         public Input<string> ToolName { get; set; } = null!;
 
-        public AssistantSkillAllowedToolArgs()
+        public SkillAllowedToolArgs()
         {
         }
-        public static new AssistantSkillAllowedToolArgs Empty => new AssistantSkillAllowedToolArgs();
+        public static new SkillAllowedToolArgs Empty => new SkillAllowedToolArgs();
     }
 }

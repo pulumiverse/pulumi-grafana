@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Assistant
 {
     /// <summary>
-    /// Manages a Grafana Assistant MCP server integration.
+    /// Manages a Grafana Assistant rule that is injected into the assistant system prompt.
     /// 
     /// ## Example Usage
     /// 
@@ -23,23 +23,15 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var config = new Config();
-    ///     var mcpToken = config.Require("mcpToken");
-    ///     var example = new Grafana.AssistantMcpServer("example", new()
+    ///     var example = new Grafana.Assistant.Rule("example", new()
     ///     {
-    ///         Name = "Example MCP server",
+    ///         Name = "Prefer RED metrics",
+    ///         RuleContent = "When summarizing service health, prefer RED metrics.",
     ///         Scope = "tenant",
+    ///         Priority = 10,
     ///         Applications = new[]
     ///         {
     ///             "assistant",
-    ///         },
-    ///         Configuration = new Grafana.Inputs.AssistantMcpServerConfigurationArgs
-    ///         {
-    ///             Url = "https://example.com/mcp/",
-    ///         },
-    ///         CustomHeaders = 
-    ///         {
-    ///             { "Authorization", $"Bearer {mcpToken}" },
     ///         },
     ///     });
     /// 
@@ -49,32 +41,20 @@ namespace Pulumiverse.Grafana
     /// ## Import
     /// 
     /// ```sh
-    /// terraform import grafana_assistant_mcp_server.name "{{ id }}"
+    /// terraform import grafana_assistant_rule.name "{{ id }}"
     /// ```
     /// </summary>
-    [GrafanaResourceType("grafana:index/assistantMcpServer:AssistantMcpServer")]
-    public partial class AssistantMcpServer : global::Pulumi.CustomResource
+    [GrafanaResourceType("grafana:assistant/rule:Rule")]
+    public partial class Rule : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Applications where this resource applies. Valid values: `Assistant`, `Loop`, `All`. Defaults to all applications when unset.
+        /// Applications where this resource applies. Valid values: `Assistant`, `Loop`, `InfrastructureMemory` (rules only), `All`. Defaults to all applications when unset.
         /// </summary>
         [Output("applications")]
         public Output<ImmutableArray<string>> Applications { get; private set; } = null!;
 
         /// <summary>
-        /// MCP server configuration.
-        /// </summary>
-        [Output("configuration")]
-        public Output<Outputs.AssistantMcpServerConfiguration?> Configuration { get; private set; } = null!;
-
-        /// <summary>
-        /// Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.
-        /// </summary>
-        [Output("customHeaders")]
-        public Output<ImmutableDictionary<string, string>?> CustomHeaders { get; private set; } = null!;
-
-        /// <summary>
-        /// Optional description.
+        /// Optional description of the rule.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -86,10 +66,22 @@ namespace Pulumiverse.Grafana
         public Output<bool> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// The MCP server integration name.
+        /// The rule name.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// Rule priority (lower values apply first).
+        /// </summary>
+        [Output("priority")]
+        public Output<int> Priority { get; private set; } = null!;
+
+        /// <summary>
+        /// The rule text included in the assistant system prompt.
+        /// </summary>
+        [Output("ruleContent")]
+        public Output<string> RuleContent { get; private set; } = null!;
 
         /// <summary>
         /// Whether the resource is visible to the whole tenant (`Tenant`) or only the creating user (`User`).
@@ -99,19 +91,19 @@ namespace Pulumiverse.Grafana
 
 
         /// <summary>
-        /// Create a AssistantMcpServer resource with the given unique name, arguments, and options.
+        /// Create a Rule resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AssistantMcpServer(string name, AssistantMcpServerArgs args, CustomResourceOptions? options = null)
-            : base("grafana:index/assistantMcpServer:AssistantMcpServer", name, args ?? new AssistantMcpServerArgs(), MakeResourceOptions(options, ""))
+        public Rule(string name, RuleArgs args, CustomResourceOptions? options = null)
+            : base("grafana:assistant/rule:Rule", name, args ?? new RuleArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private AssistantMcpServer(string name, Input<string> id, AssistantMcpServerState? state = null, CustomResourceOptions? options = null)
-            : base("grafana:index/assistantMcpServer:AssistantMcpServer", name, state, MakeResourceOptions(options, id))
+        private Rule(string name, Input<string> id, RuleState? state = null, CustomResourceOptions? options = null)
+            : base("grafana:assistant/rule:Rule", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -121,10 +113,6 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
-                AdditionalSecretOutputs =
-                {
-                    "customHeaders",
-                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -132,7 +120,7 @@ namespace Pulumiverse.Grafana
             return merged;
         }
         /// <summary>
-        /// Get an existing AssistantMcpServer resource's state with the given name, ID, and optional extra
+        /// Get an existing Rule resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -140,19 +128,19 @@ namespace Pulumiverse.Grafana
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static AssistantMcpServer Get(string name, Input<string> id, AssistantMcpServerState? state = null, CustomResourceOptions? options = null)
+        public static Rule Get(string name, Input<string> id, RuleState? state = null, CustomResourceOptions? options = null)
         {
-            return new AssistantMcpServer(name, id, state, options);
+            return new Rule(name, id, state, options);
         }
     }
 
-    public sealed class AssistantMcpServerArgs : global::Pulumi.ResourceArgs
+    public sealed class RuleArgs : global::Pulumi.ResourceArgs
     {
         [Input("applications")]
         private InputList<string>? _applications;
 
         /// <summary>
-        /// Applications where this resource applies. Valid values: `Assistant`, `Loop`, `All`. Defaults to all applications when unset.
+        /// Applications where this resource applies. Valid values: `Assistant`, `Loop`, `InfrastructureMemory` (rules only), `All`. Defaults to all applications when unset.
         /// </summary>
         public InputList<string> Applications
         {
@@ -161,29 +149,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// MCP server configuration.
-        /// </summary>
-        [Input("configuration")]
-        public Input<Inputs.AssistantMcpServerConfigurationArgs>? Configuration { get; set; }
-
-        [Input("customHeaders")]
-        private InputMap<string>? _customHeaders;
-
-        /// <summary>
-        /// Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.
-        /// </summary>
-        public InputMap<string> CustomHeaders
-        {
-            get => _customHeaders ?? (_customHeaders = new InputMap<string>());
-            set
-            {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
-                _customHeaders = Output.All(value, emptySecret).Apply(v => v[0]);
-            }
-        }
-
-        /// <summary>
-        /// Optional description.
+        /// Optional description of the rule.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -195,10 +161,22 @@ namespace Pulumiverse.Grafana
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// The MCP server integration name.
+        /// The rule name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Rule priority (lower values apply first).
+        /// </summary>
+        [Input("priority")]
+        public Input<int>? Priority { get; set; }
+
+        /// <summary>
+        /// The rule text included in the assistant system prompt.
+        /// </summary>
+        [Input("ruleContent", required: true)]
+        public Input<string> RuleContent { get; set; } = null!;
 
         /// <summary>
         /// Whether the resource is visible to the whole tenant (`Tenant`) or only the creating user (`User`).
@@ -206,19 +184,19 @@ namespace Pulumiverse.Grafana
         [Input("scope", required: true)]
         public Input<string> Scope { get; set; } = null!;
 
-        public AssistantMcpServerArgs()
+        public RuleArgs()
         {
         }
-        public static new AssistantMcpServerArgs Empty => new AssistantMcpServerArgs();
+        public static new RuleArgs Empty => new RuleArgs();
     }
 
-    public sealed class AssistantMcpServerState : global::Pulumi.ResourceArgs
+    public sealed class RuleState : global::Pulumi.ResourceArgs
     {
         [Input("applications")]
         private InputList<string>? _applications;
 
         /// <summary>
-        /// Applications where this resource applies. Valid values: `Assistant`, `Loop`, `All`. Defaults to all applications when unset.
+        /// Applications where this resource applies. Valid values: `Assistant`, `Loop`, `InfrastructureMemory` (rules only), `All`. Defaults to all applications when unset.
         /// </summary>
         public InputList<string> Applications
         {
@@ -227,29 +205,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// MCP server configuration.
-        /// </summary>
-        [Input("configuration")]
-        public Input<Inputs.AssistantMcpServerConfigurationGetArgs>? Configuration { get; set; }
-
-        [Input("customHeaders")]
-        private InputMap<string>? _customHeaders;
-
-        /// <summary>
-        /// Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.
-        /// </summary>
-        public InputMap<string> CustomHeaders
-        {
-            get => _customHeaders ?? (_customHeaders = new InputMap<string>());
-            set
-            {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
-                _customHeaders = Output.All(value, emptySecret).Apply(v => v[0]);
-            }
-        }
-
-        /// <summary>
-        /// Optional description.
+        /// Optional description of the rule.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -261,10 +217,22 @@ namespace Pulumiverse.Grafana
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// The MCP server integration name.
+        /// The rule name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Rule priority (lower values apply first).
+        /// </summary>
+        [Input("priority")]
+        public Input<int>? Priority { get; set; }
+
+        /// <summary>
+        /// The rule text included in the assistant system prompt.
+        /// </summary>
+        [Input("ruleContent")]
+        public Input<string>? RuleContent { get; set; }
 
         /// <summary>
         /// Whether the resource is visible to the whole tenant (`Tenant`) or only the creating user (`User`).
@@ -272,9 +240,9 @@ namespace Pulumiverse.Grafana
         [Input("scope")]
         public Input<string>? Scope { get; set; }
 
-        public AssistantMcpServerState()
+        public RuleState()
         {
         }
-        public static new AssistantMcpServerState Empty => new AssistantMcpServerState();
+        public static new RuleState Empty => new RuleState();
     }
 }

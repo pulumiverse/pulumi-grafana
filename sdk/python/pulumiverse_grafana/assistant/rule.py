@@ -12,12 +12,12 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
-__all__ = ['AssistantRuleArgs', 'AssistantRule']
+__all__ = ['RuleArgs', 'Rule']
 
 @pulumi.input_type
-class AssistantRuleArgs:
+class RuleArgs:
     def __init__(__self__, *,
                  rule_content: pulumi.Input[_builtins.str],
                  scope: pulumi.Input[_builtins.str],
@@ -27,7 +27,7 @@ class AssistantRuleArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  priority: Optional[pulumi.Input[_builtins.int]] = None):
         """
-        The set of arguments for constructing a AssistantRule resource.
+        The set of arguments for constructing a Rule resource.
 
         :param pulumi.Input[_builtins.str] rule_content: The rule text included in the assistant system prompt.
         :param pulumi.Input[_builtins.str] scope: Whether the resource is visible to the whole tenant (`tenant`) or only the creating user (`user`).
@@ -136,7 +136,7 @@ class AssistantRuleArgs:
 
 
 @pulumi.input_type
-class _AssistantRuleState:
+class _RuleState:
     def __init__(__self__, *,
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -146,7 +146,7 @@ class _AssistantRuleState:
                  rule_content: Optional[pulumi.Input[_builtins.str]] = None,
                  scope: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering AssistantRule resources.
+        Input properties used for looking up and filtering Rule resources.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] applications: Applications where this resource applies. Valid values: `assistant`, `loop`, `infrastructure_memory` (rules only), `all`. Defaults to all applications when unset.
         :param pulumi.Input[_builtins.str] description: Optional description of the rule.
@@ -256,8 +256,8 @@ class _AssistantRuleState:
         pulumi.set(self, "scope", value)
 
 
-@pulumi.type_token("grafana:index/assistantRule:AssistantRule")
-class AssistantRule(pulumi.CustomResource):
+@pulumi.type_token("grafana:assistant/rule:Rule")
+class Rule(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -279,7 +279,7 @@ class AssistantRule(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        example = grafana.AssistantRule("example",
+        example = grafana.assistant.Rule("example",
             name="Prefer RED metrics",
             rule_content="When summarizing service health, prefer RED metrics.",
             scope="tenant",
@@ -308,7 +308,7 @@ class AssistantRule(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: AssistantRuleArgs,
+                 args: RuleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages a Grafana Assistant rule that is injected into the assistant system prompt.
@@ -319,7 +319,7 @@ class AssistantRule(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        example = grafana.AssistantRule("example",
+        example = grafana.assistant.Rule("example",
             name="Prefer RED metrics",
             rule_content="When summarizing service health, prefer RED metrics.",
             scope="tenant",
@@ -335,12 +335,12 @@ class AssistantRule(pulumi.CustomResource):
 
 
         :param str resource_name: The name of the resource.
-        :param AssistantRuleArgs args: The arguments to use to populate this resource's properties.
+        :param RuleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(AssistantRuleArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(RuleArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -363,7 +363,7 @@ class AssistantRule(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = AssistantRuleArgs.__new__(AssistantRuleArgs)
+            __props__ = RuleArgs.__new__(RuleArgs)
 
             __props__.__dict__["applications"] = applications
             __props__.__dict__["description"] = description
@@ -376,8 +376,8 @@ class AssistantRule(pulumi.CustomResource):
             if scope is None and not opts.urn:
                 raise TypeError("Missing required property 'scope'")
             __props__.__dict__["scope"] = scope
-        super(AssistantRule, __self__).__init__(
-            'grafana:index/assistantRule:AssistantRule',
+        super(Rule, __self__).__init__(
+            'grafana:assistant/rule:Rule',
             resource_name,
             __props__,
             opts)
@@ -392,9 +392,9 @@ class AssistantRule(pulumi.CustomResource):
             name: Optional[pulumi.Input[_builtins.str]] = None,
             priority: Optional[pulumi.Input[_builtins.int]] = None,
             rule_content: Optional[pulumi.Input[_builtins.str]] = None,
-            scope: Optional[pulumi.Input[_builtins.str]] = None) -> 'AssistantRule':
+            scope: Optional[pulumi.Input[_builtins.str]] = None) -> 'Rule':
         """
-        Get an existing AssistantRule resource's state with the given name, id, and optional extra
+        Get an existing Rule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -410,7 +410,7 @@ class AssistantRule(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _AssistantRuleState.__new__(_AssistantRuleState)
+        __props__ = _RuleState.__new__(_RuleState)
 
         __props__.__dict__["applications"] = applications
         __props__.__dict__["description"] = description
@@ -419,7 +419,7 @@ class AssistantRule(pulumi.CustomResource):
         __props__.__dict__["priority"] = priority
         __props__.__dict__["rule_content"] = rule_content
         __props__.__dict__["scope"] = scope
-        return AssistantRule(resource_name, opts=opts, __props__=__props__)
+        return Rule(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter
