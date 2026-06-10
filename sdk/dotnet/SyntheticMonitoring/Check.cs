@@ -189,6 +189,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///         Job = "HTTP Defaults",
     ///         Target = "https://grafana.org",
     ///         Enabled = false,
+    ///         FolderUid = "test-folder-uid",
     ///         Probes = new[]
     ///         {
     ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Mumbai),
@@ -593,6 +594,12 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
         public Output<bool?> Enabled { get; private set; } = null!;
 
         /// <summary>
+        /// The UID of the Grafana folder to associate the check with.
+        /// </summary>
+        [Output("folderUid")]
+        public Output<string?> FolderUid { get; private set; } = null!;
+
+        /// <summary>
         /// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
         /// </summary>
         [Output("frequency")]
@@ -706,6 +713,12 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
+        /// The UID of the Grafana folder to associate the check with.
+        /// </summary>
+        [Input("folderUid")]
+        public Input<string>? FolderUid { get; set; }
+
+        /// <summary>
         /// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
         /// </summary>
         [Input("frequency")]
@@ -784,6 +797,12 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
+
+        /// <summary>
+        /// The UID of the Grafana folder to associate the check with.
+        /// </summary>
+        [Input("folderUid")]
+        public Input<string>? FolderUid { get; set; }
 
         /// <summary>
         /// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.

@@ -3129,6 +3129,10 @@ class ContactPointGooglechat(dict):
         suggest = None
         if key == "disableResolveMessage":
             suggest = "disable_resolve_message"
+        elif key == "hideOpenButton":
+            suggest = "hide_open_button"
+        elif key == "hideVersionInfo":
+            suggest = "hide_version_info"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ContactPointGooglechat. Access the value via the '{suggest}' property getter instead.")
@@ -3144,6 +3148,8 @@ class ContactPointGooglechat(dict):
     def __init__(__self__, *,
                  url: _builtins.str,
                  disable_resolve_message: Optional[_builtins.bool] = None,
+                 hide_open_button: Optional[_builtins.bool] = None,
+                 hide_version_info: Optional[_builtins.bool] = None,
                  message: Optional[_builtins.str] = None,
                  settings: Optional[Mapping[str, _builtins.str]] = None,
                  title: Optional[_builtins.str] = None,
@@ -3151,6 +3157,8 @@ class ContactPointGooglechat(dict):
         """
         :param _builtins.str url: The Google Chat webhook URL.
         :param _builtins.bool disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
+        :param _builtins.bool hide_open_button: Whether to hide the Open URL button in the message. This feature requires Grafana 12.4.0 or later.
+        :param _builtins.bool hide_version_info: Whether to hide the version info in the message. This feature requires Grafana 12.4.0 or later. Defaults to `false`.
         :param _builtins.str message: The templated content of the message.
         :param Mapping[str, _builtins.str] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
         :param _builtins.str title: The templated content of the title.
@@ -3159,6 +3167,10 @@ class ContactPointGooglechat(dict):
         pulumi.set(__self__, "url", url)
         if disable_resolve_message is not None:
             pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
+        if hide_open_button is not None:
+            pulumi.set(__self__, "hide_open_button", hide_open_button)
+        if hide_version_info is not None:
+            pulumi.set(__self__, "hide_version_info", hide_version_info)
         if message is not None:
             pulumi.set(__self__, "message", message)
         if settings is not None:
@@ -3183,6 +3195,22 @@ class ContactPointGooglechat(dict):
         Whether to disable sending resolve messages. Defaults to `false`.
         """
         return pulumi.get(self, "disable_resolve_message")
+
+    @_builtins.property
+    @pulumi.getter(name="hideOpenButton")
+    def hide_open_button(self) -> Optional[_builtins.bool]:
+        """
+        Whether to hide the Open URL button in the message. This feature requires Grafana 12.4.0 or later.
+        """
+        return pulumi.get(self, "hide_open_button")
+
+    @_builtins.property
+    @pulumi.getter(name="hideVersionInfo")
+    def hide_version_info(self) -> Optional[_builtins.bool]:
+        """
+        Whether to hide the version info in the message. This feature requires Grafana 12.4.0 or later. Defaults to `false`.
+        """
+        return pulumi.get(self, "hide_version_info")
 
     @_builtins.property
     @pulumi.getter

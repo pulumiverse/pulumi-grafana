@@ -11,6 +11,32 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
+type module struct {
+	version semver.Version
+}
+
+func (m *module) Version() semver.Version {
+	return m.version
+}
+
+func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
+	switch typ {
+	case "grafana:index/assistantMcpServer:AssistantMcpServer":
+		r = &AssistantMcpServer{}
+	case "grafana:index/assistantQuickstart:AssistantQuickstart":
+		r = &AssistantQuickstart{}
+	case "grafana:index/assistantRule:AssistantRule":
+		r = &AssistantRule{}
+	case "grafana:index/assistantSkill:AssistantSkill":
+		r = &AssistantSkill{}
+	default:
+		return nil, fmt.Errorf("unknown resource type: %s", typ)
+	}
+
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	return
+}
+
 type pkg struct {
 	version semver.Version
 }
@@ -34,6 +60,26 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/assistantMcpServer",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/assistantQuickstart",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/assistantRule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/assistantSkill",
+		&module{version},
+	)
 	pulumi.RegisterResourcePackage(
 		"grafana",
 		&pkg{version},

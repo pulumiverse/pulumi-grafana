@@ -201,9 +201,10 @@ import (
 //				return err
 //			}
 //			_, err = syntheticmonitoring.NewCheck(ctx, "http", &syntheticmonitoring.CheckArgs{
-//				Job:     pulumi.String("HTTP Defaults"),
-//				Target:  pulumi.String("https://grafana.org"),
-//				Enabled: pulumi.Bool(false),
+//				Job:       pulumi.String("HTTP Defaults"),
+//				Target:    pulumi.String("https://grafana.org"),
+//				Enabled:   pulumi.Bool(false),
+//				FolderUid: pulumi.String("test-folder-uid"),
 //				Probes: pulumi.IntArray{
 //					pulumi.Int(pulumi.Int(main.Probes.Mumbai)),
 //					pulumi.Int(pulumi.Int(main.Probes.Mumbai)),
@@ -624,6 +625,8 @@ type Check struct {
 	BasicMetricsOnly pulumi.BoolPtrOutput `pulumi:"basicMetricsOnly"`
 	// Whether to enable the check. Defaults to `true`.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
+	// The UID of the Grafana folder to associate the check with.
+	FolderUid pulumi.StringPtrOutput `pulumi:"folderUid"`
 	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
 	Frequency pulumi.IntPtrOutput `pulumi:"frequency"`
 	// Name used for job label.
@@ -690,6 +693,8 @@ type checkState struct {
 	BasicMetricsOnly *bool `pulumi:"basicMetricsOnly"`
 	// Whether to enable the check. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
+	// The UID of the Grafana folder to associate the check with.
+	FolderUid *string `pulumi:"folderUid"`
 	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
 	Frequency *int `pulumi:"frequency"`
 	// Name used for job label.
@@ -715,6 +720,8 @@ type CheckState struct {
 	BasicMetricsOnly pulumi.BoolPtrInput
 	// Whether to enable the check. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
+	// The UID of the Grafana folder to associate the check with.
+	FolderUid pulumi.StringPtrInput
 	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
 	Frequency pulumi.IntPtrInput
 	// Name used for job label.
@@ -744,6 +751,8 @@ type checkArgs struct {
 	BasicMetricsOnly *bool `pulumi:"basicMetricsOnly"`
 	// Whether to enable the check. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
+	// The UID of the Grafana folder to associate the check with.
+	FolderUid *string `pulumi:"folderUid"`
 	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
 	Frequency *int `pulumi:"frequency"`
 	// Name used for job label.
@@ -768,6 +777,8 @@ type CheckArgs struct {
 	BasicMetricsOnly pulumi.BoolPtrInput
 	// Whether to enable the check. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
+	// The UID of the Grafana folder to associate the check with.
+	FolderUid pulumi.StringPtrInput
 	// How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
 	Frequency pulumi.IntPtrInput
 	// Name used for job label.
@@ -884,6 +895,11 @@ func (o CheckOutput) BasicMetricsOnly() pulumi.BoolPtrOutput {
 // Whether to enable the check. Defaults to `true`.
 func (o CheckOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Check) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// The UID of the Grafana folder to associate the check with.
+func (o CheckOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Check) pulumi.StringPtrOutput { return v.FolderUid }).(pulumi.StringPtrOutput)
 }
 
 // How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.

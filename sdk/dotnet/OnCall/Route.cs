@@ -76,10 +76,10 @@ namespace Pulumiverse.Grafana.OnCall
     public partial class Route : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The ID of the escalation chain.
+        /// The ID of the escalation chain. Omit or set to null for a route with no escalation chain.
         /// </summary>
         [Output("escalationChainId")]
-        public Output<string> EscalationChainId { get; private set; } = null!;
+        public Output<string?> EscalationChainId { get; private set; } = null!;
 
         /// <summary>
         /// The ID of the integration.
@@ -171,10 +171,10 @@ namespace Pulumiverse.Grafana.OnCall
     public sealed class RouteArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the escalation chain.
+        /// The ID of the escalation chain. Omit or set to null for a route with no escalation chain.
         /// </summary>
-        [Input("escalationChainId", required: true)]
-        public Input<string> EscalationChainId { get; set; } = null!;
+        [Input("escalationChainId")]
+        public Input<string>? EscalationChainId { get; set; }
 
         /// <summary>
         /// The ID of the integration.
@@ -227,7 +227,7 @@ namespace Pulumiverse.Grafana.OnCall
     public sealed class RouteState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the escalation chain.
+        /// The ID of the escalation chain. Omit or set to null for a route with no escalation chain.
         /// </summary>
         [Input("escalationChainId")]
         public Input<string>? EscalationChainId { get; set; }

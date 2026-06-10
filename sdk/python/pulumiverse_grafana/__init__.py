@@ -6,7 +6,13 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .assistant_mcp_server import *
+from .assistant_quickstart import *
+from .assistant_rule import *
+from .assistant_skill import *
 from .provider import *
+from ._inputs import *
+from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -616,6 +622,38 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.frontendobservability",
   "classes": {
    "grafana:frontendObservability/app:App": "App"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/assistantMcpServer",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/assistantMcpServer:AssistantMcpServer": "AssistantMcpServer"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/assistantQuickstart",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/assistantQuickstart:AssistantQuickstart": "AssistantQuickstart"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/assistantRule",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/assistantRule:AssistantRule": "AssistantRule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/assistantSkill",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/assistantSkill:AssistantSkill": "AssistantSkill"
   }
  },
  {

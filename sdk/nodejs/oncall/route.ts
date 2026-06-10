@@ -79,9 +79,9 @@ export class Route extends pulumi.CustomResource {
     }
 
     /**
-     * The ID of the escalation chain.
+     * The ID of the escalation chain. Omit or set to null for a route with no escalation chain.
      */
-    declare public readonly escalationChainId: pulumi.Output<string>;
+    declare public readonly escalationChainId: pulumi.Output<string | undefined>;
     /**
      * The ID of the integration.
      */
@@ -134,9 +134,6 @@ export class Route extends pulumi.CustomResource {
             resourceInputs["telegram"] = state?.telegram;
         } else {
             const args = argsOrState as RouteArgs | undefined;
-            if (args?.escalationChainId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'escalationChainId'");
-            }
             if (args?.integrationId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'integrationId'");
             }
@@ -165,7 +162,7 @@ export class Route extends pulumi.CustomResource {
  */
 export interface RouteState {
     /**
-     * The ID of the escalation chain.
+     * The ID of the escalation chain. Omit or set to null for a route with no escalation chain.
      */
     escalationChainId?: pulumi.Input<string>;
     /**
@@ -203,9 +200,9 @@ export interface RouteState {
  */
 export interface RouteArgs {
     /**
-     * The ID of the escalation chain.
+     * The ID of the escalation chain. Omit or set to null for a route with no escalation chain.
      */
-    escalationChainId: pulumi.Input<string>;
+    escalationChainId?: pulumi.Input<string>;
     /**
      * The ID of the integration.
      */

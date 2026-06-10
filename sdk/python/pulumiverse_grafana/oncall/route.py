@@ -21,10 +21,10 @@ __all__ = ['RouteArgs', 'Route']
 @pulumi.input_type
 class RouteArgs:
     def __init__(__self__, *,
-                 escalation_chain_id: pulumi.Input[_builtins.str],
                  integration_id: pulumi.Input[_builtins.str],
                  position: pulumi.Input[_builtins.int],
                  routing_regex: pulumi.Input[_builtins.str],
+                 escalation_chain_id: Optional[pulumi.Input[_builtins.str]] = None,
                  msteams: Optional[pulumi.Input['RouteMsteamsArgs']] = None,
                  routing_type: Optional[pulumi.Input[_builtins.str]] = None,
                  slack: Optional[pulumi.Input['RouteSlackArgs']] = None,
@@ -32,19 +32,20 @@ class RouteArgs:
         """
         The set of arguments for constructing a Route resource.
 
-        :param pulumi.Input[_builtins.str] escalation_chain_id: The ID of the escalation chain.
         :param pulumi.Input[_builtins.str] integration_id: The ID of the integration.
         :param pulumi.Input[_builtins.int] position: The position of the route (starts from 0).
         :param pulumi.Input[_builtins.str] routing_regex: Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
+        :param pulumi.Input[_builtins.str] escalation_chain_id: The ID of the escalation chain. Omit or set to null for a route with no escalation chain.
         :param pulumi.Input['RouteMsteamsArgs'] msteams: MS teams-specific settings for a route.
         :param pulumi.Input[_builtins.str] routing_type: The type of route. Can be jinja2, regex Defaults to `regex`.
         :param pulumi.Input['RouteSlackArgs'] slack: Slack-specific settings for a route.
         :param pulumi.Input['RouteTelegramArgs'] telegram: Telegram-specific settings for a route.
         """
-        pulumi.set(__self__, "escalation_chain_id", escalation_chain_id)
         pulumi.set(__self__, "integration_id", integration_id)
         pulumi.set(__self__, "position", position)
         pulumi.set(__self__, "routing_regex", routing_regex)
+        if escalation_chain_id is not None:
+            pulumi.set(__self__, "escalation_chain_id", escalation_chain_id)
         if msteams is not None:
             pulumi.set(__self__, "msteams", msteams)
         if routing_type is not None:
@@ -53,18 +54,6 @@ class RouteArgs:
             pulumi.set(__self__, "slack", slack)
         if telegram is not None:
             pulumi.set(__self__, "telegram", telegram)
-
-    @_builtins.property
-    @pulumi.getter(name="escalationChainId")
-    def escalation_chain_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The ID of the escalation chain.
-        """
-        return pulumi.get(self, "escalation_chain_id")
-
-    @escalation_chain_id.setter
-    def escalation_chain_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "escalation_chain_id", value)
 
     @_builtins.property
     @pulumi.getter(name="integrationId")
@@ -101,6 +90,18 @@ class RouteArgs:
     @routing_regex.setter
     def routing_regex(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "routing_regex", value)
+
+    @_builtins.property
+    @pulumi.getter(name="escalationChainId")
+    def escalation_chain_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the escalation chain. Omit or set to null for a route with no escalation chain.
+        """
+        return pulumi.get(self, "escalation_chain_id")
+
+    @escalation_chain_id.setter
+    def escalation_chain_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "escalation_chain_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -165,7 +166,7 @@ class _RouteState:
         """
         Input properties used for looking up and filtering Route resources.
 
-        :param pulumi.Input[_builtins.str] escalation_chain_id: The ID of the escalation chain.
+        :param pulumi.Input[_builtins.str] escalation_chain_id: The ID of the escalation chain. Omit or set to null for a route with no escalation chain.
         :param pulumi.Input[_builtins.str] integration_id: The ID of the integration.
         :param pulumi.Input['RouteMsteamsArgs'] msteams: MS teams-specific settings for a route.
         :param pulumi.Input[_builtins.int] position: The position of the route (starts from 0).
@@ -195,7 +196,7 @@ class _RouteState:
     @pulumi.getter(name="escalationChainId")
     def escalation_chain_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The ID of the escalation chain.
+        The ID of the escalation chain. Omit or set to null for a route with no escalation chain.
         """
         return pulumi.get(self, "escalation_chain_id")
 
@@ -347,7 +348,7 @@ class Route(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] escalation_chain_id: The ID of the escalation chain.
+        :param pulumi.Input[_builtins.str] escalation_chain_id: The ID of the escalation chain. Omit or set to null for a route with no escalation chain.
         :param pulumi.Input[_builtins.str] integration_id: The ID of the integration.
         :param pulumi.Input[Union['RouteMsteamsArgs', 'RouteMsteamsArgsDict']] msteams: MS teams-specific settings for a route.
         :param pulumi.Input[_builtins.int] position: The position of the route (starts from 0).
@@ -436,8 +437,6 @@ class Route(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = RouteArgs.__new__(RouteArgs)
 
-            if escalation_chain_id is None and not opts.urn:
-                raise TypeError("Missing required property 'escalation_chain_id'")
             __props__.__dict__["escalation_chain_id"] = escalation_chain_id
             if integration_id is None and not opts.urn:
                 raise TypeError("Missing required property 'integration_id'")
@@ -477,7 +476,7 @@ class Route(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] escalation_chain_id: The ID of the escalation chain.
+        :param pulumi.Input[_builtins.str] escalation_chain_id: The ID of the escalation chain. Omit or set to null for a route with no escalation chain.
         :param pulumi.Input[_builtins.str] integration_id: The ID of the integration.
         :param pulumi.Input[Union['RouteMsteamsArgs', 'RouteMsteamsArgsDict']] msteams: MS teams-specific settings for a route.
         :param pulumi.Input[_builtins.int] position: The position of the route (starts from 0).
@@ -502,9 +501,9 @@ class Route(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="escalationChainId")
-    def escalation_chain_id(self) -> pulumi.Output[_builtins.str]:
+    def escalation_chain_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The ID of the escalation chain.
+        The ID of the escalation chain. Omit or set to null for a route with no escalation chain.
         """
         return pulumi.get(self, "escalation_chain_id")
 

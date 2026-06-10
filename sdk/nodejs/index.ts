@@ -5,6 +5,26 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AssistantMcpServerArgs, AssistantMcpServerState } from "./assistantMcpServer";
+export type AssistantMcpServer = import("./assistantMcpServer").AssistantMcpServer;
+export const AssistantMcpServer: typeof import("./assistantMcpServer").AssistantMcpServer = null as any;
+utilities.lazyLoad(exports, ["AssistantMcpServer"], () => require("./assistantMcpServer"));
+
+export { AssistantQuickstartArgs, AssistantQuickstartState } from "./assistantQuickstart";
+export type AssistantQuickstart = import("./assistantQuickstart").AssistantQuickstart;
+export const AssistantQuickstart: typeof import("./assistantQuickstart").AssistantQuickstart = null as any;
+utilities.lazyLoad(exports, ["AssistantQuickstart"], () => require("./assistantQuickstart"));
+
+export { AssistantRuleArgs, AssistantRuleState } from "./assistantRule";
+export type AssistantRule = import("./assistantRule").AssistantRule;
+export const AssistantRule: typeof import("./assistantRule").AssistantRule = null as any;
+utilities.lazyLoad(exports, ["AssistantRule"], () => require("./assistantRule"));
+
+export { AssistantSkillArgs, AssistantSkillState } from "./assistantSkill";
+export type AssistantSkill = import("./assistantSkill").AssistantSkill;
+export const AssistantSkill: typeof import("./assistantSkill").AssistantSkill = null as any;
+utilities.lazyLoad(exports, ["AssistantSkill"], () => require("./assistantSkill"));
+
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -49,6 +69,28 @@ export {
     syntheticmonitoring,
     types,
 };
+
+const _module = {
+    version: utilities.getVersion(),
+    construct: (name: string, type: string, urn: string): pulumi.Resource => {
+        switch (type) {
+            case "grafana:index/assistantMcpServer:AssistantMcpServer":
+                return new AssistantMcpServer(name, <any>undefined, { urn })
+            case "grafana:index/assistantQuickstart:AssistantQuickstart":
+                return new AssistantQuickstart(name, <any>undefined, { urn })
+            case "grafana:index/assistantRule:AssistantRule":
+                return new AssistantRule(name, <any>undefined, { urn })
+            case "grafana:index/assistantSkill:AssistantSkill":
+                return new AssistantSkill(name, <any>undefined, { urn })
+            default:
+                throw new Error(`unknown resource type ${type}`);
+        }
+    },
+};
+pulumi.runtime.registerResourceModule("grafana", "index/assistantMcpServer", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/assistantQuickstart", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/assistantRule", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/assistantSkill", _module)
 pulumi.runtime.registerResourcePackage("grafana", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {
