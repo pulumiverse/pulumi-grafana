@@ -1628,6 +1628,16 @@
                 "current": "grafana:syntheticMonitoring/check:Check",
                 "majorVersion": 2,
                 "fields": {
+                    "channels": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "k6": {
+                                    "maxItemsOne": true
+                                }
+                            }
+                        }
+                    },
                     "probes": {
                         "maxItemsOne": false
                     },
