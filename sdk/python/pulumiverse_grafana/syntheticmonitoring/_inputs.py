@@ -17,6 +17,10 @@ from .. import _utilities
 __all__ = [
     'CheckAlertsAlertArgs',
     'CheckAlertsAlertArgsDict',
+    'CheckChannelsArgs',
+    'CheckChannelsArgsDict',
+    'CheckChannelsK6Args',
+    'CheckChannelsK6ArgsDict',
     'CheckSettingsArgs',
     'CheckSettingsArgsDict',
     'CheckSettingsBrowserArgs',
@@ -158,6 +162,64 @@ class CheckAlertsAlertArgs:
     @runbook_url.setter
     def runbook_url(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "runbook_url", value)
+
+
+class CheckChannelsArgsDict(TypedDict):
+    k6: NotRequired[pulumi.Input['CheckChannelsK6ArgsDict']]
+    """
+    K6 channel configuration.
+    """
+
+@pulumi.input_type
+class CheckChannelsArgs:
+    def __init__(__self__, *,
+                 k6: Optional[pulumi.Input['CheckChannelsK6Args']] = None):
+        """
+        :param pulumi.Input['CheckChannelsK6Args'] k6: K6 channel configuration.
+        """
+        if k6 is not None:
+            pulumi.set(__self__, "k6", k6)
+
+    @_builtins.property
+    @pulumi.getter
+    def k6(self) -> Optional[pulumi.Input['CheckChannelsK6Args']]:
+        """
+        K6 channel configuration.
+        """
+        return pulumi.get(self, "k6")
+
+    @k6.setter
+    def k6(self, value: Optional[pulumi.Input['CheckChannelsK6Args']]):
+        pulumi.set(self, "k6", value)
+
+
+class CheckChannelsK6ArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the k6 channel.
+    """
+
+@pulumi.input_type
+class CheckChannelsK6Args:
+    def __init__(__self__, *,
+                 id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] id: The ID of the k6 channel.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the k6 channel.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
 
 
 class CheckSettingsArgsDict(TypedDict):

@@ -435,6 +435,10 @@ export class Check extends pulumi.CustomResource {
      */
     declare public readonly basicMetricsOnly: pulumi.Output<boolean | undefined>;
     /**
+     * Channels to assign the check to. See [Manage k6 versions](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/manage-k6-versions/) for details. If not specified for scripted/browser checks, the API assigns a default k6 channel.
+     */
+    declare public readonly channels: pulumi.Output<outputs.syntheticMonitoring.CheckChannels>;
+    /**
      * Whether to enable the check. Defaults to `true`.
      */
     declare public readonly enabled: pulumi.Output<boolean | undefined>;
@@ -490,6 +494,7 @@ export class Check extends pulumi.CustomResource {
             const state = argsOrState as CheckState | undefined;
             resourceInputs["alertSensitivity"] = state?.alertSensitivity;
             resourceInputs["basicMetricsOnly"] = state?.basicMetricsOnly;
+            resourceInputs["channels"] = state?.channels;
             resourceInputs["enabled"] = state?.enabled;
             resourceInputs["folderUid"] = state?.folderUid;
             resourceInputs["frequency"] = state?.frequency;
@@ -516,6 +521,7 @@ export class Check extends pulumi.CustomResource {
             }
             resourceInputs["alertSensitivity"] = args?.alertSensitivity;
             resourceInputs["basicMetricsOnly"] = args?.basicMetricsOnly;
+            resourceInputs["channels"] = args?.channels;
             resourceInputs["enabled"] = args?.enabled;
             resourceInputs["folderUid"] = args?.folderUid;
             resourceInputs["frequency"] = args?.frequency;
@@ -544,6 +550,10 @@ export interface CheckState {
      * Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
      */
     basicMetricsOnly?: pulumi.Input<boolean>;
+    /**
+     * Channels to assign the check to. See [Manage k6 versions](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/manage-k6-versions/) for details. If not specified for scripted/browser checks, the API assigns a default k6 channel.
+     */
+    channels?: pulumi.Input<inputs.syntheticMonitoring.CheckChannels>;
     /**
      * Whether to enable the check. Defaults to `true`.
      */
@@ -598,6 +608,10 @@ export interface CheckArgs {
      * Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
      */
     basicMetricsOnly?: pulumi.Input<boolean>;
+    /**
+     * Channels to assign the check to. See [Manage k6 versions](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/manage-k6-versions/) for details. If not specified for scripted/browser checks, the API assigns a default k6 channel.
+     */
+    channels?: pulumi.Input<inputs.syntheticMonitoring.CheckChannels>;
     /**
      * Whether to enable the check. Defaults to `true`.
      */

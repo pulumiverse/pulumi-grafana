@@ -7107,6 +7107,20 @@ export namespace syntheticMonitoring {
         threshold: pulumi.Input<number>;
     }
 
+    export interface CheckChannels {
+        /**
+         * K6 channel configuration.
+         */
+        k6?: pulumi.Input<inputs.syntheticMonitoring.CheckChannelsK6>;
+    }
+
+    export interface CheckChannelsK6 {
+        /**
+         * The ID of the k6 channel.
+         */
+        id?: pulumi.Input<string>;
+    }
+
     export interface CheckSettings {
         /**
          * Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.

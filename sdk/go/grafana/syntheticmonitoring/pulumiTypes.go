@@ -137,6 +137,280 @@ func (o CheckAlertsAlertArrayOutput) Index(i pulumi.IntInput) CheckAlertsAlertOu
 	}).(CheckAlertsAlertOutput)
 }
 
+type CheckChannels struct {
+	// K6 channel configuration.
+	K6 *CheckChannelsK6 `pulumi:"k6"`
+}
+
+// CheckChannelsInput is an input type that accepts CheckChannelsArgs and CheckChannelsOutput values.
+// You can construct a concrete instance of `CheckChannelsInput` via:
+//
+//	CheckChannelsArgs{...}
+type CheckChannelsInput interface {
+	pulumi.Input
+
+	ToCheckChannelsOutput() CheckChannelsOutput
+	ToCheckChannelsOutputWithContext(context.Context) CheckChannelsOutput
+}
+
+type CheckChannelsArgs struct {
+	// K6 channel configuration.
+	K6 CheckChannelsK6PtrInput `pulumi:"k6"`
+}
+
+func (CheckChannelsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CheckChannels)(nil)).Elem()
+}
+
+func (i CheckChannelsArgs) ToCheckChannelsOutput() CheckChannelsOutput {
+	return i.ToCheckChannelsOutputWithContext(context.Background())
+}
+
+func (i CheckChannelsArgs) ToCheckChannelsOutputWithContext(ctx context.Context) CheckChannelsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckChannelsOutput)
+}
+
+func (i CheckChannelsArgs) ToCheckChannelsPtrOutput() CheckChannelsPtrOutput {
+	return i.ToCheckChannelsPtrOutputWithContext(context.Background())
+}
+
+func (i CheckChannelsArgs) ToCheckChannelsPtrOutputWithContext(ctx context.Context) CheckChannelsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckChannelsOutput).ToCheckChannelsPtrOutputWithContext(ctx)
+}
+
+// CheckChannelsPtrInput is an input type that accepts CheckChannelsArgs, CheckChannelsPtr and CheckChannelsPtrOutput values.
+// You can construct a concrete instance of `CheckChannelsPtrInput` via:
+//
+//	        CheckChannelsArgs{...}
+//
+//	or:
+//
+//	        nil
+type CheckChannelsPtrInput interface {
+	pulumi.Input
+
+	ToCheckChannelsPtrOutput() CheckChannelsPtrOutput
+	ToCheckChannelsPtrOutputWithContext(context.Context) CheckChannelsPtrOutput
+}
+
+type checkChannelsPtrType CheckChannelsArgs
+
+func CheckChannelsPtr(v *CheckChannelsArgs) CheckChannelsPtrInput {
+	return (*checkChannelsPtrType)(v)
+}
+
+func (*checkChannelsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CheckChannels)(nil)).Elem()
+}
+
+func (i *checkChannelsPtrType) ToCheckChannelsPtrOutput() CheckChannelsPtrOutput {
+	return i.ToCheckChannelsPtrOutputWithContext(context.Background())
+}
+
+func (i *checkChannelsPtrType) ToCheckChannelsPtrOutputWithContext(ctx context.Context) CheckChannelsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckChannelsPtrOutput)
+}
+
+type CheckChannelsOutput struct{ *pulumi.OutputState }
+
+func (CheckChannelsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CheckChannels)(nil)).Elem()
+}
+
+func (o CheckChannelsOutput) ToCheckChannelsOutput() CheckChannelsOutput {
+	return o
+}
+
+func (o CheckChannelsOutput) ToCheckChannelsOutputWithContext(ctx context.Context) CheckChannelsOutput {
+	return o
+}
+
+func (o CheckChannelsOutput) ToCheckChannelsPtrOutput() CheckChannelsPtrOutput {
+	return o.ToCheckChannelsPtrOutputWithContext(context.Background())
+}
+
+func (o CheckChannelsOutput) ToCheckChannelsPtrOutputWithContext(ctx context.Context) CheckChannelsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CheckChannels) *CheckChannels {
+		return &v
+	}).(CheckChannelsPtrOutput)
+}
+
+// K6 channel configuration.
+func (o CheckChannelsOutput) K6() CheckChannelsK6PtrOutput {
+	return o.ApplyT(func(v CheckChannels) *CheckChannelsK6 { return v.K6 }).(CheckChannelsK6PtrOutput)
+}
+
+type CheckChannelsPtrOutput struct{ *pulumi.OutputState }
+
+func (CheckChannelsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CheckChannels)(nil)).Elem()
+}
+
+func (o CheckChannelsPtrOutput) ToCheckChannelsPtrOutput() CheckChannelsPtrOutput {
+	return o
+}
+
+func (o CheckChannelsPtrOutput) ToCheckChannelsPtrOutputWithContext(ctx context.Context) CheckChannelsPtrOutput {
+	return o
+}
+
+func (o CheckChannelsPtrOutput) Elem() CheckChannelsOutput {
+	return o.ApplyT(func(v *CheckChannels) CheckChannels {
+		if v != nil {
+			return *v
+		}
+		var ret CheckChannels
+		return ret
+	}).(CheckChannelsOutput)
+}
+
+// K6 channel configuration.
+func (o CheckChannelsPtrOutput) K6() CheckChannelsK6PtrOutput {
+	return o.ApplyT(func(v *CheckChannels) *CheckChannelsK6 {
+		if v == nil {
+			return nil
+		}
+		return v.K6
+	}).(CheckChannelsK6PtrOutput)
+}
+
+type CheckChannelsK6 struct {
+	// The ID of the k6 channel.
+	Id *string `pulumi:"id"`
+}
+
+// CheckChannelsK6Input is an input type that accepts CheckChannelsK6Args and CheckChannelsK6Output values.
+// You can construct a concrete instance of `CheckChannelsK6Input` via:
+//
+//	CheckChannelsK6Args{...}
+type CheckChannelsK6Input interface {
+	pulumi.Input
+
+	ToCheckChannelsK6Output() CheckChannelsK6Output
+	ToCheckChannelsK6OutputWithContext(context.Context) CheckChannelsK6Output
+}
+
+type CheckChannelsK6Args struct {
+	// The ID of the k6 channel.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (CheckChannelsK6Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*CheckChannelsK6)(nil)).Elem()
+}
+
+func (i CheckChannelsK6Args) ToCheckChannelsK6Output() CheckChannelsK6Output {
+	return i.ToCheckChannelsK6OutputWithContext(context.Background())
+}
+
+func (i CheckChannelsK6Args) ToCheckChannelsK6OutputWithContext(ctx context.Context) CheckChannelsK6Output {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckChannelsK6Output)
+}
+
+func (i CheckChannelsK6Args) ToCheckChannelsK6PtrOutput() CheckChannelsK6PtrOutput {
+	return i.ToCheckChannelsK6PtrOutputWithContext(context.Background())
+}
+
+func (i CheckChannelsK6Args) ToCheckChannelsK6PtrOutputWithContext(ctx context.Context) CheckChannelsK6PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckChannelsK6Output).ToCheckChannelsK6PtrOutputWithContext(ctx)
+}
+
+// CheckChannelsK6PtrInput is an input type that accepts CheckChannelsK6Args, CheckChannelsK6Ptr and CheckChannelsK6PtrOutput values.
+// You can construct a concrete instance of `CheckChannelsK6PtrInput` via:
+//
+//	        CheckChannelsK6Args{...}
+//
+//	or:
+//
+//	        nil
+type CheckChannelsK6PtrInput interface {
+	pulumi.Input
+
+	ToCheckChannelsK6PtrOutput() CheckChannelsK6PtrOutput
+	ToCheckChannelsK6PtrOutputWithContext(context.Context) CheckChannelsK6PtrOutput
+}
+
+type checkChannelsK6PtrType CheckChannelsK6Args
+
+func CheckChannelsK6Ptr(v *CheckChannelsK6Args) CheckChannelsK6PtrInput {
+	return (*checkChannelsK6PtrType)(v)
+}
+
+func (*checkChannelsK6PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CheckChannelsK6)(nil)).Elem()
+}
+
+func (i *checkChannelsK6PtrType) ToCheckChannelsK6PtrOutput() CheckChannelsK6PtrOutput {
+	return i.ToCheckChannelsK6PtrOutputWithContext(context.Background())
+}
+
+func (i *checkChannelsK6PtrType) ToCheckChannelsK6PtrOutputWithContext(ctx context.Context) CheckChannelsK6PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckChannelsK6PtrOutput)
+}
+
+type CheckChannelsK6Output struct{ *pulumi.OutputState }
+
+func (CheckChannelsK6Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*CheckChannelsK6)(nil)).Elem()
+}
+
+func (o CheckChannelsK6Output) ToCheckChannelsK6Output() CheckChannelsK6Output {
+	return o
+}
+
+func (o CheckChannelsK6Output) ToCheckChannelsK6OutputWithContext(ctx context.Context) CheckChannelsK6Output {
+	return o
+}
+
+func (o CheckChannelsK6Output) ToCheckChannelsK6PtrOutput() CheckChannelsK6PtrOutput {
+	return o.ToCheckChannelsK6PtrOutputWithContext(context.Background())
+}
+
+func (o CheckChannelsK6Output) ToCheckChannelsK6PtrOutputWithContext(ctx context.Context) CheckChannelsK6PtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CheckChannelsK6) *CheckChannelsK6 {
+		return &v
+	}).(CheckChannelsK6PtrOutput)
+}
+
+// The ID of the k6 channel.
+func (o CheckChannelsK6Output) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CheckChannelsK6) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+type CheckChannelsK6PtrOutput struct{ *pulumi.OutputState }
+
+func (CheckChannelsK6PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CheckChannelsK6)(nil)).Elem()
+}
+
+func (o CheckChannelsK6PtrOutput) ToCheckChannelsK6PtrOutput() CheckChannelsK6PtrOutput {
+	return o
+}
+
+func (o CheckChannelsK6PtrOutput) ToCheckChannelsK6PtrOutputWithContext(ctx context.Context) CheckChannelsK6PtrOutput {
+	return o
+}
+
+func (o CheckChannelsK6PtrOutput) Elem() CheckChannelsK6Output {
+	return o.ApplyT(func(v *CheckChannelsK6) CheckChannelsK6 {
+		if v != nil {
+			return *v
+		}
+		var ret CheckChannelsK6
+		return ret
+	}).(CheckChannelsK6Output)
+}
+
+// The ID of the k6 channel.
+func (o CheckChannelsK6PtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CheckChannelsK6) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
 type CheckSettings struct {
 	// Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.
 	Browser *CheckSettingsBrowser `pulumi:"browser"`
@@ -4888,6 +5162,10 @@ func (o CheckSettingsTraceroutePtrOutput) PtrLookup() pulumi.BoolPtrOutput {
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckAlertsAlertInput)(nil)).Elem(), CheckAlertsAlertArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckAlertsAlertArrayInput)(nil)).Elem(), CheckAlertsAlertArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CheckChannelsInput)(nil)).Elem(), CheckChannelsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CheckChannelsPtrInput)(nil)).Elem(), CheckChannelsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CheckChannelsK6Input)(nil)).Elem(), CheckChannelsK6Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CheckChannelsK6PtrInput)(nil)).Elem(), CheckChannelsK6Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsInput)(nil)).Elem(), CheckSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsPtrInput)(nil)).Elem(), CheckSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsBrowserInput)(nil)).Elem(), CheckSettingsBrowserArgs{})
@@ -4944,6 +5222,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsTraceroutePtrInput)(nil)).Elem(), CheckSettingsTracerouteArgs{})
 	pulumi.RegisterOutputType(CheckAlertsAlertOutput{})
 	pulumi.RegisterOutputType(CheckAlertsAlertArrayOutput{})
+	pulumi.RegisterOutputType(CheckChannelsOutput{})
+	pulumi.RegisterOutputType(CheckChannelsPtrOutput{})
+	pulumi.RegisterOutputType(CheckChannelsK6Output{})
+	pulumi.RegisterOutputType(CheckChannelsK6PtrOutput{})
 	pulumi.RegisterOutputType(CheckSettingsOutput{})
 	pulumi.RegisterOutputType(CheckSettingsPtrOutput{})
 	pulumi.RegisterOutputType(CheckSettingsBrowserOutput{})

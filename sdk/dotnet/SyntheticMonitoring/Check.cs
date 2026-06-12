@@ -588,6 +588,12 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
         public Output<bool?> BasicMetricsOnly { get; private set; } = null!;
 
         /// <summary>
+        /// Channels to assign the check to. See [Manage k6 versions](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/manage-k6-versions/) for details. If not specified for scripted/browser checks, the API assigns a default k6 channel.
+        /// </summary>
+        [Output("channels")]
+        public Output<Outputs.CheckChannels> Channels { get; private set; } = null!;
+
+        /// <summary>
         /// Whether to enable the check. Defaults to `True`.
         /// </summary>
         [Output("enabled")]
@@ -707,6 +713,12 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
         public Input<bool>? BasicMetricsOnly { get; set; }
 
         /// <summary>
+        /// Channels to assign the check to. See [Manage k6 versions](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/manage-k6-versions/) for details. If not specified for scripted/browser checks, the API assigns a default k6 channel.
+        /// </summary>
+        [Input("channels")]
+        public Input<Inputs.CheckChannelsArgs>? Channels { get; set; }
+
+        /// <summary>
         /// Whether to enable the check. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
@@ -791,6 +803,12 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
         /// </summary>
         [Input("basicMetricsOnly")]
         public Input<bool>? BasicMetricsOnly { get; set; }
+
+        /// <summary>
+        /// Channels to assign the check to. See [Manage k6 versions](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/manage-k6-versions/) for details. If not specified for scripted/browser checks, the API assigns a default k6 channel.
+        /// </summary>
+        [Input("channels")]
+        public Input<Inputs.CheckChannelsGetArgs>? Channels { get; set; }
 
         /// <summary>
         /// Whether to enable the check. Defaults to `True`.
