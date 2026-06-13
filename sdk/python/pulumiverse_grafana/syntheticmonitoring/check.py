@@ -27,6 +27,7 @@ class CheckArgs:
                  target: pulumi.Input[_builtins.str],
                  alert_sensitivity: Optional[pulumi.Input[_builtins.str]] = None,
                  basic_metrics_only: Optional[pulumi.Input[_builtins.bool]] = None,
+                 channels: Optional[pulumi.Input['CheckChannelsArgs']] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
                  frequency: Optional[pulumi.Input[_builtins.int]] = None,
@@ -41,6 +42,7 @@ class CheckArgs:
         :param pulumi.Input[_builtins.str] target: Hostname to ping.
         :param pulumi.Input[_builtins.str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/). Defaults to `none`.
         :param pulumi.Input[_builtins.bool] basic_metrics_only: Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
+        :param pulumi.Input['CheckChannelsArgs'] channels: Channels to assign the check to. See [Manage k6 versions](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/manage-k6-versions/) for details. If not specified for scripted/browser checks, the API assigns a default k6 channel.
         :param pulumi.Input[_builtins.bool] enabled: Whether to enable the check. Defaults to `true`.
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the Grafana folder to associate the check with.
         :param pulumi.Input[_builtins.int] frequency: How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
@@ -55,6 +57,8 @@ class CheckArgs:
             pulumi.set(__self__, "alert_sensitivity", alert_sensitivity)
         if basic_metrics_only is not None:
             pulumi.set(__self__, "basic_metrics_only", basic_metrics_only)
+        if channels is not None:
+            pulumi.set(__self__, "channels", channels)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
         if folder_uid is not None:
@@ -140,6 +144,18 @@ class CheckArgs:
 
     @_builtins.property
     @pulumi.getter
+    def channels(self) -> Optional[pulumi.Input['CheckChannelsArgs']]:
+        """
+        Channels to assign the check to. See [Manage k6 versions](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/manage-k6-versions/) for details. If not specified for scripted/browser checks, the API assigns a default k6 channel.
+        """
+        return pulumi.get(self, "channels")
+
+    @channels.setter
+    def channels(self, value: Optional[pulumi.Input['CheckChannelsArgs']]):
+        pulumi.set(self, "channels", value)
+
+    @_builtins.property
+    @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Whether to enable the check. Defaults to `true`.
@@ -204,6 +220,7 @@ class _CheckState:
     def __init__(__self__, *,
                  alert_sensitivity: Optional[pulumi.Input[_builtins.str]] = None,
                  basic_metrics_only: Optional[pulumi.Input[_builtins.bool]] = None,
+                 channels: Optional[pulumi.Input['CheckChannelsArgs']] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
                  frequency: Optional[pulumi.Input[_builtins.int]] = None,
@@ -219,6 +236,7 @@ class _CheckState:
 
         :param pulumi.Input[_builtins.str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/). Defaults to `none`.
         :param pulumi.Input[_builtins.bool] basic_metrics_only: Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
+        :param pulumi.Input['CheckChannelsArgs'] channels: Channels to assign the check to. See [Manage k6 versions](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/manage-k6-versions/) for details. If not specified for scripted/browser checks, the API assigns a default k6 channel.
         :param pulumi.Input[_builtins.bool] enabled: Whether to enable the check. Defaults to `true`.
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the Grafana folder to associate the check with.
         :param pulumi.Input[_builtins.int] frequency: How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
@@ -234,6 +252,8 @@ class _CheckState:
             pulumi.set(__self__, "alert_sensitivity", alert_sensitivity)
         if basic_metrics_only is not None:
             pulumi.set(__self__, "basic_metrics_only", basic_metrics_only)
+        if channels is not None:
+            pulumi.set(__self__, "channels", channels)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
         if folder_uid is not None:
@@ -278,6 +298,18 @@ class _CheckState:
     @basic_metrics_only.setter
     def basic_metrics_only(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "basic_metrics_only", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def channels(self) -> Optional[pulumi.Input['CheckChannelsArgs']]:
+        """
+        Channels to assign the check to. See [Manage k6 versions](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/manage-k6-versions/) for details. If not specified for scripted/browser checks, the API assigns a default k6 channel.
+        """
+        return pulumi.get(self, "channels")
+
+    @channels.setter
+    def channels(self, value: Optional[pulumi.Input['CheckChannelsArgs']]):
+        pulumi.set(self, "channels", value)
 
     @_builtins.property
     @pulumi.getter
@@ -408,6 +440,7 @@ class Check(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alert_sensitivity: Optional[pulumi.Input[_builtins.str]] = None,
                  basic_metrics_only: Optional[pulumi.Input[_builtins.bool]] = None,
+                 channels: Optional[pulumi.Input[Union['CheckChannelsArgs', 'CheckChannelsArgsDict']]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
                  frequency: Optional[pulumi.Input[_builtins.int]] = None,
@@ -815,6 +848,7 @@ class Check(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/). Defaults to `none`.
         :param pulumi.Input[_builtins.bool] basic_metrics_only: Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
+        :param pulumi.Input[Union['CheckChannelsArgs', 'CheckChannelsArgsDict']] channels: Channels to assign the check to. See [Manage k6 versions](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/manage-k6-versions/) for details. If not specified for scripted/browser checks, the API assigns a default k6 channel.
         :param pulumi.Input[_builtins.bool] enabled: Whether to enable the check. Defaults to `true`.
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the Grafana folder to associate the check with.
         :param pulumi.Input[_builtins.int] frequency: How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
@@ -1241,6 +1275,7 @@ class Check(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alert_sensitivity: Optional[pulumi.Input[_builtins.str]] = None,
                  basic_metrics_only: Optional[pulumi.Input[_builtins.bool]] = None,
+                 channels: Optional[pulumi.Input[Union['CheckChannelsArgs', 'CheckChannelsArgsDict']]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
                  frequency: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1261,6 +1296,7 @@ class Check(pulumi.CustomResource):
 
             __props__.__dict__["alert_sensitivity"] = alert_sensitivity
             __props__.__dict__["basic_metrics_only"] = basic_metrics_only
+            __props__.__dict__["channels"] = channels
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["folder_uid"] = folder_uid
             __props__.__dict__["frequency"] = frequency
@@ -1291,6 +1327,7 @@ class Check(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             alert_sensitivity: Optional[pulumi.Input[_builtins.str]] = None,
             basic_metrics_only: Optional[pulumi.Input[_builtins.bool]] = None,
+            channels: Optional[pulumi.Input[Union['CheckChannelsArgs', 'CheckChannelsArgsDict']]] = None,
             enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
             frequency: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1310,6 +1347,7 @@ class Check(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/). Defaults to `none`.
         :param pulumi.Input[_builtins.bool] basic_metrics_only: Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
+        :param pulumi.Input[Union['CheckChannelsArgs', 'CheckChannelsArgsDict']] channels: Channels to assign the check to. See [Manage k6 versions](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/manage-k6-versions/) for details. If not specified for scripted/browser checks, the API assigns a default k6 channel.
         :param pulumi.Input[_builtins.bool] enabled: Whether to enable the check. Defaults to `true`.
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the Grafana folder to associate the check with.
         :param pulumi.Input[_builtins.int] frequency: How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
@@ -1327,6 +1365,7 @@ class Check(pulumi.CustomResource):
 
         __props__.__dict__["alert_sensitivity"] = alert_sensitivity
         __props__.__dict__["basic_metrics_only"] = basic_metrics_only
+        __props__.__dict__["channels"] = channels
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["folder_uid"] = folder_uid
         __props__.__dict__["frequency"] = frequency
@@ -1354,6 +1393,14 @@ class Check(pulumi.CustomResource):
         Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
         """
         return pulumi.get(self, "basic_metrics_only")
+
+    @_builtins.property
+    @pulumi.getter
+    def channels(self) -> pulumi.Output['outputs.CheckChannels']:
+        """
+        Channels to assign the check to. See [Manage k6 versions](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/manage-k6-versions/) for details. If not specified for scripted/browser checks, the API assigns a default k6 channel.
+        """
+        return pulumi.get(self, "channels")
 
     @_builtins.property
     @pulumi.getter

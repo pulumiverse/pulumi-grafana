@@ -37,6 +37,13 @@ namespace Pulumiverse.Grafana.Oss
     ///         Type = "loki",
     ///         Name = "loki",
     ///         Url = "http://localhost:3100",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         IgnoreChanges =
+    ///         {
+    ///             "jsonDataEncoded",
+    ///             "httpHeaders",
+    ///         },
     ///     });
     /// 
     ///     var tempo = new Grafana.Oss.DataSource("tempo", new()
@@ -44,6 +51,13 @@ namespace Pulumiverse.Grafana.Oss
     ///         Type = "tempo",
     ///         Name = "tempo",
     ///         Url = "http://localhost:3200",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         IgnoreChanges =
+    ///         {
+    ///             "jsonDataEncoded",
+    ///             "httpHeaders",
+    ///         },
     ///     });
     /// 
     ///     var lokiDataSourceConfig = new Grafana.Oss.DataSourceConfig("loki", new()

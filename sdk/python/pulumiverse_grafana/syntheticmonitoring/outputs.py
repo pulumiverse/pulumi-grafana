@@ -17,6 +17,8 @@ from . import outputs
 
 __all__ = [
     'CheckAlertsAlert',
+    'CheckChannels',
+    'CheckChannelsK6',
     'CheckSettings',
     'CheckSettingsBrowser',
     'CheckSettingsDns',
@@ -114,6 +116,44 @@ class CheckAlertsAlert(dict):
         URL to runbook documentation for this alert.
         """
         return pulumi.get(self, "runbook_url")
+
+
+@pulumi.output_type
+class CheckChannels(dict):
+    def __init__(__self__, *,
+                 k6: Optional['outputs.CheckChannelsK6'] = None):
+        """
+        :param 'CheckChannelsK6Args' k6: K6 channel configuration.
+        """
+        if k6 is not None:
+            pulumi.set(__self__, "k6", k6)
+
+    @_builtins.property
+    @pulumi.getter
+    def k6(self) -> Optional['outputs.CheckChannelsK6']:
+        """
+        K6 channel configuration.
+        """
+        return pulumi.get(self, "k6")
+
+
+@pulumi.output_type
+class CheckChannelsK6(dict):
+    def __init__(__self__, *,
+                 id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str id: The ID of the k6 channel.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the k6 channel.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type

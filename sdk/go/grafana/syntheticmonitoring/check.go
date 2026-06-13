@@ -623,6 +623,8 @@ type Check struct {
 	AlertSensitivity pulumi.StringPtrOutput `pulumi:"alertSensitivity"`
 	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
 	BasicMetricsOnly pulumi.BoolPtrOutput `pulumi:"basicMetricsOnly"`
+	// Channels to assign the check to. See [Manage k6 versions](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/manage-k6-versions/) for details. If not specified for scripted/browser checks, the API assigns a default k6 channel.
+	Channels CheckChannelsOutput `pulumi:"channels"`
 	// Whether to enable the check. Defaults to `true`.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
 	// The UID of the Grafana folder to associate the check with.
@@ -691,6 +693,8 @@ type checkState struct {
 	AlertSensitivity *string `pulumi:"alertSensitivity"`
 	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
 	BasicMetricsOnly *bool `pulumi:"basicMetricsOnly"`
+	// Channels to assign the check to. See [Manage k6 versions](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/manage-k6-versions/) for details. If not specified for scripted/browser checks, the API assigns a default k6 channel.
+	Channels *CheckChannels `pulumi:"channels"`
 	// Whether to enable the check. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
 	// The UID of the Grafana folder to associate the check with.
@@ -718,6 +722,8 @@ type CheckState struct {
 	AlertSensitivity pulumi.StringPtrInput
 	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
 	BasicMetricsOnly pulumi.BoolPtrInput
+	// Channels to assign the check to. See [Manage k6 versions](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/manage-k6-versions/) for details. If not specified for scripted/browser checks, the API assigns a default k6 channel.
+	Channels CheckChannelsPtrInput
 	// Whether to enable the check. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
 	// The UID of the Grafana folder to associate the check with.
@@ -749,6 +755,8 @@ type checkArgs struct {
 	AlertSensitivity *string `pulumi:"alertSensitivity"`
 	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
 	BasicMetricsOnly *bool `pulumi:"basicMetricsOnly"`
+	// Channels to assign the check to. See [Manage k6 versions](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/manage-k6-versions/) for details. If not specified for scripted/browser checks, the API assigns a default k6 channel.
+	Channels *CheckChannels `pulumi:"channels"`
 	// Whether to enable the check. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
 	// The UID of the Grafana folder to associate the check with.
@@ -775,6 +783,8 @@ type CheckArgs struct {
 	AlertSensitivity pulumi.StringPtrInput
 	// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
 	BasicMetricsOnly pulumi.BoolPtrInput
+	// Channels to assign the check to. See [Manage k6 versions](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/manage-k6-versions/) for details. If not specified for scripted/browser checks, the API assigns a default k6 channel.
+	Channels CheckChannelsPtrInput
 	// Whether to enable the check. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
 	// The UID of the Grafana folder to associate the check with.
@@ -890,6 +900,11 @@ func (o CheckOutput) AlertSensitivity() pulumi.StringPtrOutput {
 // Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
 func (o CheckOutput) BasicMetricsOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Check) pulumi.BoolPtrOutput { return v.BasicMetricsOnly }).(pulumi.BoolPtrOutput)
+}
+
+// Channels to assign the check to. See [Manage k6 versions](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/manage-k6-versions/) for details. If not specified for scripted/browser checks, the API assigns a default k6 channel.
+func (o CheckOutput) Channels() CheckChannelsOutput {
+	return o.ApplyT(func(v *Check) CheckChannelsOutput { return v.Channels }).(CheckChannelsOutput)
 }
 
 // Whether to enable the check. Defaults to `true`.
