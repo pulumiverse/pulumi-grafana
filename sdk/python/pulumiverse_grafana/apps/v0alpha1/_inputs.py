@@ -43,16 +43,24 @@ __all__ = [
     'ProvisioningRepositorySpecArgsDict',
     'ProvisioningRepositorySpecBitbucketArgs',
     'ProvisioningRepositorySpecBitbucketArgsDict',
+    'ProvisioningRepositorySpecBranchArgs',
+    'ProvisioningRepositorySpecBranchArgsDict',
+    'ProvisioningRepositorySpecCommitArgs',
+    'ProvisioningRepositorySpecCommitArgsDict',
     'ProvisioningRepositorySpecConnectionArgs',
     'ProvisioningRepositorySpecConnectionArgsDict',
     'ProvisioningRepositorySpecGitArgs',
     'ProvisioningRepositorySpecGitArgsDict',
     'ProvisioningRepositorySpecGithubArgs',
     'ProvisioningRepositorySpecGithubArgsDict',
+    'ProvisioningRepositorySpecGithubEnterpriseArgs',
+    'ProvisioningRepositorySpecGithubEnterpriseArgsDict',
     'ProvisioningRepositorySpecGitlabArgs',
     'ProvisioningRepositorySpecGitlabArgsDict',
     'ProvisioningRepositorySpecLocalArgs',
     'ProvisioningRepositorySpecLocalArgsDict',
+    'ProvisioningRepositorySpecPullRequestArgs',
+    'ProvisioningRepositorySpecPullRequestArgsDict',
     'ProvisioningRepositorySpecSyncArgs',
     'ProvisioningRepositorySpecSyncArgsDict',
     'ProvisioningRepositorySpecWebhookArgs',
@@ -898,6 +906,11 @@ class ProvisioningRepositoryOptionsArgs:
 
 
 class ProvisioningRepositorySecureArgsDict(TypedDict):
+    commit_signing_key: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Private key used to sign commits the repository writes back. The format is selected by `spec.commit.signing_method`.
+    """
     token: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -912,18 +925,36 @@ class ProvisioningRepositorySecureArgsDict(TypedDict):
 @pulumi.input_type
 class ProvisioningRepositorySecureArgs:
     def __init__(__self__, *,
+                 commit_signing_key: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  token: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  webhook_secret: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] commit_signing_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Private key used to sign commits the repository writes back. The format is selected by `spec.commit.signing_method`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] token: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Token for repository authentication.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] webhook_secret: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Webhook secret.
         """
+        if commit_signing_key is not None:
+            pulumi.set(__self__, "commit_signing_key", commit_signing_key)
         if token is not None:
             pulumi.set(__self__, "token", token)
         if webhook_secret is not None:
             pulumi.set(__self__, "webhook_secret", webhook_secret)
+
+    @_builtins.property
+    @pulumi.getter(name="commitSigningKey")
+    def commit_signing_key(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Private key used to sign commits the repository writes back. The format is selected by `spec.commit.signing_method`.
+        """
+        return pulumi.get(self, "commit_signing_key")
+
+    @commit_signing_key.setter
+    def commit_signing_key(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "commit_signing_key", value)
 
     @_builtins.property
     @pulumi.getter
@@ -959,11 +990,19 @@ class ProvisioningRepositorySpecArgsDict(TypedDict):
     """
     type: pulumi.Input[_builtins.str]
     """
-    Repository provider type: local, github, git, bitbucket, or gitlab.
+    Repository provider type: local, github, githubEnterprise, git, bitbucket, or gitlab.
     """
     bitbucket: NotRequired[pulumi.Input['ProvisioningRepositorySpecBitbucketArgsDict']]
     """
     Bitbucket repository configuration.
+    """
+    branch: NotRequired[pulumi.Input['ProvisioningRepositorySpecBranchArgsDict']]
+    """
+    Branch naming options for the branch workflow.
+    """
+    commit: NotRequired[pulumi.Input['ProvisioningRepositorySpecCommitArgsDict']]
+    """
+    Commit message and signing options.
     """
     connection: NotRequired[pulumi.Input['ProvisioningRepositorySpecConnectionArgsDict']]
     """
@@ -981,6 +1020,10 @@ class ProvisioningRepositorySpecArgsDict(TypedDict):
     """
     GitHub repository configuration.
     """
+    github_enterprise: NotRequired[pulumi.Input['ProvisioningRepositorySpecGithubEnterpriseArgsDict']]
+    """
+    GitHub Enterprise Server repository configuration.
+    """
     gitlab: NotRequired[pulumi.Input['ProvisioningRepositorySpecGitlabArgsDict']]
     """
     GitLab repository configuration.
@@ -988,6 +1031,10 @@ class ProvisioningRepositorySpecArgsDict(TypedDict):
     local: NotRequired[pulumi.Input['ProvisioningRepositorySpecLocalArgsDict']]
     """
     Local filesystem repository configuration.
+    """
+    pull_request: NotRequired[pulumi.Input['ProvisioningRepositorySpecPullRequestArgsDict']]
+    """
+    Pull request options for the branch workflow.
     """
     sync: NotRequired[pulumi.Input['ProvisioningRepositorySpecSyncArgsDict']]
     """
@@ -1008,25 +1055,33 @@ class ProvisioningRepositorySpecArgs:
                  title: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
                  bitbucket: Optional[pulumi.Input['ProvisioningRepositorySpecBitbucketArgs']] = None,
+                 branch: Optional[pulumi.Input['ProvisioningRepositorySpecBranchArgs']] = None,
+                 commit: Optional[pulumi.Input['ProvisioningRepositorySpecCommitArgs']] = None,
                  connection: Optional[pulumi.Input['ProvisioningRepositorySpecConnectionArgs']] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  git: Optional[pulumi.Input['ProvisioningRepositorySpecGitArgs']] = None,
                  github: Optional[pulumi.Input['ProvisioningRepositorySpecGithubArgs']] = None,
+                 github_enterprise: Optional[pulumi.Input['ProvisioningRepositorySpecGithubEnterpriseArgs']] = None,
                  gitlab: Optional[pulumi.Input['ProvisioningRepositorySpecGitlabArgs']] = None,
                  local: Optional[pulumi.Input['ProvisioningRepositorySpecLocalArgs']] = None,
+                 pull_request: Optional[pulumi.Input['ProvisioningRepositorySpecPullRequestArgs']] = None,
                  sync: Optional[pulumi.Input['ProvisioningRepositorySpecSyncArgs']] = None,
                  webhook: Optional[pulumi.Input['ProvisioningRepositorySpecWebhookArgs']] = None,
                  workflows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] title: Display name shown in the UI.
-        :param pulumi.Input[_builtins.str] type: Repository provider type: local, github, git, bitbucket, or gitlab.
+        :param pulumi.Input[_builtins.str] type: Repository provider type: local, github, githubEnterprise, git, bitbucket, or gitlab.
         :param pulumi.Input['ProvisioningRepositorySpecBitbucketArgs'] bitbucket: Bitbucket repository configuration.
+        :param pulumi.Input['ProvisioningRepositorySpecBranchArgs'] branch: Branch naming options for the branch workflow.
+        :param pulumi.Input['ProvisioningRepositorySpecCommitArgs'] commit: Commit message and signing options.
         :param pulumi.Input['ProvisioningRepositorySpecConnectionArgs'] connection: Connection resource reference.
         :param pulumi.Input[_builtins.str] description: Repository description.
         :param pulumi.Input['ProvisioningRepositorySpecGitArgs'] git: Generic git repository configuration.
         :param pulumi.Input['ProvisioningRepositorySpecGithubArgs'] github: GitHub repository configuration.
+        :param pulumi.Input['ProvisioningRepositorySpecGithubEnterpriseArgs'] github_enterprise: GitHub Enterprise Server repository configuration.
         :param pulumi.Input['ProvisioningRepositorySpecGitlabArgs'] gitlab: GitLab repository configuration.
         :param pulumi.Input['ProvisioningRepositorySpecLocalArgs'] local: Local filesystem repository configuration.
+        :param pulumi.Input['ProvisioningRepositorySpecPullRequestArgs'] pull_request: Pull request options for the branch workflow.
         :param pulumi.Input['ProvisioningRepositorySpecSyncArgs'] sync: Sync configuration.
         :param pulumi.Input['ProvisioningRepositorySpecWebhookArgs'] webhook: Webhook delivery configuration.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] workflows: Allowed change workflows: write, branch.
@@ -1035,6 +1090,10 @@ class ProvisioningRepositorySpecArgs:
         pulumi.set(__self__, "type", type)
         if bitbucket is not None:
             pulumi.set(__self__, "bitbucket", bitbucket)
+        if branch is not None:
+            pulumi.set(__self__, "branch", branch)
+        if commit is not None:
+            pulumi.set(__self__, "commit", commit)
         if connection is not None:
             pulumi.set(__self__, "connection", connection)
         if description is not None:
@@ -1043,10 +1102,14 @@ class ProvisioningRepositorySpecArgs:
             pulumi.set(__self__, "git", git)
         if github is not None:
             pulumi.set(__self__, "github", github)
+        if github_enterprise is not None:
+            pulumi.set(__self__, "github_enterprise", github_enterprise)
         if gitlab is not None:
             pulumi.set(__self__, "gitlab", gitlab)
         if local is not None:
             pulumi.set(__self__, "local", local)
+        if pull_request is not None:
+            pulumi.set(__self__, "pull_request", pull_request)
         if sync is not None:
             pulumi.set(__self__, "sync", sync)
         if webhook is not None:
@@ -1070,7 +1133,7 @@ class ProvisioningRepositorySpecArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Repository provider type: local, github, git, bitbucket, or gitlab.
+        Repository provider type: local, github, githubEnterprise, git, bitbucket, or gitlab.
         """
         return pulumi.get(self, "type")
 
@@ -1089,6 +1152,30 @@ class ProvisioningRepositorySpecArgs:
     @bitbucket.setter
     def bitbucket(self, value: Optional[pulumi.Input['ProvisioningRepositorySpecBitbucketArgs']]):
         pulumi.set(self, "bitbucket", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def branch(self) -> Optional[pulumi.Input['ProvisioningRepositorySpecBranchArgs']]:
+        """
+        Branch naming options for the branch workflow.
+        """
+        return pulumi.get(self, "branch")
+
+    @branch.setter
+    def branch(self, value: Optional[pulumi.Input['ProvisioningRepositorySpecBranchArgs']]):
+        pulumi.set(self, "branch", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def commit(self) -> Optional[pulumi.Input['ProvisioningRepositorySpecCommitArgs']]:
+        """
+        Commit message and signing options.
+        """
+        return pulumi.get(self, "commit")
+
+    @commit.setter
+    def commit(self, value: Optional[pulumi.Input['ProvisioningRepositorySpecCommitArgs']]):
+        pulumi.set(self, "commit", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1139,6 +1226,18 @@ class ProvisioningRepositorySpecArgs:
         pulumi.set(self, "github", value)
 
     @_builtins.property
+    @pulumi.getter(name="githubEnterprise")
+    def github_enterprise(self) -> Optional[pulumi.Input['ProvisioningRepositorySpecGithubEnterpriseArgs']]:
+        """
+        GitHub Enterprise Server repository configuration.
+        """
+        return pulumi.get(self, "github_enterprise")
+
+    @github_enterprise.setter
+    def github_enterprise(self, value: Optional[pulumi.Input['ProvisioningRepositorySpecGithubEnterpriseArgs']]):
+        pulumi.set(self, "github_enterprise", value)
+
+    @_builtins.property
     @pulumi.getter
     def gitlab(self) -> Optional[pulumi.Input['ProvisioningRepositorySpecGitlabArgs']]:
         """
@@ -1161,6 +1260,18 @@ class ProvisioningRepositorySpecArgs:
     @local.setter
     def local(self, value: Optional[pulumi.Input['ProvisioningRepositorySpecLocalArgs']]):
         pulumi.set(self, "local", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pullRequest")
+    def pull_request(self) -> Optional[pulumi.Input['ProvisioningRepositorySpecPullRequestArgs']]:
+        """
+        Pull request options for the branch workflow.
+        """
+        return pulumi.get(self, "pull_request")
+
+    @pull_request.setter
+    def pull_request(self, value: Optional[pulumi.Input['ProvisioningRepositorySpecPullRequestArgs']]):
+        pulumi.set(self, "pull_request", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1286,6 +1397,184 @@ class ProvisioningRepositorySpecBitbucketArgs:
     @url.setter
     def url(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "url", value)
+
+
+class ProvisioningRepositorySpecBranchArgsDict(TypedDict):
+    enforce_template: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    When true, the branch name field in Save drawers is read-only.
+    """
+    name_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Template for the branch name created in the branch workflow.
+    """
+
+@pulumi.input_type
+class ProvisioningRepositorySpecBranchArgs:
+    def __init__(__self__, *,
+                 enforce_template: Optional[pulumi.Input[_builtins.bool]] = None,
+                 name_template: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] enforce_template: When true, the branch name field in Save drawers is read-only.
+        :param pulumi.Input[_builtins.str] name_template: Template for the branch name created in the branch workflow.
+        """
+        if enforce_template is not None:
+            pulumi.set(__self__, "enforce_template", enforce_template)
+        if name_template is not None:
+            pulumi.set(__self__, "name_template", name_template)
+
+    @_builtins.property
+    @pulumi.getter(name="enforceTemplate")
+    def enforce_template(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        When true, the branch name field in Save drawers is read-only.
+        """
+        return pulumi.get(self, "enforce_template")
+
+    @enforce_template.setter
+    def enforce_template(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enforce_template", value)
+
+    @_builtins.property
+    @pulumi.getter(name="nameTemplate")
+    def name_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Template for the branch name created in the branch workflow.
+        """
+        return pulumi.get(self, "name_template")
+
+    @name_template.setter
+    def name_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name_template", value)
+
+
+class ProvisioningRepositorySpecCommitArgsDict(TypedDict):
+    enforce_template: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    When true, the commit message field in Save drawers is pre-filled from the template and rendered read-only.
+    """
+    signer_email: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Email used as the commit signer. Defaults to "noreply@grafana.com" when empty.
+    """
+    signer_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name used as the commit signer. Defaults to "Grafana" when empty.
+    """
+    signing_method: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Method used to sign commits with the key in `secure.commit_signing_key`: gpg, ssh, or smime. When empty, commits are not signed.
+    """
+    single_resource_message_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Template for commit messages produced by single-resource UI operations.
+    """
+    smime_certificate: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    PEM-encoded X.509 certificate paired with `secure.commit_signing_key` when `signing_method` is smime. This is public, not a secret.
+    """
+
+@pulumi.input_type
+class ProvisioningRepositorySpecCommitArgs:
+    def __init__(__self__, *,
+                 enforce_template: Optional[pulumi.Input[_builtins.bool]] = None,
+                 signer_email: Optional[pulumi.Input[_builtins.str]] = None,
+                 signer_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 signing_method: Optional[pulumi.Input[_builtins.str]] = None,
+                 single_resource_message_template: Optional[pulumi.Input[_builtins.str]] = None,
+                 smime_certificate: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] enforce_template: When true, the commit message field in Save drawers is pre-filled from the template and rendered read-only.
+        :param pulumi.Input[_builtins.str] signer_email: Email used as the commit signer. Defaults to "noreply@grafana.com" when empty.
+        :param pulumi.Input[_builtins.str] signer_name: Name used as the commit signer. Defaults to "Grafana" when empty.
+        :param pulumi.Input[_builtins.str] signing_method: Method used to sign commits with the key in `secure.commit_signing_key`: gpg, ssh, or smime. When empty, commits are not signed.
+        :param pulumi.Input[_builtins.str] single_resource_message_template: Template for commit messages produced by single-resource UI operations.
+        :param pulumi.Input[_builtins.str] smime_certificate: PEM-encoded X.509 certificate paired with `secure.commit_signing_key` when `signing_method` is smime. This is public, not a secret.
+        """
+        if enforce_template is not None:
+            pulumi.set(__self__, "enforce_template", enforce_template)
+        if signer_email is not None:
+            pulumi.set(__self__, "signer_email", signer_email)
+        if signer_name is not None:
+            pulumi.set(__self__, "signer_name", signer_name)
+        if signing_method is not None:
+            pulumi.set(__self__, "signing_method", signing_method)
+        if single_resource_message_template is not None:
+            pulumi.set(__self__, "single_resource_message_template", single_resource_message_template)
+        if smime_certificate is not None:
+            pulumi.set(__self__, "smime_certificate", smime_certificate)
+
+    @_builtins.property
+    @pulumi.getter(name="enforceTemplate")
+    def enforce_template(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        When true, the commit message field in Save drawers is pre-filled from the template and rendered read-only.
+        """
+        return pulumi.get(self, "enforce_template")
+
+    @enforce_template.setter
+    def enforce_template(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enforce_template", value)
+
+    @_builtins.property
+    @pulumi.getter(name="signerEmail")
+    def signer_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Email used as the commit signer. Defaults to "noreply@grafana.com" when empty.
+        """
+        return pulumi.get(self, "signer_email")
+
+    @signer_email.setter
+    def signer_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "signer_email", value)
+
+    @_builtins.property
+    @pulumi.getter(name="signerName")
+    def signer_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Name used as the commit signer. Defaults to "Grafana" when empty.
+        """
+        return pulumi.get(self, "signer_name")
+
+    @signer_name.setter
+    def signer_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "signer_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="signingMethod")
+    def signing_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Method used to sign commits with the key in `secure.commit_signing_key`: gpg, ssh, or smime. When empty, commits are not signed.
+        """
+        return pulumi.get(self, "signing_method")
+
+    @signing_method.setter
+    def signing_method(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "signing_method", value)
+
+    @_builtins.property
+    @pulumi.getter(name="singleResourceMessageTemplate")
+    def single_resource_message_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Template for commit messages produced by single-resource UI operations.
+        """
+        return pulumi.get(self, "single_resource_message_template")
+
+    @single_resource_message_template.setter
+    def single_resource_message_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "single_resource_message_template", value)
+
+    @_builtins.property
+    @pulumi.getter(name="smimeCertificate")
+    def smime_certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        PEM-encoded X.509 certificate paired with `secure.commit_signing_key` when `signing_method` is smime. This is public, not a secret.
+        """
+        return pulumi.get(self, "smime_certificate")
+
+    @smime_certificate.setter
+    def smime_certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "smime_certificate", value)
 
 
 class ProvisioningRepositorySpecConnectionArgsDict(TypedDict):
@@ -1495,6 +1784,115 @@ class ProvisioningRepositorySpecGithubArgs:
         pulumi.set(self, "url", value)
 
 
+class ProvisioningRepositorySpecGithubEnterpriseArgsDict(TypedDict):
+    branch: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Branch to sync.
+    """
+    generate_dashboard_previews: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to generate dashboard previews.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Optional subdirectory path.
+    """
+    server_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Base URL of the self-managed GitHub Enterprise Server instance.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Repository URL.
+    """
+
+@pulumi.input_type
+class ProvisioningRepositorySpecGithubEnterpriseArgs:
+    def __init__(__self__, *,
+                 branch: Optional[pulumi.Input[_builtins.str]] = None,
+                 generate_dashboard_previews: Optional[pulumi.Input[_builtins.bool]] = None,
+                 path: Optional[pulumi.Input[_builtins.str]] = None,
+                 server_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 url: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] branch: Branch to sync.
+        :param pulumi.Input[_builtins.bool] generate_dashboard_previews: Whether to generate dashboard previews.
+        :param pulumi.Input[_builtins.str] path: Optional subdirectory path.
+        :param pulumi.Input[_builtins.str] server_url: Base URL of the self-managed GitHub Enterprise Server instance.
+        :param pulumi.Input[_builtins.str] url: Repository URL.
+        """
+        if branch is not None:
+            pulumi.set(__self__, "branch", branch)
+        if generate_dashboard_previews is not None:
+            pulumi.set(__self__, "generate_dashboard_previews", generate_dashboard_previews)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if server_url is not None:
+            pulumi.set(__self__, "server_url", server_url)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def branch(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Branch to sync.
+        """
+        return pulumi.get(self, "branch")
+
+    @branch.setter
+    def branch(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "branch", value)
+
+    @_builtins.property
+    @pulumi.getter(name="generateDashboardPreviews")
+    def generate_dashboard_previews(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether to generate dashboard previews.
+        """
+        return pulumi.get(self, "generate_dashboard_previews")
+
+    @generate_dashboard_previews.setter
+    def generate_dashboard_previews(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "generate_dashboard_previews", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Optional subdirectory path.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "path", value)
+
+    @_builtins.property
+    @pulumi.getter(name="serverUrl")
+    def server_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Base URL of the self-managed GitHub Enterprise Server instance.
+        """
+        return pulumi.get(self, "server_url")
+
+    @server_url.setter
+    def server_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "server_url", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Repository URL.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "url", value)
+
+
 class ProvisioningRepositorySpecGitlabArgsDict(TypedDict):
     branch: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -1593,6 +1991,55 @@ class ProvisioningRepositorySpecLocalArgs:
         pulumi.set(self, "path", value)
 
 
+class ProvisioningRepositorySpecPullRequestArgsDict(TypedDict):
+    enforce_template: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    When true, the pull request title field in Save drawers is read-only.
+    """
+    title_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Template for pull request titles.
+    """
+
+@pulumi.input_type
+class ProvisioningRepositorySpecPullRequestArgs:
+    def __init__(__self__, *,
+                 enforce_template: Optional[pulumi.Input[_builtins.bool]] = None,
+                 title_template: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] enforce_template: When true, the pull request title field in Save drawers is read-only.
+        :param pulumi.Input[_builtins.str] title_template: Template for pull request titles.
+        """
+        if enforce_template is not None:
+            pulumi.set(__self__, "enforce_template", enforce_template)
+        if title_template is not None:
+            pulumi.set(__self__, "title_template", title_template)
+
+    @_builtins.property
+    @pulumi.getter(name="enforceTemplate")
+    def enforce_template(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        When true, the pull request title field in Save drawers is read-only.
+        """
+        return pulumi.get(self, "enforce_template")
+
+    @enforce_template.setter
+    def enforce_template(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enforce_template", value)
+
+    @_builtins.property
+    @pulumi.getter(name="titleTemplate")
+    def title_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Template for pull request titles.
+        """
+        return pulumi.get(self, "title_template")
+
+    @title_template.setter
+    def title_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "title_template", value)
+
+
 class ProvisioningRepositorySpecSyncArgsDict(TypedDict):
     enabled: pulumi.Input[_builtins.bool]
     """
@@ -1600,7 +2047,7 @@ class ProvisioningRepositorySpecSyncArgsDict(TypedDict):
     """
     target: pulumi.Input[_builtins.str]
     """
-    Sync target: instance or folder.
+    Sync target: instance, folder, or folderless.
     """
     interval_seconds: NotRequired[pulumi.Input[_builtins.int]]
     """
@@ -1615,7 +2062,7 @@ class ProvisioningRepositorySpecSyncArgs:
                  interval_seconds: Optional[pulumi.Input[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.bool] enabled: Whether sync is enabled.
-        :param pulumi.Input[_builtins.str] target: Sync target: instance or folder.
+        :param pulumi.Input[_builtins.str] target: Sync target: instance, folder, or folderless.
         :param pulumi.Input[_builtins.int] interval_seconds: Sync interval in seconds.
         """
         pulumi.set(__self__, "enabled", enabled)
@@ -1639,7 +2086,7 @@ class ProvisioningRepositorySpecSyncArgs:
     @pulumi.getter
     def target(self) -> pulumi.Input[_builtins.str]:
         """
-        Sync target: instance or folder.
+        Sync target: instance, folder, or folderless.
         """
         return pulumi.get(self, "target")
 

@@ -3439,6 +3439,11 @@ export namespace apps {
         export interface ProvisioningRepositorySecure {
             /**
              * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+             * Private key used to sign commits the repository writes back. The format is selected by `spec.commit.signing_method`.
+             */
+            commitSigningKey?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
              * Token for repository authentication.
              */
             token?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
@@ -3454,6 +3459,14 @@ export namespace apps {
              * Bitbucket repository configuration.
              */
             bitbucket?: pulumi.Input<inputs.apps.v0alpha1.ProvisioningRepositorySpecBitbucket>;
+            /**
+             * Branch naming options for the branch workflow.
+             */
+            branch?: pulumi.Input<inputs.apps.v0alpha1.ProvisioningRepositorySpecBranch>;
+            /**
+             * Commit message and signing options.
+             */
+            commit?: pulumi.Input<inputs.apps.v0alpha1.ProvisioningRepositorySpecCommit>;
             /**
              * Connection resource reference.
              */
@@ -3471,6 +3484,10 @@ export namespace apps {
              */
             github?: pulumi.Input<inputs.apps.v0alpha1.ProvisioningRepositorySpecGithub>;
             /**
+             * GitHub Enterprise Server repository configuration.
+             */
+            githubEnterprise?: pulumi.Input<inputs.apps.v0alpha1.ProvisioningRepositorySpecGithubEnterprise>;
+            /**
              * GitLab repository configuration.
              */
             gitlab?: pulumi.Input<inputs.apps.v0alpha1.ProvisioningRepositorySpecGitlab>;
@@ -3478,6 +3495,10 @@ export namespace apps {
              * Local filesystem repository configuration.
              */
             local?: pulumi.Input<inputs.apps.v0alpha1.ProvisioningRepositorySpecLocal>;
+            /**
+             * Pull request options for the branch workflow.
+             */
+            pullRequest?: pulumi.Input<inputs.apps.v0alpha1.ProvisioningRepositorySpecPullRequest>;
             /**
              * Sync configuration.
              */
@@ -3487,7 +3508,7 @@ export namespace apps {
              */
             title: pulumi.Input<string>;
             /**
-             * Repository provider type: local, github, git, bitbucket, or gitlab.
+             * Repository provider type: local, github, githubEnterprise, git, bitbucket, or gitlab.
              */
             type: pulumi.Input<string>;
             /**
@@ -3517,6 +3538,44 @@ export namespace apps {
              * Repository URL.
              */
             url?: pulumi.Input<string>;
+        }
+
+        export interface ProvisioningRepositorySpecBranch {
+            /**
+             * When true, the branch name field in Save drawers is read-only.
+             */
+            enforceTemplate?: pulumi.Input<boolean>;
+            /**
+             * Template for the branch name created in the branch workflow.
+             */
+            nameTemplate?: pulumi.Input<string>;
+        }
+
+        export interface ProvisioningRepositorySpecCommit {
+            /**
+             * When true, the commit message field in Save drawers is pre-filled from the template and rendered read-only.
+             */
+            enforceTemplate?: pulumi.Input<boolean>;
+            /**
+             * Email used as the commit signer. Defaults to "noreply@grafana.com" when empty.
+             */
+            signerEmail?: pulumi.Input<string>;
+            /**
+             * Name used as the commit signer. Defaults to "Grafana" when empty.
+             */
+            signerName?: pulumi.Input<string>;
+            /**
+             * Method used to sign commits with the key in `secure.commit_signing_key`: gpg, ssh, or smime. When empty, commits are not signed.
+             */
+            signingMethod?: pulumi.Input<string>;
+            /**
+             * Template for commit messages produced by single-resource UI operations.
+             */
+            singleResourceMessageTemplate?: pulumi.Input<string>;
+            /**
+             * PEM-encoded X.509 certificate paired with `secure.commit_signing_key` when `signingMethod` is smime. This is public, not a secret.
+             */
+            smimeCertificate?: pulumi.Input<string>;
         }
 
         export interface ProvisioningRepositorySpecConnection {
@@ -3564,6 +3623,29 @@ export namespace apps {
             url?: pulumi.Input<string>;
         }
 
+        export interface ProvisioningRepositorySpecGithubEnterprise {
+            /**
+             * Branch to sync.
+             */
+            branch?: pulumi.Input<string>;
+            /**
+             * Whether to generate dashboard previews.
+             */
+            generateDashboardPreviews?: pulumi.Input<boolean>;
+            /**
+             * Optional subdirectory path.
+             */
+            path?: pulumi.Input<string>;
+            /**
+             * Base URL of the self-managed GitHub Enterprise Server instance.
+             */
+            serverUrl?: pulumi.Input<string>;
+            /**
+             * Repository URL.
+             */
+            url?: pulumi.Input<string>;
+        }
+
         export interface ProvisioningRepositorySpecGitlab {
             /**
              * Branch to sync.
@@ -3586,6 +3668,17 @@ export namespace apps {
             path?: pulumi.Input<string>;
         }
 
+        export interface ProvisioningRepositorySpecPullRequest {
+            /**
+             * When true, the pull request title field in Save drawers is read-only.
+             */
+            enforceTemplate?: pulumi.Input<boolean>;
+            /**
+             * Template for pull request titles.
+             */
+            titleTemplate?: pulumi.Input<string>;
+        }
+
         export interface ProvisioningRepositorySpecSync {
             /**
              * Whether sync is enabled.
@@ -3596,7 +3689,7 @@ export namespace apps {
              */
             intervalSeconds?: pulumi.Input<number>;
             /**
-             * Sync target: instance or folder.
+             * Sync target: instance, folder, or folderless.
              */
             target: pulumi.Input<string>;
         }

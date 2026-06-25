@@ -125,6 +125,8 @@ type LookupAzureCredentialResult struct {
 	ClientId string `pulumi:"clientId"`
 	// The client secret of the Azure Credential.
 	ClientSecret string `pulumi:"clientSecret"`
+	// Whether the Azure Credential is enabled or not.
+	Enabled bool `pulumi:"enabled"`
 	// The Terraform Resource ID. This has the format "{{ stack*id }}:{{ resource*id }}".
 	Id string `pulumi:"id"`
 	// The name of the Azure Credential.
@@ -196,6 +198,11 @@ func (o LookupAzureCredentialResultOutput) ClientId() pulumi.StringOutput {
 // The client secret of the Azure Credential.
 func (o LookupAzureCredentialResultOutput) ClientSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzureCredentialResult) string { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+// Whether the Azure Credential is enabled or not.
+func (o LookupAzureCredentialResultOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupAzureCredentialResult) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
 // The Terraform Resource ID. This has the format "{{ stack*id }}:{{ resource*id }}".

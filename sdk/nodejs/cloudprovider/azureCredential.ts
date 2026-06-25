@@ -112,6 +112,10 @@ export class AzureCredential extends pulumi.CustomResource {
      */
     declare public readonly clientSecret: pulumi.Output<string>;
     /**
+     * Whether the Azure Credential is enabled or not. Defaults to `true`.
+     */
+    declare public readonly enabled: pulumi.Output<boolean>;
+    /**
      * The name of the Azure Credential.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -152,6 +156,7 @@ export class AzureCredential extends pulumi.CustomResource {
             resourceInputs["autoDiscoveryConfigurations"] = state?.autoDiscoveryConfigurations;
             resourceInputs["clientId"] = state?.clientId;
             resourceInputs["clientSecret"] = state?.clientSecret;
+            resourceInputs["enabled"] = state?.enabled;
             resourceInputs["name"] = state?.name;
             resourceInputs["resourceDiscoveryTagFilters"] = state?.resourceDiscoveryTagFilters;
             resourceInputs["resourceId"] = state?.resourceId;
@@ -175,6 +180,7 @@ export class AzureCredential extends pulumi.CustomResource {
             resourceInputs["autoDiscoveryConfigurations"] = args?.autoDiscoveryConfigurations;
             resourceInputs["clientId"] = args?.clientId;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
+            resourceInputs["enabled"] = args?.enabled;
             resourceInputs["name"] = args?.name;
             resourceInputs["resourceDiscoveryTagFilters"] = args?.resourceDiscoveryTagFilters;
             resourceInputs["resourceTagsToAddToMetrics"] = args?.resourceTagsToAddToMetrics;
@@ -205,6 +211,10 @@ export interface AzureCredentialState {
      * The client secret of the Azure Credential.
      */
     clientSecret?: pulumi.Input<string>;
+    /**
+     * Whether the Azure Credential is enabled or not. Defaults to `true`.
+     */
+    enabled?: pulumi.Input<boolean>;
     /**
      * The name of the Azure Credential.
      */
@@ -247,6 +257,10 @@ export interface AzureCredentialArgs {
      * The client secret of the Azure Credential.
      */
     clientSecret: pulumi.Input<string>;
+    /**
+     * Whether the Azure Credential is enabled or not. Defaults to `true`.
+     */
+    enabled?: pulumi.Input<boolean>;
     /**
      * The name of the Azure Credential.
      */

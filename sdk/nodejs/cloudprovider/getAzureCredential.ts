@@ -118,6 +118,10 @@ export interface GetAzureCredentialResult {
      */
     readonly clientSecret: string;
     /**
+     * Whether the Azure Credential is enabled or not.
+     */
+    readonly enabled: boolean;
+    /**
      * The Terraform Resource ID. This has the format "{{ stack*id }}:{{ resource*id }}".
      */
     readonly id: string;

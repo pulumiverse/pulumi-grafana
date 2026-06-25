@@ -30,11 +30,15 @@ __all__ = [
     'ProvisioningRepositorySecure',
     'ProvisioningRepositorySpec',
     'ProvisioningRepositorySpecBitbucket',
+    'ProvisioningRepositorySpecBranch',
+    'ProvisioningRepositorySpecCommit',
     'ProvisioningRepositorySpecConnection',
     'ProvisioningRepositorySpecGit',
     'ProvisioningRepositorySpecGithub',
+    'ProvisioningRepositorySpecGithubEnterprise',
     'ProvisioningRepositorySpecGitlab',
     'ProvisioningRepositorySpecLocal',
+    'ProvisioningRepositorySpecPullRequest',
     'ProvisioningRepositorySpecSync',
     'ProvisioningRepositorySpecWebhook',
 ]
@@ -698,7 +702,9 @@ class ProvisioningRepositorySecure(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "webhookSecret":
+        if key == "commitSigningKey":
+            suggest = "commit_signing_key"
+        elif key == "webhookSecret":
             suggest = "webhook_secret"
 
         if suggest:
@@ -713,18 +719,32 @@ class ProvisioningRepositorySecure(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 commit_signing_key: Optional[Mapping[str, _builtins.str]] = None,
                  token: Optional[Mapping[str, _builtins.str]] = None,
                  webhook_secret: Optional[Mapping[str, _builtins.str]] = None):
         """
+        :param Mapping[str, _builtins.str] commit_signing_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Private key used to sign commits the repository writes back. The format is selected by `spec.commit.signing_method`.
         :param Mapping[str, _builtins.str] token: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Token for repository authentication.
         :param Mapping[str, _builtins.str] webhook_secret: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Webhook secret.
         """
+        if commit_signing_key is not None:
+            pulumi.set(__self__, "commit_signing_key", commit_signing_key)
         if token is not None:
             pulumi.set(__self__, "token", token)
         if webhook_secret is not None:
             pulumi.set(__self__, "webhook_secret", webhook_secret)
+
+    @_builtins.property
+    @pulumi.getter(name="commitSigningKey")
+    def commit_signing_key(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Private key used to sign commits the repository writes back. The format is selected by `spec.commit.signing_method`.
+        """
+        return pulumi.get(self, "commit_signing_key")
 
     @_builtins.property
     @pulumi.getter
@@ -747,29 +767,56 @@ class ProvisioningRepositorySecure(dict):
 
 @pulumi.output_type
 class ProvisioningRepositorySpec(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "githubEnterprise":
+            suggest = "github_enterprise"
+        elif key == "pullRequest":
+            suggest = "pull_request"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProvisioningRepositorySpec. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProvisioningRepositorySpec.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProvisioningRepositorySpec.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  title: _builtins.str,
                  type: _builtins.str,
                  bitbucket: Optional['outputs.ProvisioningRepositorySpecBitbucket'] = None,
+                 branch: Optional['outputs.ProvisioningRepositorySpecBranch'] = None,
+                 commit: Optional['outputs.ProvisioningRepositorySpecCommit'] = None,
                  connection: Optional['outputs.ProvisioningRepositorySpecConnection'] = None,
                  description: Optional[_builtins.str] = None,
                  git: Optional['outputs.ProvisioningRepositorySpecGit'] = None,
                  github: Optional['outputs.ProvisioningRepositorySpecGithub'] = None,
+                 github_enterprise: Optional['outputs.ProvisioningRepositorySpecGithubEnterprise'] = None,
                  gitlab: Optional['outputs.ProvisioningRepositorySpecGitlab'] = None,
                  local: Optional['outputs.ProvisioningRepositorySpecLocal'] = None,
+                 pull_request: Optional['outputs.ProvisioningRepositorySpecPullRequest'] = None,
                  sync: Optional['outputs.ProvisioningRepositorySpecSync'] = None,
                  webhook: Optional['outputs.ProvisioningRepositorySpecWebhook'] = None,
                  workflows: Optional[Sequence[_builtins.str]] = None):
         """
         :param _builtins.str title: Display name shown in the UI.
-        :param _builtins.str type: Repository provider type: local, github, git, bitbucket, or gitlab.
+        :param _builtins.str type: Repository provider type: local, github, githubEnterprise, git, bitbucket, or gitlab.
         :param 'ProvisioningRepositorySpecBitbucketArgs' bitbucket: Bitbucket repository configuration.
+        :param 'ProvisioningRepositorySpecBranchArgs' branch: Branch naming options for the branch workflow.
+        :param 'ProvisioningRepositorySpecCommitArgs' commit: Commit message and signing options.
         :param 'ProvisioningRepositorySpecConnectionArgs' connection: Connection resource reference.
         :param _builtins.str description: Repository description.
         :param 'ProvisioningRepositorySpecGitArgs' git: Generic git repository configuration.
         :param 'ProvisioningRepositorySpecGithubArgs' github: GitHub repository configuration.
+        :param 'ProvisioningRepositorySpecGithubEnterpriseArgs' github_enterprise: GitHub Enterprise Server repository configuration.
         :param 'ProvisioningRepositorySpecGitlabArgs' gitlab: GitLab repository configuration.
         :param 'ProvisioningRepositorySpecLocalArgs' local: Local filesystem repository configuration.
+        :param 'ProvisioningRepositorySpecPullRequestArgs' pull_request: Pull request options for the branch workflow.
         :param 'ProvisioningRepositorySpecSyncArgs' sync: Sync configuration.
         :param 'ProvisioningRepositorySpecWebhookArgs' webhook: Webhook delivery configuration.
         :param Sequence[_builtins.str] workflows: Allowed change workflows: write, branch.
@@ -778,6 +825,10 @@ class ProvisioningRepositorySpec(dict):
         pulumi.set(__self__, "type", type)
         if bitbucket is not None:
             pulumi.set(__self__, "bitbucket", bitbucket)
+        if branch is not None:
+            pulumi.set(__self__, "branch", branch)
+        if commit is not None:
+            pulumi.set(__self__, "commit", commit)
         if connection is not None:
             pulumi.set(__self__, "connection", connection)
         if description is not None:
@@ -786,10 +837,14 @@ class ProvisioningRepositorySpec(dict):
             pulumi.set(__self__, "git", git)
         if github is not None:
             pulumi.set(__self__, "github", github)
+        if github_enterprise is not None:
+            pulumi.set(__self__, "github_enterprise", github_enterprise)
         if gitlab is not None:
             pulumi.set(__self__, "gitlab", gitlab)
         if local is not None:
             pulumi.set(__self__, "local", local)
+        if pull_request is not None:
+            pulumi.set(__self__, "pull_request", pull_request)
         if sync is not None:
             pulumi.set(__self__, "sync", sync)
         if webhook is not None:
@@ -809,7 +864,7 @@ class ProvisioningRepositorySpec(dict):
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Repository provider type: local, github, git, bitbucket, or gitlab.
+        Repository provider type: local, github, githubEnterprise, git, bitbucket, or gitlab.
         """
         return pulumi.get(self, "type")
 
@@ -820,6 +875,22 @@ class ProvisioningRepositorySpec(dict):
         Bitbucket repository configuration.
         """
         return pulumi.get(self, "bitbucket")
+
+    @_builtins.property
+    @pulumi.getter
+    def branch(self) -> Optional['outputs.ProvisioningRepositorySpecBranch']:
+        """
+        Branch naming options for the branch workflow.
+        """
+        return pulumi.get(self, "branch")
+
+    @_builtins.property
+    @pulumi.getter
+    def commit(self) -> Optional['outputs.ProvisioningRepositorySpecCommit']:
+        """
+        Commit message and signing options.
+        """
+        return pulumi.get(self, "commit")
 
     @_builtins.property
     @pulumi.getter
@@ -854,6 +925,14 @@ class ProvisioningRepositorySpec(dict):
         return pulumi.get(self, "github")
 
     @_builtins.property
+    @pulumi.getter(name="githubEnterprise")
+    def github_enterprise(self) -> Optional['outputs.ProvisioningRepositorySpecGithubEnterprise']:
+        """
+        GitHub Enterprise Server repository configuration.
+        """
+        return pulumi.get(self, "github_enterprise")
+
+    @_builtins.property
     @pulumi.getter
     def gitlab(self) -> Optional['outputs.ProvisioningRepositorySpecGitlab']:
         """
@@ -868,6 +947,14 @@ class ProvisioningRepositorySpec(dict):
         Local filesystem repository configuration.
         """
         return pulumi.get(self, "local")
+
+    @_builtins.property
+    @pulumi.getter(name="pullRequest")
+    def pull_request(self) -> Optional['outputs.ProvisioningRepositorySpecPullRequest']:
+        """
+        Pull request options for the branch workflow.
+        """
+        return pulumi.get(self, "pull_request")
 
     @_builtins.property
     @pulumi.getter
@@ -964,6 +1051,162 @@ class ProvisioningRepositorySpecBitbucket(dict):
         Repository URL.
         """
         return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class ProvisioningRepositorySpecBranch(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "enforceTemplate":
+            suggest = "enforce_template"
+        elif key == "nameTemplate":
+            suggest = "name_template"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProvisioningRepositorySpecBranch. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProvisioningRepositorySpecBranch.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProvisioningRepositorySpecBranch.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enforce_template: Optional[_builtins.bool] = None,
+                 name_template: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool enforce_template: When true, the branch name field in Save drawers is read-only.
+        :param _builtins.str name_template: Template for the branch name created in the branch workflow.
+        """
+        if enforce_template is not None:
+            pulumi.set(__self__, "enforce_template", enforce_template)
+        if name_template is not None:
+            pulumi.set(__self__, "name_template", name_template)
+
+    @_builtins.property
+    @pulumi.getter(name="enforceTemplate")
+    def enforce_template(self) -> Optional[_builtins.bool]:
+        """
+        When true, the branch name field in Save drawers is read-only.
+        """
+        return pulumi.get(self, "enforce_template")
+
+    @_builtins.property
+    @pulumi.getter(name="nameTemplate")
+    def name_template(self) -> Optional[_builtins.str]:
+        """
+        Template for the branch name created in the branch workflow.
+        """
+        return pulumi.get(self, "name_template")
+
+
+@pulumi.output_type
+class ProvisioningRepositorySpecCommit(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "enforceTemplate":
+            suggest = "enforce_template"
+        elif key == "signerEmail":
+            suggest = "signer_email"
+        elif key == "signerName":
+            suggest = "signer_name"
+        elif key == "signingMethod":
+            suggest = "signing_method"
+        elif key == "singleResourceMessageTemplate":
+            suggest = "single_resource_message_template"
+        elif key == "smimeCertificate":
+            suggest = "smime_certificate"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProvisioningRepositorySpecCommit. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProvisioningRepositorySpecCommit.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProvisioningRepositorySpecCommit.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enforce_template: Optional[_builtins.bool] = None,
+                 signer_email: Optional[_builtins.str] = None,
+                 signer_name: Optional[_builtins.str] = None,
+                 signing_method: Optional[_builtins.str] = None,
+                 single_resource_message_template: Optional[_builtins.str] = None,
+                 smime_certificate: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool enforce_template: When true, the commit message field in Save drawers is pre-filled from the template and rendered read-only.
+        :param _builtins.str signer_email: Email used as the commit signer. Defaults to "noreply@grafana.com" when empty.
+        :param _builtins.str signer_name: Name used as the commit signer. Defaults to "Grafana" when empty.
+        :param _builtins.str signing_method: Method used to sign commits with the key in `secure.commit_signing_key`: gpg, ssh, or smime. When empty, commits are not signed.
+        :param _builtins.str single_resource_message_template: Template for commit messages produced by single-resource UI operations.
+        :param _builtins.str smime_certificate: PEM-encoded X.509 certificate paired with `secure.commit_signing_key` when `signing_method` is smime. This is public, not a secret.
+        """
+        if enforce_template is not None:
+            pulumi.set(__self__, "enforce_template", enforce_template)
+        if signer_email is not None:
+            pulumi.set(__self__, "signer_email", signer_email)
+        if signer_name is not None:
+            pulumi.set(__self__, "signer_name", signer_name)
+        if signing_method is not None:
+            pulumi.set(__self__, "signing_method", signing_method)
+        if single_resource_message_template is not None:
+            pulumi.set(__self__, "single_resource_message_template", single_resource_message_template)
+        if smime_certificate is not None:
+            pulumi.set(__self__, "smime_certificate", smime_certificate)
+
+    @_builtins.property
+    @pulumi.getter(name="enforceTemplate")
+    def enforce_template(self) -> Optional[_builtins.bool]:
+        """
+        When true, the commit message field in Save drawers is pre-filled from the template and rendered read-only.
+        """
+        return pulumi.get(self, "enforce_template")
+
+    @_builtins.property
+    @pulumi.getter(name="signerEmail")
+    def signer_email(self) -> Optional[_builtins.str]:
+        """
+        Email used as the commit signer. Defaults to "noreply@grafana.com" when empty.
+        """
+        return pulumi.get(self, "signer_email")
+
+    @_builtins.property
+    @pulumi.getter(name="signerName")
+    def signer_name(self) -> Optional[_builtins.str]:
+        """
+        Name used as the commit signer. Defaults to "Grafana" when empty.
+        """
+        return pulumi.get(self, "signer_name")
+
+    @_builtins.property
+    @pulumi.getter(name="signingMethod")
+    def signing_method(self) -> Optional[_builtins.str]:
+        """
+        Method used to sign commits with the key in `secure.commit_signing_key`: gpg, ssh, or smime. When empty, commits are not signed.
+        """
+        return pulumi.get(self, "signing_method")
+
+    @_builtins.property
+    @pulumi.getter(name="singleResourceMessageTemplate")
+    def single_resource_message_template(self) -> Optional[_builtins.str]:
+        """
+        Template for commit messages produced by single-resource UI operations.
+        """
+        return pulumi.get(self, "single_resource_message_template")
+
+    @_builtins.property
+    @pulumi.getter(name="smimeCertificate")
+    def smime_certificate(self) -> Optional[_builtins.str]:
+        """
+        PEM-encoded X.509 certificate paired with `secure.commit_signing_key` when `signing_method` is smime. This is public, not a secret.
+        """
+        return pulumi.get(self, "smime_certificate")
 
 
 @pulumi.output_type
@@ -1130,6 +1373,92 @@ class ProvisioningRepositorySpecGithub(dict):
 
 
 @pulumi.output_type
+class ProvisioningRepositorySpecGithubEnterprise(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "generateDashboardPreviews":
+            suggest = "generate_dashboard_previews"
+        elif key == "serverUrl":
+            suggest = "server_url"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProvisioningRepositorySpecGithubEnterprise. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProvisioningRepositorySpecGithubEnterprise.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProvisioningRepositorySpecGithubEnterprise.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 branch: Optional[_builtins.str] = None,
+                 generate_dashboard_previews: Optional[_builtins.bool] = None,
+                 path: Optional[_builtins.str] = None,
+                 server_url: Optional[_builtins.str] = None,
+                 url: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str branch: Branch to sync.
+        :param _builtins.bool generate_dashboard_previews: Whether to generate dashboard previews.
+        :param _builtins.str path: Optional subdirectory path.
+        :param _builtins.str server_url: Base URL of the self-managed GitHub Enterprise Server instance.
+        :param _builtins.str url: Repository URL.
+        """
+        if branch is not None:
+            pulumi.set(__self__, "branch", branch)
+        if generate_dashboard_previews is not None:
+            pulumi.set(__self__, "generate_dashboard_previews", generate_dashboard_previews)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if server_url is not None:
+            pulumi.set(__self__, "server_url", server_url)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def branch(self) -> Optional[_builtins.str]:
+        """
+        Branch to sync.
+        """
+        return pulumi.get(self, "branch")
+
+    @_builtins.property
+    @pulumi.getter(name="generateDashboardPreviews")
+    def generate_dashboard_previews(self) -> Optional[_builtins.bool]:
+        """
+        Whether to generate dashboard previews.
+        """
+        return pulumi.get(self, "generate_dashboard_previews")
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> Optional[_builtins.str]:
+        """
+        Optional subdirectory path.
+        """
+        return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter(name="serverUrl")
+    def server_url(self) -> Optional[_builtins.str]:
+        """
+        Base URL of the self-managed GitHub Enterprise Server instance.
+        """
+        return pulumi.get(self, "server_url")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[_builtins.str]:
+        """
+        Repository URL.
+        """
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
 class ProvisioningRepositorySpecGitlab(dict):
     def __init__(__self__, *,
                  branch: Optional[_builtins.str] = None,
@@ -1192,6 +1521,56 @@ class ProvisioningRepositorySpecLocal(dict):
 
 
 @pulumi.output_type
+class ProvisioningRepositorySpecPullRequest(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "enforceTemplate":
+            suggest = "enforce_template"
+        elif key == "titleTemplate":
+            suggest = "title_template"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProvisioningRepositorySpecPullRequest. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProvisioningRepositorySpecPullRequest.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProvisioningRepositorySpecPullRequest.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enforce_template: Optional[_builtins.bool] = None,
+                 title_template: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool enforce_template: When true, the pull request title field in Save drawers is read-only.
+        :param _builtins.str title_template: Template for pull request titles.
+        """
+        if enforce_template is not None:
+            pulumi.set(__self__, "enforce_template", enforce_template)
+        if title_template is not None:
+            pulumi.set(__self__, "title_template", title_template)
+
+    @_builtins.property
+    @pulumi.getter(name="enforceTemplate")
+    def enforce_template(self) -> Optional[_builtins.bool]:
+        """
+        When true, the pull request title field in Save drawers is read-only.
+        """
+        return pulumi.get(self, "enforce_template")
+
+    @_builtins.property
+    @pulumi.getter(name="titleTemplate")
+    def title_template(self) -> Optional[_builtins.str]:
+        """
+        Template for pull request titles.
+        """
+        return pulumi.get(self, "title_template")
+
+
+@pulumi.output_type
 class ProvisioningRepositorySpecSync(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1216,7 +1595,7 @@ class ProvisioningRepositorySpecSync(dict):
                  interval_seconds: Optional[_builtins.int] = None):
         """
         :param _builtins.bool enabled: Whether sync is enabled.
-        :param _builtins.str target: Sync target: instance or folder.
+        :param _builtins.str target: Sync target: instance, folder, or folderless.
         :param _builtins.int interval_seconds: Sync interval in seconds.
         """
         pulumi.set(__self__, "enabled", enabled)
@@ -1236,7 +1615,7 @@ class ProvisioningRepositorySpecSync(dict):
     @pulumi.getter
     def target(self) -> _builtins.str:
         """
-        Sync target: instance or folder.
+        Sync target: instance, folder, or folderless.
         """
         return pulumi.get(self, "target")
 
