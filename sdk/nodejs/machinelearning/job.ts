@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * const foo = new grafana.oss.DataSource("foo", {
  *     type: "prometheus",
  *     name: "prometheus-ds-test",
- *     uid: "prometheus-ds-test-uid",
+ *     uid: "prom-ds-test-uid",
  *     url: "https://my-instance.com",
  *     basicAuthEnabled: true,
  *     basicAuthUsername: "username",
@@ -60,7 +60,7 @@ import * as utilities from "../utilities";
  * const foo = new grafana.oss.DataSource("foo", {
  *     type: "prometheus",
  *     name: "prometheus-ds-test",
- *     uid: "prometheus-ds-test-uid",
+ *     uid: "prom-ds-test-uid",
  *     url: "https://my-instance.com",
  *     basicAuthEnabled: true,
  *     basicAuthUsername: "username",
@@ -102,7 +102,7 @@ import * as utilities from "../utilities";
  * const foo = new grafana.oss.DataSource("foo", {
  *     type: "prometheus",
  *     name: "prometheus-ds-test",
- *     uid: "prometheus-ds-test-uid",
+ *     uid: "prom-ds-test-uid",
  *     url: "https://my-instance.com",
  *     basicAuthEnabled: true,
  *     basicAuthUsername: "username",
@@ -140,7 +140,7 @@ import * as utilities from "../utilities";
  * const foo = new grafana.oss.DataSource("foo", {
  *     type: "prometheus",
  *     name: "prometheus-ds-test",
- *     uid: "prometheus-ds-test-uid",
+ *     uid: "prom-ds-test-uid",
  *     url: "https://my-instance.com",
  *     basicAuthEnabled: true,
  *     basicAuthUsername: "username",

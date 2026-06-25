@@ -20,6 +20,18 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Inputs
         public Input<Inputs.ProvisioningRepositorySpecBitbucketGetArgs>? Bitbucket { get; set; }
 
         /// <summary>
+        /// Branch naming options for the branch workflow.
+        /// </summary>
+        [Input("branch")]
+        public Input<Inputs.ProvisioningRepositorySpecBranchGetArgs>? Branch { get; set; }
+
+        /// <summary>
+        /// Commit message and signing options.
+        /// </summary>
+        [Input("commit")]
+        public Input<Inputs.ProvisioningRepositorySpecCommitGetArgs>? Commit { get; set; }
+
+        /// <summary>
         /// Connection resource reference.
         /// </summary>
         [Input("connection")]
@@ -44,6 +56,12 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Inputs
         public Input<Inputs.ProvisioningRepositorySpecGithubGetArgs>? Github { get; set; }
 
         /// <summary>
+        /// GitHub Enterprise Server repository configuration.
+        /// </summary>
+        [Input("githubEnterprise")]
+        public Input<Inputs.ProvisioningRepositorySpecGithubEnterpriseGetArgs>? GithubEnterprise { get; set; }
+
+        /// <summary>
         /// GitLab repository configuration.
         /// </summary>
         [Input("gitlab")]
@@ -54,6 +72,12 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Inputs
         /// </summary>
         [Input("local")]
         public Input<Inputs.ProvisioningRepositorySpecLocalGetArgs>? Local { get; set; }
+
+        /// <summary>
+        /// Pull request options for the branch workflow.
+        /// </summary>
+        [Input("pullRequest")]
+        public Input<Inputs.ProvisioningRepositorySpecPullRequestGetArgs>? PullRequest { get; set; }
 
         /// <summary>
         /// Sync configuration.
@@ -68,7 +92,7 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Inputs
         public Input<string> Title { get; set; } = null!;
 
         /// <summary>
-        /// Repository provider type: local, github, git, bitbucket, or gitlab.
+        /// Repository provider type: local, github, githubEnterprise, git, bitbucket, or gitlab.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

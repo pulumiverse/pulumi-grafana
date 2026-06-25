@@ -16,6 +16,11 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Outputs
     {
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Private key used to sign commits the repository writes back. The format is selected by `spec.commit.signing_method`.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string>? CommitSigningKey;
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         /// Token for repository authentication.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Token;
@@ -27,10 +32,13 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Outputs
 
         [OutputConstructor]
         private ProvisioningRepositorySecure(
+            ImmutableDictionary<string, string>? commitSigningKey,
+
             ImmutableDictionary<string, string>? token,
 
             ImmutableDictionary<string, string>? webhookSecret)
         {
+            CommitSigningKey = commitSigningKey;
             Token = token;
             WebhookSecret = webhookSecret;
         }

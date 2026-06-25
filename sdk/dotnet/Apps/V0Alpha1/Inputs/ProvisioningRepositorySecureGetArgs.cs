@@ -13,6 +13,23 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Inputs
 
     public sealed class ProvisioningRepositorySecureGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("commitSigningKey")]
+        private InputMap<string>? _commitSigningKey;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Private key used to sign commits the repository writes back. The format is selected by `spec.commit.signing_method`.
+        /// </summary>
+        public InputMap<string> CommitSigningKey
+        {
+            get => _commitSigningKey ?? (_commitSigningKey = new InputMap<string>());
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _commitSigningKey = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
+        }
+
         [Input("token")]
         private InputMap<string>? _token;
 

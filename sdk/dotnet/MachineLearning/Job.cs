@@ -37,7 +37,7 @@ namespace Pulumiverse.Grafana.MachineLearning
     ///     {
     ///         Type = "prometheus",
     ///         Name = "prometheus-ds-test",
-    ///         Uid = "prometheus-ds-test-uid",
+    ///         Uid = "prom-ds-test-uid",
     ///         Url = "https://my-instance.com",
     ///         BasicAuthEnabled = true,
     ///         BasicAuthUsername = "username",
@@ -85,7 +85,7 @@ namespace Pulumiverse.Grafana.MachineLearning
     ///     {
     ///         Type = "prometheus",
     ///         Name = "prometheus-ds-test",
-    ///         Uid = "prometheus-ds-test-uid",
+    ///         Uid = "prom-ds-test-uid",
     ///         Url = "https://my-instance.com",
     ///         BasicAuthEnabled = true,
     ///         BasicAuthUsername = "username",
@@ -142,7 +142,7 @@ namespace Pulumiverse.Grafana.MachineLearning
     ///     {
     ///         Type = "prometheus",
     ///         Name = "prometheus-ds-test",
-    ///         Uid = "prometheus-ds-test-uid",
+    ///         Uid = "prom-ds-test-uid",
     ///         Url = "https://my-instance.com",
     ///         BasicAuthEnabled = true,
     ///         BasicAuthUsername = "username",
@@ -194,7 +194,7 @@ namespace Pulumiverse.Grafana.MachineLearning
     ///     {
     ///         Type = "prometheus",
     ///         Name = "prometheus-ds-test",
-    ///         Uid = "prometheus-ds-test-uid",
+    ///         Uid = "prom-ds-test-uid",
     ///         Url = "https://my-instance.com",
     ///         BasicAuthEnabled = true,
     ///         BasicAuthUsername = "username",

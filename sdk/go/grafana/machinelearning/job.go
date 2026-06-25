@@ -59,7 +59,7 @@ import (
 //			foo, err := oss.NewDataSource(ctx, "foo", &oss.DataSourceArgs{
 //				Type:                  pulumi.String("prometheus"),
 //				Name:                  pulumi.String("prometheus-ds-test"),
-//				Uid:                   pulumi.String("prometheus-ds-test-uid"),
+//				Uid:                   pulumi.String("prom-ds-test-uid"),
 //				Url:                   pulumi.String("https://my-instance.com"),
 //				BasicAuthEnabled:      pulumi.Bool(true),
 //				BasicAuthUsername:     pulumi.String("username"),
@@ -125,7 +125,7 @@ import (
 //			foo, err := oss.NewDataSource(ctx, "foo", &oss.DataSourceArgs{
 //				Type:                  pulumi.String("prometheus"),
 //				Name:                  pulumi.String("prometheus-ds-test"),
-//				Uid:                   pulumi.String("prometheus-ds-test-uid"),
+//				Uid:                   pulumi.String("prom-ds-test-uid"),
 //				Url:                   pulumi.String("https://my-instance.com"),
 //				BasicAuthEnabled:      pulumi.Bool(true),
 //				BasicAuthUsername:     pulumi.String("username"),
@@ -198,7 +198,7 @@ import (
 //			foo, err := oss.NewDataSource(ctx, "foo", &oss.DataSourceArgs{
 //				Type:                  pulumi.String("prometheus"),
 //				Name:                  pulumi.String("prometheus-ds-test"),
-//				Uid:                   pulumi.String("prometheus-ds-test-uid"),
+//				Uid:                   pulumi.String("prom-ds-test-uid"),
 //				Url:                   pulumi.String("https://my-instance.com"),
 //				BasicAuthEnabled:      pulumi.Bool(true),
 //				BasicAuthUsername:     pulumi.String("username"),
@@ -267,7 +267,7 @@ import (
 //			foo, err := oss.NewDataSource(ctx, "foo", &oss.DataSourceArgs{
 //				Type:                  pulumi.String("prometheus"),
 //				Name:                  pulumi.String("prometheus-ds-test"),
-//				Uid:                   pulumi.String("prometheus-ds-test-uid"),
+//				Uid:                   pulumi.String("prom-ds-test-uid"),
 //				Url:                   pulumi.String("https://my-instance.com"),
 //				BasicAuthEnabled:      pulumi.Bool(true),
 //				BasicAuthUsername:     pulumi.String("username"),

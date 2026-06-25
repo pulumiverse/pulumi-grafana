@@ -1987,6 +1987,9 @@ func (o ProvisioningRepositoryOptionsPtrOutput) Overwrite() pulumi.BoolPtrOutput
 
 type ProvisioningRepositorySecure struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Private key used to sign commits the repository writes back. The format is selected by `spec.commit.signing_method`.
+	CommitSigningKey map[string]string `pulumi:"commitSigningKey"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Token for repository authentication.
 	Token map[string]string `pulumi:"token"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -2006,6 +2009,9 @@ type ProvisioningRepositorySecureInput interface {
 }
 
 type ProvisioningRepositorySecureArgs struct {
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Private key used to sign commits the repository writes back. The format is selected by `spec.commit.signing_method`.
+	CommitSigningKey pulumi.StringMapInput `pulumi:"commitSigningKey"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Token for repository authentication.
 	Token pulumi.StringMapInput `pulumi:"token"`
@@ -2092,6 +2098,12 @@ func (o ProvisioningRepositorySecureOutput) ToProvisioningRepositorySecurePtrOut
 }
 
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Private key used to sign commits the repository writes back. The format is selected by `spec.commit.signing_method`.
+func (o ProvisioningRepositorySecureOutput) CommitSigningKey() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySecure) map[string]string { return v.CommitSigningKey }).(pulumi.StringMapOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 // Token for repository authentication.
 func (o ProvisioningRepositorySecureOutput) Token() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ProvisioningRepositorySecure) map[string]string { return v.Token }).(pulumi.StringMapOutput)
@@ -2128,6 +2140,17 @@ func (o ProvisioningRepositorySecurePtrOutput) Elem() ProvisioningRepositorySecu
 }
 
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Private key used to sign commits the repository writes back. The format is selected by `spec.commit.signing_method`.
+func (o ProvisioningRepositorySecurePtrOutput) CommitSigningKey() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySecure) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.CommitSigningKey
+	}).(pulumi.StringMapOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 // Token for repository authentication.
 func (o ProvisioningRepositorySecurePtrOutput) Token() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ProvisioningRepositorySecure) map[string]string {
@@ -2152,6 +2175,10 @@ func (o ProvisioningRepositorySecurePtrOutput) WebhookSecret() pulumi.StringMapO
 type ProvisioningRepositorySpec struct {
 	// Bitbucket repository configuration.
 	Bitbucket *ProvisioningRepositorySpecBitbucket `pulumi:"bitbucket"`
+	// Branch naming options for the branch workflow.
+	Branch *ProvisioningRepositorySpecBranch `pulumi:"branch"`
+	// Commit message and signing options.
+	Commit *ProvisioningRepositorySpecCommit `pulumi:"commit"`
 	// Connection resource reference.
 	Connection *ProvisioningRepositorySpecConnection `pulumi:"connection"`
 	// Repository description.
@@ -2160,15 +2187,19 @@ type ProvisioningRepositorySpec struct {
 	Git *ProvisioningRepositorySpecGit `pulumi:"git"`
 	// GitHub repository configuration.
 	Github *ProvisioningRepositorySpecGithub `pulumi:"github"`
+	// GitHub Enterprise Server repository configuration.
+	GithubEnterprise *ProvisioningRepositorySpecGithubEnterprise `pulumi:"githubEnterprise"`
 	// GitLab repository configuration.
 	Gitlab *ProvisioningRepositorySpecGitlab `pulumi:"gitlab"`
 	// Local filesystem repository configuration.
 	Local *ProvisioningRepositorySpecLocal `pulumi:"local"`
+	// Pull request options for the branch workflow.
+	PullRequest *ProvisioningRepositorySpecPullRequest `pulumi:"pullRequest"`
 	// Sync configuration.
 	Sync *ProvisioningRepositorySpecSync `pulumi:"sync"`
 	// Display name shown in the UI.
 	Title string `pulumi:"title"`
-	// Repository provider type: local, github, git, bitbucket, or gitlab.
+	// Repository provider type: local, github, githubEnterprise, git, bitbucket, or gitlab.
 	Type string `pulumi:"type"`
 	// Webhook delivery configuration.
 	Webhook *ProvisioningRepositorySpecWebhook `pulumi:"webhook"`
@@ -2190,6 +2221,10 @@ type ProvisioningRepositorySpecInput interface {
 type ProvisioningRepositorySpecArgs struct {
 	// Bitbucket repository configuration.
 	Bitbucket ProvisioningRepositorySpecBitbucketPtrInput `pulumi:"bitbucket"`
+	// Branch naming options for the branch workflow.
+	Branch ProvisioningRepositorySpecBranchPtrInput `pulumi:"branch"`
+	// Commit message and signing options.
+	Commit ProvisioningRepositorySpecCommitPtrInput `pulumi:"commit"`
 	// Connection resource reference.
 	Connection ProvisioningRepositorySpecConnectionPtrInput `pulumi:"connection"`
 	// Repository description.
@@ -2198,15 +2233,19 @@ type ProvisioningRepositorySpecArgs struct {
 	Git ProvisioningRepositorySpecGitPtrInput `pulumi:"git"`
 	// GitHub repository configuration.
 	Github ProvisioningRepositorySpecGithubPtrInput `pulumi:"github"`
+	// GitHub Enterprise Server repository configuration.
+	GithubEnterprise ProvisioningRepositorySpecGithubEnterprisePtrInput `pulumi:"githubEnterprise"`
 	// GitLab repository configuration.
 	Gitlab ProvisioningRepositorySpecGitlabPtrInput `pulumi:"gitlab"`
 	// Local filesystem repository configuration.
 	Local ProvisioningRepositorySpecLocalPtrInput `pulumi:"local"`
+	// Pull request options for the branch workflow.
+	PullRequest ProvisioningRepositorySpecPullRequestPtrInput `pulumi:"pullRequest"`
 	// Sync configuration.
 	Sync ProvisioningRepositorySpecSyncPtrInput `pulumi:"sync"`
 	// Display name shown in the UI.
 	Title pulumi.StringInput `pulumi:"title"`
-	// Repository provider type: local, github, git, bitbucket, or gitlab.
+	// Repository provider type: local, github, githubEnterprise, git, bitbucket, or gitlab.
 	Type pulumi.StringInput `pulumi:"type"`
 	// Webhook delivery configuration.
 	Webhook ProvisioningRepositorySpecWebhookPtrInput `pulumi:"webhook"`
@@ -2296,6 +2335,16 @@ func (o ProvisioningRepositorySpecOutput) Bitbucket() ProvisioningRepositorySpec
 	return o.ApplyT(func(v ProvisioningRepositorySpec) *ProvisioningRepositorySpecBitbucket { return v.Bitbucket }).(ProvisioningRepositorySpecBitbucketPtrOutput)
 }
 
+// Branch naming options for the branch workflow.
+func (o ProvisioningRepositorySpecOutput) Branch() ProvisioningRepositorySpecBranchPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpec) *ProvisioningRepositorySpecBranch { return v.Branch }).(ProvisioningRepositorySpecBranchPtrOutput)
+}
+
+// Commit message and signing options.
+func (o ProvisioningRepositorySpecOutput) Commit() ProvisioningRepositorySpecCommitPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpec) *ProvisioningRepositorySpecCommit { return v.Commit }).(ProvisioningRepositorySpecCommitPtrOutput)
+}
+
 // Connection resource reference.
 func (o ProvisioningRepositorySpecOutput) Connection() ProvisioningRepositorySpecConnectionPtrOutput {
 	return o.ApplyT(func(v ProvisioningRepositorySpec) *ProvisioningRepositorySpecConnection { return v.Connection }).(ProvisioningRepositorySpecConnectionPtrOutput)
@@ -2316,6 +2365,13 @@ func (o ProvisioningRepositorySpecOutput) Github() ProvisioningRepositorySpecGit
 	return o.ApplyT(func(v ProvisioningRepositorySpec) *ProvisioningRepositorySpecGithub { return v.Github }).(ProvisioningRepositorySpecGithubPtrOutput)
 }
 
+// GitHub Enterprise Server repository configuration.
+func (o ProvisioningRepositorySpecOutput) GithubEnterprise() ProvisioningRepositorySpecGithubEnterprisePtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpec) *ProvisioningRepositorySpecGithubEnterprise {
+		return v.GithubEnterprise
+	}).(ProvisioningRepositorySpecGithubEnterprisePtrOutput)
+}
+
 // GitLab repository configuration.
 func (o ProvisioningRepositorySpecOutput) Gitlab() ProvisioningRepositorySpecGitlabPtrOutput {
 	return o.ApplyT(func(v ProvisioningRepositorySpec) *ProvisioningRepositorySpecGitlab { return v.Gitlab }).(ProvisioningRepositorySpecGitlabPtrOutput)
@@ -2324,6 +2380,11 @@ func (o ProvisioningRepositorySpecOutput) Gitlab() ProvisioningRepositorySpecGit
 // Local filesystem repository configuration.
 func (o ProvisioningRepositorySpecOutput) Local() ProvisioningRepositorySpecLocalPtrOutput {
 	return o.ApplyT(func(v ProvisioningRepositorySpec) *ProvisioningRepositorySpecLocal { return v.Local }).(ProvisioningRepositorySpecLocalPtrOutput)
+}
+
+// Pull request options for the branch workflow.
+func (o ProvisioningRepositorySpecOutput) PullRequest() ProvisioningRepositorySpecPullRequestPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpec) *ProvisioningRepositorySpecPullRequest { return v.PullRequest }).(ProvisioningRepositorySpecPullRequestPtrOutput)
 }
 
 // Sync configuration.
@@ -2336,7 +2397,7 @@ func (o ProvisioningRepositorySpecOutput) Title() pulumi.StringOutput {
 	return o.ApplyT(func(v ProvisioningRepositorySpec) string { return v.Title }).(pulumi.StringOutput)
 }
 
-// Repository provider type: local, github, git, bitbucket, or gitlab.
+// Repository provider type: local, github, githubEnterprise, git, bitbucket, or gitlab.
 func (o ProvisioningRepositorySpecOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v ProvisioningRepositorySpec) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -2385,6 +2446,26 @@ func (o ProvisioningRepositorySpecPtrOutput) Bitbucket() ProvisioningRepositoryS
 	}).(ProvisioningRepositorySpecBitbucketPtrOutput)
 }
 
+// Branch naming options for the branch workflow.
+func (o ProvisioningRepositorySpecPtrOutput) Branch() ProvisioningRepositorySpecBranchPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpec) *ProvisioningRepositorySpecBranch {
+		if v == nil {
+			return nil
+		}
+		return v.Branch
+	}).(ProvisioningRepositorySpecBranchPtrOutput)
+}
+
+// Commit message and signing options.
+func (o ProvisioningRepositorySpecPtrOutput) Commit() ProvisioningRepositorySpecCommitPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpec) *ProvisioningRepositorySpecCommit {
+		if v == nil {
+			return nil
+		}
+		return v.Commit
+	}).(ProvisioningRepositorySpecCommitPtrOutput)
+}
+
 // Connection resource reference.
 func (o ProvisioningRepositorySpecPtrOutput) Connection() ProvisioningRepositorySpecConnectionPtrOutput {
 	return o.ApplyT(func(v *ProvisioningRepositorySpec) *ProvisioningRepositorySpecConnection {
@@ -2425,6 +2506,16 @@ func (o ProvisioningRepositorySpecPtrOutput) Github() ProvisioningRepositorySpec
 	}).(ProvisioningRepositorySpecGithubPtrOutput)
 }
 
+// GitHub Enterprise Server repository configuration.
+func (o ProvisioningRepositorySpecPtrOutput) GithubEnterprise() ProvisioningRepositorySpecGithubEnterprisePtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpec) *ProvisioningRepositorySpecGithubEnterprise {
+		if v == nil {
+			return nil
+		}
+		return v.GithubEnterprise
+	}).(ProvisioningRepositorySpecGithubEnterprisePtrOutput)
+}
+
 // GitLab repository configuration.
 func (o ProvisioningRepositorySpecPtrOutput) Gitlab() ProvisioningRepositorySpecGitlabPtrOutput {
 	return o.ApplyT(func(v *ProvisioningRepositorySpec) *ProvisioningRepositorySpecGitlab {
@@ -2443,6 +2534,16 @@ func (o ProvisioningRepositorySpecPtrOutput) Local() ProvisioningRepositorySpecL
 		}
 		return v.Local
 	}).(ProvisioningRepositorySpecLocalPtrOutput)
+}
+
+// Pull request options for the branch workflow.
+func (o ProvisioningRepositorySpecPtrOutput) PullRequest() ProvisioningRepositorySpecPullRequestPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpec) *ProvisioningRepositorySpecPullRequest {
+		if v == nil {
+			return nil
+		}
+		return v.PullRequest
+	}).(ProvisioningRepositorySpecPullRequestPtrOutput)
 }
 
 // Sync configuration.
@@ -2465,7 +2566,7 @@ func (o ProvisioningRepositorySpecPtrOutput) Title() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Repository provider type: local, github, git, bitbucket, or gitlab.
+// Repository provider type: local, github, githubEnterprise, git, bitbucket, or gitlab.
 func (o ProvisioningRepositorySpecPtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProvisioningRepositorySpec) *string {
 		if v == nil {
@@ -2686,6 +2787,394 @@ func (o ProvisioningRepositorySpecBitbucketPtrOutput) Url() pulumi.StringPtrOutp
 			return nil
 		}
 		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+type ProvisioningRepositorySpecBranch struct {
+	// When true, the branch name field in Save drawers is read-only.
+	EnforceTemplate *bool `pulumi:"enforceTemplate"`
+	// Template for the branch name created in the branch workflow.
+	NameTemplate *string `pulumi:"nameTemplate"`
+}
+
+// ProvisioningRepositorySpecBranchInput is an input type that accepts ProvisioningRepositorySpecBranchArgs and ProvisioningRepositorySpecBranchOutput values.
+// You can construct a concrete instance of `ProvisioningRepositorySpecBranchInput` via:
+//
+//	ProvisioningRepositorySpecBranchArgs{...}
+type ProvisioningRepositorySpecBranchInput interface {
+	pulumi.Input
+
+	ToProvisioningRepositorySpecBranchOutput() ProvisioningRepositorySpecBranchOutput
+	ToProvisioningRepositorySpecBranchOutputWithContext(context.Context) ProvisioningRepositorySpecBranchOutput
+}
+
+type ProvisioningRepositorySpecBranchArgs struct {
+	// When true, the branch name field in Save drawers is read-only.
+	EnforceTemplate pulumi.BoolPtrInput `pulumi:"enforceTemplate"`
+	// Template for the branch name created in the branch workflow.
+	NameTemplate pulumi.StringPtrInput `pulumi:"nameTemplate"`
+}
+
+func (ProvisioningRepositorySpecBranchArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProvisioningRepositorySpecBranch)(nil)).Elem()
+}
+
+func (i ProvisioningRepositorySpecBranchArgs) ToProvisioningRepositorySpecBranchOutput() ProvisioningRepositorySpecBranchOutput {
+	return i.ToProvisioningRepositorySpecBranchOutputWithContext(context.Background())
+}
+
+func (i ProvisioningRepositorySpecBranchArgs) ToProvisioningRepositorySpecBranchOutputWithContext(ctx context.Context) ProvisioningRepositorySpecBranchOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProvisioningRepositorySpecBranchOutput)
+}
+
+func (i ProvisioningRepositorySpecBranchArgs) ToProvisioningRepositorySpecBranchPtrOutput() ProvisioningRepositorySpecBranchPtrOutput {
+	return i.ToProvisioningRepositorySpecBranchPtrOutputWithContext(context.Background())
+}
+
+func (i ProvisioningRepositorySpecBranchArgs) ToProvisioningRepositorySpecBranchPtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecBranchPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProvisioningRepositorySpecBranchOutput).ToProvisioningRepositorySpecBranchPtrOutputWithContext(ctx)
+}
+
+// ProvisioningRepositorySpecBranchPtrInput is an input type that accepts ProvisioningRepositorySpecBranchArgs, ProvisioningRepositorySpecBranchPtr and ProvisioningRepositorySpecBranchPtrOutput values.
+// You can construct a concrete instance of `ProvisioningRepositorySpecBranchPtrInput` via:
+//
+//	        ProvisioningRepositorySpecBranchArgs{...}
+//
+//	or:
+//
+//	        nil
+type ProvisioningRepositorySpecBranchPtrInput interface {
+	pulumi.Input
+
+	ToProvisioningRepositorySpecBranchPtrOutput() ProvisioningRepositorySpecBranchPtrOutput
+	ToProvisioningRepositorySpecBranchPtrOutputWithContext(context.Context) ProvisioningRepositorySpecBranchPtrOutput
+}
+
+type provisioningRepositorySpecBranchPtrType ProvisioningRepositorySpecBranchArgs
+
+func ProvisioningRepositorySpecBranchPtr(v *ProvisioningRepositorySpecBranchArgs) ProvisioningRepositorySpecBranchPtrInput {
+	return (*provisioningRepositorySpecBranchPtrType)(v)
+}
+
+func (*provisioningRepositorySpecBranchPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProvisioningRepositorySpecBranch)(nil)).Elem()
+}
+
+func (i *provisioningRepositorySpecBranchPtrType) ToProvisioningRepositorySpecBranchPtrOutput() ProvisioningRepositorySpecBranchPtrOutput {
+	return i.ToProvisioningRepositorySpecBranchPtrOutputWithContext(context.Background())
+}
+
+func (i *provisioningRepositorySpecBranchPtrType) ToProvisioningRepositorySpecBranchPtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecBranchPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProvisioningRepositorySpecBranchPtrOutput)
+}
+
+type ProvisioningRepositorySpecBranchOutput struct{ *pulumi.OutputState }
+
+func (ProvisioningRepositorySpecBranchOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProvisioningRepositorySpecBranch)(nil)).Elem()
+}
+
+func (o ProvisioningRepositorySpecBranchOutput) ToProvisioningRepositorySpecBranchOutput() ProvisioningRepositorySpecBranchOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecBranchOutput) ToProvisioningRepositorySpecBranchOutputWithContext(ctx context.Context) ProvisioningRepositorySpecBranchOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecBranchOutput) ToProvisioningRepositorySpecBranchPtrOutput() ProvisioningRepositorySpecBranchPtrOutput {
+	return o.ToProvisioningRepositorySpecBranchPtrOutputWithContext(context.Background())
+}
+
+func (o ProvisioningRepositorySpecBranchOutput) ToProvisioningRepositorySpecBranchPtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecBranchPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProvisioningRepositorySpecBranch) *ProvisioningRepositorySpecBranch {
+		return &v
+	}).(ProvisioningRepositorySpecBranchPtrOutput)
+}
+
+// When true, the branch name field in Save drawers is read-only.
+func (o ProvisioningRepositorySpecBranchOutput) EnforceTemplate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpecBranch) *bool { return v.EnforceTemplate }).(pulumi.BoolPtrOutput)
+}
+
+// Template for the branch name created in the branch workflow.
+func (o ProvisioningRepositorySpecBranchOutput) NameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpecBranch) *string { return v.NameTemplate }).(pulumi.StringPtrOutput)
+}
+
+type ProvisioningRepositorySpecBranchPtrOutput struct{ *pulumi.OutputState }
+
+func (ProvisioningRepositorySpecBranchPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProvisioningRepositorySpecBranch)(nil)).Elem()
+}
+
+func (o ProvisioningRepositorySpecBranchPtrOutput) ToProvisioningRepositorySpecBranchPtrOutput() ProvisioningRepositorySpecBranchPtrOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecBranchPtrOutput) ToProvisioningRepositorySpecBranchPtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecBranchPtrOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecBranchPtrOutput) Elem() ProvisioningRepositorySpecBranchOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecBranch) ProvisioningRepositorySpecBranch {
+		if v != nil {
+			return *v
+		}
+		var ret ProvisioningRepositorySpecBranch
+		return ret
+	}).(ProvisioningRepositorySpecBranchOutput)
+}
+
+// When true, the branch name field in Save drawers is read-only.
+func (o ProvisioningRepositorySpecBranchPtrOutput) EnforceTemplate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecBranch) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.EnforceTemplate
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Template for the branch name created in the branch workflow.
+func (o ProvisioningRepositorySpecBranchPtrOutput) NameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecBranch) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NameTemplate
+	}).(pulumi.StringPtrOutput)
+}
+
+type ProvisioningRepositorySpecCommit struct {
+	// When true, the commit message field in Save drawers is pre-filled from the template and rendered read-only.
+	EnforceTemplate *bool `pulumi:"enforceTemplate"`
+	// Email used as the commit signer. Defaults to "noreply@grafana.com" when empty.
+	SignerEmail *string `pulumi:"signerEmail"`
+	// Name used as the commit signer. Defaults to "Grafana" when empty.
+	SignerName *string `pulumi:"signerName"`
+	// Method used to sign commits with the key in `secure.commit_signing_key`: gpg, ssh, or smime. When empty, commits are not signed.
+	SigningMethod *string `pulumi:"signingMethod"`
+	// Template for commit messages produced by single-resource UI operations.
+	SingleResourceMessageTemplate *string `pulumi:"singleResourceMessageTemplate"`
+	// PEM-encoded X.509 certificate paired with `secure.commit_signing_key` when `signingMethod` is smime. This is public, not a secret.
+	SmimeCertificate *string `pulumi:"smimeCertificate"`
+}
+
+// ProvisioningRepositorySpecCommitInput is an input type that accepts ProvisioningRepositorySpecCommitArgs and ProvisioningRepositorySpecCommitOutput values.
+// You can construct a concrete instance of `ProvisioningRepositorySpecCommitInput` via:
+//
+//	ProvisioningRepositorySpecCommitArgs{...}
+type ProvisioningRepositorySpecCommitInput interface {
+	pulumi.Input
+
+	ToProvisioningRepositorySpecCommitOutput() ProvisioningRepositorySpecCommitOutput
+	ToProvisioningRepositorySpecCommitOutputWithContext(context.Context) ProvisioningRepositorySpecCommitOutput
+}
+
+type ProvisioningRepositorySpecCommitArgs struct {
+	// When true, the commit message field in Save drawers is pre-filled from the template and rendered read-only.
+	EnforceTemplate pulumi.BoolPtrInput `pulumi:"enforceTemplate"`
+	// Email used as the commit signer. Defaults to "noreply@grafana.com" when empty.
+	SignerEmail pulumi.StringPtrInput `pulumi:"signerEmail"`
+	// Name used as the commit signer. Defaults to "Grafana" when empty.
+	SignerName pulumi.StringPtrInput `pulumi:"signerName"`
+	// Method used to sign commits with the key in `secure.commit_signing_key`: gpg, ssh, or smime. When empty, commits are not signed.
+	SigningMethod pulumi.StringPtrInput `pulumi:"signingMethod"`
+	// Template for commit messages produced by single-resource UI operations.
+	SingleResourceMessageTemplate pulumi.StringPtrInput `pulumi:"singleResourceMessageTemplate"`
+	// PEM-encoded X.509 certificate paired with `secure.commit_signing_key` when `signingMethod` is smime. This is public, not a secret.
+	SmimeCertificate pulumi.StringPtrInput `pulumi:"smimeCertificate"`
+}
+
+func (ProvisioningRepositorySpecCommitArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProvisioningRepositorySpecCommit)(nil)).Elem()
+}
+
+func (i ProvisioningRepositorySpecCommitArgs) ToProvisioningRepositorySpecCommitOutput() ProvisioningRepositorySpecCommitOutput {
+	return i.ToProvisioningRepositorySpecCommitOutputWithContext(context.Background())
+}
+
+func (i ProvisioningRepositorySpecCommitArgs) ToProvisioningRepositorySpecCommitOutputWithContext(ctx context.Context) ProvisioningRepositorySpecCommitOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProvisioningRepositorySpecCommitOutput)
+}
+
+func (i ProvisioningRepositorySpecCommitArgs) ToProvisioningRepositorySpecCommitPtrOutput() ProvisioningRepositorySpecCommitPtrOutput {
+	return i.ToProvisioningRepositorySpecCommitPtrOutputWithContext(context.Background())
+}
+
+func (i ProvisioningRepositorySpecCommitArgs) ToProvisioningRepositorySpecCommitPtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecCommitPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProvisioningRepositorySpecCommitOutput).ToProvisioningRepositorySpecCommitPtrOutputWithContext(ctx)
+}
+
+// ProvisioningRepositorySpecCommitPtrInput is an input type that accepts ProvisioningRepositorySpecCommitArgs, ProvisioningRepositorySpecCommitPtr and ProvisioningRepositorySpecCommitPtrOutput values.
+// You can construct a concrete instance of `ProvisioningRepositorySpecCommitPtrInput` via:
+//
+//	        ProvisioningRepositorySpecCommitArgs{...}
+//
+//	or:
+//
+//	        nil
+type ProvisioningRepositorySpecCommitPtrInput interface {
+	pulumi.Input
+
+	ToProvisioningRepositorySpecCommitPtrOutput() ProvisioningRepositorySpecCommitPtrOutput
+	ToProvisioningRepositorySpecCommitPtrOutputWithContext(context.Context) ProvisioningRepositorySpecCommitPtrOutput
+}
+
+type provisioningRepositorySpecCommitPtrType ProvisioningRepositorySpecCommitArgs
+
+func ProvisioningRepositorySpecCommitPtr(v *ProvisioningRepositorySpecCommitArgs) ProvisioningRepositorySpecCommitPtrInput {
+	return (*provisioningRepositorySpecCommitPtrType)(v)
+}
+
+func (*provisioningRepositorySpecCommitPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProvisioningRepositorySpecCommit)(nil)).Elem()
+}
+
+func (i *provisioningRepositorySpecCommitPtrType) ToProvisioningRepositorySpecCommitPtrOutput() ProvisioningRepositorySpecCommitPtrOutput {
+	return i.ToProvisioningRepositorySpecCommitPtrOutputWithContext(context.Background())
+}
+
+func (i *provisioningRepositorySpecCommitPtrType) ToProvisioningRepositorySpecCommitPtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecCommitPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProvisioningRepositorySpecCommitPtrOutput)
+}
+
+type ProvisioningRepositorySpecCommitOutput struct{ *pulumi.OutputState }
+
+func (ProvisioningRepositorySpecCommitOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProvisioningRepositorySpecCommit)(nil)).Elem()
+}
+
+func (o ProvisioningRepositorySpecCommitOutput) ToProvisioningRepositorySpecCommitOutput() ProvisioningRepositorySpecCommitOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecCommitOutput) ToProvisioningRepositorySpecCommitOutputWithContext(ctx context.Context) ProvisioningRepositorySpecCommitOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecCommitOutput) ToProvisioningRepositorySpecCommitPtrOutput() ProvisioningRepositorySpecCommitPtrOutput {
+	return o.ToProvisioningRepositorySpecCommitPtrOutputWithContext(context.Background())
+}
+
+func (o ProvisioningRepositorySpecCommitOutput) ToProvisioningRepositorySpecCommitPtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecCommitPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProvisioningRepositorySpecCommit) *ProvisioningRepositorySpecCommit {
+		return &v
+	}).(ProvisioningRepositorySpecCommitPtrOutput)
+}
+
+// When true, the commit message field in Save drawers is pre-filled from the template and rendered read-only.
+func (o ProvisioningRepositorySpecCommitOutput) EnforceTemplate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpecCommit) *bool { return v.EnforceTemplate }).(pulumi.BoolPtrOutput)
+}
+
+// Email used as the commit signer. Defaults to "noreply@grafana.com" when empty.
+func (o ProvisioningRepositorySpecCommitOutput) SignerEmail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpecCommit) *string { return v.SignerEmail }).(pulumi.StringPtrOutput)
+}
+
+// Name used as the commit signer. Defaults to "Grafana" when empty.
+func (o ProvisioningRepositorySpecCommitOutput) SignerName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpecCommit) *string { return v.SignerName }).(pulumi.StringPtrOutput)
+}
+
+// Method used to sign commits with the key in `secure.commit_signing_key`: gpg, ssh, or smime. When empty, commits are not signed.
+func (o ProvisioningRepositorySpecCommitOutput) SigningMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpecCommit) *string { return v.SigningMethod }).(pulumi.StringPtrOutput)
+}
+
+// Template for commit messages produced by single-resource UI operations.
+func (o ProvisioningRepositorySpecCommitOutput) SingleResourceMessageTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpecCommit) *string { return v.SingleResourceMessageTemplate }).(pulumi.StringPtrOutput)
+}
+
+// PEM-encoded X.509 certificate paired with `secure.commit_signing_key` when `signingMethod` is smime. This is public, not a secret.
+func (o ProvisioningRepositorySpecCommitOutput) SmimeCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpecCommit) *string { return v.SmimeCertificate }).(pulumi.StringPtrOutput)
+}
+
+type ProvisioningRepositorySpecCommitPtrOutput struct{ *pulumi.OutputState }
+
+func (ProvisioningRepositorySpecCommitPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProvisioningRepositorySpecCommit)(nil)).Elem()
+}
+
+func (o ProvisioningRepositorySpecCommitPtrOutput) ToProvisioningRepositorySpecCommitPtrOutput() ProvisioningRepositorySpecCommitPtrOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecCommitPtrOutput) ToProvisioningRepositorySpecCommitPtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecCommitPtrOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecCommitPtrOutput) Elem() ProvisioningRepositorySpecCommitOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecCommit) ProvisioningRepositorySpecCommit {
+		if v != nil {
+			return *v
+		}
+		var ret ProvisioningRepositorySpecCommit
+		return ret
+	}).(ProvisioningRepositorySpecCommitOutput)
+}
+
+// When true, the commit message field in Save drawers is pre-filled from the template and rendered read-only.
+func (o ProvisioningRepositorySpecCommitPtrOutput) EnforceTemplate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecCommit) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.EnforceTemplate
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Email used as the commit signer. Defaults to "noreply@grafana.com" when empty.
+func (o ProvisioningRepositorySpecCommitPtrOutput) SignerEmail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecCommit) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SignerEmail
+	}).(pulumi.StringPtrOutput)
+}
+
+// Name used as the commit signer. Defaults to "Grafana" when empty.
+func (o ProvisioningRepositorySpecCommitPtrOutput) SignerName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecCommit) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SignerName
+	}).(pulumi.StringPtrOutput)
+}
+
+// Method used to sign commits with the key in `secure.commit_signing_key`: gpg, ssh, or smime. When empty, commits are not signed.
+func (o ProvisioningRepositorySpecCommitPtrOutput) SigningMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecCommit) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SigningMethod
+	}).(pulumi.StringPtrOutput)
+}
+
+// Template for commit messages produced by single-resource UI operations.
+func (o ProvisioningRepositorySpecCommitPtrOutput) SingleResourceMessageTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecCommit) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SingleResourceMessageTemplate
+	}).(pulumi.StringPtrOutput)
+}
+
+// PEM-encoded X.509 certificate paired with `secure.commit_signing_key` when `signingMethod` is smime. This is public, not a secret.
+func (o ProvisioningRepositorySpecCommitPtrOutput) SmimeCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecCommit) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SmimeCertificate
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -3214,6 +3703,219 @@ func (o ProvisioningRepositorySpecGithubPtrOutput) Url() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
+type ProvisioningRepositorySpecGithubEnterprise struct {
+	// Branch to sync.
+	Branch *string `pulumi:"branch"`
+	// Whether to generate dashboard previews.
+	GenerateDashboardPreviews *bool `pulumi:"generateDashboardPreviews"`
+	// Optional subdirectory path.
+	Path *string `pulumi:"path"`
+	// Base URL of the self-managed GitHub Enterprise Server instance.
+	ServerUrl *string `pulumi:"serverUrl"`
+	// Repository URL.
+	Url *string `pulumi:"url"`
+}
+
+// ProvisioningRepositorySpecGithubEnterpriseInput is an input type that accepts ProvisioningRepositorySpecGithubEnterpriseArgs and ProvisioningRepositorySpecGithubEnterpriseOutput values.
+// You can construct a concrete instance of `ProvisioningRepositorySpecGithubEnterpriseInput` via:
+//
+//	ProvisioningRepositorySpecGithubEnterpriseArgs{...}
+type ProvisioningRepositorySpecGithubEnterpriseInput interface {
+	pulumi.Input
+
+	ToProvisioningRepositorySpecGithubEnterpriseOutput() ProvisioningRepositorySpecGithubEnterpriseOutput
+	ToProvisioningRepositorySpecGithubEnterpriseOutputWithContext(context.Context) ProvisioningRepositorySpecGithubEnterpriseOutput
+}
+
+type ProvisioningRepositorySpecGithubEnterpriseArgs struct {
+	// Branch to sync.
+	Branch pulumi.StringPtrInput `pulumi:"branch"`
+	// Whether to generate dashboard previews.
+	GenerateDashboardPreviews pulumi.BoolPtrInput `pulumi:"generateDashboardPreviews"`
+	// Optional subdirectory path.
+	Path pulumi.StringPtrInput `pulumi:"path"`
+	// Base URL of the self-managed GitHub Enterprise Server instance.
+	ServerUrl pulumi.StringPtrInput `pulumi:"serverUrl"`
+	// Repository URL.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+}
+
+func (ProvisioningRepositorySpecGithubEnterpriseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProvisioningRepositorySpecGithubEnterprise)(nil)).Elem()
+}
+
+func (i ProvisioningRepositorySpecGithubEnterpriseArgs) ToProvisioningRepositorySpecGithubEnterpriseOutput() ProvisioningRepositorySpecGithubEnterpriseOutput {
+	return i.ToProvisioningRepositorySpecGithubEnterpriseOutputWithContext(context.Background())
+}
+
+func (i ProvisioningRepositorySpecGithubEnterpriseArgs) ToProvisioningRepositorySpecGithubEnterpriseOutputWithContext(ctx context.Context) ProvisioningRepositorySpecGithubEnterpriseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProvisioningRepositorySpecGithubEnterpriseOutput)
+}
+
+func (i ProvisioningRepositorySpecGithubEnterpriseArgs) ToProvisioningRepositorySpecGithubEnterprisePtrOutput() ProvisioningRepositorySpecGithubEnterprisePtrOutput {
+	return i.ToProvisioningRepositorySpecGithubEnterprisePtrOutputWithContext(context.Background())
+}
+
+func (i ProvisioningRepositorySpecGithubEnterpriseArgs) ToProvisioningRepositorySpecGithubEnterprisePtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecGithubEnterprisePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProvisioningRepositorySpecGithubEnterpriseOutput).ToProvisioningRepositorySpecGithubEnterprisePtrOutputWithContext(ctx)
+}
+
+// ProvisioningRepositorySpecGithubEnterprisePtrInput is an input type that accepts ProvisioningRepositorySpecGithubEnterpriseArgs, ProvisioningRepositorySpecGithubEnterprisePtr and ProvisioningRepositorySpecGithubEnterprisePtrOutput values.
+// You can construct a concrete instance of `ProvisioningRepositorySpecGithubEnterprisePtrInput` via:
+//
+//	        ProvisioningRepositorySpecGithubEnterpriseArgs{...}
+//
+//	or:
+//
+//	        nil
+type ProvisioningRepositorySpecGithubEnterprisePtrInput interface {
+	pulumi.Input
+
+	ToProvisioningRepositorySpecGithubEnterprisePtrOutput() ProvisioningRepositorySpecGithubEnterprisePtrOutput
+	ToProvisioningRepositorySpecGithubEnterprisePtrOutputWithContext(context.Context) ProvisioningRepositorySpecGithubEnterprisePtrOutput
+}
+
+type provisioningRepositorySpecGithubEnterprisePtrType ProvisioningRepositorySpecGithubEnterpriseArgs
+
+func ProvisioningRepositorySpecGithubEnterprisePtr(v *ProvisioningRepositorySpecGithubEnterpriseArgs) ProvisioningRepositorySpecGithubEnterprisePtrInput {
+	return (*provisioningRepositorySpecGithubEnterprisePtrType)(v)
+}
+
+func (*provisioningRepositorySpecGithubEnterprisePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProvisioningRepositorySpecGithubEnterprise)(nil)).Elem()
+}
+
+func (i *provisioningRepositorySpecGithubEnterprisePtrType) ToProvisioningRepositorySpecGithubEnterprisePtrOutput() ProvisioningRepositorySpecGithubEnterprisePtrOutput {
+	return i.ToProvisioningRepositorySpecGithubEnterprisePtrOutputWithContext(context.Background())
+}
+
+func (i *provisioningRepositorySpecGithubEnterprisePtrType) ToProvisioningRepositorySpecGithubEnterprisePtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecGithubEnterprisePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProvisioningRepositorySpecGithubEnterprisePtrOutput)
+}
+
+type ProvisioningRepositorySpecGithubEnterpriseOutput struct{ *pulumi.OutputState }
+
+func (ProvisioningRepositorySpecGithubEnterpriseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProvisioningRepositorySpecGithubEnterprise)(nil)).Elem()
+}
+
+func (o ProvisioningRepositorySpecGithubEnterpriseOutput) ToProvisioningRepositorySpecGithubEnterpriseOutput() ProvisioningRepositorySpecGithubEnterpriseOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecGithubEnterpriseOutput) ToProvisioningRepositorySpecGithubEnterpriseOutputWithContext(ctx context.Context) ProvisioningRepositorySpecGithubEnterpriseOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecGithubEnterpriseOutput) ToProvisioningRepositorySpecGithubEnterprisePtrOutput() ProvisioningRepositorySpecGithubEnterprisePtrOutput {
+	return o.ToProvisioningRepositorySpecGithubEnterprisePtrOutputWithContext(context.Background())
+}
+
+func (o ProvisioningRepositorySpecGithubEnterpriseOutput) ToProvisioningRepositorySpecGithubEnterprisePtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecGithubEnterprisePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProvisioningRepositorySpecGithubEnterprise) *ProvisioningRepositorySpecGithubEnterprise {
+		return &v
+	}).(ProvisioningRepositorySpecGithubEnterprisePtrOutput)
+}
+
+// Branch to sync.
+func (o ProvisioningRepositorySpecGithubEnterpriseOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpecGithubEnterprise) *string { return v.Branch }).(pulumi.StringPtrOutput)
+}
+
+// Whether to generate dashboard previews.
+func (o ProvisioningRepositorySpecGithubEnterpriseOutput) GenerateDashboardPreviews() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpecGithubEnterprise) *bool { return v.GenerateDashboardPreviews }).(pulumi.BoolPtrOutput)
+}
+
+// Optional subdirectory path.
+func (o ProvisioningRepositorySpecGithubEnterpriseOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpecGithubEnterprise) *string { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// Base URL of the self-managed GitHub Enterprise Server instance.
+func (o ProvisioningRepositorySpecGithubEnterpriseOutput) ServerUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpecGithubEnterprise) *string { return v.ServerUrl }).(pulumi.StringPtrOutput)
+}
+
+// Repository URL.
+func (o ProvisioningRepositorySpecGithubEnterpriseOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpecGithubEnterprise) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+type ProvisioningRepositorySpecGithubEnterprisePtrOutput struct{ *pulumi.OutputState }
+
+func (ProvisioningRepositorySpecGithubEnterprisePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProvisioningRepositorySpecGithubEnterprise)(nil)).Elem()
+}
+
+func (o ProvisioningRepositorySpecGithubEnterprisePtrOutput) ToProvisioningRepositorySpecGithubEnterprisePtrOutput() ProvisioningRepositorySpecGithubEnterprisePtrOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecGithubEnterprisePtrOutput) ToProvisioningRepositorySpecGithubEnterprisePtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecGithubEnterprisePtrOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecGithubEnterprisePtrOutput) Elem() ProvisioningRepositorySpecGithubEnterpriseOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecGithubEnterprise) ProvisioningRepositorySpecGithubEnterprise {
+		if v != nil {
+			return *v
+		}
+		var ret ProvisioningRepositorySpecGithubEnterprise
+		return ret
+	}).(ProvisioningRepositorySpecGithubEnterpriseOutput)
+}
+
+// Branch to sync.
+func (o ProvisioningRepositorySpecGithubEnterprisePtrOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecGithubEnterprise) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Branch
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether to generate dashboard previews.
+func (o ProvisioningRepositorySpecGithubEnterprisePtrOutput) GenerateDashboardPreviews() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecGithubEnterprise) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.GenerateDashboardPreviews
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Optional subdirectory path.
+func (o ProvisioningRepositorySpecGithubEnterprisePtrOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecGithubEnterprise) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Path
+	}).(pulumi.StringPtrOutput)
+}
+
+// Base URL of the self-managed GitHub Enterprise Server instance.
+func (o ProvisioningRepositorySpecGithubEnterprisePtrOutput) ServerUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecGithubEnterprise) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ServerUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// Repository URL.
+func (o ProvisioningRepositorySpecGithubEnterprisePtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecGithubEnterprise) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
 type ProvisioningRepositorySpecGitlab struct {
 	// Branch to sync.
 	Branch *string `pulumi:"branch"`
@@ -3526,12 +4228,168 @@ func (o ProvisioningRepositorySpecLocalPtrOutput) Path() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
+type ProvisioningRepositorySpecPullRequest struct {
+	// When true, the pull request title field in Save drawers is read-only.
+	EnforceTemplate *bool `pulumi:"enforceTemplate"`
+	// Template for pull request titles.
+	TitleTemplate *string `pulumi:"titleTemplate"`
+}
+
+// ProvisioningRepositorySpecPullRequestInput is an input type that accepts ProvisioningRepositorySpecPullRequestArgs and ProvisioningRepositorySpecPullRequestOutput values.
+// You can construct a concrete instance of `ProvisioningRepositorySpecPullRequestInput` via:
+//
+//	ProvisioningRepositorySpecPullRequestArgs{...}
+type ProvisioningRepositorySpecPullRequestInput interface {
+	pulumi.Input
+
+	ToProvisioningRepositorySpecPullRequestOutput() ProvisioningRepositorySpecPullRequestOutput
+	ToProvisioningRepositorySpecPullRequestOutputWithContext(context.Context) ProvisioningRepositorySpecPullRequestOutput
+}
+
+type ProvisioningRepositorySpecPullRequestArgs struct {
+	// When true, the pull request title field in Save drawers is read-only.
+	EnforceTemplate pulumi.BoolPtrInput `pulumi:"enforceTemplate"`
+	// Template for pull request titles.
+	TitleTemplate pulumi.StringPtrInput `pulumi:"titleTemplate"`
+}
+
+func (ProvisioningRepositorySpecPullRequestArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProvisioningRepositorySpecPullRequest)(nil)).Elem()
+}
+
+func (i ProvisioningRepositorySpecPullRequestArgs) ToProvisioningRepositorySpecPullRequestOutput() ProvisioningRepositorySpecPullRequestOutput {
+	return i.ToProvisioningRepositorySpecPullRequestOutputWithContext(context.Background())
+}
+
+func (i ProvisioningRepositorySpecPullRequestArgs) ToProvisioningRepositorySpecPullRequestOutputWithContext(ctx context.Context) ProvisioningRepositorySpecPullRequestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProvisioningRepositorySpecPullRequestOutput)
+}
+
+func (i ProvisioningRepositorySpecPullRequestArgs) ToProvisioningRepositorySpecPullRequestPtrOutput() ProvisioningRepositorySpecPullRequestPtrOutput {
+	return i.ToProvisioningRepositorySpecPullRequestPtrOutputWithContext(context.Background())
+}
+
+func (i ProvisioningRepositorySpecPullRequestArgs) ToProvisioningRepositorySpecPullRequestPtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecPullRequestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProvisioningRepositorySpecPullRequestOutput).ToProvisioningRepositorySpecPullRequestPtrOutputWithContext(ctx)
+}
+
+// ProvisioningRepositorySpecPullRequestPtrInput is an input type that accepts ProvisioningRepositorySpecPullRequestArgs, ProvisioningRepositorySpecPullRequestPtr and ProvisioningRepositorySpecPullRequestPtrOutput values.
+// You can construct a concrete instance of `ProvisioningRepositorySpecPullRequestPtrInput` via:
+//
+//	        ProvisioningRepositorySpecPullRequestArgs{...}
+//
+//	or:
+//
+//	        nil
+type ProvisioningRepositorySpecPullRequestPtrInput interface {
+	pulumi.Input
+
+	ToProvisioningRepositorySpecPullRequestPtrOutput() ProvisioningRepositorySpecPullRequestPtrOutput
+	ToProvisioningRepositorySpecPullRequestPtrOutputWithContext(context.Context) ProvisioningRepositorySpecPullRequestPtrOutput
+}
+
+type provisioningRepositorySpecPullRequestPtrType ProvisioningRepositorySpecPullRequestArgs
+
+func ProvisioningRepositorySpecPullRequestPtr(v *ProvisioningRepositorySpecPullRequestArgs) ProvisioningRepositorySpecPullRequestPtrInput {
+	return (*provisioningRepositorySpecPullRequestPtrType)(v)
+}
+
+func (*provisioningRepositorySpecPullRequestPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProvisioningRepositorySpecPullRequest)(nil)).Elem()
+}
+
+func (i *provisioningRepositorySpecPullRequestPtrType) ToProvisioningRepositorySpecPullRequestPtrOutput() ProvisioningRepositorySpecPullRequestPtrOutput {
+	return i.ToProvisioningRepositorySpecPullRequestPtrOutputWithContext(context.Background())
+}
+
+func (i *provisioningRepositorySpecPullRequestPtrType) ToProvisioningRepositorySpecPullRequestPtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecPullRequestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProvisioningRepositorySpecPullRequestPtrOutput)
+}
+
+type ProvisioningRepositorySpecPullRequestOutput struct{ *pulumi.OutputState }
+
+func (ProvisioningRepositorySpecPullRequestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProvisioningRepositorySpecPullRequest)(nil)).Elem()
+}
+
+func (o ProvisioningRepositorySpecPullRequestOutput) ToProvisioningRepositorySpecPullRequestOutput() ProvisioningRepositorySpecPullRequestOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecPullRequestOutput) ToProvisioningRepositorySpecPullRequestOutputWithContext(ctx context.Context) ProvisioningRepositorySpecPullRequestOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecPullRequestOutput) ToProvisioningRepositorySpecPullRequestPtrOutput() ProvisioningRepositorySpecPullRequestPtrOutput {
+	return o.ToProvisioningRepositorySpecPullRequestPtrOutputWithContext(context.Background())
+}
+
+func (o ProvisioningRepositorySpecPullRequestOutput) ToProvisioningRepositorySpecPullRequestPtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecPullRequestPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProvisioningRepositorySpecPullRequest) *ProvisioningRepositorySpecPullRequest {
+		return &v
+	}).(ProvisioningRepositorySpecPullRequestPtrOutput)
+}
+
+// When true, the pull request title field in Save drawers is read-only.
+func (o ProvisioningRepositorySpecPullRequestOutput) EnforceTemplate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpecPullRequest) *bool { return v.EnforceTemplate }).(pulumi.BoolPtrOutput)
+}
+
+// Template for pull request titles.
+func (o ProvisioningRepositorySpecPullRequestOutput) TitleTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpecPullRequest) *string { return v.TitleTemplate }).(pulumi.StringPtrOutput)
+}
+
+type ProvisioningRepositorySpecPullRequestPtrOutput struct{ *pulumi.OutputState }
+
+func (ProvisioningRepositorySpecPullRequestPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProvisioningRepositorySpecPullRequest)(nil)).Elem()
+}
+
+func (o ProvisioningRepositorySpecPullRequestPtrOutput) ToProvisioningRepositorySpecPullRequestPtrOutput() ProvisioningRepositorySpecPullRequestPtrOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecPullRequestPtrOutput) ToProvisioningRepositorySpecPullRequestPtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecPullRequestPtrOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecPullRequestPtrOutput) Elem() ProvisioningRepositorySpecPullRequestOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecPullRequest) ProvisioningRepositorySpecPullRequest {
+		if v != nil {
+			return *v
+		}
+		var ret ProvisioningRepositorySpecPullRequest
+		return ret
+	}).(ProvisioningRepositorySpecPullRequestOutput)
+}
+
+// When true, the pull request title field in Save drawers is read-only.
+func (o ProvisioningRepositorySpecPullRequestPtrOutput) EnforceTemplate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecPullRequest) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.EnforceTemplate
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Template for pull request titles.
+func (o ProvisioningRepositorySpecPullRequestPtrOutput) TitleTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecPullRequest) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TitleTemplate
+	}).(pulumi.StringPtrOutput)
+}
+
 type ProvisioningRepositorySpecSync struct {
 	// Whether sync is enabled.
 	Enabled bool `pulumi:"enabled"`
 	// Sync interval in seconds.
 	IntervalSeconds *int `pulumi:"intervalSeconds"`
-	// Sync target: instance or folder.
+	// Sync target: instance, folder, or folderless.
 	Target string `pulumi:"target"`
 }
 
@@ -3551,7 +4409,7 @@ type ProvisioningRepositorySpecSyncArgs struct {
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// Sync interval in seconds.
 	IntervalSeconds pulumi.IntPtrInput `pulumi:"intervalSeconds"`
-	// Sync target: instance or folder.
+	// Sync target: instance, folder, or folderless.
 	Target pulumi.StringInput `pulumi:"target"`
 }
 
@@ -3642,7 +4500,7 @@ func (o ProvisioningRepositorySpecSyncOutput) IntervalSeconds() pulumi.IntPtrOut
 	return o.ApplyT(func(v ProvisioningRepositorySpecSync) *int { return v.IntervalSeconds }).(pulumi.IntPtrOutput)
 }
 
-// Sync target: instance or folder.
+// Sync target: instance, folder, or folderless.
 func (o ProvisioningRepositorySpecSyncOutput) Target() pulumi.StringOutput {
 	return o.ApplyT(func(v ProvisioningRepositorySpecSync) string { return v.Target }).(pulumi.StringOutput)
 }
@@ -3691,7 +4549,7 @@ func (o ProvisioningRepositorySpecSyncPtrOutput) IntervalSeconds() pulumi.IntPtr
 	}).(pulumi.IntPtrOutput)
 }
 
-// Sync target: instance or folder.
+// Sync target: instance, folder, or folderless.
 func (o ProvisioningRepositorySpecSyncPtrOutput) Target() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProvisioningRepositorySpecSync) *string {
 		if v == nil {
@@ -3867,16 +4725,24 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecPtrInput)(nil)).Elem(), ProvisioningRepositorySpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecBitbucketInput)(nil)).Elem(), ProvisioningRepositorySpecBitbucketArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecBitbucketPtrInput)(nil)).Elem(), ProvisioningRepositorySpecBitbucketArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecBranchInput)(nil)).Elem(), ProvisioningRepositorySpecBranchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecBranchPtrInput)(nil)).Elem(), ProvisioningRepositorySpecBranchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecCommitInput)(nil)).Elem(), ProvisioningRepositorySpecCommitArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecCommitPtrInput)(nil)).Elem(), ProvisioningRepositorySpecCommitArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecConnectionInput)(nil)).Elem(), ProvisioningRepositorySpecConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecConnectionPtrInput)(nil)).Elem(), ProvisioningRepositorySpecConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecGitInput)(nil)).Elem(), ProvisioningRepositorySpecGitArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecGitPtrInput)(nil)).Elem(), ProvisioningRepositorySpecGitArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecGithubInput)(nil)).Elem(), ProvisioningRepositorySpecGithubArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecGithubPtrInput)(nil)).Elem(), ProvisioningRepositorySpecGithubArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecGithubEnterpriseInput)(nil)).Elem(), ProvisioningRepositorySpecGithubEnterpriseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecGithubEnterprisePtrInput)(nil)).Elem(), ProvisioningRepositorySpecGithubEnterpriseArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecGitlabInput)(nil)).Elem(), ProvisioningRepositorySpecGitlabArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecGitlabPtrInput)(nil)).Elem(), ProvisioningRepositorySpecGitlabArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecLocalInput)(nil)).Elem(), ProvisioningRepositorySpecLocalArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecLocalPtrInput)(nil)).Elem(), ProvisioningRepositorySpecLocalArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecPullRequestInput)(nil)).Elem(), ProvisioningRepositorySpecPullRequestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecPullRequestPtrInput)(nil)).Elem(), ProvisioningRepositorySpecPullRequestArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecSyncInput)(nil)).Elem(), ProvisioningRepositorySpecSyncArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecSyncPtrInput)(nil)).Elem(), ProvisioningRepositorySpecSyncArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecWebhookInput)(nil)).Elem(), ProvisioningRepositorySpecWebhookArgs{})
@@ -3909,16 +4775,24 @@ func init() {
 	pulumi.RegisterOutputType(ProvisioningRepositorySpecPtrOutput{})
 	pulumi.RegisterOutputType(ProvisioningRepositorySpecBitbucketOutput{})
 	pulumi.RegisterOutputType(ProvisioningRepositorySpecBitbucketPtrOutput{})
+	pulumi.RegisterOutputType(ProvisioningRepositorySpecBranchOutput{})
+	pulumi.RegisterOutputType(ProvisioningRepositorySpecBranchPtrOutput{})
+	pulumi.RegisterOutputType(ProvisioningRepositorySpecCommitOutput{})
+	pulumi.RegisterOutputType(ProvisioningRepositorySpecCommitPtrOutput{})
 	pulumi.RegisterOutputType(ProvisioningRepositorySpecConnectionOutput{})
 	pulumi.RegisterOutputType(ProvisioningRepositorySpecConnectionPtrOutput{})
 	pulumi.RegisterOutputType(ProvisioningRepositorySpecGitOutput{})
 	pulumi.RegisterOutputType(ProvisioningRepositorySpecGitPtrOutput{})
 	pulumi.RegisterOutputType(ProvisioningRepositorySpecGithubOutput{})
 	pulumi.RegisterOutputType(ProvisioningRepositorySpecGithubPtrOutput{})
+	pulumi.RegisterOutputType(ProvisioningRepositorySpecGithubEnterpriseOutput{})
+	pulumi.RegisterOutputType(ProvisioningRepositorySpecGithubEnterprisePtrOutput{})
 	pulumi.RegisterOutputType(ProvisioningRepositorySpecGitlabOutput{})
 	pulumi.RegisterOutputType(ProvisioningRepositorySpecGitlabPtrOutput{})
 	pulumi.RegisterOutputType(ProvisioningRepositorySpecLocalOutput{})
 	pulumi.RegisterOutputType(ProvisioningRepositorySpecLocalPtrOutput{})
+	pulumi.RegisterOutputType(ProvisioningRepositorySpecPullRequestOutput{})
+	pulumi.RegisterOutputType(ProvisioningRepositorySpecPullRequestPtrOutput{})
 	pulumi.RegisterOutputType(ProvisioningRepositorySpecSyncOutput{})
 	pulumi.RegisterOutputType(ProvisioningRepositorySpecSyncPtrOutput{})
 	pulumi.RegisterOutputType(ProvisioningRepositorySpecWebhookOutput{})

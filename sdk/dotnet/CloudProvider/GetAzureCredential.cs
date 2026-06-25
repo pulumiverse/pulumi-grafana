@@ -413,6 +413,10 @@ namespace Pulumiverse.Grafana.CloudProvider
         /// </summary>
         public readonly string ClientSecret;
         /// <summary>
+        /// Whether the Azure Credential is enabled or not.
+        /// </summary>
+        public readonly bool Enabled;
+        /// <summary>
         /// The Terraform Resource ID. This has the format "{{ stack*id }}:{{ resource*id }}".
         /// </summary>
         public readonly string Id;
@@ -449,6 +453,8 @@ namespace Pulumiverse.Grafana.CloudProvider
 
             string clientSecret,
 
+            bool enabled,
+
             string id,
 
             string name,
@@ -466,6 +472,7 @@ namespace Pulumiverse.Grafana.CloudProvider
             AutoDiscoveryConfigurations = autoDiscoveryConfigurations;
             ClientId = clientId;
             ClientSecret = clientSecret;
+            Enabled = enabled;
             Id = id;
             Name = name;
             ResourceDiscoveryTagFilters = resourceDiscoveryTagFilters;

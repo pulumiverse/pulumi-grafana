@@ -26,6 +26,7 @@ class AzureCredentialArgs:
                  stack_id: pulumi.Input[_builtins.str],
                  tenant_id: pulumi.Input[_builtins.str],
                  auto_discovery_configurations: Optional[pulumi.Input[Sequence[pulumi.Input['AzureCredentialAutoDiscoveryConfigurationArgs']]]] = None,
+                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  resource_discovery_tag_filters: Optional[pulumi.Input[Sequence[pulumi.Input['AzureCredentialResourceDiscoveryTagFilterArgs']]]] = None,
                  resource_tags_to_add_to_metrics: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
@@ -37,6 +38,7 @@ class AzureCredentialArgs:
         :param pulumi.Input[_builtins.str] stack_id: The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param pulumi.Input[_builtins.str] tenant_id: The tenant ID of the Azure Credential.
         :param pulumi.Input[Sequence[pulumi.Input['AzureCredentialAutoDiscoveryConfigurationArgs']]] auto_discovery_configurations: The list of auto discovery configurations.
+        :param pulumi.Input[_builtins.bool] enabled: Whether the Azure Credential is enabled or not. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The name of the Azure Credential.
         :param pulumi.Input[Sequence[pulumi.Input['AzureCredentialResourceDiscoveryTagFilterArgs']]] resource_discovery_tag_filters: The list of tag filters to apply to resources.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] resource_tags_to_add_to_metrics: The list of resource tags to add to metrics.
@@ -47,6 +49,8 @@ class AzureCredentialArgs:
         pulumi.set(__self__, "tenant_id", tenant_id)
         if auto_discovery_configurations is not None:
             pulumi.set(__self__, "auto_discovery_configurations", auto_discovery_configurations)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if resource_discovery_tag_filters is not None:
@@ -116,6 +120,18 @@ class AzureCredentialArgs:
 
     @_builtins.property
     @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether the Azure Credential is enabled or not. Defaults to `true`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The name of the Azure Credential.
@@ -157,6 +173,7 @@ class _AzureCredentialState:
                  auto_discovery_configurations: Optional[pulumi.Input[Sequence[pulumi.Input['AzureCredentialAutoDiscoveryConfigurationArgs']]]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  resource_discovery_tag_filters: Optional[pulumi.Input[Sequence[pulumi.Input['AzureCredentialResourceDiscoveryTagFilterArgs']]]] = None,
                  resource_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -169,6 +186,7 @@ class _AzureCredentialState:
         :param pulumi.Input[Sequence[pulumi.Input['AzureCredentialAutoDiscoveryConfigurationArgs']]] auto_discovery_configurations: The list of auto discovery configurations.
         :param pulumi.Input[_builtins.str] client_id: The client ID of the Azure Credential.
         :param pulumi.Input[_builtins.str] client_secret: The client secret of the Azure Credential.
+        :param pulumi.Input[_builtins.bool] enabled: Whether the Azure Credential is enabled or not. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The name of the Azure Credential.
         :param pulumi.Input[Sequence[pulumi.Input['AzureCredentialResourceDiscoveryTagFilterArgs']]] resource_discovery_tag_filters: The list of tag filters to apply to resources.
         :param pulumi.Input[_builtins.str] resource_id: The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
@@ -182,6 +200,8 @@ class _AzureCredentialState:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
             pulumi.set(__self__, "client_secret", client_secret)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if resource_discovery_tag_filters is not None:
@@ -230,6 +250,18 @@ class _AzureCredentialState:
     @client_secret.setter
     def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether the Azure Credential is enabled or not. Defaults to `true`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter
@@ -313,6 +345,7 @@ class AzureCredential(pulumi.CustomResource):
                  auto_discovery_configurations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AzureCredentialAutoDiscoveryConfigurationArgs', 'AzureCredentialAutoDiscoveryConfigurationArgsDict']]]]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  resource_discovery_tag_filters: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AzureCredentialResourceDiscoveryTagFilterArgs', 'AzureCredentialResourceDiscoveryTagFilterArgsDict']]]]] = None,
                  resource_tags_to_add_to_metrics: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -389,6 +422,7 @@ class AzureCredential(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['AzureCredentialAutoDiscoveryConfigurationArgs', 'AzureCredentialAutoDiscoveryConfigurationArgsDict']]]] auto_discovery_configurations: The list of auto discovery configurations.
         :param pulumi.Input[_builtins.str] client_id: The client ID of the Azure Credential.
         :param pulumi.Input[_builtins.str] client_secret: The client secret of the Azure Credential.
+        :param pulumi.Input[_builtins.bool] enabled: Whether the Azure Credential is enabled or not. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The name of the Azure Credential.
         :param pulumi.Input[Sequence[pulumi.Input[Union['AzureCredentialResourceDiscoveryTagFilterArgs', 'AzureCredentialResourceDiscoveryTagFilterArgsDict']]]] resource_discovery_tag_filters: The list of tag filters to apply to resources.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] resource_tags_to_add_to_metrics: The list of resource tags to add to metrics.
@@ -484,6 +518,7 @@ class AzureCredential(pulumi.CustomResource):
                  auto_discovery_configurations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AzureCredentialAutoDiscoveryConfigurationArgs', 'AzureCredentialAutoDiscoveryConfigurationArgsDict']]]]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  resource_discovery_tag_filters: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AzureCredentialResourceDiscoveryTagFilterArgs', 'AzureCredentialResourceDiscoveryTagFilterArgsDict']]]]] = None,
                  resource_tags_to_add_to_metrics: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -505,6 +540,7 @@ class AzureCredential(pulumi.CustomResource):
             if client_secret is None and not opts.urn:
                 raise TypeError("Missing required property 'client_secret'")
             __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
+            __props__.__dict__["enabled"] = enabled
             __props__.__dict__["name"] = name
             __props__.__dict__["resource_discovery_tag_filters"] = resource_discovery_tag_filters
             __props__.__dict__["resource_tags_to_add_to_metrics"] = resource_tags_to_add_to_metrics
@@ -530,6 +566,7 @@ class AzureCredential(pulumi.CustomResource):
             auto_discovery_configurations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AzureCredentialAutoDiscoveryConfigurationArgs', 'AzureCredentialAutoDiscoveryConfigurationArgsDict']]]]] = None,
             client_id: Optional[pulumi.Input[_builtins.str]] = None,
             client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             resource_discovery_tag_filters: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AzureCredentialResourceDiscoveryTagFilterArgs', 'AzureCredentialResourceDiscoveryTagFilterArgsDict']]]]] = None,
             resource_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -546,6 +583,7 @@ class AzureCredential(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['AzureCredentialAutoDiscoveryConfigurationArgs', 'AzureCredentialAutoDiscoveryConfigurationArgsDict']]]] auto_discovery_configurations: The list of auto discovery configurations.
         :param pulumi.Input[_builtins.str] client_id: The client ID of the Azure Credential.
         :param pulumi.Input[_builtins.str] client_secret: The client secret of the Azure Credential.
+        :param pulumi.Input[_builtins.bool] enabled: Whether the Azure Credential is enabled or not. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The name of the Azure Credential.
         :param pulumi.Input[Sequence[pulumi.Input[Union['AzureCredentialResourceDiscoveryTagFilterArgs', 'AzureCredentialResourceDiscoveryTagFilterArgsDict']]]] resource_discovery_tag_filters: The list of tag filters to apply to resources.
         :param pulumi.Input[_builtins.str] resource_id: The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
@@ -560,6 +598,7 @@ class AzureCredential(pulumi.CustomResource):
         __props__.__dict__["auto_discovery_configurations"] = auto_discovery_configurations
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_secret"] = client_secret
+        __props__.__dict__["enabled"] = enabled
         __props__.__dict__["name"] = name
         __props__.__dict__["resource_discovery_tag_filters"] = resource_discovery_tag_filters
         __props__.__dict__["resource_id"] = resource_id
@@ -591,6 +630,14 @@ class AzureCredential(pulumi.CustomResource):
         The client secret of the Azure Credential.
         """
         return pulumi.get(self, "client_secret")
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Whether the Azure Credential is enabled or not. Defaults to `true`.
+        """
+        return pulumi.get(self, "enabled")
 
     @_builtins.property
     @pulumi.getter

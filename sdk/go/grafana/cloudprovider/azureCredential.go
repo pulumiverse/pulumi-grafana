@@ -107,6 +107,8 @@ type AzureCredential struct {
 	ClientId pulumi.StringOutput `pulumi:"clientId"`
 	// The client secret of the Azure Credential.
 	ClientSecret pulumi.StringOutput `pulumi:"clientSecret"`
+	// Whether the Azure Credential is enabled or not. Defaults to `true`.
+	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// The name of the Azure Credential.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The list of tag filters to apply to resources.
@@ -176,6 +178,8 @@ type azureCredentialState struct {
 	ClientId *string `pulumi:"clientId"`
 	// The client secret of the Azure Credential.
 	ClientSecret *string `pulumi:"clientSecret"`
+	// Whether the Azure Credential is enabled or not. Defaults to `true`.
+	Enabled *bool `pulumi:"enabled"`
 	// The name of the Azure Credential.
 	Name *string `pulumi:"name"`
 	// The list of tag filters to apply to resources.
@@ -197,6 +201,8 @@ type AzureCredentialState struct {
 	ClientId pulumi.StringPtrInput
 	// The client secret of the Azure Credential.
 	ClientSecret pulumi.StringPtrInput
+	// Whether the Azure Credential is enabled or not. Defaults to `true`.
+	Enabled pulumi.BoolPtrInput
 	// The name of the Azure Credential.
 	Name pulumi.StringPtrInput
 	// The list of tag filters to apply to resources.
@@ -222,6 +228,8 @@ type azureCredentialArgs struct {
 	ClientId string `pulumi:"clientId"`
 	// The client secret of the Azure Credential.
 	ClientSecret string `pulumi:"clientSecret"`
+	// Whether the Azure Credential is enabled or not. Defaults to `true`.
+	Enabled *bool `pulumi:"enabled"`
 	// The name of the Azure Credential.
 	Name *string `pulumi:"name"`
 	// The list of tag filters to apply to resources.
@@ -242,6 +250,8 @@ type AzureCredentialArgs struct {
 	ClientId pulumi.StringInput
 	// The client secret of the Azure Credential.
 	ClientSecret pulumi.StringInput
+	// Whether the Azure Credential is enabled or not. Defaults to `true`.
+	Enabled pulumi.BoolPtrInput
 	// The name of the Azure Credential.
 	Name pulumi.StringPtrInput
 	// The list of tag filters to apply to resources.
@@ -356,6 +366,11 @@ func (o AzureCredentialOutput) ClientId() pulumi.StringOutput {
 // The client secret of the Azure Credential.
 func (o AzureCredentialOutput) ClientSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v *AzureCredential) pulumi.StringOutput { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+// Whether the Azure Credential is enabled or not. Defaults to `true`.
+func (o AzureCredentialOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AzureCredential) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }
 
 // The name of the Azure Credential.

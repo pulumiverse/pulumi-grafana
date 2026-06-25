@@ -19,6 +19,14 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Outputs
         /// </summary>
         public readonly Outputs.ProvisioningRepositorySpecBitbucket? Bitbucket;
         /// <summary>
+        /// Branch naming options for the branch workflow.
+        /// </summary>
+        public readonly Outputs.ProvisioningRepositorySpecBranch? Branch;
+        /// <summary>
+        /// Commit message and signing options.
+        /// </summary>
+        public readonly Outputs.ProvisioningRepositorySpecCommit? Commit;
+        /// <summary>
         /// Connection resource reference.
         /// </summary>
         public readonly Outputs.ProvisioningRepositorySpecConnection? Connection;
@@ -35,6 +43,10 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Outputs
         /// </summary>
         public readonly Outputs.ProvisioningRepositorySpecGithub? Github;
         /// <summary>
+        /// GitHub Enterprise Server repository configuration.
+        /// </summary>
+        public readonly Outputs.ProvisioningRepositorySpecGithubEnterprise? GithubEnterprise;
+        /// <summary>
         /// GitLab repository configuration.
         /// </summary>
         public readonly Outputs.ProvisioningRepositorySpecGitlab? Gitlab;
@@ -42,6 +54,10 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Outputs
         /// Local filesystem repository configuration.
         /// </summary>
         public readonly Outputs.ProvisioningRepositorySpecLocal? Local;
+        /// <summary>
+        /// Pull request options for the branch workflow.
+        /// </summary>
+        public readonly Outputs.ProvisioningRepositorySpecPullRequest? PullRequest;
         /// <summary>
         /// Sync configuration.
         /// </summary>
@@ -51,7 +67,7 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Outputs
         /// </summary>
         public readonly string Title;
         /// <summary>
-        /// Repository provider type: local, github, git, bitbucket, or gitlab.
+        /// Repository provider type: local, github, githubEnterprise, git, bitbucket, or gitlab.
         /// </summary>
         public readonly string Type;
         /// <summary>
@@ -67,6 +83,10 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Outputs
         private ProvisioningRepositorySpec(
             Outputs.ProvisioningRepositorySpecBitbucket? bitbucket,
 
+            Outputs.ProvisioningRepositorySpecBranch? branch,
+
+            Outputs.ProvisioningRepositorySpecCommit? commit,
+
             Outputs.ProvisioningRepositorySpecConnection? connection,
 
             string? description,
@@ -75,9 +95,13 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Outputs
 
             Outputs.ProvisioningRepositorySpecGithub? github,
 
+            Outputs.ProvisioningRepositorySpecGithubEnterprise? githubEnterprise,
+
             Outputs.ProvisioningRepositorySpecGitlab? gitlab,
 
             Outputs.ProvisioningRepositorySpecLocal? local,
+
+            Outputs.ProvisioningRepositorySpecPullRequest? pullRequest,
 
             Outputs.ProvisioningRepositorySpecSync? sync,
 
@@ -90,12 +114,16 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Outputs
             ImmutableArray<string> workflows)
         {
             Bitbucket = bitbucket;
+            Branch = branch;
+            Commit = commit;
             Connection = connection;
             Description = description;
             Git = git;
             Github = github;
+            GithubEnterprise = githubEnterprise;
             Gitlab = gitlab;
             Local = local;
+            PullRequest = pullRequest;
             Sync = sync;
             Title = title;
             Type = type;

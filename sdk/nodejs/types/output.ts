@@ -3442,6 +3442,11 @@ export namespace apps {
         export interface ProvisioningRepositorySecure {
             /**
              * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+             * Private key used to sign commits the repository writes back. The format is selected by `spec.commit.signing_method`.
+             */
+            commitSigningKey?: {[key: string]: string};
+            /**
+             * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
              * Token for repository authentication.
              */
             token?: {[key: string]: string};
@@ -3457,6 +3462,14 @@ export namespace apps {
              * Bitbucket repository configuration.
              */
             bitbucket?: outputs.apps.v0alpha1.ProvisioningRepositorySpecBitbucket;
+            /**
+             * Branch naming options for the branch workflow.
+             */
+            branch?: outputs.apps.v0alpha1.ProvisioningRepositorySpecBranch;
+            /**
+             * Commit message and signing options.
+             */
+            commit?: outputs.apps.v0alpha1.ProvisioningRepositorySpecCommit;
             /**
              * Connection resource reference.
              */
@@ -3474,6 +3487,10 @@ export namespace apps {
              */
             github?: outputs.apps.v0alpha1.ProvisioningRepositorySpecGithub;
             /**
+             * GitHub Enterprise Server repository configuration.
+             */
+            githubEnterprise?: outputs.apps.v0alpha1.ProvisioningRepositorySpecGithubEnterprise;
+            /**
              * GitLab repository configuration.
              */
             gitlab?: outputs.apps.v0alpha1.ProvisioningRepositorySpecGitlab;
@@ -3481,6 +3498,10 @@ export namespace apps {
              * Local filesystem repository configuration.
              */
             local?: outputs.apps.v0alpha1.ProvisioningRepositorySpecLocal;
+            /**
+             * Pull request options for the branch workflow.
+             */
+            pullRequest?: outputs.apps.v0alpha1.ProvisioningRepositorySpecPullRequest;
             /**
              * Sync configuration.
              */
@@ -3490,7 +3511,7 @@ export namespace apps {
              */
             title: string;
             /**
-             * Repository provider type: local, github, git, bitbucket, or gitlab.
+             * Repository provider type: local, github, githubEnterprise, git, bitbucket, or gitlab.
              */
             type: string;
             /**
@@ -3520,6 +3541,44 @@ export namespace apps {
              * Repository URL.
              */
             url?: string;
+        }
+
+        export interface ProvisioningRepositorySpecBranch {
+            /**
+             * When true, the branch name field in Save drawers is read-only.
+             */
+            enforceTemplate?: boolean;
+            /**
+             * Template for the branch name created in the branch workflow.
+             */
+            nameTemplate?: string;
+        }
+
+        export interface ProvisioningRepositorySpecCommit {
+            /**
+             * When true, the commit message field in Save drawers is pre-filled from the template and rendered read-only.
+             */
+            enforceTemplate?: boolean;
+            /**
+             * Email used as the commit signer. Defaults to "noreply@grafana.com" when empty.
+             */
+            signerEmail?: string;
+            /**
+             * Name used as the commit signer. Defaults to "Grafana" when empty.
+             */
+            signerName?: string;
+            /**
+             * Method used to sign commits with the key in `secure.commit_signing_key`: gpg, ssh, or smime. When empty, commits are not signed.
+             */
+            signingMethod?: string;
+            /**
+             * Template for commit messages produced by single-resource UI operations.
+             */
+            singleResourceMessageTemplate?: string;
+            /**
+             * PEM-encoded X.509 certificate paired with `secure.commit_signing_key` when `signingMethod` is smime. This is public, not a secret.
+             */
+            smimeCertificate?: string;
         }
 
         export interface ProvisioningRepositorySpecConnection {
@@ -3567,6 +3626,29 @@ export namespace apps {
             url?: string;
         }
 
+        export interface ProvisioningRepositorySpecGithubEnterprise {
+            /**
+             * Branch to sync.
+             */
+            branch?: string;
+            /**
+             * Whether to generate dashboard previews.
+             */
+            generateDashboardPreviews?: boolean;
+            /**
+             * Optional subdirectory path.
+             */
+            path?: string;
+            /**
+             * Base URL of the self-managed GitHub Enterprise Server instance.
+             */
+            serverUrl?: string;
+            /**
+             * Repository URL.
+             */
+            url?: string;
+        }
+
         export interface ProvisioningRepositorySpecGitlab {
             /**
              * Branch to sync.
@@ -3589,6 +3671,17 @@ export namespace apps {
             path?: string;
         }
 
+        export interface ProvisioningRepositorySpecPullRequest {
+            /**
+             * When true, the pull request title field in Save drawers is read-only.
+             */
+            enforceTemplate?: boolean;
+            /**
+             * Template for pull request titles.
+             */
+            titleTemplate?: string;
+        }
+
         export interface ProvisioningRepositorySpecSync {
             /**
              * Whether sync is enabled.
@@ -3599,7 +3692,7 @@ export namespace apps {
              */
             intervalSeconds?: number;
             /**
-             * Sync target: instance or folder.
+             * Sync target: instance, folder, or folderless.
              */
             target: string;
         }

@@ -28,7 +28,7 @@ class GetAzureCredentialResult:
     """
     A collection of values returned by getAzureCredential.
     """
-    def __init__(__self__, auto_discovery_configurations=None, client_id=None, client_secret=None, id=None, name=None, resource_discovery_tag_filters=None, resource_id=None, resource_tags_to_add_to_metrics=None, stack_id=None, tenant_id=None):
+    def __init__(__self__, auto_discovery_configurations=None, client_id=None, client_secret=None, enabled=None, id=None, name=None, resource_discovery_tag_filters=None, resource_id=None, resource_tags_to_add_to_metrics=None, stack_id=None, tenant_id=None):
         if auto_discovery_configurations and not isinstance(auto_discovery_configurations, list):
             raise TypeError("Expected argument 'auto_discovery_configurations' to be a list")
         pulumi.set(__self__, "auto_discovery_configurations", auto_discovery_configurations)
@@ -38,6 +38,9 @@ class GetAzureCredentialResult:
         if client_secret and not isinstance(client_secret, str):
             raise TypeError("Expected argument 'client_secret' to be a str")
         pulumi.set(__self__, "client_secret", client_secret)
+        if enabled and not isinstance(enabled, bool):
+            raise TypeError("Expected argument 'enabled' to be a bool")
+        pulumi.set(__self__, "enabled", enabled)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -83,6 +86,14 @@ class GetAzureCredentialResult:
         The client secret of the Azure Credential.
         """
         return pulumi.get(self, "client_secret")
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Whether the Azure Credential is enabled or not.
+        """
+        return pulumi.get(self, "enabled")
 
     @_builtins.property
     @pulumi.getter
@@ -150,6 +161,7 @@ class AwaitableGetAzureCredentialResult(GetAzureCredentialResult):
             auto_discovery_configurations=self.auto_discovery_configurations,
             client_id=self.client_id,
             client_secret=self.client_secret,
+            enabled=self.enabled,
             id=self.id,
             name=self.name,
             resource_discovery_tag_filters=self.resource_discovery_tag_filters,
@@ -243,6 +255,7 @@ def get_azure_credential(auto_discovery_configurations: Optional[Sequence[Union[
         auto_discovery_configurations=pulumi.get(__ret__, 'auto_discovery_configurations'),
         client_id=pulumi.get(__ret__, 'client_id'),
         client_secret=pulumi.get(__ret__, 'client_secret'),
+        enabled=pulumi.get(__ret__, 'enabled'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         resource_discovery_tag_filters=pulumi.get(__ret__, 'resource_discovery_tag_filters'),
@@ -333,6 +346,7 @@ def get_azure_credential_output(auto_discovery_configurations: Optional[pulumi.I
         auto_discovery_configurations=pulumi.get(__response__, 'auto_discovery_configurations'),
         client_id=pulumi.get(__response__, 'client_id'),
         client_secret=pulumi.get(__response__, 'client_secret'),
+        enabled=pulumi.get(__response__, 'enabled'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         resource_discovery_tag_filters=pulumi.get(__response__, 'resource_discovery_tag_filters'),

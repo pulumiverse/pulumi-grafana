@@ -127,6 +127,12 @@ namespace Pulumiverse.Grafana.CloudProvider
         public Output<string> ClientSecret { get; private set; } = null!;
 
         /// <summary>
+        /// Whether the Azure Credential is enabled or not. Defaults to `True`.
+        /// </summary>
+        [Output("enabled")]
+        public Output<bool> Enabled { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the Azure Credential.
         /// </summary>
         [Output("name")]
@@ -248,6 +254,12 @@ namespace Pulumiverse.Grafana.CloudProvider
         }
 
         /// <summary>
+        /// Whether the Azure Credential is enabled or not. Defaults to `True`.
+        /// </summary>
+        [Input("enabled")]
+        public Input<bool>? Enabled { get; set; }
+
+        /// <summary>
         /// The name of the Azure Credential.
         /// </summary>
         [Input("name")]
@@ -330,6 +342,12 @@ namespace Pulumiverse.Grafana.CloudProvider
                 _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// Whether the Azure Credential is enabled or not. Defaults to `True`.
+        /// </summary>
+        [Input("enabled")]
+        public Input<bool>? Enabled { get; set; }
 
         /// <summary>
         /// The name of the Azure Credential.

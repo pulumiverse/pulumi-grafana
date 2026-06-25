@@ -26,7 +26,7 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Inputs
         public Input<int>? IntervalSeconds { get; set; }
 
         /// <summary>
-        /// Sync target: instance or folder.
+        /// Sync target: instance, folder, or folderless.
         /// </summary>
         [Input("target", required: true)]
         public Input<string> Target { get; set; } = null!;

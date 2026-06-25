@@ -23,7 +23,7 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Outputs
         /// </summary>
         public readonly int? IntervalSeconds;
         /// <summary>
-        /// Sync target: instance or folder.
+        /// Sync target: instance, folder, or folderless.
         /// </summary>
         public readonly string Target;
 
