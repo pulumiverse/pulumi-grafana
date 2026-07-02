@@ -13,6 +13,25 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1
     /// <summary>
     /// Manages Grafana Git Sync repositories for provisioning dashboards and related resources.
     /// 
+    /// ## Provider Configuration
+    /// 
+    /// This is an App Platform resource and talks directly to the Grafana stack's API.
+    /// Configure the provider with `Url` and `Auth` (not `CloudApiUrl` /
+    /// `CloudAccessPolicyToken`), and set `StackId`:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    /// });
+    /// ```
+    /// 
+    /// Configuring only the Grafana Cloud arguments fails with
+    /// `Grafana App Platform API client not configured`.
+    /// 
     /// ## Example Usage
     /// 
     /// ### GitHub Repository with Token Authentication

@@ -23,7 +23,7 @@ namespace Pulumiverse.Grafana.Assert.Outputs
         /// </summary>
         public readonly string Property;
         /// <summary>
-        /// Values to match against.
+        /// Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
         /// </summary>
         public readonly ImmutableArray<string> Values;
 

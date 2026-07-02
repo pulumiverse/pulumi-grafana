@@ -8,6 +8,19 @@ import * as utilities from "../../utilities";
 
 /**
  * Manages Grafana Git Sync connections used by repositories for provider authentication.
+ *
+ * ## Provider Configuration
+ *
+ * This is an App Platform resource and talks directly to the Grafana stack's API.
+ * Configure the provider with `url` and `auth` (not `cloudApiUrl` /
+ * `cloudAccessPolicyToken`), and set `stackId`:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * ```
+ *
+ * Configuring only the Grafana Cloud arguments fails with
+ * `Grafana App Platform API client not configured`.
  */
 export class ProvisioningConnection extends pulumi.CustomResource {
     /**
