@@ -5,7 +5,7 @@ go 1.26.4
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20260318212141-5525259d096b
 
 require (
-	github.com/grafana/terraform-provider-grafana/v4 v4.39.0
+	github.com/grafana/terraform-provider-grafana/v4 v4.39.1
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.125.0
 	github.com/pulumi/pulumi/sdk/v3 v3.226.0
 )
@@ -130,7 +130,7 @@ require (
 	github.com/grafana/grafana-app-sdk v0.56.0 // indirect
 	github.com/grafana/grafana-app-sdk/logging v0.55.0 // indirect
 	github.com/grafana/grafana-asserts-public-clients/go/gcom v0.0.0-20260203142553-433280da6996 // indirect
-	github.com/grafana/grafana-com-public-clients/go/gcom v0.0.0-20260408092732-49b2323fa034 // indirect
+	github.com/grafana/grafana-com-public-clients/go/gcom v0.0.0-20260622091431-7fe3d665bcc0 // indirect
 	github.com/grafana/grafana-openapi-client-go v0.0.0-20260414120814-5b95bb183fae // indirect
 	github.com/grafana/grafana-plugin-sdk-go v0.292.0 // indirect
 	github.com/grafana/grafana/apps/alerting/alertenrichment v0.0.0-20250925121631-89b988ca553e // indirect
@@ -239,7 +239,7 @@ require (
 	github.com/prometheus/alertmanager v0.27.0 // indirect
 	github.com/prometheus/client_golang v1.23.2 // indirect
 	github.com/prometheus/client_model v0.6.2 // indirect
-	github.com/prometheus/common v0.68.0 // indirect
+	github.com/prometheus/common v0.69.0 // indirect
 	github.com/prometheus/procfs v0.20.1 // indirect
 	github.com/pulumi/appdash v0.0.0-20231130102222-75f619a67231 // indirect
 	github.com/pulumi/esc v0.23.0 // indirect
