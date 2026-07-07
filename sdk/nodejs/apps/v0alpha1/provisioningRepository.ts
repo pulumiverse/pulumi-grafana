@@ -9,6 +9,19 @@ import * as utilities from "../../utilities";
 /**
  * Manages Grafana Git Sync repositories for provisioning dashboards and related resources.
  *
+ * ## Provider Configuration
+ *
+ * This is an App Platform resource and talks directly to the Grafana stack's API.
+ * Configure the provider with `url` and `auth` (not `cloudApiUrl` /
+ * `cloudAccessPolicyToken`), and set `stackId`:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * ```
+ *
+ * Configuring only the Grafana Cloud arguments fails with
+ * `Grafana App Platform API client not configured`.
+ *
  * ## Example Usage
  *
  * ### GitHub Repository with Token Authentication

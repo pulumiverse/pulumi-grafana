@@ -4012,9 +4012,9 @@ export namespace assert {
          */
         property: pulumi.Input<string>;
         /**
-         * Values to match against.
+         * Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
          */
-        values: pulumi.Input<pulumi.Input<string>[]>;
+        values?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface ProfileConfigMatch {
@@ -4027,9 +4027,9 @@ export namespace assert {
          */
         property: pulumi.Input<string>;
         /**
-         * Values to match against.
+         * Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
          */
-        values: pulumi.Input<pulumi.Input<string>[]>;
+        values?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface PromRuleFileGroup {
@@ -4218,9 +4218,9 @@ export namespace assert {
          */
         property: pulumi.Input<string>;
         /**
-         * Values to match against.
+         * Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
          */
-        values: pulumi.Input<pulumi.Input<string>[]>;
+        values?: pulumi.Input<pulumi.Input<string>[]>;
     }
 }
 

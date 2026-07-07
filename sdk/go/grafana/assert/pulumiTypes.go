@@ -439,7 +439,7 @@ type LogConfigMatch struct {
 	Op string `pulumi:"op"`
 	// Entity property to match.
 	Property string `pulumi:"property"`
-	// Values to match against.
+	// Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
 	Values []string `pulumi:"values"`
 }
 
@@ -459,7 +459,7 @@ type LogConfigMatchArgs struct {
 	Op pulumi.StringInput `pulumi:"op"`
 	// Entity property to match.
 	Property pulumi.StringInput `pulumi:"property"`
-	// Values to match against.
+	// Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
 	Values pulumi.StringArrayInput `pulumi:"values"`
 }
 
@@ -524,7 +524,7 @@ func (o LogConfigMatchOutput) Property() pulumi.StringOutput {
 	return o.ApplyT(func(v LogConfigMatch) string { return v.Property }).(pulumi.StringOutput)
 }
 
-// Values to match against.
+// Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
 func (o LogConfigMatchOutput) Values() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LogConfigMatch) []string { return v.Values }).(pulumi.StringArrayOutput)
 }
@@ -554,7 +554,7 @@ type ProfileConfigMatch struct {
 	Op string `pulumi:"op"`
 	// Entity property to match.
 	Property string `pulumi:"property"`
-	// Values to match against.
+	// Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
 	Values []string `pulumi:"values"`
 }
 
@@ -574,7 +574,7 @@ type ProfileConfigMatchArgs struct {
 	Op pulumi.StringInput `pulumi:"op"`
 	// Entity property to match.
 	Property pulumi.StringInput `pulumi:"property"`
-	// Values to match against.
+	// Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
 	Values pulumi.StringArrayInput `pulumi:"values"`
 }
 
@@ -639,7 +639,7 @@ func (o ProfileConfigMatchOutput) Property() pulumi.StringOutput {
 	return o.ApplyT(func(v ProfileConfigMatch) string { return v.Property }).(pulumi.StringOutput)
 }
 
-// Values to match against.
+// Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
 func (o ProfileConfigMatchOutput) Values() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ProfileConfigMatch) []string { return v.Values }).(pulumi.StringArrayOutput)
 }
@@ -1715,7 +1715,7 @@ type TraceConfigMatch struct {
 	Op string `pulumi:"op"`
 	// Entity property to match.
 	Property string `pulumi:"property"`
-	// Values to match against.
+	// Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
 	Values []string `pulumi:"values"`
 }
 
@@ -1735,7 +1735,7 @@ type TraceConfigMatchArgs struct {
 	Op pulumi.StringInput `pulumi:"op"`
 	// Entity property to match.
 	Property pulumi.StringInput `pulumi:"property"`
-	// Values to match against.
+	// Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
 	Values pulumi.StringArrayInput `pulumi:"values"`
 }
 
@@ -1800,7 +1800,7 @@ func (o TraceConfigMatchOutput) Property() pulumi.StringOutput {
 	return o.ApplyT(func(v TraceConfigMatch) string { return v.Property }).(pulumi.StringOutput)
 }
 
-// Values to match against.
+// Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
 func (o TraceConfigMatchOutput) Values() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v TraceConfigMatch) []string { return v.Values }).(pulumi.StringArrayOutput)
 }

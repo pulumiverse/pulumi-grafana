@@ -28,7 +28,7 @@ class GetAzureCredentialResult:
     """
     A collection of values returned by getAzureCredential.
     """
-    def __init__(__self__, auto_discovery_configurations=None, client_id=None, client_secret=None, enabled=None, id=None, name=None, resource_discovery_tag_filters=None, resource_id=None, resource_tags_to_add_to_metrics=None, stack_id=None, tenant_id=None):
+    def __init__(__self__, auto_discovery_configurations=None, client_id=None, client_secret=None, enabled=None, id=None, name=None, resource_discovery_tag_filters=None, resource_id=None, resource_tags_to_add_to_metrics=None, stack_id=None, static_labels=None, tenant_id=None):
         if auto_discovery_configurations and not isinstance(auto_discovery_configurations, list):
             raise TypeError("Expected argument 'auto_discovery_configurations' to be a list")
         pulumi.set(__self__, "auto_discovery_configurations", auto_discovery_configurations)
@@ -59,6 +59,9 @@ class GetAzureCredentialResult:
         if stack_id and not isinstance(stack_id, str):
             raise TypeError("Expected argument 'stack_id' to be a str")
         pulumi.set(__self__, "stack_id", stack_id)
+        if static_labels and not isinstance(static_labels, dict):
+            raise TypeError("Expected argument 'static_labels' to be a dict")
+        pulumi.set(__self__, "static_labels", static_labels)
         if tenant_id and not isinstance(tenant_id, str):
             raise TypeError("Expected argument 'tenant_id' to be a str")
         pulumi.set(__self__, "tenant_id", tenant_id)
@@ -144,6 +147,14 @@ class GetAzureCredentialResult:
         return pulumi.get(self, "stack_id")
 
     @_builtins.property
+    @pulumi.getter(name="staticLabels")
+    def static_labels(self) -> Mapping[str, _builtins.str]:
+        """
+        A set of static labels to add to all metrics exported using this credential.
+        """
+        return pulumi.get(self, "static_labels")
+
+    @_builtins.property
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> _builtins.str:
         """
@@ -168,6 +179,7 @@ class AwaitableGetAzureCredentialResult(GetAzureCredentialResult):
             resource_id=self.resource_id,
             resource_tags_to_add_to_metrics=self.resource_tags_to_add_to_metrics,
             stack_id=self.stack_id,
+            static_labels=self.static_labels,
             tenant_id=self.tenant_id)
 
 
@@ -201,6 +213,10 @@ def get_azure_credential(auto_discovery_configurations: Optional[Sequence[Union[
             "tag1",
             "tag2",
         ],
+        static_labels={
+            "label1": "value1",
+            "label2": "value2",
+        },
         resource_discovery_tag_filters=[
             {
                 "key": "key-1",
@@ -262,6 +278,7 @@ def get_azure_credential(auto_discovery_configurations: Optional[Sequence[Union[
         resource_id=pulumi.get(__ret__, 'resource_id'),
         resource_tags_to_add_to_metrics=pulumi.get(__ret__, 'resource_tags_to_add_to_metrics'),
         stack_id=pulumi.get(__ret__, 'stack_id'),
+        static_labels=pulumi.get(__ret__, 'static_labels'),
         tenant_id=pulumi.get(__ret__, 'tenant_id'))
 def get_azure_credential_output(auto_discovery_configurations: Optional[pulumi.Input[Optional[Sequence[Union['GetAzureCredentialAutoDiscoveryConfigurationArgs', 'GetAzureCredentialAutoDiscoveryConfigurationArgsDict']]]]] = None,
                                 resource_discovery_tag_filters: Optional[pulumi.Input[Optional[Sequence[Union['GetAzureCredentialResourceDiscoveryTagFilterArgs', 'GetAzureCredentialResourceDiscoveryTagFilterArgsDict']]]]] = None,
@@ -293,6 +310,10 @@ def get_azure_credential_output(auto_discovery_configurations: Optional[pulumi.I
             "tag1",
             "tag2",
         ],
+        static_labels={
+            "label1": "value1",
+            "label2": "value2",
+        },
         resource_discovery_tag_filters=[
             {
                 "key": "key-1",
@@ -353,4 +374,5 @@ def get_azure_credential_output(auto_discovery_configurations: Optional[pulumi.I
         resource_id=pulumi.get(__response__, 'resource_id'),
         resource_tags_to_add_to_metrics=pulumi.get(__response__, 'resource_tags_to_add_to_metrics'),
         stack_id=pulumi.get(__response__, 'stack_id'),
+        static_labels=pulumi.get(__response__, 'static_labels'),
         tenant_id=pulumi.get(__response__, 'tenant_id')))

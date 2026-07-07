@@ -211,6 +211,19 @@ class ProvisioningConnection(pulumi.CustomResource):
         """
         Manages Grafana Git Sync connections used by repositories for provider authentication.
 
+        ## Provider Configuration
+
+        This is an App Platform resource and talks directly to the Grafana stack's API.
+        Configure the provider with `url` and `auth` (not `cloud_api_url` /
+        `cloud_access_policy_token`), and set `stack_id`:
+
+        ```python
+        import pulumi
+        ```
+
+        Configuring only the Grafana Cloud arguments fails with
+        `Grafana App Platform API client not configured`.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -228,6 +241,19 @@ class ProvisioningConnection(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages Grafana Git Sync connections used by repositories for provider authentication.
+
+        ## Provider Configuration
+
+        This is an App Platform resource and talks directly to the Grafana stack's API.
+        Configure the provider with `url` and `auth` (not `cloud_api_url` /
+        `cloud_access_policy_token`), and set `stack_id`:
+
+        ```python
+        import pulumi
+        ```
+
+        Configuring only the Grafana Cloud arguments fails with
+        `Grafana App Platform API client not configured`.
 
 
         :param str resource_name: The name of the resource.

@@ -42,6 +42,10 @@ import (
 //					pulumi.String("tag1"),
 //					pulumi.String("tag2"),
 //				},
+//				StaticLabels: pulumi.StringMap{
+//					"label1": pulumi.String("value1"),
+//					"label2": pulumi.String("value2"),
+//				},
 //				ResourceDiscoveryTagFilters: cloudprovider.AzureCredentialResourceDiscoveryTagFilterArray{
 //					&cloudprovider.AzureCredentialResourceDiscoveryTagFilterArgs{
 //						Key:   pulumi.String("key-1"),
@@ -139,6 +143,8 @@ type LookupAzureCredentialResult struct {
 	ResourceTagsToAddToMetrics []string `pulumi:"resourceTagsToAddToMetrics"`
 	// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId string `pulumi:"stackId"`
+	// A set of static labels to add to all metrics exported using this credential.
+	StaticLabels map[string]string `pulumi:"staticLabels"`
 	// The tenant ID of the Azure Credential.
 	TenantId string `pulumi:"tenantId"`
 }
@@ -235,6 +241,11 @@ func (o LookupAzureCredentialResultOutput) ResourceTagsToAddToMetrics() pulumi.S
 // The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 func (o LookupAzureCredentialResultOutput) StackId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzureCredentialResult) string { return v.StackId }).(pulumi.StringOutput)
+}
+
+// A set of static labels to add to all metrics exported using this credential.
+func (o LookupAzureCredentialResultOutput) StaticLabels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupAzureCredentialResult) map[string]string { return v.StaticLabels }).(pulumi.StringMapOutput)
 }
 
 // The tenant ID of the Azure Credential.

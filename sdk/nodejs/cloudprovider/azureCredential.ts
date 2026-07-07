@@ -30,6 +30,10 @@ import * as utilities from "../utilities";
  *         "tag1",
  *         "tag2",
  *     ],
+ *     staticLabels: {
+ *         label1: "value1",
+ *         label2: "value2",
+ *     },
  *     resourceDiscoveryTagFilters: [
  *         {
  *             key: "key-1",
@@ -136,6 +140,10 @@ export class AzureCredential extends pulumi.CustomResource {
      */
     declare public readonly stackId: pulumi.Output<string>;
     /**
+     * A set of static labels to add to all metrics exported using this credential.
+     */
+    declare public readonly staticLabels: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * The tenant ID of the Azure Credential.
      */
     declare public readonly tenantId: pulumi.Output<string>;
@@ -162,6 +170,7 @@ export class AzureCredential extends pulumi.CustomResource {
             resourceInputs["resourceId"] = state?.resourceId;
             resourceInputs["resourceTagsToAddToMetrics"] = state?.resourceTagsToAddToMetrics;
             resourceInputs["stackId"] = state?.stackId;
+            resourceInputs["staticLabels"] = state?.staticLabels;
             resourceInputs["tenantId"] = state?.tenantId;
         } else {
             const args = argsOrState as AzureCredentialArgs | undefined;
@@ -185,6 +194,7 @@ export class AzureCredential extends pulumi.CustomResource {
             resourceInputs["resourceDiscoveryTagFilters"] = args?.resourceDiscoveryTagFilters;
             resourceInputs["resourceTagsToAddToMetrics"] = args?.resourceTagsToAddToMetrics;
             resourceInputs["stackId"] = args?.stackId;
+            resourceInputs["staticLabels"] = args?.staticLabels;
             resourceInputs["tenantId"] = args?.tenantId;
             resourceInputs["resourceId"] = undefined /*out*/;
         }
@@ -236,6 +246,10 @@ export interface AzureCredentialState {
      */
     stackId?: pulumi.Input<string>;
     /**
+     * A set of static labels to add to all metrics exported using this credential.
+     */
+    staticLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
      * The tenant ID of the Azure Credential.
      */
     tenantId?: pulumi.Input<string>;
@@ -277,6 +291,10 @@ export interface AzureCredentialArgs {
      * The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
      */
     stackId: pulumi.Input<string>;
+    /**
+     * A set of static labels to add to all metrics exported using this credential.
+     */
+    staticLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The tenant ID of the Azure Credential.
      */

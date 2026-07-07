@@ -30,6 +30,10 @@ import * as utilities from "../utilities";
  *         "tag1",
  *         "tag2",
  *     ],
+ *     staticLabels: {
+ *         label1: "value1",
+ *         label2: "value2",
+ *     },
  *     resourceDiscoveryTagFilters: [
  *         {
  *             key: "key-1",
@@ -146,6 +150,10 @@ export interface GetAzureCredentialResult {
      */
     readonly stackId: string;
     /**
+     * A set of static labels to add to all metrics exported using this credential.
+     */
+    readonly staticLabels: {[key: string]: string};
+    /**
      * The tenant ID of the Azure Credential.
      */
     readonly tenantId: string;
@@ -174,6 +182,10 @@ export interface GetAzureCredentialResult {
  *         "tag1",
  *         "tag2",
  *     ],
+ *     staticLabels: {
+ *         label1: "value1",
+ *         label2: "value2",
+ *     },
  *     resourceDiscoveryTagFilters: [
  *         {
  *             key: "key-1",

@@ -4020,9 +4020,9 @@ export namespace assert {
          */
         property: string;
         /**
-         * Values to match against.
+         * Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
          */
-        values: string[];
+        values?: string[];
     }
 
     export interface ProfileConfigMatch {
@@ -4035,9 +4035,9 @@ export namespace assert {
          */
         property: string;
         /**
-         * Values to match against.
+         * Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
          */
-        values: string[];
+        values?: string[];
     }
 
     export interface PromRuleFileGroup {
@@ -4226,9 +4226,9 @@ export namespace assert {
          */
         property: string;
         /**
-         * Values to match against.
+         * Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
          */
-        values: string[];
+        values?: string[];
     }
 
 }

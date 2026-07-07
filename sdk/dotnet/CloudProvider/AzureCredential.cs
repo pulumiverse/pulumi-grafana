@@ -40,6 +40,11 @@ namespace Pulumiverse.Grafana.CloudProvider
     ///             "tag1",
     ///             "tag2",
     ///         },
+    ///         StaticLabels = 
+    ///         {
+    ///             { "label1", "value1" },
+    ///             { "label2", "value2" },
+    ///         },
     ///         ResourceDiscoveryTagFilters = new[]
     ///         {
     ///             new Grafana.CloudProvider.Inputs.AzureCredentialResourceDiscoveryTagFilterArgs
@@ -161,6 +166,12 @@ namespace Pulumiverse.Grafana.CloudProvider
         /// </summary>
         [Output("stackId")]
         public Output<string> StackId { get; private set; } = null!;
+
+        /// <summary>
+        /// A set of static labels to add to all metrics exported using this credential.
+        /// </summary>
+        [Output("staticLabels")]
+        public Output<ImmutableDictionary<string, string>?> StaticLabels { get; private set; } = null!;
 
         /// <summary>
         /// The tenant ID of the Azure Credential.
@@ -295,6 +306,18 @@ namespace Pulumiverse.Grafana.CloudProvider
         [Input("stackId", required: true)]
         public Input<string> StackId { get; set; } = null!;
 
+        [Input("staticLabels")]
+        private InputMap<string>? _staticLabels;
+
+        /// <summary>
+        /// A set of static labels to add to all metrics exported using this credential.
+        /// </summary>
+        public InputMap<string> StaticLabels
+        {
+            get => _staticLabels ?? (_staticLabels = new InputMap<string>());
+            set => _staticLabels = value;
+        }
+
         /// <summary>
         /// The tenant ID of the Azure Credential.
         /// </summary>
@@ -390,6 +413,18 @@ namespace Pulumiverse.Grafana.CloudProvider
         /// </summary>
         [Input("stackId")]
         public Input<string>? StackId { get; set; }
+
+        [Input("staticLabels")]
+        private InputMap<string>? _staticLabels;
+
+        /// <summary>
+        /// A set of static labels to add to all metrics exported using this credential.
+        /// </summary>
+        public InputMap<string> StaticLabels
+        {
+            get => _staticLabels ?? (_staticLabels = new InputMap<string>());
+            set => _staticLabels = value;
+        }
 
         /// <summary>
         /// The tenant ID of the Azure Credential.
