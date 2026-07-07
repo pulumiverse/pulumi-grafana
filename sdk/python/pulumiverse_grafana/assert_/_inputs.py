@@ -336,9 +336,9 @@ class LogConfigMatchArgsDict(TypedDict):
     """
     Entity property to match.
     """
-    values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
     """
-    Values to match against.
+    Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
     """
 
 @pulumi.input_type
@@ -346,15 +346,16 @@ class LogConfigMatchArgs:
     def __init__(__self__, *,
                  op: pulumi.Input[_builtins.str],
                  property: pulumi.Input[_builtins.str],
-                 values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+                 values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] op: Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
         :param pulumi.Input[_builtins.str] property: Entity property to match.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] values: Values to match against.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] values: Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
         """
         pulumi.set(__self__, "op", op)
         pulumi.set(__self__, "property", property)
-        pulumi.set(__self__, "values", values)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
 
     @_builtins.property
     @pulumi.getter
@@ -382,14 +383,14 @@ class LogConfigMatchArgs:
 
     @_builtins.property
     @pulumi.getter
-    def values(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
+    def values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Values to match against.
+        Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
         """
         return pulumi.get(self, "values")
 
     @values.setter
-    def values(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+    def values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "values", value)
 
 
@@ -402,9 +403,9 @@ class ProfileConfigMatchArgsDict(TypedDict):
     """
     Entity property to match.
     """
-    values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
     """
-    Values to match against.
+    Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
     """
 
 @pulumi.input_type
@@ -412,15 +413,16 @@ class ProfileConfigMatchArgs:
     def __init__(__self__, *,
                  op: pulumi.Input[_builtins.str],
                  property: pulumi.Input[_builtins.str],
-                 values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+                 values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] op: Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
         :param pulumi.Input[_builtins.str] property: Entity property to match.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] values: Values to match against.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] values: Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
         """
         pulumi.set(__self__, "op", op)
         pulumi.set(__self__, "property", property)
-        pulumi.set(__self__, "values", values)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
 
     @_builtins.property
     @pulumi.getter
@@ -448,14 +450,14 @@ class ProfileConfigMatchArgs:
 
     @_builtins.property
     @pulumi.getter
-    def values(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
+    def values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Values to match against.
+        Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
         """
         return pulumi.get(self, "values")
 
     @values.setter
-    def values(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+    def values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "values", value)
 
 
@@ -1279,9 +1281,9 @@ class TraceConfigMatchArgsDict(TypedDict):
     """
     Entity property to match.
     """
-    values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
     """
-    Values to match against.
+    Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
     """
 
 @pulumi.input_type
@@ -1289,15 +1291,16 @@ class TraceConfigMatchArgs:
     def __init__(__self__, *,
                  op: pulumi.Input[_builtins.str],
                  property: pulumi.Input[_builtins.str],
-                 values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+                 values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] op: Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
         :param pulumi.Input[_builtins.str] property: Entity property to match.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] values: Values to match against.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] values: Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
         """
         pulumi.set(__self__, "op", op)
         pulumi.set(__self__, "property", property)
-        pulumi.set(__self__, "values", values)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
 
     @_builtins.property
     @pulumi.getter
@@ -1325,14 +1328,14 @@ class TraceConfigMatchArgs:
 
     @_builtins.property
     @pulumi.getter
-    def values(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
+    def values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Values to match against.
+        Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
         """
         return pulumi.get(self, "values")
 
     @values.setter
-    def values(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+    def values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "values", value)
 
 

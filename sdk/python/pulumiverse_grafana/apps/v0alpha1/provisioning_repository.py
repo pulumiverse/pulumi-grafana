@@ -211,6 +211,19 @@ class ProvisioningRepository(pulumi.CustomResource):
         """
         Manages Grafana Git Sync repositories for provisioning dashboards and related resources.
 
+        ## Provider Configuration
+
+        This is an App Platform resource and talks directly to the Grafana stack's API.
+        Configure the provider with `url` and `auth` (not `cloud_api_url` /
+        `cloud_access_policy_token`), and set `stack_id`:
+
+        ```python
+        import pulumi
+        ```
+
+        Configuring only the Grafana Cloud arguments fails with
+        `Grafana App Platform API client not configured`.
+
         ## Example Usage
 
         ### GitHub Repository with Token Authentication
@@ -406,6 +419,19 @@ class ProvisioningRepository(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages Grafana Git Sync repositories for provisioning dashboards and related resources.
+
+        ## Provider Configuration
+
+        This is an App Platform resource and talks directly to the Grafana stack's API.
+        Configure the provider with `url` and `auth` (not `cloud_api_url` /
+        `cloud_access_policy_token`), and set `stack_id`:
+
+        ```python
+        import pulumi
+        ```
+
+        Configuring only the Grafana Cloud arguments fails with
+        `Grafana App Platform API client not configured`.
 
         ## Example Usage
 

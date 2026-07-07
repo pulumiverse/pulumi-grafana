@@ -25,11 +25,11 @@ namespace Pulumiverse.Grafana.Assert.Inputs
         [Input("property", required: true)]
         public Input<string> Property { get; set; } = null!;
 
-        [Input("values", required: true)]
+        [Input("values")]
         private InputList<string>? _values;
 
         /// <summary>
-        /// Values to match against.
+        /// Values to match against. Required for all operators except "IS NULL" and "IS NOT NULL", which must not have any values.
         /// </summary>
         public InputList<string> Values
         {

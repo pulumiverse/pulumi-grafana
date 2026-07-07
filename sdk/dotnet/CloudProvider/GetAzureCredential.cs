@@ -42,6 +42,11 @@ namespace Pulumiverse.Grafana.CloudProvider
         ///             "tag1",
         ///             "tag2",
         ///         },
+        ///         StaticLabels = 
+        ///         {
+        ///             { "label1", "value1" },
+        ///             { "label2", "value2" },
+        ///         },
         ///         ResourceDiscoveryTagFilters = new[]
         ///         {
         ///             new Grafana.CloudProvider.Inputs.AzureCredentialResourceDiscoveryTagFilterArgs
@@ -140,6 +145,11 @@ namespace Pulumiverse.Grafana.CloudProvider
         ///             "tag1",
         ///             "tag2",
         ///         },
+        ///         StaticLabels = 
+        ///         {
+        ///             { "label1", "value1" },
+        ///             { "label2", "value2" },
+        ///         },
         ///         ResourceDiscoveryTagFilters = new[]
         ///         {
         ///             new Grafana.CloudProvider.Inputs.AzureCredentialResourceDiscoveryTagFilterArgs
@@ -237,6 +247,11 @@ namespace Pulumiverse.Grafana.CloudProvider
         ///         {
         ///             "tag1",
         ///             "tag2",
+        ///         },
+        ///         StaticLabels = 
+        ///         {
+        ///             { "label1", "value1" },
+        ///             { "label2", "value2" },
         ///         },
         ///         ResourceDiscoveryTagFilters = new[]
         ///         {
@@ -441,6 +456,10 @@ namespace Pulumiverse.Grafana.CloudProvider
         /// </summary>
         public readonly string StackId;
         /// <summary>
+        /// A set of static labels to add to all metrics exported using this credential.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string> StaticLabels;
+        /// <summary>
         /// The tenant ID of the Azure Credential.
         /// </summary>
         public readonly string TenantId;
@@ -467,6 +486,8 @@ namespace Pulumiverse.Grafana.CloudProvider
 
             string stackId,
 
+            ImmutableDictionary<string, string> staticLabels,
+
             string tenantId)
         {
             AutoDiscoveryConfigurations = autoDiscoveryConfigurations;
@@ -479,6 +500,7 @@ namespace Pulumiverse.Grafana.CloudProvider
             ResourceId = resourceId;
             ResourceTagsToAddToMetrics = resourceTagsToAddToMetrics;
             StackId = stackId;
+            StaticLabels = staticLabels;
             TenantId = tenantId;
         }
     }

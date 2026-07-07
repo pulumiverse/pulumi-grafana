@@ -29,7 +29,8 @@ class AzureCredentialArgs:
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  resource_discovery_tag_filters: Optional[pulumi.Input[Sequence[pulumi.Input['AzureCredentialResourceDiscoveryTagFilterArgs']]]] = None,
-                 resource_tags_to_add_to_metrics: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 resource_tags_to_add_to_metrics: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 static_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a AzureCredential resource.
 
@@ -42,6 +43,7 @@ class AzureCredentialArgs:
         :param pulumi.Input[_builtins.str] name: The name of the Azure Credential.
         :param pulumi.Input[Sequence[pulumi.Input['AzureCredentialResourceDiscoveryTagFilterArgs']]] resource_discovery_tag_filters: The list of tag filters to apply to resources.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] resource_tags_to_add_to_metrics: The list of resource tags to add to metrics.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] static_labels: A set of static labels to add to all metrics exported using this credential.
         """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
@@ -57,6 +59,8 @@ class AzureCredentialArgs:
             pulumi.set(__self__, "resource_discovery_tag_filters", resource_discovery_tag_filters)
         if resource_tags_to_add_to_metrics is not None:
             pulumi.set(__self__, "resource_tags_to_add_to_metrics", resource_tags_to_add_to_metrics)
+        if static_labels is not None:
+            pulumi.set(__self__, "static_labels", static_labels)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
@@ -166,6 +170,18 @@ class AzureCredentialArgs:
     def resource_tags_to_add_to_metrics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "resource_tags_to_add_to_metrics", value)
 
+    @_builtins.property
+    @pulumi.getter(name="staticLabels")
+    def static_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A set of static labels to add to all metrics exported using this credential.
+        """
+        return pulumi.get(self, "static_labels")
+
+    @static_labels.setter
+    def static_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "static_labels", value)
+
 
 @pulumi.input_type
 class _AzureCredentialState:
@@ -179,6 +195,7 @@ class _AzureCredentialState:
                  resource_id: Optional[pulumi.Input[_builtins.str]] = None,
                  resource_tags_to_add_to_metrics: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  stack_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 static_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AzureCredential resources.
@@ -192,6 +209,7 @@ class _AzureCredentialState:
         :param pulumi.Input[_builtins.str] resource_id: The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] resource_tags_to_add_to_metrics: The list of resource tags to add to metrics.
         :param pulumi.Input[_builtins.str] stack_id: The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] static_labels: A set of static labels to add to all metrics exported using this credential.
         :param pulumi.Input[_builtins.str] tenant_id: The tenant ID of the Azure Credential.
         """
         if auto_discovery_configurations is not None:
@@ -212,6 +230,8 @@ class _AzureCredentialState:
             pulumi.set(__self__, "resource_tags_to_add_to_metrics", resource_tags_to_add_to_metrics)
         if stack_id is not None:
             pulumi.set(__self__, "stack_id", stack_id)
+        if static_labels is not None:
+            pulumi.set(__self__, "static_labels", static_labels)
         if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
 
@@ -324,6 +344,18 @@ class _AzureCredentialState:
         pulumi.set(self, "stack_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="staticLabels")
+    def static_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A set of static labels to add to all metrics exported using this credential.
+        """
+        return pulumi.get(self, "static_labels")
+
+    @static_labels.setter
+    def static_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "static_labels", value)
+
+    @_builtins.property
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -350,6 +382,7 @@ class AzureCredential(pulumi.CustomResource):
                  resource_discovery_tag_filters: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AzureCredentialResourceDiscoveryTagFilterArgs', 'AzureCredentialResourceDiscoveryTagFilterArgsDict']]]]] = None,
                  resource_tags_to_add_to_metrics: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  stack_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 static_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
@@ -376,6 +409,10 @@ class AzureCredential(pulumi.CustomResource):
                 "tag1",
                 "tag2",
             ],
+            static_labels={
+                "label1": "value1",
+                "label2": "value2",
+            },
             resource_discovery_tag_filters=[
                 {
                     "key": "key-1",
@@ -427,6 +464,7 @@ class AzureCredential(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['AzureCredentialResourceDiscoveryTagFilterArgs', 'AzureCredentialResourceDiscoveryTagFilterArgsDict']]]] resource_discovery_tag_filters: The list of tag filters to apply to resources.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] resource_tags_to_add_to_metrics: The list of resource tags to add to metrics.
         :param pulumi.Input[_builtins.str] stack_id: The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] static_labels: A set of static labels to add to all metrics exported using this credential.
         :param pulumi.Input[_builtins.str] tenant_id: The tenant ID of the Azure Credential.
         """
         ...
@@ -459,6 +497,10 @@ class AzureCredential(pulumi.CustomResource):
                 "tag1",
                 "tag2",
             ],
+            static_labels={
+                "label1": "value1",
+                "label2": "value2",
+            },
             resource_discovery_tag_filters=[
                 {
                     "key": "key-1",
@@ -523,6 +565,7 @@ class AzureCredential(pulumi.CustomResource):
                  resource_discovery_tag_filters: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AzureCredentialResourceDiscoveryTagFilterArgs', 'AzureCredentialResourceDiscoveryTagFilterArgsDict']]]]] = None,
                  resource_tags_to_add_to_metrics: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  stack_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 static_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -547,6 +590,7 @@ class AzureCredential(pulumi.CustomResource):
             if stack_id is None and not opts.urn:
                 raise TypeError("Missing required property 'stack_id'")
             __props__.__dict__["stack_id"] = stack_id
+            __props__.__dict__["static_labels"] = static_labels
             if tenant_id is None and not opts.urn:
                 raise TypeError("Missing required property 'tenant_id'")
             __props__.__dict__["tenant_id"] = tenant_id
@@ -572,6 +616,7 @@ class AzureCredential(pulumi.CustomResource):
             resource_id: Optional[pulumi.Input[_builtins.str]] = None,
             resource_tags_to_add_to_metrics: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             stack_id: Optional[pulumi.Input[_builtins.str]] = None,
+            static_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             tenant_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'AzureCredential':
         """
         Get an existing AzureCredential resource's state with the given name, id, and optional extra
@@ -589,6 +634,7 @@ class AzureCredential(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] resource_id: The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] resource_tags_to_add_to_metrics: The list of resource tags to add to metrics.
         :param pulumi.Input[_builtins.str] stack_id: The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] static_labels: A set of static labels to add to all metrics exported using this credential.
         :param pulumi.Input[_builtins.str] tenant_id: The tenant ID of the Azure Credential.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -604,6 +650,7 @@ class AzureCredential(pulumi.CustomResource):
         __props__.__dict__["resource_id"] = resource_id
         __props__.__dict__["resource_tags_to_add_to_metrics"] = resource_tags_to_add_to_metrics
         __props__.__dict__["stack_id"] = stack_id
+        __props__.__dict__["static_labels"] = static_labels
         __props__.__dict__["tenant_id"] = tenant_id
         return AzureCredential(resource_name, opts=opts, __props__=__props__)
 
@@ -678,6 +725,14 @@ class AzureCredential(pulumi.CustomResource):
         The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         """
         return pulumi.get(self, "stack_id")
+
+    @_builtins.property
+    @pulumi.getter(name="staticLabels")
+    def static_labels(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        A set of static labels to add to all metrics exported using this credential.
+        """
+        return pulumi.get(self, "static_labels")
 
     @_builtins.property
     @pulumi.getter(name="tenantId")

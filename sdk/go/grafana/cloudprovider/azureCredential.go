@@ -43,6 +43,10 @@ import (
 //					pulumi.String("tag1"),
 //					pulumi.String("tag2"),
 //				},
+//				StaticLabels: pulumi.StringMap{
+//					"label1": pulumi.String("value1"),
+//					"label2": pulumi.String("value2"),
+//				},
 //				ResourceDiscoveryTagFilters: cloudprovider.AzureCredentialResourceDiscoveryTagFilterArray{
 //					&cloudprovider.AzureCredentialResourceDiscoveryTagFilterArgs{
 //						Key:   pulumi.String("key-1"),
@@ -119,6 +123,8 @@ type AzureCredential struct {
 	ResourceTagsToAddToMetrics pulumi.StringArrayOutput `pulumi:"resourceTagsToAddToMetrics"`
 	// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId pulumi.StringOutput `pulumi:"stackId"`
+	// A set of static labels to add to all metrics exported using this credential.
+	StaticLabels pulumi.StringMapOutput `pulumi:"staticLabels"`
 	// The tenant ID of the Azure Credential.
 	TenantId pulumi.StringOutput `pulumi:"tenantId"`
 }
@@ -190,6 +196,8 @@ type azureCredentialState struct {
 	ResourceTagsToAddToMetrics []string `pulumi:"resourceTagsToAddToMetrics"`
 	// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId *string `pulumi:"stackId"`
+	// A set of static labels to add to all metrics exported using this credential.
+	StaticLabels map[string]string `pulumi:"staticLabels"`
 	// The tenant ID of the Azure Credential.
 	TenantId *string `pulumi:"tenantId"`
 }
@@ -213,6 +221,8 @@ type AzureCredentialState struct {
 	ResourceTagsToAddToMetrics pulumi.StringArrayInput
 	// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId pulumi.StringPtrInput
+	// A set of static labels to add to all metrics exported using this credential.
+	StaticLabels pulumi.StringMapInput
 	// The tenant ID of the Azure Credential.
 	TenantId pulumi.StringPtrInput
 }
@@ -238,6 +248,8 @@ type azureCredentialArgs struct {
 	ResourceTagsToAddToMetrics []string `pulumi:"resourceTagsToAddToMetrics"`
 	// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId string `pulumi:"stackId"`
+	// A set of static labels to add to all metrics exported using this credential.
+	StaticLabels map[string]string `pulumi:"staticLabels"`
 	// The tenant ID of the Azure Credential.
 	TenantId string `pulumi:"tenantId"`
 }
@@ -260,6 +272,8 @@ type AzureCredentialArgs struct {
 	ResourceTagsToAddToMetrics pulumi.StringArrayInput
 	// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId pulumi.StringInput
+	// A set of static labels to add to all metrics exported using this credential.
+	StaticLabels pulumi.StringMapInput
 	// The tenant ID of the Azure Credential.
 	TenantId pulumi.StringInput
 }
@@ -398,6 +412,11 @@ func (o AzureCredentialOutput) ResourceTagsToAddToMetrics() pulumi.StringArrayOu
 // The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 func (o AzureCredentialOutput) StackId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AzureCredential) pulumi.StringOutput { return v.StackId }).(pulumi.StringOutput)
+}
+
+// A set of static labels to add to all metrics exported using this credential.
+func (o AzureCredentialOutput) StaticLabels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AzureCredential) pulumi.StringMapOutput { return v.StaticLabels }).(pulumi.StringMapOutput)
 }
 
 // The tenant ID of the Azure Credential.
