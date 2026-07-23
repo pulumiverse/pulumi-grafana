@@ -34,6 +34,9 @@ class LoadTestArgs:
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "script", script)
         if baseline_test_run_id is not None:
+            warnings.warn("""Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.""", DeprecationWarning)
+            pulumi.log.warn("""baseline_test_run_id is deprecated: Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.""")
+        if baseline_test_run_id is not None:
             pulumi.set(__self__, "baseline_test_run_id", baseline_test_run_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -64,6 +67,7 @@ class LoadTestArgs:
 
     @_builtins.property
     @pulumi.getter(name="baselineTestRunId")
+    @_utilities.deprecated("""Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.""")
     def baseline_test_run_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Identifier of a baseline test run used for results comparison.
@@ -107,6 +111,9 @@ class _LoadTestState:
         :param pulumi.Input[_builtins.str] updated: The date when the load test was last updated.
         """
         if baseline_test_run_id is not None:
+            warnings.warn("""Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.""", DeprecationWarning)
+            pulumi.log.warn("""baseline_test_run_id is deprecated: Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.""")
+        if baseline_test_run_id is not None:
             pulumi.set(__self__, "baseline_test_run_id", baseline_test_run_id)
         if created is not None:
             pulumi.set(__self__, "created", created)
@@ -121,6 +128,7 @@ class _LoadTestState:
 
     @_builtins.property
     @pulumi.getter(name="baselineTestRunId")
+    @_utilities.deprecated("""Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.""")
     def baseline_test_run_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Identifier of a baseline test run used for results comparison.
@@ -350,6 +358,7 @@ class LoadTest(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="baselineTestRunId")
+    @_utilities.deprecated("""Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.""")
     def baseline_test_run_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Identifier of a baseline test run used for results comparison.

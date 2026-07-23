@@ -167,6 +167,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "alerting/v1beta1/notificationsRoutingTree",
+  "fqn": "pulumiverse_grafana.alerting.v1beta1",
+  "classes": {
+   "grafana:alerting/v1beta1/notificationsRoutingTree:NotificationsRoutingTree": "NotificationsRoutingTree"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "apps/genericResource",
   "fqn": "pulumiverse_grafana.apps",
   "classes": {

@@ -21,38 +21,35 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting"
+//	alertingv1beta1 "github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting/v1beta1"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.NewAppsNotificationsInhibitionruleV0alpha1(ctx, "example", &grafana.AppsNotificationsInhibitionruleV0alpha1Args{
-//				Metadata: []map[string]interface{}{
-//					map[string]interface{}{
-//						"uid": "example-inhibition-rule",
-//					},
+//			_, err := alerting.NewNotificationsInhibitionRule(ctx, "example", &alerting.NotificationsInhibitionRuleArgs{
+//				Metadata: &alertingv1beta1.NotificationsInhibitionRuleMetadataArgs{
+//					Uid: pulumi.String("example-inhibition-rule"),
 //				},
-//				Spec: []map[string]interface{}{
-//					map[string]interface{}{
-//						"sourceMatchers": []map[string]interface{}{
-//							map[string]interface{}{
-//								"type":  "=",
-//								"label": "alertname",
-//								"value": "TargetDown",
-//							},
+//				Spec: &alertingv1beta1.NotificationsInhibitionRuleSpecArgs{
+//					SourceMatchers: alertingv1beta1.NotificationsInhibitionRuleSpecSourceMatcherArray{
+//						&alertingv1beta1.NotificationsInhibitionRuleSpecSourceMatcherArgs{
+//							Type:  pulumi.String("="),
+//							Label: pulumi.String("alertname"),
+//							Value: pulumi.String("TargetDown"),
 //						},
-//						"targetMatchers": []map[string]interface{}{
-//							map[string]interface{}{
-//								"type":  "=",
-//								"label": "severity",
-//								"value": "warning",
-//							},
+//					},
+//					TargetMatchers: alertingv1beta1.NotificationsInhibitionRuleSpecTargetMatcherArray{
+//						&alertingv1beta1.NotificationsInhibitionRuleSpecTargetMatcherArgs{
+//							Type:  pulumi.String("="),
+//							Label: pulumi.String("severity"),
+//							Value: pulumi.String("warning"),
 //						},
-//						"equal": []string{
-//							"namespace",
-//							"pod",
-//						},
+//					},
+//					Equals: pulumi.StringArray{
+//						pulumi.String("namespace"),
+//						pulumi.String("pod"),
 //					},
 //				},
 //			})

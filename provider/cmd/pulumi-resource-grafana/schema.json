@@ -5022,6 +5022,561 @@
                 "value"
             ]
         },
+        "grafana:alerting/v1beta1/NotificationsRoutingTreeMetadata:NotificationsRoutingTreeMetadata": {
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Annotations of the resource.\n"
+                },
+                "folderUid": {
+                    "type": "string",
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
+                },
+                "uid": {
+                    "type": "string",
+                    "description": "The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named \u003cspan pulumi-lang-nodejs=\"`default`\" pulumi-lang-dotnet=\"`Default`\" pulumi-lang-go=\"`default`\" pulumi-lang-python=\"`default`\" pulumi-lang-yaml=\"`default`\" pulumi-lang-java=\"`default`\"\u003e`default`\u003c/span\u003e.\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The full URL of the resource.\n"
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "The globally unique identifier of a resource, used by the API for tracking.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The version of the resource.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "uid"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "annotations",
+                        "uid",
+                        "url",
+                        "uuid",
+                        "version"
+                    ]
+                }
+            }
+        },
+        "grafana:alerting/v1beta1/NotificationsRoutingTreeOptions:NotificationsRoutingTreeOptions": {
+            "properties": {
+                "managerIdentity": {
+                    "type": "string",
+                    "description": "Override the identity stamped on this resource's manager metadata. Defaults to \"grafana-terraform-provider\". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.\n"
+                },
+                "overwrite": {
+                    "type": "boolean",
+                    "description": "Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/v1beta1/NotificationsRoutingTreeSpec:NotificationsRoutingTreeSpec": {
+            "properties": {
+                "defaults": {
+                    "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeSpecDefaults:NotificationsRoutingTreeSpecDefaults",
+                    "description": "The default values applied to alerts that do not match any specific route.\n"
+                },
+                "disableProvenance": {
+                    "type": "boolean",
+                    "description": "Set to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e to allow editing this resource from other sources (UI, API). Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e, which locks the resource to Terraform management only.\n"
+                },
+                "routes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRoute:NotificationsRoutingTreeSpecRoute"
+                    },
+                    "description": "Routing rules for specific label sets.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "disableProvenance"
+                    ]
+                }
+            }
+        },
+        "grafana:alerting/v1beta1/NotificationsRoutingTreeSpecDefaults:NotificationsRoutingTreeSpecDefaults": {
+            "properties": {
+                "groupBies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels.\n"
+                },
+                "groupInterval": {
+                    "type": "string",
+                    "description": "Minimum time interval between two notifications for the same group. Default is 5 minutes.\n"
+                },
+                "groupWait": {
+                    "type": "string",
+                    "description": "Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.\n"
+                },
+                "receiver": {
+                    "type": "string",
+                    "description": "The default contact point to route all unmatched notifications to.\n"
+                },
+                "repeatInterval": {
+                    "type": "string",
+                    "description": "Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "receiver"
+            ]
+        },
+        "grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRoute:NotificationsRoutingTreeSpecRoute": {
+            "properties": {
+                "activeTimeIntervals": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of time interval names that activate this route only during the specified times.\n"
+                },
+                "continue": {
+                    "type": "boolean",
+                    "description": "Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.\n"
+                },
+                "groupBies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "groupInterval": {
+                    "type": "string",
+                    "description": "Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "groupWait": {
+                    "type": "string",
+                    "description": "Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "matchers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRouteMatcher:NotificationsRoutingTreeSpecRouteMatcher"
+                    },
+                    "description": "Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.\n"
+                },
+                "muteTimeIntervals": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of time interval names that mute this route during the specified times.\n"
+                },
+                "receiver": {
+                    "type": "string",
+                    "description": "The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "repeatInterval": {
+                    "type": "string",
+                    "description": "Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "routes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRouteRoute:NotificationsRoutingTreeSpecRouteRoute"
+                    },
+                    "description": "Child routes. Each child route has the same schema as `spec.routes` and may be nested up to 5 levels deep.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "continue"
+                    ]
+                }
+            }
+        },
+        "grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRouteMatcher:NotificationsRoutingTreeSpecRouteMatcher": {
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The name of the label to match against.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The matching operator. One of `=`, `!=`, `=~`, `!~`.\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The label value to match against.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "label",
+                "type",
+                "value"
+            ]
+        },
+        "grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRouteRoute:NotificationsRoutingTreeSpecRouteRoute": {
+            "properties": {
+                "activeTimeIntervals": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of time interval names that activate this route only during the specified times.\n"
+                },
+                "continue": {
+                    "type": "boolean",
+                    "description": "Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.\n"
+                },
+                "groupBies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "groupInterval": {
+                    "type": "string",
+                    "description": "Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "groupWait": {
+                    "type": "string",
+                    "description": "Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "matchers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRouteRouteMatcher:NotificationsRoutingTreeSpecRouteRouteMatcher"
+                    },
+                    "description": "Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.\n"
+                },
+                "muteTimeIntervals": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of time interval names that mute this route during the specified times.\n"
+                },
+                "receiver": {
+                    "type": "string",
+                    "description": "The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "repeatInterval": {
+                    "type": "string",
+                    "description": "Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "routes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRouteRouteRoute:NotificationsRoutingTreeSpecRouteRouteRoute"
+                    },
+                    "description": "Child routes of this route.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "continue"
+                    ]
+                }
+            }
+        },
+        "grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRouteRouteMatcher:NotificationsRoutingTreeSpecRouteRouteMatcher": {
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The name of the label to match against.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The matching operator. One of `=`, `!=`, `=~`, `!~`.\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The label value to match against.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "label",
+                "type",
+                "value"
+            ]
+        },
+        "grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRouteRouteRoute:NotificationsRoutingTreeSpecRouteRouteRoute": {
+            "properties": {
+                "activeTimeIntervals": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of time interval names that activate this route only during the specified times.\n"
+                },
+                "continue": {
+                    "type": "boolean",
+                    "description": "Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.\n"
+                },
+                "groupBies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "groupInterval": {
+                    "type": "string",
+                    "description": "Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "groupWait": {
+                    "type": "string",
+                    "description": "Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "matchers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRouteRouteRouteMatcher:NotificationsRoutingTreeSpecRouteRouteRouteMatcher"
+                    },
+                    "description": "Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.\n"
+                },
+                "muteTimeIntervals": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of time interval names that mute this route during the specified times.\n"
+                },
+                "receiver": {
+                    "type": "string",
+                    "description": "The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "repeatInterval": {
+                    "type": "string",
+                    "description": "Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "routes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRouteRouteRouteRoute:NotificationsRoutingTreeSpecRouteRouteRouteRoute"
+                    },
+                    "description": "Child routes of this route.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "continue"
+                    ]
+                }
+            }
+        },
+        "grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRouteRouteRouteMatcher:NotificationsRoutingTreeSpecRouteRouteRouteMatcher": {
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The name of the label to match against.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The matching operator. One of `=`, `!=`, `=~`, `!~`.\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The label value to match against.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "label",
+                "type",
+                "value"
+            ]
+        },
+        "grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRouteRouteRouteRoute:NotificationsRoutingTreeSpecRouteRouteRouteRoute": {
+            "properties": {
+                "activeTimeIntervals": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of time interval names that activate this route only during the specified times.\n"
+                },
+                "continue": {
+                    "type": "boolean",
+                    "description": "Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.\n"
+                },
+                "groupBies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "groupInterval": {
+                    "type": "string",
+                    "description": "Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "groupWait": {
+                    "type": "string",
+                    "description": "Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "matchers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher:NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher"
+                    },
+                    "description": "Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.\n"
+                },
+                "muteTimeIntervals": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of time interval names that mute this route during the specified times.\n"
+                },
+                "receiver": {
+                    "type": "string",
+                    "description": "The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "repeatInterval": {
+                    "type": "string",
+                    "description": "Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "routes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute:NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute"
+                    },
+                    "description": "Child routes of this route.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "continue"
+                    ]
+                }
+            }
+        },
+        "grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher:NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher": {
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The name of the label to match against.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The matching operator. One of `=`, `!=`, `=~`, `!~`.\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The label value to match against.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "label",
+                "type",
+                "value"
+            ]
+        },
+        "grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute:NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute": {
+            "properties": {
+                "activeTimeIntervals": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of time interval names that activate this route only during the specified times.\n"
+                },
+                "continue": {
+                    "type": "boolean",
+                    "description": "Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.\n"
+                },
+                "groupBies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "groupInterval": {
+                    "type": "string",
+                    "description": "Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "groupWait": {
+                    "type": "string",
+                    "description": "Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "matchers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher:NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher"
+                    },
+                    "description": "Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.\n"
+                },
+                "muteTimeIntervals": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of time interval names that mute this route during the specified times.\n"
+                },
+                "receiver": {
+                    "type": "string",
+                    "description": "The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                },
+                "repeatInterval": {
+                    "type": "string",
+                    "description": "Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "continue"
+                    ]
+                }
+            }
+        },
+        "grafana:alerting/v1beta1/NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher:NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher": {
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The name of the label to match against.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The matching operator. One of `=`, `!=`, `=~`, `!~`.\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The label value to match against.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "label",
+                "type",
+                "value"
+            ]
+        },
         "grafana:apps/v0alpha1/PlaylistMetadata:PlaylistMetadata": {
             "properties": {
                 "annotations": {
@@ -13000,7 +13555,7 @@
             ]
         },
         "grafana:alerting/v1beta1/notificationsInhibitionRule:NotificationsInhibitionRule": {
-            "description": "Manages Grafana Inhibition Rules.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.index.AppsNotificationsInhibitionruleV0alpha1(\"example\", {\n    metadata: [{\n        uid: \"example-inhibition-rule\",\n    }],\n    spec: [{\n        sourceMatchers: [{\n            type: \"=\",\n            label: \"alertname\",\n            value: \"TargetDown\",\n        }],\n        targetMatchers: [{\n            type: \"=\",\n            label: \"severity\",\n            value: \"warning\",\n        }],\n        equal: [\n            \"namespace\",\n            \"pod\",\n        ],\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\n\nexample = grafana.index.AppsNotificationsInhibitionruleV0alpha1(\"example\",\n    metadata=[{\n        uid: example-inhibition-rule,\n    }],\n    spec=[{\n        sourceMatchers: [{\n            type: =,\n            label: alertname,\n            value: TargetDown,\n        }],\n        targetMatchers: [{\n            type: =,\n            label: severity,\n            value: warning,\n        }],\n        equal: [\n            namespace,\n            pod,\n        ],\n    }])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Index.AppsNotificationsInhibitionruleV0alpha1(\"example\", new()\n    {\n        Metadata = new[]\n        {\n            \n            {\n                { \"uid\", \"example-inhibition-rule\" },\n            },\n        },\n        Spec = new[]\n        {\n            \n            {\n                { \"sourceMatchers\", new[]\n                {\n                    \n                    {\n                        { \"type\", \"=\" },\n                        { \"label\", \"alertname\" },\n                        { \"value\", \"TargetDown\" },\n                    },\n                } },\n                { \"targetMatchers\", new[]\n                {\n                    \n                    {\n                        { \"type\", \"=\" },\n                        { \"label\", \"severity\" },\n                        { \"value\", \"warning\" },\n                    },\n                } },\n                { \"equal\", new[]\n                {\n                    \"namespace\",\n                    \"pod\",\n                } },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := grafana.NewAppsNotificationsInhibitionruleV0alpha1(ctx, \"example\", \u0026grafana.AppsNotificationsInhibitionruleV0alpha1Args{\n\t\t\tMetadata: []map[string]interface{}{\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"uid\": \"example-inhibition-rule\",\n\t\t\t\t},\n\t\t\t},\n\t\t\tSpec: []map[string]interface{}{\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"sourceMatchers\": []map[string]interface{}{\n\t\t\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\t\t\"type\":  \"=\",\n\t\t\t\t\t\t\t\"label\": \"alertname\",\n\t\t\t\t\t\t\t\"value\": \"TargetDown\",\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\t\"targetMatchers\": []map[string]interface{}{\n\t\t\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\t\t\"type\":  \"=\",\n\t\t\t\t\t\t\t\"label\": \"severity\",\n\t\t\t\t\t\t\t\"value\": \"warning\",\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\t\"equal\": []string{\n\t\t\t\t\t\t\"namespace\",\n\t\t\t\t\t\t\"pod\",\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.AppsNotificationsInhibitionruleV0alpha1;\nimport com.pulumi.grafana.AppsNotificationsInhibitionruleV0alpha1Args;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new AppsNotificationsInhibitionruleV0alpha1(\"example\", AppsNotificationsInhibitionruleV0alpha1Args.builder()\n            .metadata(List.of(Map.of(\"uid\", \"example-inhibition-rule\")))\n            .spec(List.of(Map.ofEntries(\n                Map.entry(\"sourceMatchers\", List.of(Map.ofEntries(\n                    Map.entry(\"type\", \"=\"),\n                    Map.entry(\"label\", \"alertname\"),\n                    Map.entry(\"value\", \"TargetDown\")\n                ))),\n                Map.entry(\"targetMatchers\", List.of(Map.ofEntries(\n                    Map.entry(\"type\", \"=\"),\n                    Map.entry(\"label\", \"severity\"),\n                    Map.entry(\"value\", \"warning\")\n                ))),\n                Map.entry(\"equal\", List.of(                \n                    \"namespace\",\n                    \"pod\"))\n            )))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:AppsNotificationsInhibitionruleV0alpha1\n    properties:\n      metadata:\n        - uid: example-inhibition-rule\n      spec:\n        - sourceMatchers:\n            - type: =\n              label: alertname\n              value: TargetDown\n          targetMatchers:\n            - type: =\n              label: severity\n              value: warning\n          equal:\n            - namespace\n            - pod\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Manages Grafana Inhibition Rules.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.alerting.v1beta1.NotificationsInhibitionRule(\"example\", {\n    metadata: {\n        uid: \"example-inhibition-rule\",\n    },\n    spec: {\n        sourceMatchers: [{\n            type: \"=\",\n            label: \"alertname\",\n            value: \"TargetDown\",\n        }],\n        targetMatchers: [{\n            type: \"=\",\n            label: \"severity\",\n            value: \"warning\",\n        }],\n        equals: [\n            \"namespace\",\n            \"pod\",\n        ],\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nexample = grafana.alerting.v1beta1.NotificationsInhibitionRule(\"example\",\n    metadata={\n        \"uid\": \"example-inhibition-rule\",\n    },\n    spec={\n        \"source_matchers\": [{\n            \"type\": \"=\",\n            \"label\": \"alertname\",\n            \"value\": \"TargetDown\",\n        }],\n        \"target_matchers\": [{\n            \"type\": \"=\",\n            \"label\": \"severity\",\n            \"value\": \"warning\",\n        }],\n        \"equals\": [\n            \"namespace\",\n            \"pod\",\n        ],\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Alerting.V1Beta1.NotificationsInhibitionRule(\"example\", new()\n    {\n        Metadata = new Grafana.Alerting.V1Beta1.Inputs.NotificationsInhibitionRuleMetadataArgs\n        {\n            Uid = \"example-inhibition-rule\",\n        },\n        Spec = new Grafana.Alerting.V1Beta1.Inputs.NotificationsInhibitionRuleSpecArgs\n        {\n            SourceMatchers = new[]\n            {\n                new Grafana.Alerting.V1Beta1.Inputs.NotificationsInhibitionRuleSpecSourceMatcherArgs\n                {\n                    Type = \"=\",\n                    Label = \"alertname\",\n                    Value = \"TargetDown\",\n                },\n            },\n            TargetMatchers = new[]\n            {\n                new Grafana.Alerting.V1Beta1.Inputs.NotificationsInhibitionRuleSpecTargetMatcherArgs\n                {\n                    Type = \"=\",\n                    Label = \"severity\",\n                    Value = \"warning\",\n                },\n            },\n            Equals = new[]\n            {\n                \"namespace\",\n                \"pod\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting\"\n\talertingv1beta1 \"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting/v1beta1\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := alerting.NewNotificationsInhibitionRule(ctx, \"example\", \u0026alerting.NotificationsInhibitionRuleArgs{\n\t\t\tMetadata: \u0026alertingv1beta1.NotificationsInhibitionRuleMetadataArgs{\n\t\t\t\tUid: pulumi.String(\"example-inhibition-rule\"),\n\t\t\t},\n\t\t\tSpec: \u0026alertingv1beta1.NotificationsInhibitionRuleSpecArgs{\n\t\t\t\tSourceMatchers: alertingv1beta1.NotificationsInhibitionRuleSpecSourceMatcherArray{\n\t\t\t\t\t\u0026alertingv1beta1.NotificationsInhibitionRuleSpecSourceMatcherArgs{\n\t\t\t\t\t\tType:  pulumi.String(\"=\"),\n\t\t\t\t\t\tLabel: pulumi.String(\"alertname\"),\n\t\t\t\t\t\tValue: pulumi.String(\"TargetDown\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\tTargetMatchers: alertingv1beta1.NotificationsInhibitionRuleSpecTargetMatcherArray{\n\t\t\t\t\t\u0026alertingv1beta1.NotificationsInhibitionRuleSpecTargetMatcherArgs{\n\t\t\t\t\t\tType:  pulumi.String(\"=\"),\n\t\t\t\t\t\tLabel: pulumi.String(\"severity\"),\n\t\t\t\t\t\tValue: pulumi.String(\"warning\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\tEquals: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"namespace\"),\n\t\t\t\t\tpulumi.String(\"pod\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.alerting_v1beta1.NotificationsInhibitionRule;\nimport com.pulumi.grafana.alerting_v1beta1.NotificationsInhibitionRuleArgs;\nimport com.pulumi.grafana.alerting.inputs.NotificationsInhibitionRuleMetadataArgs;\nimport com.pulumi.grafana.alerting.inputs.NotificationsInhibitionRuleSpecArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new NotificationsInhibitionRule(\"example\", NotificationsInhibitionRuleArgs.builder()\n            .metadata(NotificationsInhibitionRuleMetadataArgs.builder()\n                .uid(\"example-inhibition-rule\")\n                .build())\n            .spec(NotificationsInhibitionRuleSpecArgs.builder()\n                .sourceMatchers(NotificationsInhibitionRuleSpecSourceMatcherArgs.builder()\n                    .type(\"=\")\n                    .label(\"alertname\")\n                    .value(\"TargetDown\")\n                    .build())\n                .targetMatchers(NotificationsInhibitionRuleSpecTargetMatcherArgs.builder()\n                    .type(\"=\")\n                    .label(\"severity\")\n                    .value(\"warning\")\n                    .build())\n                .equals(                \n                    \"namespace\",\n                    \"pod\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:alerting/v1beta1:NotificationsInhibitionRule\n    properties:\n      metadata:\n        uid: example-inhibition-rule\n      spec:\n        sourceMatchers:\n          - type: =\n            label: alertname\n            value: TargetDown\n        targetMatchers:\n          - type: =\n            label: severity\n            value: warning\n        equals:\n          - namespace\n          - pod\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "metadata": {
                     "$ref": "#/types/grafana:alerting/v1beta1/NotificationsInhibitionRuleMetadata:NotificationsInhibitionRuleMetadata",
@@ -13042,6 +13597,55 @@
                     },
                     "spec": {
                         "$ref": "#/types/grafana:alerting/v1beta1/NotificationsInhibitionRuleSpec:NotificationsInhibitionRuleSpec",
+                        "description": "The spec of the resource.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:alerting/v1beta1/notificationsRoutingTree:NotificationsRoutingTree": {
+            "description": "Manages the Grafana notification routing tree using the Grafana Alerting Notifications API.\n\nThe routing tree determines which contact point an alert is routed to, based on its labels.\n\nRequires Grafana 13.1+ with the `alertingMultiplePolicies` [feature toggle](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/feature-toggles/) enabled.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/create-notification-policy/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.alerting.v1beta1.NotificationsRoutingTree(\"example\", {\n    metadata: {\n        uid: \"my-routing-tree\",\n    },\n    spec: {\n        disableProvenance: false,\n        defaults: {\n            receiver: \"empty\",\n            groupBies: [\n                \"grafana_folder\",\n                \"alertname\",\n            ],\n            groupWait: \"30s\",\n            groupInterval: \"5m\",\n            repeatInterval: \"4h\",\n        },\n        routes: [{\n            receiver: \"empty\",\n            \"continue\": false,\n            matchers: [{\n                type: \"=\",\n                label: \"severity\",\n                value: \"critical\",\n            }],\n            muteTimeIntervals: [],\n            groupBies: [\"alertname\"],\n            routes: [{\n                receiver: \"empty\",\n                \"continue\": true,\n                matchers: [{\n                    type: \"=~\",\n                    label: \"team\",\n                    value: \"backend|platform\",\n                }],\n            }],\n        }],\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nexample = grafana.alerting.v1beta1.NotificationsRoutingTree(\"example\",\n    metadata={\n        \"uid\": \"my-routing-tree\",\n    },\n    spec={\n        \"disable_provenance\": False,\n        \"defaults\": {\n            \"receiver\": \"empty\",\n            \"group_bies\": [\n                \"grafana_folder\",\n                \"alertname\",\n            ],\n            \"group_wait\": \"30s\",\n            \"group_interval\": \"5m\",\n            \"repeat_interval\": \"4h\",\n        },\n        \"routes\": [{\n            \"receiver\": \"empty\",\n            \"continue_\": False,\n            \"matchers\": [{\n                \"type\": \"=\",\n                \"label\": \"severity\",\n                \"value\": \"critical\",\n            }],\n            \"mute_time_intervals\": [],\n            \"group_bies\": [\"alertname\"],\n            \"routes\": [{\n                \"receiver\": \"empty\",\n                \"continue_\": True,\n                \"matchers\": [{\n                    \"type\": \"=~\",\n                    \"label\": \"team\",\n                    \"value\": \"backend|platform\",\n                }],\n            }],\n        }],\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Alerting.V1Beta1.NotificationsRoutingTree(\"example\", new()\n    {\n        Metadata = new Grafana.Alerting.V1Beta1.Inputs.NotificationsRoutingTreeMetadataArgs\n        {\n            Uid = \"my-routing-tree\",\n        },\n        Spec = new Grafana.Alerting.V1Beta1.Inputs.NotificationsRoutingTreeSpecArgs\n        {\n            DisableProvenance = false,\n            Defaults = new Grafana.Alerting.V1Beta1.Inputs.NotificationsRoutingTreeSpecDefaultsArgs\n            {\n                Receiver = \"empty\",\n                GroupBies = new[]\n                {\n                    \"grafana_folder\",\n                    \"alertname\",\n                },\n                GroupWait = \"30s\",\n                GroupInterval = \"5m\",\n                RepeatInterval = \"4h\",\n            },\n            Routes = new[]\n            {\n                new Grafana.Alerting.V1Beta1.Inputs.NotificationsRoutingTreeSpecRouteArgs\n                {\n                    Receiver = \"empty\",\n                    Continue = false,\n                    Matchers = new[]\n                    {\n                        new Grafana.Alerting.V1Beta1.Inputs.NotificationsRoutingTreeSpecRouteMatcherArgs\n                        {\n                            Type = \"=\",\n                            Label = \"severity\",\n                            Value = \"critical\",\n                        },\n                    },\n                    MuteTimeIntervals = new() { },\n                    GroupBies = new[]\n                    {\n                        \"alertname\",\n                    },\n                    Routes = new[]\n                    {\n                        new Grafana.Alerting.V1Beta1.Inputs.NotificationsRoutingTreeSpecRouteRouteArgs\n                        {\n                            Receiver = \"empty\",\n                            Continue = true,\n                            Matchers = new[]\n                            {\n                                new Grafana.Alerting.V1Beta1.Inputs.NotificationsRoutingTreeSpecRouteRouteMatcherArgs\n                                {\n                                    Type = \"=~\",\n                                    Label = \"team\",\n                                    Value = \"backend|platform\",\n                                },\n                            },\n                        },\n                    },\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting\"\n\talertingv1beta1 \"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting/v1beta1\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := alerting.NewNotificationsRoutingTree(ctx, \"example\", \u0026alerting.NotificationsRoutingTreeArgs{\n\t\t\tMetadata: \u0026alertingv1beta1.NotificationsRoutingTreeMetadataArgs{\n\t\t\t\tUid: pulumi.String(\"my-routing-tree\"),\n\t\t\t},\n\t\t\tSpec: \u0026alertingv1beta1.NotificationsRoutingTreeSpecArgs{\n\t\t\t\tDisableProvenance: pulumi.Bool(false),\n\t\t\t\tDefaults: \u0026alertingv1beta1.NotificationsRoutingTreeSpecDefaultsArgs{\n\t\t\t\t\tReceiver: pulumi.String(\"empty\"),\n\t\t\t\t\tGroupBies: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"grafana_folder\"),\n\t\t\t\t\t\tpulumi.String(\"alertname\"),\n\t\t\t\t\t},\n\t\t\t\t\tGroupWait:      pulumi.String(\"30s\"),\n\t\t\t\t\tGroupInterval:  pulumi.String(\"5m\"),\n\t\t\t\t\tRepeatInterval: pulumi.String(\"4h\"),\n\t\t\t\t},\n\t\t\t\tRoutes: alertingv1beta1.NotificationsRoutingTreeSpecRouteArray{\n\t\t\t\t\t\u0026alertingv1beta1.NotificationsRoutingTreeSpecRouteArgs{\n\t\t\t\t\t\tReceiver: pulumi.String(\"empty\"),\n\t\t\t\t\t\tContinue: pulumi.Bool(false),\n\t\t\t\t\t\tMatchers: alertingv1beta1.NotificationsRoutingTreeSpecRouteMatcherArray{\n\t\t\t\t\t\t\t\u0026alertingv1beta1.NotificationsRoutingTreeSpecRouteMatcherArgs{\n\t\t\t\t\t\t\t\tType:  pulumi.String(\"=\"),\n\t\t\t\t\t\t\t\tLabel: pulumi.String(\"severity\"),\n\t\t\t\t\t\t\t\tValue: pulumi.String(\"critical\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t\tMuteTimeIntervals: pulumi.StringArray{},\n\t\t\t\t\t\tGroupBies: pulumi.StringArray{\n\t\t\t\t\t\t\tpulumi.String(\"alertname\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t\tRoutes: alertingv1beta1.NotificationsRoutingTreeSpecRouteRouteArray{\n\t\t\t\t\t\t\t\u0026alertingv1beta1.NotificationsRoutingTreeSpecRouteRouteArgs{\n\t\t\t\t\t\t\t\tReceiver: pulumi.String(\"empty\"),\n\t\t\t\t\t\t\t\tContinue: pulumi.Bool(true),\n\t\t\t\t\t\t\t\tMatchers: alertingv1beta1.NotificationsRoutingTreeSpecRouteRouteMatcherArray{\n\t\t\t\t\t\t\t\t\t\u0026alertingv1beta1.NotificationsRoutingTreeSpecRouteRouteMatcherArgs{\n\t\t\t\t\t\t\t\t\t\tType:  pulumi.String(\"=~\"),\n\t\t\t\t\t\t\t\t\t\tLabel: pulumi.String(\"team\"),\n\t\t\t\t\t\t\t\t\t\tValue: pulumi.String(\"backend|platform\"),\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.alerting_v1beta1.NotificationsRoutingTree;\nimport com.pulumi.grafana.alerting_v1beta1.NotificationsRoutingTreeArgs;\nimport com.pulumi.grafana.alerting.inputs.NotificationsRoutingTreeMetadataArgs;\nimport com.pulumi.grafana.alerting.inputs.NotificationsRoutingTreeSpecArgs;\nimport com.pulumi.grafana.alerting.inputs.NotificationsRoutingTreeSpecDefaultsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new NotificationsRoutingTree(\"example\", NotificationsRoutingTreeArgs.builder()\n            .metadata(NotificationsRoutingTreeMetadataArgs.builder()\n                .uid(\"my-routing-tree\")\n                .build())\n            .spec(NotificationsRoutingTreeSpecArgs.builder()\n                .disableProvenance(false)\n                .defaults(NotificationsRoutingTreeSpecDefaultsArgs.builder()\n                    .receiver(\"empty\")\n                    .groupBies(                    \n                        \"grafana_folder\",\n                        \"alertname\")\n                    .groupWait(\"30s\")\n                    .groupInterval(\"5m\")\n                    .repeatInterval(\"4h\")\n                    .build())\n                .routes(NotificationsRoutingTreeSpecRouteArgs.builder()\n                    .receiver(\"empty\")\n                    .continue_(false)\n                    .matchers(NotificationsRoutingTreeSpecRouteMatcherArgs.builder()\n                        .type(\"=\")\n                        .label(\"severity\")\n                        .value(\"critical\")\n                        .build())\n                    .muteTimeIntervals()\n                    .groupBies(\"alertname\")\n                    .routes(NotificationsRoutingTreeSpecRouteRouteArgs.builder()\n                        .receiver(\"empty\")\n                        .continue_(true)\n                        .matchers(NotificationsRoutingTreeSpecRouteRouteMatcherArgs.builder()\n                            .type(\"=~\")\n                            .label(\"team\")\n                            .value(\"backend|platform\")\n                            .build())\n                        .build())\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:alerting/v1beta1:NotificationsRoutingTree\n    properties:\n      metadata:\n        uid: my-routing-tree\n      spec:\n        disableProvenance: false\n        defaults:\n          receiver: empty\n          groupBies:\n            - grafana_folder\n            - alertname\n          groupWait: 30s\n          groupInterval: 5m\n          repeatInterval: 4h\n        routes:\n          - receiver: empty\n            continue: false\n            matchers:\n              - type: =\n                label: severity\n                value: critical\n            muteTimeIntervals: []\n            groupBies:\n              - alertname\n            routes:\n              - receiver: empty\n                continue: true\n                matchers:\n                  - type: =~\n                    label: team\n                    value: backend|platform\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n",
+            "properties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeMetadata:NotificationsRoutingTreeMetadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeOptions:NotificationsRoutingTreeOptions",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeSpec:NotificationsRoutingTreeSpec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "inputProperties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeMetadata:NotificationsRoutingTreeMetadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeOptions:NotificationsRoutingTreeOptions",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeSpec:NotificationsRoutingTreeSpec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering NotificationsRoutingTree resources.\n",
+                "properties": {
+                    "metadata": {
+                        "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeMetadata:NotificationsRoutingTreeMetadata",
+                        "description": "The metadata of the resource.\n"
+                    },
+                    "options": {
+                        "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeOptions:NotificationsRoutingTreeOptions",
+                        "description": "Options for applying the resource.\n"
+                    },
+                    "spec": {
+                        "$ref": "#/types/grafana:alerting/v1beta1/NotificationsRoutingTreeSpec:NotificationsRoutingTreeSpec",
                         "description": "The spec of the resource.\n"
                     }
                 },
@@ -19813,7 +20417,8 @@
             "properties": {
                 "baselineTestRunId": {
                     "type": "string",
-                    "description": "Identifier of a baseline test run used for results comparison.\n"
+                    "description": "Identifier of a baseline test run used for results comparison.\n",
+                    "deprecationMessage": "Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release."
                 },
                 "created": {
                     "type": "string",
@@ -19846,7 +20451,8 @@
             "inputProperties": {
                 "baselineTestRunId": {
                     "type": "string",
-                    "description": "Identifier of a baseline test run used for results comparison.\n"
+                    "description": "Identifier of a baseline test run used for results comparison.\n",
+                    "deprecationMessage": "Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release."
                 },
                 "name": {
                     "type": "string",
@@ -19870,7 +20476,8 @@
                 "properties": {
                     "baselineTestRunId": {
                         "type": "string",
-                        "description": "Identifier of a baseline test run used for results comparison.\n"
+                        "description": "Identifier of a baseline test run used for results comparison.\n",
+                        "deprecationMessage": "Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release."
                     },
                     "created": {
                         "type": "string",
@@ -26551,6 +27158,7 @@
                 "description": "A collection of values returned by getLoadTest.\n",
                 "properties": {
                     "baselineTestRunId": {
+                        "deprecationMessage": "This attribute is deprecated and will be removed in a future release.",
                         "description": "Identifier of a baseline test run used for results comparison.\n",
                         "type": "string"
                     },

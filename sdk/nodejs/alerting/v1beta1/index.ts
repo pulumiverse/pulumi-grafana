@@ -15,6 +15,11 @@ export type NotificationsInhibitionRule = import("./notificationsInhibitionRule"
 export const NotificationsInhibitionRule: typeof import("./notificationsInhibitionRule").NotificationsInhibitionRule = null as any;
 utilities.lazyLoad(exports, ["NotificationsInhibitionRule"], () => require("./notificationsInhibitionRule"));
 
+export { NotificationsRoutingTreeArgs, NotificationsRoutingTreeState } from "./notificationsRoutingTree";
+export type NotificationsRoutingTree = import("./notificationsRoutingTree").NotificationsRoutingTree;
+export const NotificationsRoutingTree: typeof import("./notificationsRoutingTree").NotificationsRoutingTree = null as any;
+utilities.lazyLoad(exports, ["NotificationsRoutingTree"], () => require("./notificationsRoutingTree"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -24,6 +29,8 @@ const _module = {
                 return new AlertEnrichment(name, <any>undefined, { urn })
             case "grafana:alerting/v1beta1/notificationsInhibitionRule:NotificationsInhibitionRule":
                 return new NotificationsInhibitionRule(name, <any>undefined, { urn })
+            case "grafana:alerting/v1beta1/notificationsRoutingTree:NotificationsRoutingTree":
+                return new NotificationsRoutingTree(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -31,3 +38,4 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("grafana", "alerting/v1beta1/alertEnrichment", _module)
 pulumi.runtime.registerResourceModule("grafana", "alerting/v1beta1/notificationsInhibitionRule", _module)
+pulumi.runtime.registerResourceModule("grafana", "alerting/v1beta1/notificationsRoutingTree", _module)

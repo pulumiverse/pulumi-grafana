@@ -143,6 +143,118 @@
                     }
                 }
             },
+            "grafana_apps_notifications_routingtree_v1beta1": {
+                "current": "grafana:alerting/v1beta1/notificationsRoutingTree:NotificationsRoutingTree",
+                "majorVersion": 2,
+                "fields": {
+                    "spec": {
+                        "fields": {
+                            "defaults": {
+                                "fields": {
+                                    "group_by": {
+                                        "maxItemsOne": false
+                                    }
+                                }
+                            },
+                            "routes": {
+                                "maxItemsOne": false,
+                                "elem": {
+                                    "fields": {
+                                        "active_time_intervals": {
+                                            "maxItemsOne": false
+                                        },
+                                        "group_by": {
+                                            "maxItemsOne": false
+                                        },
+                                        "matchers": {
+                                            "maxItemsOne": false
+                                        },
+                                        "mute_time_intervals": {
+                                            "maxItemsOne": false
+                                        },
+                                        "routes": {
+                                            "maxItemsOne": false,
+                                            "elem": {
+                                                "fields": {
+                                                    "active_time_intervals": {
+                                                        "maxItemsOne": false
+                                                    },
+                                                    "group_by": {
+                                                        "maxItemsOne": false
+                                                    },
+                                                    "matchers": {
+                                                        "maxItemsOne": false
+                                                    },
+                                                    "mute_time_intervals": {
+                                                        "maxItemsOne": false
+                                                    },
+                                                    "routes": {
+                                                        "maxItemsOne": false,
+                                                        "elem": {
+                                                            "fields": {
+                                                                "active_time_intervals": {
+                                                                    "maxItemsOne": false
+                                                                },
+                                                                "group_by": {
+                                                                    "maxItemsOne": false
+                                                                },
+                                                                "matchers": {
+                                                                    "maxItemsOne": false
+                                                                },
+                                                                "mute_time_intervals": {
+                                                                    "maxItemsOne": false
+                                                                },
+                                                                "routes": {
+                                                                    "maxItemsOne": false,
+                                                                    "elem": {
+                                                                        "fields": {
+                                                                            "active_time_intervals": {
+                                                                                "maxItemsOne": false
+                                                                            },
+                                                                            "group_by": {
+                                                                                "maxItemsOne": false
+                                                                            },
+                                                                            "matchers": {
+                                                                                "maxItemsOne": false
+                                                                            },
+                                                                            "mute_time_intervals": {
+                                                                                "maxItemsOne": false
+                                                                            },
+                                                                            "routes": {
+                                                                                "maxItemsOne": false,
+                                                                                "elem": {
+                                                                                    "fields": {
+                                                                                        "active_time_intervals": {
+                                                                                            "maxItemsOne": false
+                                                                                        },
+                                                                                        "group_by": {
+                                                                                            "maxItemsOne": false
+                                                                                        },
+                                                                                        "matchers": {
+                                                                                            "maxItemsOne": false
+                                                                                        },
+                                                                                        "mute_time_intervals": {
+                                                                                            "maxItemsOne": false
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "grafana_apps_playlist_playlist_v0alpha1": {
                 "current": "grafana:apps/v0alpha1/playlist:Playlist",
                 "past": [
@@ -2595,6 +2707,7 @@
             "grafana:alerting/v0alpha1/recordingRule:RecordingRule": 1,
             "grafana:alerting/v1beta1/alertEnrichment:AlertEnrichment": 1,
             "grafana:alerting/v1beta1/notificationsInhibitionRule:NotificationsInhibitionRule": 1,
+            "grafana:alerting/v1beta1/notificationsRoutingTree:NotificationsRoutingTree": 1,
             "grafana:apps/genericResource:GenericResource": 1,
             "grafana:apps/v0alpha1/playlist:Playlist": 1,
             "grafana:apps/v0alpha1/provisioningConnection:ProvisioningConnection": 1,

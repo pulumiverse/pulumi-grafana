@@ -228,6 +228,9 @@ func Provider() tfbridge.ProviderInfo {
 			"grafana_apps_notifications_inhibitionrule_v1beta1": {
 				Tok: grafanaVersionedResource(alertingMod, "v1beta1", "NotificationsInhibitionRule"),
 			},
+			"grafana_apps_notifications_routingtree_v1beta1": {
+				Tok: grafanaVersionedResource(alertingMod, "v1beta1", "NotificationsRoutingTree"),
+			},
 			"grafana_apps_rules_alertrule_v0alpha1": {
 				Tok: grafanaVersionedResource(alertingMod, "v0alpha1", "AlertRule"),
 				Aliases: []tfbridge.AliasInfo{

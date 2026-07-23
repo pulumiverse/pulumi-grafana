@@ -28,6 +28,7 @@
         "alerting/v1beta1/alertEnrichment.ts",
         "alerting/v1beta1/index.ts",
         "alerting/v1beta1/notificationsInhibitionRule.ts",
+        "alerting/v1beta1/notificationsRoutingTree.ts",
         "apps/genericResource.ts",
         "apps/index.ts",
         "apps/v0alpha1/index.ts",

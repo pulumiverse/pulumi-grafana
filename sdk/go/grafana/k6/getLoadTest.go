@@ -68,6 +68,8 @@ type LookupLoadTestArgs struct {
 // A collection of values returned by getLoadTest.
 type LookupLoadTestResult struct {
 	// Identifier of a baseline test run used for results comparison.
+	//
+	// Deprecated: This attribute is deprecated and will be removed in a future release.
 	BaselineTestRunId string `pulumi:"baselineTestRunId"`
 	// The date when the load test was created.
 	Created string `pulumi:"created"`
@@ -118,6 +120,8 @@ func (o LookupLoadTestResultOutput) ToLookupLoadTestResultOutputWithContext(ctx 
 }
 
 // Identifier of a baseline test run used for results comparison.
+//
+// Deprecated: This attribute is deprecated and will be removed in a future release.
 func (o LookupLoadTestResultOutput) BaselineTestRunId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLoadTestResult) string { return v.BaselineTestRunId }).(pulumi.StringOutput)
 }

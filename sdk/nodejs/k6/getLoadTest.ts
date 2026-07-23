@@ -50,6 +50,8 @@ export interface GetLoadTestArgs {
 export interface GetLoadTestResult {
     /**
      * Identifier of a baseline test run used for results comparison.
+     *
+     * @deprecated This attribute is deprecated and will be removed in a future release.
      */
     readonly baselineTestRunId: string;
     /**

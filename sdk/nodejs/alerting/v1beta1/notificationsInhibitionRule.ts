@@ -15,11 +15,11 @@ import * as utilities from "../../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const example = new grafana.index.AppsNotificationsInhibitionruleV0alpha1("example", {
- *     metadata: [{
+ * const example = new grafana.alerting.v1beta1.NotificationsInhibitionRule("example", {
+ *     metadata: {
  *         uid: "example-inhibition-rule",
- *     }],
- *     spec: [{
+ *     },
+ *     spec: {
  *         sourceMatchers: [{
  *             type: "=",
  *             label: "alertname",
@@ -30,11 +30,11 @@ import * as utilities from "../../utilities";
  *             label: "severity",
  *             value: "warning",
  *         }],
- *         equal: [
+ *         equals: [
  *             "namespace",
  *             "pod",
  *         ],
- *     }],
+ *     },
  * });
  * ```
  */
