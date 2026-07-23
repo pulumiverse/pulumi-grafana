@@ -51,6 +51,7 @@ class GetLoadTestResult:
 
     @_builtins.property
     @pulumi.getter(name="baselineTestRunId")
+    @_utilities.deprecated("""This attribute is deprecated and will be removed in a future release.""")
     def baseline_test_run_id(self) -> _builtins.str:
         """
         Identifier of a baseline test run used for results comparison.

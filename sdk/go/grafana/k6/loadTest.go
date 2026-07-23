@@ -57,6 +57,8 @@ type LoadTest struct {
 	pulumi.CustomResourceState
 
 	// Identifier of a baseline test run used for results comparison.
+	//
+	// Deprecated: Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.
 	BaselineTestRunId pulumi.StringPtrOutput `pulumi:"baselineTestRunId"`
 	// The date when the load test was created.
 	Created pulumi.StringOutput `pulumi:"created"`
@@ -107,6 +109,8 @@ func GetLoadTest(ctx *pulumi.Context,
 // Input properties used for looking up and filtering LoadTest resources.
 type loadTestState struct {
 	// Identifier of a baseline test run used for results comparison.
+	//
+	// Deprecated: Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.
 	BaselineTestRunId *string `pulumi:"baselineTestRunId"`
 	// The date when the load test was created.
 	Created *string `pulumi:"created"`
@@ -122,6 +126,8 @@ type loadTestState struct {
 
 type LoadTestState struct {
 	// Identifier of a baseline test run used for results comparison.
+	//
+	// Deprecated: Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.
 	BaselineTestRunId pulumi.StringPtrInput
 	// The date when the load test was created.
 	Created pulumi.StringPtrInput
@@ -141,6 +147,8 @@ func (LoadTestState) ElementType() reflect.Type {
 
 type loadTestArgs struct {
 	// Identifier of a baseline test run used for results comparison.
+	//
+	// Deprecated: Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.
 	BaselineTestRunId *string `pulumi:"baselineTestRunId"`
 	// Human-friendly identifier of the load test.
 	Name *string `pulumi:"name"`
@@ -153,6 +161,8 @@ type loadTestArgs struct {
 // The set of arguments for constructing a LoadTest resource.
 type LoadTestArgs struct {
 	// Identifier of a baseline test run used for results comparison.
+	//
+	// Deprecated: Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.
 	BaselineTestRunId pulumi.StringPtrInput
 	// Human-friendly identifier of the load test.
 	Name pulumi.StringPtrInput
@@ -250,6 +260,8 @@ func (o LoadTestOutput) ToLoadTestOutputWithContext(ctx context.Context) LoadTes
 }
 
 // Identifier of a baseline test run used for results comparison.
+//
+// Deprecated: Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.
 func (o LoadTestOutput) BaselineTestRunId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadTest) pulumi.StringPtrOutput { return v.BaselineTestRunId }).(pulumi.StringPtrOutput)
 }

@@ -23,42 +23,36 @@ namespace Pulumiverse.Grafana.Alerting.V1Beta1
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Grafana.Index.AppsNotificationsInhibitionruleV0alpha1("example", new()
+    ///     var example = new Grafana.Alerting.V1Beta1.NotificationsInhibitionRule("example", new()
     ///     {
-    ///         Metadata = new[]
+    ///         Metadata = new Grafana.Alerting.V1Beta1.Inputs.NotificationsInhibitionRuleMetadataArgs
     ///         {
-    ///             
-    ///             {
-    ///                 { "uid", "example-inhibition-rule" },
-    ///             },
+    ///             Uid = "example-inhibition-rule",
     ///         },
-    ///         Spec = new[]
+    ///         Spec = new Grafana.Alerting.V1Beta1.Inputs.NotificationsInhibitionRuleSpecArgs
     ///         {
-    ///             
+    ///             SourceMatchers = new[]
     ///             {
-    ///                 { "sourceMatchers", new[]
+    ///                 new Grafana.Alerting.V1Beta1.Inputs.NotificationsInhibitionRuleSpecSourceMatcherArgs
     ///                 {
-    ///                     
-    ///                     {
-    ///                         { "type", "=" },
-    ///                         { "label", "alertname" },
-    ///                         { "value", "TargetDown" },
-    ///                     },
-    ///                 } },
-    ///                 { "targetMatchers", new[]
+    ///                     Type = "=",
+    ///                     Label = "alertname",
+    ///                     Value = "TargetDown",
+    ///                 },
+    ///             },
+    ///             TargetMatchers = new[]
+    ///             {
+    ///                 new Grafana.Alerting.V1Beta1.Inputs.NotificationsInhibitionRuleSpecTargetMatcherArgs
     ///                 {
-    ///                     
-    ///                     {
-    ///                         { "type", "=" },
-    ///                         { "label", "severity" },
-    ///                         { "value", "warning" },
-    ///                     },
-    ///                 } },
-    ///                 { "equal", new[]
-    ///                 {
-    ///                     "namespace",
-    ///                     "pod",
-    ///                 } },
+    ///                     Type = "=",
+    ///                     Label = "severity",
+    ///                     Value = "warning",
+    ///                 },
+    ///             },
+    ///             Equals = new[]
+    ///             {
+    ///                 "namespace",
+    ///                 "pod",
     ///             },
     ///         },
     ///     });

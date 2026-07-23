@@ -149,28 +149,28 @@ class NotificationsInhibitionRule(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_grafana as grafana
+        import pulumiverse_grafana as grafana
 
-        example = grafana.index.AppsNotificationsInhibitionruleV0alpha1("example",
-            metadata=[{
-                uid: example-inhibition-rule,
-            }],
-            spec=[{
-                sourceMatchers: [{
-                    type: =,
-                    label: alertname,
-                    value: TargetDown,
+        example = grafana.alerting.v1beta1.NotificationsInhibitionRule("example",
+            metadata={
+                "uid": "example-inhibition-rule",
+            },
+            spec={
+                "source_matchers": [{
+                    "type": "=",
+                    "label": "alertname",
+                    "value": "TargetDown",
                 }],
-                targetMatchers: [{
-                    type: =,
-                    label: severity,
-                    value: warning,
+                "target_matchers": [{
+                    "type": "=",
+                    "label": "severity",
+                    "value": "warning",
                 }],
-                equal: [
-                    namespace,
-                    pod,
+                "equals": [
+                    "namespace",
+                    "pod",
                 ],
-            }])
+            })
         ```
 
 
@@ -193,28 +193,28 @@ class NotificationsInhibitionRule(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_grafana as grafana
+        import pulumiverse_grafana as grafana
 
-        example = grafana.index.AppsNotificationsInhibitionruleV0alpha1("example",
-            metadata=[{
-                uid: example-inhibition-rule,
-            }],
-            spec=[{
-                sourceMatchers: [{
-                    type: =,
-                    label: alertname,
-                    value: TargetDown,
+        example = grafana.alerting.v1beta1.NotificationsInhibitionRule("example",
+            metadata={
+                "uid": "example-inhibition-rule",
+            },
+            spec={
+                "source_matchers": [{
+                    "type": "=",
+                    "label": "alertname",
+                    "value": "TargetDown",
                 }],
-                targetMatchers: [{
-                    type: =,
-                    label: severity,
-                    value: warning,
+                "target_matchers": [{
+                    "type": "=",
+                    "label": "severity",
+                    "value": "warning",
                 }],
-                equal: [
-                    namespace,
-                    pod,
+                "equals": [
+                    "namespace",
+                    "pod",
                 ],
-            }])
+            })
         ```
 
 

@@ -60,6 +60,8 @@ export class LoadTest extends pulumi.CustomResource {
 
     /**
      * Identifier of a baseline test run used for results comparison.
+     *
+     * @deprecated Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.
      */
     declare public readonly baselineTestRunId: pulumi.Output<string | undefined>;
     /**
@@ -128,6 +130,8 @@ export class LoadTest extends pulumi.CustomResource {
 export interface LoadTestState {
     /**
      * Identifier of a baseline test run used for results comparison.
+     *
+     * @deprecated Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.
      */
     baselineTestRunId?: pulumi.Input<string>;
     /**
@@ -158,6 +162,8 @@ export interface LoadTestState {
 export interface LoadTestArgs {
     /**
      * Identifier of a baseline test run used for results comparison.
+     *
+     * @deprecated Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.
      */
     baselineTestRunId?: pulumi.Input<string>;
     /**
