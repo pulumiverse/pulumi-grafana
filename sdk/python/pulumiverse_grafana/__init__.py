@@ -6,10 +6,7 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
-from .apps_notifications_routingtree_v1beta1 import *
 from .provider import *
-from ._inputs import *
-from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -166,6 +163,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.alerting.v1beta1",
   "classes": {
    "grafana:alerting/v1beta1/notificationsInhibitionRule:NotificationsInhibitionRule": "NotificationsInhibitionRule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "alerting/v1beta1/notificationsRoutingTree",
+  "fqn": "pulumiverse_grafana.alerting.v1beta1",
+  "classes": {
+   "grafana:alerting/v1beta1/notificationsRoutingTree:NotificationsRoutingTree": "NotificationsRoutingTree"
   }
  },
  {
@@ -654,14 +659,6 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.frontendobservability",
   "classes": {
    "grafana:frontendObservability/app:App": "App"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/appsNotificationsRoutingtreeV1beta1",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/appsNotificationsRoutingtreeV1beta1:AppsNotificationsRoutingtreeV1beta1": "AppsNotificationsRoutingtreeV1beta1"
   }
  },
  {

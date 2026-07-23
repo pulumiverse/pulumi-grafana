@@ -5,367 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface AppsNotificationsRoutingtreeV1beta1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
-     */
-    folderUid?: pulumi.Input<string>;
-    /**
-     * The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
-     */
-    uid: pulumi.Input<string>;
-    /**
-     * The full URL of the resource.
-     */
-    url?: pulumi.Input<string>;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid?: pulumi.Input<string>;
-    /**
-     * The version of the resource.
-     */
-    version?: pulumi.Input<string>;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1Options {
-    /**
-     * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
-     */
-    managerIdentity?: pulumi.Input<string>;
-    /**
-     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-     */
-    overwrite?: pulumi.Input<boolean>;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1Spec {
-    /**
-     * The default values applied to alerts that do not match any specific route.
-     */
-    defaults?: pulumi.Input<inputs.AppsNotificationsRoutingtreeV1beta1SpecDefaults>;
-    /**
-     * Set to `true` to allow editing this resource from other sources (UI, API). Defaults to `false`, which locks the resource to Terraform management only.
-     */
-    disableProvenance?: pulumi.Input<boolean>;
-    /**
-     * Routing rules for specific label sets.
-     */
-    routes?: pulumi.Input<pulumi.Input<inputs.AppsNotificationsRoutingtreeV1beta1SpecRoute>[]>;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecDefaults {
-    /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels.
-     */
-    groupBies?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Minimum time interval between two notifications for the same group. Default is 5 minutes.
-     */
-    groupInterval?: pulumi.Input<string>;
-    /**
-     * Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
-     */
-    groupWait?: pulumi.Input<string>;
-    /**
-     * The default contact point to route all unmatched notifications to.
-     */
-    receiver: pulumi.Input<string>;
-    /**
-     * Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
-     */
-    repeatInterval?: pulumi.Input<string>;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRoute {
-    /**
-     * A list of time interval names that activate this route only during the specified times.
-     */
-    activeTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
-     */
-    continue?: pulumi.Input<boolean>;
-    /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupBies?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupInterval?: pulumi.Input<string>;
-    /**
-     * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupWait?: pulumi.Input<string>;
-    /**
-     * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
-     */
-    matchers?: pulumi.Input<pulumi.Input<inputs.AppsNotificationsRoutingtreeV1beta1SpecRouteMatcher>[]>;
-    /**
-     * A list of time interval names that mute this route during the specified times.
-     */
-    muteTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    receiver?: pulumi.Input<string>;
-    /**
-     * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    repeatInterval?: pulumi.Input<string>;
-    /**
-     * Child routes. Each child route has the same schema as `spec.routes` and may be nested up to 5 levels deep.
-     */
-    routes?: pulumi.Input<pulumi.Input<inputs.AppsNotificationsRoutingtreeV1beta1SpecRouteRoute>[]>;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRouteMatcher {
-    /**
-     * The name of the label to match against.
-     */
-    label: pulumi.Input<string>;
-    /**
-     * The matching operator. One of `=`, `!=`, `=~`, `!~`.
-     */
-    type: pulumi.Input<string>;
-    /**
-     * The label value to match against.
-     */
-    value: pulumi.Input<string>;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRouteRoute {
-    /**
-     * A list of time interval names that activate this route only during the specified times.
-     */
-    activeTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
-     */
-    continue?: pulumi.Input<boolean>;
-    /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupBies?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupInterval?: pulumi.Input<string>;
-    /**
-     * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupWait?: pulumi.Input<string>;
-    /**
-     * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
-     */
-    matchers?: pulumi.Input<pulumi.Input<inputs.AppsNotificationsRoutingtreeV1beta1SpecRouteRouteMatcher>[]>;
-    /**
-     * A list of time interval names that mute this route during the specified times.
-     */
-    muteTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    receiver?: pulumi.Input<string>;
-    /**
-     * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    repeatInterval?: pulumi.Input<string>;
-    /**
-     * Child routes of this route.
-     */
-    routes?: pulumi.Input<pulumi.Input<inputs.AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRoute>[]>;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRouteRouteMatcher {
-    /**
-     * The name of the label to match against.
-     */
-    label: pulumi.Input<string>;
-    /**
-     * The matching operator. One of `=`, `!=`, `=~`, `!~`.
-     */
-    type: pulumi.Input<string>;
-    /**
-     * The label value to match against.
-     */
-    value: pulumi.Input<string>;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRoute {
-    /**
-     * A list of time interval names that activate this route only during the specified times.
-     */
-    activeTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
-     */
-    continue?: pulumi.Input<boolean>;
-    /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupBies?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupInterval?: pulumi.Input<string>;
-    /**
-     * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupWait?: pulumi.Input<string>;
-    /**
-     * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
-     */
-    matchers?: pulumi.Input<pulumi.Input<inputs.AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteMatcher>[]>;
-    /**
-     * A list of time interval names that mute this route during the specified times.
-     */
-    muteTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    receiver?: pulumi.Input<string>;
-    /**
-     * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    repeatInterval?: pulumi.Input<string>;
-    /**
-     * Child routes of this route.
-     */
-    routes?: pulumi.Input<pulumi.Input<inputs.AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteRoute>[]>;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteMatcher {
-    /**
-     * The name of the label to match against.
-     */
-    label: pulumi.Input<string>;
-    /**
-     * The matching operator. One of `=`, `!=`, `=~`, `!~`.
-     */
-    type: pulumi.Input<string>;
-    /**
-     * The label value to match against.
-     */
-    value: pulumi.Input<string>;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteRoute {
-    /**
-     * A list of time interval names that activate this route only during the specified times.
-     */
-    activeTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
-     */
-    continue?: pulumi.Input<boolean>;
-    /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupBies?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupInterval?: pulumi.Input<string>;
-    /**
-     * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupWait?: pulumi.Input<string>;
-    /**
-     * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
-     */
-    matchers?: pulumi.Input<pulumi.Input<inputs.AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteRouteMatcher>[]>;
-    /**
-     * A list of time interval names that mute this route during the specified times.
-     */
-    muteTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    receiver?: pulumi.Input<string>;
-    /**
-     * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    repeatInterval?: pulumi.Input<string>;
-    /**
-     * Child routes of this route.
-     */
-    routes?: pulumi.Input<pulumi.Input<inputs.AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteRouteRoute>[]>;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteRouteMatcher {
-    /**
-     * The name of the label to match against.
-     */
-    label: pulumi.Input<string>;
-    /**
-     * The matching operator. One of `=`, `!=`, `=~`, `!~`.
-     */
-    type: pulumi.Input<string>;
-    /**
-     * The label value to match against.
-     */
-    value: pulumi.Input<string>;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteRouteRoute {
-    /**
-     * A list of time interval names that activate this route only during the specified times.
-     */
-    activeTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
-     */
-    continue?: pulumi.Input<boolean>;
-    /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupBies?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupInterval?: pulumi.Input<string>;
-    /**
-     * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupWait?: pulumi.Input<string>;
-    /**
-     * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
-     */
-    matchers?: pulumi.Input<pulumi.Input<inputs.AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteRouteRouteMatcher>[]>;
-    /**
-     * A list of time interval names that mute this route during the specified times.
-     */
-    muteTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    receiver?: pulumi.Input<string>;
-    /**
-     * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    repeatInterval?: pulumi.Input<string>;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteRouteRouteMatcher {
-    /**
-     * The name of the label to match against.
-     */
-    label: pulumi.Input<string>;
-    /**
-     * The matching operator. One of `=`, `!=`, `=~`, `!~`.
-     */
-    type: pulumi.Input<string>;
-    /**
-     * The label value to match against.
-     */
-    value: pulumi.Input<string>;
-}
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**
@@ -3609,6 +3248,368 @@ export namespace alerting {
         export interface NotificationsInhibitionRuleSpecTargetMatcher {
             label: pulumi.Input<string>;
             type: pulumi.Input<string>;
+            value: pulumi.Input<string>;
+        }
+
+        export interface NotificationsRoutingTreeMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+             */
+            folderUid?: pulumi.Input<string>;
+            /**
+             * The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
+             */
+            uid: pulumi.Input<string>;
+            /**
+             * The full URL of the resource.
+             */
+            url?: pulumi.Input<string>;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid?: pulumi.Input<string>;
+            /**
+             * The version of the resource.
+             */
+            version?: pulumi.Input<string>;
+        }
+
+        export interface NotificationsRoutingTreeOptions {
+            /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: pulumi.Input<string>;
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: pulumi.Input<boolean>;
+        }
+
+        export interface NotificationsRoutingTreeSpec {
+            /**
+             * The default values applied to alerts that do not match any specific route.
+             */
+            defaults?: pulumi.Input<inputs.alerting.v1beta1.NotificationsRoutingTreeSpecDefaults>;
+            /**
+             * Set to `true` to allow editing this resource from other sources (UI, API). Defaults to `false`, which locks the resource to Terraform management only.
+             */
+            disableProvenance?: pulumi.Input<boolean>;
+            /**
+             * Routing rules for specific label sets.
+             */
+            routes?: pulumi.Input<pulumi.Input<inputs.alerting.v1beta1.NotificationsRoutingTreeSpecRoute>[]>;
+        }
+
+        export interface NotificationsRoutingTreeSpecDefaults {
+            /**
+             * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels.
+             */
+            groupBies?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Minimum time interval between two notifications for the same group. Default is 5 minutes.
+             */
+            groupInterval?: pulumi.Input<string>;
+            /**
+             * Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+             */
+            groupWait?: pulumi.Input<string>;
+            /**
+             * The default contact point to route all unmatched notifications to.
+             */
+            receiver: pulumi.Input<string>;
+            /**
+             * Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+             */
+            repeatInterval?: pulumi.Input<string>;
+        }
+
+        export interface NotificationsRoutingTreeSpecRoute {
+            /**
+             * A list of time interval names that activate this route only during the specified times.
+             */
+            activeTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+             */
+            continue?: pulumi.Input<boolean>;
+            /**
+             * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupBies?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupInterval?: pulumi.Input<string>;
+            /**
+             * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupWait?: pulumi.Input<string>;
+            /**
+             * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+             */
+            matchers?: pulumi.Input<pulumi.Input<inputs.alerting.v1beta1.NotificationsRoutingTreeSpecRouteMatcher>[]>;
+            /**
+             * A list of time interval names that mute this route during the specified times.
+             */
+            muteTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            receiver?: pulumi.Input<string>;
+            /**
+             * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            repeatInterval?: pulumi.Input<string>;
+            /**
+             * Child routes. Each child route has the same schema as `spec.routes` and may be nested up to 5 levels deep.
+             */
+            routes?: pulumi.Input<pulumi.Input<inputs.alerting.v1beta1.NotificationsRoutingTreeSpecRouteRoute>[]>;
+        }
+
+        export interface NotificationsRoutingTreeSpecRouteMatcher {
+            /**
+             * The name of the label to match against.
+             */
+            label: pulumi.Input<string>;
+            /**
+             * The matching operator. One of `=`, `!=`, `=~`, `!~`.
+             */
+            type: pulumi.Input<string>;
+            /**
+             * The label value to match against.
+             */
+            value: pulumi.Input<string>;
+        }
+
+        export interface NotificationsRoutingTreeSpecRouteRoute {
+            /**
+             * A list of time interval names that activate this route only during the specified times.
+             */
+            activeTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+             */
+            continue?: pulumi.Input<boolean>;
+            /**
+             * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupBies?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupInterval?: pulumi.Input<string>;
+            /**
+             * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupWait?: pulumi.Input<string>;
+            /**
+             * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+             */
+            matchers?: pulumi.Input<pulumi.Input<inputs.alerting.v1beta1.NotificationsRoutingTreeSpecRouteRouteMatcher>[]>;
+            /**
+             * A list of time interval names that mute this route during the specified times.
+             */
+            muteTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            receiver?: pulumi.Input<string>;
+            /**
+             * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            repeatInterval?: pulumi.Input<string>;
+            /**
+             * Child routes of this route.
+             */
+            routes?: pulumi.Input<pulumi.Input<inputs.alerting.v1beta1.NotificationsRoutingTreeSpecRouteRouteRoute>[]>;
+        }
+
+        export interface NotificationsRoutingTreeSpecRouteRouteMatcher {
+            /**
+             * The name of the label to match against.
+             */
+            label: pulumi.Input<string>;
+            /**
+             * The matching operator. One of `=`, `!=`, `=~`, `!~`.
+             */
+            type: pulumi.Input<string>;
+            /**
+             * The label value to match against.
+             */
+            value: pulumi.Input<string>;
+        }
+
+        export interface NotificationsRoutingTreeSpecRouteRouteRoute {
+            /**
+             * A list of time interval names that activate this route only during the specified times.
+             */
+            activeTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+             */
+            continue?: pulumi.Input<boolean>;
+            /**
+             * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupBies?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupInterval?: pulumi.Input<string>;
+            /**
+             * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupWait?: pulumi.Input<string>;
+            /**
+             * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+             */
+            matchers?: pulumi.Input<pulumi.Input<inputs.alerting.v1beta1.NotificationsRoutingTreeSpecRouteRouteRouteMatcher>[]>;
+            /**
+             * A list of time interval names that mute this route during the specified times.
+             */
+            muteTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            receiver?: pulumi.Input<string>;
+            /**
+             * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            repeatInterval?: pulumi.Input<string>;
+            /**
+             * Child routes of this route.
+             */
+            routes?: pulumi.Input<pulumi.Input<inputs.alerting.v1beta1.NotificationsRoutingTreeSpecRouteRouteRouteRoute>[]>;
+        }
+
+        export interface NotificationsRoutingTreeSpecRouteRouteRouteMatcher {
+            /**
+             * The name of the label to match against.
+             */
+            label: pulumi.Input<string>;
+            /**
+             * The matching operator. One of `=`, `!=`, `=~`, `!~`.
+             */
+            type: pulumi.Input<string>;
+            /**
+             * The label value to match against.
+             */
+            value: pulumi.Input<string>;
+        }
+
+        export interface NotificationsRoutingTreeSpecRouteRouteRouteRoute {
+            /**
+             * A list of time interval names that activate this route only during the specified times.
+             */
+            activeTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+             */
+            continue?: pulumi.Input<boolean>;
+            /**
+             * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupBies?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupInterval?: pulumi.Input<string>;
+            /**
+             * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupWait?: pulumi.Input<string>;
+            /**
+             * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+             */
+            matchers?: pulumi.Input<pulumi.Input<inputs.alerting.v1beta1.NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher>[]>;
+            /**
+             * A list of time interval names that mute this route during the specified times.
+             */
+            muteTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            receiver?: pulumi.Input<string>;
+            /**
+             * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            repeatInterval?: pulumi.Input<string>;
+            /**
+             * Child routes of this route.
+             */
+            routes?: pulumi.Input<pulumi.Input<inputs.alerting.v1beta1.NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute>[]>;
+        }
+
+        export interface NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher {
+            /**
+             * The name of the label to match against.
+             */
+            label: pulumi.Input<string>;
+            /**
+             * The matching operator. One of `=`, `!=`, `=~`, `!~`.
+             */
+            type: pulumi.Input<string>;
+            /**
+             * The label value to match against.
+             */
+            value: pulumi.Input<string>;
+        }
+
+        export interface NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute {
+            /**
+             * A list of time interval names that activate this route only during the specified times.
+             */
+            activeTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+             */
+            continue?: pulumi.Input<boolean>;
+            /**
+             * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupBies?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupInterval?: pulumi.Input<string>;
+            /**
+             * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupWait?: pulumi.Input<string>;
+            /**
+             * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+             */
+            matchers?: pulumi.Input<pulumi.Input<inputs.alerting.v1beta1.NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher>[]>;
+            /**
+             * A list of time interval names that mute this route during the specified times.
+             */
+            muteTimeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            receiver?: pulumi.Input<string>;
+            /**
+             * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            repeatInterval?: pulumi.Input<string>;
+        }
+
+        export interface NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher {
+            /**
+             * The name of the label to match against.
+             */
+            label: pulumi.Input<string>;
+            /**
+             * The matching operator. One of `=`, `!=`, `=~`, `!~`.
+             */
+            type: pulumi.Input<string>;
+            /**
+             * The label value to match against.
+             */
             value: pulumi.Input<string>;
         }
     }

@@ -5,11 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export { AppsNotificationsRoutingtreeV1beta1Args, AppsNotificationsRoutingtreeV1beta1State } from "./appsNotificationsRoutingtreeV1beta1";
-export type AppsNotificationsRoutingtreeV1beta1 = import("./appsNotificationsRoutingtreeV1beta1").AppsNotificationsRoutingtreeV1beta1;
-export const AppsNotificationsRoutingtreeV1beta1: typeof import("./appsNotificationsRoutingtreeV1beta1").AppsNotificationsRoutingtreeV1beta1 = null as any;
-utilities.lazyLoad(exports, ["AppsNotificationsRoutingtreeV1beta1"], () => require("./appsNotificationsRoutingtreeV1beta1"));
-
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -56,19 +51,6 @@ export {
     syntheticmonitoring,
     types,
 };
-
-const _module = {
-    version: utilities.getVersion(),
-    construct: (name: string, type: string, urn: string): pulumi.Resource => {
-        switch (type) {
-            case "grafana:index/appsNotificationsRoutingtreeV1beta1:AppsNotificationsRoutingtreeV1beta1":
-                return new AppsNotificationsRoutingtreeV1beta1(name, <any>undefined, { urn })
-            default:
-                throw new Error(`unknown resource type ${type}`);
-        }
-    },
-};
-pulumi.runtime.registerResourceModule("grafana", "index/appsNotificationsRoutingtreeV1beta1", _module)
 pulumi.runtime.registerResourcePackage("grafana", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

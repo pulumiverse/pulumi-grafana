@@ -63,6 +63,20 @@ __all__ = [
     'NotificationsInhibitionRuleSpec',
     'NotificationsInhibitionRuleSpecSourceMatcher',
     'NotificationsInhibitionRuleSpecTargetMatcher',
+    'NotificationsRoutingTreeMetadata',
+    'NotificationsRoutingTreeOptions',
+    'NotificationsRoutingTreeSpec',
+    'NotificationsRoutingTreeSpecDefaults',
+    'NotificationsRoutingTreeSpecRoute',
+    'NotificationsRoutingTreeSpecRouteMatcher',
+    'NotificationsRoutingTreeSpecRouteRoute',
+    'NotificationsRoutingTreeSpecRouteRouteMatcher',
+    'NotificationsRoutingTreeSpecRouteRouteRoute',
+    'NotificationsRoutingTreeSpecRouteRouteRouteMatcher',
+    'NotificationsRoutingTreeSpecRouteRouteRouteRoute',
+    'NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher',
+    'NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute',
+    'NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher',
 ]
 
 @pulumi.output_type
@@ -2224,6 +2238,1266 @@ class NotificationsInhibitionRuleSpecTargetMatcher(dict):
     @_builtins.property
     @pulumi.getter
     def value(self) -> _builtins.str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class NotificationsRoutingTreeMetadata(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "folderUid":
+            suggest = "folder_uid"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationsRoutingTreeMetadata. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationsRoutingTreeMetadata.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationsRoutingTreeMetadata.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 uid: _builtins.str,
+                 annotations: Optional[Mapping[str, _builtins.str]] = None,
+                 folder_uid: Optional[_builtins.str] = None,
+                 url: Optional[_builtins.str] = None,
+                 uuid: Optional[_builtins.str] = None,
+                 version: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str uid: The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
+        :param Mapping[str, _builtins.str] annotations: Annotations of the resource.
+        :param _builtins.str folder_uid: The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+        :param _builtins.str url: The full URL of the resource.
+        :param _builtins.str uuid: The globally unique identifier of a resource, used by the API for tracking.
+        :param _builtins.str version: The version of the resource.
+        """
+        pulumi.set(__self__, "uid", uid)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if folder_uid is not None:
+            pulumi.set(__self__, "folder_uid", folder_uid)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> _builtins.str:
+        """
+        The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
+        """
+        return pulumi.get(self, "uid")
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Annotations of the resource.
+        """
+        return pulumi.get(self, "annotations")
+
+    @_builtins.property
+    @pulumi.getter(name="folderUid")
+    def folder_uid(self) -> Optional[_builtins.str]:
+        """
+        The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+        """
+        return pulumi.get(self, "folder_uid")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[_builtins.str]:
+        """
+        The full URL of the resource.
+        """
+        return pulumi.get(self, "url")
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> Optional[_builtins.str]:
+        """
+        The globally unique identifier of a resource, used by the API for tracking.
+        """
+        return pulumi.get(self, "uuid")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[_builtins.str]:
+        """
+        The version of the resource.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class NotificationsRoutingTreeOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "managerIdentity":
+            suggest = "manager_identity"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationsRoutingTreeOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationsRoutingTreeOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationsRoutingTreeOptions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 manager_identity: Optional[_builtins.str] = None,
+                 overwrite: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.str manager_identity: Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+        :param _builtins.bool overwrite: Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        if manager_identity is not None:
+            pulumi.set(__self__, "manager_identity", manager_identity)
+        if overwrite is not None:
+            pulumi.set(__self__, "overwrite", overwrite)
+
+    @_builtins.property
+    @pulumi.getter(name="managerIdentity")
+    def manager_identity(self) -> Optional[_builtins.str]:
+        """
+        Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+        """
+        return pulumi.get(self, "manager_identity")
+
+    @_builtins.property
+    @pulumi.getter
+    def overwrite(self) -> Optional[_builtins.bool]:
+        """
+        Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        return pulumi.get(self, "overwrite")
+
+
+@pulumi.output_type
+class NotificationsRoutingTreeSpec(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "disableProvenance":
+            suggest = "disable_provenance"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationsRoutingTreeSpec. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationsRoutingTreeSpec.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationsRoutingTreeSpec.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 defaults: Optional['outputs.NotificationsRoutingTreeSpecDefaults'] = None,
+                 disable_provenance: Optional[_builtins.bool] = None,
+                 routes: Optional[Sequence['outputs.NotificationsRoutingTreeSpecRoute']] = None):
+        """
+        :param 'NotificationsRoutingTreeSpecDefaultsArgs' defaults: The default values applied to alerts that do not match any specific route.
+        :param _builtins.bool disable_provenance: Set to `true` to allow editing this resource from other sources (UI, API). Defaults to `false`, which locks the resource to Terraform management only.
+        :param Sequence['NotificationsRoutingTreeSpecRouteArgs'] routes: Routing rules for specific label sets.
+        """
+        if defaults is not None:
+            pulumi.set(__self__, "defaults", defaults)
+        if disable_provenance is not None:
+            pulumi.set(__self__, "disable_provenance", disable_provenance)
+        if routes is not None:
+            pulumi.set(__self__, "routes", routes)
+
+    @_builtins.property
+    @pulumi.getter
+    def defaults(self) -> Optional['outputs.NotificationsRoutingTreeSpecDefaults']:
+        """
+        The default values applied to alerts that do not match any specific route.
+        """
+        return pulumi.get(self, "defaults")
+
+    @_builtins.property
+    @pulumi.getter(name="disableProvenance")
+    def disable_provenance(self) -> Optional[_builtins.bool]:
+        """
+        Set to `true` to allow editing this resource from other sources (UI, API). Defaults to `false`, which locks the resource to Terraform management only.
+        """
+        return pulumi.get(self, "disable_provenance")
+
+    @_builtins.property
+    @pulumi.getter
+    def routes(self) -> Optional[Sequence['outputs.NotificationsRoutingTreeSpecRoute']]:
+        """
+        Routing rules for specific label sets.
+        """
+        return pulumi.get(self, "routes")
+
+
+@pulumi.output_type
+class NotificationsRoutingTreeSpecDefaults(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "groupBies":
+            suggest = "group_bies"
+        elif key == "groupInterval":
+            suggest = "group_interval"
+        elif key == "groupWait":
+            suggest = "group_wait"
+        elif key == "repeatInterval":
+            suggest = "repeat_interval"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationsRoutingTreeSpecDefaults. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationsRoutingTreeSpecDefaults.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationsRoutingTreeSpecDefaults.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 receiver: _builtins.str,
+                 group_bies: Optional[Sequence[_builtins.str]] = None,
+                 group_interval: Optional[_builtins.str] = None,
+                 group_wait: Optional[_builtins.str] = None,
+                 repeat_interval: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str receiver: The default contact point to route all unmatched notifications to.
+        :param Sequence[_builtins.str] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels.
+        :param _builtins.str group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
+        :param _builtins.str group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        :param _builtins.str repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+        """
+        pulumi.set(__self__, "receiver", receiver)
+        if group_bies is not None:
+            pulumi.set(__self__, "group_bies", group_bies)
+        if group_interval is not None:
+            pulumi.set(__self__, "group_interval", group_interval)
+        if group_wait is not None:
+            pulumi.set(__self__, "group_wait", group_wait)
+        if repeat_interval is not None:
+            pulumi.set(__self__, "repeat_interval", repeat_interval)
+
+    @_builtins.property
+    @pulumi.getter
+    def receiver(self) -> _builtins.str:
+        """
+        The default contact point to route all unmatched notifications to.
+        """
+        return pulumi.get(self, "receiver")
+
+    @_builtins.property
+    @pulumi.getter(name="groupBies")
+    def group_bies(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels.
+        """
+        return pulumi.get(self, "group_bies")
+
+    @_builtins.property
+    @pulumi.getter(name="groupInterval")
+    def group_interval(self) -> Optional[_builtins.str]:
+        """
+        Minimum time interval between two notifications for the same group. Default is 5 minutes.
+        """
+        return pulumi.get(self, "group_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="groupWait")
+    def group_wait(self) -> Optional[_builtins.str]:
+        """
+        Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        """
+        return pulumi.get(self, "group_wait")
+
+    @_builtins.property
+    @pulumi.getter(name="repeatInterval")
+    def repeat_interval(self) -> Optional[_builtins.str]:
+        """
+        Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+        """
+        return pulumi.get(self, "repeat_interval")
+
+
+@pulumi.output_type
+class NotificationsRoutingTreeSpecRoute(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "activeTimeIntervals":
+            suggest = "active_time_intervals"
+        elif key == "continue":
+            suggest = "continue_"
+        elif key == "groupBies":
+            suggest = "group_bies"
+        elif key == "groupInterval":
+            suggest = "group_interval"
+        elif key == "groupWait":
+            suggest = "group_wait"
+        elif key == "muteTimeIntervals":
+            suggest = "mute_time_intervals"
+        elif key == "repeatInterval":
+            suggest = "repeat_interval"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationsRoutingTreeSpecRoute. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationsRoutingTreeSpecRoute.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationsRoutingTreeSpecRoute.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 active_time_intervals: Optional[Sequence[_builtins.str]] = None,
+                 continue_: Optional[_builtins.bool] = None,
+                 group_bies: Optional[Sequence[_builtins.str]] = None,
+                 group_interval: Optional[_builtins.str] = None,
+                 group_wait: Optional[_builtins.str] = None,
+                 matchers: Optional[Sequence['outputs.NotificationsRoutingTreeSpecRouteMatcher']] = None,
+                 mute_time_intervals: Optional[Sequence[_builtins.str]] = None,
+                 receiver: Optional[_builtins.str] = None,
+                 repeat_interval: Optional[_builtins.str] = None,
+                 routes: Optional[Sequence['outputs.NotificationsRoutingTreeSpecRouteRoute']] = None):
+        """
+        :param Sequence[_builtins.str] active_time_intervals: A list of time interval names that activate this route only during the specified times.
+        :param _builtins.bool continue_: Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+        :param Sequence[_builtins.str] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param _builtins.str group_interval: Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param _builtins.str group_wait: Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param Sequence['NotificationsRoutingTreeSpecRouteMatcherArgs'] matchers: Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+        :param Sequence[_builtins.str] mute_time_intervals: A list of time interval names that mute this route during the specified times.
+        :param _builtins.str receiver: The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param _builtins.str repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param Sequence['NotificationsRoutingTreeSpecRouteRouteArgs'] routes: Child routes. Each child route has the same schema as `spec.routes` and may be nested up to 5 levels deep.
+        """
+        if active_time_intervals is not None:
+            pulumi.set(__self__, "active_time_intervals", active_time_intervals)
+        if continue_ is not None:
+            pulumi.set(__self__, "continue_", continue_)
+        if group_bies is not None:
+            pulumi.set(__self__, "group_bies", group_bies)
+        if group_interval is not None:
+            pulumi.set(__self__, "group_interval", group_interval)
+        if group_wait is not None:
+            pulumi.set(__self__, "group_wait", group_wait)
+        if matchers is not None:
+            pulumi.set(__self__, "matchers", matchers)
+        if mute_time_intervals is not None:
+            pulumi.set(__self__, "mute_time_intervals", mute_time_intervals)
+        if receiver is not None:
+            pulumi.set(__self__, "receiver", receiver)
+        if repeat_interval is not None:
+            pulumi.set(__self__, "repeat_interval", repeat_interval)
+        if routes is not None:
+            pulumi.set(__self__, "routes", routes)
+
+    @_builtins.property
+    @pulumi.getter(name="activeTimeIntervals")
+    def active_time_intervals(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of time interval names that activate this route only during the specified times.
+        """
+        return pulumi.get(self, "active_time_intervals")
+
+    @_builtins.property
+    @pulumi.getter(name="continue")
+    def continue_(self) -> Optional[_builtins.bool]:
+        """
+        Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+        """
+        return pulumi.get(self, "continue_")
+
+    @_builtins.property
+    @pulumi.getter(name="groupBies")
+    def group_bies(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "group_bies")
+
+    @_builtins.property
+    @pulumi.getter(name="groupInterval")
+    def group_interval(self) -> Optional[_builtins.str]:
+        """
+        Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "group_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="groupWait")
+    def group_wait(self) -> Optional[_builtins.str]:
+        """
+        Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "group_wait")
+
+    @_builtins.property
+    @pulumi.getter
+    def matchers(self) -> Optional[Sequence['outputs.NotificationsRoutingTreeSpecRouteMatcher']]:
+        """
+        Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+        """
+        return pulumi.get(self, "matchers")
+
+    @_builtins.property
+    @pulumi.getter(name="muteTimeIntervals")
+    def mute_time_intervals(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of time interval names that mute this route during the specified times.
+        """
+        return pulumi.get(self, "mute_time_intervals")
+
+    @_builtins.property
+    @pulumi.getter
+    def receiver(self) -> Optional[_builtins.str]:
+        """
+        The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "receiver")
+
+    @_builtins.property
+    @pulumi.getter(name="repeatInterval")
+    def repeat_interval(self) -> Optional[_builtins.str]:
+        """
+        Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "repeat_interval")
+
+    @_builtins.property
+    @pulumi.getter
+    def routes(self) -> Optional[Sequence['outputs.NotificationsRoutingTreeSpecRouteRoute']]:
+        """
+        Child routes. Each child route has the same schema as `spec.routes` and may be nested up to 5 levels deep.
+        """
+        return pulumi.get(self, "routes")
+
+
+@pulumi.output_type
+class NotificationsRoutingTreeSpecRouteMatcher(dict):
+    def __init__(__self__, *,
+                 label: _builtins.str,
+                 type: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str label: The name of the label to match against.
+        :param _builtins.str type: The matching operator. One of `=`, `!=`, `=~`, `!~`.
+        :param _builtins.str value: The label value to match against.
+        """
+        pulumi.set(__self__, "label", label)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def label(self) -> _builtins.str:
+        """
+        The name of the label to match against.
+        """
+        return pulumi.get(self, "label")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The matching operator. One of `=`, `!=`, `=~`, `!~`.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The label value to match against.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class NotificationsRoutingTreeSpecRouteRoute(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "activeTimeIntervals":
+            suggest = "active_time_intervals"
+        elif key == "continue":
+            suggest = "continue_"
+        elif key == "groupBies":
+            suggest = "group_bies"
+        elif key == "groupInterval":
+            suggest = "group_interval"
+        elif key == "groupWait":
+            suggest = "group_wait"
+        elif key == "muteTimeIntervals":
+            suggest = "mute_time_intervals"
+        elif key == "repeatInterval":
+            suggest = "repeat_interval"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationsRoutingTreeSpecRouteRoute. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationsRoutingTreeSpecRouteRoute.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationsRoutingTreeSpecRouteRoute.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 active_time_intervals: Optional[Sequence[_builtins.str]] = None,
+                 continue_: Optional[_builtins.bool] = None,
+                 group_bies: Optional[Sequence[_builtins.str]] = None,
+                 group_interval: Optional[_builtins.str] = None,
+                 group_wait: Optional[_builtins.str] = None,
+                 matchers: Optional[Sequence['outputs.NotificationsRoutingTreeSpecRouteRouteMatcher']] = None,
+                 mute_time_intervals: Optional[Sequence[_builtins.str]] = None,
+                 receiver: Optional[_builtins.str] = None,
+                 repeat_interval: Optional[_builtins.str] = None,
+                 routes: Optional[Sequence['outputs.NotificationsRoutingTreeSpecRouteRouteRoute']] = None):
+        """
+        :param Sequence[_builtins.str] active_time_intervals: A list of time interval names that activate this route only during the specified times.
+        :param _builtins.bool continue_: Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+        :param Sequence[_builtins.str] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param _builtins.str group_interval: Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param _builtins.str group_wait: Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param Sequence['NotificationsRoutingTreeSpecRouteRouteMatcherArgs'] matchers: Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+        :param Sequence[_builtins.str] mute_time_intervals: A list of time interval names that mute this route during the specified times.
+        :param _builtins.str receiver: The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param _builtins.str repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param Sequence['NotificationsRoutingTreeSpecRouteRouteRouteArgs'] routes: Child routes of this route.
+        """
+        if active_time_intervals is not None:
+            pulumi.set(__self__, "active_time_intervals", active_time_intervals)
+        if continue_ is not None:
+            pulumi.set(__self__, "continue_", continue_)
+        if group_bies is not None:
+            pulumi.set(__self__, "group_bies", group_bies)
+        if group_interval is not None:
+            pulumi.set(__self__, "group_interval", group_interval)
+        if group_wait is not None:
+            pulumi.set(__self__, "group_wait", group_wait)
+        if matchers is not None:
+            pulumi.set(__self__, "matchers", matchers)
+        if mute_time_intervals is not None:
+            pulumi.set(__self__, "mute_time_intervals", mute_time_intervals)
+        if receiver is not None:
+            pulumi.set(__self__, "receiver", receiver)
+        if repeat_interval is not None:
+            pulumi.set(__self__, "repeat_interval", repeat_interval)
+        if routes is not None:
+            pulumi.set(__self__, "routes", routes)
+
+    @_builtins.property
+    @pulumi.getter(name="activeTimeIntervals")
+    def active_time_intervals(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of time interval names that activate this route only during the specified times.
+        """
+        return pulumi.get(self, "active_time_intervals")
+
+    @_builtins.property
+    @pulumi.getter(name="continue")
+    def continue_(self) -> Optional[_builtins.bool]:
+        """
+        Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+        """
+        return pulumi.get(self, "continue_")
+
+    @_builtins.property
+    @pulumi.getter(name="groupBies")
+    def group_bies(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "group_bies")
+
+    @_builtins.property
+    @pulumi.getter(name="groupInterval")
+    def group_interval(self) -> Optional[_builtins.str]:
+        """
+        Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "group_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="groupWait")
+    def group_wait(self) -> Optional[_builtins.str]:
+        """
+        Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "group_wait")
+
+    @_builtins.property
+    @pulumi.getter
+    def matchers(self) -> Optional[Sequence['outputs.NotificationsRoutingTreeSpecRouteRouteMatcher']]:
+        """
+        Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+        """
+        return pulumi.get(self, "matchers")
+
+    @_builtins.property
+    @pulumi.getter(name="muteTimeIntervals")
+    def mute_time_intervals(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of time interval names that mute this route during the specified times.
+        """
+        return pulumi.get(self, "mute_time_intervals")
+
+    @_builtins.property
+    @pulumi.getter
+    def receiver(self) -> Optional[_builtins.str]:
+        """
+        The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "receiver")
+
+    @_builtins.property
+    @pulumi.getter(name="repeatInterval")
+    def repeat_interval(self) -> Optional[_builtins.str]:
+        """
+        Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "repeat_interval")
+
+    @_builtins.property
+    @pulumi.getter
+    def routes(self) -> Optional[Sequence['outputs.NotificationsRoutingTreeSpecRouteRouteRoute']]:
+        """
+        Child routes of this route.
+        """
+        return pulumi.get(self, "routes")
+
+
+@pulumi.output_type
+class NotificationsRoutingTreeSpecRouteRouteMatcher(dict):
+    def __init__(__self__, *,
+                 label: _builtins.str,
+                 type: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str label: The name of the label to match against.
+        :param _builtins.str type: The matching operator. One of `=`, `!=`, `=~`, `!~`.
+        :param _builtins.str value: The label value to match against.
+        """
+        pulumi.set(__self__, "label", label)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def label(self) -> _builtins.str:
+        """
+        The name of the label to match against.
+        """
+        return pulumi.get(self, "label")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The matching operator. One of `=`, `!=`, `=~`, `!~`.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The label value to match against.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class NotificationsRoutingTreeSpecRouteRouteRoute(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "activeTimeIntervals":
+            suggest = "active_time_intervals"
+        elif key == "continue":
+            suggest = "continue_"
+        elif key == "groupBies":
+            suggest = "group_bies"
+        elif key == "groupInterval":
+            suggest = "group_interval"
+        elif key == "groupWait":
+            suggest = "group_wait"
+        elif key == "muteTimeIntervals":
+            suggest = "mute_time_intervals"
+        elif key == "repeatInterval":
+            suggest = "repeat_interval"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationsRoutingTreeSpecRouteRouteRoute. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationsRoutingTreeSpecRouteRouteRoute.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationsRoutingTreeSpecRouteRouteRoute.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 active_time_intervals: Optional[Sequence[_builtins.str]] = None,
+                 continue_: Optional[_builtins.bool] = None,
+                 group_bies: Optional[Sequence[_builtins.str]] = None,
+                 group_interval: Optional[_builtins.str] = None,
+                 group_wait: Optional[_builtins.str] = None,
+                 matchers: Optional[Sequence['outputs.NotificationsRoutingTreeSpecRouteRouteRouteMatcher']] = None,
+                 mute_time_intervals: Optional[Sequence[_builtins.str]] = None,
+                 receiver: Optional[_builtins.str] = None,
+                 repeat_interval: Optional[_builtins.str] = None,
+                 routes: Optional[Sequence['outputs.NotificationsRoutingTreeSpecRouteRouteRouteRoute']] = None):
+        """
+        :param Sequence[_builtins.str] active_time_intervals: A list of time interval names that activate this route only during the specified times.
+        :param _builtins.bool continue_: Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+        :param Sequence[_builtins.str] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param _builtins.str group_interval: Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param _builtins.str group_wait: Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param Sequence['NotificationsRoutingTreeSpecRouteRouteRouteMatcherArgs'] matchers: Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+        :param Sequence[_builtins.str] mute_time_intervals: A list of time interval names that mute this route during the specified times.
+        :param _builtins.str receiver: The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param _builtins.str repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param Sequence['NotificationsRoutingTreeSpecRouteRouteRouteRouteArgs'] routes: Child routes of this route.
+        """
+        if active_time_intervals is not None:
+            pulumi.set(__self__, "active_time_intervals", active_time_intervals)
+        if continue_ is not None:
+            pulumi.set(__self__, "continue_", continue_)
+        if group_bies is not None:
+            pulumi.set(__self__, "group_bies", group_bies)
+        if group_interval is not None:
+            pulumi.set(__self__, "group_interval", group_interval)
+        if group_wait is not None:
+            pulumi.set(__self__, "group_wait", group_wait)
+        if matchers is not None:
+            pulumi.set(__self__, "matchers", matchers)
+        if mute_time_intervals is not None:
+            pulumi.set(__self__, "mute_time_intervals", mute_time_intervals)
+        if receiver is not None:
+            pulumi.set(__self__, "receiver", receiver)
+        if repeat_interval is not None:
+            pulumi.set(__self__, "repeat_interval", repeat_interval)
+        if routes is not None:
+            pulumi.set(__self__, "routes", routes)
+
+    @_builtins.property
+    @pulumi.getter(name="activeTimeIntervals")
+    def active_time_intervals(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of time interval names that activate this route only during the specified times.
+        """
+        return pulumi.get(self, "active_time_intervals")
+
+    @_builtins.property
+    @pulumi.getter(name="continue")
+    def continue_(self) -> Optional[_builtins.bool]:
+        """
+        Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+        """
+        return pulumi.get(self, "continue_")
+
+    @_builtins.property
+    @pulumi.getter(name="groupBies")
+    def group_bies(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "group_bies")
+
+    @_builtins.property
+    @pulumi.getter(name="groupInterval")
+    def group_interval(self) -> Optional[_builtins.str]:
+        """
+        Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "group_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="groupWait")
+    def group_wait(self) -> Optional[_builtins.str]:
+        """
+        Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "group_wait")
+
+    @_builtins.property
+    @pulumi.getter
+    def matchers(self) -> Optional[Sequence['outputs.NotificationsRoutingTreeSpecRouteRouteRouteMatcher']]:
+        """
+        Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+        """
+        return pulumi.get(self, "matchers")
+
+    @_builtins.property
+    @pulumi.getter(name="muteTimeIntervals")
+    def mute_time_intervals(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of time interval names that mute this route during the specified times.
+        """
+        return pulumi.get(self, "mute_time_intervals")
+
+    @_builtins.property
+    @pulumi.getter
+    def receiver(self) -> Optional[_builtins.str]:
+        """
+        The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "receiver")
+
+    @_builtins.property
+    @pulumi.getter(name="repeatInterval")
+    def repeat_interval(self) -> Optional[_builtins.str]:
+        """
+        Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "repeat_interval")
+
+    @_builtins.property
+    @pulumi.getter
+    def routes(self) -> Optional[Sequence['outputs.NotificationsRoutingTreeSpecRouteRouteRouteRoute']]:
+        """
+        Child routes of this route.
+        """
+        return pulumi.get(self, "routes")
+
+
+@pulumi.output_type
+class NotificationsRoutingTreeSpecRouteRouteRouteMatcher(dict):
+    def __init__(__self__, *,
+                 label: _builtins.str,
+                 type: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str label: The name of the label to match against.
+        :param _builtins.str type: The matching operator. One of `=`, `!=`, `=~`, `!~`.
+        :param _builtins.str value: The label value to match against.
+        """
+        pulumi.set(__self__, "label", label)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def label(self) -> _builtins.str:
+        """
+        The name of the label to match against.
+        """
+        return pulumi.get(self, "label")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The matching operator. One of `=`, `!=`, `=~`, `!~`.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The label value to match against.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class NotificationsRoutingTreeSpecRouteRouteRouteRoute(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "activeTimeIntervals":
+            suggest = "active_time_intervals"
+        elif key == "continue":
+            suggest = "continue_"
+        elif key == "groupBies":
+            suggest = "group_bies"
+        elif key == "groupInterval":
+            suggest = "group_interval"
+        elif key == "groupWait":
+            suggest = "group_wait"
+        elif key == "muteTimeIntervals":
+            suggest = "mute_time_intervals"
+        elif key == "repeatInterval":
+            suggest = "repeat_interval"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationsRoutingTreeSpecRouteRouteRouteRoute. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationsRoutingTreeSpecRouteRouteRouteRoute.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationsRoutingTreeSpecRouteRouteRouteRoute.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 active_time_intervals: Optional[Sequence[_builtins.str]] = None,
+                 continue_: Optional[_builtins.bool] = None,
+                 group_bies: Optional[Sequence[_builtins.str]] = None,
+                 group_interval: Optional[_builtins.str] = None,
+                 group_wait: Optional[_builtins.str] = None,
+                 matchers: Optional[Sequence['outputs.NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher']] = None,
+                 mute_time_intervals: Optional[Sequence[_builtins.str]] = None,
+                 receiver: Optional[_builtins.str] = None,
+                 repeat_interval: Optional[_builtins.str] = None,
+                 routes: Optional[Sequence['outputs.NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute']] = None):
+        """
+        :param Sequence[_builtins.str] active_time_intervals: A list of time interval names that activate this route only during the specified times.
+        :param _builtins.bool continue_: Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+        :param Sequence[_builtins.str] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param _builtins.str group_interval: Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param _builtins.str group_wait: Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param Sequence['NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArgs'] matchers: Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+        :param Sequence[_builtins.str] mute_time_intervals: A list of time interval names that mute this route during the specified times.
+        :param _builtins.str receiver: The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param _builtins.str repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param Sequence['NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArgs'] routes: Child routes of this route.
+        """
+        if active_time_intervals is not None:
+            pulumi.set(__self__, "active_time_intervals", active_time_intervals)
+        if continue_ is not None:
+            pulumi.set(__self__, "continue_", continue_)
+        if group_bies is not None:
+            pulumi.set(__self__, "group_bies", group_bies)
+        if group_interval is not None:
+            pulumi.set(__self__, "group_interval", group_interval)
+        if group_wait is not None:
+            pulumi.set(__self__, "group_wait", group_wait)
+        if matchers is not None:
+            pulumi.set(__self__, "matchers", matchers)
+        if mute_time_intervals is not None:
+            pulumi.set(__self__, "mute_time_intervals", mute_time_intervals)
+        if receiver is not None:
+            pulumi.set(__self__, "receiver", receiver)
+        if repeat_interval is not None:
+            pulumi.set(__self__, "repeat_interval", repeat_interval)
+        if routes is not None:
+            pulumi.set(__self__, "routes", routes)
+
+    @_builtins.property
+    @pulumi.getter(name="activeTimeIntervals")
+    def active_time_intervals(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of time interval names that activate this route only during the specified times.
+        """
+        return pulumi.get(self, "active_time_intervals")
+
+    @_builtins.property
+    @pulumi.getter(name="continue")
+    def continue_(self) -> Optional[_builtins.bool]:
+        """
+        Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+        """
+        return pulumi.get(self, "continue_")
+
+    @_builtins.property
+    @pulumi.getter(name="groupBies")
+    def group_bies(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "group_bies")
+
+    @_builtins.property
+    @pulumi.getter(name="groupInterval")
+    def group_interval(self) -> Optional[_builtins.str]:
+        """
+        Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "group_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="groupWait")
+    def group_wait(self) -> Optional[_builtins.str]:
+        """
+        Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "group_wait")
+
+    @_builtins.property
+    @pulumi.getter
+    def matchers(self) -> Optional[Sequence['outputs.NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher']]:
+        """
+        Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+        """
+        return pulumi.get(self, "matchers")
+
+    @_builtins.property
+    @pulumi.getter(name="muteTimeIntervals")
+    def mute_time_intervals(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of time interval names that mute this route during the specified times.
+        """
+        return pulumi.get(self, "mute_time_intervals")
+
+    @_builtins.property
+    @pulumi.getter
+    def receiver(self) -> Optional[_builtins.str]:
+        """
+        The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "receiver")
+
+    @_builtins.property
+    @pulumi.getter(name="repeatInterval")
+    def repeat_interval(self) -> Optional[_builtins.str]:
+        """
+        Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "repeat_interval")
+
+    @_builtins.property
+    @pulumi.getter
+    def routes(self) -> Optional[Sequence['outputs.NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute']]:
+        """
+        Child routes of this route.
+        """
+        return pulumi.get(self, "routes")
+
+
+@pulumi.output_type
+class NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher(dict):
+    def __init__(__self__, *,
+                 label: _builtins.str,
+                 type: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str label: The name of the label to match against.
+        :param _builtins.str type: The matching operator. One of `=`, `!=`, `=~`, `!~`.
+        :param _builtins.str value: The label value to match against.
+        """
+        pulumi.set(__self__, "label", label)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def label(self) -> _builtins.str:
+        """
+        The name of the label to match against.
+        """
+        return pulumi.get(self, "label")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The matching operator. One of `=`, `!=`, `=~`, `!~`.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The label value to match against.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "activeTimeIntervals":
+            suggest = "active_time_intervals"
+        elif key == "continue":
+            suggest = "continue_"
+        elif key == "groupBies":
+            suggest = "group_bies"
+        elif key == "groupInterval":
+            suggest = "group_interval"
+        elif key == "groupWait":
+            suggest = "group_wait"
+        elif key == "muteTimeIntervals":
+            suggest = "mute_time_intervals"
+        elif key == "repeatInterval":
+            suggest = "repeat_interval"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 active_time_intervals: Optional[Sequence[_builtins.str]] = None,
+                 continue_: Optional[_builtins.bool] = None,
+                 group_bies: Optional[Sequence[_builtins.str]] = None,
+                 group_interval: Optional[_builtins.str] = None,
+                 group_wait: Optional[_builtins.str] = None,
+                 matchers: Optional[Sequence['outputs.NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher']] = None,
+                 mute_time_intervals: Optional[Sequence[_builtins.str]] = None,
+                 receiver: Optional[_builtins.str] = None,
+                 repeat_interval: Optional[_builtins.str] = None):
+        """
+        :param Sequence[_builtins.str] active_time_intervals: A list of time interval names that activate this route only during the specified times.
+        :param _builtins.bool continue_: Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+        :param Sequence[_builtins.str] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param _builtins.str group_interval: Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param _builtins.str group_wait: Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param Sequence['NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArgs'] matchers: Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+        :param Sequence[_builtins.str] mute_time_intervals: A list of time interval names that mute this route during the specified times.
+        :param _builtins.str receiver: The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        :param _builtins.str repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        if active_time_intervals is not None:
+            pulumi.set(__self__, "active_time_intervals", active_time_intervals)
+        if continue_ is not None:
+            pulumi.set(__self__, "continue_", continue_)
+        if group_bies is not None:
+            pulumi.set(__self__, "group_bies", group_bies)
+        if group_interval is not None:
+            pulumi.set(__self__, "group_interval", group_interval)
+        if group_wait is not None:
+            pulumi.set(__self__, "group_wait", group_wait)
+        if matchers is not None:
+            pulumi.set(__self__, "matchers", matchers)
+        if mute_time_intervals is not None:
+            pulumi.set(__self__, "mute_time_intervals", mute_time_intervals)
+        if receiver is not None:
+            pulumi.set(__self__, "receiver", receiver)
+        if repeat_interval is not None:
+            pulumi.set(__self__, "repeat_interval", repeat_interval)
+
+    @_builtins.property
+    @pulumi.getter(name="activeTimeIntervals")
+    def active_time_intervals(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of time interval names that activate this route only during the specified times.
+        """
+        return pulumi.get(self, "active_time_intervals")
+
+    @_builtins.property
+    @pulumi.getter(name="continue")
+    def continue_(self) -> Optional[_builtins.bool]:
+        """
+        Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+        """
+        return pulumi.get(self, "continue_")
+
+    @_builtins.property
+    @pulumi.getter(name="groupBies")
+    def group_bies(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "group_bies")
+
+    @_builtins.property
+    @pulumi.getter(name="groupInterval")
+    def group_interval(self) -> Optional[_builtins.str]:
+        """
+        Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "group_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="groupWait")
+    def group_wait(self) -> Optional[_builtins.str]:
+        """
+        Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "group_wait")
+
+    @_builtins.property
+    @pulumi.getter
+    def matchers(self) -> Optional[Sequence['outputs.NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher']]:
+        """
+        Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+        """
+        return pulumi.get(self, "matchers")
+
+    @_builtins.property
+    @pulumi.getter(name="muteTimeIntervals")
+    def mute_time_intervals(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of time interval names that mute this route during the specified times.
+        """
+        return pulumi.get(self, "mute_time_intervals")
+
+    @_builtins.property
+    @pulumi.getter
+    def receiver(self) -> Optional[_builtins.str]:
+        """
+        The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "receiver")
+
+    @_builtins.property
+    @pulumi.getter(name="repeatInterval")
+    def repeat_interval(self) -> Optional[_builtins.str]:
+        """
+        Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+        """
+        return pulumi.get(self, "repeat_interval")
+
+
+@pulumi.output_type
+class NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher(dict):
+    def __init__(__self__, *,
+                 label: _builtins.str,
+                 type: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str label: The name of the label to match against.
+        :param _builtins.str type: The matching operator. One of `=`, `!=`, `=~`, `!~`.
+        :param _builtins.str value: The label value to match against.
+        """
+        pulumi.set(__self__, "label", label)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def label(self) -> _builtins.str:
+        """
+        The name of the label to match against.
+        """
+        return pulumi.get(self, "label")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The matching operator. One of `=`, `!=`, `=~`, `!~`.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The label value to match against.
+        """
         return pulumi.get(self, "value")
 
 

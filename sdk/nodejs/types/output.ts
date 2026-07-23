@@ -5,368 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface AppsNotificationsRoutingtreeV1beta1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations: {[key: string]: string};
-    /**
-     * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
-     */
-    folderUid?: string;
-    /**
-     * The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
-     */
-    uid: string;
-    /**
-     * The full URL of the resource.
-     */
-    url: string;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid: string;
-    /**
-     * The version of the resource.
-     */
-    version: string;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1Options {
-    /**
-     * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
-     */
-    managerIdentity?: string;
-    /**
-     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-     */
-    overwrite?: boolean;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1Spec {
-    /**
-     * The default values applied to alerts that do not match any specific route.
-     */
-    defaults?: outputs.AppsNotificationsRoutingtreeV1beta1SpecDefaults;
-    /**
-     * Set to `true` to allow editing this resource from other sources (UI, API). Defaults to `false`, which locks the resource to Terraform management only.
-     */
-    disableProvenance: boolean;
-    /**
-     * Routing rules for specific label sets.
-     */
-    routes?: outputs.AppsNotificationsRoutingtreeV1beta1SpecRoute[];
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecDefaults {
-    /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels.
-     */
-    groupBies?: string[];
-    /**
-     * Minimum time interval between two notifications for the same group. Default is 5 minutes.
-     */
-    groupInterval?: string;
-    /**
-     * Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
-     */
-    groupWait?: string;
-    /**
-     * The default contact point to route all unmatched notifications to.
-     */
-    receiver: string;
-    /**
-     * Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
-     */
-    repeatInterval?: string;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRoute {
-    /**
-     * A list of time interval names that activate this route only during the specified times.
-     */
-    activeTimeIntervals?: string[];
-    /**
-     * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
-     */
-    continue: boolean;
-    /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupBies?: string[];
-    /**
-     * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupInterval?: string;
-    /**
-     * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupWait?: string;
-    /**
-     * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
-     */
-    matchers?: outputs.AppsNotificationsRoutingtreeV1beta1SpecRouteMatcher[];
-    /**
-     * A list of time interval names that mute this route during the specified times.
-     */
-    muteTimeIntervals?: string[];
-    /**
-     * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    receiver?: string;
-    /**
-     * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    repeatInterval?: string;
-    /**
-     * Child routes. Each child route has the same schema as `spec.routes` and may be nested up to 5 levels deep.
-     */
-    routes?: outputs.AppsNotificationsRoutingtreeV1beta1SpecRouteRoute[];
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRouteMatcher {
-    /**
-     * The name of the label to match against.
-     */
-    label: string;
-    /**
-     * The matching operator. One of `=`, `!=`, `=~`, `!~`.
-     */
-    type: string;
-    /**
-     * The label value to match against.
-     */
-    value: string;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRouteRoute {
-    /**
-     * A list of time interval names that activate this route only during the specified times.
-     */
-    activeTimeIntervals?: string[];
-    /**
-     * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
-     */
-    continue: boolean;
-    /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupBies?: string[];
-    /**
-     * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupInterval?: string;
-    /**
-     * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupWait?: string;
-    /**
-     * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
-     */
-    matchers?: outputs.AppsNotificationsRoutingtreeV1beta1SpecRouteRouteMatcher[];
-    /**
-     * A list of time interval names that mute this route during the specified times.
-     */
-    muteTimeIntervals?: string[];
-    /**
-     * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    receiver?: string;
-    /**
-     * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    repeatInterval?: string;
-    /**
-     * Child routes of this route.
-     */
-    routes?: outputs.AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRoute[];
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRouteRouteMatcher {
-    /**
-     * The name of the label to match against.
-     */
-    label: string;
-    /**
-     * The matching operator. One of `=`, `!=`, `=~`, `!~`.
-     */
-    type: string;
-    /**
-     * The label value to match against.
-     */
-    value: string;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRoute {
-    /**
-     * A list of time interval names that activate this route only during the specified times.
-     */
-    activeTimeIntervals?: string[];
-    /**
-     * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
-     */
-    continue: boolean;
-    /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupBies?: string[];
-    /**
-     * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupInterval?: string;
-    /**
-     * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupWait?: string;
-    /**
-     * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
-     */
-    matchers?: outputs.AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteMatcher[];
-    /**
-     * A list of time interval names that mute this route during the specified times.
-     */
-    muteTimeIntervals?: string[];
-    /**
-     * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    receiver?: string;
-    /**
-     * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    repeatInterval?: string;
-    /**
-     * Child routes of this route.
-     */
-    routes?: outputs.AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteRoute[];
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteMatcher {
-    /**
-     * The name of the label to match against.
-     */
-    label: string;
-    /**
-     * The matching operator. One of `=`, `!=`, `=~`, `!~`.
-     */
-    type: string;
-    /**
-     * The label value to match against.
-     */
-    value: string;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteRoute {
-    /**
-     * A list of time interval names that activate this route only during the specified times.
-     */
-    activeTimeIntervals?: string[];
-    /**
-     * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
-     */
-    continue: boolean;
-    /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupBies?: string[];
-    /**
-     * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupInterval?: string;
-    /**
-     * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupWait?: string;
-    /**
-     * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
-     */
-    matchers?: outputs.AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteRouteMatcher[];
-    /**
-     * A list of time interval names that mute this route during the specified times.
-     */
-    muteTimeIntervals?: string[];
-    /**
-     * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    receiver?: string;
-    /**
-     * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    repeatInterval?: string;
-    /**
-     * Child routes of this route.
-     */
-    routes?: outputs.AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteRouteRoute[];
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteRouteMatcher {
-    /**
-     * The name of the label to match against.
-     */
-    label: string;
-    /**
-     * The matching operator. One of `=`, `!=`, `=~`, `!~`.
-     */
-    type: string;
-    /**
-     * The label value to match against.
-     */
-    value: string;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteRouteRoute {
-    /**
-     * A list of time interval names that activate this route only during the specified times.
-     */
-    activeTimeIntervals?: string[];
-    /**
-     * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
-     */
-    continue: boolean;
-    /**
-     * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupBies?: string[];
-    /**
-     * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupInterval?: string;
-    /**
-     * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    groupWait?: string;
-    /**
-     * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
-     */
-    matchers?: outputs.AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteRouteRouteMatcher[];
-    /**
-     * A list of time interval names that mute this route during the specified times.
-     */
-    muteTimeIntervals?: string[];
-    /**
-     * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    receiver?: string;
-    /**
-     * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
-     */
-    repeatInterval?: string;
-}
-
-export interface AppsNotificationsRoutingtreeV1beta1SpecRouteRouteRouteRouteRouteMatcher {
-    /**
-     * The name of the label to match against.
-     */
-    label: string;
-    /**
-     * The matching operator. One of `=`, `!=`, `=~`, `!~`.
-     */
-    type: string;
-    /**
-     * The label value to match against.
-     */
-    value: string;
-}
-
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**
@@ -3612,6 +3250,368 @@ export namespace alerting {
         export interface NotificationsInhibitionRuleSpecTargetMatcher {
             label: string;
             type: string;
+            value: string;
+        }
+
+        export interface NotificationsRoutingTreeMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+             */
+            folderUid?: string;
+            /**
+             * The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface NotificationsRoutingTreeOptions {
+            /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface NotificationsRoutingTreeSpec {
+            /**
+             * The default values applied to alerts that do not match any specific route.
+             */
+            defaults?: outputs.alerting.v1beta1.NotificationsRoutingTreeSpecDefaults;
+            /**
+             * Set to `true` to allow editing this resource from other sources (UI, API). Defaults to `false`, which locks the resource to Terraform management only.
+             */
+            disableProvenance: boolean;
+            /**
+             * Routing rules for specific label sets.
+             */
+            routes?: outputs.alerting.v1beta1.NotificationsRoutingTreeSpecRoute[];
+        }
+
+        export interface NotificationsRoutingTreeSpecDefaults {
+            /**
+             * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels.
+             */
+            groupBies?: string[];
+            /**
+             * Minimum time interval between two notifications for the same group. Default is 5 minutes.
+             */
+            groupInterval?: string;
+            /**
+             * Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+             */
+            groupWait?: string;
+            /**
+             * The default contact point to route all unmatched notifications to.
+             */
+            receiver: string;
+            /**
+             * Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+             */
+            repeatInterval?: string;
+        }
+
+        export interface NotificationsRoutingTreeSpecRoute {
+            /**
+             * A list of time interval names that activate this route only during the specified times.
+             */
+            activeTimeIntervals?: string[];
+            /**
+             * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+             */
+            continue: boolean;
+            /**
+             * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupBies?: string[];
+            /**
+             * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupInterval?: string;
+            /**
+             * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupWait?: string;
+            /**
+             * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+             */
+            matchers?: outputs.alerting.v1beta1.NotificationsRoutingTreeSpecRouteMatcher[];
+            /**
+             * A list of time interval names that mute this route during the specified times.
+             */
+            muteTimeIntervals?: string[];
+            /**
+             * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            receiver?: string;
+            /**
+             * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            repeatInterval?: string;
+            /**
+             * Child routes. Each child route has the same schema as `spec.routes` and may be nested up to 5 levels deep.
+             */
+            routes?: outputs.alerting.v1beta1.NotificationsRoutingTreeSpecRouteRoute[];
+        }
+
+        export interface NotificationsRoutingTreeSpecRouteMatcher {
+            /**
+             * The name of the label to match against.
+             */
+            label: string;
+            /**
+             * The matching operator. One of `=`, `!=`, `=~`, `!~`.
+             */
+            type: string;
+            /**
+             * The label value to match against.
+             */
+            value: string;
+        }
+
+        export interface NotificationsRoutingTreeSpecRouteRoute {
+            /**
+             * A list of time interval names that activate this route only during the specified times.
+             */
+            activeTimeIntervals?: string[];
+            /**
+             * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+             */
+            continue: boolean;
+            /**
+             * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupBies?: string[];
+            /**
+             * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupInterval?: string;
+            /**
+             * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupWait?: string;
+            /**
+             * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+             */
+            matchers?: outputs.alerting.v1beta1.NotificationsRoutingTreeSpecRouteRouteMatcher[];
+            /**
+             * A list of time interval names that mute this route during the specified times.
+             */
+            muteTimeIntervals?: string[];
+            /**
+             * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            receiver?: string;
+            /**
+             * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            repeatInterval?: string;
+            /**
+             * Child routes of this route.
+             */
+            routes?: outputs.alerting.v1beta1.NotificationsRoutingTreeSpecRouteRouteRoute[];
+        }
+
+        export interface NotificationsRoutingTreeSpecRouteRouteMatcher {
+            /**
+             * The name of the label to match against.
+             */
+            label: string;
+            /**
+             * The matching operator. One of `=`, `!=`, `=~`, `!~`.
+             */
+            type: string;
+            /**
+             * The label value to match against.
+             */
+            value: string;
+        }
+
+        export interface NotificationsRoutingTreeSpecRouteRouteRoute {
+            /**
+             * A list of time interval names that activate this route only during the specified times.
+             */
+            activeTimeIntervals?: string[];
+            /**
+             * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+             */
+            continue: boolean;
+            /**
+             * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupBies?: string[];
+            /**
+             * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupInterval?: string;
+            /**
+             * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupWait?: string;
+            /**
+             * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+             */
+            matchers?: outputs.alerting.v1beta1.NotificationsRoutingTreeSpecRouteRouteRouteMatcher[];
+            /**
+             * A list of time interval names that mute this route during the specified times.
+             */
+            muteTimeIntervals?: string[];
+            /**
+             * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            receiver?: string;
+            /**
+             * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            repeatInterval?: string;
+            /**
+             * Child routes of this route.
+             */
+            routes?: outputs.alerting.v1beta1.NotificationsRoutingTreeSpecRouteRouteRouteRoute[];
+        }
+
+        export interface NotificationsRoutingTreeSpecRouteRouteRouteMatcher {
+            /**
+             * The name of the label to match against.
+             */
+            label: string;
+            /**
+             * The matching operator. One of `=`, `!=`, `=~`, `!~`.
+             */
+            type: string;
+            /**
+             * The label value to match against.
+             */
+            value: string;
+        }
+
+        export interface NotificationsRoutingTreeSpecRouteRouteRouteRoute {
+            /**
+             * A list of time interval names that activate this route only during the specified times.
+             */
+            activeTimeIntervals?: string[];
+            /**
+             * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+             */
+            continue: boolean;
+            /**
+             * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupBies?: string[];
+            /**
+             * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupInterval?: string;
+            /**
+             * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupWait?: string;
+            /**
+             * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+             */
+            matchers?: outputs.alerting.v1beta1.NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher[];
+            /**
+             * A list of time interval names that mute this route during the specified times.
+             */
+            muteTimeIntervals?: string[];
+            /**
+             * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            receiver?: string;
+            /**
+             * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            repeatInterval?: string;
+            /**
+             * Child routes of this route.
+             */
+            routes?: outputs.alerting.v1beta1.NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute[];
+        }
+
+        export interface NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher {
+            /**
+             * The name of the label to match against.
+             */
+            label: string;
+            /**
+             * The matching operator. One of `=`, `!=`, `=~`, `!~`.
+             */
+            type: string;
+            /**
+             * The label value to match against.
+             */
+            value: string;
+        }
+
+        export interface NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute {
+            /**
+             * A list of time interval names that activate this route only during the specified times.
+             */
+            activeTimeIntervals?: string[];
+            /**
+             * Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+             */
+            continue: boolean;
+            /**
+             * A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupBies?: string[];
+            /**
+             * Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupInterval?: string;
+            /**
+             * Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            groupWait?: string;
+            /**
+             * Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+             */
+            matchers?: outputs.alerting.v1beta1.NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher[];
+            /**
+             * A list of time interval names that mute this route during the specified times.
+             */
+            muteTimeIntervals?: string[];
+            /**
+             * The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            receiver?: string;
+            /**
+             * Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+             */
+            repeatInterval?: string;
+        }
+
+        export interface NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher {
+            /**
+             * The name of the label to match against.
+             */
+            label: string;
+            /**
+             * The matching operator. One of `=`, `!=`, `=~`, `!~`.
+             */
+            type: string;
+            /**
+             * The label value to match against.
+             */
             value: string;
         }
 

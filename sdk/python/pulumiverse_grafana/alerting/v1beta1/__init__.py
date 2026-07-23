@@ -8,5 +8,6 @@ import typing
 # Export this package's modules as members:
 from .alert_enrichment import *
 from .notifications_inhibition_rule import *
+from .notifications_routing_tree import *
 from ._inputs import *
 from . import outputs

@@ -7372,6 +7372,2254 @@ func (o NotificationsInhibitionRuleSpecTargetMatcherArrayOutput) Index(i pulumi.
 	}).(NotificationsInhibitionRuleSpecTargetMatcherOutput)
 }
 
+type NotificationsRoutingTreeMetadata struct {
+	// Annotations of the resource.
+	Annotations map[string]string `pulumi:"annotations"`
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+	FolderUid *string `pulumi:"folderUid"`
+	// The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
+	Uid string `pulumi:"uid"`
+	// The full URL of the resource.
+	Url *string `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid *string `pulumi:"uuid"`
+	// The version of the resource.
+	Version *string `pulumi:"version"`
+}
+
+// NotificationsRoutingTreeMetadataInput is an input type that accepts NotificationsRoutingTreeMetadataArgs and NotificationsRoutingTreeMetadataOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeMetadataInput` via:
+//
+//	NotificationsRoutingTreeMetadataArgs{...}
+type NotificationsRoutingTreeMetadataInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeMetadataOutput() NotificationsRoutingTreeMetadataOutput
+	ToNotificationsRoutingTreeMetadataOutputWithContext(context.Context) NotificationsRoutingTreeMetadataOutput
+}
+
+type NotificationsRoutingTreeMetadataArgs struct {
+	// Annotations of the resource.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
+	Uid pulumi.StringInput `pulumi:"uid"`
+	// The full URL of the resource.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
+	// The version of the resource.
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (NotificationsRoutingTreeMetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeMetadata)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeMetadataArgs) ToNotificationsRoutingTreeMetadataOutput() NotificationsRoutingTreeMetadataOutput {
+	return i.ToNotificationsRoutingTreeMetadataOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeMetadataArgs) ToNotificationsRoutingTreeMetadataOutputWithContext(ctx context.Context) NotificationsRoutingTreeMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeMetadataOutput)
+}
+
+func (i NotificationsRoutingTreeMetadataArgs) ToNotificationsRoutingTreeMetadataPtrOutput() NotificationsRoutingTreeMetadataPtrOutput {
+	return i.ToNotificationsRoutingTreeMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeMetadataArgs) ToNotificationsRoutingTreeMetadataPtrOutputWithContext(ctx context.Context) NotificationsRoutingTreeMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeMetadataOutput).ToNotificationsRoutingTreeMetadataPtrOutputWithContext(ctx)
+}
+
+// NotificationsRoutingTreeMetadataPtrInput is an input type that accepts NotificationsRoutingTreeMetadataArgs, NotificationsRoutingTreeMetadataPtr and NotificationsRoutingTreeMetadataPtrOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeMetadataPtrInput` via:
+//
+//	        NotificationsRoutingTreeMetadataArgs{...}
+//
+//	or:
+//
+//	        nil
+type NotificationsRoutingTreeMetadataPtrInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeMetadataPtrOutput() NotificationsRoutingTreeMetadataPtrOutput
+	ToNotificationsRoutingTreeMetadataPtrOutputWithContext(context.Context) NotificationsRoutingTreeMetadataPtrOutput
+}
+
+type notificationsRoutingTreeMetadataPtrType NotificationsRoutingTreeMetadataArgs
+
+func NotificationsRoutingTreeMetadataPtr(v *NotificationsRoutingTreeMetadataArgs) NotificationsRoutingTreeMetadataPtrInput {
+	return (*notificationsRoutingTreeMetadataPtrType)(v)
+}
+
+func (*notificationsRoutingTreeMetadataPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationsRoutingTreeMetadata)(nil)).Elem()
+}
+
+func (i *notificationsRoutingTreeMetadataPtrType) ToNotificationsRoutingTreeMetadataPtrOutput() NotificationsRoutingTreeMetadataPtrOutput {
+	return i.ToNotificationsRoutingTreeMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i *notificationsRoutingTreeMetadataPtrType) ToNotificationsRoutingTreeMetadataPtrOutputWithContext(ctx context.Context) NotificationsRoutingTreeMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeMetadataPtrOutput)
+}
+
+type NotificationsRoutingTreeMetadataOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeMetadata)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeMetadataOutput) ToNotificationsRoutingTreeMetadataOutput() NotificationsRoutingTreeMetadataOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeMetadataOutput) ToNotificationsRoutingTreeMetadataOutputWithContext(ctx context.Context) NotificationsRoutingTreeMetadataOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeMetadataOutput) ToNotificationsRoutingTreeMetadataPtrOutput() NotificationsRoutingTreeMetadataPtrOutput {
+	return o.ToNotificationsRoutingTreeMetadataPtrOutputWithContext(context.Background())
+}
+
+func (o NotificationsRoutingTreeMetadataOutput) ToNotificationsRoutingTreeMetadataPtrOutputWithContext(ctx context.Context) NotificationsRoutingTreeMetadataPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NotificationsRoutingTreeMetadata) *NotificationsRoutingTreeMetadata {
+		return &v
+	}).(NotificationsRoutingTreeMetadataPtrOutput)
+}
+
+// Annotations of the resource.
+func (o NotificationsRoutingTreeMetadataOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeMetadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+func (o NotificationsRoutingTreeMetadataOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
+func (o NotificationsRoutingTreeMetadataOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeMetadata) string { return v.Uid }).(pulumi.StringOutput)
+}
+
+// The full URL of the resource.
+func (o NotificationsRoutingTreeMetadataOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeMetadata) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o NotificationsRoutingTreeMetadataOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeMetadata) *string { return v.Uuid }).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o NotificationsRoutingTreeMetadataOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeMetadata) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type NotificationsRoutingTreeMetadataPtrOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeMetadataPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationsRoutingTreeMetadata)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeMetadataPtrOutput) ToNotificationsRoutingTreeMetadataPtrOutput() NotificationsRoutingTreeMetadataPtrOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeMetadataPtrOutput) ToNotificationsRoutingTreeMetadataPtrOutputWithContext(ctx context.Context) NotificationsRoutingTreeMetadataPtrOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeMetadataPtrOutput) Elem() NotificationsRoutingTreeMetadataOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeMetadata) NotificationsRoutingTreeMetadata {
+		if v != nil {
+			return *v
+		}
+		var ret NotificationsRoutingTreeMetadata
+		return ret
+	}).(NotificationsRoutingTreeMetadataOutput)
+}
+
+// Annotations of the resource.
+func (o NotificationsRoutingTreeMetadataPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeMetadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+func (o NotificationsRoutingTreeMetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FolderUid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
+func (o NotificationsRoutingTreeMetadataPtrOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The full URL of the resource.
+func (o NotificationsRoutingTreeMetadataPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o NotificationsRoutingTreeMetadataPtrOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Uuid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o NotificationsRoutingTreeMetadataPtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Version
+	}).(pulumi.StringPtrOutput)
+}
+
+type NotificationsRoutingTreeOptions struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity *string `pulumi:"managerIdentity"`
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite *bool `pulumi:"overwrite"`
+}
+
+// NotificationsRoutingTreeOptionsInput is an input type that accepts NotificationsRoutingTreeOptionsArgs and NotificationsRoutingTreeOptionsOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeOptionsInput` via:
+//
+//	NotificationsRoutingTreeOptionsArgs{...}
+type NotificationsRoutingTreeOptionsInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeOptionsOutput() NotificationsRoutingTreeOptionsOutput
+	ToNotificationsRoutingTreeOptionsOutputWithContext(context.Context) NotificationsRoutingTreeOptionsOutput
+}
+
+type NotificationsRoutingTreeOptionsArgs struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity pulumi.StringPtrInput `pulumi:"managerIdentity"`
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
+}
+
+func (NotificationsRoutingTreeOptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeOptions)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeOptionsArgs) ToNotificationsRoutingTreeOptionsOutput() NotificationsRoutingTreeOptionsOutput {
+	return i.ToNotificationsRoutingTreeOptionsOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeOptionsArgs) ToNotificationsRoutingTreeOptionsOutputWithContext(ctx context.Context) NotificationsRoutingTreeOptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeOptionsOutput)
+}
+
+func (i NotificationsRoutingTreeOptionsArgs) ToNotificationsRoutingTreeOptionsPtrOutput() NotificationsRoutingTreeOptionsPtrOutput {
+	return i.ToNotificationsRoutingTreeOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeOptionsArgs) ToNotificationsRoutingTreeOptionsPtrOutputWithContext(ctx context.Context) NotificationsRoutingTreeOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeOptionsOutput).ToNotificationsRoutingTreeOptionsPtrOutputWithContext(ctx)
+}
+
+// NotificationsRoutingTreeOptionsPtrInput is an input type that accepts NotificationsRoutingTreeOptionsArgs, NotificationsRoutingTreeOptionsPtr and NotificationsRoutingTreeOptionsPtrOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeOptionsPtrInput` via:
+//
+//	        NotificationsRoutingTreeOptionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type NotificationsRoutingTreeOptionsPtrInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeOptionsPtrOutput() NotificationsRoutingTreeOptionsPtrOutput
+	ToNotificationsRoutingTreeOptionsPtrOutputWithContext(context.Context) NotificationsRoutingTreeOptionsPtrOutput
+}
+
+type notificationsRoutingTreeOptionsPtrType NotificationsRoutingTreeOptionsArgs
+
+func NotificationsRoutingTreeOptionsPtr(v *NotificationsRoutingTreeOptionsArgs) NotificationsRoutingTreeOptionsPtrInput {
+	return (*notificationsRoutingTreeOptionsPtrType)(v)
+}
+
+func (*notificationsRoutingTreeOptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationsRoutingTreeOptions)(nil)).Elem()
+}
+
+func (i *notificationsRoutingTreeOptionsPtrType) ToNotificationsRoutingTreeOptionsPtrOutput() NotificationsRoutingTreeOptionsPtrOutput {
+	return i.ToNotificationsRoutingTreeOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *notificationsRoutingTreeOptionsPtrType) ToNotificationsRoutingTreeOptionsPtrOutputWithContext(ctx context.Context) NotificationsRoutingTreeOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeOptionsPtrOutput)
+}
+
+type NotificationsRoutingTreeOptionsOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeOptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeOptions)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeOptionsOutput) ToNotificationsRoutingTreeOptionsOutput() NotificationsRoutingTreeOptionsOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeOptionsOutput) ToNotificationsRoutingTreeOptionsOutputWithContext(ctx context.Context) NotificationsRoutingTreeOptionsOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeOptionsOutput) ToNotificationsRoutingTreeOptionsPtrOutput() NotificationsRoutingTreeOptionsPtrOutput {
+	return o.ToNotificationsRoutingTreeOptionsPtrOutputWithContext(context.Background())
+}
+
+func (o NotificationsRoutingTreeOptionsOutput) ToNotificationsRoutingTreeOptionsPtrOutputWithContext(ctx context.Context) NotificationsRoutingTreeOptionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NotificationsRoutingTreeOptions) *NotificationsRoutingTreeOptions {
+		return &v
+	}).(NotificationsRoutingTreeOptionsPtrOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o NotificationsRoutingTreeOptionsOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeOptions) *string { return v.ManagerIdentity }).(pulumi.StringPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o NotificationsRoutingTreeOptionsOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeOptions) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
+}
+
+type NotificationsRoutingTreeOptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeOptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationsRoutingTreeOptions)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeOptionsPtrOutput) ToNotificationsRoutingTreeOptionsPtrOutput() NotificationsRoutingTreeOptionsPtrOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeOptionsPtrOutput) ToNotificationsRoutingTreeOptionsPtrOutputWithContext(ctx context.Context) NotificationsRoutingTreeOptionsPtrOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeOptionsPtrOutput) Elem() NotificationsRoutingTreeOptionsOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeOptions) NotificationsRoutingTreeOptions {
+		if v != nil {
+			return *v
+		}
+		var ret NotificationsRoutingTreeOptions
+		return ret
+	}).(NotificationsRoutingTreeOptionsOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o NotificationsRoutingTreeOptionsPtrOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeOptions) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ManagerIdentity
+	}).(pulumi.StringPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o NotificationsRoutingTreeOptionsPtrOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Overwrite
+	}).(pulumi.BoolPtrOutput)
+}
+
+type NotificationsRoutingTreeSpec struct {
+	// The default values applied to alerts that do not match any specific route.
+	Defaults *NotificationsRoutingTreeSpecDefaults `pulumi:"defaults"`
+	// Set to `true` to allow editing this resource from other sources (UI, API). Defaults to `false`, which locks the resource to Terraform management only.
+	DisableProvenance *bool `pulumi:"disableProvenance"`
+	// Routing rules for specific label sets.
+	Routes []NotificationsRoutingTreeSpecRoute `pulumi:"routes"`
+}
+
+// NotificationsRoutingTreeSpecInput is an input type that accepts NotificationsRoutingTreeSpecArgs and NotificationsRoutingTreeSpecOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecInput` via:
+//
+//	NotificationsRoutingTreeSpecArgs{...}
+type NotificationsRoutingTreeSpecInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecOutput() NotificationsRoutingTreeSpecOutput
+	ToNotificationsRoutingTreeSpecOutputWithContext(context.Context) NotificationsRoutingTreeSpecOutput
+}
+
+type NotificationsRoutingTreeSpecArgs struct {
+	// The default values applied to alerts that do not match any specific route.
+	Defaults NotificationsRoutingTreeSpecDefaultsPtrInput `pulumi:"defaults"`
+	// Set to `true` to allow editing this resource from other sources (UI, API). Defaults to `false`, which locks the resource to Terraform management only.
+	DisableProvenance pulumi.BoolPtrInput `pulumi:"disableProvenance"`
+	// Routing rules for specific label sets.
+	Routes NotificationsRoutingTreeSpecRouteArrayInput `pulumi:"routes"`
+}
+
+func (NotificationsRoutingTreeSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpec)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecArgs) ToNotificationsRoutingTreeSpecOutput() NotificationsRoutingTreeSpecOutput {
+	return i.ToNotificationsRoutingTreeSpecOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecArgs) ToNotificationsRoutingTreeSpecOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecOutput)
+}
+
+func (i NotificationsRoutingTreeSpecArgs) ToNotificationsRoutingTreeSpecPtrOutput() NotificationsRoutingTreeSpecPtrOutput {
+	return i.ToNotificationsRoutingTreeSpecPtrOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecArgs) ToNotificationsRoutingTreeSpecPtrOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecOutput).ToNotificationsRoutingTreeSpecPtrOutputWithContext(ctx)
+}
+
+// NotificationsRoutingTreeSpecPtrInput is an input type that accepts NotificationsRoutingTreeSpecArgs, NotificationsRoutingTreeSpecPtr and NotificationsRoutingTreeSpecPtrOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecPtrInput` via:
+//
+//	        NotificationsRoutingTreeSpecArgs{...}
+//
+//	or:
+//
+//	        nil
+type NotificationsRoutingTreeSpecPtrInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecPtrOutput() NotificationsRoutingTreeSpecPtrOutput
+	ToNotificationsRoutingTreeSpecPtrOutputWithContext(context.Context) NotificationsRoutingTreeSpecPtrOutput
+}
+
+type notificationsRoutingTreeSpecPtrType NotificationsRoutingTreeSpecArgs
+
+func NotificationsRoutingTreeSpecPtr(v *NotificationsRoutingTreeSpecArgs) NotificationsRoutingTreeSpecPtrInput {
+	return (*notificationsRoutingTreeSpecPtrType)(v)
+}
+
+func (*notificationsRoutingTreeSpecPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationsRoutingTreeSpec)(nil)).Elem()
+}
+
+func (i *notificationsRoutingTreeSpecPtrType) ToNotificationsRoutingTreeSpecPtrOutput() NotificationsRoutingTreeSpecPtrOutput {
+	return i.ToNotificationsRoutingTreeSpecPtrOutputWithContext(context.Background())
+}
+
+func (i *notificationsRoutingTreeSpecPtrType) ToNotificationsRoutingTreeSpecPtrOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecPtrOutput)
+}
+
+type NotificationsRoutingTreeSpecOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpec)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecOutput) ToNotificationsRoutingTreeSpecOutput() NotificationsRoutingTreeSpecOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecOutput) ToNotificationsRoutingTreeSpecOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecOutput) ToNotificationsRoutingTreeSpecPtrOutput() NotificationsRoutingTreeSpecPtrOutput {
+	return o.ToNotificationsRoutingTreeSpecPtrOutputWithContext(context.Background())
+}
+
+func (o NotificationsRoutingTreeSpecOutput) ToNotificationsRoutingTreeSpecPtrOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NotificationsRoutingTreeSpec) *NotificationsRoutingTreeSpec {
+		return &v
+	}).(NotificationsRoutingTreeSpecPtrOutput)
+}
+
+// The default values applied to alerts that do not match any specific route.
+func (o NotificationsRoutingTreeSpecOutput) Defaults() NotificationsRoutingTreeSpecDefaultsPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpec) *NotificationsRoutingTreeSpecDefaults { return v.Defaults }).(NotificationsRoutingTreeSpecDefaultsPtrOutput)
+}
+
+// Set to `true` to allow editing this resource from other sources (UI, API). Defaults to `false`, which locks the resource to Terraform management only.
+func (o NotificationsRoutingTreeSpecOutput) DisableProvenance() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpec) *bool { return v.DisableProvenance }).(pulumi.BoolPtrOutput)
+}
+
+// Routing rules for specific label sets.
+func (o NotificationsRoutingTreeSpecOutput) Routes() NotificationsRoutingTreeSpecRouteArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpec) []NotificationsRoutingTreeSpecRoute { return v.Routes }).(NotificationsRoutingTreeSpecRouteArrayOutput)
+}
+
+type NotificationsRoutingTreeSpecPtrOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationsRoutingTreeSpec)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecPtrOutput) ToNotificationsRoutingTreeSpecPtrOutput() NotificationsRoutingTreeSpecPtrOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecPtrOutput) ToNotificationsRoutingTreeSpecPtrOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecPtrOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecPtrOutput) Elem() NotificationsRoutingTreeSpecOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeSpec) NotificationsRoutingTreeSpec {
+		if v != nil {
+			return *v
+		}
+		var ret NotificationsRoutingTreeSpec
+		return ret
+	}).(NotificationsRoutingTreeSpecOutput)
+}
+
+// The default values applied to alerts that do not match any specific route.
+func (o NotificationsRoutingTreeSpecPtrOutput) Defaults() NotificationsRoutingTreeSpecDefaultsPtrOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeSpec) *NotificationsRoutingTreeSpecDefaults {
+		if v == nil {
+			return nil
+		}
+		return v.Defaults
+	}).(NotificationsRoutingTreeSpecDefaultsPtrOutput)
+}
+
+// Set to `true` to allow editing this resource from other sources (UI, API). Defaults to `false`, which locks the resource to Terraform management only.
+func (o NotificationsRoutingTreeSpecPtrOutput) DisableProvenance() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeSpec) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DisableProvenance
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Routing rules for specific label sets.
+func (o NotificationsRoutingTreeSpecPtrOutput) Routes() NotificationsRoutingTreeSpecRouteArrayOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeSpec) []NotificationsRoutingTreeSpecRoute {
+		if v == nil {
+			return nil
+		}
+		return v.Routes
+	}).(NotificationsRoutingTreeSpecRouteArrayOutput)
+}
+
+type NotificationsRoutingTreeSpecDefaults struct {
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels.
+	GroupBies []string `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
+	GroupInterval *string `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+	GroupWait *string `pulumi:"groupWait"`
+	// The default contact point to route all unmatched notifications to.
+	Receiver string `pulumi:"receiver"`
+	// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+	RepeatInterval *string `pulumi:"repeatInterval"`
+}
+
+// NotificationsRoutingTreeSpecDefaultsInput is an input type that accepts NotificationsRoutingTreeSpecDefaultsArgs and NotificationsRoutingTreeSpecDefaultsOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecDefaultsInput` via:
+//
+//	NotificationsRoutingTreeSpecDefaultsArgs{...}
+type NotificationsRoutingTreeSpecDefaultsInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecDefaultsOutput() NotificationsRoutingTreeSpecDefaultsOutput
+	ToNotificationsRoutingTreeSpecDefaultsOutputWithContext(context.Context) NotificationsRoutingTreeSpecDefaultsOutput
+}
+
+type NotificationsRoutingTreeSpecDefaultsArgs struct {
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels.
+	GroupBies pulumi.StringArrayInput `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
+	GroupInterval pulumi.StringPtrInput `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+	GroupWait pulumi.StringPtrInput `pulumi:"groupWait"`
+	// The default contact point to route all unmatched notifications to.
+	Receiver pulumi.StringInput `pulumi:"receiver"`
+	// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+	RepeatInterval pulumi.StringPtrInput `pulumi:"repeatInterval"`
+}
+
+func (NotificationsRoutingTreeSpecDefaultsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecDefaults)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecDefaultsArgs) ToNotificationsRoutingTreeSpecDefaultsOutput() NotificationsRoutingTreeSpecDefaultsOutput {
+	return i.ToNotificationsRoutingTreeSpecDefaultsOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecDefaultsArgs) ToNotificationsRoutingTreeSpecDefaultsOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecDefaultsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecDefaultsOutput)
+}
+
+func (i NotificationsRoutingTreeSpecDefaultsArgs) ToNotificationsRoutingTreeSpecDefaultsPtrOutput() NotificationsRoutingTreeSpecDefaultsPtrOutput {
+	return i.ToNotificationsRoutingTreeSpecDefaultsPtrOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecDefaultsArgs) ToNotificationsRoutingTreeSpecDefaultsPtrOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecDefaultsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecDefaultsOutput).ToNotificationsRoutingTreeSpecDefaultsPtrOutputWithContext(ctx)
+}
+
+// NotificationsRoutingTreeSpecDefaultsPtrInput is an input type that accepts NotificationsRoutingTreeSpecDefaultsArgs, NotificationsRoutingTreeSpecDefaultsPtr and NotificationsRoutingTreeSpecDefaultsPtrOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecDefaultsPtrInput` via:
+//
+//	        NotificationsRoutingTreeSpecDefaultsArgs{...}
+//
+//	or:
+//
+//	        nil
+type NotificationsRoutingTreeSpecDefaultsPtrInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecDefaultsPtrOutput() NotificationsRoutingTreeSpecDefaultsPtrOutput
+	ToNotificationsRoutingTreeSpecDefaultsPtrOutputWithContext(context.Context) NotificationsRoutingTreeSpecDefaultsPtrOutput
+}
+
+type notificationsRoutingTreeSpecDefaultsPtrType NotificationsRoutingTreeSpecDefaultsArgs
+
+func NotificationsRoutingTreeSpecDefaultsPtr(v *NotificationsRoutingTreeSpecDefaultsArgs) NotificationsRoutingTreeSpecDefaultsPtrInput {
+	return (*notificationsRoutingTreeSpecDefaultsPtrType)(v)
+}
+
+func (*notificationsRoutingTreeSpecDefaultsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationsRoutingTreeSpecDefaults)(nil)).Elem()
+}
+
+func (i *notificationsRoutingTreeSpecDefaultsPtrType) ToNotificationsRoutingTreeSpecDefaultsPtrOutput() NotificationsRoutingTreeSpecDefaultsPtrOutput {
+	return i.ToNotificationsRoutingTreeSpecDefaultsPtrOutputWithContext(context.Background())
+}
+
+func (i *notificationsRoutingTreeSpecDefaultsPtrType) ToNotificationsRoutingTreeSpecDefaultsPtrOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecDefaultsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecDefaultsPtrOutput)
+}
+
+type NotificationsRoutingTreeSpecDefaultsOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecDefaultsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecDefaults)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecDefaultsOutput) ToNotificationsRoutingTreeSpecDefaultsOutput() NotificationsRoutingTreeSpecDefaultsOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecDefaultsOutput) ToNotificationsRoutingTreeSpecDefaultsOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecDefaultsOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecDefaultsOutput) ToNotificationsRoutingTreeSpecDefaultsPtrOutput() NotificationsRoutingTreeSpecDefaultsPtrOutput {
+	return o.ToNotificationsRoutingTreeSpecDefaultsPtrOutputWithContext(context.Background())
+}
+
+func (o NotificationsRoutingTreeSpecDefaultsOutput) ToNotificationsRoutingTreeSpecDefaultsPtrOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecDefaultsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NotificationsRoutingTreeSpecDefaults) *NotificationsRoutingTreeSpecDefaults {
+		return &v
+	}).(NotificationsRoutingTreeSpecDefaultsPtrOutput)
+}
+
+// A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels.
+func (o NotificationsRoutingTreeSpecDefaultsOutput) GroupBies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecDefaults) []string { return v.GroupBies }).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval between two notifications for the same group. Default is 5 minutes.
+func (o NotificationsRoutingTreeSpecDefaultsOutput) GroupInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecDefaults) *string { return v.GroupInterval }).(pulumi.StringPtrOutput)
+}
+
+// Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+func (o NotificationsRoutingTreeSpecDefaultsOutput) GroupWait() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecDefaults) *string { return v.GroupWait }).(pulumi.StringPtrOutput)
+}
+
+// The default contact point to route all unmatched notifications to.
+func (o NotificationsRoutingTreeSpecDefaultsOutput) Receiver() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecDefaults) string { return v.Receiver }).(pulumi.StringOutput)
+}
+
+// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+func (o NotificationsRoutingTreeSpecDefaultsOutput) RepeatInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecDefaults) *string { return v.RepeatInterval }).(pulumi.StringPtrOutput)
+}
+
+type NotificationsRoutingTreeSpecDefaultsPtrOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecDefaultsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationsRoutingTreeSpecDefaults)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecDefaultsPtrOutput) ToNotificationsRoutingTreeSpecDefaultsPtrOutput() NotificationsRoutingTreeSpecDefaultsPtrOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecDefaultsPtrOutput) ToNotificationsRoutingTreeSpecDefaultsPtrOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecDefaultsPtrOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecDefaultsPtrOutput) Elem() NotificationsRoutingTreeSpecDefaultsOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeSpecDefaults) NotificationsRoutingTreeSpecDefaults {
+		if v != nil {
+			return *v
+		}
+		var ret NotificationsRoutingTreeSpecDefaults
+		return ret
+	}).(NotificationsRoutingTreeSpecDefaultsOutput)
+}
+
+// A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels.
+func (o NotificationsRoutingTreeSpecDefaultsPtrOutput) GroupBies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeSpecDefaults) []string {
+		if v == nil {
+			return nil
+		}
+		return v.GroupBies
+	}).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval between two notifications for the same group. Default is 5 minutes.
+func (o NotificationsRoutingTreeSpecDefaultsPtrOutput) GroupInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeSpecDefaults) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GroupInterval
+	}).(pulumi.StringPtrOutput)
+}
+
+// Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+func (o NotificationsRoutingTreeSpecDefaultsPtrOutput) GroupWait() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeSpecDefaults) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GroupWait
+	}).(pulumi.StringPtrOutput)
+}
+
+// The default contact point to route all unmatched notifications to.
+func (o NotificationsRoutingTreeSpecDefaultsPtrOutput) Receiver() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeSpecDefaults) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Receiver
+	}).(pulumi.StringPtrOutput)
+}
+
+// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+func (o NotificationsRoutingTreeSpecDefaultsPtrOutput) RepeatInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeSpecDefaults) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RepeatInterval
+	}).(pulumi.StringPtrOutput)
+}
+
+type NotificationsRoutingTreeSpecRoute struct {
+	// A list of time interval names that activate this route only during the specified times.
+	ActiveTimeIntervals []string `pulumi:"activeTimeIntervals"`
+	// Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+	Continue *bool `pulumi:"continue"`
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupBies []string `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupInterval *string `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupWait *string `pulumi:"groupWait"`
+	// Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+	Matchers []NotificationsRoutingTreeSpecRouteMatcher `pulumi:"matchers"`
+	// A list of time interval names that mute this route during the specified times.
+	MuteTimeIntervals []string `pulumi:"muteTimeIntervals"`
+	// The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	Receiver *string `pulumi:"receiver"`
+	// Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	RepeatInterval *string `pulumi:"repeatInterval"`
+	// Child routes. Each child route has the same schema as `spec.routes` and may be nested up to 5 levels deep.
+	Routes []NotificationsRoutingTreeSpecRouteRoute `pulumi:"routes"`
+}
+
+// NotificationsRoutingTreeSpecRouteInput is an input type that accepts NotificationsRoutingTreeSpecRouteArgs and NotificationsRoutingTreeSpecRouteOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteArgs{...}
+type NotificationsRoutingTreeSpecRouteInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteOutput() NotificationsRoutingTreeSpecRouteOutput
+	ToNotificationsRoutingTreeSpecRouteOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteOutput
+}
+
+type NotificationsRoutingTreeSpecRouteArgs struct {
+	// A list of time interval names that activate this route only during the specified times.
+	ActiveTimeIntervals pulumi.StringArrayInput `pulumi:"activeTimeIntervals"`
+	// Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+	Continue pulumi.BoolPtrInput `pulumi:"continue"`
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupBies pulumi.StringArrayInput `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupInterval pulumi.StringPtrInput `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupWait pulumi.StringPtrInput `pulumi:"groupWait"`
+	// Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+	Matchers NotificationsRoutingTreeSpecRouteMatcherArrayInput `pulumi:"matchers"`
+	// A list of time interval names that mute this route during the specified times.
+	MuteTimeIntervals pulumi.StringArrayInput `pulumi:"muteTimeIntervals"`
+	// The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	Receiver pulumi.StringPtrInput `pulumi:"receiver"`
+	// Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	RepeatInterval pulumi.StringPtrInput `pulumi:"repeatInterval"`
+	// Child routes. Each child route has the same schema as `spec.routes` and may be nested up to 5 levels deep.
+	Routes NotificationsRoutingTreeSpecRouteRouteArrayInput `pulumi:"routes"`
+}
+
+func (NotificationsRoutingTreeSpecRouteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRoute)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteArgs) ToNotificationsRoutingTreeSpecRouteOutput() NotificationsRoutingTreeSpecRouteOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteArgs) ToNotificationsRoutingTreeSpecRouteOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteOutput)
+}
+
+// NotificationsRoutingTreeSpecRouteArrayInput is an input type that accepts NotificationsRoutingTreeSpecRouteArray and NotificationsRoutingTreeSpecRouteArrayOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteArrayInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteArray{ NotificationsRoutingTreeSpecRouteArgs{...} }
+type NotificationsRoutingTreeSpecRouteArrayInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteArrayOutput() NotificationsRoutingTreeSpecRouteArrayOutput
+	ToNotificationsRoutingTreeSpecRouteArrayOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteArrayOutput
+}
+
+type NotificationsRoutingTreeSpecRouteArray []NotificationsRoutingTreeSpecRouteInput
+
+func (NotificationsRoutingTreeSpecRouteArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRoute)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteArray) ToNotificationsRoutingTreeSpecRouteArrayOutput() NotificationsRoutingTreeSpecRouteArrayOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteArrayOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteArray) ToNotificationsRoutingTreeSpecRouteArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteArrayOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRoute)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteOutput) ToNotificationsRoutingTreeSpecRouteOutput() NotificationsRoutingTreeSpecRouteOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteOutput) ToNotificationsRoutingTreeSpecRouteOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteOutput {
+	return o
+}
+
+// A list of time interval names that activate this route only during the specified times.
+func (o NotificationsRoutingTreeSpecRouteOutput) ActiveTimeIntervals() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRoute) []string { return v.ActiveTimeIntervals }).(pulumi.StringArrayOutput)
+}
+
+// Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+func (o NotificationsRoutingTreeSpecRouteOutput) Continue() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRoute) *bool { return v.Continue }).(pulumi.BoolPtrOutput)
+}
+
+// A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteOutput) GroupBies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRoute) []string { return v.GroupBies }).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteOutput) GroupInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRoute) *string { return v.GroupInterval }).(pulumi.StringPtrOutput)
+}
+
+// Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteOutput) GroupWait() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRoute) *string { return v.GroupWait }).(pulumi.StringPtrOutput)
+}
+
+// Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+func (o NotificationsRoutingTreeSpecRouteOutput) Matchers() NotificationsRoutingTreeSpecRouteMatcherArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRoute) []NotificationsRoutingTreeSpecRouteMatcher {
+		return v.Matchers
+	}).(NotificationsRoutingTreeSpecRouteMatcherArrayOutput)
+}
+
+// A list of time interval names that mute this route during the specified times.
+func (o NotificationsRoutingTreeSpecRouteOutput) MuteTimeIntervals() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRoute) []string { return v.MuteTimeIntervals }).(pulumi.StringArrayOutput)
+}
+
+// The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteOutput) Receiver() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRoute) *string { return v.Receiver }).(pulumi.StringPtrOutput)
+}
+
+// Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteOutput) RepeatInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRoute) *string { return v.RepeatInterval }).(pulumi.StringPtrOutput)
+}
+
+// Child routes. Each child route has the same schema as `spec.routes` and may be nested up to 5 levels deep.
+func (o NotificationsRoutingTreeSpecRouteOutput) Routes() NotificationsRoutingTreeSpecRouteRouteArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRoute) []NotificationsRoutingTreeSpecRouteRoute { return v.Routes }).(NotificationsRoutingTreeSpecRouteRouteArrayOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteArrayOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRoute)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteArrayOutput) ToNotificationsRoutingTreeSpecRouteArrayOutput() NotificationsRoutingTreeSpecRouteArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteArrayOutput) ToNotificationsRoutingTreeSpecRouteArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteArrayOutput) Index(i pulumi.IntInput) NotificationsRoutingTreeSpecRouteOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationsRoutingTreeSpecRoute {
+		return vs[0].([]NotificationsRoutingTreeSpecRoute)[vs[1].(int)]
+	}).(NotificationsRoutingTreeSpecRouteOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteMatcher struct {
+	// The name of the label to match against.
+	Label string `pulumi:"label"`
+	// The matching operator. One of `=`, `!=`, `=~`, `!~`.
+	Type string `pulumi:"type"`
+	// The label value to match against.
+	Value string `pulumi:"value"`
+}
+
+// NotificationsRoutingTreeSpecRouteMatcherInput is an input type that accepts NotificationsRoutingTreeSpecRouteMatcherArgs and NotificationsRoutingTreeSpecRouteMatcherOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteMatcherInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteMatcherArgs{...}
+type NotificationsRoutingTreeSpecRouteMatcherInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteMatcherOutput() NotificationsRoutingTreeSpecRouteMatcherOutput
+	ToNotificationsRoutingTreeSpecRouteMatcherOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteMatcherOutput
+}
+
+type NotificationsRoutingTreeSpecRouteMatcherArgs struct {
+	// The name of the label to match against.
+	Label pulumi.StringInput `pulumi:"label"`
+	// The matching operator. One of `=`, `!=`, `=~`, `!~`.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The label value to match against.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NotificationsRoutingTreeSpecRouteMatcherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRouteMatcher)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteMatcherArgs) ToNotificationsRoutingTreeSpecRouteMatcherOutput() NotificationsRoutingTreeSpecRouteMatcherOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteMatcherOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteMatcherArgs) ToNotificationsRoutingTreeSpecRouteMatcherOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteMatcherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteMatcherOutput)
+}
+
+// NotificationsRoutingTreeSpecRouteMatcherArrayInput is an input type that accepts NotificationsRoutingTreeSpecRouteMatcherArray and NotificationsRoutingTreeSpecRouteMatcherArrayOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteMatcherArrayInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteMatcherArray{ NotificationsRoutingTreeSpecRouteMatcherArgs{...} }
+type NotificationsRoutingTreeSpecRouteMatcherArrayInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteMatcherArrayOutput() NotificationsRoutingTreeSpecRouteMatcherArrayOutput
+	ToNotificationsRoutingTreeSpecRouteMatcherArrayOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteMatcherArrayOutput
+}
+
+type NotificationsRoutingTreeSpecRouteMatcherArray []NotificationsRoutingTreeSpecRouteMatcherInput
+
+func (NotificationsRoutingTreeSpecRouteMatcherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRouteMatcher)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteMatcherArray) ToNotificationsRoutingTreeSpecRouteMatcherArrayOutput() NotificationsRoutingTreeSpecRouteMatcherArrayOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteMatcherArrayOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteMatcherArray) ToNotificationsRoutingTreeSpecRouteMatcherArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteMatcherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteMatcherArrayOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteMatcherOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteMatcherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRouteMatcher)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteMatcherOutput) ToNotificationsRoutingTreeSpecRouteMatcherOutput() NotificationsRoutingTreeSpecRouteMatcherOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteMatcherOutput) ToNotificationsRoutingTreeSpecRouteMatcherOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteMatcherOutput {
+	return o
+}
+
+// The name of the label to match against.
+func (o NotificationsRoutingTreeSpecRouteMatcherOutput) Label() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteMatcher) string { return v.Label }).(pulumi.StringOutput)
+}
+
+// The matching operator. One of `=`, `!=`, `=~`, `!~`.
+func (o NotificationsRoutingTreeSpecRouteMatcherOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteMatcher) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The label value to match against.
+func (o NotificationsRoutingTreeSpecRouteMatcherOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteMatcher) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteMatcherArrayOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteMatcherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRouteMatcher)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteMatcherArrayOutput) ToNotificationsRoutingTreeSpecRouteMatcherArrayOutput() NotificationsRoutingTreeSpecRouteMatcherArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteMatcherArrayOutput) ToNotificationsRoutingTreeSpecRouteMatcherArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteMatcherArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteMatcherArrayOutput) Index(i pulumi.IntInput) NotificationsRoutingTreeSpecRouteMatcherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationsRoutingTreeSpecRouteMatcher {
+		return vs[0].([]NotificationsRoutingTreeSpecRouteMatcher)[vs[1].(int)]
+	}).(NotificationsRoutingTreeSpecRouteMatcherOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRoute struct {
+	// A list of time interval names that activate this route only during the specified times.
+	ActiveTimeIntervals []string `pulumi:"activeTimeIntervals"`
+	// Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+	Continue *bool `pulumi:"continue"`
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupBies []string `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupInterval *string `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupWait *string `pulumi:"groupWait"`
+	// Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+	Matchers []NotificationsRoutingTreeSpecRouteRouteMatcher `pulumi:"matchers"`
+	// A list of time interval names that mute this route during the specified times.
+	MuteTimeIntervals []string `pulumi:"muteTimeIntervals"`
+	// The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	Receiver *string `pulumi:"receiver"`
+	// Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	RepeatInterval *string `pulumi:"repeatInterval"`
+	// Child routes of this route.
+	Routes []NotificationsRoutingTreeSpecRouteRouteRoute `pulumi:"routes"`
+}
+
+// NotificationsRoutingTreeSpecRouteRouteInput is an input type that accepts NotificationsRoutingTreeSpecRouteRouteArgs and NotificationsRoutingTreeSpecRouteRouteOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteRouteInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteRouteArgs{...}
+type NotificationsRoutingTreeSpecRouteRouteInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteRouteOutput() NotificationsRoutingTreeSpecRouteRouteOutput
+	ToNotificationsRoutingTreeSpecRouteRouteOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteRouteOutput
+}
+
+type NotificationsRoutingTreeSpecRouteRouteArgs struct {
+	// A list of time interval names that activate this route only during the specified times.
+	ActiveTimeIntervals pulumi.StringArrayInput `pulumi:"activeTimeIntervals"`
+	// Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+	Continue pulumi.BoolPtrInput `pulumi:"continue"`
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupBies pulumi.StringArrayInput `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupInterval pulumi.StringPtrInput `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupWait pulumi.StringPtrInput `pulumi:"groupWait"`
+	// Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+	Matchers NotificationsRoutingTreeSpecRouteRouteMatcherArrayInput `pulumi:"matchers"`
+	// A list of time interval names that mute this route during the specified times.
+	MuteTimeIntervals pulumi.StringArrayInput `pulumi:"muteTimeIntervals"`
+	// The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	Receiver pulumi.StringPtrInput `pulumi:"receiver"`
+	// Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	RepeatInterval pulumi.StringPtrInput `pulumi:"repeatInterval"`
+	// Child routes of this route.
+	Routes NotificationsRoutingTreeSpecRouteRouteRouteArrayInput `pulumi:"routes"`
+}
+
+func (NotificationsRoutingTreeSpecRouteRouteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRoute)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteArgs) ToNotificationsRoutingTreeSpecRouteRouteOutput() NotificationsRoutingTreeSpecRouteRouteOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteRouteOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteArgs) ToNotificationsRoutingTreeSpecRouteRouteOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteRouteOutput)
+}
+
+// NotificationsRoutingTreeSpecRouteRouteArrayInput is an input type that accepts NotificationsRoutingTreeSpecRouteRouteArray and NotificationsRoutingTreeSpecRouteRouteArrayOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteRouteArrayInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteRouteArray{ NotificationsRoutingTreeSpecRouteRouteArgs{...} }
+type NotificationsRoutingTreeSpecRouteRouteArrayInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteRouteArrayOutput() NotificationsRoutingTreeSpecRouteRouteArrayOutput
+	ToNotificationsRoutingTreeSpecRouteRouteArrayOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteRouteArrayOutput
+}
+
+type NotificationsRoutingTreeSpecRouteRouteArray []NotificationsRoutingTreeSpecRouteRouteInput
+
+func (NotificationsRoutingTreeSpecRouteRouteArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRouteRoute)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteArray) ToNotificationsRoutingTreeSpecRouteRouteArrayOutput() NotificationsRoutingTreeSpecRouteRouteArrayOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteRouteArrayOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteArray) ToNotificationsRoutingTreeSpecRouteRouteArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteRouteArrayOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteRouteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRoute)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteOutput) ToNotificationsRoutingTreeSpecRouteRouteOutput() NotificationsRoutingTreeSpecRouteRouteOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteOutput) ToNotificationsRoutingTreeSpecRouteRouteOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteOutput {
+	return o
+}
+
+// A list of time interval names that activate this route only during the specified times.
+func (o NotificationsRoutingTreeSpecRouteRouteOutput) ActiveTimeIntervals() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRoute) []string { return v.ActiveTimeIntervals }).(pulumi.StringArrayOutput)
+}
+
+// Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+func (o NotificationsRoutingTreeSpecRouteRouteOutput) Continue() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRoute) *bool { return v.Continue }).(pulumi.BoolPtrOutput)
+}
+
+// A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteOutput) GroupBies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRoute) []string { return v.GroupBies }).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteOutput) GroupInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRoute) *string { return v.GroupInterval }).(pulumi.StringPtrOutput)
+}
+
+// Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteOutput) GroupWait() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRoute) *string { return v.GroupWait }).(pulumi.StringPtrOutput)
+}
+
+// Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+func (o NotificationsRoutingTreeSpecRouteRouteOutput) Matchers() NotificationsRoutingTreeSpecRouteRouteMatcherArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRoute) []NotificationsRoutingTreeSpecRouteRouteMatcher {
+		return v.Matchers
+	}).(NotificationsRoutingTreeSpecRouteRouteMatcherArrayOutput)
+}
+
+// A list of time interval names that mute this route during the specified times.
+func (o NotificationsRoutingTreeSpecRouteRouteOutput) MuteTimeIntervals() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRoute) []string { return v.MuteTimeIntervals }).(pulumi.StringArrayOutput)
+}
+
+// The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteOutput) Receiver() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRoute) *string { return v.Receiver }).(pulumi.StringPtrOutput)
+}
+
+// Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteOutput) RepeatInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRoute) *string { return v.RepeatInterval }).(pulumi.StringPtrOutput)
+}
+
+// Child routes of this route.
+func (o NotificationsRoutingTreeSpecRouteRouteOutput) Routes() NotificationsRoutingTreeSpecRouteRouteRouteArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRoute) []NotificationsRoutingTreeSpecRouteRouteRoute {
+		return v.Routes
+	}).(NotificationsRoutingTreeSpecRouteRouteRouteArrayOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteArrayOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteRouteArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRouteRoute)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteArrayOutput) ToNotificationsRoutingTreeSpecRouteRouteArrayOutput() NotificationsRoutingTreeSpecRouteRouteArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteArrayOutput) ToNotificationsRoutingTreeSpecRouteRouteArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteArrayOutput) Index(i pulumi.IntInput) NotificationsRoutingTreeSpecRouteRouteOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationsRoutingTreeSpecRouteRoute {
+		return vs[0].([]NotificationsRoutingTreeSpecRouteRoute)[vs[1].(int)]
+	}).(NotificationsRoutingTreeSpecRouteRouteOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteMatcher struct {
+	// The name of the label to match against.
+	Label string `pulumi:"label"`
+	// The matching operator. One of `=`, `!=`, `=~`, `!~`.
+	Type string `pulumi:"type"`
+	// The label value to match against.
+	Value string `pulumi:"value"`
+}
+
+// NotificationsRoutingTreeSpecRouteRouteMatcherInput is an input type that accepts NotificationsRoutingTreeSpecRouteRouteMatcherArgs and NotificationsRoutingTreeSpecRouteRouteMatcherOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteRouteMatcherInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteRouteMatcherArgs{...}
+type NotificationsRoutingTreeSpecRouteRouteMatcherInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteRouteMatcherOutput() NotificationsRoutingTreeSpecRouteRouteMatcherOutput
+	ToNotificationsRoutingTreeSpecRouteRouteMatcherOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteRouteMatcherOutput
+}
+
+type NotificationsRoutingTreeSpecRouteRouteMatcherArgs struct {
+	// The name of the label to match against.
+	Label pulumi.StringInput `pulumi:"label"`
+	// The matching operator. One of `=`, `!=`, `=~`, `!~`.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The label value to match against.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NotificationsRoutingTreeSpecRouteRouteMatcherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteMatcher)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteMatcherArgs) ToNotificationsRoutingTreeSpecRouteRouteMatcherOutput() NotificationsRoutingTreeSpecRouteRouteMatcherOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteRouteMatcherOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteMatcherArgs) ToNotificationsRoutingTreeSpecRouteRouteMatcherOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteMatcherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteRouteMatcherOutput)
+}
+
+// NotificationsRoutingTreeSpecRouteRouteMatcherArrayInput is an input type that accepts NotificationsRoutingTreeSpecRouteRouteMatcherArray and NotificationsRoutingTreeSpecRouteRouteMatcherArrayOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteRouteMatcherArrayInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteRouteMatcherArray{ NotificationsRoutingTreeSpecRouteRouteMatcherArgs{...} }
+type NotificationsRoutingTreeSpecRouteRouteMatcherArrayInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteRouteMatcherArrayOutput() NotificationsRoutingTreeSpecRouteRouteMatcherArrayOutput
+	ToNotificationsRoutingTreeSpecRouteRouteMatcherArrayOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteRouteMatcherArrayOutput
+}
+
+type NotificationsRoutingTreeSpecRouteRouteMatcherArray []NotificationsRoutingTreeSpecRouteRouteMatcherInput
+
+func (NotificationsRoutingTreeSpecRouteRouteMatcherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRouteRouteMatcher)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteMatcherArray) ToNotificationsRoutingTreeSpecRouteRouteMatcherArrayOutput() NotificationsRoutingTreeSpecRouteRouteMatcherArrayOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteRouteMatcherArrayOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteMatcherArray) ToNotificationsRoutingTreeSpecRouteRouteMatcherArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteMatcherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteRouteMatcherArrayOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteMatcherOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteRouteMatcherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteMatcher)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteMatcherOutput) ToNotificationsRoutingTreeSpecRouteRouteMatcherOutput() NotificationsRoutingTreeSpecRouteRouteMatcherOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteMatcherOutput) ToNotificationsRoutingTreeSpecRouteRouteMatcherOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteMatcherOutput {
+	return o
+}
+
+// The name of the label to match against.
+func (o NotificationsRoutingTreeSpecRouteRouteMatcherOutput) Label() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteMatcher) string { return v.Label }).(pulumi.StringOutput)
+}
+
+// The matching operator. One of `=`, `!=`, `=~`, `!~`.
+func (o NotificationsRoutingTreeSpecRouteRouteMatcherOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteMatcher) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The label value to match against.
+func (o NotificationsRoutingTreeSpecRouteRouteMatcherOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteMatcher) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteMatcherArrayOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteRouteMatcherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRouteRouteMatcher)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteMatcherArrayOutput) ToNotificationsRoutingTreeSpecRouteRouteMatcherArrayOutput() NotificationsRoutingTreeSpecRouteRouteMatcherArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteMatcherArrayOutput) ToNotificationsRoutingTreeSpecRouteRouteMatcherArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteMatcherArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteMatcherArrayOutput) Index(i pulumi.IntInput) NotificationsRoutingTreeSpecRouteRouteMatcherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationsRoutingTreeSpecRouteRouteMatcher {
+		return vs[0].([]NotificationsRoutingTreeSpecRouteRouteMatcher)[vs[1].(int)]
+	}).(NotificationsRoutingTreeSpecRouteRouteMatcherOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRoute struct {
+	// A list of time interval names that activate this route only during the specified times.
+	ActiveTimeIntervals []string `pulumi:"activeTimeIntervals"`
+	// Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+	Continue *bool `pulumi:"continue"`
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupBies []string `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupInterval *string `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupWait *string `pulumi:"groupWait"`
+	// Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+	Matchers []NotificationsRoutingTreeSpecRouteRouteRouteMatcher `pulumi:"matchers"`
+	// A list of time interval names that mute this route during the specified times.
+	MuteTimeIntervals []string `pulumi:"muteTimeIntervals"`
+	// The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	Receiver *string `pulumi:"receiver"`
+	// Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	RepeatInterval *string `pulumi:"repeatInterval"`
+	// Child routes of this route.
+	Routes []NotificationsRoutingTreeSpecRouteRouteRouteRoute `pulumi:"routes"`
+}
+
+// NotificationsRoutingTreeSpecRouteRouteRouteInput is an input type that accepts NotificationsRoutingTreeSpecRouteRouteRouteArgs and NotificationsRoutingTreeSpecRouteRouteRouteOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteRouteRouteInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteRouteRouteArgs{...}
+type NotificationsRoutingTreeSpecRouteRouteRouteInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteRouteRouteOutput() NotificationsRoutingTreeSpecRouteRouteRouteOutput
+	ToNotificationsRoutingTreeSpecRouteRouteRouteOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteRouteRouteOutput
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteArgs struct {
+	// A list of time interval names that activate this route only during the specified times.
+	ActiveTimeIntervals pulumi.StringArrayInput `pulumi:"activeTimeIntervals"`
+	// Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+	Continue pulumi.BoolPtrInput `pulumi:"continue"`
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupBies pulumi.StringArrayInput `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupInterval pulumi.StringPtrInput `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupWait pulumi.StringPtrInput `pulumi:"groupWait"`
+	// Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+	Matchers NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayInput `pulumi:"matchers"`
+	// A list of time interval names that mute this route during the specified times.
+	MuteTimeIntervals pulumi.StringArrayInput `pulumi:"muteTimeIntervals"`
+	// The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	Receiver pulumi.StringPtrInput `pulumi:"receiver"`
+	// Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	RepeatInterval pulumi.StringPtrInput `pulumi:"repeatInterval"`
+	// Child routes of this route.
+	Routes NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayInput `pulumi:"routes"`
+}
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRoute)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteArgs) ToNotificationsRoutingTreeSpecRouteRouteRouteOutput() NotificationsRoutingTreeSpecRouteRouteRouteOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteRouteRouteOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteArgs) ToNotificationsRoutingTreeSpecRouteRouteRouteOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteRouteRouteOutput)
+}
+
+// NotificationsRoutingTreeSpecRouteRouteRouteArrayInput is an input type that accepts NotificationsRoutingTreeSpecRouteRouteRouteArray and NotificationsRoutingTreeSpecRouteRouteRouteArrayOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteRouteRouteArrayInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteRouteRouteArray{ NotificationsRoutingTreeSpecRouteRouteRouteArgs{...} }
+type NotificationsRoutingTreeSpecRouteRouteRouteArrayInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteRouteRouteArrayOutput() NotificationsRoutingTreeSpecRouteRouteRouteArrayOutput
+	ToNotificationsRoutingTreeSpecRouteRouteRouteArrayOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteRouteRouteArrayOutput
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteArray []NotificationsRoutingTreeSpecRouteRouteRouteInput
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRouteRouteRoute)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteArray) ToNotificationsRoutingTreeSpecRouteRouteRouteArrayOutput() NotificationsRoutingTreeSpecRouteRouteRouteArrayOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteRouteRouteArrayOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteArray) ToNotificationsRoutingTreeSpecRouteRouteRouteArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteRouteRouteArrayOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRoute)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteOutput() NotificationsRoutingTreeSpecRouteRouteRouteOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteOutput {
+	return o
+}
+
+// A list of time interval names that activate this route only during the specified times.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteOutput) ActiveTimeIntervals() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRoute) []string { return v.ActiveTimeIntervals }).(pulumi.StringArrayOutput)
+}
+
+// Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteOutput) Continue() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRoute) *bool { return v.Continue }).(pulumi.BoolPtrOutput)
+}
+
+// A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteOutput) GroupBies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRoute) []string { return v.GroupBies }).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteOutput) GroupInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRoute) *string { return v.GroupInterval }).(pulumi.StringPtrOutput)
+}
+
+// Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteOutput) GroupWait() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRoute) *string { return v.GroupWait }).(pulumi.StringPtrOutput)
+}
+
+// Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteOutput) Matchers() NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRoute) []NotificationsRoutingTreeSpecRouteRouteRouteMatcher {
+		return v.Matchers
+	}).(NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutput)
+}
+
+// A list of time interval names that mute this route during the specified times.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteOutput) MuteTimeIntervals() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRoute) []string { return v.MuteTimeIntervals }).(pulumi.StringArrayOutput)
+}
+
+// The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteOutput) Receiver() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRoute) *string { return v.Receiver }).(pulumi.StringPtrOutput)
+}
+
+// Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteOutput) RepeatInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRoute) *string { return v.RepeatInterval }).(pulumi.StringPtrOutput)
+}
+
+// Child routes of this route.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteOutput) Routes() NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRoute) []NotificationsRoutingTreeSpecRouteRouteRouteRoute {
+		return v.Routes
+	}).(NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteArrayOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRouteRouteRoute)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteArrayOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteArrayOutput() NotificationsRoutingTreeSpecRouteRouteRouteArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteArrayOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteArrayOutput) Index(i pulumi.IntInput) NotificationsRoutingTreeSpecRouteRouteRouteOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationsRoutingTreeSpecRouteRouteRoute {
+		return vs[0].([]NotificationsRoutingTreeSpecRouteRouteRoute)[vs[1].(int)]
+	}).(NotificationsRoutingTreeSpecRouteRouteRouteOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteMatcher struct {
+	// The name of the label to match against.
+	Label string `pulumi:"label"`
+	// The matching operator. One of `=`, `!=`, `=~`, `!~`.
+	Type string `pulumi:"type"`
+	// The label value to match against.
+	Value string `pulumi:"value"`
+}
+
+// NotificationsRoutingTreeSpecRouteRouteRouteMatcherInput is an input type that accepts NotificationsRoutingTreeSpecRouteRouteRouteMatcherArgs and NotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteRouteRouteMatcherInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteRouteRouteMatcherArgs{...}
+type NotificationsRoutingTreeSpecRouteRouteRouteMatcherInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput() NotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput
+	ToNotificationsRoutingTreeSpecRouteRouteRouteMatcherOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteMatcherArgs struct {
+	// The name of the label to match against.
+	Label pulumi.StringInput `pulumi:"label"`
+	// The matching operator. One of `=`, `!=`, `=~`, `!~`.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The label value to match against.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteMatcherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteMatcher)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteMatcherArgs) ToNotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput() NotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteRouteRouteMatcherOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteMatcherArgs) ToNotificationsRoutingTreeSpecRouteRouteRouteMatcherOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput)
+}
+
+// NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayInput is an input type that accepts NotificationsRoutingTreeSpecRouteRouteRouteMatcherArray and NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteRouteRouteMatcherArray{ NotificationsRoutingTreeSpecRouteRouteRouteMatcherArgs{...} }
+type NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutput() NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutput
+	ToNotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutput
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteMatcherArray []NotificationsRoutingTreeSpecRouteRouteRouteMatcherInput
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteMatcherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRouteRouteRouteMatcher)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteMatcherArray) ToNotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutput() NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteMatcherArray) ToNotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteMatcher)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput() NotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteMatcherOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput {
+	return o
+}
+
+// The name of the label to match against.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput) Label() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteMatcher) string { return v.Label }).(pulumi.StringOutput)
+}
+
+// The matching operator. One of `=`, `!=`, `=~`, `!~`.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteMatcher) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The label value to match against.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteMatcher) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRouteRouteRouteMatcher)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutput() NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutput) Index(i pulumi.IntInput) NotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationsRoutingTreeSpecRouteRouteRouteMatcher {
+		return vs[0].([]NotificationsRoutingTreeSpecRouteRouteRouteMatcher)[vs[1].(int)]
+	}).(NotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRoute struct {
+	// A list of time interval names that activate this route only during the specified times.
+	ActiveTimeIntervals []string `pulumi:"activeTimeIntervals"`
+	// Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+	Continue *bool `pulumi:"continue"`
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupBies []string `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupInterval *string `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupWait *string `pulumi:"groupWait"`
+	// Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+	Matchers []NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher `pulumi:"matchers"`
+	// A list of time interval names that mute this route during the specified times.
+	MuteTimeIntervals []string `pulumi:"muteTimeIntervals"`
+	// The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	Receiver *string `pulumi:"receiver"`
+	// Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	RepeatInterval *string `pulumi:"repeatInterval"`
+	// Child routes of this route.
+	Routes []NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute `pulumi:"routes"`
+}
+
+// NotificationsRoutingTreeSpecRouteRouteRouteRouteInput is an input type that accepts NotificationsRoutingTreeSpecRouteRouteRouteRouteArgs and NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteRouteRouteRouteInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteRouteRouteRouteArgs{...}
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteRouteRouteRouteOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput
+	ToNotificationsRoutingTreeSpecRouteRouteRouteRouteOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteArgs struct {
+	// A list of time interval names that activate this route only during the specified times.
+	ActiveTimeIntervals pulumi.StringArrayInput `pulumi:"activeTimeIntervals"`
+	// Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+	Continue pulumi.BoolPtrInput `pulumi:"continue"`
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupBies pulumi.StringArrayInput `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupInterval pulumi.StringPtrInput `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupWait pulumi.StringPtrInput `pulumi:"groupWait"`
+	// Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+	Matchers NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayInput `pulumi:"matchers"`
+	// A list of time interval names that mute this route during the specified times.
+	MuteTimeIntervals pulumi.StringArrayInput `pulumi:"muteTimeIntervals"`
+	// The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	Receiver pulumi.StringPtrInput `pulumi:"receiver"`
+	// Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	RepeatInterval pulumi.StringPtrInput `pulumi:"repeatInterval"`
+	// Child routes of this route.
+	Routes NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayInput `pulumi:"routes"`
+}
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteRouteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRoute)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteRouteArgs) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteRouteRouteRouteOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteRouteArgs) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput)
+}
+
+// NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayInput is an input type that accepts NotificationsRoutingTreeSpecRouteRouteRouteRouteArray and NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteRouteRouteRouteArray{ NotificationsRoutingTreeSpecRouteRouteRouteRouteArgs{...} }
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutput
+	ToNotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutput
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteArray []NotificationsRoutingTreeSpecRouteRouteRouteRouteInput
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteRouteArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRouteRouteRouteRoute)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteRouteArray) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteRouteArray) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRoute)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput {
+	return o
+}
+
+// A list of time interval names that activate this route only during the specified times.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput) ActiveTimeIntervals() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRoute) []string { return v.ActiveTimeIntervals }).(pulumi.StringArrayOutput)
+}
+
+// Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput) Continue() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRoute) *bool { return v.Continue }).(pulumi.BoolPtrOutput)
+}
+
+// A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput) GroupBies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRoute) []string { return v.GroupBies }).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput) GroupInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRoute) *string { return v.GroupInterval }).(pulumi.StringPtrOutput)
+}
+
+// Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput) GroupWait() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRoute) *string { return v.GroupWait }).(pulumi.StringPtrOutput)
+}
+
+// Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput) Matchers() NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRoute) []NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher {
+		return v.Matchers
+	}).(NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutput)
+}
+
+// A list of time interval names that mute this route during the specified times.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput) MuteTimeIntervals() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRoute) []string { return v.MuteTimeIntervals }).(pulumi.StringArrayOutput)
+}
+
+// The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput) Receiver() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRoute) *string { return v.Receiver }).(pulumi.StringPtrOutput)
+}
+
+// Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput) RepeatInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRoute) *string { return v.RepeatInterval }).(pulumi.StringPtrOutput)
+}
+
+// Child routes of this route.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput) Routes() NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRoute) []NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute {
+		return v.Routes
+	}).(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRouteRouteRouteRoute)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutput) Index(i pulumi.IntInput) NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationsRoutingTreeSpecRouteRouteRouteRoute {
+		return vs[0].([]NotificationsRoutingTreeSpecRouteRouteRouteRoute)[vs[1].(int)]
+	}).(NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher struct {
+	// The name of the label to match against.
+	Label string `pulumi:"label"`
+	// The matching operator. One of `=`, `!=`, `=~`, `!~`.
+	Type string `pulumi:"type"`
+	// The label value to match against.
+	Value string `pulumi:"value"`
+}
+
+// NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherInput is an input type that accepts NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArgs and NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArgs{...}
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput
+	ToNotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArgs struct {
+	// The name of the label to match against.
+	Label pulumi.StringInput `pulumi:"label"`
+	// The matching operator. One of `=`, `!=`, `=~`, `!~`.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The label value to match against.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArgs) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArgs) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput)
+}
+
+// NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayInput is an input type that accepts NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArray and NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArray{ NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArgs{...} }
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutput
+	ToNotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutput
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArray []NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherInput
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArray) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArray) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput {
+	return o
+}
+
+// The name of the label to match against.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput) Label() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher) string { return v.Label }).(pulumi.StringOutput)
+}
+
+// The matching operator. One of `=`, `!=`, `=~`, `!~`.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The label value to match against.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutput) Index(i pulumi.IntInput) NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher {
+		return vs[0].([]NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher)[vs[1].(int)]
+	}).(NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute struct {
+	// A list of time interval names that activate this route only during the specified times.
+	ActiveTimeIntervals []string `pulumi:"activeTimeIntervals"`
+	// Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+	Continue *bool `pulumi:"continue"`
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupBies []string `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupInterval *string `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupWait *string `pulumi:"groupWait"`
+	// Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+	Matchers []NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher `pulumi:"matchers"`
+	// A list of time interval names that mute this route during the specified times.
+	MuteTimeIntervals []string `pulumi:"muteTimeIntervals"`
+	// The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	Receiver *string `pulumi:"receiver"`
+	// Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	RepeatInterval *string `pulumi:"repeatInterval"`
+}
+
+// NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteInput is an input type that accepts NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArgs and NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArgs{...}
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput
+	ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArgs struct {
+	// A list of time interval names that activate this route only during the specified times.
+	ActiveTimeIntervals pulumi.StringArrayInput `pulumi:"activeTimeIntervals"`
+	// Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+	Continue pulumi.BoolPtrInput `pulumi:"continue"`
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupBies pulumi.StringArrayInput `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupInterval pulumi.StringPtrInput `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	GroupWait pulumi.StringPtrInput `pulumi:"groupWait"`
+	// Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+	Matchers NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayInput `pulumi:"matchers"`
+	// A list of time interval names that mute this route during the specified times.
+	MuteTimeIntervals pulumi.StringArrayInput `pulumi:"muteTimeIntervals"`
+	// The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	Receiver pulumi.StringPtrInput `pulumi:"receiver"`
+	// Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+	RepeatInterval pulumi.StringPtrInput `pulumi:"repeatInterval"`
+}
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArgs) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArgs) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput)
+}
+
+// NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayInput is an input type that accepts NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArray and NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArray{ NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArgs{...} }
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput
+	ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArray []NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteInput
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArray) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArray) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput {
+	return o
+}
+
+// A list of time interval names that activate this route only during the specified times.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput) ActiveTimeIntervals() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute) []string { return v.ActiveTimeIntervals }).(pulumi.StringArrayOutput)
+}
+
+// Whether to continue matching subsequent sibling routes if an alert matches this route. Defaults to false.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput) Continue() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute) *bool { return v.Continue }).(pulumi.BoolPtrOutput)
+}
+
+// A list of alert labels to group alerts into notifications by. Use the special label `...` to group by all labels. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput) GroupBies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute) []string { return v.GroupBies }).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval between two notifications for the same group. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput) GroupInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute) *string { return v.GroupInterval }).(pulumi.StringPtrOutput)
+}
+
+// Time to wait to buffer alerts of the same group before sending a notification. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput) GroupWait() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute) *string { return v.GroupWait }).(pulumi.StringPtrOutput)
+}
+
+// Matchers that an alert has to fulfill to match this route. When multiple matchers are supplied, an alert must match ALL of them.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput) Matchers() NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute) []NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher {
+		return v.Matchers
+	}).(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput)
+}
+
+// A list of time interval names that mute this route during the specified times.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput) MuteTimeIntervals() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute) []string { return v.MuteTimeIntervals }).(pulumi.StringArrayOutput)
+}
+
+// The contact point to route notifications that match this rule to. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput) Receiver() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute) *string { return v.Receiver }).(pulumi.StringPtrOutput)
+}
+
+// Minimum time interval for re-sending a notification if an alert is still firing. If not set, inherits from the nearest ancestor route that has it configured, ultimately falling back to `spec.defaults`.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput) RepeatInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute) *string { return v.RepeatInterval }).(pulumi.StringPtrOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput) Index(i pulumi.IntInput) NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute {
+		return vs[0].([]NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute)[vs[1].(int)]
+	}).(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher struct {
+	// The name of the label to match against.
+	Label string `pulumi:"label"`
+	// The matching operator. One of `=`, `!=`, `=~`, `!~`.
+	Type string `pulumi:"type"`
+	// The label value to match against.
+	Value string `pulumi:"value"`
+}
+
+// NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherInput is an input type that accepts NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArgs and NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArgs{...}
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput
+	ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArgs struct {
+	// The name of the label to match against.
+	Label pulumi.StringInput `pulumi:"label"`
+	// The matching operator. One of `=`, `!=`, `=~`, `!~`.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The label value to match against.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArgs) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArgs) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput)
+}
+
+// NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayInput is an input type that accepts NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArray and NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput values.
+// You can construct a concrete instance of `NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayInput` via:
+//
+//	NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArray{ NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArgs{...} }
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayInput interface {
+	pulumi.Input
+
+	ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput
+	ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutputWithContext(context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArray []NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherInput
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher)(nil)).Elem()
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArray) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput {
+	return i.ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutputWithContext(context.Background())
+}
+
+func (i NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArray) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput {
+	return o
+}
+
+// The name of the label to match against.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput) Label() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher) string { return v.Label }).(pulumi.StringOutput)
+}
+
+// The matching operator. One of `=`, `!=`, `=~`, `!~`.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The label value to match against.
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput struct{ *pulumi.OutputState }
+
+func (NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher)(nil)).Elem()
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput() NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput) ToNotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutputWithContext(ctx context.Context) NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput {
+	return o
+}
+
+func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput) Index(i pulumi.IntInput) NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher {
+		return vs[0].([]NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher)[vs[1].(int)]
+	}).(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentMetadataInput)(nil)).Elem(), AlertEnrichmentMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentMetadataPtrInput)(nil)).Elem(), AlertEnrichmentMetadataArgs{})
@@ -7467,6 +9715,34 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsInhibitionRuleSpecSourceMatcherArrayInput)(nil)).Elem(), NotificationsInhibitionRuleSpecSourceMatcherArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsInhibitionRuleSpecTargetMatcherInput)(nil)).Elem(), NotificationsInhibitionRuleSpecTargetMatcherArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsInhibitionRuleSpecTargetMatcherArrayInput)(nil)).Elem(), NotificationsInhibitionRuleSpecTargetMatcherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeMetadataInput)(nil)).Elem(), NotificationsRoutingTreeMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeMetadataPtrInput)(nil)).Elem(), NotificationsRoutingTreeMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeOptionsInput)(nil)).Elem(), NotificationsRoutingTreeOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeOptionsPtrInput)(nil)).Elem(), NotificationsRoutingTreeOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecInput)(nil)).Elem(), NotificationsRoutingTreeSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecPtrInput)(nil)).Elem(), NotificationsRoutingTreeSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecDefaultsInput)(nil)).Elem(), NotificationsRoutingTreeSpecDefaultsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecDefaultsPtrInput)(nil)).Elem(), NotificationsRoutingTreeSpecDefaultsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteArrayInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteMatcherInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteMatcherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteMatcherArrayInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteMatcherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteArrayInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteMatcherInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteMatcherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteMatcherArrayInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteMatcherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteRouteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteArrayInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteRouteArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteMatcherInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteRouteMatcherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteRouteMatcherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteRouteRouteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteRouteRouteArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArray{})
 	pulumi.RegisterOutputType(AlertEnrichmentMetadataOutput{})
 	pulumi.RegisterOutputType(AlertEnrichmentMetadataPtrOutput{})
 	pulumi.RegisterOutputType(AlertEnrichmentOptionsOutput{})
@@ -7561,4 +9837,32 @@ func init() {
 	pulumi.RegisterOutputType(NotificationsInhibitionRuleSpecSourceMatcherArrayOutput{})
 	pulumi.RegisterOutputType(NotificationsInhibitionRuleSpecTargetMatcherOutput{})
 	pulumi.RegisterOutputType(NotificationsInhibitionRuleSpecTargetMatcherArrayOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeMetadataOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeMetadataPtrOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeOptionsOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeOptionsPtrOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecPtrOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecDefaultsOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecDefaultsPtrOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteArrayOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteMatcherOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteMatcherArrayOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteArrayOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteMatcherOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteMatcherArrayOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteRouteOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteRouteArrayOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteRouteMatcherOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteRouteMatcherArrayOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteRouteRouteOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteRouteRouteArrayOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcherArrayOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput{})
+	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput{})
 }

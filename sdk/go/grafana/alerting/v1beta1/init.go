@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AlertEnrichment{}
 	case "grafana:alerting/v1beta1/notificationsInhibitionRule:NotificationsInhibitionRule":
 		r = &NotificationsInhibitionRule{}
+	case "grafana:alerting/v1beta1/notificationsRoutingTree:NotificationsRoutingTree":
+		r = &NotificationsRoutingTree{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -46,6 +48,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"alerting/v1beta1/notificationsInhibitionRule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"alerting/v1beta1/notificationsRoutingTree",
 		&module{version},
 	)
 }
