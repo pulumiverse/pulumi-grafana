@@ -6,7 +6,10 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .apps_queries_query_v1 import *
 from .provider import *
+from ._inputs import *
+from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -659,6 +662,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.frontendobservability",
   "classes": {
    "grafana:frontendObservability/app:App": "App"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/appsQueriesQueryV1",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/appsQueriesQueryV1:AppsQueriesQueryV1": "AppsQueriesQueryV1"
   }
  },
  {

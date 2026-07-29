@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  *
  * const example = new grafana.assistant.Skill("example", {
  *     name: "Deploy readiness check",
+ *     commandName: "deploy-readiness",
  *     body: `1. Check deployment pipeline status.
  * 2. Verify SLO error budget before promoting.
  * `,
@@ -67,6 +68,10 @@ export class Skill extends pulumi.CustomResource {
      */
     declare public readonly body: pulumi.Output<string>;
     /**
+     * The slash command name that invokes the skill. Setting this enables the skill as a command.
+     */
+    declare public readonly commandName: pulumi.Output<string | undefined>;
+    /**
      * Optional JSON array of context items referenced by the skill.
      */
     declare public readonly contextItems: pulumi.Output<string | undefined>;
@@ -98,6 +103,7 @@ export class Skill extends pulumi.CustomResource {
             const state = argsOrState as SkillState | undefined;
             resourceInputs["allowedTools"] = state?.allowedTools;
             resourceInputs["body"] = state?.body;
+            resourceInputs["commandName"] = state?.commandName;
             resourceInputs["contextItems"] = state?.contextItems;
             resourceInputs["includeInKnowledgebase"] = state?.includeInKnowledgebase;
             resourceInputs["name"] = state?.name;
@@ -112,6 +118,7 @@ export class Skill extends pulumi.CustomResource {
             }
             resourceInputs["allowedTools"] = args?.allowedTools;
             resourceInputs["body"] = args?.body;
+            resourceInputs["commandName"] = args?.commandName;
             resourceInputs["contextItems"] = args?.contextItems;
             resourceInputs["includeInKnowledgebase"] = args?.includeInKnowledgebase;
             resourceInputs["name"] = args?.name;
@@ -134,6 +141,10 @@ export interface SkillState {
      * The skill content.
      */
     body?: pulumi.Input<string>;
+    /**
+     * The slash command name that invokes the skill. Setting this enables the skill as a command.
+     */
+    commandName?: pulumi.Input<string>;
     /**
      * Optional JSON array of context items referenced by the skill.
      */
@@ -164,6 +175,10 @@ export interface SkillArgs {
      * The skill content.
      */
     body: pulumi.Input<string>;
+    /**
+     * The slash command name that invokes the skill. Setting this enables the skill as a command.
+     */
+    commandName?: pulumi.Input<string>;
     /**
      * Optional JSON array of context items referenced by the skill.
      */

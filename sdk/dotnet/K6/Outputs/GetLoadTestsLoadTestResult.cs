@@ -17,6 +17,7 @@ namespace Pulumiverse.Grafana.K6.Outputs
         public readonly string BaselineTestRunId;
         public readonly string Created;
         public readonly string Id;
+        public readonly string K6Version;
         public readonly string Name;
         public readonly string ProjectId;
         public readonly string Script;
@@ -30,6 +31,8 @@ namespace Pulumiverse.Grafana.K6.Outputs
 
             string id,
 
+            string k6Version,
+
             string name,
 
             string projectId,
@@ -41,6 +44,7 @@ namespace Pulumiverse.Grafana.K6.Outputs
             BaselineTestRunId = baselineTestRunId;
             Created = created;
             Id = id;
+            K6Version = k6Version;
             Name = name;
             ProjectId = projectId;
             Script = script;

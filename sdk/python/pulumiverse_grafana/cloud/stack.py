@@ -171,6 +171,7 @@ class StackArgs:
 @pulumi.input_type
 class _StackState:
     def __init__(__self__, *,
+                 alertmanager_allowlist_url: Optional[pulumi.Input[_builtins.str]] = None,
                  alertmanager_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
                  alertmanager_name: Optional[pulumi.Input[_builtins.str]] = None,
                  alertmanager_status: Optional[pulumi.Input[_builtins.str]] = None,
@@ -182,6 +183,7 @@ class _StackState:
                  connections_api_url: Optional[pulumi.Input[_builtins.str]] = None,
                  delete_protection: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 fleet_management_allowlist_url: Optional[pulumi.Input[_builtins.str]] = None,
                  fleet_management_name: Optional[pulumi.Input[_builtins.str]] = None,
                  fleet_management_private_connectivity_info_availability_zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  fleet_management_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -191,7 +193,9 @@ class _StackState:
                  fleet_management_status: Optional[pulumi.Input[_builtins.str]] = None,
                  fleet_management_url: Optional[pulumi.Input[_builtins.str]] = None,
                  fleet_management_user_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 grafanas_allowlist_url: Optional[pulumi.Input[_builtins.str]] = None,
                  grafanas_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
+                 graphite_allowlist_url: Optional[pulumi.Input[_builtins.str]] = None,
                  graphite_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
                  graphite_name: Optional[pulumi.Input[_builtins.str]] = None,
                  graphite_private_connectivity_info_availability_zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -204,6 +208,7 @@ class _StackState:
                  graphite_user_id: Optional[pulumi.Input[_builtins.int]] = None,
                  influx_url: Optional[pulumi.Input[_builtins.str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 logs_allowlist_url: Optional[pulumi.Input[_builtins.str]] = None,
                  logs_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
                  logs_name: Optional[pulumi.Input[_builtins.str]] = None,
                  logs_private_connectivity_info_availability_zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -235,6 +240,7 @@ class _StackState:
                  pdc_gateway_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
                  pdc_gateway_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  pdc_gateway_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 profiles_allowlist_url: Optional[pulumi.Input[_builtins.str]] = None,
                  profiles_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
                  profiles_name: Optional[pulumi.Input[_builtins.str]] = None,
                  profiles_private_connectivity_info_availability_zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -245,6 +251,7 @@ class _StackState:
                  profiles_status: Optional[pulumi.Input[_builtins.str]] = None,
                  profiles_url: Optional[pulumi.Input[_builtins.str]] = None,
                  profiles_user_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 prometheus_allowlist_url: Optional[pulumi.Input[_builtins.str]] = None,
                  prometheus_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
                  prometheus_name: Optional[pulumi.Input[_builtins.str]] = None,
                  prometheus_private_connectivity_info_availability_zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -261,6 +268,7 @@ class _StackState:
                  slug: Optional[pulumi.Input[_builtins.str]] = None,
                  sm_url: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
+                 traces_allowlist_url: Optional[pulumi.Input[_builtins.str]] = None,
                  traces_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
                  traces_name: Optional[pulumi.Input[_builtins.str]] = None,
                  traces_private_connectivity_info_availability_zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -277,6 +285,7 @@ class _StackState:
         """
         Input properties used for looking up and filtering Stack resources.
 
+        :param pulumi.Input[_builtins.str] alertmanager_allowlist_url: Allowlist API endpoint that returns the source IP addresses to allow for the Alertmanager instances.
         :param pulumi.Input[_builtins.str] alertmanager_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
         :param pulumi.Input[_builtins.str] alertmanager_name: Name of the Alertmanager instance configured for this stack.
         :param pulumi.Input[_builtins.str] alertmanager_status: Status of the Alertmanager instance configured for this stack.
@@ -288,6 +297,7 @@ class _StackState:
         :param pulumi.Input[_builtins.str] connections_api_url: Base URL of the Connections API for this stack's cluster. This can be used with the `connections_api_url` provider config option to manage Connections resources for this stack.
         :param pulumi.Input[_builtins.bool] delete_protection: Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
         :param pulumi.Input[_builtins.str] description: Description of stack.
+        :param pulumi.Input[_builtins.str] fleet_management_allowlist_url: Allowlist API endpoint that returns the source IP addresses to allow for the Fleet Management instance.
         :param pulumi.Input[_builtins.str] fleet_management_name: Name of the Fleet Management instance configured for this stack.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] fleet_management_private_connectivity_info_availability_zone_ids: Availability Zone IDs for Fleet Management when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] fleet_management_private_connectivity_info_availability_zones: Availability Zones for Fleet Management when using AWS PrivateLink (only for AWS stacks)
@@ -297,7 +307,9 @@ class _StackState:
         :param pulumi.Input[_builtins.str] fleet_management_status: Status of the Fleet Management instance configured for this stack.
         :param pulumi.Input[_builtins.str] fleet_management_url: Base URL of the Fleet Management instance configured for this stack.
         :param pulumi.Input[_builtins.int] fleet_management_user_id: User ID of the Fleet Management instance configured for this stack.
+        :param pulumi.Input[_builtins.str] grafanas_allowlist_url: Allowlist API endpoint that returns the source IP addresses to allow for the grafana instance.
         :param pulumi.Input[_builtins.str] grafanas_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
+        :param pulumi.Input[_builtins.str] graphite_allowlist_url: Allowlist API endpoint that returns the source IP addresses to allow for the Graphite instance.
         :param pulumi.Input[_builtins.str] graphite_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] graphite_private_connectivity_info_availability_zone_ids: Availability Zone IDs for Graphite when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] graphite_private_connectivity_info_availability_zones: Availability Zones for Graphite when using AWS PrivateLink (only for AWS stacks)
@@ -306,6 +318,7 @@ class _StackState:
         :param pulumi.Input[_builtins.str] graphite_private_connectivity_info_service_name: Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] influx_url: Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheus_user_id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-._]+$" and stacks cannot have more than 10 labels.
+        :param pulumi.Input[_builtins.str] logs_allowlist_url: Allowlist API endpoint that returns the source IP addresses to allow for the Logs instance.
         :param pulumi.Input[_builtins.str] logs_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] logs_private_connectivity_info_availability_zone_ids: Availability Zone IDs for Logs when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] logs_private_connectivity_info_availability_zones: Availability Zones for Logs when using AWS PrivateLink (only for AWS stacks)
@@ -333,12 +346,14 @@ class _StackState:
         :param pulumi.Input[_builtins.str] pdc_gateway_private_connectivity_info_private_dns: Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] pdc_gateway_private_connectivity_info_regions: Regions for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] pdc_gateway_private_connectivity_info_service_name: Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[_builtins.str] profiles_allowlist_url: Allowlist API endpoint that returns the source IP addresses to allow for the Profiles instance.
         :param pulumi.Input[_builtins.str] profiles_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] profiles_private_connectivity_info_availability_zone_ids: Availability Zone IDs for Profiles when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] profiles_private_connectivity_info_availability_zones: Availability Zones for Profiles when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] profiles_private_connectivity_info_private_dns: Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] profiles_private_connectivity_info_regions: Regions for Profiles when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] profiles_private_connectivity_info_service_name: Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[_builtins.str] prometheus_allowlist_url: Allowlist API endpoint that returns the source IP addresses to allow for the Prometheus instance.
         :param pulumi.Input[_builtins.str] prometheus_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
         :param pulumi.Input[_builtins.str] prometheus_name: Prometheus name for this instance.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] prometheus_private_connectivity_info_availability_zone_ids: Availability Zone IDs for Prometheus when using AWS PrivateLink (only for AWS stacks)
@@ -355,6 +370,7 @@ class _StackState:
         :param pulumi.Input[_builtins.str] slug: Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
         :param pulumi.Input[_builtins.str] sm_url: Base URL of the Synthetic Monitoring API for this stack's region. This can be used with the `sm_url` provider config option. Note: Synthetic Monitoring requires activation either via the `syntheticMonitoring.Installation` resource or manually in the Grafana Cloud UI before it can be used.
         :param pulumi.Input[_builtins.str] status: Status of the stack.
+        :param pulumi.Input[_builtins.str] traces_allowlist_url: Allowlist API endpoint that returns the source IP addresses to allow for the Traces instance.
         :param pulumi.Input[_builtins.str] traces_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traces_private_connectivity_info_availability_zone_ids: Availability Zone IDs for Traces when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traces_private_connectivity_info_availability_zones: Availability Zones for Traces when using AWS PrivateLink (only for AWS stacks)
@@ -366,6 +382,8 @@ class _StackState:
         :param pulumi.Input[_builtins.bool] wait_for_readiness: Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
         :param pulumi.Input[_builtins.str] wait_for_readiness_timeout: How long to wait for readiness (if enabled). Defaults to `10m0s`.
         """
+        if alertmanager_allowlist_url is not None:
+            pulumi.set(__self__, "alertmanager_allowlist_url", alertmanager_allowlist_url)
         if alertmanager_ip_allow_list_cname is not None:
             pulumi.set(__self__, "alertmanager_ip_allow_list_cname", alertmanager_ip_allow_list_cname)
         if alertmanager_name is not None:
@@ -388,6 +406,8 @@ class _StackState:
             pulumi.set(__self__, "delete_protection", delete_protection)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if fleet_management_allowlist_url is not None:
+            pulumi.set(__self__, "fleet_management_allowlist_url", fleet_management_allowlist_url)
         if fleet_management_name is not None:
             pulumi.set(__self__, "fleet_management_name", fleet_management_name)
         if fleet_management_private_connectivity_info_availability_zone_ids is not None:
@@ -406,8 +426,12 @@ class _StackState:
             pulumi.set(__self__, "fleet_management_url", fleet_management_url)
         if fleet_management_user_id is not None:
             pulumi.set(__self__, "fleet_management_user_id", fleet_management_user_id)
+        if grafanas_allowlist_url is not None:
+            pulumi.set(__self__, "grafanas_allowlist_url", grafanas_allowlist_url)
         if grafanas_ip_allow_list_cname is not None:
             pulumi.set(__self__, "grafanas_ip_allow_list_cname", grafanas_ip_allow_list_cname)
+        if graphite_allowlist_url is not None:
+            pulumi.set(__self__, "graphite_allowlist_url", graphite_allowlist_url)
         if graphite_ip_allow_list_cname is not None:
             pulumi.set(__self__, "graphite_ip_allow_list_cname", graphite_ip_allow_list_cname)
         if graphite_name is not None:
@@ -432,6 +456,8 @@ class _StackState:
             pulumi.set(__self__, "influx_url", influx_url)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
+        if logs_allowlist_url is not None:
+            pulumi.set(__self__, "logs_allowlist_url", logs_allowlist_url)
         if logs_ip_allow_list_cname is not None:
             pulumi.set(__self__, "logs_ip_allow_list_cname", logs_ip_allow_list_cname)
         if logs_name is not None:
@@ -494,6 +520,8 @@ class _StackState:
             pulumi.set(__self__, "pdc_gateway_private_connectivity_info_regions", pdc_gateway_private_connectivity_info_regions)
         if pdc_gateway_private_connectivity_info_service_name is not None:
             pulumi.set(__self__, "pdc_gateway_private_connectivity_info_service_name", pdc_gateway_private_connectivity_info_service_name)
+        if profiles_allowlist_url is not None:
+            pulumi.set(__self__, "profiles_allowlist_url", profiles_allowlist_url)
         if profiles_ip_allow_list_cname is not None:
             pulumi.set(__self__, "profiles_ip_allow_list_cname", profiles_ip_allow_list_cname)
         if profiles_name is not None:
@@ -514,6 +542,8 @@ class _StackState:
             pulumi.set(__self__, "profiles_url", profiles_url)
         if profiles_user_id is not None:
             pulumi.set(__self__, "profiles_user_id", profiles_user_id)
+        if prometheus_allowlist_url is not None:
+            pulumi.set(__self__, "prometheus_allowlist_url", prometheus_allowlist_url)
         if prometheus_ip_allow_list_cname is not None:
             pulumi.set(__self__, "prometheus_ip_allow_list_cname", prometheus_ip_allow_list_cname)
         if prometheus_name is not None:
@@ -546,6 +576,8 @@ class _StackState:
             pulumi.set(__self__, "sm_url", sm_url)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if traces_allowlist_url is not None:
+            pulumi.set(__self__, "traces_allowlist_url", traces_allowlist_url)
         if traces_ip_allow_list_cname is not None:
             pulumi.set(__self__, "traces_ip_allow_list_cname", traces_ip_allow_list_cname)
         if traces_name is not None:
@@ -572,6 +604,18 @@ class _StackState:
             pulumi.set(__self__, "wait_for_readiness", wait_for_readiness)
         if wait_for_readiness_timeout is not None:
             pulumi.set(__self__, "wait_for_readiness_timeout", wait_for_readiness_timeout)
+
+    @_builtins.property
+    @pulumi.getter(name="alertmanagerAllowlistUrl")
+    def alertmanager_allowlist_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Alertmanager instances.
+        """
+        return pulumi.get(self, "alertmanager_allowlist_url")
+
+    @alertmanager_allowlist_url.setter
+    def alertmanager_allowlist_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "alertmanager_allowlist_url", value)
 
     @_builtins.property
     @pulumi.getter(name="alertmanagerIpAllowListCname")
@@ -706,6 +750,18 @@ class _StackState:
         pulumi.set(self, "description", value)
 
     @_builtins.property
+    @pulumi.getter(name="fleetManagementAllowlistUrl")
+    def fleet_management_allowlist_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Fleet Management instance.
+        """
+        return pulumi.get(self, "fleet_management_allowlist_url")
+
+    @fleet_management_allowlist_url.setter
+    def fleet_management_allowlist_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "fleet_management_allowlist_url", value)
+
+    @_builtins.property
     @pulumi.getter(name="fleetManagementName")
     def fleet_management_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -814,6 +870,18 @@ class _StackState:
         pulumi.set(self, "fleet_management_user_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="grafanasAllowlistUrl")
+    def grafanas_allowlist_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the grafana instance.
+        """
+        return pulumi.get(self, "grafanas_allowlist_url")
+
+    @grafanas_allowlist_url.setter
+    def grafanas_allowlist_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "grafanas_allowlist_url", value)
+
+    @_builtins.property
     @pulumi.getter(name="grafanasIpAllowListCname")
     def grafanas_ip_allow_list_cname(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -824,6 +892,18 @@ class _StackState:
     @grafanas_ip_allow_list_cname.setter
     def grafanas_ip_allow_list_cname(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "grafanas_ip_allow_list_cname", value)
+
+    @_builtins.property
+    @pulumi.getter(name="graphiteAllowlistUrl")
+    def graphite_allowlist_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Graphite instance.
+        """
+        return pulumi.get(self, "graphite_allowlist_url")
+
+    @graphite_allowlist_url.setter
+    def graphite_allowlist_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "graphite_allowlist_url", value)
 
     @_builtins.property
     @pulumi.getter(name="graphiteIpAllowListCname")
@@ -956,6 +1036,18 @@ class _StackState:
     @labels.setter
     def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
+
+    @_builtins.property
+    @pulumi.getter(name="logsAllowlistUrl")
+    def logs_allowlist_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Logs instance.
+        """
+        return pulumi.get(self, "logs_allowlist_url")
+
+    @logs_allowlist_url.setter
+    def logs_allowlist_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "logs_allowlist_url", value)
 
     @_builtins.property
     @pulumi.getter(name="logsIpAllowListCname")
@@ -1318,6 +1410,18 @@ class _StackState:
         pulumi.set(self, "pdc_gateway_private_connectivity_info_service_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="profilesAllowlistUrl")
+    def profiles_allowlist_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Profiles instance.
+        """
+        return pulumi.get(self, "profiles_allowlist_url")
+
+    @profiles_allowlist_url.setter
+    def profiles_allowlist_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "profiles_allowlist_url", value)
+
+    @_builtins.property
     @pulumi.getter(name="profilesIpAllowListCname")
     def profiles_ip_allow_list_cname(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1424,6 +1528,18 @@ class _StackState:
     @profiles_user_id.setter
     def profiles_user_id(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "profiles_user_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="prometheusAllowlistUrl")
+    def prometheus_allowlist_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Prometheus instance.
+        """
+        return pulumi.get(self, "prometheus_allowlist_url")
+
+    @prometheus_allowlist_url.setter
+    def prometheus_allowlist_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "prometheus_allowlist_url", value)
 
     @_builtins.property
     @pulumi.getter(name="prometheusIpAllowListCname")
@@ -1616,6 +1732,18 @@ class _StackState:
     @status.setter
     def status(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "status", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tracesAllowlistUrl")
+    def traces_allowlist_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Traces instance.
+        """
+        return pulumi.get(self, "traces_allowlist_url")
+
+    @traces_allowlist_url.setter
+    def traces_allowlist_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "traces_allowlist_url", value)
 
     @_builtins.property
     @pulumi.getter(name="tracesIpAllowListCname")
@@ -1901,6 +2029,7 @@ class Stack(pulumi.CustomResource):
             __props__.__dict__["url"] = url
             __props__.__dict__["wait_for_readiness"] = wait_for_readiness
             __props__.__dict__["wait_for_readiness_timeout"] = wait_for_readiness_timeout
+            __props__.__dict__["alertmanager_allowlist_url"] = None
             __props__.__dict__["alertmanager_ip_allow_list_cname"] = None
             __props__.__dict__["alertmanager_name"] = None
             __props__.__dict__["alertmanager_status"] = None
@@ -1910,6 +2039,7 @@ class Stack(pulumi.CustomResource):
             __props__.__dict__["cluster_name"] = None
             __props__.__dict__["cluster_slug"] = None
             __props__.__dict__["connections_api_url"] = None
+            __props__.__dict__["fleet_management_allowlist_url"] = None
             __props__.__dict__["fleet_management_name"] = None
             __props__.__dict__["fleet_management_private_connectivity_info_availability_zone_ids"] = None
             __props__.__dict__["fleet_management_private_connectivity_info_availability_zones"] = None
@@ -1919,7 +2049,9 @@ class Stack(pulumi.CustomResource):
             __props__.__dict__["fleet_management_status"] = None
             __props__.__dict__["fleet_management_url"] = None
             __props__.__dict__["fleet_management_user_id"] = None
+            __props__.__dict__["grafanas_allowlist_url"] = None
             __props__.__dict__["grafanas_ip_allow_list_cname"] = None
+            __props__.__dict__["graphite_allowlist_url"] = None
             __props__.__dict__["graphite_ip_allow_list_cname"] = None
             __props__.__dict__["graphite_name"] = None
             __props__.__dict__["graphite_private_connectivity_info_availability_zone_ids"] = None
@@ -1931,6 +2063,7 @@ class Stack(pulumi.CustomResource):
             __props__.__dict__["graphite_url"] = None
             __props__.__dict__["graphite_user_id"] = None
             __props__.__dict__["influx_url"] = None
+            __props__.__dict__["logs_allowlist_url"] = None
             __props__.__dict__["logs_ip_allow_list_cname"] = None
             __props__.__dict__["logs_name"] = None
             __props__.__dict__["logs_private_connectivity_info_availability_zone_ids"] = None
@@ -1961,6 +2094,7 @@ class Stack(pulumi.CustomResource):
             __props__.__dict__["pdc_gateway_private_connectivity_info_private_dns"] = None
             __props__.__dict__["pdc_gateway_private_connectivity_info_regions"] = None
             __props__.__dict__["pdc_gateway_private_connectivity_info_service_name"] = None
+            __props__.__dict__["profiles_allowlist_url"] = None
             __props__.__dict__["profiles_ip_allow_list_cname"] = None
             __props__.__dict__["profiles_name"] = None
             __props__.__dict__["profiles_private_connectivity_info_availability_zone_ids"] = None
@@ -1971,6 +2105,7 @@ class Stack(pulumi.CustomResource):
             __props__.__dict__["profiles_status"] = None
             __props__.__dict__["profiles_url"] = None
             __props__.__dict__["profiles_user_id"] = None
+            __props__.__dict__["prometheus_allowlist_url"] = None
             __props__.__dict__["prometheus_ip_allow_list_cname"] = None
             __props__.__dict__["prometheus_name"] = None
             __props__.__dict__["prometheus_private_connectivity_info_availability_zone_ids"] = None
@@ -1985,6 +2120,7 @@ class Stack(pulumi.CustomResource):
             __props__.__dict__["prometheus_user_id"] = None
             __props__.__dict__["sm_url"] = None
             __props__.__dict__["status"] = None
+            __props__.__dict__["traces_allowlist_url"] = None
             __props__.__dict__["traces_ip_allow_list_cname"] = None
             __props__.__dict__["traces_name"] = None
             __props__.__dict__["traces_private_connectivity_info_availability_zone_ids"] = None
@@ -2005,6 +2141,7 @@ class Stack(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            alertmanager_allowlist_url: Optional[pulumi.Input[_builtins.str]] = None,
             alertmanager_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
             alertmanager_name: Optional[pulumi.Input[_builtins.str]] = None,
             alertmanager_status: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2016,6 +2153,7 @@ class Stack(pulumi.CustomResource):
             connections_api_url: Optional[pulumi.Input[_builtins.str]] = None,
             delete_protection: Optional[pulumi.Input[_builtins.bool]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
+            fleet_management_allowlist_url: Optional[pulumi.Input[_builtins.str]] = None,
             fleet_management_name: Optional[pulumi.Input[_builtins.str]] = None,
             fleet_management_private_connectivity_info_availability_zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             fleet_management_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -2025,7 +2163,9 @@ class Stack(pulumi.CustomResource):
             fleet_management_status: Optional[pulumi.Input[_builtins.str]] = None,
             fleet_management_url: Optional[pulumi.Input[_builtins.str]] = None,
             fleet_management_user_id: Optional[pulumi.Input[_builtins.int]] = None,
+            grafanas_allowlist_url: Optional[pulumi.Input[_builtins.str]] = None,
             grafanas_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
+            graphite_allowlist_url: Optional[pulumi.Input[_builtins.str]] = None,
             graphite_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
             graphite_name: Optional[pulumi.Input[_builtins.str]] = None,
             graphite_private_connectivity_info_availability_zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -2038,6 +2178,7 @@ class Stack(pulumi.CustomResource):
             graphite_user_id: Optional[pulumi.Input[_builtins.int]] = None,
             influx_url: Optional[pulumi.Input[_builtins.str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            logs_allowlist_url: Optional[pulumi.Input[_builtins.str]] = None,
             logs_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
             logs_name: Optional[pulumi.Input[_builtins.str]] = None,
             logs_private_connectivity_info_availability_zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -2069,6 +2210,7 @@ class Stack(pulumi.CustomResource):
             pdc_gateway_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
             pdc_gateway_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             pdc_gateway_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
+            profiles_allowlist_url: Optional[pulumi.Input[_builtins.str]] = None,
             profiles_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
             profiles_name: Optional[pulumi.Input[_builtins.str]] = None,
             profiles_private_connectivity_info_availability_zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -2079,6 +2221,7 @@ class Stack(pulumi.CustomResource):
             profiles_status: Optional[pulumi.Input[_builtins.str]] = None,
             profiles_url: Optional[pulumi.Input[_builtins.str]] = None,
             profiles_user_id: Optional[pulumi.Input[_builtins.int]] = None,
+            prometheus_allowlist_url: Optional[pulumi.Input[_builtins.str]] = None,
             prometheus_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
             prometheus_name: Optional[pulumi.Input[_builtins.str]] = None,
             prometheus_private_connectivity_info_availability_zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -2095,6 +2238,7 @@ class Stack(pulumi.CustomResource):
             slug: Optional[pulumi.Input[_builtins.str]] = None,
             sm_url: Optional[pulumi.Input[_builtins.str]] = None,
             status: Optional[pulumi.Input[_builtins.str]] = None,
+            traces_allowlist_url: Optional[pulumi.Input[_builtins.str]] = None,
             traces_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
             traces_name: Optional[pulumi.Input[_builtins.str]] = None,
             traces_private_connectivity_info_availability_zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -2115,6 +2259,7 @@ class Stack(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] alertmanager_allowlist_url: Allowlist API endpoint that returns the source IP addresses to allow for the Alertmanager instances.
         :param pulumi.Input[_builtins.str] alertmanager_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
         :param pulumi.Input[_builtins.str] alertmanager_name: Name of the Alertmanager instance configured for this stack.
         :param pulumi.Input[_builtins.str] alertmanager_status: Status of the Alertmanager instance configured for this stack.
@@ -2126,6 +2271,7 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] connections_api_url: Base URL of the Connections API for this stack's cluster. This can be used with the `connections_api_url` provider config option to manage Connections resources for this stack.
         :param pulumi.Input[_builtins.bool] delete_protection: Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
         :param pulumi.Input[_builtins.str] description: Description of stack.
+        :param pulumi.Input[_builtins.str] fleet_management_allowlist_url: Allowlist API endpoint that returns the source IP addresses to allow for the Fleet Management instance.
         :param pulumi.Input[_builtins.str] fleet_management_name: Name of the Fleet Management instance configured for this stack.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] fleet_management_private_connectivity_info_availability_zone_ids: Availability Zone IDs for Fleet Management when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] fleet_management_private_connectivity_info_availability_zones: Availability Zones for Fleet Management when using AWS PrivateLink (only for AWS stacks)
@@ -2135,7 +2281,9 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] fleet_management_status: Status of the Fleet Management instance configured for this stack.
         :param pulumi.Input[_builtins.str] fleet_management_url: Base URL of the Fleet Management instance configured for this stack.
         :param pulumi.Input[_builtins.int] fleet_management_user_id: User ID of the Fleet Management instance configured for this stack.
+        :param pulumi.Input[_builtins.str] grafanas_allowlist_url: Allowlist API endpoint that returns the source IP addresses to allow for the grafana instance.
         :param pulumi.Input[_builtins.str] grafanas_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
+        :param pulumi.Input[_builtins.str] graphite_allowlist_url: Allowlist API endpoint that returns the source IP addresses to allow for the Graphite instance.
         :param pulumi.Input[_builtins.str] graphite_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] graphite_private_connectivity_info_availability_zone_ids: Availability Zone IDs for Graphite when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] graphite_private_connectivity_info_availability_zones: Availability Zones for Graphite when using AWS PrivateLink (only for AWS stacks)
@@ -2144,6 +2292,7 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] graphite_private_connectivity_info_service_name: Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] influx_url: Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheus_user_id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-._]+$" and stacks cannot have more than 10 labels.
+        :param pulumi.Input[_builtins.str] logs_allowlist_url: Allowlist API endpoint that returns the source IP addresses to allow for the Logs instance.
         :param pulumi.Input[_builtins.str] logs_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] logs_private_connectivity_info_availability_zone_ids: Availability Zone IDs for Logs when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] logs_private_connectivity_info_availability_zones: Availability Zones for Logs when using AWS PrivateLink (only for AWS stacks)
@@ -2171,12 +2320,14 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] pdc_gateway_private_connectivity_info_private_dns: Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] pdc_gateway_private_connectivity_info_regions: Regions for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] pdc_gateway_private_connectivity_info_service_name: Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[_builtins.str] profiles_allowlist_url: Allowlist API endpoint that returns the source IP addresses to allow for the Profiles instance.
         :param pulumi.Input[_builtins.str] profiles_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] profiles_private_connectivity_info_availability_zone_ids: Availability Zone IDs for Profiles when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] profiles_private_connectivity_info_availability_zones: Availability Zones for Profiles when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] profiles_private_connectivity_info_private_dns: Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] profiles_private_connectivity_info_regions: Regions for Profiles when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] profiles_private_connectivity_info_service_name: Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[_builtins.str] prometheus_allowlist_url: Allowlist API endpoint that returns the source IP addresses to allow for the Prometheus instance.
         :param pulumi.Input[_builtins.str] prometheus_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
         :param pulumi.Input[_builtins.str] prometheus_name: Prometheus name for this instance.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] prometheus_private_connectivity_info_availability_zone_ids: Availability Zone IDs for Prometheus when using AWS PrivateLink (only for AWS stacks)
@@ -2193,6 +2344,7 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] slug: Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
         :param pulumi.Input[_builtins.str] sm_url: Base URL of the Synthetic Monitoring API for this stack's region. This can be used with the `sm_url` provider config option. Note: Synthetic Monitoring requires activation either via the `syntheticMonitoring.Installation` resource or manually in the Grafana Cloud UI before it can be used.
         :param pulumi.Input[_builtins.str] status: Status of the stack.
+        :param pulumi.Input[_builtins.str] traces_allowlist_url: Allowlist API endpoint that returns the source IP addresses to allow for the Traces instance.
         :param pulumi.Input[_builtins.str] traces_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traces_private_connectivity_info_availability_zone_ids: Availability Zone IDs for Traces when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traces_private_connectivity_info_availability_zones: Availability Zones for Traces when using AWS PrivateLink (only for AWS stacks)
@@ -2208,6 +2360,7 @@ class Stack(pulumi.CustomResource):
 
         __props__ = _StackState.__new__(_StackState)
 
+        __props__.__dict__["alertmanager_allowlist_url"] = alertmanager_allowlist_url
         __props__.__dict__["alertmanager_ip_allow_list_cname"] = alertmanager_ip_allow_list_cname
         __props__.__dict__["alertmanager_name"] = alertmanager_name
         __props__.__dict__["alertmanager_status"] = alertmanager_status
@@ -2219,6 +2372,7 @@ class Stack(pulumi.CustomResource):
         __props__.__dict__["connections_api_url"] = connections_api_url
         __props__.__dict__["delete_protection"] = delete_protection
         __props__.__dict__["description"] = description
+        __props__.__dict__["fleet_management_allowlist_url"] = fleet_management_allowlist_url
         __props__.__dict__["fleet_management_name"] = fleet_management_name
         __props__.__dict__["fleet_management_private_connectivity_info_availability_zone_ids"] = fleet_management_private_connectivity_info_availability_zone_ids
         __props__.__dict__["fleet_management_private_connectivity_info_availability_zones"] = fleet_management_private_connectivity_info_availability_zones
@@ -2228,7 +2382,9 @@ class Stack(pulumi.CustomResource):
         __props__.__dict__["fleet_management_status"] = fleet_management_status
         __props__.__dict__["fleet_management_url"] = fleet_management_url
         __props__.__dict__["fleet_management_user_id"] = fleet_management_user_id
+        __props__.__dict__["grafanas_allowlist_url"] = grafanas_allowlist_url
         __props__.__dict__["grafanas_ip_allow_list_cname"] = grafanas_ip_allow_list_cname
+        __props__.__dict__["graphite_allowlist_url"] = graphite_allowlist_url
         __props__.__dict__["graphite_ip_allow_list_cname"] = graphite_ip_allow_list_cname
         __props__.__dict__["graphite_name"] = graphite_name
         __props__.__dict__["graphite_private_connectivity_info_availability_zone_ids"] = graphite_private_connectivity_info_availability_zone_ids
@@ -2241,6 +2397,7 @@ class Stack(pulumi.CustomResource):
         __props__.__dict__["graphite_user_id"] = graphite_user_id
         __props__.__dict__["influx_url"] = influx_url
         __props__.__dict__["labels"] = labels
+        __props__.__dict__["logs_allowlist_url"] = logs_allowlist_url
         __props__.__dict__["logs_ip_allow_list_cname"] = logs_ip_allow_list_cname
         __props__.__dict__["logs_name"] = logs_name
         __props__.__dict__["logs_private_connectivity_info_availability_zone_ids"] = logs_private_connectivity_info_availability_zone_ids
@@ -2272,6 +2429,7 @@ class Stack(pulumi.CustomResource):
         __props__.__dict__["pdc_gateway_private_connectivity_info_private_dns"] = pdc_gateway_private_connectivity_info_private_dns
         __props__.__dict__["pdc_gateway_private_connectivity_info_regions"] = pdc_gateway_private_connectivity_info_regions
         __props__.__dict__["pdc_gateway_private_connectivity_info_service_name"] = pdc_gateway_private_connectivity_info_service_name
+        __props__.__dict__["profiles_allowlist_url"] = profiles_allowlist_url
         __props__.__dict__["profiles_ip_allow_list_cname"] = profiles_ip_allow_list_cname
         __props__.__dict__["profiles_name"] = profiles_name
         __props__.__dict__["profiles_private_connectivity_info_availability_zone_ids"] = profiles_private_connectivity_info_availability_zone_ids
@@ -2282,6 +2440,7 @@ class Stack(pulumi.CustomResource):
         __props__.__dict__["profiles_status"] = profiles_status
         __props__.__dict__["profiles_url"] = profiles_url
         __props__.__dict__["profiles_user_id"] = profiles_user_id
+        __props__.__dict__["prometheus_allowlist_url"] = prometheus_allowlist_url
         __props__.__dict__["prometheus_ip_allow_list_cname"] = prometheus_ip_allow_list_cname
         __props__.__dict__["prometheus_name"] = prometheus_name
         __props__.__dict__["prometheus_private_connectivity_info_availability_zone_ids"] = prometheus_private_connectivity_info_availability_zone_ids
@@ -2298,6 +2457,7 @@ class Stack(pulumi.CustomResource):
         __props__.__dict__["slug"] = slug
         __props__.__dict__["sm_url"] = sm_url
         __props__.__dict__["status"] = status
+        __props__.__dict__["traces_allowlist_url"] = traces_allowlist_url
         __props__.__dict__["traces_ip_allow_list_cname"] = traces_ip_allow_list_cname
         __props__.__dict__["traces_name"] = traces_name
         __props__.__dict__["traces_private_connectivity_info_availability_zone_ids"] = traces_private_connectivity_info_availability_zone_ids
@@ -2312,6 +2472,14 @@ class Stack(pulumi.CustomResource):
         __props__.__dict__["wait_for_readiness"] = wait_for_readiness
         __props__.__dict__["wait_for_readiness_timeout"] = wait_for_readiness_timeout
         return Stack(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="alertmanagerAllowlistUrl")
+    def alertmanager_allowlist_url(self) -> pulumi.Output[_builtins.str]:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Alertmanager instances.
+        """
+        return pulumi.get(self, "alertmanager_allowlist_url")
 
     @_builtins.property
     @pulumi.getter(name="alertmanagerIpAllowListCname")
@@ -2402,6 +2570,14 @@ class Stack(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @_builtins.property
+    @pulumi.getter(name="fleetManagementAllowlistUrl")
+    def fleet_management_allowlist_url(self) -> pulumi.Output[_builtins.str]:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Fleet Management instance.
+        """
+        return pulumi.get(self, "fleet_management_allowlist_url")
+
+    @_builtins.property
     @pulumi.getter(name="fleetManagementName")
     def fleet_management_name(self) -> pulumi.Output[_builtins.str]:
         """
@@ -2474,12 +2650,28 @@ class Stack(pulumi.CustomResource):
         return pulumi.get(self, "fleet_management_user_id")
 
     @_builtins.property
+    @pulumi.getter(name="grafanasAllowlistUrl")
+    def grafanas_allowlist_url(self) -> pulumi.Output[_builtins.str]:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the grafana instance.
+        """
+        return pulumi.get(self, "grafanas_allowlist_url")
+
+    @_builtins.property
     @pulumi.getter(name="grafanasIpAllowListCname")
     def grafanas_ip_allow_list_cname(self) -> pulumi.Output[_builtins.str]:
         """
         Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
         """
         return pulumi.get(self, "grafanas_ip_allow_list_cname")
+
+    @_builtins.property
+    @pulumi.getter(name="graphiteAllowlistUrl")
+    def graphite_allowlist_url(self) -> pulumi.Output[_builtins.str]:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Graphite instance.
+        """
+        return pulumi.get(self, "graphite_allowlist_url")
 
     @_builtins.property
     @pulumi.getter(name="graphiteIpAllowListCname")
@@ -2564,6 +2756,14 @@ class Stack(pulumi.CustomResource):
         A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-._]+$" and stacks cannot have more than 10 labels.
         """
         return pulumi.get(self, "labels")
+
+    @_builtins.property
+    @pulumi.getter(name="logsAllowlistUrl")
+    def logs_allowlist_url(self) -> pulumi.Output[_builtins.str]:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Logs instance.
+        """
+        return pulumi.get(self, "logs_allowlist_url")
 
     @_builtins.property
     @pulumi.getter(name="logsIpAllowListCname")
@@ -2802,6 +3002,14 @@ class Stack(pulumi.CustomResource):
         return pulumi.get(self, "pdc_gateway_private_connectivity_info_service_name")
 
     @_builtins.property
+    @pulumi.getter(name="profilesAllowlistUrl")
+    def profiles_allowlist_url(self) -> pulumi.Output[_builtins.str]:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Profiles instance.
+        """
+        return pulumi.get(self, "profiles_allowlist_url")
+
+    @_builtins.property
     @pulumi.getter(name="profilesIpAllowListCname")
     def profiles_ip_allow_list_cname(self) -> pulumi.Output[_builtins.str]:
         """
@@ -2868,6 +3076,14 @@ class Stack(pulumi.CustomResource):
     @pulumi.getter(name="profilesUserId")
     def profiles_user_id(self) -> pulumi.Output[_builtins.int]:
         return pulumi.get(self, "profiles_user_id")
+
+    @_builtins.property
+    @pulumi.getter(name="prometheusAllowlistUrl")
+    def prometheus_allowlist_url(self) -> pulumi.Output[_builtins.str]:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Prometheus instance.
+        """
+        return pulumi.get(self, "prometheus_allowlist_url")
 
     @_builtins.property
     @pulumi.getter(name="prometheusIpAllowListCname")
@@ -2996,6 +3212,14 @@ class Stack(pulumi.CustomResource):
         Status of the stack.
         """
         return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="tracesAllowlistUrl")
+    def traces_allowlist_url(self) -> pulumi.Output[_builtins.str]:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Traces instance.
+        """
+        return pulumi.get(self, "traces_allowlist_url")
 
     @_builtins.property
     @pulumi.getter(name="tracesIpAllowListCname")

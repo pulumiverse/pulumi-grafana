@@ -22,6 +22,7 @@ class LoadTestArgs:
                  project_id: pulumi.Input[_builtins.str],
                  script: pulumi.Input[_builtins.str],
                  baseline_test_run_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 k6_version: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LoadTest resource.
@@ -29,6 +30,7 @@ class LoadTestArgs:
         :param pulumi.Input[_builtins.str] project_id: The identifier of the project this load test belongs to.
         :param pulumi.Input[_builtins.str] script: The k6 test script content. Can be provided inline or via the `file()` function.
         :param pulumi.Input[_builtins.str] baseline_test_run_id: Identifier of a baseline test run used for results comparison.
+        :param pulumi.Input[_builtins.str] k6_version: Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2
         :param pulumi.Input[_builtins.str] name: Human-friendly identifier of the load test.
         """
         pulumi.set(__self__, "project_id", project_id)
@@ -38,6 +40,8 @@ class LoadTestArgs:
             pulumi.log.warn("""baseline_test_run_id is deprecated: Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.""")
         if baseline_test_run_id is not None:
             pulumi.set(__self__, "baseline_test_run_id", baseline_test_run_id)
+        if k6_version is not None:
+            pulumi.set(__self__, "k6_version", k6_version)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -79,6 +83,18 @@ class LoadTestArgs:
         pulumi.set(self, "baseline_test_run_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="k6Version")
+    def k6_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2
+        """
+        return pulumi.get(self, "k6_version")
+
+    @k6_version.setter
+    def k6_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "k6_version", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -96,6 +112,7 @@ class _LoadTestState:
     def __init__(__self__, *,
                  baseline_test_run_id: Optional[pulumi.Input[_builtins.str]] = None,
                  created: Optional[pulumi.Input[_builtins.str]] = None,
+                 k6_version: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  script: Optional[pulumi.Input[_builtins.str]] = None,
@@ -105,6 +122,7 @@ class _LoadTestState:
 
         :param pulumi.Input[_builtins.str] baseline_test_run_id: Identifier of a baseline test run used for results comparison.
         :param pulumi.Input[_builtins.str] created: The date when the load test was created.
+        :param pulumi.Input[_builtins.str] k6_version: Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2
         :param pulumi.Input[_builtins.str] name: Human-friendly identifier of the load test.
         :param pulumi.Input[_builtins.str] project_id: The identifier of the project this load test belongs to.
         :param pulumi.Input[_builtins.str] script: The k6 test script content. Can be provided inline or via the `file()` function.
@@ -117,6 +135,8 @@ class _LoadTestState:
             pulumi.set(__self__, "baseline_test_run_id", baseline_test_run_id)
         if created is not None:
             pulumi.set(__self__, "created", created)
+        if k6_version is not None:
+            pulumi.set(__self__, "k6_version", k6_version)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
@@ -150,6 +170,18 @@ class _LoadTestState:
     @created.setter
     def created(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "created", value)
+
+    @_builtins.property
+    @pulumi.getter(name="k6Version")
+    def k6_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2
+        """
+        return pulumi.get(self, "k6_version")
+
+    @k6_version.setter
+    def k6_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "k6_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -207,6 +239,7 @@ class LoadTest(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  baseline_test_run_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 k6_version: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  script: Optional[pulumi.Input[_builtins.str]] = None,
@@ -240,6 +273,7 @@ class LoadTest(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] baseline_test_run_id: Identifier of a baseline test run used for results comparison.
+        :param pulumi.Input[_builtins.str] k6_version: Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2
         :param pulumi.Input[_builtins.str] name: Human-friendly identifier of the load test.
         :param pulumi.Input[_builtins.str] project_id: The identifier of the project this load test belongs to.
         :param pulumi.Input[_builtins.str] script: The k6 test script content. Can be provided inline or via the `file()` function.
@@ -292,6 +326,7 @@ class LoadTest(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  baseline_test_run_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 k6_version: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  script: Optional[pulumi.Input[_builtins.str]] = None,
@@ -305,6 +340,7 @@ class LoadTest(pulumi.CustomResource):
             __props__ = LoadTestArgs.__new__(LoadTestArgs)
 
             __props__.__dict__["baseline_test_run_id"] = baseline_test_run_id
+            __props__.__dict__["k6_version"] = k6_version
             __props__.__dict__["name"] = name
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
@@ -326,6 +362,7 @@ class LoadTest(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             baseline_test_run_id: Optional[pulumi.Input[_builtins.str]] = None,
             created: Optional[pulumi.Input[_builtins.str]] = None,
+            k6_version: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
             script: Optional[pulumi.Input[_builtins.str]] = None,
@@ -339,6 +376,7 @@ class LoadTest(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] baseline_test_run_id: Identifier of a baseline test run used for results comparison.
         :param pulumi.Input[_builtins.str] created: The date when the load test was created.
+        :param pulumi.Input[_builtins.str] k6_version: Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2
         :param pulumi.Input[_builtins.str] name: Human-friendly identifier of the load test.
         :param pulumi.Input[_builtins.str] project_id: The identifier of the project this load test belongs to.
         :param pulumi.Input[_builtins.str] script: The k6 test script content. Can be provided inline or via the `file()` function.
@@ -350,6 +388,7 @@ class LoadTest(pulumi.CustomResource):
 
         __props__.__dict__["baseline_test_run_id"] = baseline_test_run_id
         __props__.__dict__["created"] = created
+        __props__.__dict__["k6_version"] = k6_version
         __props__.__dict__["name"] = name
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["script"] = script
@@ -372,6 +411,14 @@ class LoadTest(pulumi.CustomResource):
         The date when the load test was created.
         """
         return pulumi.get(self, "created")
+
+    @_builtins.property
+    @pulumi.getter(name="k6Version")
+    def k6_version(self) -> pulumi.Output[_builtins.str]:
+        """
+        Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2
+        """
+        return pulumi.get(self, "k6_version")
 
     @_builtins.property
     @pulumi.getter

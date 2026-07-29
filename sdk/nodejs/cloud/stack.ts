@@ -62,6 +62,10 @@ export class Stack extends pulumi.CustomResource {
     }
 
     /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Alertmanager instances.
+     */
+    declare public /*out*/ readonly alertmanagerAllowlistUrl: pulumi.Output<string>;
+    /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
      */
     declare public /*out*/ readonly alertmanagerIpAllowListCname: pulumi.Output<string>;
@@ -106,6 +110,10 @@ export class Stack extends pulumi.CustomResource {
      */
     declare public readonly description: pulumi.Output<string | undefined>;
     /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Fleet Management instance.
+     */
+    declare public /*out*/ readonly fleetManagementAllowlistUrl: pulumi.Output<string>;
+    /**
      * Name of the Fleet Management instance configured for this stack.
      */
     declare public /*out*/ readonly fleetManagementName: pulumi.Output<string>;
@@ -142,9 +150,17 @@ export class Stack extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly fleetManagementUserId: pulumi.Output<number>;
     /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the grafana instance.
+     */
+    declare public /*out*/ readonly grafanasAllowlistUrl: pulumi.Output<string>;
+    /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
      */
     declare public /*out*/ readonly grafanasIpAllowListCname: pulumi.Output<string>;
+    /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Graphite instance.
+     */
+    declare public /*out*/ readonly graphiteAllowlistUrl: pulumi.Output<string>;
     /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
      */
@@ -181,6 +197,10 @@ export class Stack extends pulumi.CustomResource {
      * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-._]+$" and stacks cannot have more than 10 labels.
      */
     declare public readonly labels: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Logs instance.
+     */
+    declare public /*out*/ readonly logsAllowlistUrl: pulumi.Output<string>;
     /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
      */
@@ -294,6 +314,10 @@ export class Stack extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly pdcGatewayPrivateConnectivityInfoServiceName: pulumi.Output<string>;
     /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Profiles instance.
+     */
+    declare public /*out*/ readonly profilesAllowlistUrl: pulumi.Output<string>;
+    /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
      */
     declare public /*out*/ readonly profilesIpAllowListCname: pulumi.Output<string>;
@@ -321,6 +345,10 @@ export class Stack extends pulumi.CustomResource {
     declare public /*out*/ readonly profilesStatus: pulumi.Output<string>;
     declare public /*out*/ readonly profilesUrl: pulumi.Output<string>;
     declare public /*out*/ readonly profilesUserId: pulumi.Output<number>;
+    /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Prometheus instance.
+     */
+    declare public /*out*/ readonly prometheusAllowlistUrl: pulumi.Output<string>;
     /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
      */
@@ -386,6 +414,10 @@ export class Stack extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Traces instance.
+     */
+    declare public /*out*/ readonly tracesAllowlistUrl: pulumi.Output<string>;
+    /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
      */
     declare public /*out*/ readonly tracesIpAllowListCname: pulumi.Output<string>;
@@ -442,6 +474,7 @@ export class Stack extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as StackState | undefined;
+            resourceInputs["alertmanagerAllowlistUrl"] = state?.alertmanagerAllowlistUrl;
             resourceInputs["alertmanagerIpAllowListCname"] = state?.alertmanagerIpAllowListCname;
             resourceInputs["alertmanagerName"] = state?.alertmanagerName;
             resourceInputs["alertmanagerStatus"] = state?.alertmanagerStatus;
@@ -453,6 +486,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["connectionsApiUrl"] = state?.connectionsApiUrl;
             resourceInputs["deleteProtection"] = state?.deleteProtection;
             resourceInputs["description"] = state?.description;
+            resourceInputs["fleetManagementAllowlistUrl"] = state?.fleetManagementAllowlistUrl;
             resourceInputs["fleetManagementName"] = state?.fleetManagementName;
             resourceInputs["fleetManagementPrivateConnectivityInfoAvailabilityZoneIds"] = state?.fleetManagementPrivateConnectivityInfoAvailabilityZoneIds;
             resourceInputs["fleetManagementPrivateConnectivityInfoAvailabilityZones"] = state?.fleetManagementPrivateConnectivityInfoAvailabilityZones;
@@ -462,7 +496,9 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["fleetManagementStatus"] = state?.fleetManagementStatus;
             resourceInputs["fleetManagementUrl"] = state?.fleetManagementUrl;
             resourceInputs["fleetManagementUserId"] = state?.fleetManagementUserId;
+            resourceInputs["grafanasAllowlistUrl"] = state?.grafanasAllowlistUrl;
             resourceInputs["grafanasIpAllowListCname"] = state?.grafanasIpAllowListCname;
+            resourceInputs["graphiteAllowlistUrl"] = state?.graphiteAllowlistUrl;
             resourceInputs["graphiteIpAllowListCname"] = state?.graphiteIpAllowListCname;
             resourceInputs["graphiteName"] = state?.graphiteName;
             resourceInputs["graphitePrivateConnectivityInfoAvailabilityZoneIds"] = state?.graphitePrivateConnectivityInfoAvailabilityZoneIds;
@@ -475,6 +511,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["graphiteUserId"] = state?.graphiteUserId;
             resourceInputs["influxUrl"] = state?.influxUrl;
             resourceInputs["labels"] = state?.labels;
+            resourceInputs["logsAllowlistUrl"] = state?.logsAllowlistUrl;
             resourceInputs["logsIpAllowListCname"] = state?.logsIpAllowListCname;
             resourceInputs["logsName"] = state?.logsName;
             resourceInputs["logsPrivateConnectivityInfoAvailabilityZoneIds"] = state?.logsPrivateConnectivityInfoAvailabilityZoneIds;
@@ -506,6 +543,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["pdcGatewayPrivateConnectivityInfoPrivateDns"] = state?.pdcGatewayPrivateConnectivityInfoPrivateDns;
             resourceInputs["pdcGatewayPrivateConnectivityInfoRegions"] = state?.pdcGatewayPrivateConnectivityInfoRegions;
             resourceInputs["pdcGatewayPrivateConnectivityInfoServiceName"] = state?.pdcGatewayPrivateConnectivityInfoServiceName;
+            resourceInputs["profilesAllowlistUrl"] = state?.profilesAllowlistUrl;
             resourceInputs["profilesIpAllowListCname"] = state?.profilesIpAllowListCname;
             resourceInputs["profilesName"] = state?.profilesName;
             resourceInputs["profilesPrivateConnectivityInfoAvailabilityZoneIds"] = state?.profilesPrivateConnectivityInfoAvailabilityZoneIds;
@@ -516,6 +554,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["profilesStatus"] = state?.profilesStatus;
             resourceInputs["profilesUrl"] = state?.profilesUrl;
             resourceInputs["profilesUserId"] = state?.profilesUserId;
+            resourceInputs["prometheusAllowlistUrl"] = state?.prometheusAllowlistUrl;
             resourceInputs["prometheusIpAllowListCname"] = state?.prometheusIpAllowListCname;
             resourceInputs["prometheusName"] = state?.prometheusName;
             resourceInputs["prometheusPrivateConnectivityInfoAvailabilityZoneIds"] = state?.prometheusPrivateConnectivityInfoAvailabilityZoneIds;
@@ -532,6 +571,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["slug"] = state?.slug;
             resourceInputs["smUrl"] = state?.smUrl;
             resourceInputs["status"] = state?.status;
+            resourceInputs["tracesAllowlistUrl"] = state?.tracesAllowlistUrl;
             resourceInputs["tracesIpAllowListCname"] = state?.tracesIpAllowListCname;
             resourceInputs["tracesName"] = state?.tracesName;
             resourceInputs["tracesPrivateConnectivityInfoAvailabilityZoneIds"] = state?.tracesPrivateConnectivityInfoAvailabilityZoneIds;
@@ -559,6 +599,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["url"] = args?.url;
             resourceInputs["waitForReadiness"] = args?.waitForReadiness;
             resourceInputs["waitForReadinessTimeout"] = args?.waitForReadinessTimeout;
+            resourceInputs["alertmanagerAllowlistUrl"] = undefined /*out*/;
             resourceInputs["alertmanagerIpAllowListCname"] = undefined /*out*/;
             resourceInputs["alertmanagerName"] = undefined /*out*/;
             resourceInputs["alertmanagerStatus"] = undefined /*out*/;
@@ -568,6 +609,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["clusterName"] = undefined /*out*/;
             resourceInputs["clusterSlug"] = undefined /*out*/;
             resourceInputs["connectionsApiUrl"] = undefined /*out*/;
+            resourceInputs["fleetManagementAllowlistUrl"] = undefined /*out*/;
             resourceInputs["fleetManagementName"] = undefined /*out*/;
             resourceInputs["fleetManagementPrivateConnectivityInfoAvailabilityZoneIds"] = undefined /*out*/;
             resourceInputs["fleetManagementPrivateConnectivityInfoAvailabilityZones"] = undefined /*out*/;
@@ -577,7 +619,9 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["fleetManagementStatus"] = undefined /*out*/;
             resourceInputs["fleetManagementUrl"] = undefined /*out*/;
             resourceInputs["fleetManagementUserId"] = undefined /*out*/;
+            resourceInputs["grafanasAllowlistUrl"] = undefined /*out*/;
             resourceInputs["grafanasIpAllowListCname"] = undefined /*out*/;
+            resourceInputs["graphiteAllowlistUrl"] = undefined /*out*/;
             resourceInputs["graphiteIpAllowListCname"] = undefined /*out*/;
             resourceInputs["graphiteName"] = undefined /*out*/;
             resourceInputs["graphitePrivateConnectivityInfoAvailabilityZoneIds"] = undefined /*out*/;
@@ -589,6 +633,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["graphiteUrl"] = undefined /*out*/;
             resourceInputs["graphiteUserId"] = undefined /*out*/;
             resourceInputs["influxUrl"] = undefined /*out*/;
+            resourceInputs["logsAllowlistUrl"] = undefined /*out*/;
             resourceInputs["logsIpAllowListCname"] = undefined /*out*/;
             resourceInputs["logsName"] = undefined /*out*/;
             resourceInputs["logsPrivateConnectivityInfoAvailabilityZoneIds"] = undefined /*out*/;
@@ -619,6 +664,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["pdcGatewayPrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
             resourceInputs["pdcGatewayPrivateConnectivityInfoRegions"] = undefined /*out*/;
             resourceInputs["pdcGatewayPrivateConnectivityInfoServiceName"] = undefined /*out*/;
+            resourceInputs["profilesAllowlistUrl"] = undefined /*out*/;
             resourceInputs["profilesIpAllowListCname"] = undefined /*out*/;
             resourceInputs["profilesName"] = undefined /*out*/;
             resourceInputs["profilesPrivateConnectivityInfoAvailabilityZoneIds"] = undefined /*out*/;
@@ -629,6 +675,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["profilesStatus"] = undefined /*out*/;
             resourceInputs["profilesUrl"] = undefined /*out*/;
             resourceInputs["profilesUserId"] = undefined /*out*/;
+            resourceInputs["prometheusAllowlistUrl"] = undefined /*out*/;
             resourceInputs["prometheusIpAllowListCname"] = undefined /*out*/;
             resourceInputs["prometheusName"] = undefined /*out*/;
             resourceInputs["prometheusPrivateConnectivityInfoAvailabilityZoneIds"] = undefined /*out*/;
@@ -643,6 +690,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["prometheusUserId"] = undefined /*out*/;
             resourceInputs["smUrl"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
+            resourceInputs["tracesAllowlistUrl"] = undefined /*out*/;
             resourceInputs["tracesIpAllowListCname"] = undefined /*out*/;
             resourceInputs["tracesName"] = undefined /*out*/;
             resourceInputs["tracesPrivateConnectivityInfoAvailabilityZoneIds"] = undefined /*out*/;
@@ -663,6 +711,10 @@ export class Stack extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Stack resources.
  */
 export interface StackState {
+    /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Alertmanager instances.
+     */
+    alertmanagerAllowlistUrl?: pulumi.Input<string>;
     /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
      */
@@ -708,6 +760,10 @@ export interface StackState {
      */
     description?: pulumi.Input<string>;
     /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Fleet Management instance.
+     */
+    fleetManagementAllowlistUrl?: pulumi.Input<string>;
+    /**
      * Name of the Fleet Management instance configured for this stack.
      */
     fleetManagementName?: pulumi.Input<string>;
@@ -744,9 +800,17 @@ export interface StackState {
      */
     fleetManagementUserId?: pulumi.Input<number>;
     /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the grafana instance.
+     */
+    grafanasAllowlistUrl?: pulumi.Input<string>;
+    /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
      */
     grafanasIpAllowListCname?: pulumi.Input<string>;
+    /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Graphite instance.
+     */
+    graphiteAllowlistUrl?: pulumi.Input<string>;
     /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
      */
@@ -783,6 +847,10 @@ export interface StackState {
      * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-._]+$" and stacks cannot have more than 10 labels.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Logs instance.
+     */
+    logsAllowlistUrl?: pulumi.Input<string>;
     /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
      */
@@ -896,6 +964,10 @@ export interface StackState {
      */
     pdcGatewayPrivateConnectivityInfoServiceName?: pulumi.Input<string>;
     /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Profiles instance.
+     */
+    profilesAllowlistUrl?: pulumi.Input<string>;
+    /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
      */
     profilesIpAllowListCname?: pulumi.Input<string>;
@@ -923,6 +995,10 @@ export interface StackState {
     profilesStatus?: pulumi.Input<string>;
     profilesUrl?: pulumi.Input<string>;
     profilesUserId?: pulumi.Input<number>;
+    /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Prometheus instance.
+     */
+    prometheusAllowlistUrl?: pulumi.Input<string>;
     /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
      */
@@ -987,6 +1063,10 @@ export interface StackState {
      * Status of the stack.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Traces instance.
+     */
+    tracesAllowlistUrl?: pulumi.Input<string>;
     /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
      */

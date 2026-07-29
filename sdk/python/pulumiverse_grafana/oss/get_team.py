@@ -28,7 +28,10 @@ class GetTeamResult:
     """
     A collection of values returned by getTeam.
     """
-    def __init__(__self__, email=None, id=None, members=None, name=None, org_id=None, preferences=None, read_team_sync=None, team_id=None, team_syncs=None, team_uid=None):
+    def __init__(__self__, admins=None, email=None, id=None, members=None, name=None, org_id=None, preferences=None, read_team_sync=None, team_id=None, team_syncs=None, team_uid=None):
+        if admins and not isinstance(admins, list):
+            raise TypeError("Expected argument 'admins' to be a list")
+        pulumi.set(__self__, "admins", admins)
         if email and not isinstance(email, str):
             raise TypeError("Expected argument 'email' to be a str")
         pulumi.set(__self__, "email", email)
@@ -62,6 +65,14 @@ class GetTeamResult:
 
     @_builtins.property
     @pulumi.getter
+    def admins(self) -> Sequence[_builtins.str]:
+        """
+        A set of email addresses corresponding to users who are administrators of the team.
+        """
+        return pulumi.get(self, "admins")
+
+    @_builtins.property
+    @pulumi.getter
     def email(self) -> _builtins.str:
         """
         An email address for the team.
@@ -80,7 +91,7 @@ class GetTeamResult:
     @pulumi.getter
     def members(self) -> Sequence[_builtins.str]:
         """
-        A set of email addresses corresponding to users who are members of the team.
+        A set of email addresses corresponding to users who are ordinary members of the team.
         """
         return pulumi.get(self, "members")
 
@@ -147,6 +158,7 @@ class AwaitableGetTeamResult(GetTeamResult):
         if False:
             yield self
         return GetTeamResult(
+            admins=self.admins,
             email=self.email,
             id=self.id,
             members=self.members,
@@ -203,6 +215,7 @@ def get_team(name: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:oss/getTeam:getTeam', __args__, opts=opts, typ=GetTeamResult).value
 
     return AwaitableGetTeamResult(
+        admins=pulumi.get(__ret__, 'admins'),
         email=pulumi.get(__ret__, 'email'),
         id=pulumi.get(__ret__, 'id'),
         members=pulumi.get(__ret__, 'members'),
@@ -256,6 +269,7 @@ def get_team_output(name: Optional[pulumi.Input[_builtins.str]] = None,
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:oss/getTeam:getTeam', __args__, opts=opts, typ=GetTeamResult)
     return __ret__.apply(lambda __response__: GetTeamResult(
+        admins=pulumi.get(__response__, 'admins'),
         email=pulumi.get(__response__, 'email'),
         id=pulumi.get(__response__, 'id'),
         members=pulumi.get(__response__, 'members'),

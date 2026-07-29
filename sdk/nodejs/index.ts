@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AppsQueriesQueryV1Args, AppsQueriesQueryV1State } from "./appsQueriesQueryV1";
+export type AppsQueriesQueryV1 = import("./appsQueriesQueryV1").AppsQueriesQueryV1;
+export const AppsQueriesQueryV1: typeof import("./appsQueriesQueryV1").AppsQueriesQueryV1 = null as any;
+utilities.lazyLoad(exports, ["AppsQueriesQueryV1"], () => require("./appsQueriesQueryV1"));
+
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -51,6 +56,19 @@ export {
     syntheticmonitoring,
     types,
 };
+
+const _module = {
+    version: utilities.getVersion(),
+    construct: (name: string, type: string, urn: string): pulumi.Resource => {
+        switch (type) {
+            case "grafana:index/appsQueriesQueryV1:AppsQueriesQueryV1":
+                return new AppsQueriesQueryV1(name, <any>undefined, { urn })
+            default:
+                throw new Error(`unknown resource type ${type}`);
+        }
+    },
+};
+pulumi.runtime.registerResourceModule("grafana", "index/appsQueriesQueryV1", _module)
 pulumi.runtime.registerResourcePackage("grafana", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

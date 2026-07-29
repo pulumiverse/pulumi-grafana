@@ -47,6 +47,10 @@ export interface GetStackArgs {
  */
 export interface GetStackResult {
     /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Alertmanager instances.
+     */
+    readonly alertmanagerAllowlistUrl: string;
+    /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
      */
     readonly alertmanagerIpAllowListCname: string;
@@ -91,6 +95,10 @@ export interface GetStackResult {
      */
     readonly description: string;
     /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Fleet Management instance.
+     */
+    readonly fleetManagementAllowlistUrl: string;
+    /**
      * Name of the Fleet Management instance configured for this stack.
      */
     readonly fleetManagementName: string;
@@ -127,9 +135,17 @@ export interface GetStackResult {
      */
     readonly fleetManagementUserId: number;
     /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the grafana instance.
+     */
+    readonly grafanasAllowlistUrl: string;
+    /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
      */
     readonly grafanasIpAllowListCname: string;
+    /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Graphite instance.
+     */
+    readonly graphiteAllowlistUrl: string;
     /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
      */
@@ -170,6 +186,10 @@ export interface GetStackResult {
      * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-._]+$" and stacks cannot have more than 10 labels.
      */
     readonly labels: {[key: string]: string};
+    /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Logs instance.
+     */
+    readonly logsAllowlistUrl: string;
     /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
      */
@@ -283,6 +303,10 @@ export interface GetStackResult {
      */
     readonly pdcGatewayPrivateConnectivityInfoServiceName: string;
     /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Profiles instance.
+     */
+    readonly profilesAllowlistUrl: string;
+    /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
      */
     readonly profilesIpAllowListCname: string;
@@ -310,6 +334,10 @@ export interface GetStackResult {
     readonly profilesStatus: string;
     readonly profilesUrl: string;
     readonly profilesUserId: number;
+    /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Prometheus instance.
+     */
+    readonly prometheusAllowlistUrl: string;
     /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
      */
@@ -375,6 +403,10 @@ export interface GetStackResult {
      * Status of the stack.
      */
     readonly status: string;
+    /**
+     * Allowlist API endpoint that returns the source IP addresses to allow for the Traces instance.
+     */
+    readonly tracesAllowlistUrl: string;
     /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
      */

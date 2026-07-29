@@ -22,10 +22,17 @@ import * as utilities from "../utilities";
  *     login: "viewer",
  *     password: "my-password",
  * });
+ * const teamAdmin = new grafana.oss.User("team_admin", {
+ *     name: "Team Admin",
+ *     email: "team-admin@example.com",
+ *     login: "team-admin",
+ *     password: "my-password-2",
+ * });
  * const test_team = new grafana.oss.Team("test-team", {
  *     name: "Test Team",
  *     email: "teamemail@example.com",
  *     members: [viewer.email],
+ *     admins: [teamAdmin.email],
  * });
  * ```
  *
@@ -65,6 +72,10 @@ export class Team extends pulumi.CustomResource {
     }
 
     /**
+     * A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `members` are demoted; administrators only present in state (for example from the UI) are preserved until `admins` is set explicitly, including to `[]`.
+     */
+    declare public readonly admins: pulumi.Output<string[]>;
+    /**
      * An email address for the team.
      */
     declare public readonly email: pulumi.Output<string>;
@@ -73,7 +84,7 @@ export class Team extends pulumi.CustomResource {
      */
     declare public readonly ignoreExternallySyncedMembers: pulumi.Output<boolean>;
     /**
-     * A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
+     * A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.
      */
     declare public readonly members: pulumi.Output<string[]>;
     /**
@@ -113,6 +124,7 @@ export class Team extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TeamState | undefined;
+            resourceInputs["admins"] = state?.admins;
             resourceInputs["email"] = state?.email;
             resourceInputs["ignoreExternallySyncedMembers"] = state?.ignoreExternallySyncedMembers;
             resourceInputs["members"] = state?.members;
@@ -124,6 +136,7 @@ export class Team extends pulumi.CustomResource {
             resourceInputs["teamUid"] = state?.teamUid;
         } else {
             const args = argsOrState as TeamArgs | undefined;
+            resourceInputs["admins"] = args?.admins;
             resourceInputs["email"] = args?.email;
             resourceInputs["ignoreExternallySyncedMembers"] = args?.ignoreExternallySyncedMembers;
             resourceInputs["members"] = args?.members;
@@ -146,6 +159,10 @@ export class Team extends pulumi.CustomResource {
  */
 export interface TeamState {
     /**
+     * A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `members` are demoted; administrators only present in state (for example from the UI) are preserved until `admins` is set explicitly, including to `[]`.
+     */
+    admins?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * An email address for the team.
      */
     email?: pulumi.Input<string>;
@@ -154,7 +171,7 @@ export interface TeamState {
      */
     ignoreExternallySyncedMembers?: pulumi.Input<boolean>;
     /**
-     * A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
+     * A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.
      */
     members?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -187,6 +204,10 @@ export interface TeamState {
  */
 export interface TeamArgs {
     /**
+     * A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `members` are demoted; administrators only present in state (for example from the UI) are preserved until `admins` is set explicitly, including to `[]`.
+     */
+    admins?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * An email address for the team.
      */
     email?: pulumi.Input<string>;
@@ -195,7 +216,7 @@ export interface TeamArgs {
      */
     ignoreExternallySyncedMembers?: pulumi.Input<boolean>;
     /**
-     * A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
+     * A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.
      */
     members?: pulumi.Input<pulumi.Input<string>[]>;
     /**

@@ -131,6 +131,7 @@ class GetLoadTestsLoadTestResult(dict):
                  baseline_test_run_id: _builtins.str,
                  created: _builtins.str,
                  id: _builtins.str,
+                 k6_version: _builtins.str,
                  name: _builtins.str,
                  project_id: _builtins.str,
                  script: _builtins.str,
@@ -138,6 +139,7 @@ class GetLoadTestsLoadTestResult(dict):
         pulumi.set(__self__, "baseline_test_run_id", baseline_test_run_id)
         pulumi.set(__self__, "created", created)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "k6_version", k6_version)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "script", script)
@@ -157,6 +159,11 @@ class GetLoadTestsLoadTestResult(dict):
     @pulumi.getter
     def id(self) -> _builtins.str:
         return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="k6Version")
+    def k6_version(self) -> _builtins.str:
+        return pulumi.get(self, "k6_version")
 
     @_builtins.property
     @pulumi.getter

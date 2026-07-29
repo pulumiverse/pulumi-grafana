@@ -26,6 +26,7 @@ namespace Pulumiverse.Grafana.Assistant
     ///     var example = new Grafana.Assistant.Skill("example", new()
     ///     {
     ///         Name = "Deploy readiness check",
+    ///         CommandName = "deploy-readiness",
     ///         Body = @"1. Check deployment pipeline status.
     /// 2. Verify SLO error budget before promoting.
     /// ",
@@ -55,6 +56,12 @@ namespace Pulumiverse.Grafana.Assistant
         /// </summary>
         [Output("body")]
         public Output<string> Body { get; private set; } = null!;
+
+        /// <summary>
+        /// The slash command name that invokes the skill. Setting this enables the skill as a command.
+        /// </summary>
+        [Output("commandName")]
+        public Output<string?> CommandName { get; private set; } = null!;
 
         /// <summary>
         /// Optional JSON array of context items referenced by the skill.
@@ -146,6 +153,12 @@ namespace Pulumiverse.Grafana.Assistant
         public Input<string> Body { get; set; } = null!;
 
         /// <summary>
+        /// The slash command name that invokes the skill. Setting this enables the skill as a command.
+        /// </summary>
+        [Input("commandName")]
+        public Input<string>? CommandName { get; set; }
+
+        /// <summary>
         /// Optional JSON array of context items referenced by the skill.
         /// </summary>
         [Input("contextItems")]
@@ -194,6 +207,12 @@ namespace Pulumiverse.Grafana.Assistant
         /// </summary>
         [Input("body")]
         public Input<string>? Body { get; set; }
+
+        /// <summary>
+        /// The slash command name that invokes the skill. Setting this enables the skill as a command.
+        /// </summary>
+        [Input("commandName")]
+        public Input<string>? CommandName { get; set; }
 
         /// <summary>
         /// Optional JSON array of context items referenced by the skill.

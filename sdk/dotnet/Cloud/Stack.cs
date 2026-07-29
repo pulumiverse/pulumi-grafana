@@ -50,6 +50,12 @@ namespace Pulumiverse.Grafana.Cloud
     public partial class Stack : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Alertmanager instances.
+        /// </summary>
+        [Output("alertmanagerAllowlistUrl")]
+        public Output<string> AlertmanagerAllowlistUrl { get; private set; } = null!;
+
+        /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
         /// </summary>
         [Output("alertmanagerIpAllowListCname")]
@@ -116,6 +122,12 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Fleet Management instance.
+        /// </summary>
+        [Output("fleetManagementAllowlistUrl")]
+        public Output<string> FleetManagementAllowlistUrl { get; private set; } = null!;
+
+        /// <summary>
         /// Name of the Fleet Management instance configured for this stack.
         /// </summary>
         [Output("fleetManagementName")]
@@ -170,10 +182,22 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<int> FleetManagementUserId { get; private set; } = null!;
 
         /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the grafana instance.
+        /// </summary>
+        [Output("grafanasAllowlistUrl")]
+        public Output<string> GrafanasAllowlistUrl { get; private set; } = null!;
+
+        /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
         /// </summary>
         [Output("grafanasIpAllowListCname")]
         public Output<string> GrafanasIpAllowListCname { get; private set; } = null!;
+
+        /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Graphite instance.
+        /// </summary>
+        [Output("graphiteAllowlistUrl")]
+        public Output<string> GraphiteAllowlistUrl { get; private set; } = null!;
 
         /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
@@ -234,6 +258,12 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
+
+        /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Logs instance.
+        /// </summary>
+        [Output("logsAllowlistUrl")]
+        public Output<string> LogsAllowlistUrl { get; private set; } = null!;
 
         /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
@@ -410,6 +440,12 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> PdcGatewayPrivateConnectivityInfoServiceName { get; private set; } = null!;
 
         /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Profiles instance.
+        /// </summary>
+        [Output("profilesAllowlistUrl")]
+        public Output<string> ProfilesAllowlistUrl { get; private set; } = null!;
+
+        /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
         /// </summary>
         [Output("profilesIpAllowListCname")]
@@ -456,6 +492,12 @@ namespace Pulumiverse.Grafana.Cloud
 
         [Output("profilesUserId")]
         public Output<int> ProfilesUserId { get; private set; } = null!;
+
+        /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Prometheus instance.
+        /// </summary>
+        [Output("prometheusAllowlistUrl")]
+        public Output<string> PrometheusAllowlistUrl { get; private set; } = null!;
 
         /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
@@ -552,6 +594,12 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
+
+        /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Traces instance.
+        /// </summary>
+        [Output("tracesAllowlistUrl")]
+        public Output<string> TracesAllowlistUrl { get; private set; } = null!;
 
         /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
@@ -738,6 +786,12 @@ namespace Pulumiverse.Grafana.Cloud
     public sealed class StackState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Alertmanager instances.
+        /// </summary>
+        [Input("alertmanagerAllowlistUrl")]
+        public Input<string>? AlertmanagerAllowlistUrl { get; set; }
+
+        /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
         /// </summary>
         [Input("alertmanagerIpAllowListCname")]
@@ -802,6 +856,12 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Fleet Management instance.
+        /// </summary>
+        [Input("fleetManagementAllowlistUrl")]
+        public Input<string>? FleetManagementAllowlistUrl { get; set; }
 
         /// <summary>
         /// Name of the Fleet Management instance configured for this stack.
@@ -876,10 +936,22 @@ namespace Pulumiverse.Grafana.Cloud
         public Input<int>? FleetManagementUserId { get; set; }
 
         /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the grafana instance.
+        /// </summary>
+        [Input("grafanasAllowlistUrl")]
+        public Input<string>? GrafanasAllowlistUrl { get; set; }
+
+        /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
         /// </summary>
         [Input("grafanasIpAllowListCname")]
         public Input<string>? GrafanasIpAllowListCname { get; set; }
+
+        /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Graphite instance.
+        /// </summary>
+        [Input("graphiteAllowlistUrl")]
+        public Input<string>? GraphiteAllowlistUrl { get; set; }
 
         /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
@@ -964,6 +1036,12 @@ namespace Pulumiverse.Grafana.Cloud
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
+
+        /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Logs instance.
+        /// </summary>
+        [Input("logsAllowlistUrl")]
+        public Input<string>? LogsAllowlistUrl { get; set; }
 
         /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
@@ -1212,6 +1290,12 @@ namespace Pulumiverse.Grafana.Cloud
         public Input<string>? PdcGatewayPrivateConnectivityInfoServiceName { get; set; }
 
         /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Profiles instance.
+        /// </summary>
+        [Input("profilesAllowlistUrl")]
+        public Input<string>? ProfilesAllowlistUrl { get; set; }
+
+        /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
         /// </summary>
         [Input("profilesIpAllowListCname")]
@@ -1276,6 +1360,12 @@ namespace Pulumiverse.Grafana.Cloud
 
         [Input("profilesUserId")]
         public Input<int>? ProfilesUserId { get; set; }
+
+        /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Prometheus instance.
+        /// </summary>
+        [Input("prometheusAllowlistUrl")]
+        public Input<string>? PrometheusAllowlistUrl { get; set; }
 
         /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
@@ -1390,6 +1480,12 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Traces instance.
+        /// </summary>
+        [Input("tracesAllowlistUrl")]
+        public Input<string>? TracesAllowlistUrl { get; set; }
 
         /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)

@@ -21,6 +21,7 @@ __all__ = ['TeamArgs', 'Team']
 @pulumi.input_type
 class TeamArgs:
     def __init__(__self__, *,
+                 admins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  email: Optional[pulumi.Input[_builtins.str]] = None,
                  ignore_externally_synced_members: Optional[pulumi.Input[_builtins.bool]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -31,15 +32,18 @@ class TeamArgs:
         """
         The set of arguments for constructing a Team resource.
 
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] admins: A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `members` are demoted; administrators only present in state (for example from the UI) are preserved until `admins` is set explicitly, including to `[]`.
         :param pulumi.Input[_builtins.str] email: An email address for the team.
         :param pulumi.Input[_builtins.bool] ignore_externally_synced_members: Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be provisioned using [enterprise.TeamExternalGroup resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.
         :param pulumi.Input[_builtins.str] name: The display name for the Grafana team created.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input['TeamTeamSyncArgs'] team_sync: Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
                * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
                * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team_sync/)
         """
+        if admins is not None:
+            pulumi.set(__self__, "admins", admins)
         if email is not None:
             pulumi.set(__self__, "email", email)
         if ignore_externally_synced_members is not None:
@@ -54,6 +58,18 @@ class TeamArgs:
             pulumi.set(__self__, "preferences", preferences)
         if team_sync is not None:
             pulumi.set(__self__, "team_sync", team_sync)
+
+    @_builtins.property
+    @pulumi.getter
+    def admins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `members` are demoted; administrators only present in state (for example from the UI) are preserved until `admins` is set explicitly, including to `[]`.
+        """
+        return pulumi.get(self, "admins")
+
+    @admins.setter
+    def admins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "admins", value)
 
     @_builtins.property
     @pulumi.getter
@@ -83,7 +99,7 @@ class TeamArgs:
     @pulumi.getter
     def members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
+        A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.
         """
         return pulumi.get(self, "members")
 
@@ -142,6 +158,7 @@ class TeamArgs:
 @pulumi.input_type
 class _TeamState:
     def __init__(__self__, *,
+                 admins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  email: Optional[pulumi.Input[_builtins.str]] = None,
                  ignore_externally_synced_members: Optional[pulumi.Input[_builtins.bool]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -154,9 +171,10 @@ class _TeamState:
         """
         Input properties used for looking up and filtering Team resources.
 
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] admins: A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `members` are demoted; administrators only present in state (for example from the UI) are preserved until `admins` is set explicitly, including to `[]`.
         :param pulumi.Input[_builtins.str] email: An email address for the team.
         :param pulumi.Input[_builtins.bool] ignore_externally_synced_members: Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be provisioned using [enterprise.TeamExternalGroup resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.
         :param pulumi.Input[_builtins.str] name: The display name for the Grafana team created.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.int] team_id: The team id assigned to this team by Grafana.
@@ -165,6 +183,8 @@ class _TeamState:
                * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team_sync/)
         :param pulumi.Input[_builtins.str] team_uid: The team uid assigned to this team by Grafana.
         """
+        if admins is not None:
+            pulumi.set(__self__, "admins", admins)
         if email is not None:
             pulumi.set(__self__, "email", email)
         if ignore_externally_synced_members is not None:
@@ -183,6 +203,18 @@ class _TeamState:
             pulumi.set(__self__, "team_sync", team_sync)
         if team_uid is not None:
             pulumi.set(__self__, "team_uid", team_uid)
+
+    @_builtins.property
+    @pulumi.getter
+    def admins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `members` are demoted; administrators only present in state (for example from the UI) are preserved until `admins` is set explicitly, including to `[]`.
+        """
+        return pulumi.get(self, "admins")
+
+    @admins.setter
+    def admins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "admins", value)
 
     @_builtins.property
     @pulumi.getter
@@ -212,7 +244,7 @@ class _TeamState:
     @pulumi.getter
     def members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
+        A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.
         """
         return pulumi.get(self, "members")
 
@@ -298,6 +330,7 @@ class Team(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 admins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  email: Optional[pulumi.Input[_builtins.str]] = None,
                  ignore_externally_synced_members: Optional[pulumi.Input[_builtins.bool]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -321,10 +354,16 @@ class Team(pulumi.CustomResource):
             email="viewer@example.com",
             login="viewer",
             password="my-password")
+        team_admin = grafana.oss.User("team_admin",
+            name="Team Admin",
+            email="team-admin@example.com",
+            login="team-admin",
+            password="my-password-2")
         test_team = grafana.oss.Team("test-team",
             name="Test Team",
             email="teamemail@example.com",
-            members=[viewer.email])
+            members=[viewer.email],
+            admins=[team_admin.email])
         ```
 
         ## Import
@@ -337,9 +376,10 @@ class Team(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] admins: A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `members` are demoted; administrators only present in state (for example from the UI) are preserved until `admins` is set explicitly, including to `[]`.
         :param pulumi.Input[_builtins.str] email: An email address for the team.
         :param pulumi.Input[_builtins.bool] ignore_externally_synced_members: Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be provisioned using [enterprise.TeamExternalGroup resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.
         :param pulumi.Input[_builtins.str] name: The display name for the Grafana team created.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[Union['TeamTeamSyncArgs', 'TeamTeamSyncArgsDict']] team_sync: Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
@@ -367,10 +407,16 @@ class Team(pulumi.CustomResource):
             email="viewer@example.com",
             login="viewer",
             password="my-password")
+        team_admin = grafana.oss.User("team_admin",
+            name="Team Admin",
+            email="team-admin@example.com",
+            login="team-admin",
+            password="my-password-2")
         test_team = grafana.oss.Team("test-team",
             name="Test Team",
             email="teamemail@example.com",
-            members=[viewer.email])
+            members=[viewer.email],
+            admins=[team_admin.email])
         ```
 
         ## Import
@@ -396,6 +442,7 @@ class Team(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 admins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  email: Optional[pulumi.Input[_builtins.str]] = None,
                  ignore_externally_synced_members: Optional[pulumi.Input[_builtins.bool]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -412,6 +459,7 @@ class Team(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = TeamArgs.__new__(TeamArgs)
 
+            __props__.__dict__["admins"] = admins
             __props__.__dict__["email"] = email
             __props__.__dict__["ignore_externally_synced_members"] = ignore_externally_synced_members
             __props__.__dict__["members"] = members
@@ -433,6 +481,7 @@ class Team(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            admins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             email: Optional[pulumi.Input[_builtins.str]] = None,
             ignore_externally_synced_members: Optional[pulumi.Input[_builtins.bool]] = None,
             members: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -449,9 +498,10 @@ class Team(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] admins: A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `members` are demoted; administrators only present in state (for example from the UI) are preserved until `admins` is set explicitly, including to `[]`.
         :param pulumi.Input[_builtins.str] email: An email address for the team.
         :param pulumi.Input[_builtins.bool] ignore_externally_synced_members: Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be provisioned using [enterprise.TeamExternalGroup resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.
         :param pulumi.Input[_builtins.str] name: The display name for the Grafana team created.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.int] team_id: The team id assigned to this team by Grafana.
@@ -464,6 +514,7 @@ class Team(pulumi.CustomResource):
 
         __props__ = _TeamState.__new__(_TeamState)
 
+        __props__.__dict__["admins"] = admins
         __props__.__dict__["email"] = email
         __props__.__dict__["ignore_externally_synced_members"] = ignore_externally_synced_members
         __props__.__dict__["members"] = members
@@ -474,6 +525,14 @@ class Team(pulumi.CustomResource):
         __props__.__dict__["team_sync"] = team_sync
         __props__.__dict__["team_uid"] = team_uid
         return Team(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter
+    def admins(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `members` are demoted; administrators only present in state (for example from the UI) are preserved until `admins` is set explicitly, including to `[]`.
+        """
+        return pulumi.get(self, "admins")
 
     @_builtins.property
     @pulumi.getter
@@ -495,7 +554,7 @@ class Team(pulumi.CustomResource):
     @pulumi.getter
     def members(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
+        A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.
         """
         return pulumi.get(self, "members")
 

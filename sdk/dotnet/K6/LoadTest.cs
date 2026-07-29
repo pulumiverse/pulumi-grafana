@@ -63,6 +63,12 @@ namespace Pulumiverse.Grafana.K6
         public Output<string> Created { get; private set; } = null!;
 
         /// <summary>
+        /// Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2
+        /// </summary>
+        [Output("k6Version")]
+        public Output<string> K6Version { get; private set; } = null!;
+
+        /// <summary>
         /// Human-friendly identifier of the load test.
         /// </summary>
         [Output("name")]
@@ -140,6 +146,12 @@ namespace Pulumiverse.Grafana.K6
         public Input<string>? BaselineTestRunId { get; set; }
 
         /// <summary>
+        /// Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2
+        /// </summary>
+        [Input("k6Version")]
+        public Input<string>? K6Version { get; set; }
+
+        /// <summary>
         /// Human-friendly identifier of the load test.
         /// </summary>
         [Input("name")]
@@ -176,6 +188,12 @@ namespace Pulumiverse.Grafana.K6
         /// </summary>
         [Input("created")]
         public Input<string>? Created { get; set; }
+
+        /// <summary>
+        /// Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2
+        /// </summary>
+        [Input("k6Version")]
+        public Input<string>? K6Version { get; set; }
 
         /// <summary>
         /// Human-friendly identifier of the load test.

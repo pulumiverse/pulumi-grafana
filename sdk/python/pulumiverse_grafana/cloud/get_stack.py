@@ -26,7 +26,10 @@ class GetStackResult:
     """
     A collection of values returned by getStack.
     """
-    def __init__(__self__, alertmanager_ip_allow_list_cname=None, alertmanager_name=None, alertmanager_status=None, alertmanager_url=None, alertmanager_user_id=None, cloud_provider_url=None, cluster_name=None, cluster_slug=None, connections_api_url=None, delete_protection=None, description=None, fleet_management_name=None, fleet_management_private_connectivity_info_availability_zone_ids=None, fleet_management_private_connectivity_info_availability_zones=None, fleet_management_private_connectivity_info_private_dns=None, fleet_management_private_connectivity_info_regions=None, fleet_management_private_connectivity_info_service_name=None, fleet_management_status=None, fleet_management_url=None, fleet_management_user_id=None, grafanas_ip_allow_list_cname=None, graphite_ip_allow_list_cname=None, graphite_name=None, graphite_private_connectivity_info_availability_zone_ids=None, graphite_private_connectivity_info_availability_zones=None, graphite_private_connectivity_info_private_dns=None, graphite_private_connectivity_info_regions=None, graphite_private_connectivity_info_service_name=None, graphite_status=None, graphite_url=None, graphite_user_id=None, id=None, influx_url=None, labels=None, logs_ip_allow_list_cname=None, logs_name=None, logs_private_connectivity_info_availability_zone_ids=None, logs_private_connectivity_info_availability_zones=None, logs_private_connectivity_info_private_dns=None, logs_private_connectivity_info_regions=None, logs_private_connectivity_info_service_name=None, logs_status=None, logs_url=None, logs_user_id=None, name=None, oncall_api_url=None, org_id=None, org_name=None, org_slug=None, otlp_private_connectivity_info_availability_zone_ids=None, otlp_private_connectivity_info_availability_zones=None, otlp_private_connectivity_info_private_dns=None, otlp_private_connectivity_info_regions=None, otlp_private_connectivity_info_service_name=None, otlp_url=None, pdc_api_private_connectivity_info_availability_zone_ids=None, pdc_api_private_connectivity_info_availability_zones=None, pdc_api_private_connectivity_info_private_dns=None, pdc_api_private_connectivity_info_regions=None, pdc_api_private_connectivity_info_service_name=None, pdc_gateway_private_connectivity_info_availability_zone_ids=None, pdc_gateway_private_connectivity_info_availability_zones=None, pdc_gateway_private_connectivity_info_private_dns=None, pdc_gateway_private_connectivity_info_regions=None, pdc_gateway_private_connectivity_info_service_name=None, profiles_ip_allow_list_cname=None, profiles_name=None, profiles_private_connectivity_info_availability_zone_ids=None, profiles_private_connectivity_info_availability_zones=None, profiles_private_connectivity_info_private_dns=None, profiles_private_connectivity_info_regions=None, profiles_private_connectivity_info_service_name=None, profiles_status=None, profiles_url=None, profiles_user_id=None, prometheus_ip_allow_list_cname=None, prometheus_name=None, prometheus_private_connectivity_info_availability_zone_ids=None, prometheus_private_connectivity_info_availability_zones=None, prometheus_private_connectivity_info_private_dns=None, prometheus_private_connectivity_info_regions=None, prometheus_private_connectivity_info_service_name=None, prometheus_remote_endpoint=None, prometheus_remote_write_endpoint=None, prometheus_status=None, prometheus_url=None, prometheus_user_id=None, region_slug=None, slug=None, sm_url=None, status=None, traces_ip_allow_list_cname=None, traces_name=None, traces_private_connectivity_info_availability_zone_ids=None, traces_private_connectivity_info_availability_zones=None, traces_private_connectivity_info_private_dns=None, traces_private_connectivity_info_regions=None, traces_private_connectivity_info_service_name=None, traces_status=None, traces_url=None, traces_user_id=None, url=None):
+    def __init__(__self__, alertmanager_allowlist_url=None, alertmanager_ip_allow_list_cname=None, alertmanager_name=None, alertmanager_status=None, alertmanager_url=None, alertmanager_user_id=None, cloud_provider_url=None, cluster_name=None, cluster_slug=None, connections_api_url=None, delete_protection=None, description=None, fleet_management_allowlist_url=None, fleet_management_name=None, fleet_management_private_connectivity_info_availability_zone_ids=None, fleet_management_private_connectivity_info_availability_zones=None, fleet_management_private_connectivity_info_private_dns=None, fleet_management_private_connectivity_info_regions=None, fleet_management_private_connectivity_info_service_name=None, fleet_management_status=None, fleet_management_url=None, fleet_management_user_id=None, grafanas_allowlist_url=None, grafanas_ip_allow_list_cname=None, graphite_allowlist_url=None, graphite_ip_allow_list_cname=None, graphite_name=None, graphite_private_connectivity_info_availability_zone_ids=None, graphite_private_connectivity_info_availability_zones=None, graphite_private_connectivity_info_private_dns=None, graphite_private_connectivity_info_regions=None, graphite_private_connectivity_info_service_name=None, graphite_status=None, graphite_url=None, graphite_user_id=None, id=None, influx_url=None, labels=None, logs_allowlist_url=None, logs_ip_allow_list_cname=None, logs_name=None, logs_private_connectivity_info_availability_zone_ids=None, logs_private_connectivity_info_availability_zones=None, logs_private_connectivity_info_private_dns=None, logs_private_connectivity_info_regions=None, logs_private_connectivity_info_service_name=None, logs_status=None, logs_url=None, logs_user_id=None, name=None, oncall_api_url=None, org_id=None, org_name=None, org_slug=None, otlp_private_connectivity_info_availability_zone_ids=None, otlp_private_connectivity_info_availability_zones=None, otlp_private_connectivity_info_private_dns=None, otlp_private_connectivity_info_regions=None, otlp_private_connectivity_info_service_name=None, otlp_url=None, pdc_api_private_connectivity_info_availability_zone_ids=None, pdc_api_private_connectivity_info_availability_zones=None, pdc_api_private_connectivity_info_private_dns=None, pdc_api_private_connectivity_info_regions=None, pdc_api_private_connectivity_info_service_name=None, pdc_gateway_private_connectivity_info_availability_zone_ids=None, pdc_gateway_private_connectivity_info_availability_zones=None, pdc_gateway_private_connectivity_info_private_dns=None, pdc_gateway_private_connectivity_info_regions=None, pdc_gateway_private_connectivity_info_service_name=None, profiles_allowlist_url=None, profiles_ip_allow_list_cname=None, profiles_name=None, profiles_private_connectivity_info_availability_zone_ids=None, profiles_private_connectivity_info_availability_zones=None, profiles_private_connectivity_info_private_dns=None, profiles_private_connectivity_info_regions=None, profiles_private_connectivity_info_service_name=None, profiles_status=None, profiles_url=None, profiles_user_id=None, prometheus_allowlist_url=None, prometheus_ip_allow_list_cname=None, prometheus_name=None, prometheus_private_connectivity_info_availability_zone_ids=None, prometheus_private_connectivity_info_availability_zones=None, prometheus_private_connectivity_info_private_dns=None, prometheus_private_connectivity_info_regions=None, prometheus_private_connectivity_info_service_name=None, prometheus_remote_endpoint=None, prometheus_remote_write_endpoint=None, prometheus_status=None, prometheus_url=None, prometheus_user_id=None, region_slug=None, slug=None, sm_url=None, status=None, traces_allowlist_url=None, traces_ip_allow_list_cname=None, traces_name=None, traces_private_connectivity_info_availability_zone_ids=None, traces_private_connectivity_info_availability_zones=None, traces_private_connectivity_info_private_dns=None, traces_private_connectivity_info_regions=None, traces_private_connectivity_info_service_name=None, traces_status=None, traces_url=None, traces_user_id=None, url=None):
+        if alertmanager_allowlist_url and not isinstance(alertmanager_allowlist_url, str):
+            raise TypeError("Expected argument 'alertmanager_allowlist_url' to be a str")
+        pulumi.set(__self__, "alertmanager_allowlist_url", alertmanager_allowlist_url)
         if alertmanager_ip_allow_list_cname and not isinstance(alertmanager_ip_allow_list_cname, str):
             raise TypeError("Expected argument 'alertmanager_ip_allow_list_cname' to be a str")
         pulumi.set(__self__, "alertmanager_ip_allow_list_cname", alertmanager_ip_allow_list_cname)
@@ -60,6 +63,9 @@ class GetStackResult:
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
+        if fleet_management_allowlist_url and not isinstance(fleet_management_allowlist_url, str):
+            raise TypeError("Expected argument 'fleet_management_allowlist_url' to be a str")
+        pulumi.set(__self__, "fleet_management_allowlist_url", fleet_management_allowlist_url)
         if fleet_management_name and not isinstance(fleet_management_name, str):
             raise TypeError("Expected argument 'fleet_management_name' to be a str")
         pulumi.set(__self__, "fleet_management_name", fleet_management_name)
@@ -87,9 +93,15 @@ class GetStackResult:
         if fleet_management_user_id and not isinstance(fleet_management_user_id, int):
             raise TypeError("Expected argument 'fleet_management_user_id' to be a int")
         pulumi.set(__self__, "fleet_management_user_id", fleet_management_user_id)
+        if grafanas_allowlist_url and not isinstance(grafanas_allowlist_url, str):
+            raise TypeError("Expected argument 'grafanas_allowlist_url' to be a str")
+        pulumi.set(__self__, "grafanas_allowlist_url", grafanas_allowlist_url)
         if grafanas_ip_allow_list_cname and not isinstance(grafanas_ip_allow_list_cname, str):
             raise TypeError("Expected argument 'grafanas_ip_allow_list_cname' to be a str")
         pulumi.set(__self__, "grafanas_ip_allow_list_cname", grafanas_ip_allow_list_cname)
+        if graphite_allowlist_url and not isinstance(graphite_allowlist_url, str):
+            raise TypeError("Expected argument 'graphite_allowlist_url' to be a str")
+        pulumi.set(__self__, "graphite_allowlist_url", graphite_allowlist_url)
         if graphite_ip_allow_list_cname and not isinstance(graphite_ip_allow_list_cname, str):
             raise TypeError("Expected argument 'graphite_ip_allow_list_cname' to be a str")
         pulumi.set(__self__, "graphite_ip_allow_list_cname", graphite_ip_allow_list_cname)
@@ -129,6 +141,9 @@ class GetStackResult:
         if labels and not isinstance(labels, dict):
             raise TypeError("Expected argument 'labels' to be a dict")
         pulumi.set(__self__, "labels", labels)
+        if logs_allowlist_url and not isinstance(logs_allowlist_url, str):
+            raise TypeError("Expected argument 'logs_allowlist_url' to be a str")
+        pulumi.set(__self__, "logs_allowlist_url", logs_allowlist_url)
         if logs_ip_allow_list_cname and not isinstance(logs_ip_allow_list_cname, str):
             raise TypeError("Expected argument 'logs_ip_allow_list_cname' to be a str")
         pulumi.set(__self__, "logs_ip_allow_list_cname", logs_ip_allow_list_cname)
@@ -222,6 +237,9 @@ class GetStackResult:
         if pdc_gateway_private_connectivity_info_service_name and not isinstance(pdc_gateway_private_connectivity_info_service_name, str):
             raise TypeError("Expected argument 'pdc_gateway_private_connectivity_info_service_name' to be a str")
         pulumi.set(__self__, "pdc_gateway_private_connectivity_info_service_name", pdc_gateway_private_connectivity_info_service_name)
+        if profiles_allowlist_url and not isinstance(profiles_allowlist_url, str):
+            raise TypeError("Expected argument 'profiles_allowlist_url' to be a str")
+        pulumi.set(__self__, "profiles_allowlist_url", profiles_allowlist_url)
         if profiles_ip_allow_list_cname and not isinstance(profiles_ip_allow_list_cname, str):
             raise TypeError("Expected argument 'profiles_ip_allow_list_cname' to be a str")
         pulumi.set(__self__, "profiles_ip_allow_list_cname", profiles_ip_allow_list_cname)
@@ -252,6 +270,9 @@ class GetStackResult:
         if profiles_user_id and not isinstance(profiles_user_id, int):
             raise TypeError("Expected argument 'profiles_user_id' to be a int")
         pulumi.set(__self__, "profiles_user_id", profiles_user_id)
+        if prometheus_allowlist_url and not isinstance(prometheus_allowlist_url, str):
+            raise TypeError("Expected argument 'prometheus_allowlist_url' to be a str")
+        pulumi.set(__self__, "prometheus_allowlist_url", prometheus_allowlist_url)
         if prometheus_ip_allow_list_cname and not isinstance(prometheus_ip_allow_list_cname, str):
             raise TypeError("Expected argument 'prometheus_ip_allow_list_cname' to be a str")
         pulumi.set(__self__, "prometheus_ip_allow_list_cname", prometheus_ip_allow_list_cname)
@@ -300,6 +321,9 @@ class GetStackResult:
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
+        if traces_allowlist_url and not isinstance(traces_allowlist_url, str):
+            raise TypeError("Expected argument 'traces_allowlist_url' to be a str")
+        pulumi.set(__self__, "traces_allowlist_url", traces_allowlist_url)
         if traces_ip_allow_list_cname and not isinstance(traces_ip_allow_list_cname, str):
             raise TypeError("Expected argument 'traces_ip_allow_list_cname' to be a str")
         pulumi.set(__self__, "traces_ip_allow_list_cname", traces_ip_allow_list_cname)
@@ -333,6 +357,14 @@ class GetStackResult:
         if url and not isinstance(url, str):
             raise TypeError("Expected argument 'url' to be a str")
         pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter(name="alertmanagerAllowlistUrl")
+    def alertmanager_allowlist_url(self) -> _builtins.str:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Alertmanager instances.
+        """
+        return pulumi.get(self, "alertmanager_allowlist_url")
 
     @_builtins.property
     @pulumi.getter(name="alertmanagerIpAllowListCname")
@@ -423,6 +455,14 @@ class GetStackResult:
         return pulumi.get(self, "description")
 
     @_builtins.property
+    @pulumi.getter(name="fleetManagementAllowlistUrl")
+    def fleet_management_allowlist_url(self) -> _builtins.str:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Fleet Management instance.
+        """
+        return pulumi.get(self, "fleet_management_allowlist_url")
+
+    @_builtins.property
     @pulumi.getter(name="fleetManagementName")
     def fleet_management_name(self) -> _builtins.str:
         """
@@ -495,12 +535,28 @@ class GetStackResult:
         return pulumi.get(self, "fleet_management_user_id")
 
     @_builtins.property
+    @pulumi.getter(name="grafanasAllowlistUrl")
+    def grafanas_allowlist_url(self) -> _builtins.str:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the grafana instance.
+        """
+        return pulumi.get(self, "grafanas_allowlist_url")
+
+    @_builtins.property
     @pulumi.getter(name="grafanasIpAllowListCname")
     def grafanas_ip_allow_list_cname(self) -> _builtins.str:
         """
         Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
         """
         return pulumi.get(self, "grafanas_ip_allow_list_cname")
+
+    @_builtins.property
+    @pulumi.getter(name="graphiteAllowlistUrl")
+    def graphite_allowlist_url(self) -> _builtins.str:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Graphite instance.
+        """
+        return pulumi.get(self, "graphite_allowlist_url")
 
     @_builtins.property
     @pulumi.getter(name="graphiteIpAllowListCname")
@@ -593,6 +649,14 @@ class GetStackResult:
         A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-._]+$" and stacks cannot have more than 10 labels.
         """
         return pulumi.get(self, "labels")
+
+    @_builtins.property
+    @pulumi.getter(name="logsAllowlistUrl")
+    def logs_allowlist_url(self) -> _builtins.str:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Logs instance.
+        """
+        return pulumi.get(self, "logs_allowlist_url")
 
     @_builtins.property
     @pulumi.getter(name="logsIpAllowListCname")
@@ -831,6 +895,14 @@ class GetStackResult:
         return pulumi.get(self, "pdc_gateway_private_connectivity_info_service_name")
 
     @_builtins.property
+    @pulumi.getter(name="profilesAllowlistUrl")
+    def profiles_allowlist_url(self) -> _builtins.str:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Profiles instance.
+        """
+        return pulumi.get(self, "profiles_allowlist_url")
+
+    @_builtins.property
     @pulumi.getter(name="profilesIpAllowListCname")
     def profiles_ip_allow_list_cname(self) -> _builtins.str:
         """
@@ -897,6 +969,14 @@ class GetStackResult:
     @pulumi.getter(name="profilesUserId")
     def profiles_user_id(self) -> _builtins.int:
         return pulumi.get(self, "profiles_user_id")
+
+    @_builtins.property
+    @pulumi.getter(name="prometheusAllowlistUrl")
+    def prometheus_allowlist_url(self) -> _builtins.str:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Prometheus instance.
+        """
+        return pulumi.get(self, "prometheus_allowlist_url")
 
     @_builtins.property
     @pulumi.getter(name="prometheusIpAllowListCname")
@@ -1028,6 +1108,14 @@ class GetStackResult:
         return pulumi.get(self, "status")
 
     @_builtins.property
+    @pulumi.getter(name="tracesAllowlistUrl")
+    def traces_allowlist_url(self) -> _builtins.str:
+        """
+        Allowlist API endpoint that returns the source IP addresses to allow for the Traces instance.
+        """
+        return pulumi.get(self, "traces_allowlist_url")
+
+    @_builtins.property
     @pulumi.getter(name="tracesIpAllowListCname")
     def traces_ip_allow_list_cname(self) -> _builtins.str:
         """
@@ -1113,6 +1201,7 @@ class AwaitableGetStackResult(GetStackResult):
         if False:
             yield self
         return GetStackResult(
+            alertmanager_allowlist_url=self.alertmanager_allowlist_url,
             alertmanager_ip_allow_list_cname=self.alertmanager_ip_allow_list_cname,
             alertmanager_name=self.alertmanager_name,
             alertmanager_status=self.alertmanager_status,
@@ -1124,6 +1213,7 @@ class AwaitableGetStackResult(GetStackResult):
             connections_api_url=self.connections_api_url,
             delete_protection=self.delete_protection,
             description=self.description,
+            fleet_management_allowlist_url=self.fleet_management_allowlist_url,
             fleet_management_name=self.fleet_management_name,
             fleet_management_private_connectivity_info_availability_zone_ids=self.fleet_management_private_connectivity_info_availability_zone_ids,
             fleet_management_private_connectivity_info_availability_zones=self.fleet_management_private_connectivity_info_availability_zones,
@@ -1133,7 +1223,9 @@ class AwaitableGetStackResult(GetStackResult):
             fleet_management_status=self.fleet_management_status,
             fleet_management_url=self.fleet_management_url,
             fleet_management_user_id=self.fleet_management_user_id,
+            grafanas_allowlist_url=self.grafanas_allowlist_url,
             grafanas_ip_allow_list_cname=self.grafanas_ip_allow_list_cname,
+            graphite_allowlist_url=self.graphite_allowlist_url,
             graphite_ip_allow_list_cname=self.graphite_ip_allow_list_cname,
             graphite_name=self.graphite_name,
             graphite_private_connectivity_info_availability_zone_ids=self.graphite_private_connectivity_info_availability_zone_ids,
@@ -1147,6 +1239,7 @@ class AwaitableGetStackResult(GetStackResult):
             id=self.id,
             influx_url=self.influx_url,
             labels=self.labels,
+            logs_allowlist_url=self.logs_allowlist_url,
             logs_ip_allow_list_cname=self.logs_ip_allow_list_cname,
             logs_name=self.logs_name,
             logs_private_connectivity_info_availability_zone_ids=self.logs_private_connectivity_info_availability_zone_ids,
@@ -1178,6 +1271,7 @@ class AwaitableGetStackResult(GetStackResult):
             pdc_gateway_private_connectivity_info_private_dns=self.pdc_gateway_private_connectivity_info_private_dns,
             pdc_gateway_private_connectivity_info_regions=self.pdc_gateway_private_connectivity_info_regions,
             pdc_gateway_private_connectivity_info_service_name=self.pdc_gateway_private_connectivity_info_service_name,
+            profiles_allowlist_url=self.profiles_allowlist_url,
             profiles_ip_allow_list_cname=self.profiles_ip_allow_list_cname,
             profiles_name=self.profiles_name,
             profiles_private_connectivity_info_availability_zone_ids=self.profiles_private_connectivity_info_availability_zone_ids,
@@ -1188,6 +1282,7 @@ class AwaitableGetStackResult(GetStackResult):
             profiles_status=self.profiles_status,
             profiles_url=self.profiles_url,
             profiles_user_id=self.profiles_user_id,
+            prometheus_allowlist_url=self.prometheus_allowlist_url,
             prometheus_ip_allow_list_cname=self.prometheus_ip_allow_list_cname,
             prometheus_name=self.prometheus_name,
             prometheus_private_connectivity_info_availability_zone_ids=self.prometheus_private_connectivity_info_availability_zone_ids,
@@ -1204,6 +1299,7 @@ class AwaitableGetStackResult(GetStackResult):
             slug=self.slug,
             sm_url=self.sm_url,
             status=self.status,
+            traces_allowlist_url=self.traces_allowlist_url,
             traces_ip_allow_list_cname=self.traces_ip_allow_list_cname,
             traces_name=self.traces_name,
             traces_private_connectivity_info_availability_zone_ids=self.traces_private_connectivity_info_availability_zone_ids,
@@ -1247,6 +1343,7 @@ def get_stack(slug: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:cloud/getStack:getStack', __args__, opts=opts, typ=GetStackResult).value
 
     return AwaitableGetStackResult(
+        alertmanager_allowlist_url=pulumi.get(__ret__, 'alertmanager_allowlist_url'),
         alertmanager_ip_allow_list_cname=pulumi.get(__ret__, 'alertmanager_ip_allow_list_cname'),
         alertmanager_name=pulumi.get(__ret__, 'alertmanager_name'),
         alertmanager_status=pulumi.get(__ret__, 'alertmanager_status'),
@@ -1258,6 +1355,7 @@ def get_stack(slug: Optional[_builtins.str] = None,
         connections_api_url=pulumi.get(__ret__, 'connections_api_url'),
         delete_protection=pulumi.get(__ret__, 'delete_protection'),
         description=pulumi.get(__ret__, 'description'),
+        fleet_management_allowlist_url=pulumi.get(__ret__, 'fleet_management_allowlist_url'),
         fleet_management_name=pulumi.get(__ret__, 'fleet_management_name'),
         fleet_management_private_connectivity_info_availability_zone_ids=pulumi.get(__ret__, 'fleet_management_private_connectivity_info_availability_zone_ids'),
         fleet_management_private_connectivity_info_availability_zones=pulumi.get(__ret__, 'fleet_management_private_connectivity_info_availability_zones'),
@@ -1267,7 +1365,9 @@ def get_stack(slug: Optional[_builtins.str] = None,
         fleet_management_status=pulumi.get(__ret__, 'fleet_management_status'),
         fleet_management_url=pulumi.get(__ret__, 'fleet_management_url'),
         fleet_management_user_id=pulumi.get(__ret__, 'fleet_management_user_id'),
+        grafanas_allowlist_url=pulumi.get(__ret__, 'grafanas_allowlist_url'),
         grafanas_ip_allow_list_cname=pulumi.get(__ret__, 'grafanas_ip_allow_list_cname'),
+        graphite_allowlist_url=pulumi.get(__ret__, 'graphite_allowlist_url'),
         graphite_ip_allow_list_cname=pulumi.get(__ret__, 'graphite_ip_allow_list_cname'),
         graphite_name=pulumi.get(__ret__, 'graphite_name'),
         graphite_private_connectivity_info_availability_zone_ids=pulumi.get(__ret__, 'graphite_private_connectivity_info_availability_zone_ids'),
@@ -1281,6 +1381,7 @@ def get_stack(slug: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         influx_url=pulumi.get(__ret__, 'influx_url'),
         labels=pulumi.get(__ret__, 'labels'),
+        logs_allowlist_url=pulumi.get(__ret__, 'logs_allowlist_url'),
         logs_ip_allow_list_cname=pulumi.get(__ret__, 'logs_ip_allow_list_cname'),
         logs_name=pulumi.get(__ret__, 'logs_name'),
         logs_private_connectivity_info_availability_zone_ids=pulumi.get(__ret__, 'logs_private_connectivity_info_availability_zone_ids'),
@@ -1312,6 +1413,7 @@ def get_stack(slug: Optional[_builtins.str] = None,
         pdc_gateway_private_connectivity_info_private_dns=pulumi.get(__ret__, 'pdc_gateway_private_connectivity_info_private_dns'),
         pdc_gateway_private_connectivity_info_regions=pulumi.get(__ret__, 'pdc_gateway_private_connectivity_info_regions'),
         pdc_gateway_private_connectivity_info_service_name=pulumi.get(__ret__, 'pdc_gateway_private_connectivity_info_service_name'),
+        profiles_allowlist_url=pulumi.get(__ret__, 'profiles_allowlist_url'),
         profiles_ip_allow_list_cname=pulumi.get(__ret__, 'profiles_ip_allow_list_cname'),
         profiles_name=pulumi.get(__ret__, 'profiles_name'),
         profiles_private_connectivity_info_availability_zone_ids=pulumi.get(__ret__, 'profiles_private_connectivity_info_availability_zone_ids'),
@@ -1322,6 +1424,7 @@ def get_stack(slug: Optional[_builtins.str] = None,
         profiles_status=pulumi.get(__ret__, 'profiles_status'),
         profiles_url=pulumi.get(__ret__, 'profiles_url'),
         profiles_user_id=pulumi.get(__ret__, 'profiles_user_id'),
+        prometheus_allowlist_url=pulumi.get(__ret__, 'prometheus_allowlist_url'),
         prometheus_ip_allow_list_cname=pulumi.get(__ret__, 'prometheus_ip_allow_list_cname'),
         prometheus_name=pulumi.get(__ret__, 'prometheus_name'),
         prometheus_private_connectivity_info_availability_zone_ids=pulumi.get(__ret__, 'prometheus_private_connectivity_info_availability_zone_ids'),
@@ -1338,6 +1441,7 @@ def get_stack(slug: Optional[_builtins.str] = None,
         slug=pulumi.get(__ret__, 'slug'),
         sm_url=pulumi.get(__ret__, 'sm_url'),
         status=pulumi.get(__ret__, 'status'),
+        traces_allowlist_url=pulumi.get(__ret__, 'traces_allowlist_url'),
         traces_ip_allow_list_cname=pulumi.get(__ret__, 'traces_ip_allow_list_cname'),
         traces_name=pulumi.get(__ret__, 'traces_name'),
         traces_private_connectivity_info_availability_zone_ids=pulumi.get(__ret__, 'traces_private_connectivity_info_availability_zone_ids'),
@@ -1378,6 +1482,7 @@ def get_stack_output(slug: Optional[pulumi.Input[_builtins.str]] = None,
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:cloud/getStack:getStack', __args__, opts=opts, typ=GetStackResult)
     return __ret__.apply(lambda __response__: GetStackResult(
+        alertmanager_allowlist_url=pulumi.get(__response__, 'alertmanager_allowlist_url'),
         alertmanager_ip_allow_list_cname=pulumi.get(__response__, 'alertmanager_ip_allow_list_cname'),
         alertmanager_name=pulumi.get(__response__, 'alertmanager_name'),
         alertmanager_status=pulumi.get(__response__, 'alertmanager_status'),
@@ -1389,6 +1494,7 @@ def get_stack_output(slug: Optional[pulumi.Input[_builtins.str]] = None,
         connections_api_url=pulumi.get(__response__, 'connections_api_url'),
         delete_protection=pulumi.get(__response__, 'delete_protection'),
         description=pulumi.get(__response__, 'description'),
+        fleet_management_allowlist_url=pulumi.get(__response__, 'fleet_management_allowlist_url'),
         fleet_management_name=pulumi.get(__response__, 'fleet_management_name'),
         fleet_management_private_connectivity_info_availability_zone_ids=pulumi.get(__response__, 'fleet_management_private_connectivity_info_availability_zone_ids'),
         fleet_management_private_connectivity_info_availability_zones=pulumi.get(__response__, 'fleet_management_private_connectivity_info_availability_zones'),
@@ -1398,7 +1504,9 @@ def get_stack_output(slug: Optional[pulumi.Input[_builtins.str]] = None,
         fleet_management_status=pulumi.get(__response__, 'fleet_management_status'),
         fleet_management_url=pulumi.get(__response__, 'fleet_management_url'),
         fleet_management_user_id=pulumi.get(__response__, 'fleet_management_user_id'),
+        grafanas_allowlist_url=pulumi.get(__response__, 'grafanas_allowlist_url'),
         grafanas_ip_allow_list_cname=pulumi.get(__response__, 'grafanas_ip_allow_list_cname'),
+        graphite_allowlist_url=pulumi.get(__response__, 'graphite_allowlist_url'),
         graphite_ip_allow_list_cname=pulumi.get(__response__, 'graphite_ip_allow_list_cname'),
         graphite_name=pulumi.get(__response__, 'graphite_name'),
         graphite_private_connectivity_info_availability_zone_ids=pulumi.get(__response__, 'graphite_private_connectivity_info_availability_zone_ids'),
@@ -1412,6 +1520,7 @@ def get_stack_output(slug: Optional[pulumi.Input[_builtins.str]] = None,
         id=pulumi.get(__response__, 'id'),
         influx_url=pulumi.get(__response__, 'influx_url'),
         labels=pulumi.get(__response__, 'labels'),
+        logs_allowlist_url=pulumi.get(__response__, 'logs_allowlist_url'),
         logs_ip_allow_list_cname=pulumi.get(__response__, 'logs_ip_allow_list_cname'),
         logs_name=pulumi.get(__response__, 'logs_name'),
         logs_private_connectivity_info_availability_zone_ids=pulumi.get(__response__, 'logs_private_connectivity_info_availability_zone_ids'),
@@ -1443,6 +1552,7 @@ def get_stack_output(slug: Optional[pulumi.Input[_builtins.str]] = None,
         pdc_gateway_private_connectivity_info_private_dns=pulumi.get(__response__, 'pdc_gateway_private_connectivity_info_private_dns'),
         pdc_gateway_private_connectivity_info_regions=pulumi.get(__response__, 'pdc_gateway_private_connectivity_info_regions'),
         pdc_gateway_private_connectivity_info_service_name=pulumi.get(__response__, 'pdc_gateway_private_connectivity_info_service_name'),
+        profiles_allowlist_url=pulumi.get(__response__, 'profiles_allowlist_url'),
         profiles_ip_allow_list_cname=pulumi.get(__response__, 'profiles_ip_allow_list_cname'),
         profiles_name=pulumi.get(__response__, 'profiles_name'),
         profiles_private_connectivity_info_availability_zone_ids=pulumi.get(__response__, 'profiles_private_connectivity_info_availability_zone_ids'),
@@ -1453,6 +1563,7 @@ def get_stack_output(slug: Optional[pulumi.Input[_builtins.str]] = None,
         profiles_status=pulumi.get(__response__, 'profiles_status'),
         profiles_url=pulumi.get(__response__, 'profiles_url'),
         profiles_user_id=pulumi.get(__response__, 'profiles_user_id'),
+        prometheus_allowlist_url=pulumi.get(__response__, 'prometheus_allowlist_url'),
         prometheus_ip_allow_list_cname=pulumi.get(__response__, 'prometheus_ip_allow_list_cname'),
         prometheus_name=pulumi.get(__response__, 'prometheus_name'),
         prometheus_private_connectivity_info_availability_zone_ids=pulumi.get(__response__, 'prometheus_private_connectivity_info_availability_zone_ids'),
@@ -1469,6 +1580,7 @@ def get_stack_output(slug: Optional[pulumi.Input[_builtins.str]] = None,
         slug=pulumi.get(__response__, 'slug'),
         sm_url=pulumi.get(__response__, 'sm_url'),
         status=pulumi.get(__response__, 'status'),
+        traces_allowlist_url=pulumi.get(__response__, 'traces_allowlist_url'),
         traces_ip_allow_list_cname=pulumi.get(__response__, 'traces_ip_allow_list_cname'),
         traces_name=pulumi.get(__response__, 'traces_name'),
         traces_private_connectivity_info_availability_zone_ids=pulumi.get(__response__, 'traces_private_connectivity_info_availability_zone_ids'),

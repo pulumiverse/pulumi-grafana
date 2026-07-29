@@ -142,6 +142,7 @@ class _IntegrationState:
     def __init__(__self__, *,
                  default_route: Optional[pulumi.Input['IntegrationDefaultRouteArgs']] = None,
                  dynamic_labels: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]] = None,
+                 inbound_email: Optional[pulumi.Input[_builtins.str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]] = None,
                  link: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -153,6 +154,7 @@ class _IntegrationState:
 
         :param pulumi.Input['IntegrationDefaultRouteArgs'] default_route: The Default route for all alerts from the given integration
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] dynamic_labels: A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        :param pulumi.Input[_builtins.str] inbound_email: The inbound email address for the integration. Only available for integration type `inbound_email`.
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] labels: A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
         :param pulumi.Input[_builtins.str] link: The link for using in an integrated tool.
         :param pulumi.Input[_builtins.str] name: The name of the service integration.
@@ -164,6 +166,8 @@ class _IntegrationState:
             pulumi.set(__self__, "default_route", default_route)
         if dynamic_labels is not None:
             pulumi.set(__self__, "dynamic_labels", dynamic_labels)
+        if inbound_email is not None:
+            pulumi.set(__self__, "inbound_email", inbound_email)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if link is not None:
@@ -200,6 +204,18 @@ class _IntegrationState:
     @dynamic_labels.setter
     def dynamic_labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]):
         pulumi.set(self, "dynamic_labels", value)
+
+    @_builtins.property
+    @pulumi.getter(name="inboundEmail")
+    def inbound_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The inbound email address for the integration. Only available for integration type `inbound_email`.
+        """
+        return pulumi.get(self, "inbound_email")
+
+    @inbound_email.setter
+    def inbound_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "inbound_email", value)
 
     @_builtins.property
     @pulumi.getter
@@ -368,6 +384,7 @@ class Integration(pulumi.CustomResource):
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
+            __props__.__dict__["inbound_email"] = None
             __props__.__dict__["link"] = None
         super(Integration, __self__).__init__(
             'grafana:onCall/integration:Integration',
@@ -381,6 +398,7 @@ class Integration(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             default_route: Optional[pulumi.Input[Union['IntegrationDefaultRouteArgs', 'IntegrationDefaultRouteArgsDict']]] = None,
             dynamic_labels: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]] = None,
+            inbound_email: Optional[pulumi.Input[_builtins.str]] = None,
             labels: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]] = None,
             link: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -396,6 +414,7 @@ class Integration(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['IntegrationDefaultRouteArgs', 'IntegrationDefaultRouteArgsDict']] default_route: The Default route for all alerts from the given integration
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] dynamic_labels: A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        :param pulumi.Input[_builtins.str] inbound_email: The inbound email address for the integration. Only available for integration type `inbound_email`.
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] labels: A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
         :param pulumi.Input[_builtins.str] link: The link for using in an integrated tool.
         :param pulumi.Input[_builtins.str] name: The name of the service integration.
@@ -409,6 +428,7 @@ class Integration(pulumi.CustomResource):
 
         __props__.__dict__["default_route"] = default_route
         __props__.__dict__["dynamic_labels"] = dynamic_labels
+        __props__.__dict__["inbound_email"] = inbound_email
         __props__.__dict__["labels"] = labels
         __props__.__dict__["link"] = link
         __props__.__dict__["name"] = name
@@ -432,6 +452,14 @@ class Integration(pulumi.CustomResource):
         A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
         """
         return pulumi.get(self, "dynamic_labels")
+
+    @_builtins.property
+    @pulumi.getter(name="inboundEmail")
+    def inbound_email(self) -> pulumi.Output[_builtins.str]:
+        """
+        The inbound email address for the integration. Only available for integration type `inbound_email`.
+        """
+        return pulumi.get(self, "inbound_email")
 
     @_builtins.property
     @pulumi.getter

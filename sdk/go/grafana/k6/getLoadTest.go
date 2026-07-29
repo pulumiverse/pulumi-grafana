@@ -75,6 +75,8 @@ type LookupLoadTestResult struct {
 	Created string `pulumi:"created"`
 	// Numeric identifier of the load test.
 	Id string `pulumi:"id"`
+	// Identifier of the k6 version used to run the test.
+	K6Version string `pulumi:"k6Version"`
 	// Human-friendly identifier of the load test.
 	Name string `pulumi:"name"`
 	// The identifier of the project this load test belongs to.
@@ -134,6 +136,11 @@ func (o LookupLoadTestResultOutput) Created() pulumi.StringOutput {
 // Numeric identifier of the load test.
 func (o LookupLoadTestResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLoadTestResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Identifier of the k6 version used to run the test.
+func (o LookupLoadTestResultOutput) K6Version() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLoadTestResult) string { return v.K6Version }).(pulumi.StringOutput)
 }
 
 // Human-friendly identifier of the load test.

@@ -26,7 +26,7 @@ class GetLoadTestResult:
     """
     A collection of values returned by getLoadTest.
     """
-    def __init__(__self__, baseline_test_run_id=None, created=None, id=None, name=None, project_id=None, script=None, updated=None):
+    def __init__(__self__, baseline_test_run_id=None, created=None, id=None, k6_version=None, name=None, project_id=None, script=None, updated=None):
         if baseline_test_run_id and not isinstance(baseline_test_run_id, str):
             raise TypeError("Expected argument 'baseline_test_run_id' to be a str")
         pulumi.set(__self__, "baseline_test_run_id", baseline_test_run_id)
@@ -36,6 +36,9 @@ class GetLoadTestResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if k6_version and not isinstance(k6_version, str):
+            raise TypeError("Expected argument 'k6_version' to be a str")
+        pulumi.set(__self__, "k6_version", k6_version)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -73,6 +76,14 @@ class GetLoadTestResult:
         Numeric identifier of the load test.
         """
         return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="k6Version")
+    def k6_version(self) -> _builtins.str:
+        """
+        Identifier of the k6 version used to run the test.
+        """
+        return pulumi.get(self, "k6_version")
 
     @_builtins.property
     @pulumi.getter
@@ -116,6 +127,7 @@ class AwaitableGetLoadTestResult(GetLoadTestResult):
             baseline_test_run_id=self.baseline_test_run_id,
             created=self.created,
             id=self.id,
+            k6_version=self.k6_version,
             name=self.name,
             project_id=self.project_id,
             script=self.script,
@@ -157,6 +169,7 @@ def get_load_test(id: Optional[_builtins.str] = None,
         baseline_test_run_id=pulumi.get(__ret__, 'baseline_test_run_id'),
         created=pulumi.get(__ret__, 'created'),
         id=pulumi.get(__ret__, 'id'),
+        k6_version=pulumi.get(__ret__, 'k6_version'),
         name=pulumi.get(__ret__, 'name'),
         project_id=pulumi.get(__ret__, 'project_id'),
         script=pulumi.get(__ret__, 'script'),
@@ -195,6 +208,7 @@ def get_load_test_output(id: Optional[pulumi.Input[_builtins.str]] = None,
         baseline_test_run_id=pulumi.get(__response__, 'baseline_test_run_id'),
         created=pulumi.get(__response__, 'created'),
         id=pulumi.get(__response__, 'id'),
+        k6_version=pulumi.get(__response__, 'k6_version'),
         name=pulumi.get(__response__, 'name'),
         project_id=pulumi.get(__response__, 'project_id'),
         script=pulumi.get(__response__, 'script'),

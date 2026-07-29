@@ -1053,6 +1053,10 @@ class CheckSettingsHttpArgsDict(TypedDict):
     """
     Proxy URL.
     """
+    secret_manager_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Enable secret manager so that `${secrets.<name>}` references in the bearer token, basic auth password, and TLS certificate/key fields are resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so the reference is passed through literally rather than interpolated by Terraform. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check. Defaults to `false`.
+    """
     tls_config: NotRequired[pulumi.Input['CheckSettingsHttpTlsConfigArgsDict']]
     """
     TLS config.
@@ -1086,6 +1090,7 @@ class CheckSettingsHttpArgs:
                  no_follow_redirects: Optional[pulumi.Input[_builtins.bool]] = None,
                  proxy_connect_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  proxy_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_manager_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  tls_config: Optional[pulumi.Input['CheckSettingsHttpTlsConfigArgs']] = None,
                  valid_http_versions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  valid_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None):
@@ -1107,6 +1112,7 @@ class CheckSettingsHttpArgs:
         :param pulumi.Input[_builtins.bool] no_follow_redirects: Do not follow redirects. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] proxy_connect_headers: The HTTP headers sent to the proxy URL
         :param pulumi.Input[_builtins.str] proxy_url: Proxy URL.
+        :param pulumi.Input[_builtins.bool] secret_manager_enabled: Enable secret manager so that `${secrets.<name>}` references in the bearer token, basic auth password, and TLS certificate/key fields are resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so the reference is passed through literally rather than interpolated by Terraform. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check. Defaults to `false`.
         :param pulumi.Input['CheckSettingsHttpTlsConfigArgs'] tls_config: TLS config.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] valid_http_versions: List of valid HTTP versions. Options include `HTTP/1.0`, `HTTP/1.1`, `HTTP/2.0`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] valid_status_codes: Accepted status codes. If unset, defaults to 2xx.
@@ -1145,6 +1151,8 @@ class CheckSettingsHttpArgs:
             pulumi.set(__self__, "proxy_connect_headers", proxy_connect_headers)
         if proxy_url is not None:
             pulumi.set(__self__, "proxy_url", proxy_url)
+        if secret_manager_enabled is not None:
+            pulumi.set(__self__, "secret_manager_enabled", secret_manager_enabled)
         if tls_config is not None:
             pulumi.set(__self__, "tls_config", tls_config)
         if valid_http_versions is not None:
@@ -1355,6 +1363,18 @@ class CheckSettingsHttpArgs:
     @proxy_url.setter
     def proxy_url(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "proxy_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretManagerEnabled")
+    def secret_manager_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enable secret manager so that `${secrets.<name>}` references in the bearer token, basic auth password, and TLS certificate/key fields are resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so the reference is passed through literally rather than interpolated by Terraform. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check. Defaults to `false`.
+        """
+        return pulumi.get(self, "secret_manager_enabled")
+
+    @secret_manager_enabled.setter
+    def secret_manager_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "secret_manager_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsConfig")

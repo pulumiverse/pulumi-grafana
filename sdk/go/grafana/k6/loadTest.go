@@ -62,6 +62,8 @@ type LoadTest struct {
 	BaselineTestRunId pulumi.StringPtrOutput `pulumi:"baselineTestRunId"`
 	// The date when the load test was created.
 	Created pulumi.StringOutput `pulumi:"created"`
+	// Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2
+	K6Version pulumi.StringOutput `pulumi:"k6Version"`
 	// Human-friendly identifier of the load test.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The identifier of the project this load test belongs to.
@@ -114,6 +116,8 @@ type loadTestState struct {
 	BaselineTestRunId *string `pulumi:"baselineTestRunId"`
 	// The date when the load test was created.
 	Created *string `pulumi:"created"`
+	// Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2
+	K6Version *string `pulumi:"k6Version"`
 	// Human-friendly identifier of the load test.
 	Name *string `pulumi:"name"`
 	// The identifier of the project this load test belongs to.
@@ -131,6 +135,8 @@ type LoadTestState struct {
 	BaselineTestRunId pulumi.StringPtrInput
 	// The date when the load test was created.
 	Created pulumi.StringPtrInput
+	// Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2
+	K6Version pulumi.StringPtrInput
 	// Human-friendly identifier of the load test.
 	Name pulumi.StringPtrInput
 	// The identifier of the project this load test belongs to.
@@ -150,6 +156,8 @@ type loadTestArgs struct {
 	//
 	// Deprecated: Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.
 	BaselineTestRunId *string `pulumi:"baselineTestRunId"`
+	// Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2
+	K6Version *string `pulumi:"k6Version"`
 	// Human-friendly identifier of the load test.
 	Name *string `pulumi:"name"`
 	// The identifier of the project this load test belongs to.
@@ -164,6 +172,8 @@ type LoadTestArgs struct {
 	//
 	// Deprecated: Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.
 	BaselineTestRunId pulumi.StringPtrInput
+	// Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2
+	K6Version pulumi.StringPtrInput
 	// Human-friendly identifier of the load test.
 	Name pulumi.StringPtrInput
 	// The identifier of the project this load test belongs to.
@@ -269,6 +279,11 @@ func (o LoadTestOutput) BaselineTestRunId() pulumi.StringPtrOutput {
 // The date when the load test was created.
 func (o LoadTestOutput) Created() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadTest) pulumi.StringOutput { return v.Created }).(pulumi.StringOutput)
+}
+
+// Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2
+func (o LoadTestOutput) K6Version() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoadTest) pulumi.StringOutput { return v.K6Version }).(pulumi.StringOutput)
 }
 
 // Human-friendly identifier of the load test.

@@ -27,6 +27,8 @@ type Integration struct {
 	DefaultRoute IntegrationDefaultRouteOutput `pulumi:"defaultRoute"`
 	// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
 	DynamicLabels pulumi.StringMapArrayOutput `pulumi:"dynamicLabels"`
+	// The inbound email address for the integration. Only available for integration type `inboundEmail`.
+	InboundEmail pulumi.StringOutput `pulumi:"inboundEmail"`
 	// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
 	Labels pulumi.StringMapArrayOutput `pulumi:"labels"`
 	// The link for using in an integrated tool.
@@ -81,6 +83,8 @@ type integrationState struct {
 	DefaultRoute *IntegrationDefaultRoute `pulumi:"defaultRoute"`
 	// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
 	DynamicLabels []map[string]string `pulumi:"dynamicLabels"`
+	// The inbound email address for the integration. Only available for integration type `inboundEmail`.
+	InboundEmail *string `pulumi:"inboundEmail"`
 	// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
 	Labels []map[string]string `pulumi:"labels"`
 	// The link for using in an integrated tool.
@@ -100,6 +104,8 @@ type IntegrationState struct {
 	DefaultRoute IntegrationDefaultRoutePtrInput
 	// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
 	DynamicLabels pulumi.StringMapArrayInput
+	// The inbound email address for the integration. Only available for integration type `inboundEmail`.
+	InboundEmail pulumi.StringPtrInput
 	// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
 	Labels pulumi.StringMapArrayInput
 	// The link for using in an integrated tool.
@@ -248,6 +254,11 @@ func (o IntegrationOutput) DefaultRoute() IntegrationDefaultRouteOutput {
 // A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
 func (o IntegrationOutput) DynamicLabels() pulumi.StringMapArrayOutput {
 	return o.ApplyT(func(v *Integration) pulumi.StringMapArrayOutput { return v.DynamicLabels }).(pulumi.StringMapArrayOutput)
+}
+
+// The inbound email address for the integration. Only available for integration type `inboundEmail`.
+func (o IntegrationOutput) InboundEmail() pulumi.StringOutput {
+	return o.ApplyT(func(v *Integration) pulumi.StringOutput { return v.InboundEmail }).(pulumi.StringOutput)
 }
 
 // A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).

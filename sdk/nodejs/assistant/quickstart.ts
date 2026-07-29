@@ -18,6 +18,35 @@ import * as utilities from "../utilities";
  *     title: "SLO health",
  *     prompt: "How healthy are my SLOs right now?",
  * });
+ * // A quickstart with a context item pre-attached. `context_items` is a
+ * // JSON-encoded array of Assistant `ChatContextItem` objects. The example below
+ * // attaches a Prometheus data source so the Assistant starts the conversation
+ * // with that data source already in context.
+ * //
+ * // This is an advanced, internal-format field. The most reliable way to obtain a
+ * // valid value is to create the quickstart with the desired context through the
+ * // Assistant UI and copy the resulting `contextItems` JSON into `jsonencode(...)`.
+ * const withContext = new grafana.assistant.Quickstart("with_context", {
+ *     scope: "tenant",
+ *     title: "Investigate Prometheus alerts",
+ *     prompt: "Which alerts are firing right now and why?",
+ *     contextItems: JSON.stringify([{
+ *         node: {
+ *             id: "prometheus-uid",
+ *             name: "Prometheus",
+ *             icon: "database",
+ *             data: {
+ *                 type: "datasource",
+ *                 data: {
+ *                     name: "Prometheus",
+ *                     uid: "prometheus-uid",
+ *                     type: "prometheus",
+ *                     text: "Prometheus",
+ *                 },
+ *             },
+ *         },
+ *     }]),
+ * });
  * ```
  *
  * ## Import
@@ -55,7 +84,7 @@ export class Quickstart extends pulumi.CustomResource {
     }
 
     /**
-     * Optional JSON array of context items for the quickstart.
+     * Optional JSON-encoded array of context items pre-attached to the quickstart. Each element is an Assistant `ChatContextItem`; only `node.id`, `node.name`, and `node.data` (`{"type": ..., "data": {...}}`) are required, e.g. `{"node": {"id": ..., "name": ..., "data": {"type": ..., "data": {...}}}}`. This is an advanced, internal-format field. The most reliable way to produce a valid value is to create a quickstart with the desired context through the Assistant UI, then copy the resulting `contextItems` JSON. Omit this field if no pre-attached context is needed. See the example for a typical datasource context item.
      */
     declare public readonly contextItems: pulumi.Output<string | undefined>;
     /**
@@ -117,7 +146,7 @@ export class Quickstart extends pulumi.CustomResource {
  */
 export interface QuickstartState {
     /**
-     * Optional JSON array of context items for the quickstart.
+     * Optional JSON-encoded array of context items pre-attached to the quickstart. Each element is an Assistant `ChatContextItem`; only `node.id`, `node.name`, and `node.data` (`{"type": ..., "data": {...}}`) are required, e.g. `{"node": {"id": ..., "name": ..., "data": {"type": ..., "data": {...}}}}`. This is an advanced, internal-format field. The most reliable way to produce a valid value is to create a quickstart with the desired context through the Assistant UI, then copy the resulting `contextItems` JSON. Omit this field if no pre-attached context is needed. See the example for a typical datasource context item.
      */
     contextItems?: pulumi.Input<string>;
     /**
@@ -143,7 +172,7 @@ export interface QuickstartState {
  */
 export interface QuickstartArgs {
     /**
-     * Optional JSON array of context items for the quickstart.
+     * Optional JSON-encoded array of context items pre-attached to the quickstart. Each element is an Assistant `ChatContextItem`; only `node.id`, `node.name`, and `node.data` (`{"type": ..., "data": {...}}`) are required, e.g. `{"node": {"id": ..., "name": ..., "data": {"type": ..., "data": {...}}}}`. This is an advanced, internal-format field. The most reliable way to produce a valid value is to create a quickstart with the desired context through the Assistant UI, then copy the resulting `contextItems` JSON. Omit this field if no pre-attached context is needed. See the example for a typical datasource context item.
      */
     contextItems?: pulumi.Input<string>;
     /**

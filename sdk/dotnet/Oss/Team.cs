@@ -32,6 +32,14 @@ namespace Pulumiverse.Grafana.Oss
     ///         Password = "my-password",
     ///     });
     /// 
+    ///     var teamAdmin = new Grafana.Oss.User("team_admin", new()
+    ///     {
+    ///         Name = "Team Admin",
+    ///         Email = "team-admin@example.com",
+    ///         Login = "team-admin",
+    ///         Password = "my-password-2",
+    ///     });
+    /// 
     ///     var test_team = new Grafana.Oss.Team("test-team", new()
     ///     {
     ///         Name = "Test Team",
@@ -39,6 +47,10 @@ namespace Pulumiverse.Grafana.Oss
     ///         Members = new[]
     ///         {
     ///             viewer.Email,
+    ///         },
+    ///         Admins = new[]
+    ///         {
+    ///             teamAdmin.Email,
     ///         },
     ///     });
     /// 
@@ -56,6 +68,12 @@ namespace Pulumiverse.Grafana.Oss
     public partial class Team : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `Members` are demoted; administrators only present in state (for example from the UI) are preserved until `Admins` is set explicitly, including to `[]`.
+        /// </summary>
+        [Output("admins")]
+        public Output<ImmutableArray<string>> Admins { get; private set; } = null!;
+
+        /// <summary>
         /// An email address for the team.
         /// </summary>
         [Output("email")]
@@ -68,7 +86,7 @@ namespace Pulumiverse.Grafana.Oss
         public Output<bool> IgnoreExternallySyncedMembers { get; private set; } = null!;
 
         /// <summary>
-        /// A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
+        /// A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `Admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.
         /// </summary>
         [Output("members")]
         public Output<ImmutableArray<string>> Members { get; private set; } = null!;
@@ -159,6 +177,18 @@ namespace Pulumiverse.Grafana.Oss
 
     public sealed class TeamArgs : global::Pulumi.ResourceArgs
     {
+        [Input("admins")]
+        private InputList<string>? _admins;
+
+        /// <summary>
+        /// A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `Members` are demoted; administrators only present in state (for example from the UI) are preserved until `Admins` is set explicitly, including to `[]`.
+        /// </summary>
+        public InputList<string> Admins
+        {
+            get => _admins ?? (_admins = new InputList<string>());
+            set => _admins = value;
+        }
+
         /// <summary>
         /// An email address for the team.
         /// </summary>
@@ -175,7 +205,7 @@ namespace Pulumiverse.Grafana.Oss
         private InputList<string>? _members;
 
         /// <summary>
-        /// A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
+        /// A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `Admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.
         /// </summary>
         public InputList<string> Members
         {
@@ -214,6 +244,18 @@ namespace Pulumiverse.Grafana.Oss
 
     public sealed class TeamState : global::Pulumi.ResourceArgs
     {
+        [Input("admins")]
+        private InputList<string>? _admins;
+
+        /// <summary>
+        /// A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `Members` are demoted; administrators only present in state (for example from the UI) are preserved until `Admins` is set explicitly, including to `[]`.
+        /// </summary>
+        public InputList<string> Admins
+        {
+            get => _admins ?? (_admins = new InputList<string>());
+            set => _admins = value;
+        }
+
         /// <summary>
         /// An email address for the team.
         /// </summary>
@@ -230,7 +272,7 @@ namespace Pulumiverse.Grafana.Oss
         private InputList<string>? _members;
 
         /// <summary>
-        /// A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
+        /// A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `Admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.
         /// </summary>
         public InputList<string> Members
         {

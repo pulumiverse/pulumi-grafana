@@ -21,6 +21,8 @@ import (
 //
 // import (
 //
+//	"encoding/json"
+//
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/assistant"
 //
@@ -32,6 +34,45 @@ import (
 //				Scope:  pulumi.String("tenant"),
 //				Title:  pulumi.String("SLO health"),
 //				Prompt: pulumi.String("How healthy are my SLOs right now?"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON0, err := json.Marshal([]map[string]interface{}{
+//				map[string]interface{}{
+//					"node": map[string]interface{}{
+//						"id":   "prometheus-uid",
+//						"name": "Prometheus",
+//						"icon": "database",
+//						"data": map[string]interface{}{
+//							"type": "datasource",
+//							"data": map[string]interface{}{
+//								"name": "Prometheus",
+//								"uid":  "prometheus-uid",
+//								"type": "prometheus",
+//								"text": "Prometheus",
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			// A quickstart with a context item pre-attached. `context_items` is a
+//			// JSON-encoded array of Assistant `ChatContextItem` objects. The example below
+//			// attaches a Prometheus data source so the Assistant starts the conversation
+//			// with that data source already in context.
+//			//
+//			// This is an advanced, internal-format field. The most reliable way to obtain a
+//			// valid value is to create the quickstart with the desired context through the
+//			// Assistant UI and copy the resulting `contextItems` JSON into `jsonencode(...)`.
+//			_, err = assistant.NewQuickstart(ctx, "with_context", &assistant.QuickstartArgs{
+//				Scope:        pulumi.String("tenant"),
+//				Title:        pulumi.String("Investigate Prometheus alerts"),
+//				Prompt:       pulumi.String("Which alerts are firing right now and why?"),
+//				ContextItems: pulumi.String(pulumi.String(json0)),
 //			})
 //			if err != nil {
 //				return err
@@ -50,7 +91,7 @@ import (
 type Quickstart struct {
 	pulumi.CustomResourceState
 
-	// Optional JSON array of context items for the quickstart.
+	// Optional JSON-encoded array of context items pre-attached to the quickstart. Each element is an Assistant `ChatContextItem`; only `node.id`, `node.name`, and `node.data` (`{"type": ..., "data": {...}}`) are required, e.g. `{"node": {"id": ..., "name": ..., "data": {"type": ..., "data": {...}}}}`. This is an advanced, internal-format field. The most reliable way to produce a valid value is to create a quickstart with the desired context through the Assistant UI, then copy the resulting `contextItems` JSON. Omit this field if no pre-attached context is needed. See the example for a typical datasource context item.
 	ContextItems pulumi.StringPtrOutput `pulumi:"contextItems"`
 	// Whether the resource is enabled.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
@@ -98,7 +139,7 @@ func GetQuickstart(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Quickstart resources.
 type quickstartState struct {
-	// Optional JSON array of context items for the quickstart.
+	// Optional JSON-encoded array of context items pre-attached to the quickstart. Each element is an Assistant `ChatContextItem`; only `node.id`, `node.name`, and `node.data` (`{"type": ..., "data": {...}}`) are required, e.g. `{"node": {"id": ..., "name": ..., "data": {"type": ..., "data": {...}}}}`. This is an advanced, internal-format field. The most reliable way to produce a valid value is to create a quickstart with the desired context through the Assistant UI, then copy the resulting `contextItems` JSON. Omit this field if no pre-attached context is needed. See the example for a typical datasource context item.
 	ContextItems *string `pulumi:"contextItems"`
 	// Whether the resource is enabled.
 	Enabled *bool `pulumi:"enabled"`
@@ -111,7 +152,7 @@ type quickstartState struct {
 }
 
 type QuickstartState struct {
-	// Optional JSON array of context items for the quickstart.
+	// Optional JSON-encoded array of context items pre-attached to the quickstart. Each element is an Assistant `ChatContextItem`; only `node.id`, `node.name`, and `node.data` (`{"type": ..., "data": {...}}`) are required, e.g. `{"node": {"id": ..., "name": ..., "data": {"type": ..., "data": {...}}}}`. This is an advanced, internal-format field. The most reliable way to produce a valid value is to create a quickstart with the desired context through the Assistant UI, then copy the resulting `contextItems` JSON. Omit this field if no pre-attached context is needed. See the example for a typical datasource context item.
 	ContextItems pulumi.StringPtrInput
 	// Whether the resource is enabled.
 	Enabled pulumi.BoolPtrInput
@@ -128,7 +169,7 @@ func (QuickstartState) ElementType() reflect.Type {
 }
 
 type quickstartArgs struct {
-	// Optional JSON array of context items for the quickstart.
+	// Optional JSON-encoded array of context items pre-attached to the quickstart. Each element is an Assistant `ChatContextItem`; only `node.id`, `node.name`, and `node.data` (`{"type": ..., "data": {...}}`) are required, e.g. `{"node": {"id": ..., "name": ..., "data": {"type": ..., "data": {...}}}}`. This is an advanced, internal-format field. The most reliable way to produce a valid value is to create a quickstart with the desired context through the Assistant UI, then copy the resulting `contextItems` JSON. Omit this field if no pre-attached context is needed. See the example for a typical datasource context item.
 	ContextItems *string `pulumi:"contextItems"`
 	// Whether the resource is enabled.
 	Enabled *bool `pulumi:"enabled"`
@@ -142,7 +183,7 @@ type quickstartArgs struct {
 
 // The set of arguments for constructing a Quickstart resource.
 type QuickstartArgs struct {
-	// Optional JSON array of context items for the quickstart.
+	// Optional JSON-encoded array of context items pre-attached to the quickstart. Each element is an Assistant `ChatContextItem`; only `node.id`, `node.name`, and `node.data` (`{"type": ..., "data": {...}}`) are required, e.g. `{"node": {"id": ..., "name": ..., "data": {"type": ..., "data": {...}}}}`. This is an advanced, internal-format field. The most reliable way to produce a valid value is to create a quickstart with the desired context through the Assistant UI, then copy the resulting `contextItems` JSON. Omit this field if no pre-attached context is needed. See the example for a typical datasource context item.
 	ContextItems pulumi.StringPtrInput
 	// Whether the resource is enabled.
 	Enabled pulumi.BoolPtrInput
@@ -241,7 +282,7 @@ func (o QuickstartOutput) ToQuickstartOutputWithContext(ctx context.Context) Qui
 	return o
 }
 
-// Optional JSON array of context items for the quickstart.
+// Optional JSON-encoded array of context items pre-attached to the quickstart. Each element is an Assistant `ChatContextItem`; only `node.id`, `node.name`, and `node.data` (`{"type": ..., "data": {...}}`) are required, e.g. `{"node": {"id": ..., "name": ..., "data": {"type": ..., "data": {...}}}}`. This is an advanced, internal-format field. The most reliable way to produce a valid value is to create a quickstart with the desired context through the Assistant UI, then copy the resulting `contextItems` JSON. Omit this field if no pre-attached context is needed. See the example for a typical datasource context item.
 func (o QuickstartOutput) ContextItems() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Quickstart) pulumi.StringPtrOutput { return v.ContextItems }).(pulumi.StringPtrOutput)
 }

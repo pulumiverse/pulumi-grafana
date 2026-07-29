@@ -5,6 +5,104 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AppsQueriesQueryV1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+     */
+    folderUid?: pulumi.Input<string>;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: pulumi.Input<string>;
+    /**
+     * The full URL of the resource.
+     */
+    url?: pulumi.Input<string>;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid?: pulumi.Input<string>;
+    /**
+     * The version of the resource.
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface AppsQueriesQueryV1Options {
+    /**
+     * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+     */
+    managerIdentity?: pulumi.Input<string>;
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: pulumi.Input<boolean>;
+}
+
+export interface AppsQueriesQueryV1Spec {
+    /**
+     * A longer description of the saved query.
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * Whether the saved query is locked and cannot be edited in the UI. This is purely for UI display purposes and not for security.
+     */
+    isLocked?: pulumi.Input<boolean>;
+    /**
+     * Whether the saved query is visible in the query library.
+     */
+    isVisible?: pulumi.Input<boolean>;
+    /**
+     * The tags used to filter the saved query.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The query targets that make up the saved query. At least one target is required.
+     */
+    targets: pulumi.Input<pulumi.Input<inputs.AppsQueriesQueryV1SpecTarget>[]>;
+    /**
+     * The display name of the saved query.
+     */
+    title: pulumi.Input<string>;
+    /**
+     * The template variables that can be interpolated into the query targets.
+     */
+    vars?: pulumi.Input<pulumi.Input<inputs.AppsQueriesQueryV1SpecVar>[]>;
+}
+
+export interface AppsQueriesQueryV1SpecTarget {
+    /**
+     * The returned Dataplane frame type for the target.
+     */
+    dataType?: pulumi.Input<string>;
+    /**
+     * The datasource query for the target, as a JSON string (use jsonencode()).
+     */
+    propertiesJson: pulumi.Input<string>;
+    /**
+     * The variable replacements to apply to the target, as a JSON string (use jsonencode()).
+     */
+    variablesJson?: pulumi.Input<string>;
+}
+
+export interface AppsQueriesQueryV1SpecVar {
+    /**
+     * The values used when no value is selected during render.
+     */
+    defaultValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The name of the variable.
+     */
+    key: pulumi.Input<string>;
+    /**
+     * The definition (as a JSON string) used by the frontend to fetch the list of selectable values.
+     */
+    valueListDefinitionJson?: pulumi.Input<string>;
+}
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**
@@ -7806,6 +7904,10 @@ export namespace syntheticMonitoring {
          * Proxy URL.
          */
         proxyUrl?: pulumi.Input<string>;
+        /**
+         * Enable secret manager so that `${secrets.<name>}` references in the bearer token, basic auth password, and TLS certificate/key fields are resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so the reference is passed through literally rather than interpolated by Terraform. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check. Defaults to `false`.
+         */
+        secretManagerEnabled?: pulumi.Input<boolean>;
         /**
          * TLS config.
          */

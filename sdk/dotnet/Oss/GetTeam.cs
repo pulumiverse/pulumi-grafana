@@ -227,6 +227,10 @@ namespace Pulumiverse.Grafana.Oss
     public sealed class GetTeamResult
     {
         /// <summary>
+        /// A set of email addresses corresponding to users who are administrators of the team.
+        /// </summary>
+        public readonly ImmutableArray<string> Admins;
+        /// <summary>
         /// An email address for the team.
         /// </summary>
         public readonly string Email;
@@ -235,7 +239,7 @@ namespace Pulumiverse.Grafana.Oss
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// A set of email addresses corresponding to users who are members of the team.
+        /// A set of email addresses corresponding to users who are ordinary members of the team.
         /// </summary>
         public readonly ImmutableArray<string> Members;
         /// <summary>
@@ -269,6 +273,8 @@ namespace Pulumiverse.Grafana.Oss
 
         [OutputConstructor]
         private GetTeamResult(
+            ImmutableArray<string> admins,
+
             string email,
 
             string id,
@@ -289,6 +295,7 @@ namespace Pulumiverse.Grafana.Oss
 
             string teamUid)
         {
+            Admins = admins;
             Email = email;
             Id = id;
             Members = members;
