@@ -73,11 +73,13 @@ type LookupTeamArgs struct {
 
 // A collection of values returned by getTeam.
 type LookupTeamResult struct {
+	// A set of email addresses corresponding to users who are administrators of the team.
+	Admins []string `pulumi:"admins"`
 	// An email address for the team.
 	Email string `pulumi:"email"`
 	// The ID of this resource.
 	Id string `pulumi:"id"`
-	// A set of email addresses corresponding to users who are members of the team.
+	// A set of email addresses corresponding to users who are ordinary members of the team.
 	Members []string `pulumi:"members"`
 	// The name of the Grafana team.
 	Name string `pulumi:"name"`
@@ -137,6 +139,11 @@ func (o LookupTeamResultOutput) ToLookupTeamResultOutputWithContext(ctx context.
 	return o
 }
 
+// A set of email addresses corresponding to users who are administrators of the team.
+func (o LookupTeamResultOutput) Admins() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupTeamResult) []string { return v.Admins }).(pulumi.StringArrayOutput)
+}
+
 // An email address for the team.
 func (o LookupTeamResultOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTeamResult) string { return v.Email }).(pulumi.StringOutput)
@@ -147,7 +154,7 @@ func (o LookupTeamResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTeamResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// A set of email addresses corresponding to users who are members of the team.
+// A set of email addresses corresponding to users who are ordinary members of the team.
 func (o LookupTeamResultOutput) Members() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupTeamResult) []string { return v.Members }).(pulumi.StringArrayOutput)
 }

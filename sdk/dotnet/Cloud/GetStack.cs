@@ -145,6 +145,10 @@ namespace Pulumiverse.Grafana.Cloud
     public sealed class GetStackResult
     {
         /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Alertmanager instances.
+        /// </summary>
+        public readonly string AlertmanagerAllowlistUrl;
+        /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
         /// </summary>
         public readonly string AlertmanagerIpAllowListCname;
@@ -189,6 +193,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly string Description;
         /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Fleet Management instance.
+        /// </summary>
+        public readonly string FleetManagementAllowlistUrl;
+        /// <summary>
         /// Name of the Fleet Management instance configured for this stack.
         /// </summary>
         public readonly string FleetManagementName;
@@ -225,9 +233,17 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly int FleetManagementUserId;
         /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the grafana instance.
+        /// </summary>
+        public readonly string GrafanasAllowlistUrl;
+        /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
         /// </summary>
         public readonly string GrafanasIpAllowListCname;
+        /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Graphite instance.
+        /// </summary>
+        public readonly string GraphiteAllowlistUrl;
         /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
         /// </summary>
@@ -268,6 +284,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-._]+$" and stacks cannot have more than 10 labels.
         /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Logs instance.
+        /// </summary>
+        public readonly string LogsAllowlistUrl;
         /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
         /// </summary>
@@ -381,6 +401,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly string PdcGatewayPrivateConnectivityInfoServiceName;
         /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Profiles instance.
+        /// </summary>
+        public readonly string ProfilesAllowlistUrl;
+        /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
         /// </summary>
         public readonly string ProfilesIpAllowListCname;
@@ -408,6 +432,10 @@ namespace Pulumiverse.Grafana.Cloud
         public readonly string ProfilesStatus;
         public readonly string ProfilesUrl;
         public readonly int ProfilesUserId;
+        /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Prometheus instance.
+        /// </summary>
+        public readonly string PrometheusAllowlistUrl;
         /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
         /// </summary>
@@ -474,6 +502,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly string Status;
         /// <summary>
+        /// Allowlist API endpoint that returns the source IP addresses to allow for the Traces instance.
+        /// </summary>
+        public readonly string TracesAllowlistUrl;
+        /// <summary>
         /// Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
         /// </summary>
         public readonly string TracesIpAllowListCname;
@@ -511,6 +543,8 @@ namespace Pulumiverse.Grafana.Cloud
 
         [OutputConstructor]
         private GetStackResult(
+            string alertmanagerAllowlistUrl,
+
             string alertmanagerIpAllowListCname,
 
             string alertmanagerName,
@@ -533,6 +567,8 @@ namespace Pulumiverse.Grafana.Cloud
 
             string description,
 
+            string fleetManagementAllowlistUrl,
+
             string fleetManagementName,
 
             ImmutableArray<string> fleetManagementPrivateConnectivityInfoAvailabilityZoneIds,
@@ -551,7 +587,11 @@ namespace Pulumiverse.Grafana.Cloud
 
             int fleetManagementUserId,
 
+            string grafanasAllowlistUrl,
+
             string grafanasIpAllowListCname,
+
+            string graphiteAllowlistUrl,
 
             string graphiteIpAllowListCname,
 
@@ -578,6 +618,8 @@ namespace Pulumiverse.Grafana.Cloud
             string influxUrl,
 
             ImmutableDictionary<string, string> labels,
+
+            string logsAllowlistUrl,
 
             string logsIpAllowListCname,
 
@@ -641,6 +683,8 @@ namespace Pulumiverse.Grafana.Cloud
 
             string pdcGatewayPrivateConnectivityInfoServiceName,
 
+            string profilesAllowlistUrl,
+
             string profilesIpAllowListCname,
 
             string profilesName,
@@ -660,6 +704,8 @@ namespace Pulumiverse.Grafana.Cloud
             string profilesUrl,
 
             int profilesUserId,
+
+            string prometheusAllowlistUrl,
 
             string prometheusIpAllowListCname,
 
@@ -693,6 +739,8 @@ namespace Pulumiverse.Grafana.Cloud
 
             string status,
 
+            string tracesAllowlistUrl,
+
             string tracesIpAllowListCname,
 
             string tracesName,
@@ -715,6 +763,7 @@ namespace Pulumiverse.Grafana.Cloud
 
             string url)
         {
+            AlertmanagerAllowlistUrl = alertmanagerAllowlistUrl;
             AlertmanagerIpAllowListCname = alertmanagerIpAllowListCname;
             AlertmanagerName = alertmanagerName;
             AlertmanagerStatus = alertmanagerStatus;
@@ -726,6 +775,7 @@ namespace Pulumiverse.Grafana.Cloud
             ConnectionsApiUrl = connectionsApiUrl;
             DeleteProtection = deleteProtection;
             Description = description;
+            FleetManagementAllowlistUrl = fleetManagementAllowlistUrl;
             FleetManagementName = fleetManagementName;
             FleetManagementPrivateConnectivityInfoAvailabilityZoneIds = fleetManagementPrivateConnectivityInfoAvailabilityZoneIds;
             FleetManagementPrivateConnectivityInfoAvailabilityZones = fleetManagementPrivateConnectivityInfoAvailabilityZones;
@@ -735,7 +785,9 @@ namespace Pulumiverse.Grafana.Cloud
             FleetManagementStatus = fleetManagementStatus;
             FleetManagementUrl = fleetManagementUrl;
             FleetManagementUserId = fleetManagementUserId;
+            GrafanasAllowlistUrl = grafanasAllowlistUrl;
             GrafanasIpAllowListCname = grafanasIpAllowListCname;
+            GraphiteAllowlistUrl = graphiteAllowlistUrl;
             GraphiteIpAllowListCname = graphiteIpAllowListCname;
             GraphiteName = graphiteName;
             GraphitePrivateConnectivityInfoAvailabilityZoneIds = graphitePrivateConnectivityInfoAvailabilityZoneIds;
@@ -749,6 +801,7 @@ namespace Pulumiverse.Grafana.Cloud
             Id = id;
             InfluxUrl = influxUrl;
             Labels = labels;
+            LogsAllowlistUrl = logsAllowlistUrl;
             LogsIpAllowListCname = logsIpAllowListCname;
             LogsName = logsName;
             LogsPrivateConnectivityInfoAvailabilityZoneIds = logsPrivateConnectivityInfoAvailabilityZoneIds;
@@ -780,6 +833,7 @@ namespace Pulumiverse.Grafana.Cloud
             PdcGatewayPrivateConnectivityInfoPrivateDns = pdcGatewayPrivateConnectivityInfoPrivateDns;
             PdcGatewayPrivateConnectivityInfoRegions = pdcGatewayPrivateConnectivityInfoRegions;
             PdcGatewayPrivateConnectivityInfoServiceName = pdcGatewayPrivateConnectivityInfoServiceName;
+            ProfilesAllowlistUrl = profilesAllowlistUrl;
             ProfilesIpAllowListCname = profilesIpAllowListCname;
             ProfilesName = profilesName;
             ProfilesPrivateConnectivityInfoAvailabilityZoneIds = profilesPrivateConnectivityInfoAvailabilityZoneIds;
@@ -790,6 +844,7 @@ namespace Pulumiverse.Grafana.Cloud
             ProfilesStatus = profilesStatus;
             ProfilesUrl = profilesUrl;
             ProfilesUserId = profilesUserId;
+            PrometheusAllowlistUrl = prometheusAllowlistUrl;
             PrometheusIpAllowListCname = prometheusIpAllowListCname;
             PrometheusName = prometheusName;
             PrometheusPrivateConnectivityInfoAvailabilityZoneIds = prometheusPrivateConnectivityInfoAvailabilityZoneIds;
@@ -806,6 +861,7 @@ namespace Pulumiverse.Grafana.Cloud
             Slug = slug;
             SmUrl = smUrl;
             Status = status;
+            TracesAllowlistUrl = tracesAllowlistUrl;
             TracesIpAllowListCname = tracesIpAllowListCname;
             TracesName = tracesName;
             TracesPrivateConnectivityInfoAvailabilityZoneIds = tracesPrivateConnectivityInfoAvailabilityZoneIds;

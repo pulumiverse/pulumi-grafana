@@ -10,6 +10,11 @@ export type Playlist = import("./playlist").Playlist;
 export const Playlist: typeof import("./playlist").Playlist = null as any;
 utilities.lazyLoad(exports, ["Playlist"], () => require("./playlist"));
 
+export { QueryArgs, QueryState } from "./query";
+export type Query = import("./query").Query;
+export const Query: typeof import("./query").Query = null as any;
+utilities.lazyLoad(exports, ["Query"], () => require("./query"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -17,9 +22,12 @@ const _module = {
         switch (type) {
             case "grafana:apps/v1/playlist:Playlist":
                 return new Playlist(name, <any>undefined, { urn })
+            case "grafana:apps/v1/query:Query":
+                return new Query(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
 pulumi.runtime.registerResourceModule("grafana", "apps/v1/playlist", _module)
+pulumi.runtime.registerResourceModule("grafana", "apps/v1/query", _module)

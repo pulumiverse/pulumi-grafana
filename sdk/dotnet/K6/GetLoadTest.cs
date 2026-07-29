@@ -176,6 +176,10 @@ namespace Pulumiverse.Grafana.K6
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// Identifier of the k6 version used to run the test.
+        /// </summary>
+        public readonly string K6Version;
+        /// <summary>
         /// Human-friendly identifier of the load test.
         /// </summary>
         public readonly string Name;
@@ -200,6 +204,8 @@ namespace Pulumiverse.Grafana.K6
 
             string id,
 
+            string k6Version,
+
             string name,
 
             string projectId,
@@ -211,6 +217,7 @@ namespace Pulumiverse.Grafana.K6
             BaselineTestRunId = baselineTestRunId;
             Created = created;
             Id = id;
+            K6Version = k6Version;
             Name = name;
             ProjectId = projectId;
             Script = script;

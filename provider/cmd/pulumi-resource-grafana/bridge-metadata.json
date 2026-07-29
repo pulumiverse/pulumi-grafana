@@ -331,6 +331,32 @@
                     }
                 }
             },
+            "grafana_apps_queries_query_v1": {
+                "current": "grafana:apps/v1/query:Query",
+                "majorVersion": 2,
+                "fields": {
+                    "spec": {
+                        "fields": {
+                            "tags": {
+                                "maxItemsOne": false
+                            },
+                            "targets": {
+                                "maxItemsOne": false
+                            },
+                            "vars": {
+                                "maxItemsOne": false,
+                                "elem": {
+                                    "fields": {
+                                        "default_values": {
+                                            "maxItemsOne": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "grafana_apps_rules_alertrule_v0alpha1": {
                 "current": "grafana:alerting/v0alpha1/alertRule:AlertRule",
                 "past": [
@@ -1940,6 +1966,9 @@
                 "current": "grafana:oss/team:Team",
                 "majorVersion": 2,
                 "fields": {
+                    "admins": {
+                        "maxItemsOne": false
+                    },
                     "members": {
                         "maxItemsOne": false
                     },
@@ -2600,6 +2629,9 @@
                 "current": "grafana:oss/getTeam:getTeam",
                 "majorVersion": 2,
                 "fields": {
+                    "admins": {
+                        "maxItemsOne": false
+                    },
                     "members": {
                         "maxItemsOne": false
                     },
@@ -2713,6 +2745,7 @@
             "grafana:apps/v0alpha1/provisioningConnection:ProvisioningConnection": 1,
             "grafana:apps/v0alpha1/provisioningRepository:ProvisioningRepository": 1,
             "grafana:apps/v1/playlist:Playlist": 1,
+            "grafana:apps/v1/query:Query": 1,
             "grafana:apps/v1beta1/dashboard:Dashboard": 1,
             "grafana:apps/v2/dashboard:Dashboard": 1,
             "grafana:apps/v2beta1/dashboard:Dashboard": 1,

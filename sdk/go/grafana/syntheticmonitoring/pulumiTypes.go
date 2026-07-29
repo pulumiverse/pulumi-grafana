@@ -2001,6 +2001,8 @@ type CheckSettingsHttp struct {
 	ProxyConnectHeaders []string `pulumi:"proxyConnectHeaders"`
 	// Proxy URL.
 	ProxyUrl *string `pulumi:"proxyUrl"`
+	// Enable secret manager so that `${secrets.<name>}` references in the bearer token, basic auth password, and TLS certificate/key fields are resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so the reference is passed through literally rather than interpolated by Terraform. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check. Defaults to `false`.
+	SecretManagerEnabled *bool `pulumi:"secretManagerEnabled"`
 	// TLS config.
 	TlsConfig *CheckSettingsHttpTlsConfig `pulumi:"tlsConfig"`
 	// List of valid HTTP versions. Options include `HTTP/1.0`, `HTTP/1.1`, `HTTP/2.0`
@@ -2055,6 +2057,8 @@ type CheckSettingsHttpArgs struct {
 	ProxyConnectHeaders pulumi.StringArrayInput `pulumi:"proxyConnectHeaders"`
 	// Proxy URL.
 	ProxyUrl pulumi.StringPtrInput `pulumi:"proxyUrl"`
+	// Enable secret manager so that `${secrets.<name>}` references in the bearer token, basic auth password, and TLS certificate/key fields are resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so the reference is passed through literally rather than interpolated by Terraform. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check. Defaults to `false`.
+	SecretManagerEnabled pulumi.BoolPtrInput `pulumi:"secretManagerEnabled"`
 	// TLS config.
 	TlsConfig CheckSettingsHttpTlsConfigPtrInput `pulumi:"tlsConfig"`
 	// List of valid HTTP versions. Options include `HTTP/1.0`, `HTTP/1.1`, `HTTP/2.0`
@@ -2227,6 +2231,11 @@ func (o CheckSettingsHttpOutput) ProxyConnectHeaders() pulumi.StringArrayOutput 
 // Proxy URL.
 func (o CheckSettingsHttpOutput) ProxyUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CheckSettingsHttp) *string { return v.ProxyUrl }).(pulumi.StringPtrOutput)
+}
+
+// Enable secret manager so that `${secrets.<name>}` references in the bearer token, basic auth password, and TLS certificate/key fields are resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so the reference is passed through literally rather than interpolated by Terraform. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check. Defaults to `false`.
+func (o CheckSettingsHttpOutput) SecretManagerEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CheckSettingsHttp) *bool { return v.SecretManagerEnabled }).(pulumi.BoolPtrOutput)
 }
 
 // TLS config.
@@ -2436,6 +2445,16 @@ func (o CheckSettingsHttpPtrOutput) ProxyUrl() pulumi.StringPtrOutput {
 		}
 		return v.ProxyUrl
 	}).(pulumi.StringPtrOutput)
+}
+
+// Enable secret manager so that `${secrets.<name>}` references in the bearer token, basic auth password, and TLS certificate/key fields are resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so the reference is passed through literally rather than interpolated by Terraform. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check. Defaults to `false`.
+func (o CheckSettingsHttpPtrOutput) SecretManagerEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CheckSettingsHttp) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SecretManagerEnabled
+	}).(pulumi.BoolPtrOutput)
 }
 
 // TLS config.

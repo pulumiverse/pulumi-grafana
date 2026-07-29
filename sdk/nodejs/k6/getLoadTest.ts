@@ -63,6 +63,10 @@ export interface GetLoadTestResult {
      */
     readonly id: string;
     /**
+     * Identifier of the k6 version used to run the test.
+     */
+    readonly k6Version: string;
+    /**
      * Human-friendly identifier of the load test.
      */
     readonly name: string;

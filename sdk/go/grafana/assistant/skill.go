@@ -29,9 +29,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := assistant.NewSkill(ctx, "example", &assistant.SkillArgs{
-//				Name:  pulumi.String("Deploy readiness check"),
-//				Body:  pulumi.String("1. Check deployment pipeline status.\n2. Verify SLO error budget before promoting.\n"),
-//				Scope: pulumi.String("tenant"),
+//				Name:        pulumi.String("Deploy readiness check"),
+//				CommandName: pulumi.String("deploy-readiness"),
+//				Body:        pulumi.String("1. Check deployment pipeline status.\n2. Verify SLO error budget before promoting.\n"),
+//				Scope:       pulumi.String("tenant"),
 //			})
 //			if err != nil {
 //				return err
@@ -54,6 +55,8 @@ type Skill struct {
 	AllowedTools SkillAllowedToolArrayOutput `pulumi:"allowedTools"`
 	// The skill content.
 	Body pulumi.StringOutput `pulumi:"body"`
+	// The slash command name that invokes the skill. Setting this enables the skill as a command.
+	CommandName pulumi.StringPtrOutput `pulumi:"commandName"`
 	// Optional JSON array of context items referenced by the skill.
 	ContextItems pulumi.StringPtrOutput `pulumi:"contextItems"`
 	// Whether the skill is included in the knowledgebase.
@@ -104,6 +107,8 @@ type skillState struct {
 	AllowedTools []SkillAllowedTool `pulumi:"allowedTools"`
 	// The skill content.
 	Body *string `pulumi:"body"`
+	// The slash command name that invokes the skill. Setting this enables the skill as a command.
+	CommandName *string `pulumi:"commandName"`
 	// Optional JSON array of context items referenced by the skill.
 	ContextItems *string `pulumi:"contextItems"`
 	// Whether the skill is included in the knowledgebase.
@@ -119,6 +124,8 @@ type SkillState struct {
 	AllowedTools SkillAllowedToolArrayInput
 	// The skill content.
 	Body pulumi.StringPtrInput
+	// The slash command name that invokes the skill. Setting this enables the skill as a command.
+	CommandName pulumi.StringPtrInput
 	// Optional JSON array of context items referenced by the skill.
 	ContextItems pulumi.StringPtrInput
 	// Whether the skill is included in the knowledgebase.
@@ -138,6 +145,8 @@ type skillArgs struct {
 	AllowedTools []SkillAllowedTool `pulumi:"allowedTools"`
 	// The skill content.
 	Body string `pulumi:"body"`
+	// The slash command name that invokes the skill. Setting this enables the skill as a command.
+	CommandName *string `pulumi:"commandName"`
 	// Optional JSON array of context items referenced by the skill.
 	ContextItems *string `pulumi:"contextItems"`
 	// Whether the skill is included in the knowledgebase.
@@ -154,6 +163,8 @@ type SkillArgs struct {
 	AllowedTools SkillAllowedToolArrayInput
 	// The skill content.
 	Body pulumi.StringInput
+	// The slash command name that invokes the skill. Setting this enables the skill as a command.
+	CommandName pulumi.StringPtrInput
 	// Optional JSON array of context items referenced by the skill.
 	ContextItems pulumi.StringPtrInput
 	// Whether the skill is included in the knowledgebase.
@@ -259,6 +270,11 @@ func (o SkillOutput) AllowedTools() SkillAllowedToolArrayOutput {
 // The skill content.
 func (o SkillOutput) Body() pulumi.StringOutput {
 	return o.ApplyT(func(v *Skill) pulumi.StringOutput { return v.Body }).(pulumi.StringOutput)
+}
+
+// The slash command name that invokes the skill. Setting this enables the skill as a command.
+func (o SkillOutput) CommandName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Skill) pulumi.StringPtrOutput { return v.CommandName }).(pulumi.StringPtrOutput)
 }
 
 // Optional JSON array of context items referenced by the skill.

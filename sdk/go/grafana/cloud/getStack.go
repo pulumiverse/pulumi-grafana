@@ -63,6 +63,8 @@ type LookupStackArgs struct {
 
 // A collection of values returned by getStack.
 type LookupStackResult struct {
+	// Allowlist API endpoint that returns the source IP addresses to allow for the Alertmanager instances.
+	AlertmanagerAllowlistUrl string `pulumi:"alertmanagerAllowlistUrl"`
 	// Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
 	AlertmanagerIpAllowListCname string `pulumi:"alertmanagerIpAllowListCname"`
 	// Name of the Alertmanager instance configured for this stack.
@@ -85,6 +87,8 @@ type LookupStackResult struct {
 	DeleteProtection bool `pulumi:"deleteProtection"`
 	// Description of stack.
 	Description string `pulumi:"description"`
+	// Allowlist API endpoint that returns the source IP addresses to allow for the Fleet Management instance.
+	FleetManagementAllowlistUrl string `pulumi:"fleetManagementAllowlistUrl"`
 	// Name of the Fleet Management instance configured for this stack.
 	FleetManagementName string `pulumi:"fleetManagementName"`
 	// Availability Zone IDs for Fleet Management when using AWS PrivateLink (only for AWS stacks)
@@ -103,8 +107,12 @@ type LookupStackResult struct {
 	FleetManagementUrl string `pulumi:"fleetManagementUrl"`
 	// User ID of the Fleet Management instance configured for this stack.
 	FleetManagementUserId int `pulumi:"fleetManagementUserId"`
+	// Allowlist API endpoint that returns the source IP addresses to allow for the grafana instance.
+	GrafanasAllowlistUrl string `pulumi:"grafanasAllowlistUrl"`
 	// Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
 	GrafanasIpAllowListCname string `pulumi:"grafanasIpAllowListCname"`
+	// Allowlist API endpoint that returns the source IP addresses to allow for the Graphite instance.
+	GraphiteAllowlistUrl string `pulumi:"graphiteAllowlistUrl"`
 	// Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
 	GraphiteIpAllowListCname string `pulumi:"graphiteIpAllowListCname"`
 	GraphiteName             string `pulumi:"graphiteName"`
@@ -127,6 +135,8 @@ type LookupStackResult struct {
 	InfluxUrl string `pulumi:"influxUrl"`
 	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-._]+$" and stacks cannot have more than 10 labels.
 	Labels map[string]string `pulumi:"labels"`
+	// Allowlist API endpoint that returns the source IP addresses to allow for the Logs instance.
+	LogsAllowlistUrl string `pulumi:"logsAllowlistUrl"`
 	// Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
 	LogsIpAllowListCname string `pulumi:"logsIpAllowListCname"`
 	LogsName             string `pulumi:"logsName"`
@@ -185,6 +195,8 @@ type LookupStackResult struct {
 	PdcGatewayPrivateConnectivityInfoRegions []string `pulumi:"pdcGatewayPrivateConnectivityInfoRegions"`
 	// Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
 	PdcGatewayPrivateConnectivityInfoServiceName string `pulumi:"pdcGatewayPrivateConnectivityInfoServiceName"`
+	// Allowlist API endpoint that returns the source IP addresses to allow for the Profiles instance.
+	ProfilesAllowlistUrl string `pulumi:"profilesAllowlistUrl"`
 	// Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
 	ProfilesIpAllowListCname string `pulumi:"profilesIpAllowListCname"`
 	ProfilesName             string `pulumi:"profilesName"`
@@ -201,6 +213,8 @@ type LookupStackResult struct {
 	ProfilesStatus                             string `pulumi:"profilesStatus"`
 	ProfilesUrl                                string `pulumi:"profilesUrl"`
 	ProfilesUserId                             int    `pulumi:"profilesUserId"`
+	// Allowlist API endpoint that returns the source IP addresses to allow for the Prometheus instance.
+	PrometheusAllowlistUrl string `pulumi:"prometheusAllowlistUrl"`
 	// Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
 	PrometheusIpAllowListCname string `pulumi:"prometheusIpAllowListCname"`
 	// Prometheus name for this instance.
@@ -234,6 +248,8 @@ type LookupStackResult struct {
 	SmUrl string `pulumi:"smUrl"`
 	// Status of the stack.
 	Status string `pulumi:"status"`
+	// Allowlist API endpoint that returns the source IP addresses to allow for the Traces instance.
+	TracesAllowlistUrl string `pulumi:"tracesAllowlistUrl"`
 	// Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
 	TracesIpAllowListCname string `pulumi:"tracesIpAllowListCname"`
 	TracesName             string `pulumi:"tracesName"`
@@ -288,6 +304,11 @@ func (o LookupStackResultOutput) ToLookupStackResultOutput() LookupStackResultOu
 
 func (o LookupStackResultOutput) ToLookupStackResultOutputWithContext(ctx context.Context) LookupStackResultOutput {
 	return o
+}
+
+// Allowlist API endpoint that returns the source IP addresses to allow for the Alertmanager instances.
+func (o LookupStackResultOutput) AlertmanagerAllowlistUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.AlertmanagerAllowlistUrl }).(pulumi.StringOutput)
 }
 
 // Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
@@ -345,6 +366,11 @@ func (o LookupStackResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// Allowlist API endpoint that returns the source IP addresses to allow for the Fleet Management instance.
+func (o LookupStackResultOutput) FleetManagementAllowlistUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.FleetManagementAllowlistUrl }).(pulumi.StringOutput)
+}
+
 // Name of the Fleet Management instance configured for this stack.
 func (o LookupStackResultOutput) FleetManagementName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.FleetManagementName }).(pulumi.StringOutput)
@@ -390,9 +416,19 @@ func (o LookupStackResultOutput) FleetManagementUserId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupStackResult) int { return v.FleetManagementUserId }).(pulumi.IntOutput)
 }
 
+// Allowlist API endpoint that returns the source IP addresses to allow for the grafana instance.
+func (o LookupStackResultOutput) GrafanasAllowlistUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.GrafanasAllowlistUrl }).(pulumi.StringOutput)
+}
+
 // Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
 func (o LookupStackResultOutput) GrafanasIpAllowListCname() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.GrafanasIpAllowListCname }).(pulumi.StringOutput)
+}
+
+// Allowlist API endpoint that returns the source IP addresses to allow for the Graphite instance.
+func (o LookupStackResultOutput) GraphiteAllowlistUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.GraphiteAllowlistUrl }).(pulumi.StringOutput)
 }
 
 // Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
@@ -454,6 +490,11 @@ func (o LookupStackResultOutput) InfluxUrl() pulumi.StringOutput {
 // A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-._]+$" and stacks cannot have more than 10 labels.
 func (o LookupStackResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupStackResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+// Allowlist API endpoint that returns the source IP addresses to allow for the Logs instance.
+func (o LookupStackResultOutput) LogsAllowlistUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.LogsAllowlistUrl }).(pulumi.StringOutput)
 }
 
 // Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
@@ -607,6 +648,11 @@ func (o LookupStackResultOutput) PdcGatewayPrivateConnectivityInfoServiceName() 
 	return o.ApplyT(func(v LookupStackResult) string { return v.PdcGatewayPrivateConnectivityInfoServiceName }).(pulumi.StringOutput)
 }
 
+// Allowlist API endpoint that returns the source IP addresses to allow for the Profiles instance.
+func (o LookupStackResultOutput) ProfilesAllowlistUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.ProfilesAllowlistUrl }).(pulumi.StringOutput)
+}
+
 // Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
 func (o LookupStackResultOutput) ProfilesIpAllowListCname() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.ProfilesIpAllowListCname }).(pulumi.StringOutput)
@@ -651,6 +697,11 @@ func (o LookupStackResultOutput) ProfilesUrl() pulumi.StringOutput {
 
 func (o LookupStackResultOutput) ProfilesUserId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupStackResult) int { return v.ProfilesUserId }).(pulumi.IntOutput)
+}
+
+// Allowlist API endpoint that returns the source IP addresses to allow for the Prometheus instance.
+func (o LookupStackResultOutput) PrometheusAllowlistUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.PrometheusAllowlistUrl }).(pulumi.StringOutput)
 }
 
 // Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
@@ -732,6 +783,11 @@ func (o LookupStackResultOutput) SmUrl() pulumi.StringOutput {
 // Status of the stack.
 func (o LookupStackResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Allowlist API endpoint that returns the source IP addresses to allow for the Traces instance.
+func (o LookupStackResultOutput) TracesAllowlistUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.TracesAllowlistUrl }).(pulumi.StringOutput)
 }
 
 // Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)

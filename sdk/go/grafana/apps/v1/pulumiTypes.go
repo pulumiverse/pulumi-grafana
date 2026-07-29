@@ -676,6 +676,875 @@ func (o PlaylistSpecItemArrayOutput) Index(i pulumi.IntInput) PlaylistSpecItemOu
 	}).(PlaylistSpecItemOutput)
 }
 
+type QueryMetadata struct {
+	// Annotations of the resource.
+	Annotations map[string]string `pulumi:"annotations"`
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+	FolderUid *string `pulumi:"folderUid"`
+	// The unique identifier of the resource.
+	Uid string `pulumi:"uid"`
+	// The full URL of the resource.
+	Url *string `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid *string `pulumi:"uuid"`
+	// The version of the resource.
+	Version *string `pulumi:"version"`
+}
+
+// QueryMetadataInput is an input type that accepts QueryMetadataArgs and QueryMetadataOutput values.
+// You can construct a concrete instance of `QueryMetadataInput` via:
+//
+//	QueryMetadataArgs{...}
+type QueryMetadataInput interface {
+	pulumi.Input
+
+	ToQueryMetadataOutput() QueryMetadataOutput
+	ToQueryMetadataOutputWithContext(context.Context) QueryMetadataOutput
+}
+
+type QueryMetadataArgs struct {
+	// Annotations of the resource.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The unique identifier of the resource.
+	Uid pulumi.StringInput `pulumi:"uid"`
+	// The full URL of the resource.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
+	// The version of the resource.
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (QueryMetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*QueryMetadata)(nil)).Elem()
+}
+
+func (i QueryMetadataArgs) ToQueryMetadataOutput() QueryMetadataOutput {
+	return i.ToQueryMetadataOutputWithContext(context.Background())
+}
+
+func (i QueryMetadataArgs) ToQueryMetadataOutputWithContext(ctx context.Context) QueryMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QueryMetadataOutput)
+}
+
+func (i QueryMetadataArgs) ToQueryMetadataPtrOutput() QueryMetadataPtrOutput {
+	return i.ToQueryMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i QueryMetadataArgs) ToQueryMetadataPtrOutputWithContext(ctx context.Context) QueryMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QueryMetadataOutput).ToQueryMetadataPtrOutputWithContext(ctx)
+}
+
+// QueryMetadataPtrInput is an input type that accepts QueryMetadataArgs, QueryMetadataPtr and QueryMetadataPtrOutput values.
+// You can construct a concrete instance of `QueryMetadataPtrInput` via:
+//
+//	        QueryMetadataArgs{...}
+//
+//	or:
+//
+//	        nil
+type QueryMetadataPtrInput interface {
+	pulumi.Input
+
+	ToQueryMetadataPtrOutput() QueryMetadataPtrOutput
+	ToQueryMetadataPtrOutputWithContext(context.Context) QueryMetadataPtrOutput
+}
+
+type queryMetadataPtrType QueryMetadataArgs
+
+func QueryMetadataPtr(v *QueryMetadataArgs) QueryMetadataPtrInput {
+	return (*queryMetadataPtrType)(v)
+}
+
+func (*queryMetadataPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**QueryMetadata)(nil)).Elem()
+}
+
+func (i *queryMetadataPtrType) ToQueryMetadataPtrOutput() QueryMetadataPtrOutput {
+	return i.ToQueryMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i *queryMetadataPtrType) ToQueryMetadataPtrOutputWithContext(ctx context.Context) QueryMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QueryMetadataPtrOutput)
+}
+
+type QueryMetadataOutput struct{ *pulumi.OutputState }
+
+func (QueryMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*QueryMetadata)(nil)).Elem()
+}
+
+func (o QueryMetadataOutput) ToQueryMetadataOutput() QueryMetadataOutput {
+	return o
+}
+
+func (o QueryMetadataOutput) ToQueryMetadataOutputWithContext(ctx context.Context) QueryMetadataOutput {
+	return o
+}
+
+func (o QueryMetadataOutput) ToQueryMetadataPtrOutput() QueryMetadataPtrOutput {
+	return o.ToQueryMetadataPtrOutputWithContext(context.Background())
+}
+
+func (o QueryMetadataOutput) ToQueryMetadataPtrOutputWithContext(ctx context.Context) QueryMetadataPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v QueryMetadata) *QueryMetadata {
+		return &v
+	}).(QueryMetadataPtrOutput)
+}
+
+// Annotations of the resource.
+func (o QueryMetadataOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v QueryMetadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+func (o QueryMetadataOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QueryMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o QueryMetadataOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v QueryMetadata) string { return v.Uid }).(pulumi.StringOutput)
+}
+
+// The full URL of the resource.
+func (o QueryMetadataOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QueryMetadata) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o QueryMetadataOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QueryMetadata) *string { return v.Uuid }).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o QueryMetadataOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QueryMetadata) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type QueryMetadataPtrOutput struct{ *pulumi.OutputState }
+
+func (QueryMetadataPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**QueryMetadata)(nil)).Elem()
+}
+
+func (o QueryMetadataPtrOutput) ToQueryMetadataPtrOutput() QueryMetadataPtrOutput {
+	return o
+}
+
+func (o QueryMetadataPtrOutput) ToQueryMetadataPtrOutputWithContext(ctx context.Context) QueryMetadataPtrOutput {
+	return o
+}
+
+func (o QueryMetadataPtrOutput) Elem() QueryMetadataOutput {
+	return o.ApplyT(func(v *QueryMetadata) QueryMetadata {
+		if v != nil {
+			return *v
+		}
+		var ret QueryMetadata
+		return ret
+	}).(QueryMetadataOutput)
+}
+
+// Annotations of the resource.
+func (o QueryMetadataPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *QueryMetadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+func (o QueryMetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *QueryMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FolderUid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o QueryMetadataPtrOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *QueryMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The full URL of the resource.
+func (o QueryMetadataPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *QueryMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o QueryMetadataPtrOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *QueryMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Uuid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o QueryMetadataPtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *QueryMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Version
+	}).(pulumi.StringPtrOutput)
+}
+
+type QueryOptions struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity *string `pulumi:"managerIdentity"`
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite *bool `pulumi:"overwrite"`
+}
+
+// QueryOptionsInput is an input type that accepts QueryOptionsArgs and QueryOptionsOutput values.
+// You can construct a concrete instance of `QueryOptionsInput` via:
+//
+//	QueryOptionsArgs{...}
+type QueryOptionsInput interface {
+	pulumi.Input
+
+	ToQueryOptionsOutput() QueryOptionsOutput
+	ToQueryOptionsOutputWithContext(context.Context) QueryOptionsOutput
+}
+
+type QueryOptionsArgs struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity pulumi.StringPtrInput `pulumi:"managerIdentity"`
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
+}
+
+func (QueryOptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*QueryOptions)(nil)).Elem()
+}
+
+func (i QueryOptionsArgs) ToQueryOptionsOutput() QueryOptionsOutput {
+	return i.ToQueryOptionsOutputWithContext(context.Background())
+}
+
+func (i QueryOptionsArgs) ToQueryOptionsOutputWithContext(ctx context.Context) QueryOptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QueryOptionsOutput)
+}
+
+func (i QueryOptionsArgs) ToQueryOptionsPtrOutput() QueryOptionsPtrOutput {
+	return i.ToQueryOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i QueryOptionsArgs) ToQueryOptionsPtrOutputWithContext(ctx context.Context) QueryOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QueryOptionsOutput).ToQueryOptionsPtrOutputWithContext(ctx)
+}
+
+// QueryOptionsPtrInput is an input type that accepts QueryOptionsArgs, QueryOptionsPtr and QueryOptionsPtrOutput values.
+// You can construct a concrete instance of `QueryOptionsPtrInput` via:
+//
+//	        QueryOptionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type QueryOptionsPtrInput interface {
+	pulumi.Input
+
+	ToQueryOptionsPtrOutput() QueryOptionsPtrOutput
+	ToQueryOptionsPtrOutputWithContext(context.Context) QueryOptionsPtrOutput
+}
+
+type queryOptionsPtrType QueryOptionsArgs
+
+func QueryOptionsPtr(v *QueryOptionsArgs) QueryOptionsPtrInput {
+	return (*queryOptionsPtrType)(v)
+}
+
+func (*queryOptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**QueryOptions)(nil)).Elem()
+}
+
+func (i *queryOptionsPtrType) ToQueryOptionsPtrOutput() QueryOptionsPtrOutput {
+	return i.ToQueryOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *queryOptionsPtrType) ToQueryOptionsPtrOutputWithContext(ctx context.Context) QueryOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QueryOptionsPtrOutput)
+}
+
+type QueryOptionsOutput struct{ *pulumi.OutputState }
+
+func (QueryOptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*QueryOptions)(nil)).Elem()
+}
+
+func (o QueryOptionsOutput) ToQueryOptionsOutput() QueryOptionsOutput {
+	return o
+}
+
+func (o QueryOptionsOutput) ToQueryOptionsOutputWithContext(ctx context.Context) QueryOptionsOutput {
+	return o
+}
+
+func (o QueryOptionsOutput) ToQueryOptionsPtrOutput() QueryOptionsPtrOutput {
+	return o.ToQueryOptionsPtrOutputWithContext(context.Background())
+}
+
+func (o QueryOptionsOutput) ToQueryOptionsPtrOutputWithContext(ctx context.Context) QueryOptionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v QueryOptions) *QueryOptions {
+		return &v
+	}).(QueryOptionsPtrOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o QueryOptionsOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QueryOptions) *string { return v.ManagerIdentity }).(pulumi.StringPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o QueryOptionsOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v QueryOptions) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
+}
+
+type QueryOptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (QueryOptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**QueryOptions)(nil)).Elem()
+}
+
+func (o QueryOptionsPtrOutput) ToQueryOptionsPtrOutput() QueryOptionsPtrOutput {
+	return o
+}
+
+func (o QueryOptionsPtrOutput) ToQueryOptionsPtrOutputWithContext(ctx context.Context) QueryOptionsPtrOutput {
+	return o
+}
+
+func (o QueryOptionsPtrOutput) Elem() QueryOptionsOutput {
+	return o.ApplyT(func(v *QueryOptions) QueryOptions {
+		if v != nil {
+			return *v
+		}
+		var ret QueryOptions
+		return ret
+	}).(QueryOptionsOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o QueryOptionsPtrOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *QueryOptions) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ManagerIdentity
+	}).(pulumi.StringPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o QueryOptionsPtrOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *QueryOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Overwrite
+	}).(pulumi.BoolPtrOutput)
+}
+
+type QuerySpec struct {
+	// A longer description of the saved query.
+	Description *string `pulumi:"description"`
+	// Whether the saved query is locked and cannot be edited in the UI. This is purely for UI display purposes and not for security.
+	IsLocked *bool `pulumi:"isLocked"`
+	// Whether the saved query is visible in the query library.
+	IsVisible *bool `pulumi:"isVisible"`
+	// The tags used to filter the saved query.
+	Tags []string `pulumi:"tags"`
+	// The query targets that make up the saved query. At least one target is required.
+	Targets []QuerySpecTarget `pulumi:"targets"`
+	// The display name of the saved query.
+	Title string `pulumi:"title"`
+	// The template variables that can be interpolated into the query targets.
+	Vars []QuerySpecVar `pulumi:"vars"`
+}
+
+// QuerySpecInput is an input type that accepts QuerySpecArgs and QuerySpecOutput values.
+// You can construct a concrete instance of `QuerySpecInput` via:
+//
+//	QuerySpecArgs{...}
+type QuerySpecInput interface {
+	pulumi.Input
+
+	ToQuerySpecOutput() QuerySpecOutput
+	ToQuerySpecOutputWithContext(context.Context) QuerySpecOutput
+}
+
+type QuerySpecArgs struct {
+	// A longer description of the saved query.
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// Whether the saved query is locked and cannot be edited in the UI. This is purely for UI display purposes and not for security.
+	IsLocked pulumi.BoolPtrInput `pulumi:"isLocked"`
+	// Whether the saved query is visible in the query library.
+	IsVisible pulumi.BoolPtrInput `pulumi:"isVisible"`
+	// The tags used to filter the saved query.
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	// The query targets that make up the saved query. At least one target is required.
+	Targets QuerySpecTargetArrayInput `pulumi:"targets"`
+	// The display name of the saved query.
+	Title pulumi.StringInput `pulumi:"title"`
+	// The template variables that can be interpolated into the query targets.
+	Vars QuerySpecVarArrayInput `pulumi:"vars"`
+}
+
+func (QuerySpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*QuerySpec)(nil)).Elem()
+}
+
+func (i QuerySpecArgs) ToQuerySpecOutput() QuerySpecOutput {
+	return i.ToQuerySpecOutputWithContext(context.Background())
+}
+
+func (i QuerySpecArgs) ToQuerySpecOutputWithContext(ctx context.Context) QuerySpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuerySpecOutput)
+}
+
+func (i QuerySpecArgs) ToQuerySpecPtrOutput() QuerySpecPtrOutput {
+	return i.ToQuerySpecPtrOutputWithContext(context.Background())
+}
+
+func (i QuerySpecArgs) ToQuerySpecPtrOutputWithContext(ctx context.Context) QuerySpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuerySpecOutput).ToQuerySpecPtrOutputWithContext(ctx)
+}
+
+// QuerySpecPtrInput is an input type that accepts QuerySpecArgs, QuerySpecPtr and QuerySpecPtrOutput values.
+// You can construct a concrete instance of `QuerySpecPtrInput` via:
+//
+//	        QuerySpecArgs{...}
+//
+//	or:
+//
+//	        nil
+type QuerySpecPtrInput interface {
+	pulumi.Input
+
+	ToQuerySpecPtrOutput() QuerySpecPtrOutput
+	ToQuerySpecPtrOutputWithContext(context.Context) QuerySpecPtrOutput
+}
+
+type querySpecPtrType QuerySpecArgs
+
+func QuerySpecPtr(v *QuerySpecArgs) QuerySpecPtrInput {
+	return (*querySpecPtrType)(v)
+}
+
+func (*querySpecPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**QuerySpec)(nil)).Elem()
+}
+
+func (i *querySpecPtrType) ToQuerySpecPtrOutput() QuerySpecPtrOutput {
+	return i.ToQuerySpecPtrOutputWithContext(context.Background())
+}
+
+func (i *querySpecPtrType) ToQuerySpecPtrOutputWithContext(ctx context.Context) QuerySpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuerySpecPtrOutput)
+}
+
+type QuerySpecOutput struct{ *pulumi.OutputState }
+
+func (QuerySpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*QuerySpec)(nil)).Elem()
+}
+
+func (o QuerySpecOutput) ToQuerySpecOutput() QuerySpecOutput {
+	return o
+}
+
+func (o QuerySpecOutput) ToQuerySpecOutputWithContext(ctx context.Context) QuerySpecOutput {
+	return o
+}
+
+func (o QuerySpecOutput) ToQuerySpecPtrOutput() QuerySpecPtrOutput {
+	return o.ToQuerySpecPtrOutputWithContext(context.Background())
+}
+
+func (o QuerySpecOutput) ToQuerySpecPtrOutputWithContext(ctx context.Context) QuerySpecPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v QuerySpec) *QuerySpec {
+		return &v
+	}).(QuerySpecPtrOutput)
+}
+
+// A longer description of the saved query.
+func (o QuerySpecOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QuerySpec) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Whether the saved query is locked and cannot be edited in the UI. This is purely for UI display purposes and not for security.
+func (o QuerySpecOutput) IsLocked() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v QuerySpec) *bool { return v.IsLocked }).(pulumi.BoolPtrOutput)
+}
+
+// Whether the saved query is visible in the query library.
+func (o QuerySpecOutput) IsVisible() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v QuerySpec) *bool { return v.IsVisible }).(pulumi.BoolPtrOutput)
+}
+
+// The tags used to filter the saved query.
+func (o QuerySpecOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v QuerySpec) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// The query targets that make up the saved query. At least one target is required.
+func (o QuerySpecOutput) Targets() QuerySpecTargetArrayOutput {
+	return o.ApplyT(func(v QuerySpec) []QuerySpecTarget { return v.Targets }).(QuerySpecTargetArrayOutput)
+}
+
+// The display name of the saved query.
+func (o QuerySpecOutput) Title() pulumi.StringOutput {
+	return o.ApplyT(func(v QuerySpec) string { return v.Title }).(pulumi.StringOutput)
+}
+
+// The template variables that can be interpolated into the query targets.
+func (o QuerySpecOutput) Vars() QuerySpecVarArrayOutput {
+	return o.ApplyT(func(v QuerySpec) []QuerySpecVar { return v.Vars }).(QuerySpecVarArrayOutput)
+}
+
+type QuerySpecPtrOutput struct{ *pulumi.OutputState }
+
+func (QuerySpecPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**QuerySpec)(nil)).Elem()
+}
+
+func (o QuerySpecPtrOutput) ToQuerySpecPtrOutput() QuerySpecPtrOutput {
+	return o
+}
+
+func (o QuerySpecPtrOutput) ToQuerySpecPtrOutputWithContext(ctx context.Context) QuerySpecPtrOutput {
+	return o
+}
+
+func (o QuerySpecPtrOutput) Elem() QuerySpecOutput {
+	return o.ApplyT(func(v *QuerySpec) QuerySpec {
+		if v != nil {
+			return *v
+		}
+		var ret QuerySpec
+		return ret
+	}).(QuerySpecOutput)
+}
+
+// A longer description of the saved query.
+func (o QuerySpecPtrOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *QuerySpec) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether the saved query is locked and cannot be edited in the UI. This is purely for UI display purposes and not for security.
+func (o QuerySpecPtrOutput) IsLocked() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *QuerySpec) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsLocked
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Whether the saved query is visible in the query library.
+func (o QuerySpecPtrOutput) IsVisible() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *QuerySpec) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsVisible
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The tags used to filter the saved query.
+func (o QuerySpecPtrOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *QuerySpec) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Tags
+	}).(pulumi.StringArrayOutput)
+}
+
+// The query targets that make up the saved query. At least one target is required.
+func (o QuerySpecPtrOutput) Targets() QuerySpecTargetArrayOutput {
+	return o.ApplyT(func(v *QuerySpec) []QuerySpecTarget {
+		if v == nil {
+			return nil
+		}
+		return v.Targets
+	}).(QuerySpecTargetArrayOutput)
+}
+
+// The display name of the saved query.
+func (o QuerySpecPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *QuerySpec) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
+}
+
+// The template variables that can be interpolated into the query targets.
+func (o QuerySpecPtrOutput) Vars() QuerySpecVarArrayOutput {
+	return o.ApplyT(func(v *QuerySpec) []QuerySpecVar {
+		if v == nil {
+			return nil
+		}
+		return v.Vars
+	}).(QuerySpecVarArrayOutput)
+}
+
+type QuerySpecTarget struct {
+	// The returned Dataplane frame type for the target.
+	DataType *string `pulumi:"dataType"`
+	// The datasource query for the target, as a JSON string (use jsonencode()).
+	PropertiesJson string `pulumi:"propertiesJson"`
+	// The variable replacements to apply to the target, as a JSON string (use jsonencode()).
+	VariablesJson *string `pulumi:"variablesJson"`
+}
+
+// QuerySpecTargetInput is an input type that accepts QuerySpecTargetArgs and QuerySpecTargetOutput values.
+// You can construct a concrete instance of `QuerySpecTargetInput` via:
+//
+//	QuerySpecTargetArgs{...}
+type QuerySpecTargetInput interface {
+	pulumi.Input
+
+	ToQuerySpecTargetOutput() QuerySpecTargetOutput
+	ToQuerySpecTargetOutputWithContext(context.Context) QuerySpecTargetOutput
+}
+
+type QuerySpecTargetArgs struct {
+	// The returned Dataplane frame type for the target.
+	DataType pulumi.StringPtrInput `pulumi:"dataType"`
+	// The datasource query for the target, as a JSON string (use jsonencode()).
+	PropertiesJson pulumi.StringInput `pulumi:"propertiesJson"`
+	// The variable replacements to apply to the target, as a JSON string (use jsonencode()).
+	VariablesJson pulumi.StringPtrInput `pulumi:"variablesJson"`
+}
+
+func (QuerySpecTargetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*QuerySpecTarget)(nil)).Elem()
+}
+
+func (i QuerySpecTargetArgs) ToQuerySpecTargetOutput() QuerySpecTargetOutput {
+	return i.ToQuerySpecTargetOutputWithContext(context.Background())
+}
+
+func (i QuerySpecTargetArgs) ToQuerySpecTargetOutputWithContext(ctx context.Context) QuerySpecTargetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuerySpecTargetOutput)
+}
+
+// QuerySpecTargetArrayInput is an input type that accepts QuerySpecTargetArray and QuerySpecTargetArrayOutput values.
+// You can construct a concrete instance of `QuerySpecTargetArrayInput` via:
+//
+//	QuerySpecTargetArray{ QuerySpecTargetArgs{...} }
+type QuerySpecTargetArrayInput interface {
+	pulumi.Input
+
+	ToQuerySpecTargetArrayOutput() QuerySpecTargetArrayOutput
+	ToQuerySpecTargetArrayOutputWithContext(context.Context) QuerySpecTargetArrayOutput
+}
+
+type QuerySpecTargetArray []QuerySpecTargetInput
+
+func (QuerySpecTargetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QuerySpecTarget)(nil)).Elem()
+}
+
+func (i QuerySpecTargetArray) ToQuerySpecTargetArrayOutput() QuerySpecTargetArrayOutput {
+	return i.ToQuerySpecTargetArrayOutputWithContext(context.Background())
+}
+
+func (i QuerySpecTargetArray) ToQuerySpecTargetArrayOutputWithContext(ctx context.Context) QuerySpecTargetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuerySpecTargetArrayOutput)
+}
+
+type QuerySpecTargetOutput struct{ *pulumi.OutputState }
+
+func (QuerySpecTargetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*QuerySpecTarget)(nil)).Elem()
+}
+
+func (o QuerySpecTargetOutput) ToQuerySpecTargetOutput() QuerySpecTargetOutput {
+	return o
+}
+
+func (o QuerySpecTargetOutput) ToQuerySpecTargetOutputWithContext(ctx context.Context) QuerySpecTargetOutput {
+	return o
+}
+
+// The returned Dataplane frame type for the target.
+func (o QuerySpecTargetOutput) DataType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QuerySpecTarget) *string { return v.DataType }).(pulumi.StringPtrOutput)
+}
+
+// The datasource query for the target, as a JSON string (use jsonencode()).
+func (o QuerySpecTargetOutput) PropertiesJson() pulumi.StringOutput {
+	return o.ApplyT(func(v QuerySpecTarget) string { return v.PropertiesJson }).(pulumi.StringOutput)
+}
+
+// The variable replacements to apply to the target, as a JSON string (use jsonencode()).
+func (o QuerySpecTargetOutput) VariablesJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QuerySpecTarget) *string { return v.VariablesJson }).(pulumi.StringPtrOutput)
+}
+
+type QuerySpecTargetArrayOutput struct{ *pulumi.OutputState }
+
+func (QuerySpecTargetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QuerySpecTarget)(nil)).Elem()
+}
+
+func (o QuerySpecTargetArrayOutput) ToQuerySpecTargetArrayOutput() QuerySpecTargetArrayOutput {
+	return o
+}
+
+func (o QuerySpecTargetArrayOutput) ToQuerySpecTargetArrayOutputWithContext(ctx context.Context) QuerySpecTargetArrayOutput {
+	return o
+}
+
+func (o QuerySpecTargetArrayOutput) Index(i pulumi.IntInput) QuerySpecTargetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) QuerySpecTarget {
+		return vs[0].([]QuerySpecTarget)[vs[1].(int)]
+	}).(QuerySpecTargetOutput)
+}
+
+type QuerySpecVar struct {
+	// The values used when no value is selected during render.
+	DefaultValues []string `pulumi:"defaultValues"`
+	// The name of the variable.
+	Key string `pulumi:"key"`
+	// The definition (as a JSON string) used by the frontend to fetch the list of selectable values.
+	ValueListDefinitionJson *string `pulumi:"valueListDefinitionJson"`
+}
+
+// QuerySpecVarInput is an input type that accepts QuerySpecVarArgs and QuerySpecVarOutput values.
+// You can construct a concrete instance of `QuerySpecVarInput` via:
+//
+//	QuerySpecVarArgs{...}
+type QuerySpecVarInput interface {
+	pulumi.Input
+
+	ToQuerySpecVarOutput() QuerySpecVarOutput
+	ToQuerySpecVarOutputWithContext(context.Context) QuerySpecVarOutput
+}
+
+type QuerySpecVarArgs struct {
+	// The values used when no value is selected during render.
+	DefaultValues pulumi.StringArrayInput `pulumi:"defaultValues"`
+	// The name of the variable.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The definition (as a JSON string) used by the frontend to fetch the list of selectable values.
+	ValueListDefinitionJson pulumi.StringPtrInput `pulumi:"valueListDefinitionJson"`
+}
+
+func (QuerySpecVarArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*QuerySpecVar)(nil)).Elem()
+}
+
+func (i QuerySpecVarArgs) ToQuerySpecVarOutput() QuerySpecVarOutput {
+	return i.ToQuerySpecVarOutputWithContext(context.Background())
+}
+
+func (i QuerySpecVarArgs) ToQuerySpecVarOutputWithContext(ctx context.Context) QuerySpecVarOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuerySpecVarOutput)
+}
+
+// QuerySpecVarArrayInput is an input type that accepts QuerySpecVarArray and QuerySpecVarArrayOutput values.
+// You can construct a concrete instance of `QuerySpecVarArrayInput` via:
+//
+//	QuerySpecVarArray{ QuerySpecVarArgs{...} }
+type QuerySpecVarArrayInput interface {
+	pulumi.Input
+
+	ToQuerySpecVarArrayOutput() QuerySpecVarArrayOutput
+	ToQuerySpecVarArrayOutputWithContext(context.Context) QuerySpecVarArrayOutput
+}
+
+type QuerySpecVarArray []QuerySpecVarInput
+
+func (QuerySpecVarArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QuerySpecVar)(nil)).Elem()
+}
+
+func (i QuerySpecVarArray) ToQuerySpecVarArrayOutput() QuerySpecVarArrayOutput {
+	return i.ToQuerySpecVarArrayOutputWithContext(context.Background())
+}
+
+func (i QuerySpecVarArray) ToQuerySpecVarArrayOutputWithContext(ctx context.Context) QuerySpecVarArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuerySpecVarArrayOutput)
+}
+
+type QuerySpecVarOutput struct{ *pulumi.OutputState }
+
+func (QuerySpecVarOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*QuerySpecVar)(nil)).Elem()
+}
+
+func (o QuerySpecVarOutput) ToQuerySpecVarOutput() QuerySpecVarOutput {
+	return o
+}
+
+func (o QuerySpecVarOutput) ToQuerySpecVarOutputWithContext(ctx context.Context) QuerySpecVarOutput {
+	return o
+}
+
+// The values used when no value is selected during render.
+func (o QuerySpecVarOutput) DefaultValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v QuerySpecVar) []string { return v.DefaultValues }).(pulumi.StringArrayOutput)
+}
+
+// The name of the variable.
+func (o QuerySpecVarOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v QuerySpecVar) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The definition (as a JSON string) used by the frontend to fetch the list of selectable values.
+func (o QuerySpecVarOutput) ValueListDefinitionJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QuerySpecVar) *string { return v.ValueListDefinitionJson }).(pulumi.StringPtrOutput)
+}
+
+type QuerySpecVarArrayOutput struct{ *pulumi.OutputState }
+
+func (QuerySpecVarArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QuerySpecVar)(nil)).Elem()
+}
+
+func (o QuerySpecVarArrayOutput) ToQuerySpecVarArrayOutput() QuerySpecVarArrayOutput {
+	return o
+}
+
+func (o QuerySpecVarArrayOutput) ToQuerySpecVarArrayOutputWithContext(ctx context.Context) QuerySpecVarArrayOutput {
+	return o
+}
+
+func (o QuerySpecVarArrayOutput) Index(i pulumi.IntInput) QuerySpecVarOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) QuerySpecVar {
+		return vs[0].([]QuerySpecVar)[vs[1].(int)]
+	}).(QuerySpecVarOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PlaylistMetadataInput)(nil)).Elem(), PlaylistMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PlaylistMetadataPtrInput)(nil)).Elem(), PlaylistMetadataArgs{})
@@ -685,6 +1554,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PlaylistSpecPtrInput)(nil)).Elem(), PlaylistSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PlaylistSpecItemInput)(nil)).Elem(), PlaylistSpecItemArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PlaylistSpecItemArrayInput)(nil)).Elem(), PlaylistSpecItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QueryMetadataInput)(nil)).Elem(), QueryMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QueryMetadataPtrInput)(nil)).Elem(), QueryMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QueryOptionsInput)(nil)).Elem(), QueryOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QueryOptionsPtrInput)(nil)).Elem(), QueryOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuerySpecInput)(nil)).Elem(), QuerySpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuerySpecPtrInput)(nil)).Elem(), QuerySpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuerySpecTargetInput)(nil)).Elem(), QuerySpecTargetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuerySpecTargetArrayInput)(nil)).Elem(), QuerySpecTargetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuerySpecVarInput)(nil)).Elem(), QuerySpecVarArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuerySpecVarArrayInput)(nil)).Elem(), QuerySpecVarArray{})
 	pulumi.RegisterOutputType(PlaylistMetadataOutput{})
 	pulumi.RegisterOutputType(PlaylistMetadataPtrOutput{})
 	pulumi.RegisterOutputType(PlaylistOptionsOutput{})
@@ -693,4 +1572,14 @@ func init() {
 	pulumi.RegisterOutputType(PlaylistSpecPtrOutput{})
 	pulumi.RegisterOutputType(PlaylistSpecItemOutput{})
 	pulumi.RegisterOutputType(PlaylistSpecItemArrayOutput{})
+	pulumi.RegisterOutputType(QueryMetadataOutput{})
+	pulumi.RegisterOutputType(QueryMetadataPtrOutput{})
+	pulumi.RegisterOutputType(QueryOptionsOutput{})
+	pulumi.RegisterOutputType(QueryOptionsPtrOutput{})
+	pulumi.RegisterOutputType(QuerySpecOutput{})
+	pulumi.RegisterOutputType(QuerySpecPtrOutput{})
+	pulumi.RegisterOutputType(QuerySpecTargetOutput{})
+	pulumi.RegisterOutputType(QuerySpecTargetArrayOutput{})
+	pulumi.RegisterOutputType(QuerySpecVarOutput{})
+	pulumi.RegisterOutputType(QuerySpecVarArrayOutput{})
 }

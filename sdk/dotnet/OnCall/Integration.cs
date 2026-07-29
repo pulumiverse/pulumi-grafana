@@ -36,6 +36,12 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<ImmutableArray<ImmutableDictionary<string, string>>> DynamicLabels { get; private set; } = null!;
 
         /// <summary>
+        /// The inbound email address for the integration. Only available for integration type `InboundEmail`.
+        /// </summary>
+        [Output("inboundEmail")]
+        public Output<string> InboundEmail { get; private set; } = null!;
+
+        /// <summary>
         /// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
         /// </summary>
         [Output("labels")]
@@ -197,6 +203,12 @@ namespace Pulumiverse.Grafana.OnCall
             get => _dynamicLabels ?? (_dynamicLabels = new InputList<ImmutableDictionary<string, string>>());
             set => _dynamicLabels = value;
         }
+
+        /// <summary>
+        /// The inbound email address for the integration. Only available for integration type `InboundEmail`.
+        /// </summary>
+        [Input("inboundEmail")]
+        public Input<string>? InboundEmail { get; set; }
 
         [Input("labels")]
         private InputList<ImmutableDictionary<string, string>>? _labels;

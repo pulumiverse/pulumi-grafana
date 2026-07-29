@@ -24,6 +24,7 @@ class SkillArgs:
                  body: pulumi.Input[_builtins.str],
                  scope: pulumi.Input[_builtins.str],
                  allowed_tools: Optional[pulumi.Input[Sequence[pulumi.Input['SkillAllowedToolArgs']]]] = None,
+                 command_name: Optional[pulumi.Input[_builtins.str]] = None,
                  context_items: Optional[pulumi.Input[_builtins.str]] = None,
                  include_in_knowledgebase: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
@@ -33,6 +34,7 @@ class SkillArgs:
         :param pulumi.Input[_builtins.str] body: The skill content.
         :param pulumi.Input[_builtins.str] scope: Whether the resource is visible to the whole tenant (`tenant`) or only the creating user (`user`).
         :param pulumi.Input[Sequence[pulumi.Input['SkillAllowedToolArgs']]] allowed_tools: MCP tools to auto-approve when this skill is invoked.
+        :param pulumi.Input[_builtins.str] command_name: The slash command name that invokes the skill. Setting this enables the skill as a command.
         :param pulumi.Input[_builtins.str] context_items: Optional JSON array of context items referenced by the skill.
         :param pulumi.Input[_builtins.bool] include_in_knowledgebase: Whether the skill is included in the knowledgebase.
         :param pulumi.Input[_builtins.str] name: The skill name.
@@ -41,6 +43,8 @@ class SkillArgs:
         pulumi.set(__self__, "scope", scope)
         if allowed_tools is not None:
             pulumi.set(__self__, "allowed_tools", allowed_tools)
+        if command_name is not None:
+            pulumi.set(__self__, "command_name", command_name)
         if context_items is not None:
             pulumi.set(__self__, "context_items", context_items)
         if include_in_knowledgebase is not None:
@@ -85,6 +89,18 @@ class SkillArgs:
         pulumi.set(self, "allowed_tools", value)
 
     @_builtins.property
+    @pulumi.getter(name="commandName")
+    def command_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The slash command name that invokes the skill. Setting this enables the skill as a command.
+        """
+        return pulumi.get(self, "command_name")
+
+    @command_name.setter
+    def command_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "command_name", value)
+
+    @_builtins.property
     @pulumi.getter(name="contextItems")
     def context_items(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -126,6 +142,7 @@ class _SkillState:
     def __init__(__self__, *,
                  allowed_tools: Optional[pulumi.Input[Sequence[pulumi.Input['SkillAllowedToolArgs']]]] = None,
                  body: Optional[pulumi.Input[_builtins.str]] = None,
+                 command_name: Optional[pulumi.Input[_builtins.str]] = None,
                  context_items: Optional[pulumi.Input[_builtins.str]] = None,
                  include_in_knowledgebase: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -135,6 +152,7 @@ class _SkillState:
 
         :param pulumi.Input[Sequence[pulumi.Input['SkillAllowedToolArgs']]] allowed_tools: MCP tools to auto-approve when this skill is invoked.
         :param pulumi.Input[_builtins.str] body: The skill content.
+        :param pulumi.Input[_builtins.str] command_name: The slash command name that invokes the skill. Setting this enables the skill as a command.
         :param pulumi.Input[_builtins.str] context_items: Optional JSON array of context items referenced by the skill.
         :param pulumi.Input[_builtins.bool] include_in_knowledgebase: Whether the skill is included in the knowledgebase.
         :param pulumi.Input[_builtins.str] name: The skill name.
@@ -144,6 +162,8 @@ class _SkillState:
             pulumi.set(__self__, "allowed_tools", allowed_tools)
         if body is not None:
             pulumi.set(__self__, "body", body)
+        if command_name is not None:
+            pulumi.set(__self__, "command_name", command_name)
         if context_items is not None:
             pulumi.set(__self__, "context_items", context_items)
         if include_in_knowledgebase is not None:
@@ -176,6 +196,18 @@ class _SkillState:
     @body.setter
     def body(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "body", value)
+
+    @_builtins.property
+    @pulumi.getter(name="commandName")
+    def command_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The slash command name that invokes the skill. Setting this enables the skill as a command.
+        """
+        return pulumi.get(self, "command_name")
+
+    @command_name.setter
+    def command_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "command_name", value)
 
     @_builtins.property
     @pulumi.getter(name="contextItems")
@@ -234,6 +266,7 @@ class Skill(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allowed_tools: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SkillAllowedToolArgs', 'SkillAllowedToolArgsDict']]]]] = None,
                  body: Optional[pulumi.Input[_builtins.str]] = None,
+                 command_name: Optional[pulumi.Input[_builtins.str]] = None,
                  context_items: Optional[pulumi.Input[_builtins.str]] = None,
                  include_in_knowledgebase: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -250,6 +283,7 @@ class Skill(pulumi.CustomResource):
 
         example = grafana.assistant.Skill("example",
             name="Deploy readiness check",
+            command_name="deploy-readiness",
             body=\"\"\"1. Check deployment pipeline status.
         2. Verify SLO error budget before promoting.
         \"\"\",
@@ -267,6 +301,7 @@ class Skill(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SkillAllowedToolArgs', 'SkillAllowedToolArgsDict']]]] allowed_tools: MCP tools to auto-approve when this skill is invoked.
         :param pulumi.Input[_builtins.str] body: The skill content.
+        :param pulumi.Input[_builtins.str] command_name: The slash command name that invokes the skill. Setting this enables the skill as a command.
         :param pulumi.Input[_builtins.str] context_items: Optional JSON array of context items referenced by the skill.
         :param pulumi.Input[_builtins.bool] include_in_knowledgebase: Whether the skill is included in the knowledgebase.
         :param pulumi.Input[_builtins.str] name: The skill name.
@@ -289,6 +324,7 @@ class Skill(pulumi.CustomResource):
 
         example = grafana.assistant.Skill("example",
             name="Deploy readiness check",
+            command_name="deploy-readiness",
             body=\"\"\"1. Check deployment pipeline status.
         2. Verify SLO error budget before promoting.
         \"\"\",
@@ -319,6 +355,7 @@ class Skill(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allowed_tools: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SkillAllowedToolArgs', 'SkillAllowedToolArgsDict']]]]] = None,
                  body: Optional[pulumi.Input[_builtins.str]] = None,
+                 command_name: Optional[pulumi.Input[_builtins.str]] = None,
                  context_items: Optional[pulumi.Input[_builtins.str]] = None,
                  include_in_knowledgebase: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -336,6 +373,7 @@ class Skill(pulumi.CustomResource):
             if body is None and not opts.urn:
                 raise TypeError("Missing required property 'body'")
             __props__.__dict__["body"] = body
+            __props__.__dict__["command_name"] = command_name
             __props__.__dict__["context_items"] = context_items
             __props__.__dict__["include_in_knowledgebase"] = include_in_knowledgebase
             __props__.__dict__["name"] = name
@@ -354,6 +392,7 @@ class Skill(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             allowed_tools: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SkillAllowedToolArgs', 'SkillAllowedToolArgsDict']]]]] = None,
             body: Optional[pulumi.Input[_builtins.str]] = None,
+            command_name: Optional[pulumi.Input[_builtins.str]] = None,
             context_items: Optional[pulumi.Input[_builtins.str]] = None,
             include_in_knowledgebase: Optional[pulumi.Input[_builtins.bool]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -367,6 +406,7 @@ class Skill(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SkillAllowedToolArgs', 'SkillAllowedToolArgsDict']]]] allowed_tools: MCP tools to auto-approve when this skill is invoked.
         :param pulumi.Input[_builtins.str] body: The skill content.
+        :param pulumi.Input[_builtins.str] command_name: The slash command name that invokes the skill. Setting this enables the skill as a command.
         :param pulumi.Input[_builtins.str] context_items: Optional JSON array of context items referenced by the skill.
         :param pulumi.Input[_builtins.bool] include_in_knowledgebase: Whether the skill is included in the knowledgebase.
         :param pulumi.Input[_builtins.str] name: The skill name.
@@ -378,6 +418,7 @@ class Skill(pulumi.CustomResource):
 
         __props__.__dict__["allowed_tools"] = allowed_tools
         __props__.__dict__["body"] = body
+        __props__.__dict__["command_name"] = command_name
         __props__.__dict__["context_items"] = context_items
         __props__.__dict__["include_in_knowledgebase"] = include_in_knowledgebase
         __props__.__dict__["name"] = name
@@ -399,6 +440,14 @@ class Skill(pulumi.CustomResource):
         The skill content.
         """
         return pulumi.get(self, "body")
+
+    @_builtins.property
+    @pulumi.getter(name="commandName")
+    def command_name(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The slash command name that invokes the skill. Setting this enables the skill as a command.
+        """
+        return pulumi.get(self, "command_name")
 
     @_builtins.property
     @pulumi.getter(name="contextItems")

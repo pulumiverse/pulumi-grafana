@@ -69,6 +69,10 @@ export class LoadTest extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly created: pulumi.Output<string>;
     /**
+     * Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2
+     */
+    declare public readonly k6Version: pulumi.Output<string>;
+    /**
      * Human-friendly identifier of the load test.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -100,6 +104,7 @@ export class LoadTest extends pulumi.CustomResource {
             const state = argsOrState as LoadTestState | undefined;
             resourceInputs["baselineTestRunId"] = state?.baselineTestRunId;
             resourceInputs["created"] = state?.created;
+            resourceInputs["k6Version"] = state?.k6Version;
             resourceInputs["name"] = state?.name;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["script"] = state?.script;
@@ -113,6 +118,7 @@ export class LoadTest extends pulumi.CustomResource {
                 throw new Error("Missing required property 'script'");
             }
             resourceInputs["baselineTestRunId"] = args?.baselineTestRunId;
+            resourceInputs["k6Version"] = args?.k6Version;
             resourceInputs["name"] = args?.name;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["script"] = args?.script;
@@ -138,6 +144,10 @@ export interface LoadTestState {
      * The date when the load test was created.
      */
     created?: pulumi.Input<string>;
+    /**
+     * Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2
+     */
+    k6Version?: pulumi.Input<string>;
     /**
      * Human-friendly identifier of the load test.
      */
@@ -166,6 +176,10 @@ export interface LoadTestArgs {
      * @deprecated Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release.
      */
     baselineTestRunId?: pulumi.Input<string>;
+    /**
+     * Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2
+     */
+    k6Version?: pulumi.Input<string>;
     /**
      * Human-friendly identifier of the load test.
      */

@@ -71,6 +71,10 @@ export interface GetTeamArgs {
  */
 export interface GetTeamResult {
     /**
+     * A set of email addresses corresponding to users who are administrators of the team.
+     */
+    readonly admins: string[];
+    /**
      * An email address for the team.
      */
     readonly email: string;
@@ -79,7 +83,7 @@ export interface GetTeamResult {
      */
     readonly id: string;
     /**
-     * A set of email addresses corresponding to users who are members of the team.
+     * A set of email addresses corresponding to users who are ordinary members of the team.
      */
     readonly members: string[];
     /**

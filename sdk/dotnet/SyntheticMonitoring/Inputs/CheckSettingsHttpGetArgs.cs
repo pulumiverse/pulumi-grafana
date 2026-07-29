@@ -162,6 +162,12 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Inputs
         public Input<string>? ProxyUrl { get; set; }
 
         /// <summary>
+        /// Enable secret manager so that `${secrets.&lt;name&gt;}` references in the bearer token, basic auth password, and TLS certificate/key fields are resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.&lt;name&gt;}`) so the reference is passed through literally rather than interpolated by Terraform. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check. Defaults to `False`.
+        /// </summary>
+        [Input("secretManagerEnabled")]
+        public Input<bool>? SecretManagerEnabled { get; set; }
+
+        /// <summary>
         /// TLS config.
         /// </summary>
         [Input("tlsConfig")]

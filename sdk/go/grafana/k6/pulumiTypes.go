@@ -386,6 +386,7 @@ type GetLoadTestsLoadTest struct {
 	BaselineTestRunId string `pulumi:"baselineTestRunId"`
 	Created           string `pulumi:"created"`
 	Id                string `pulumi:"id"`
+	K6Version         string `pulumi:"k6Version"`
 	Name              string `pulumi:"name"`
 	ProjectId         string `pulumi:"projectId"`
 	Script            string `pulumi:"script"`
@@ -407,6 +408,7 @@ type GetLoadTestsLoadTestArgs struct {
 	BaselineTestRunId pulumi.StringInput `pulumi:"baselineTestRunId"`
 	Created           pulumi.StringInput `pulumi:"created"`
 	Id                pulumi.StringInput `pulumi:"id"`
+	K6Version         pulumi.StringInput `pulumi:"k6Version"`
 	Name              pulumi.StringInput `pulumi:"name"`
 	ProjectId         pulumi.StringInput `pulumi:"projectId"`
 	Script            pulumi.StringInput `pulumi:"script"`
@@ -474,6 +476,10 @@ func (o GetLoadTestsLoadTestOutput) Created() pulumi.StringOutput {
 
 func (o GetLoadTestsLoadTestOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadTestsLoadTest) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetLoadTestsLoadTestOutput) K6Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadTestsLoadTest) string { return v.K6Version }).(pulumi.StringOutput)
 }
 
 func (o GetLoadTestsLoadTestOutput) Name() pulumi.StringOutput {

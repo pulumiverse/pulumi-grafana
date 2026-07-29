@@ -37,11 +37,23 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			teamAdmin, err := oss.NewUser(ctx, "team_admin", &oss.UserArgs{
+//				Name:     pulumi.String("Team Admin"),
+//				Email:    pulumi.String("team-admin@example.com"),
+//				Login:    pulumi.String("team-admin"),
+//				Password: pulumi.String("my-password-2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			_, err = oss.NewTeam(ctx, "test-team", &oss.TeamArgs{
 //				Name:  pulumi.String("Test Team"),
 //				Email: pulumi.String("teamemail@example.com"),
 //				Members: pulumi.StringArray{
 //					viewer.Email,
+//				},
+//				Admins: pulumi.StringArray{
+//					teamAdmin.Email,
 //				},
 //			})
 //			if err != nil {
@@ -62,11 +74,13 @@ import (
 type Team struct {
 	pulumi.CustomResourceState
 
+	// A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `members` are demoted; administrators only present in state (for example from the UI) are preserved until `admins` is set explicitly, including to `[]`.
+	Admins pulumi.StringArrayOutput `pulumi:"admins"`
 	// An email address for the team.
 	Email pulumi.StringOutput `pulumi:"email"`
 	// Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be provisioned using [enterprise.TeamExternalGroup resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
 	IgnoreExternallySyncedMembers pulumi.BoolOutput `pulumi:"ignoreExternallySyncedMembers"`
-	// A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
+	// A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.
 	Members pulumi.StringArrayOutput `pulumi:"members"`
 	// The display name for the Grafana team created.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -119,11 +133,13 @@ func GetTeam(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Team resources.
 type teamState struct {
+	// A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `members` are demoted; administrators only present in state (for example from the UI) are preserved until `admins` is set explicitly, including to `[]`.
+	Admins []string `pulumi:"admins"`
 	// An email address for the team.
 	Email *string `pulumi:"email"`
 	// Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be provisioned using [enterprise.TeamExternalGroup resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
 	IgnoreExternallySyncedMembers *bool `pulumi:"ignoreExternallySyncedMembers"`
-	// A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
+	// A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.
 	Members []string `pulumi:"members"`
 	// The display name for the Grafana team created.
 	Name *string `pulumi:"name"`
@@ -141,11 +157,13 @@ type teamState struct {
 }
 
 type TeamState struct {
+	// A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `members` are demoted; administrators only present in state (for example from the UI) are preserved until `admins` is set explicitly, including to `[]`.
+	Admins pulumi.StringArrayInput
 	// An email address for the team.
 	Email pulumi.StringPtrInput
 	// Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be provisioned using [enterprise.TeamExternalGroup resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
 	IgnoreExternallySyncedMembers pulumi.BoolPtrInput
-	// A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
+	// A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.
 	Members pulumi.StringArrayInput
 	// The display name for the Grafana team created.
 	Name pulumi.StringPtrInput
@@ -167,11 +185,13 @@ func (TeamState) ElementType() reflect.Type {
 }
 
 type teamArgs struct {
+	// A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `members` are demoted; administrators only present in state (for example from the UI) are preserved until `admins` is set explicitly, including to `[]`.
+	Admins []string `pulumi:"admins"`
 	// An email address for the team.
 	Email *string `pulumi:"email"`
 	// Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be provisioned using [enterprise.TeamExternalGroup resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
 	IgnoreExternallySyncedMembers *bool `pulumi:"ignoreExternallySyncedMembers"`
-	// A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
+	// A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.
 	Members []string `pulumi:"members"`
 	// The display name for the Grafana team created.
 	Name *string `pulumi:"name"`
@@ -186,11 +206,13 @@ type teamArgs struct {
 
 // The set of arguments for constructing a Team resource.
 type TeamArgs struct {
+	// A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `members` are demoted; administrators only present in state (for example from the UI) are preserved until `admins` is set explicitly, including to `[]`.
+	Admins pulumi.StringArrayInput
 	// An email address for the team.
 	Email pulumi.StringPtrInput
 	// Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be provisioned using [enterprise.TeamExternalGroup resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
 	IgnoreExternallySyncedMembers pulumi.BoolPtrInput
-	// A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
+	// A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.
 	Members pulumi.StringArrayInput
 	// The display name for the Grafana team created.
 	Name pulumi.StringPtrInput
@@ -290,6 +312,11 @@ func (o TeamOutput) ToTeamOutputWithContext(ctx context.Context) TeamOutput {
 	return o
 }
 
+// A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `members` are demoted; administrators only present in state (for example from the UI) are preserved until `admins` is set explicitly, including to `[]`.
+func (o TeamOutput) Admins() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Team) pulumi.StringArrayOutput { return v.Admins }).(pulumi.StringArrayOutput)
+}
+
 // An email address for the team.
 func (o TeamOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v *Team) pulumi.StringOutput { return v.Email }).(pulumi.StringOutput)
@@ -300,7 +327,7 @@ func (o TeamOutput) IgnoreExternallySyncedMembers() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Team) pulumi.BoolOutput { return v.IgnoreExternallySyncedMembers }).(pulumi.BoolOutput)
 }
 
-// A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
+// A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.
 func (o TeamOutput) Members() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Team) pulumi.StringArrayOutput { return v.Members }).(pulumi.StringArrayOutput)
 }

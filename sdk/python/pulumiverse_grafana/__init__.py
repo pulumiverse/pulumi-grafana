@@ -215,6 +215,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "apps/v1/query",
+  "fqn": "pulumiverse_grafana.apps.v1",
+  "classes": {
+   "grafana:apps/v1/query:Query": "Query"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "apps/v1beta1/dashboard",
   "fqn": "pulumiverse_grafana.apps.v1beta1",
   "classes": {

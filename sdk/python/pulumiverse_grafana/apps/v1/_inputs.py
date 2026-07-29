@@ -23,6 +23,16 @@ __all__ = [
     'PlaylistSpecArgsDict',
     'PlaylistSpecItemArgs',
     'PlaylistSpecItemArgsDict',
+    'QueryMetadataArgs',
+    'QueryMetadataArgsDict',
+    'QueryOptionsArgs',
+    'QueryOptionsArgsDict',
+    'QuerySpecArgs',
+    'QuerySpecArgsDict',
+    'QuerySpecTargetArgs',
+    'QuerySpecTargetArgsDict',
+    'QuerySpecVarArgs',
+    'QuerySpecVarArgsDict',
 ]
 
 class PlaylistMetadataArgsDict(TypedDict):
@@ -298,5 +308,465 @@ class PlaylistSpecItemArgs:
     @value.setter
     def value(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "value", value)
+
+
+class QueryMetadataArgsDict(TypedDict):
+    uid: pulumi.Input[_builtins.str]
+    """
+    The unique identifier of the resource.
+    """
+    annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Annotations of the resource.
+    """
+    folder_uid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The full URL of the resource.
+    """
+    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The globally unique identifier of a resource, used by the API for tracking.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The version of the resource.
+    """
+
+@pulumi.input_type
+class QueryMetadataArgs:
+    def __init__(__self__, *,
+                 uid: pulumi.Input[_builtins.str],
+                 annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
+                 url: Optional[pulumi.Input[_builtins.str]] = None,
+                 uuid: Optional[pulumi.Input[_builtins.str]] = None,
+                 version: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] uid: The unique identifier of the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Annotations of the resource.
+        :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+        :param pulumi.Input[_builtins.str] url: The full URL of the resource.
+        :param pulumi.Input[_builtins.str] uuid: The globally unique identifier of a resource, used by the API for tracking.
+        :param pulumi.Input[_builtins.str] version: The version of the resource.
+        """
+        pulumi.set(__self__, "uid", uid)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if folder_uid is not None:
+            pulumi.set(__self__, "folder_uid", folder_uid)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> pulumi.Input[_builtins.str]:
+        """
+        The unique identifier of the resource.
+        """
+        return pulumi.get(self, "uid")
+
+    @uid.setter
+    def uid(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "uid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Annotations of the resource.
+        """
+        return pulumi.get(self, "annotations")
+
+    @annotations.setter
+    def annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "annotations", value)
+
+    @_builtins.property
+    @pulumi.getter(name="folderUid")
+    def folder_uid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+        """
+        return pulumi.get(self, "folder_uid")
+
+    @folder_uid.setter
+    def folder_uid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "folder_uid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The full URL of the resource.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "url", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The globally unique identifier of a resource, used by the API for tracking.
+        """
+        return pulumi.get(self, "uuid")
+
+    @uuid.setter
+    def uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "uuid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The version of the resource.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "version", value)
+
+
+class QueryOptionsArgsDict(TypedDict):
+    manager_identity: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+    """
+    overwrite: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+    """
+
+@pulumi.input_type
+class QueryOptionsArgs:
+    def __init__(__self__, *,
+                 manager_identity: Optional[pulumi.Input[_builtins.str]] = None,
+                 overwrite: Optional[pulumi.Input[_builtins.bool]] = None):
+        """
+        :param pulumi.Input[_builtins.str] manager_identity: Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+        :param pulumi.Input[_builtins.bool] overwrite: Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        if manager_identity is not None:
+            pulumi.set(__self__, "manager_identity", manager_identity)
+        if overwrite is not None:
+            pulumi.set(__self__, "overwrite", overwrite)
+
+    @_builtins.property
+    @pulumi.getter(name="managerIdentity")
+    def manager_identity(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+        """
+        return pulumi.get(self, "manager_identity")
+
+    @manager_identity.setter
+    def manager_identity(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "manager_identity", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def overwrite(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        return pulumi.get(self, "overwrite")
+
+    @overwrite.setter
+    def overwrite(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "overwrite", value)
+
+
+class QuerySpecArgsDict(TypedDict):
+    targets: pulumi.Input[Sequence[pulumi.Input['QuerySpecTargetArgsDict']]]
+    """
+    The query targets that make up the saved query. At least one target is required.
+    """
+    title: pulumi.Input[_builtins.str]
+    """
+    The display name of the saved query.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A longer description of the saved query.
+    """
+    is_locked: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the saved query is locked and cannot be edited in the UI. This is purely for UI display purposes and not for security.
+    """
+    is_visible: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the saved query is visible in the query library.
+    """
+    tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The tags used to filter the saved query.
+    """
+    vars: NotRequired[pulumi.Input[Sequence[pulumi.Input['QuerySpecVarArgsDict']]]]
+    """
+    The template variables that can be interpolated into the query targets.
+    """
+
+@pulumi.input_type
+class QuerySpecArgs:
+    def __init__(__self__, *,
+                 targets: pulumi.Input[Sequence[pulumi.Input['QuerySpecTargetArgs']]],
+                 title: pulumi.Input[_builtins.str],
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
+                 is_locked: Optional[pulumi.Input[_builtins.bool]] = None,
+                 is_visible: Optional[pulumi.Input[_builtins.bool]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 vars: Optional[pulumi.Input[Sequence[pulumi.Input['QuerySpecVarArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['QuerySpecTargetArgs']]] targets: The query targets that make up the saved query. At least one target is required.
+        :param pulumi.Input[_builtins.str] title: The display name of the saved query.
+        :param pulumi.Input[_builtins.str] description: A longer description of the saved query.
+        :param pulumi.Input[_builtins.bool] is_locked: Whether the saved query is locked and cannot be edited in the UI. This is purely for UI display purposes and not for security.
+        :param pulumi.Input[_builtins.bool] is_visible: Whether the saved query is visible in the query library.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags used to filter the saved query.
+        :param pulumi.Input[Sequence[pulumi.Input['QuerySpecVarArgs']]] vars: The template variables that can be interpolated into the query targets.
+        """
+        pulumi.set(__self__, "targets", targets)
+        pulumi.set(__self__, "title", title)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if is_locked is not None:
+            pulumi.set(__self__, "is_locked", is_locked)
+        if is_visible is not None:
+            pulumi.set(__self__, "is_visible", is_visible)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if vars is not None:
+            pulumi.set(__self__, "vars", vars)
+
+    @_builtins.property
+    @pulumi.getter
+    def targets(self) -> pulumi.Input[Sequence[pulumi.Input['QuerySpecTargetArgs']]]:
+        """
+        The query targets that make up the saved query. At least one target is required.
+        """
+        return pulumi.get(self, "targets")
+
+    @targets.setter
+    def targets(self, value: pulumi.Input[Sequence[pulumi.Input['QuerySpecTargetArgs']]]):
+        pulumi.set(self, "targets", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> pulumi.Input[_builtins.str]:
+        """
+        The display name of the saved query.
+        """
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "title", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A longer description of the saved query.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isLocked")
+    def is_locked(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether the saved query is locked and cannot be edited in the UI. This is purely for UI display purposes and not for security.
+        """
+        return pulumi.get(self, "is_locked")
+
+    @is_locked.setter
+    def is_locked(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_locked", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isVisible")
+    def is_visible(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether the saved query is visible in the query library.
+        """
+        return pulumi.get(self, "is_visible")
+
+    @is_visible.setter
+    def is_visible(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_visible", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The tags used to filter the saved query.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['QuerySpecVarArgs']]]]:
+        """
+        The template variables that can be interpolated into the query targets.
+        """
+        return pulumi.get(self, "vars")
+
+    @vars.setter
+    def vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['QuerySpecVarArgs']]]]):
+        pulumi.set(self, "vars", value)
+
+
+class QuerySpecTargetArgsDict(TypedDict):
+    properties_json: pulumi.Input[_builtins.str]
+    """
+    The datasource query for the target, as a JSON string (use jsonencode()).
+    """
+    data_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The returned Dataplane frame type for the target.
+    """
+    variables_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The variable replacements to apply to the target, as a JSON string (use jsonencode()).
+    """
+
+@pulumi.input_type
+class QuerySpecTargetArgs:
+    def __init__(__self__, *,
+                 properties_json: pulumi.Input[_builtins.str],
+                 data_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 variables_json: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] properties_json: The datasource query for the target, as a JSON string (use jsonencode()).
+        :param pulumi.Input[_builtins.str] data_type: The returned Dataplane frame type for the target.
+        :param pulumi.Input[_builtins.str] variables_json: The variable replacements to apply to the target, as a JSON string (use jsonencode()).
+        """
+        pulumi.set(__self__, "properties_json", properties_json)
+        if data_type is not None:
+            pulumi.set(__self__, "data_type", data_type)
+        if variables_json is not None:
+            pulumi.set(__self__, "variables_json", variables_json)
+
+    @_builtins.property
+    @pulumi.getter(name="propertiesJson")
+    def properties_json(self) -> pulumi.Input[_builtins.str]:
+        """
+        The datasource query for the target, as a JSON string (use jsonencode()).
+        """
+        return pulumi.get(self, "properties_json")
+
+    @properties_json.setter
+    def properties_json(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "properties_json", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataType")
+    def data_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The returned Dataplane frame type for the target.
+        """
+        return pulumi.get(self, "data_type")
+
+    @data_type.setter
+    def data_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "data_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="variablesJson")
+    def variables_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The variable replacements to apply to the target, as a JSON string (use jsonencode()).
+        """
+        return pulumi.get(self, "variables_json")
+
+    @variables_json.setter
+    def variables_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "variables_json", value)
+
+
+class QuerySpecVarArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    The name of the variable.
+    """
+    default_values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The values used when no value is selected during render.
+    """
+    value_list_definition_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The definition (as a JSON string) used by the frontend to fetch the list of selectable values.
+    """
+
+@pulumi.input_type
+class QuerySpecVarArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[_builtins.str],
+                 default_values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 value_list_definition_json: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] key: The name of the variable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_values: The values used when no value is selected during render.
+        :param pulumi.Input[_builtins.str] value_list_definition_json: The definition (as a JSON string) used by the frontend to fetch the list of selectable values.
+        """
+        pulumi.set(__self__, "key", key)
+        if default_values is not None:
+            pulumi.set(__self__, "default_values", default_values)
+        if value_list_definition_json is not None:
+            pulumi.set(__self__, "value_list_definition_json", value_list_definition_json)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[_builtins.str]:
+        """
+        The name of the variable.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultValues")
+    def default_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The values used when no value is selected during render.
+        """
+        return pulumi.get(self, "default_values")
+
+    @default_values.setter
+    def default_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "default_values", value)
+
+    @_builtins.property
+    @pulumi.getter(name="valueListDefinitionJson")
+    def value_list_definition_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The definition (as a JSON string) used by the frontend to fetch the list of selectable values.
+        """
+        return pulumi.get(self, "value_list_definition_json")
+
+    @value_list_definition_json.setter
+    def value_list_definition_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "value_list_definition_json", value)
 
 

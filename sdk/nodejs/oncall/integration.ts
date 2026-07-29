@@ -53,6 +53,10 @@ export class Integration extends pulumi.CustomResource {
      */
     declare public readonly dynamicLabels: pulumi.Output<{[key: string]: string}[] | undefined>;
     /**
+     * The inbound email address for the integration. Only available for integration type `inboundEmail`.
+     */
+    declare public /*out*/ readonly inboundEmail: pulumi.Output<string>;
+    /**
      * A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
      */
     declare public readonly labels: pulumi.Output<{[key: string]: string}[] | undefined>;
@@ -92,6 +96,7 @@ export class Integration extends pulumi.CustomResource {
             const state = argsOrState as IntegrationState | undefined;
             resourceInputs["defaultRoute"] = state?.defaultRoute;
             resourceInputs["dynamicLabels"] = state?.dynamicLabels;
+            resourceInputs["inboundEmail"] = state?.inboundEmail;
             resourceInputs["labels"] = state?.labels;
             resourceInputs["link"] = state?.link;
             resourceInputs["name"] = state?.name;
@@ -113,6 +118,7 @@ export class Integration extends pulumi.CustomResource {
             resourceInputs["teamId"] = args?.teamId;
             resourceInputs["templates"] = args?.templates;
             resourceInputs["type"] = args?.type;
+            resourceInputs["inboundEmail"] = undefined /*out*/;
             resourceInputs["link"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -132,6 +138,10 @@ export interface IntegrationState {
      * A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
      */
     dynamicLabels?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
+    /**
+     * The inbound email address for the integration. Only available for integration type `inboundEmail`.
+     */
+    inboundEmail?: pulumi.Input<string>;
     /**
      * A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
      */
