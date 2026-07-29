@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Apps.V1.Inputs
 {
 
-    public sealed class AppsQueriesQueryV1SpecTargetGetArgs : global::Pulumi.ResourceArgs
+    public sealed class QuerySpecTargetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The returned Dataplane frame type for the target.
@@ -31,9 +31,9 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("variablesJson")]
         public Input<string>? VariablesJson { get; set; }
 
-        public AppsQueriesQueryV1SpecTargetGetArgs()
+        public QuerySpecTargetArgs()
         {
         }
-        public static new AppsQueriesQueryV1SpecTargetGetArgs Empty => new AppsQueriesQueryV1SpecTargetGetArgs();
+        public static new QuerySpecTargetArgs Empty => new QuerySpecTargetArgs();
     }
 }

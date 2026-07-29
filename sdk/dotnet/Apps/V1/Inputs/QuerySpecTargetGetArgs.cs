@@ -8,36 +8,32 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Apps.V1.Inputs
 {
 
-    [OutputType]
-    public sealed class AppsQueriesQueryV1SpecTarget
+    public sealed class QuerySpecTargetGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The returned Dataplane frame type for the target.
         /// </summary>
-        public readonly string? DataType;
+        [Input("dataType")]
+        public Input<string>? DataType { get; set; }
+
         /// <summary>
         /// The datasource query for the target, as a JSON string (use jsonencode()).
         /// </summary>
-        public readonly string PropertiesJson;
+        [Input("propertiesJson", required: true)]
+        public Input<string> PropertiesJson { get; set; } = null!;
+
         /// <summary>
         /// The variable replacements to apply to the target, as a JSON string (use jsonencode()).
         /// </summary>
-        public readonly string? VariablesJson;
+        [Input("variablesJson")]
+        public Input<string>? VariablesJson { get; set; }
 
-        [OutputConstructor]
-        private AppsQueriesQueryV1SpecTarget(
-            string? dataType,
-
-            string propertiesJson,
-
-            string? variablesJson)
+        public QuerySpecTargetGetArgs()
         {
-            DataType = dataType;
-            PropertiesJson = propertiesJson;
-            VariablesJson = variablesJson;
         }
+        public static new QuerySpecTargetGetArgs Empty => new QuerySpecTargetGetArgs();
     }
 }

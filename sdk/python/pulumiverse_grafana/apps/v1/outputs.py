@@ -20,6 +20,11 @@ __all__ = [
     'PlaylistOptions',
     'PlaylistSpec',
     'PlaylistSpecItem',
+    'QueryMetadata',
+    'QueryOptions',
+    'QuerySpec',
+    'QuerySpecTarget',
+    'QuerySpecVar',
 ]
 
 @pulumi.output_type
@@ -223,5 +228,380 @@ class PlaylistSpecItem(dict):
     @pulumi.getter
     def value(self) -> _builtins.str:
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class QueryMetadata(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "folderUid":
+            suggest = "folder_uid"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in QueryMetadata. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        QueryMetadata.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        QueryMetadata.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 uid: _builtins.str,
+                 annotations: Optional[Mapping[str, _builtins.str]] = None,
+                 folder_uid: Optional[_builtins.str] = None,
+                 url: Optional[_builtins.str] = None,
+                 uuid: Optional[_builtins.str] = None,
+                 version: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str uid: The unique identifier of the resource.
+        :param Mapping[str, _builtins.str] annotations: Annotations of the resource.
+        :param _builtins.str folder_uid: The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+        :param _builtins.str url: The full URL of the resource.
+        :param _builtins.str uuid: The globally unique identifier of a resource, used by the API for tracking.
+        :param _builtins.str version: The version of the resource.
+        """
+        pulumi.set(__self__, "uid", uid)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if folder_uid is not None:
+            pulumi.set(__self__, "folder_uid", folder_uid)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> _builtins.str:
+        """
+        The unique identifier of the resource.
+        """
+        return pulumi.get(self, "uid")
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Annotations of the resource.
+        """
+        return pulumi.get(self, "annotations")
+
+    @_builtins.property
+    @pulumi.getter(name="folderUid")
+    def folder_uid(self) -> Optional[_builtins.str]:
+        """
+        The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+        """
+        return pulumi.get(self, "folder_uid")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[_builtins.str]:
+        """
+        The full URL of the resource.
+        """
+        return pulumi.get(self, "url")
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> Optional[_builtins.str]:
+        """
+        The globally unique identifier of a resource, used by the API for tracking.
+        """
+        return pulumi.get(self, "uuid")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[_builtins.str]:
+        """
+        The version of the resource.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class QueryOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "managerIdentity":
+            suggest = "manager_identity"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in QueryOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        QueryOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        QueryOptions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 manager_identity: Optional[_builtins.str] = None,
+                 overwrite: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.str manager_identity: Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+        :param _builtins.bool overwrite: Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        if manager_identity is not None:
+            pulumi.set(__self__, "manager_identity", manager_identity)
+        if overwrite is not None:
+            pulumi.set(__self__, "overwrite", overwrite)
+
+    @_builtins.property
+    @pulumi.getter(name="managerIdentity")
+    def manager_identity(self) -> Optional[_builtins.str]:
+        """
+        Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+        """
+        return pulumi.get(self, "manager_identity")
+
+    @_builtins.property
+    @pulumi.getter
+    def overwrite(self) -> Optional[_builtins.bool]:
+        """
+        Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        return pulumi.get(self, "overwrite")
+
+
+@pulumi.output_type
+class QuerySpec(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isLocked":
+            suggest = "is_locked"
+        elif key == "isVisible":
+            suggest = "is_visible"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in QuerySpec. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        QuerySpec.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        QuerySpec.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 targets: Sequence['outputs.QuerySpecTarget'],
+                 title: _builtins.str,
+                 description: Optional[_builtins.str] = None,
+                 is_locked: Optional[_builtins.bool] = None,
+                 is_visible: Optional[_builtins.bool] = None,
+                 tags: Optional[Sequence[_builtins.str]] = None,
+                 vars: Optional[Sequence['outputs.QuerySpecVar']] = None):
+        """
+        :param Sequence['QuerySpecTargetArgs'] targets: The query targets that make up the saved query. At least one target is required.
+        :param _builtins.str title: The display name of the saved query.
+        :param _builtins.str description: A longer description of the saved query.
+        :param _builtins.bool is_locked: Whether the saved query is locked and cannot be edited in the UI. This is purely for UI display purposes and not for security.
+        :param _builtins.bool is_visible: Whether the saved query is visible in the query library.
+        :param Sequence[_builtins.str] tags: The tags used to filter the saved query.
+        :param Sequence['QuerySpecVarArgs'] vars: The template variables that can be interpolated into the query targets.
+        """
+        pulumi.set(__self__, "targets", targets)
+        pulumi.set(__self__, "title", title)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if is_locked is not None:
+            pulumi.set(__self__, "is_locked", is_locked)
+        if is_visible is not None:
+            pulumi.set(__self__, "is_visible", is_visible)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if vars is not None:
+            pulumi.set(__self__, "vars", vars)
+
+    @_builtins.property
+    @pulumi.getter
+    def targets(self) -> Sequence['outputs.QuerySpecTarget']:
+        """
+        The query targets that make up the saved query. At least one target is required.
+        """
+        return pulumi.get(self, "targets")
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        The display name of the saved query.
+        """
+        return pulumi.get(self, "title")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        """
+        A longer description of the saved query.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="isLocked")
+    def is_locked(self) -> Optional[_builtins.bool]:
+        """
+        Whether the saved query is locked and cannot be edited in the UI. This is purely for UI display purposes and not for security.
+        """
+        return pulumi.get(self, "is_locked")
+
+    @_builtins.property
+    @pulumi.getter(name="isVisible")
+    def is_visible(self) -> Optional[_builtins.bool]:
+        """
+        Whether the saved query is visible in the query library.
+        """
+        return pulumi.get(self, "is_visible")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The tags used to filter the saved query.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter
+    def vars(self) -> Optional[Sequence['outputs.QuerySpecVar']]:
+        """
+        The template variables that can be interpolated into the query targets.
+        """
+        return pulumi.get(self, "vars")
+
+
+@pulumi.output_type
+class QuerySpecTarget(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "propertiesJson":
+            suggest = "properties_json"
+        elif key == "dataType":
+            suggest = "data_type"
+        elif key == "variablesJson":
+            suggest = "variables_json"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in QuerySpecTarget. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        QuerySpecTarget.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        QuerySpecTarget.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 properties_json: _builtins.str,
+                 data_type: Optional[_builtins.str] = None,
+                 variables_json: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str properties_json: The datasource query for the target, as a JSON string (use jsonencode()).
+        :param _builtins.str data_type: The returned Dataplane frame type for the target.
+        :param _builtins.str variables_json: The variable replacements to apply to the target, as a JSON string (use jsonencode()).
+        """
+        pulumi.set(__self__, "properties_json", properties_json)
+        if data_type is not None:
+            pulumi.set(__self__, "data_type", data_type)
+        if variables_json is not None:
+            pulumi.set(__self__, "variables_json", variables_json)
+
+    @_builtins.property
+    @pulumi.getter(name="propertiesJson")
+    def properties_json(self) -> _builtins.str:
+        """
+        The datasource query for the target, as a JSON string (use jsonencode()).
+        """
+        return pulumi.get(self, "properties_json")
+
+    @_builtins.property
+    @pulumi.getter(name="dataType")
+    def data_type(self) -> Optional[_builtins.str]:
+        """
+        The returned Dataplane frame type for the target.
+        """
+        return pulumi.get(self, "data_type")
+
+    @_builtins.property
+    @pulumi.getter(name="variablesJson")
+    def variables_json(self) -> Optional[_builtins.str]:
+        """
+        The variable replacements to apply to the target, as a JSON string (use jsonencode()).
+        """
+        return pulumi.get(self, "variables_json")
+
+
+@pulumi.output_type
+class QuerySpecVar(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "defaultValues":
+            suggest = "default_values"
+        elif key == "valueListDefinitionJson":
+            suggest = "value_list_definition_json"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in QuerySpecVar. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        QuerySpecVar.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        QuerySpecVar.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 default_values: Optional[Sequence[_builtins.str]] = None,
+                 value_list_definition_json: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str key: The name of the variable.
+        :param Sequence[_builtins.str] default_values: The values used when no value is selected during render.
+        :param _builtins.str value_list_definition_json: The definition (as a JSON string) used by the frontend to fetch the list of selectable values.
+        """
+        pulumi.set(__self__, "key", key)
+        if default_values is not None:
+            pulumi.set(__self__, "default_values", default_values)
+        if value_list_definition_json is not None:
+            pulumi.set(__self__, "value_list_definition_json", value_list_definition_json)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The name of the variable.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter(name="defaultValues")
+    def default_values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The values used when no value is selected during render.
+        """
+        return pulumi.get(self, "default_values")
+
+    @_builtins.property
+    @pulumi.getter(name="valueListDefinitionJson")
+    def value_list_definition_json(self) -> Optional[_builtins.str]:
+        """
+        The definition (as a JSON string) used by the frontend to fetch the list of selectable values.
+        """
+        return pulumi.get(self, "value_list_definition_json")
 
 

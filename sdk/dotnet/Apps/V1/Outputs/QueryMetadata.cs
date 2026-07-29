@@ -8,56 +8,57 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Apps.V1.Outputs
 {
 
-    public sealed class AppsQueriesQueryV1MetadataArgs : global::Pulumi.ResourceArgs
+    [OutputType]
+    public sealed class QueryMetadata
     {
-        [Input("annotations")]
-        private InputMap<string>? _annotations;
-
         /// <summary>
         /// Annotations of the resource.
         /// </summary>
-        public InputMap<string> Annotations
-        {
-            get => _annotations ?? (_annotations = new InputMap<string>());
-            set => _annotations = value;
-        }
-
+        public readonly ImmutableDictionary<string, string>? Annotations;
         /// <summary>
         /// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
         /// </summary>
-        [Input("folderUid")]
-        public Input<string>? FolderUid { get; set; }
-
+        public readonly string? FolderUid;
         /// <summary>
         /// The unique identifier of the resource.
         /// </summary>
-        [Input("uid", required: true)]
-        public Input<string> Uid { get; set; } = null!;
-
+        public readonly string Uid;
         /// <summary>
         /// The full URL of the resource.
         /// </summary>
-        [Input("url")]
-        public Input<string>? Url { get; set; }
-
+        public readonly string? Url;
         /// <summary>
         /// The globally unique identifier of a resource, used by the API for tracking.
         /// </summary>
-        [Input("uuid")]
-        public Input<string>? Uuid { get; set; }
-
+        public readonly string? Uuid;
         /// <summary>
         /// The version of the resource.
         /// </summary>
-        [Input("version")]
-        public Input<string>? Version { get; set; }
+        public readonly string? Version;
 
-        public AppsQueriesQueryV1MetadataArgs()
+        [OutputConstructor]
+        private QueryMetadata(
+            ImmutableDictionary<string, string>? annotations,
+
+            string? folderUid,
+
+            string uid,
+
+            string? url,
+
+            string? uuid,
+
+            string? version)
         {
+            Annotations = annotations;
+            FolderUid = folderUid;
+            Uid = uid;
+            Url = url;
+            Uuid = uuid;
+            Version = version;
         }
-        public static new AppsQueriesQueryV1MetadataArgs Empty => new AppsQueriesQueryV1MetadataArgs();
     }
 }

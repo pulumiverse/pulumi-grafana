@@ -12,24 +12,24 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from ... import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['AppsQueriesQueryV1Args', 'AppsQueriesQueryV1']
+__all__ = ['QueryArgs', 'Query']
 
 @pulumi.input_type
-class AppsQueriesQueryV1Args:
+class QueryArgs:
     def __init__(__self__, *,
-                 metadata: Optional[pulumi.Input['AppsQueriesQueryV1MetadataArgs']] = None,
-                 options: Optional[pulumi.Input['AppsQueriesQueryV1OptionsArgs']] = None,
-                 spec: Optional[pulumi.Input['AppsQueriesQueryV1SpecArgs']] = None):
+                 metadata: Optional[pulumi.Input['QueryMetadataArgs']] = None,
+                 options: Optional[pulumi.Input['QueryOptionsArgs']] = None,
+                 spec: Optional[pulumi.Input['QuerySpecArgs']] = None):
         """
-        The set of arguments for constructing a AppsQueriesQueryV1 resource.
+        The set of arguments for constructing a Query resource.
 
-        :param pulumi.Input['AppsQueriesQueryV1MetadataArgs'] metadata: The metadata of the resource.
-        :param pulumi.Input['AppsQueriesQueryV1OptionsArgs'] options: Options for applying the resource.
-        :param pulumi.Input['AppsQueriesQueryV1SpecArgs'] spec: The spec of the resource.
+        :param pulumi.Input['QueryMetadataArgs'] metadata: The metadata of the resource.
+        :param pulumi.Input['QueryOptionsArgs'] options: Options for applying the resource.
+        :param pulumi.Input['QuerySpecArgs'] spec: The spec of the resource.
         """
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
@@ -40,53 +40,53 @@ class AppsQueriesQueryV1Args:
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input['AppsQueriesQueryV1MetadataArgs']]:
+    def metadata(self) -> Optional[pulumi.Input['QueryMetadataArgs']]:
         """
         The metadata of the resource.
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input['AppsQueriesQueryV1MetadataArgs']]):
+    def metadata(self, value: Optional[pulumi.Input['QueryMetadataArgs']]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input['AppsQueriesQueryV1OptionsArgs']]:
+    def options(self) -> Optional[pulumi.Input['QueryOptionsArgs']]:
         """
         Options for applying the resource.
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input['AppsQueriesQueryV1OptionsArgs']]):
+    def options(self, value: Optional[pulumi.Input['QueryOptionsArgs']]):
         pulumi.set(self, "options", value)
 
     @_builtins.property
     @pulumi.getter
-    def spec(self) -> Optional[pulumi.Input['AppsQueriesQueryV1SpecArgs']]:
+    def spec(self) -> Optional[pulumi.Input['QuerySpecArgs']]:
         """
         The spec of the resource.
         """
         return pulumi.get(self, "spec")
 
     @spec.setter
-    def spec(self, value: Optional[pulumi.Input['AppsQueriesQueryV1SpecArgs']]):
+    def spec(self, value: Optional[pulumi.Input['QuerySpecArgs']]):
         pulumi.set(self, "spec", value)
 
 
 @pulumi.input_type
-class _AppsQueriesQueryV1State:
+class _QueryState:
     def __init__(__self__, *,
-                 metadata: Optional[pulumi.Input['AppsQueriesQueryV1MetadataArgs']] = None,
-                 options: Optional[pulumi.Input['AppsQueriesQueryV1OptionsArgs']] = None,
-                 spec: Optional[pulumi.Input['AppsQueriesQueryV1SpecArgs']] = None):
+                 metadata: Optional[pulumi.Input['QueryMetadataArgs']] = None,
+                 options: Optional[pulumi.Input['QueryOptionsArgs']] = None,
+                 spec: Optional[pulumi.Input['QuerySpecArgs']] = None):
         """
-        Input properties used for looking up and filtering AppsQueriesQueryV1 resources.
+        Input properties used for looking up and filtering Query resources.
 
-        :param pulumi.Input['AppsQueriesQueryV1MetadataArgs'] metadata: The metadata of the resource.
-        :param pulumi.Input['AppsQueriesQueryV1OptionsArgs'] options: Options for applying the resource.
-        :param pulumi.Input['AppsQueriesQueryV1SpecArgs'] spec: The spec of the resource.
+        :param pulumi.Input['QueryMetadataArgs'] metadata: The metadata of the resource.
+        :param pulumi.Input['QueryOptionsArgs'] options: Options for applying the resource.
+        :param pulumi.Input['QuerySpecArgs'] spec: The spec of the resource.
         """
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
@@ -97,50 +97,50 @@ class _AppsQueriesQueryV1State:
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input['AppsQueriesQueryV1MetadataArgs']]:
+    def metadata(self) -> Optional[pulumi.Input['QueryMetadataArgs']]:
         """
         The metadata of the resource.
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input['AppsQueriesQueryV1MetadataArgs']]):
+    def metadata(self, value: Optional[pulumi.Input['QueryMetadataArgs']]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input['AppsQueriesQueryV1OptionsArgs']]:
+    def options(self) -> Optional[pulumi.Input['QueryOptionsArgs']]:
         """
         Options for applying the resource.
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input['AppsQueriesQueryV1OptionsArgs']]):
+    def options(self, value: Optional[pulumi.Input['QueryOptionsArgs']]):
         pulumi.set(self, "options", value)
 
     @_builtins.property
     @pulumi.getter
-    def spec(self) -> Optional[pulumi.Input['AppsQueriesQueryV1SpecArgs']]:
+    def spec(self) -> Optional[pulumi.Input['QuerySpecArgs']]:
         """
         The spec of the resource.
         """
         return pulumi.get(self, "spec")
 
     @spec.setter
-    def spec(self, value: Optional[pulumi.Input['AppsQueriesQueryV1SpecArgs']]):
+    def spec(self, value: Optional[pulumi.Input['QuerySpecArgs']]):
         pulumi.set(self, "spec", value)
 
 
-@pulumi.type_token("grafana:index/appsQueriesQueryV1:AppsQueriesQueryV1")
-class AppsQueriesQueryV1(pulumi.CustomResource):
+@pulumi.type_token("grafana:apps/v1/query:Query")
+class Query(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 metadata: Optional[pulumi.Input[Union['AppsQueriesQueryV1MetadataArgs', 'AppsQueriesQueryV1MetadataArgsDict']]] = None,
-                 options: Optional[pulumi.Input[Union['AppsQueriesQueryV1OptionsArgs', 'AppsQueriesQueryV1OptionsArgsDict']]] = None,
-                 spec: Optional[pulumi.Input[Union['AppsQueriesQueryV1SpecArgs', 'AppsQueriesQueryV1SpecArgsDict']]] = None,
+                 metadata: Optional[pulumi.Input[Union['QueryMetadataArgs', 'QueryMetadataArgsDict']]] = None,
+                 options: Optional[pulumi.Input[Union['QueryOptionsArgs', 'QueryOptionsArgsDict']]] = None,
+                 spec: Optional[pulumi.Input[Union['QuerySpecArgs', 'QuerySpecArgsDict']]] = None,
                  __props__=None):
         """
         Manages Grafana Saved Queries, also known as the Query Library, using the Grafana App Platform API (`queries.grafana.app/v1`).
@@ -156,7 +156,7 @@ class AppsQueriesQueryV1(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        example = grafana.AppsQueriesQueryV1("example",
+        example = grafana.apps.v1.Query("example",
             metadata={
                 "uid": "example-saved-query",
             },
@@ -187,21 +187,21 @@ class AppsQueriesQueryV1(pulumi.CustomResource):
         Import an existing saved query by its UID
 
         ```sh
-        $ pulumi import grafana:index/appsQueriesQueryV1:AppsQueriesQueryV1 example example-saved-query
+        $ pulumi import grafana:apps/v1/query:Query example example-saved-query
         ```
 
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['AppsQueriesQueryV1MetadataArgs', 'AppsQueriesQueryV1MetadataArgsDict']] metadata: The metadata of the resource.
-        :param pulumi.Input[Union['AppsQueriesQueryV1OptionsArgs', 'AppsQueriesQueryV1OptionsArgsDict']] options: Options for applying the resource.
-        :param pulumi.Input[Union['AppsQueriesQueryV1SpecArgs', 'AppsQueriesQueryV1SpecArgsDict']] spec: The spec of the resource.
+        :param pulumi.Input[Union['QueryMetadataArgs', 'QueryMetadataArgsDict']] metadata: The metadata of the resource.
+        :param pulumi.Input[Union['QueryOptionsArgs', 'QueryOptionsArgsDict']] options: Options for applying the resource.
+        :param pulumi.Input[Union['QuerySpecArgs', 'QuerySpecArgsDict']] spec: The spec of the resource.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[AppsQueriesQueryV1Args] = None,
+                 args: Optional[QueryArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages Grafana Saved Queries, also known as the Query Library, using the Grafana App Platform API (`queries.grafana.app/v1`).
@@ -217,7 +217,7 @@ class AppsQueriesQueryV1(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        example = grafana.AppsQueriesQueryV1("example",
+        example = grafana.apps.v1.Query("example",
             metadata={
                 "uid": "example-saved-query",
             },
@@ -248,17 +248,17 @@ class AppsQueriesQueryV1(pulumi.CustomResource):
         Import an existing saved query by its UID
 
         ```sh
-        $ pulumi import grafana:index/appsQueriesQueryV1:AppsQueriesQueryV1 example example-saved-query
+        $ pulumi import grafana:apps/v1/query:Query example example-saved-query
         ```
 
 
         :param str resource_name: The name of the resource.
-        :param AppsQueriesQueryV1Args args: The arguments to use to populate this resource's properties.
+        :param QueryArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(AppsQueriesQueryV1Args, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(QueryArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -267,9 +267,9 @@ class AppsQueriesQueryV1(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 metadata: Optional[pulumi.Input[Union['AppsQueriesQueryV1MetadataArgs', 'AppsQueriesQueryV1MetadataArgsDict']]] = None,
-                 options: Optional[pulumi.Input[Union['AppsQueriesQueryV1OptionsArgs', 'AppsQueriesQueryV1OptionsArgsDict']]] = None,
-                 spec: Optional[pulumi.Input[Union['AppsQueriesQueryV1SpecArgs', 'AppsQueriesQueryV1SpecArgsDict']]] = None,
+                 metadata: Optional[pulumi.Input[Union['QueryMetadataArgs', 'QueryMetadataArgsDict']]] = None,
+                 options: Optional[pulumi.Input[Union['QueryOptionsArgs', 'QueryOptionsArgsDict']]] = None,
+                 spec: Optional[pulumi.Input[Union['QuerySpecArgs', 'QuerySpecArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -277,13 +277,13 @@ class AppsQueriesQueryV1(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = AppsQueriesQueryV1Args.__new__(AppsQueriesQueryV1Args)
+            __props__ = QueryArgs.__new__(QueryArgs)
 
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["options"] = options
             __props__.__dict__["spec"] = spec
-        super(AppsQueriesQueryV1, __self__).__init__(
-            'grafana:index/appsQueriesQueryV1:AppsQueriesQueryV1',
+        super(Query, __self__).__init__(
+            'grafana:apps/v1/query:Query',
             resource_name,
             __props__,
             opts)
@@ -292,32 +292,32 @@ class AppsQueriesQueryV1(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            metadata: Optional[pulumi.Input[Union['AppsQueriesQueryV1MetadataArgs', 'AppsQueriesQueryV1MetadataArgsDict']]] = None,
-            options: Optional[pulumi.Input[Union['AppsQueriesQueryV1OptionsArgs', 'AppsQueriesQueryV1OptionsArgsDict']]] = None,
-            spec: Optional[pulumi.Input[Union['AppsQueriesQueryV1SpecArgs', 'AppsQueriesQueryV1SpecArgsDict']]] = None) -> 'AppsQueriesQueryV1':
+            metadata: Optional[pulumi.Input[Union['QueryMetadataArgs', 'QueryMetadataArgsDict']]] = None,
+            options: Optional[pulumi.Input[Union['QueryOptionsArgs', 'QueryOptionsArgsDict']]] = None,
+            spec: Optional[pulumi.Input[Union['QuerySpecArgs', 'QuerySpecArgsDict']]] = None) -> 'Query':
         """
-        Get an existing AppsQueriesQueryV1 resource's state with the given name, id, and optional extra
+        Get an existing Query resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['AppsQueriesQueryV1MetadataArgs', 'AppsQueriesQueryV1MetadataArgsDict']] metadata: The metadata of the resource.
-        :param pulumi.Input[Union['AppsQueriesQueryV1OptionsArgs', 'AppsQueriesQueryV1OptionsArgsDict']] options: Options for applying the resource.
-        :param pulumi.Input[Union['AppsQueriesQueryV1SpecArgs', 'AppsQueriesQueryV1SpecArgsDict']] spec: The spec of the resource.
+        :param pulumi.Input[Union['QueryMetadataArgs', 'QueryMetadataArgsDict']] metadata: The metadata of the resource.
+        :param pulumi.Input[Union['QueryOptionsArgs', 'QueryOptionsArgsDict']] options: Options for applying the resource.
+        :param pulumi.Input[Union['QuerySpecArgs', 'QuerySpecArgsDict']] spec: The spec of the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _AppsQueriesQueryV1State.__new__(_AppsQueriesQueryV1State)
+        __props__ = _QueryState.__new__(_QueryState)
 
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["options"] = options
         __props__.__dict__["spec"] = spec
-        return AppsQueriesQueryV1(resource_name, opts=opts, __props__=__props__)
+        return Query(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> pulumi.Output[Optional['outputs.AppsQueriesQueryV1Metadata']]:
+    def metadata(self) -> pulumi.Output[Optional['outputs.QueryMetadata']]:
         """
         The metadata of the resource.
         """
@@ -325,7 +325,7 @@ class AppsQueriesQueryV1(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def options(self) -> pulumi.Output[Optional['outputs.AppsQueriesQueryV1Options']]:
+    def options(self) -> pulumi.Output[Optional['outputs.QueryOptions']]:
         """
         Options for applying the resource.
         """
@@ -333,7 +333,7 @@ class AppsQueriesQueryV1(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def spec(self) -> pulumi.Output[Optional['outputs.AppsQueriesQueryV1Spec']]:
+    def spec(self) -> pulumi.Output[Optional['outputs.QuerySpec']]:
         """
         The spec of the resource.
         """

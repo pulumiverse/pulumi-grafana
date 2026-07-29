@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Apps.V1.Outputs
 {
 
     [OutputType]
-    public sealed class AppsQueriesQueryV1Spec
+    public sealed class QuerySpec
     {
         /// <summary>
         /// A longer description of the saved query.
@@ -33,7 +33,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// <summary>
         /// The query targets that make up the saved query. At least one target is required.
         /// </summary>
-        public readonly ImmutableArray<Outputs.AppsQueriesQueryV1SpecTarget> Targets;
+        public readonly ImmutableArray<Outputs.QuerySpecTarget> Targets;
         /// <summary>
         /// The display name of the saved query.
         /// </summary>
@@ -41,10 +41,10 @@ namespace Pulumiverse.Grafana.Outputs
         /// <summary>
         /// The template variables that can be interpolated into the query targets.
         /// </summary>
-        public readonly ImmutableArray<Outputs.AppsQueriesQueryV1SpecVar> Vars;
+        public readonly ImmutableArray<Outputs.QuerySpecVar> Vars;
 
         [OutputConstructor]
-        private AppsQueriesQueryV1Spec(
+        private QuerySpec(
             string? description,
 
             bool? isLocked,
@@ -53,11 +53,11 @@ namespace Pulumiverse.Grafana.Outputs
 
             ImmutableArray<string> tags,
 
-            ImmutableArray<Outputs.AppsQueriesQueryV1SpecTarget> targets,
+            ImmutableArray<Outputs.QuerySpecTarget> targets,
 
             string title,
 
-            ImmutableArray<Outputs.AppsQueriesQueryV1SpecVar> vars)
+            ImmutableArray<Outputs.QuerySpecVar> vars)
         {
             Description = description;
             IsLocked = isLocked;

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Apps.V1.Inputs
 {
 
-    public sealed class AppsQueriesQueryV1SpecGetArgs : global::Pulumi.ResourceArgs
+    public sealed class QuerySpecArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A longer description of the saved query.
@@ -44,14 +44,14 @@ namespace Pulumiverse.Grafana.Inputs
         }
 
         [Input("targets", required: true)]
-        private InputList<Inputs.AppsQueriesQueryV1SpecTargetGetArgs>? _targets;
+        private InputList<Inputs.QuerySpecTargetArgs>? _targets;
 
         /// <summary>
         /// The query targets that make up the saved query. At least one target is required.
         /// </summary>
-        public InputList<Inputs.AppsQueriesQueryV1SpecTargetGetArgs> Targets
+        public InputList<Inputs.QuerySpecTargetArgs> Targets
         {
-            get => _targets ?? (_targets = new InputList<Inputs.AppsQueriesQueryV1SpecTargetGetArgs>());
+            get => _targets ?? (_targets = new InputList<Inputs.QuerySpecTargetArgs>());
             set => _targets = value;
         }
 
@@ -62,20 +62,20 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string> Title { get; set; } = null!;
 
         [Input("vars")]
-        private InputList<Inputs.AppsQueriesQueryV1SpecVarGetArgs>? _vars;
+        private InputList<Inputs.QuerySpecVarArgs>? _vars;
 
         /// <summary>
         /// The template variables that can be interpolated into the query targets.
         /// </summary>
-        public InputList<Inputs.AppsQueriesQueryV1SpecVarGetArgs> Vars
+        public InputList<Inputs.QuerySpecVarArgs> Vars
         {
-            get => _vars ?? (_vars = new InputList<Inputs.AppsQueriesQueryV1SpecVarGetArgs>());
+            get => _vars ?? (_vars = new InputList<Inputs.QuerySpecVarArgs>());
             set => _vars = value;
         }
 
-        public AppsQueriesQueryV1SpecGetArgs()
+        public QuerySpecArgs()
         {
         }
-        public static new AppsQueriesQueryV1SpecGetArgs Empty => new AppsQueriesQueryV1SpecGetArgs();
+        public static new QuerySpecArgs Empty => new QuerySpecArgs();
     }
 }

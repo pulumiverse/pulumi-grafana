@@ -6271,6 +6271,154 @@
                 "value"
             ]
         },
+        "grafana:apps/v1/QueryMetadata:QueryMetadata": {
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Annotations of the resource.\n"
+                },
+                "folderUid": {
+                    "type": "string",
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
+                },
+                "uid": {
+                    "type": "string",
+                    "description": "The unique identifier of the resource.\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The full URL of the resource.\n"
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "The globally unique identifier of a resource, used by the API for tracking.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The version of the resource.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "uid"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "annotations",
+                        "uid",
+                        "url",
+                        "uuid",
+                        "version"
+                    ]
+                }
+            }
+        },
+        "grafana:apps/v1/QueryOptions:QueryOptions": {
+            "properties": {
+                "managerIdentity": {
+                    "type": "string",
+                    "description": "Override the identity stamped on this resource's manager metadata. Defaults to \"grafana-terraform-provider\". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.\n"
+                },
+                "overwrite": {
+                    "type": "boolean",
+                    "description": "Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:apps/v1/QuerySpec:QuerySpec": {
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "A longer description of the saved query.\n"
+                },
+                "isLocked": {
+                    "type": "boolean",
+                    "description": "Whether the saved query is locked and cannot be edited in the UI. This is purely for UI display purposes and not for security.\n"
+                },
+                "isVisible": {
+                    "type": "boolean",
+                    "description": "Whether the saved query is visible in the query library.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The tags used to filter the saved query.\n"
+                },
+                "targets": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:apps/v1/QuerySpecTarget:QuerySpecTarget"
+                    },
+                    "description": "The query targets that make up the saved query. At least one target is required.\n"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "The display name of the saved query.\n"
+                },
+                "vars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:apps/v1/QuerySpecVar:QuerySpecVar"
+                    },
+                    "description": "The template variables that can be interpolated into the query targets.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "targets",
+                "title"
+            ]
+        },
+        "grafana:apps/v1/QuerySpecTarget:QuerySpecTarget": {
+            "properties": {
+                "dataType": {
+                    "type": "string",
+                    "description": "The returned Dataplane frame type for the target.\n"
+                },
+                "propertiesJson": {
+                    "type": "string",
+                    "description": "The datasource query for the target, as a JSON string (use jsonencode()).\n"
+                },
+                "variablesJson": {
+                    "type": "string",
+                    "description": "The variable replacements to apply to the target, as a JSON string (use jsonencode()).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "propertiesJson"
+            ]
+        },
+        "grafana:apps/v1/QuerySpecVar:QuerySpecVar": {
+            "properties": {
+                "defaultValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The values used when no value is selected during render.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The name of the variable.\n"
+                },
+                "valueListDefinitionJson": {
+                    "type": "string",
+                    "description": "The definition (as a JSON string) used by the frontend to fetch the list of selectable values.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "key"
+            ]
+        },
         "grafana:apps/v1beta1/DashboardMetadata:DashboardMetadata": {
             "properties": {
                 "annotations": {
@@ -8816,154 +8964,6 @@
                     "requiredInputs": []
                 }
             }
-        },
-        "grafana:index/AppsQueriesQueryV1Metadata:AppsQueriesQueryV1Metadata": {
-            "properties": {
-                "annotations": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "Annotations of the resource.\n"
-                },
-                "folderUid": {
-                    "type": "string",
-                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
-                },
-                "uid": {
-                    "type": "string",
-                    "description": "The unique identifier of the resource.\n"
-                },
-                "url": {
-                    "type": "string",
-                    "description": "The full URL of the resource.\n"
-                },
-                "uuid": {
-                    "type": "string",
-                    "description": "The globally unique identifier of a resource, used by the API for tracking.\n"
-                },
-                "version": {
-                    "type": "string",
-                    "description": "The version of the resource.\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "uid"
-            ],
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "annotations",
-                        "uid",
-                        "url",
-                        "uuid",
-                        "version"
-                    ]
-                }
-            }
-        },
-        "grafana:index/AppsQueriesQueryV1Options:AppsQueriesQueryV1Options": {
-            "properties": {
-                "managerIdentity": {
-                    "type": "string",
-                    "description": "Override the identity stamped on this resource's manager metadata. Defaults to \"grafana-terraform-provider\". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.\n"
-                },
-                "overwrite": {
-                    "type": "boolean",
-                    "description": "Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.\n"
-                }
-            },
-            "type": "object"
-        },
-        "grafana:index/AppsQueriesQueryV1Spec:AppsQueriesQueryV1Spec": {
-            "properties": {
-                "description": {
-                    "type": "string",
-                    "description": "A longer description of the saved query.\n"
-                },
-                "isLocked": {
-                    "type": "boolean",
-                    "description": "Whether the saved query is locked and cannot be edited in the UI. This is purely for UI display purposes and not for security.\n"
-                },
-                "isVisible": {
-                    "type": "boolean",
-                    "description": "Whether the saved query is visible in the query library.\n"
-                },
-                "tags": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "The tags used to filter the saved query.\n"
-                },
-                "targets": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/grafana:index/AppsQueriesQueryV1SpecTarget:AppsQueriesQueryV1SpecTarget"
-                    },
-                    "description": "The query targets that make up the saved query. At least one target is required.\n"
-                },
-                "title": {
-                    "type": "string",
-                    "description": "The display name of the saved query.\n"
-                },
-                "vars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/grafana:index/AppsQueriesQueryV1SpecVar:AppsQueriesQueryV1SpecVar"
-                    },
-                    "description": "The template variables that can be interpolated into the query targets.\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "targets",
-                "title"
-            ]
-        },
-        "grafana:index/AppsQueriesQueryV1SpecTarget:AppsQueriesQueryV1SpecTarget": {
-            "properties": {
-                "dataType": {
-                    "type": "string",
-                    "description": "The returned Dataplane frame type for the target.\n"
-                },
-                "propertiesJson": {
-                    "type": "string",
-                    "description": "The datasource query for the target, as a JSON string (use jsonencode()).\n"
-                },
-                "variablesJson": {
-                    "type": "string",
-                    "description": "The variable replacements to apply to the target, as a JSON string (use jsonencode()).\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "propertiesJson"
-            ]
-        },
-        "grafana:index/AppsQueriesQueryV1SpecVar:AppsQueriesQueryV1SpecVar": {
-            "properties": {
-                "defaultValues": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "The values used when no value is selected during render.\n"
-                },
-                "key": {
-                    "type": "string",
-                    "description": "The name of the variable.\n"
-                },
-                "valueListDefinitionJson": {
-                    "type": "string",
-                    "description": "The definition (as a JSON string) used by the frontend to fetch the list of selectable values.\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "key"
-            ]
         },
         "grafana:k6/ScheduleCron:ScheduleCron": {
             "properties": {
@@ -14131,6 +14131,55 @@
                     },
                     "spec": {
                         "$ref": "#/types/grafana:apps/v1/PlaylistSpec:PlaylistSpec",
+                        "description": "The spec of the resource.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:apps/v1/query:Query": {
+            "description": "Manages Grafana Saved Queries, also known as the Query Library, using the Grafana App Platform API (`queries.grafana.app/v1`).\n\nThe datasource query stored in each target, the target's variable replacements, and a variable's value list definition are passed as raw JSON strings (use `jsonencode()`) because their shape depends on the datasource.\n\n* [Query Library documentation](https://grafana.com/docs/grafana/latest/explore/query-management/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.apps.v1.Query(\"example\", {\n    metadata: {\n        uid: \"example-saved-query\",\n    },\n    spec: {\n        title: \"Requests per second\",\n        description: \"Prometheus rate of HTTP requests\",\n        isVisible: true,\n        tags: [\n            \"http\",\n            \"prometheus\",\n        ],\n        targets: [{\n            propertiesJson: JSON.stringify({\n                refId: \"A\",\n                expr: \"rate(http_requests_total[$__rate_interval])\",\n                datasource: {\n                    type: \"prometheus\",\n                    uid: \"my-prometheus-uid\",\n                },\n            }),\n        }],\n    },\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumiverse_grafana as grafana\n\nexample = grafana.apps.v1.Query(\"example\",\n    metadata={\n        \"uid\": \"example-saved-query\",\n    },\n    spec={\n        \"title\": \"Requests per second\",\n        \"description\": \"Prometheus rate of HTTP requests\",\n        \"is_visible\": True,\n        \"tags\": [\n            \"http\",\n            \"prometheus\",\n        ],\n        \"targets\": [{\n            \"properties_json\": json.dumps({\n                \"refId\": \"A\",\n                \"expr\": \"rate(http_requests_total[$__rate_interval])\",\n                \"datasource\": {\n                    \"type\": \"prometheus\",\n                    \"uid\": \"my-prometheus-uid\",\n                },\n            }),\n        }],\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Apps.V1.Query(\"example\", new()\n    {\n        Metadata = new Grafana.Apps.V1.Inputs.QueryMetadataArgs\n        {\n            Uid = \"example-saved-query\",\n        },\n        Spec = new Grafana.Apps.V1.Inputs.QuerySpecArgs\n        {\n            Title = \"Requests per second\",\n            Description = \"Prometheus rate of HTTP requests\",\n            IsVisible = true,\n            Tags = new[]\n            {\n                \"http\",\n                \"prometheus\",\n            },\n            Targets = new[]\n            {\n                new Grafana.Apps.V1.Inputs.QuerySpecTargetArgs\n                {\n                    PropertiesJson = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"refId\"] = \"A\",\n                        [\"expr\"] = \"rate(http_requests_total[$__rate_interval])\",\n                        [\"datasource\"] = new Dictionary\u003cstring, object?\u003e\n                        {\n                            [\"type\"] = \"prometheus\",\n                            [\"uid\"] = \"my-prometheus-uid\",\n                        },\n                    }),\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"refId\": \"A\",\n\t\t\t\"expr\":  \"rate(http_requests_total[$__rate_interval])\",\n\t\t\t\"datasource\": map[string]interface{}{\n\t\t\t\t\"type\": \"prometheus\",\n\t\t\t\t\"uid\":  \"my-prometheus-uid\",\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = apps.NewQuery(ctx, \"example\", \u0026apps.QueryArgs{\n\t\t\tMetadata: \u0026v1.QueryMetadataArgs{\n\t\t\t\tUid: pulumi.String(\"example-saved-query\"),\n\t\t\t},\n\t\t\tSpec: \u0026v1.QuerySpecArgs{\n\t\t\t\tTitle:       pulumi.String(\"Requests per second\"),\n\t\t\t\tDescription: pulumi.String(\"Prometheus rate of HTTP requests\"),\n\t\t\t\tIsVisible:   pulumi.Bool(true),\n\t\t\t\tTags: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"http\"),\n\t\t\t\t\tpulumi.String(\"prometheus\"),\n\t\t\t\t},\n\t\t\t\tTargets: v1.QuerySpecTargetArray{\n\t\t\t\t\t\u0026v1.QuerySpecTargetArgs{\n\t\t\t\t\t\tPropertiesJson: pulumi.String(pulumi.String(json0)),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.apps_v1.Query;\nimport com.pulumi.grafana.apps_v1.QueryArgs;\nimport com.pulumi.grafana.apps.inputs.QueryMetadataArgs;\nimport com.pulumi.grafana.apps.inputs.QuerySpecArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Query(\"example\", QueryArgs.builder()\n            .metadata(QueryMetadataArgs.builder()\n                .uid(\"example-saved-query\")\n                .build())\n            .spec(QuerySpecArgs.builder()\n                .title(\"Requests per second\")\n                .description(\"Prometheus rate of HTTP requests\")\n                .isVisible(true)\n                .tags(                \n                    \"http\",\n                    \"prometheus\")\n                .targets(QuerySpecTargetArgs.builder()\n                    .propertiesJson(serializeJson(\n                        jsonObject(\n                            jsonProperty(\"refId\", \"A\"),\n                            jsonProperty(\"expr\", \"rate(http_requests_total[$__rate_interval])\"),\n                            jsonProperty(\"datasource\", jsonObject(\n                                jsonProperty(\"type\", \"prometheus\"),\n                                jsonProperty(\"uid\", \"my-prometheus-uid\")\n                            ))\n                        )))\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:apps/v1:Query\n    properties:\n      metadata:\n        uid: example-saved-query\n      spec:\n        title: Requests per second\n        description: Prometheus rate of HTTP requests\n        isVisible: true\n        tags:\n          - http\n          - prometheus\n        targets:\n          - propertiesJson:\n              fn::toJSON:\n                refId: A\n                expr: rate(http_requests_total[$__rate_interval])\n                datasource:\n                  type: prometheus\n                  uid: my-prometheus-uid\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n!/bin/bash\nImport an existing saved query by its UID\n\n```sh\n$ pulumi import grafana:apps/v1/query:Query example example-saved-query\n```\n\n",
+            "properties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:apps/v1/QueryMetadata:QueryMetadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:apps/v1/QueryOptions:QueryOptions",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:apps/v1/QuerySpec:QuerySpec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "inputProperties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:apps/v1/QueryMetadata:QueryMetadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:apps/v1/QueryOptions:QueryOptions",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:apps/v1/QuerySpec:QuerySpec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Query resources.\n",
+                "properties": {
+                    "metadata": {
+                        "$ref": "#/types/grafana:apps/v1/QueryMetadata:QueryMetadata",
+                        "description": "The metadata of the resource.\n"
+                    },
+                    "options": {
+                        "$ref": "#/types/grafana:apps/v1/QueryOptions:QueryOptions",
+                        "description": "Options for applying the resource.\n"
+                    },
+                    "spec": {
+                        "$ref": "#/types/grafana:apps/v1/QuerySpec:QuerySpec",
                         "description": "The spec of the resource.\n"
                     }
                 },
@@ -20525,55 +20574,6 @@
                     "stackId": {
                         "type": "integer",
                         "description": "The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "grafana:index/appsQueriesQueryV1:AppsQueriesQueryV1": {
-            "description": "Manages Grafana Saved Queries, also known as the Query Library, using the Grafana App Platform API (`queries.grafana.app/v1`).\n\nThe datasource query stored in each target, the target's variable replacements, and a variable's value list definition are passed as raw JSON strings (use `jsonencode()`) because their shape depends on the datasource.\n\n* [Query Library documentation](https://grafana.com/docs/grafana/latest/explore/query-management/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.AppsQueriesQueryV1(\"example\", {\n    metadata: {\n        uid: \"example-saved-query\",\n    },\n    spec: {\n        title: \"Requests per second\",\n        description: \"Prometheus rate of HTTP requests\",\n        isVisible: true,\n        tags: [\n            \"http\",\n            \"prometheus\",\n        ],\n        targets: [{\n            propertiesJson: JSON.stringify({\n                refId: \"A\",\n                expr: \"rate(http_requests_total[$__rate_interval])\",\n                datasource: {\n                    type: \"prometheus\",\n                    uid: \"my-prometheus-uid\",\n                },\n            }),\n        }],\n    },\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumiverse_grafana as grafana\n\nexample = grafana.AppsQueriesQueryV1(\"example\",\n    metadata={\n        \"uid\": \"example-saved-query\",\n    },\n    spec={\n        \"title\": \"Requests per second\",\n        \"description\": \"Prometheus rate of HTTP requests\",\n        \"is_visible\": True,\n        \"tags\": [\n            \"http\",\n            \"prometheus\",\n        ],\n        \"targets\": [{\n            \"properties_json\": json.dumps({\n                \"refId\": \"A\",\n                \"expr\": \"rate(http_requests_total[$__rate_interval])\",\n                \"datasource\": {\n                    \"type\": \"prometheus\",\n                    \"uid\": \"my-prometheus-uid\",\n                },\n            }),\n        }],\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.AppsQueriesQueryV1(\"example\", new()\n    {\n        Metadata = new Grafana.Inputs.AppsQueriesQueryV1MetadataArgs\n        {\n            Uid = \"example-saved-query\",\n        },\n        Spec = new Grafana.Inputs.AppsQueriesQueryV1SpecArgs\n        {\n            Title = \"Requests per second\",\n            Description = \"Prometheus rate of HTTP requests\",\n            IsVisible = true,\n            Tags = new[]\n            {\n                \"http\",\n                \"prometheus\",\n            },\n            Targets = new[]\n            {\n                new Grafana.Inputs.AppsQueriesQueryV1SpecTargetArgs\n                {\n                    PropertiesJson = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"refId\"] = \"A\",\n                        [\"expr\"] = \"rate(http_requests_total[$__rate_interval])\",\n                        [\"datasource\"] = new Dictionary\u003cstring, object?\u003e\n                        {\n                            [\"type\"] = \"prometheus\",\n                            [\"uid\"] = \"my-prometheus-uid\",\n                        },\n                    }),\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"refId\": \"A\",\n\t\t\t\"expr\":  \"rate(http_requests_total[$__rate_interval])\",\n\t\t\t\"datasource\": map[string]interface{}{\n\t\t\t\t\"type\": \"prometheus\",\n\t\t\t\t\"uid\":  \"my-prometheus-uid\",\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = grafana.NewAppsQueriesQueryV1(ctx, \"example\", \u0026grafana.AppsQueriesQueryV1Args{\n\t\t\tMetadata: \u0026grafana.AppsQueriesQueryV1MetadataArgs{\n\t\t\t\tUid: pulumi.String(\"example-saved-query\"),\n\t\t\t},\n\t\t\tSpec: \u0026grafana.AppsQueriesQueryV1SpecArgs{\n\t\t\t\tTitle:       pulumi.String(\"Requests per second\"),\n\t\t\t\tDescription: pulumi.String(\"Prometheus rate of HTTP requests\"),\n\t\t\t\tIsVisible:   pulumi.Bool(true),\n\t\t\t\tTags: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"http\"),\n\t\t\t\t\tpulumi.String(\"prometheus\"),\n\t\t\t\t},\n\t\t\t\tTargets: grafana.AppsQueriesQueryV1SpecTargetArray{\n\t\t\t\t\t\u0026grafana.AppsQueriesQueryV1SpecTargetArgs{\n\t\t\t\t\t\tPropertiesJson: pulumi.String(pulumi.String(json0)),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.AppsQueriesQueryV1;\nimport com.pulumi.grafana.AppsQueriesQueryV1Args;\nimport com.pulumi.grafana.inputs.AppsQueriesQueryV1MetadataArgs;\nimport com.pulumi.grafana.inputs.AppsQueriesQueryV1SpecArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new AppsQueriesQueryV1(\"example\", AppsQueriesQueryV1Args.builder()\n            .metadata(AppsQueriesQueryV1MetadataArgs.builder()\n                .uid(\"example-saved-query\")\n                .build())\n            .spec(AppsQueriesQueryV1SpecArgs.builder()\n                .title(\"Requests per second\")\n                .description(\"Prometheus rate of HTTP requests\")\n                .isVisible(true)\n                .tags(                \n                    \"http\",\n                    \"prometheus\")\n                .targets(AppsQueriesQueryV1SpecTargetArgs.builder()\n                    .propertiesJson(serializeJson(\n                        jsonObject(\n                            jsonProperty(\"refId\", \"A\"),\n                            jsonProperty(\"expr\", \"rate(http_requests_total[$__rate_interval])\"),\n                            jsonProperty(\"datasource\", jsonObject(\n                                jsonProperty(\"type\", \"prometheus\"),\n                                jsonProperty(\"uid\", \"my-prometheus-uid\")\n                            ))\n                        )))\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:AppsQueriesQueryV1\n    properties:\n      metadata:\n        uid: example-saved-query\n      spec:\n        title: Requests per second\n        description: Prometheus rate of HTTP requests\n        isVisible: true\n        tags:\n          - http\n          - prometheus\n        targets:\n          - propertiesJson:\n              fn::toJSON:\n                refId: A\n                expr: rate(http_requests_total[$__rate_interval])\n                datasource:\n                  type: prometheus\n                  uid: my-prometheus-uid\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n!/bin/bash\nImport an existing saved query by its UID\n\n```sh\n$ pulumi import grafana:index/appsQueriesQueryV1:AppsQueriesQueryV1 example example-saved-query\n```\n\n",
-            "properties": {
-                "metadata": {
-                    "$ref": "#/types/grafana:index/AppsQueriesQueryV1Metadata:AppsQueriesQueryV1Metadata",
-                    "description": "The metadata of the resource.\n"
-                },
-                "options": {
-                    "$ref": "#/types/grafana:index/AppsQueriesQueryV1Options:AppsQueriesQueryV1Options",
-                    "description": "Options for applying the resource.\n"
-                },
-                "spec": {
-                    "$ref": "#/types/grafana:index/AppsQueriesQueryV1Spec:AppsQueriesQueryV1Spec",
-                    "description": "The spec of the resource.\n"
-                }
-            },
-            "inputProperties": {
-                "metadata": {
-                    "$ref": "#/types/grafana:index/AppsQueriesQueryV1Metadata:AppsQueriesQueryV1Metadata",
-                    "description": "The metadata of the resource.\n"
-                },
-                "options": {
-                    "$ref": "#/types/grafana:index/AppsQueriesQueryV1Options:AppsQueriesQueryV1Options",
-                    "description": "Options for applying the resource.\n"
-                },
-                "spec": {
-                    "$ref": "#/types/grafana:index/AppsQueriesQueryV1Spec:AppsQueriesQueryV1Spec",
-                    "description": "The spec of the resource.\n"
-                }
-            },
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering AppsQueriesQueryV1 resources.\n",
-                "properties": {
-                    "metadata": {
-                        "$ref": "#/types/grafana:index/AppsQueriesQueryV1Metadata:AppsQueriesQueryV1Metadata",
-                        "description": "The metadata of the resource.\n"
-                    },
-                    "options": {
-                        "$ref": "#/types/grafana:index/AppsQueriesQueryV1Options:AppsQueriesQueryV1Options",
-                        "description": "Options for applying the resource.\n"
-                    },
-                    "spec": {
-                        "$ref": "#/types/grafana:index/AppsQueriesQueryV1Spec:AppsQueriesQueryV1Spec",
-                        "description": "The spec of the resource.\n"
                     }
                 },
                 "type": "object"

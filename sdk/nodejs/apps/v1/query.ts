@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../../types/input";
+import * as outputs from "../../types/output";
+import * as utilities from "../../utilities";
 
 /**
  * Manages Grafana Saved Queries, also known as the Query Library, using the Grafana App Platform API (`queries.grafana.app/v1`).
@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const example = new grafana.AppsQueriesQueryV1("example", {
+ * const example = new grafana.apps.v1.Query("example", {
  *     metadata: {
  *         uid: "example-saved-query",
  *     },
@@ -51,12 +51,12 @@ import * as utilities from "./utilities";
  * Import an existing saved query by its UID
  *
  * ```sh
- * $ pulumi import grafana:index/appsQueriesQueryV1:AppsQueriesQueryV1 example example-saved-query
+ * $ pulumi import grafana:apps/v1/query:Query example example-saved-query
  * ```
  */
-export class AppsQueriesQueryV1 extends pulumi.CustomResource {
+export class Query extends pulumi.CustomResource {
     /**
-     * Get an existing AppsQueriesQueryV1 resource's state with the given name, ID, and optional extra
+     * Get an existing Query resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -64,96 +64,96 @@ export class AppsQueriesQueryV1 extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AppsQueriesQueryV1State, opts?: pulumi.CustomResourceOptions): AppsQueriesQueryV1 {
-        return new AppsQueriesQueryV1(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: QueryState, opts?: pulumi.CustomResourceOptions): Query {
+        return new Query(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/appsQueriesQueryV1:AppsQueriesQueryV1';
+    public static readonly __pulumiType = 'grafana:apps/v1/query:Query';
 
     /**
-     * Returns true if the given object is an instance of AppsQueriesQueryV1.  This is designed to work even
+     * Returns true if the given object is an instance of Query.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is AppsQueriesQueryV1 {
+    public static isInstance(obj: any): obj is Query {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === AppsQueriesQueryV1.__pulumiType;
+        return obj['__pulumiType'] === Query.__pulumiType;
     }
 
     /**
      * The metadata of the resource.
      */
-    declare public readonly metadata: pulumi.Output<outputs.AppsQueriesQueryV1Metadata | undefined>;
+    declare public readonly metadata: pulumi.Output<outputs.apps.v1.QueryMetadata | undefined>;
     /**
      * Options for applying the resource.
      */
-    declare public readonly options: pulumi.Output<outputs.AppsQueriesQueryV1Options | undefined>;
+    declare public readonly options: pulumi.Output<outputs.apps.v1.QueryOptions | undefined>;
     /**
      * The spec of the resource.
      */
-    declare public readonly spec: pulumi.Output<outputs.AppsQueriesQueryV1Spec | undefined>;
+    declare public readonly spec: pulumi.Output<outputs.apps.v1.QuerySpec | undefined>;
 
     /**
-     * Create a AppsQueriesQueryV1 resource with the given unique name, arguments, and options.
+     * Create a Query resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: AppsQueriesQueryV1Args, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: AppsQueriesQueryV1Args | AppsQueriesQueryV1State, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args?: QueryArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: QueryArgs | QueryState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as AppsQueriesQueryV1State | undefined;
+            const state = argsOrState as QueryState | undefined;
             resourceInputs["metadata"] = state?.metadata;
             resourceInputs["options"] = state?.options;
             resourceInputs["spec"] = state?.spec;
         } else {
-            const args = argsOrState as AppsQueriesQueryV1Args | undefined;
+            const args = argsOrState as QueryArgs | undefined;
             resourceInputs["metadata"] = args?.metadata;
             resourceInputs["options"] = args?.options;
             resourceInputs["spec"] = args?.spec;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(AppsQueriesQueryV1.__pulumiType, name, resourceInputs, opts);
+        super(Query.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering AppsQueriesQueryV1 resources.
+ * Input properties used for looking up and filtering Query resources.
  */
-export interface AppsQueriesQueryV1State {
+export interface QueryState {
     /**
      * The metadata of the resource.
      */
-    metadata?: pulumi.Input<inputs.AppsQueriesQueryV1Metadata>;
+    metadata?: pulumi.Input<inputs.apps.v1.QueryMetadata>;
     /**
      * Options for applying the resource.
      */
-    options?: pulumi.Input<inputs.AppsQueriesQueryV1Options>;
+    options?: pulumi.Input<inputs.apps.v1.QueryOptions>;
     /**
      * The spec of the resource.
      */
-    spec?: pulumi.Input<inputs.AppsQueriesQueryV1Spec>;
+    spec?: pulumi.Input<inputs.apps.v1.QuerySpec>;
 }
 
 /**
- * The set of arguments for constructing a AppsQueriesQueryV1 resource.
+ * The set of arguments for constructing a Query resource.
  */
-export interface AppsQueriesQueryV1Args {
+export interface QueryArgs {
     /**
      * The metadata of the resource.
      */
-    metadata?: pulumi.Input<inputs.AppsQueriesQueryV1Metadata>;
+    metadata?: pulumi.Input<inputs.apps.v1.QueryMetadata>;
     /**
      * Options for applying the resource.
      */
-    options?: pulumi.Input<inputs.AppsQueriesQueryV1Options>;
+    options?: pulumi.Input<inputs.apps.v1.QueryOptions>;
     /**
      * The spec of the resource.
      */
-    spec?: pulumi.Input<inputs.AppsQueriesQueryV1Spec>;
+    spec?: pulumi.Input<inputs.apps.v1.QuerySpec>;
 }

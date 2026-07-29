@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Apps.V1.Outputs
 {
 
     [OutputType]
-    public sealed class AppsQueriesQueryV1SpecVar
+    public sealed class QuerySpecVar
     {
         /// <summary>
         /// The values used when no value is selected during render.
@@ -28,7 +28,7 @@ namespace Pulumiverse.Grafana.Outputs
         public readonly string? ValueListDefinitionJson;
 
         [OutputConstructor]
-        private AppsQueriesQueryV1SpecVar(
+        private QuerySpecVar(
             ImmutableArray<string> defaultValues,
 
             string key,

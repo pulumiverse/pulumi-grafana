@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Apps.V1
 {
     /// <summary>
     /// Manages Grafana Saved Queries, also known as the Query Library, using the Grafana App Platform API (`queries.grafana.app/v1`).
@@ -28,13 +28,13 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Grafana.AppsQueriesQueryV1("example", new()
+    ///     var example = new Grafana.Apps.V1.Query("example", new()
     ///     {
-    ///         Metadata = new Grafana.Inputs.AppsQueriesQueryV1MetadataArgs
+    ///         Metadata = new Grafana.Apps.V1.Inputs.QueryMetadataArgs
     ///         {
     ///             Uid = "example-saved-query",
     ///         },
-    ///         Spec = new Grafana.Inputs.AppsQueriesQueryV1SpecArgs
+    ///         Spec = new Grafana.Apps.V1.Inputs.QuerySpecArgs
     ///         {
     ///             Title = "Requests per second",
     ///             Description = "Prometheus rate of HTTP requests",
@@ -46,7 +46,7 @@ namespace Pulumiverse.Grafana
     ///             },
     ///             Targets = new[]
     ///             {
-    ///                 new Grafana.Inputs.AppsQueriesQueryV1SpecTargetArgs
+    ///                 new Grafana.Apps.V1.Inputs.QuerySpecTargetArgs
     ///                 {
     ///                     PropertiesJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///                     {
@@ -72,45 +72,45 @@ namespace Pulumiverse.Grafana
     /// Import an existing saved query by its UID
     /// 
     /// ```sh
-    /// $ pulumi import grafana:index/appsQueriesQueryV1:AppsQueriesQueryV1 example example-saved-query
+    /// $ pulumi import grafana:apps/v1/query:Query example example-saved-query
     /// ```
     /// </summary>
-    [GrafanaResourceType("grafana:index/appsQueriesQueryV1:AppsQueriesQueryV1")]
-    public partial class AppsQueriesQueryV1 : global::Pulumi.CustomResource
+    [GrafanaResourceType("grafana:apps/v1/query:Query")]
+    public partial class Query : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The metadata of the resource.
         /// </summary>
         [Output("metadata")]
-        public Output<Outputs.AppsQueriesQueryV1Metadata?> Metadata { get; private set; } = null!;
+        public Output<Outputs.QueryMetadata?> Metadata { get; private set; } = null!;
 
         /// <summary>
         /// Options for applying the resource.
         /// </summary>
         [Output("options")]
-        public Output<Outputs.AppsQueriesQueryV1Options?> Options { get; private set; } = null!;
+        public Output<Outputs.QueryOptions?> Options { get; private set; } = null!;
 
         /// <summary>
         /// The spec of the resource.
         /// </summary>
         [Output("spec")]
-        public Output<Outputs.AppsQueriesQueryV1Spec?> Spec { get; private set; } = null!;
+        public Output<Outputs.QuerySpec?> Spec { get; private set; } = null!;
 
 
         /// <summary>
-        /// Create a AppsQueriesQueryV1 resource with the given unique name, arguments, and options.
+        /// Create a Query resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AppsQueriesQueryV1(string name, AppsQueriesQueryV1Args? args = null, CustomResourceOptions? options = null)
-            : base("grafana:index/appsQueriesQueryV1:AppsQueriesQueryV1", name, args ?? new AppsQueriesQueryV1Args(), MakeResourceOptions(options, ""))
+        public Query(string name, QueryArgs? args = null, CustomResourceOptions? options = null)
+            : base("grafana:apps/v1/query:Query", name, args ?? new QueryArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private AppsQueriesQueryV1(string name, Input<string> id, AppsQueriesQueryV1State? state = null, CustomResourceOptions? options = null)
-            : base("grafana:index/appsQueriesQueryV1:AppsQueriesQueryV1", name, state, MakeResourceOptions(options, id))
+        private Query(string name, Input<string> id, QueryState? state = null, CustomResourceOptions? options = null)
+            : base("grafana:apps/v1/query:Query", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -127,7 +127,7 @@ namespace Pulumiverse.Grafana
             return merged;
         }
         /// <summary>
-        /// Get an existing AppsQueriesQueryV1 resource's state with the given name, ID, and optional extra
+        /// Get an existing Query resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -135,61 +135,61 @@ namespace Pulumiverse.Grafana
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static AppsQueriesQueryV1 Get(string name, Input<string> id, AppsQueriesQueryV1State? state = null, CustomResourceOptions? options = null)
+        public static Query Get(string name, Input<string> id, QueryState? state = null, CustomResourceOptions? options = null)
         {
-            return new AppsQueriesQueryV1(name, id, state, options);
+            return new Query(name, id, state, options);
         }
     }
 
-    public sealed class AppsQueriesQueryV1Args : global::Pulumi.ResourceArgs
+    public sealed class QueryArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The metadata of the resource.
         /// </summary>
         [Input("metadata")]
-        public Input<Inputs.AppsQueriesQueryV1MetadataArgs>? Metadata { get; set; }
+        public Input<Inputs.QueryMetadataArgs>? Metadata { get; set; }
 
         /// <summary>
         /// Options for applying the resource.
         /// </summary>
         [Input("options")]
-        public Input<Inputs.AppsQueriesQueryV1OptionsArgs>? Options { get; set; }
+        public Input<Inputs.QueryOptionsArgs>? Options { get; set; }
 
         /// <summary>
         /// The spec of the resource.
         /// </summary>
         [Input("spec")]
-        public Input<Inputs.AppsQueriesQueryV1SpecArgs>? Spec { get; set; }
+        public Input<Inputs.QuerySpecArgs>? Spec { get; set; }
 
-        public AppsQueriesQueryV1Args()
+        public QueryArgs()
         {
         }
-        public static new AppsQueriesQueryV1Args Empty => new AppsQueriesQueryV1Args();
+        public static new QueryArgs Empty => new QueryArgs();
     }
 
-    public sealed class AppsQueriesQueryV1State : global::Pulumi.ResourceArgs
+    public sealed class QueryState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The metadata of the resource.
         /// </summary>
         [Input("metadata")]
-        public Input<Inputs.AppsQueriesQueryV1MetadataGetArgs>? Metadata { get; set; }
+        public Input<Inputs.QueryMetadataGetArgs>? Metadata { get; set; }
 
         /// <summary>
         /// Options for applying the resource.
         /// </summary>
         [Input("options")]
-        public Input<Inputs.AppsQueriesQueryV1OptionsGetArgs>? Options { get; set; }
+        public Input<Inputs.QueryOptionsGetArgs>? Options { get; set; }
 
         /// <summary>
         /// The spec of the resource.
         /// </summary>
         [Input("spec")]
-        public Input<Inputs.AppsQueriesQueryV1SpecGetArgs>? Spec { get; set; }
+        public Input<Inputs.QuerySpecGetArgs>? Spec { get; set; }
 
-        public AppsQueriesQueryV1State()
+        public QueryState()
         {
         }
-        public static new AppsQueriesQueryV1State Empty => new AppsQueriesQueryV1State();
+        public static new QueryState Empty => new QueryState();
     }
 }

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Apps.V1.Inputs
 {
 
-    public sealed class AppsQueriesQueryV1SpecVarGetArgs : global::Pulumi.ResourceArgs
+    public sealed class QuerySpecVarGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("defaultValues")]
         private InputList<string>? _defaultValues;
@@ -37,9 +37,9 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("valueListDefinitionJson")]
         public Input<string>? ValueListDefinitionJson { get; set; }
 
-        public AppsQueriesQueryV1SpecVarGetArgs()
+        public QuerySpecVarGetArgs()
         {
         }
-        public static new AppsQueriesQueryV1SpecVarGetArgs Empty => new AppsQueriesQueryV1SpecVarGetArgs();
+        public static new QuerySpecVarGetArgs Empty => new QuerySpecVarGetArgs();
     }
 }
