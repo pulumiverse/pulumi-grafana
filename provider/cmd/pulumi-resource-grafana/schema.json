@@ -8817,6 +8817,154 @@
                 }
             }
         },
+        "grafana:index/AppsQueriesQueryV1Metadata:AppsQueriesQueryV1Metadata": {
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Annotations of the resource.\n"
+                },
+                "folderUid": {
+                    "type": "string",
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
+                },
+                "uid": {
+                    "type": "string",
+                    "description": "The unique identifier of the resource.\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The full URL of the resource.\n"
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "The globally unique identifier of a resource, used by the API for tracking.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The version of the resource.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "uid"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "annotations",
+                        "uid",
+                        "url",
+                        "uuid",
+                        "version"
+                    ]
+                }
+            }
+        },
+        "grafana:index/AppsQueriesQueryV1Options:AppsQueriesQueryV1Options": {
+            "properties": {
+                "managerIdentity": {
+                    "type": "string",
+                    "description": "Override the identity stamped on this resource's manager metadata. Defaults to \"grafana-terraform-provider\". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.\n"
+                },
+                "overwrite": {
+                    "type": "boolean",
+                    "description": "Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:index/AppsQueriesQueryV1Spec:AppsQueriesQueryV1Spec": {
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "A longer description of the saved query.\n"
+                },
+                "isLocked": {
+                    "type": "boolean",
+                    "description": "Whether the saved query is locked and cannot be edited in the UI. This is purely for UI display purposes and not for security.\n"
+                },
+                "isVisible": {
+                    "type": "boolean",
+                    "description": "Whether the saved query is visible in the query library.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The tags used to filter the saved query.\n"
+                },
+                "targets": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:index/AppsQueriesQueryV1SpecTarget:AppsQueriesQueryV1SpecTarget"
+                    },
+                    "description": "The query targets that make up the saved query. At least one target is required.\n"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "The display name of the saved query.\n"
+                },
+                "vars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:index/AppsQueriesQueryV1SpecVar:AppsQueriesQueryV1SpecVar"
+                    },
+                    "description": "The template variables that can be interpolated into the query targets.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "targets",
+                "title"
+            ]
+        },
+        "grafana:index/AppsQueriesQueryV1SpecTarget:AppsQueriesQueryV1SpecTarget": {
+            "properties": {
+                "dataType": {
+                    "type": "string",
+                    "description": "The returned Dataplane frame type for the target.\n"
+                },
+                "propertiesJson": {
+                    "type": "string",
+                    "description": "The datasource query for the target, as a JSON string (use jsonencode()).\n"
+                },
+                "variablesJson": {
+                    "type": "string",
+                    "description": "The variable replacements to apply to the target, as a JSON string (use jsonencode()).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "propertiesJson"
+            ]
+        },
+        "grafana:index/AppsQueriesQueryV1SpecVar:AppsQueriesQueryV1SpecVar": {
+            "properties": {
+                "defaultValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The values used when no value is selected during render.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The name of the variable.\n"
+                },
+                "valueListDefinitionJson": {
+                    "type": "string",
+                    "description": "The definition (as a JSON string) used by the frontend to fetch the list of selectable values.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "key"
+            ]
+        },
         "grafana:k6/ScheduleCron:ScheduleCron": {
             "properties": {
                 "schedule": {
@@ -8876,6 +9024,9 @@
                 "id": {
                     "type": "string"
                 },
+                "k6Version": {
+                    "type": "string"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -8894,6 +9045,7 @@
                 "baselineTestRunId",
                 "created",
                 "id",
+                "k6Version",
                 "name",
                 "projectId",
                 "script",
@@ -11525,6 +11677,10 @@
                 "proxyUrl": {
                     "type": "string",
                     "description": "Proxy URL.\n"
+                },
+                "secretManagerEnabled": {
+                    "type": "boolean",
+                    "description": "Enable secret manager so that `${secrets.\u003cname\u003e}` references in the bearer token, basic auth password, and TLS certificate/key fields are resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.\u003cname\u003e}`) so the reference is passed through literally rather than interpolated by Terraform. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
                 },
                 "tlsConfig": {
                     "$ref": "#/types/grafana:syntheticMonitoring/CheckSettingsHttpTlsConfig:CheckSettingsHttpTlsConfig",
@@ -15076,11 +15232,11 @@
             }
         },
         "grafana:assistant/quickstart:Quickstart": {
-            "description": "Manages a Grafana Assistant quickstart prompt shown to users.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.assistant.Quickstart(\"example\", {\n    scope: \"tenant\",\n    title: \"SLO health\",\n    prompt: \"How healthy are my SLOs right now?\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nexample = grafana.assistant.Quickstart(\"example\",\n    scope=\"tenant\",\n    title=\"SLO health\",\n    prompt=\"How healthy are my SLOs right now?\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Assistant.Quickstart(\"example\", new()\n    {\n        Scope = \"tenant\",\n        Title = \"SLO health\",\n        Prompt = \"How healthy are my SLOs right now?\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/assistant\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := assistant.NewQuickstart(ctx, \"example\", \u0026assistant.QuickstartArgs{\n\t\t\tScope:  pulumi.String(\"tenant\"),\n\t\t\tTitle:  pulumi.String(\"SLO health\"),\n\t\t\tPrompt: pulumi.String(\"How healthy are my SLOs right now?\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.assistant.Quickstart;\nimport com.pulumi.grafana.assistant.QuickstartArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Quickstart(\"example\", QuickstartArgs.builder()\n            .scope(\"tenant\")\n            .title(\"SLO health\")\n            .prompt(\"How healthy are my SLOs right now?\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:assistant:Quickstart\n    properties:\n      scope: tenant\n      title: SLO health\n      prompt: How healthy are my SLOs right now?\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_assistant_quickstart.name \"{{ id }}\"\n```\n\n",
+            "description": "Manages a Grafana Assistant quickstart prompt shown to users.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.assistant.Quickstart(\"example\", {\n    scope: \"tenant\",\n    title: \"SLO health\",\n    prompt: \"How healthy are my SLOs right now?\",\n});\n// A quickstart with a context item pre-attached. `context_items` is a\n// JSON-encoded array of Assistant `ChatContextItem` objects. The example below\n// attaches a Prometheus data source so the Assistant starts the conversation\n// with that data source already in context.\n//\n// This is an advanced, internal-format field. The most reliable way to obtain a\n// valid value is to create the quickstart with the desired context through the\n// Assistant UI and copy the resulting `contextItems` JSON into `jsonencode(...)`.\nconst withContext = new grafana.assistant.Quickstart(\"with_context\", {\n    scope: \"tenant\",\n    title: \"Investigate Prometheus alerts\",\n    prompt: \"Which alerts are firing right now and why?\",\n    contextItems: JSON.stringify([{\n        node: {\n            id: \"prometheus-uid\",\n            name: \"Prometheus\",\n            icon: \"database\",\n            data: {\n                type: \"datasource\",\n                data: {\n                    name: \"Prometheus\",\n                    uid: \"prometheus-uid\",\n                    type: \"prometheus\",\n                    text: \"Prometheus\",\n                },\n            },\n        },\n    }]),\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumiverse_grafana as grafana\n\nexample = grafana.assistant.Quickstart(\"example\",\n    scope=\"tenant\",\n    title=\"SLO health\",\n    prompt=\"How healthy are my SLOs right now?\")\n# A quickstart with a context item pre-attached. `context_items` is a\n# JSON-encoded array of Assistant `ChatContextItem` objects. The example below\n# attaches a Prometheus data source so the Assistant starts the conversation\n# with that data source already in context.\n#\n# This is an advanced, internal-format field. The most reliable way to obtain a\n# valid value is to create the quickstart with the desired context through the\n# Assistant UI and copy the resulting `contextItems` JSON into `jsonencode(...)`.\nwith_context = grafana.assistant.Quickstart(\"with_context\",\n    scope=\"tenant\",\n    title=\"Investigate Prometheus alerts\",\n    prompt=\"Which alerts are firing right now and why?\",\n    context_items=json.dumps([{\n        \"node\": {\n            \"id\": \"prometheus-uid\",\n            \"name\": \"Prometheus\",\n            \"icon\": \"database\",\n            \"data\": {\n                \"type\": \"datasource\",\n                \"data\": {\n                    \"name\": \"Prometheus\",\n                    \"uid\": \"prometheus-uid\",\n                    \"type\": \"prometheus\",\n                    \"text\": \"Prometheus\",\n                },\n            },\n        },\n    }]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Assistant.Quickstart(\"example\", new()\n    {\n        Scope = \"tenant\",\n        Title = \"SLO health\",\n        Prompt = \"How healthy are my SLOs right now?\",\n    });\n\n    // A quickstart with a context item pre-attached. `context_items` is a\n    // JSON-encoded array of Assistant `ChatContextItem` objects. The example below\n    // attaches a Prometheus data source so the Assistant starts the conversation\n    // with that data source already in context.\n    //\n    // This is an advanced, internal-format field. The most reliable way to obtain a\n    // valid value is to create the quickstart with the desired context through the\n    // Assistant UI and copy the resulting `contextItems` JSON into `jsonencode(...)`.\n    var withContext = new Grafana.Assistant.Quickstart(\"with_context\", new()\n    {\n        Scope = \"tenant\",\n        Title = \"Investigate Prometheus alerts\",\n        Prompt = \"Which alerts are firing right now and why?\",\n        ContextItems = JsonSerializer.Serialize(new[]\n        {\n            new Dictionary\u003cstring, object?\u003e\n            {\n                [\"node\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"id\"] = \"prometheus-uid\",\n                    [\"name\"] = \"Prometheus\",\n                    [\"icon\"] = \"database\",\n                    [\"data\"] = new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"type\"] = \"datasource\",\n                        [\"data\"] = new Dictionary\u003cstring, object?\u003e\n                        {\n                            [\"name\"] = \"Prometheus\",\n                            [\"uid\"] = \"prometheus-uid\",\n                            [\"type\"] = \"prometheus\",\n                            [\"text\"] = \"Prometheus\",\n                        },\n                    },\n                },\n            },\n        }),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/assistant\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := assistant.NewQuickstart(ctx, \"example\", \u0026assistant.QuickstartArgs{\n\t\t\tScope:  pulumi.String(\"tenant\"),\n\t\t\tTitle:  pulumi.String(\"SLO health\"),\n\t\t\tPrompt: pulumi.String(\"How healthy are my SLOs right now?\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON0, err := json.Marshal([]map[string]interface{}{\n\t\t\tmap[string]interface{}{\n\t\t\t\t\"node\": map[string]interface{}{\n\t\t\t\t\t\"id\":   \"prometheus-uid\",\n\t\t\t\t\t\"name\": \"Prometheus\",\n\t\t\t\t\t\"icon\": \"database\",\n\t\t\t\t\t\"data\": map[string]interface{}{\n\t\t\t\t\t\t\"type\": \"datasource\",\n\t\t\t\t\t\t\"data\": map[string]interface{}{\n\t\t\t\t\t\t\t\"name\": \"Prometheus\",\n\t\t\t\t\t\t\t\"uid\":  \"prometheus-uid\",\n\t\t\t\t\t\t\t\"type\": \"prometheus\",\n\t\t\t\t\t\t\t\"text\": \"Prometheus\",\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t// A quickstart with a context item pre-attached. `context_items` is a\n\t\t// JSON-encoded array of Assistant `ChatContextItem` objects. The example below\n\t\t// attaches a Prometheus data source so the Assistant starts the conversation\n\t\t// with that data source already in context.\n\t\t//\n\t\t// This is an advanced, internal-format field. The most reliable way to obtain a\n\t\t// valid value is to create the quickstart with the desired context through the\n\t\t// Assistant UI and copy the resulting `contextItems` JSON into `jsonencode(...)`.\n\t\t_, err = assistant.NewQuickstart(ctx, \"with_context\", \u0026assistant.QuickstartArgs{\n\t\t\tScope:        pulumi.String(\"tenant\"),\n\t\t\tTitle:        pulumi.String(\"Investigate Prometheus alerts\"),\n\t\t\tPrompt:       pulumi.String(\"Which alerts are firing right now and why?\"),\n\t\t\tContextItems: pulumi.String(pulumi.String(json0)),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.assistant.Quickstart;\nimport com.pulumi.grafana.assistant.QuickstartArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Quickstart(\"example\", QuickstartArgs.builder()\n            .scope(\"tenant\")\n            .title(\"SLO health\")\n            .prompt(\"How healthy are my SLOs right now?\")\n            .build());\n\n        // A quickstart with a context item pre-attached. `context_items` is a\n        // JSON-encoded array of Assistant `ChatContextItem` objects. The example below\n        // attaches a Prometheus data source so the Assistant starts the conversation\n        // with that data source already in context.\n        //\n        // This is an advanced, internal-format field. The most reliable way to obtain a\n        // valid value is to create the quickstart with the desired context through the\n        // Assistant UI and copy the resulting `contextItems` JSON into `jsonencode(...)`.\n        var withContext = new Quickstart(\"withContext\", QuickstartArgs.builder()\n            .scope(\"tenant\")\n            .title(\"Investigate Prometheus alerts\")\n            .prompt(\"Which alerts are firing right now and why?\")\n            .contextItems(serializeJson(\n                jsonArray(jsonObject(\n                    jsonProperty(\"node\", jsonObject(\n                        jsonProperty(\"id\", \"prometheus-uid\"),\n                        jsonProperty(\"name\", \"Prometheus\"),\n                        jsonProperty(\"icon\", \"database\"),\n                        jsonProperty(\"data\", jsonObject(\n                            jsonProperty(\"type\", \"datasource\"),\n                            jsonProperty(\"data\", jsonObject(\n                                jsonProperty(\"name\", \"Prometheus\"),\n                                jsonProperty(\"uid\", \"prometheus-uid\"),\n                                jsonProperty(\"type\", \"prometheus\"),\n                                jsonProperty(\"text\", \"Prometheus\")\n                            ))\n                        ))\n                    ))\n                ))))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:assistant:Quickstart\n    properties:\n      scope: tenant\n      title: SLO health\n      prompt: How healthy are my SLOs right now?\n  # A quickstart with a context item pre-attached. `context_items` is a\n  # JSON-encoded array of Assistant `ChatContextItem` objects. The example below\n  # attaches a Prometheus data source so the Assistant starts the conversation\n  # with that data source already in context.\n  #\n  # This is an advanced, internal-format field. The most reliable way to obtain a\n  # valid value is to create the quickstart with the desired context through the\n  # Assistant UI and copy the resulting `contextItems` JSON into `jsonencode(...)`.\n  withContext:\n    type: grafana:assistant:Quickstart\n    name: with_context\n    properties:\n      scope: tenant\n      title: Investigate Prometheus alerts\n      prompt: Which alerts are firing right now and why?\n      contextItems:\n        fn::toJSON:\n          - node:\n              id: prometheus-uid\n              name: Prometheus\n              icon: database\n              data:\n                type: datasource\n                data:\n                  name: Prometheus\n                  uid: prometheus-uid\n                  type: prometheus\n                  text: Prometheus\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_assistant_quickstart.name \"{{ id }}\"\n```\n\n",
             "properties": {
                 "contextItems": {
                     "type": "string",
-                    "description": "Optional JSON array of context items for the quickstart.\n"
+                    "description": "Optional JSON-encoded array of context items pre-attached to the quickstart. Each element is an Assistant `ChatContextItem`; only `node.id`, `node.name`, and `node.data` (`{\"type\": ..., \"data\": {...}}`) are required, e.g. `{\"node\": {\"id\": ..., \"name\": ..., \"data\": {\"type\": ..., \"data\": {...}}}}`. This is an advanced, internal-format field. The most reliable way to produce a valid value is to create a quickstart with the desired context through the Assistant UI, then copy the resulting `contextItems` JSON. Omit this field if no pre-attached context is needed. See the example for a typical datasource context item.\n"
                 },
                 "enabled": {
                     "type": "boolean",
@@ -15107,7 +15263,7 @@
             "inputProperties": {
                 "contextItems": {
                     "type": "string",
-                    "description": "Optional JSON array of context items for the quickstart.\n"
+                    "description": "Optional JSON-encoded array of context items pre-attached to the quickstart. Each element is an Assistant `ChatContextItem`; only `node.id`, `node.name`, and `node.data` (`{\"type\": ..., \"data\": {...}}`) are required, e.g. `{\"node\": {\"id\": ..., \"name\": ..., \"data\": {\"type\": ..., \"data\": {...}}}}`. This is an advanced, internal-format field. The most reliable way to produce a valid value is to create a quickstart with the desired context through the Assistant UI, then copy the resulting `contextItems` JSON. Omit this field if no pre-attached context is needed. See the example for a typical datasource context item.\n"
                 },
                 "enabled": {
                     "type": "boolean",
@@ -15135,7 +15291,7 @@
                 "properties": {
                     "contextItems": {
                         "type": "string",
-                        "description": "Optional JSON array of context items for the quickstart.\n"
+                        "description": "Optional JSON-encoded array of context items pre-attached to the quickstart. Each element is an Assistant `ChatContextItem`; only `node.id`, `node.name`, and `node.data` (`{\"type\": ..., \"data\": {...}}`) are required, e.g. `{\"node\": {\"id\": ..., \"name\": ..., \"data\": {\"type\": ..., \"data\": {...}}}}`. This is an advanced, internal-format field. The most reliable way to produce a valid value is to create a quickstart with the desired context through the Assistant UI, then copy the resulting `contextItems` JSON. Omit this field if no pre-attached context is needed. See the example for a typical datasource context item.\n"
                     },
                     "enabled": {
                         "type": "boolean",
@@ -15276,7 +15432,7 @@
             }
         },
         "grafana:assistant/skill:Skill": {
-            "description": "Manages a Grafana Assistant skill.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.assistant.Skill(\"example\", {\n    name: \"Deploy readiness check\",\n    body: `1. Check deployment pipeline status.\n2. Verify SLO error budget before promoting.\n`,\n    scope: \"tenant\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nexample = grafana.assistant.Skill(\"example\",\n    name=\"Deploy readiness check\",\n    body=\"\"\"1. Check deployment pipeline status.\n2. Verify SLO error budget before promoting.\n\"\"\",\n    scope=\"tenant\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Assistant.Skill(\"example\", new()\n    {\n        Name = \"Deploy readiness check\",\n        Body = @\"1. Check deployment pipeline status.\n2. Verify SLO error budget before promoting.\n\",\n        Scope = \"tenant\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/assistant\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := assistant.NewSkill(ctx, \"example\", \u0026assistant.SkillArgs{\n\t\t\tName:  pulumi.String(\"Deploy readiness check\"),\n\t\t\tBody:  pulumi.String(\"1. Check deployment pipeline status.\\n2. Verify SLO error budget before promoting.\\n\"),\n\t\t\tScope: pulumi.String(\"tenant\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.assistant.Skill;\nimport com.pulumi.grafana.assistant.SkillArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Skill(\"example\", SkillArgs.builder()\n            .name(\"Deploy readiness check\")\n            .body(\"\"\"\n1. Check deployment pipeline status.\n2. Verify SLO error budget before promoting.\n            \"\"\")\n            .scope(\"tenant\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:assistant:Skill\n    properties:\n      name: Deploy readiness check\n      body: |\n        1. Check deployment pipeline status.\n        2. Verify SLO error budget before promoting.\n      scope: tenant\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_assistant_skill.name \"{{ id }}\"\n```\n\n",
+            "description": "Manages a Grafana Assistant skill.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.assistant.Skill(\"example\", {\n    name: \"Deploy readiness check\",\n    commandName: \"deploy-readiness\",\n    body: `1. Check deployment pipeline status.\n2. Verify SLO error budget before promoting.\n`,\n    scope: \"tenant\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nexample = grafana.assistant.Skill(\"example\",\n    name=\"Deploy readiness check\",\n    command_name=\"deploy-readiness\",\n    body=\"\"\"1. Check deployment pipeline status.\n2. Verify SLO error budget before promoting.\n\"\"\",\n    scope=\"tenant\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Assistant.Skill(\"example\", new()\n    {\n        Name = \"Deploy readiness check\",\n        CommandName = \"deploy-readiness\",\n        Body = @\"1. Check deployment pipeline status.\n2. Verify SLO error budget before promoting.\n\",\n        Scope = \"tenant\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/assistant\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := assistant.NewSkill(ctx, \"example\", \u0026assistant.SkillArgs{\n\t\t\tName:        pulumi.String(\"Deploy readiness check\"),\n\t\t\tCommandName: pulumi.String(\"deploy-readiness\"),\n\t\t\tBody:        pulumi.String(\"1. Check deployment pipeline status.\\n2. Verify SLO error budget before promoting.\\n\"),\n\t\t\tScope:       pulumi.String(\"tenant\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.assistant.Skill;\nimport com.pulumi.grafana.assistant.SkillArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Skill(\"example\", SkillArgs.builder()\n            .name(\"Deploy readiness check\")\n            .commandName(\"deploy-readiness\")\n            .body(\"\"\"\n1. Check deployment pipeline status.\n2. Verify SLO error budget before promoting.\n            \"\"\")\n            .scope(\"tenant\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:assistant:Skill\n    properties:\n      name: Deploy readiness check\n      commandName: deploy-readiness\n      body: |\n        1. Check deployment pipeline status.\n        2. Verify SLO error budget before promoting.\n      scope: tenant\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_assistant_skill.name \"{{ id }}\"\n```\n\n",
             "properties": {
                 "allowedTools": {
                     "type": "array",
@@ -15288,6 +15444,10 @@
                 "body": {
                     "type": "string",
                     "description": "The skill content.\n"
+                },
+                "commandName": {
+                    "type": "string",
+                    "description": "The slash command name that invokes the skill. Setting this enables the skill as a command.\n"
                 },
                 "contextItems": {
                     "type": "string",
@@ -15324,6 +15484,10 @@
                     "type": "string",
                     "description": "The skill content.\n"
                 },
+                "commandName": {
+                    "type": "string",
+                    "description": "The slash command name that invokes the skill. Setting this enables the skill as a command.\n"
+                },
                 "contextItems": {
                     "type": "string",
                     "description": "Optional JSON array of context items referenced by the skill.\n"
@@ -15358,6 +15522,10 @@
                     "body": {
                         "type": "string",
                         "description": "The skill content.\n"
+                    },
+                    "commandName": {
+                        "type": "string",
+                        "description": "The slash command name that invokes the skill. Setting this enables the skill as a command.\n"
                     },
                     "contextItems": {
                         "type": "string",
@@ -16367,6 +16535,10 @@
         "grafana:cloud/stack:Stack": {
             "description": "* [Official documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#stacks/)\n\nRequired access policy scopes:\n\n* stacks:read\n* stacks:write\n* stacks:delete\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = new grafana.cloud.Stack(\"test\", {\n    name: \"gcloudstacktest\",\n    slug: \"gcloudstacktest\",\n    regionSlug: \"eu\",\n    description: \"Test Grafana Cloud Stack\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest = grafana.cloud.Stack(\"test\",\n    name=\"gcloudstacktest\",\n    slug=\"gcloudstacktest\",\n    region_slug=\"eu\",\n    description=\"Test Grafana Cloud Stack\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.Cloud.Stack(\"test\", new()\n    {\n        Name = \"gcloudstacktest\",\n        Slug = \"gcloudstacktest\",\n        RegionSlug = \"eu\",\n        Description = \"Test Grafana Cloud Stack\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloud.NewStack(ctx, \"test\", \u0026cloud.StackArgs{\n\t\t\tName:        pulumi.String(\"gcloudstacktest\"),\n\t\t\tSlug:        pulumi.String(\"gcloudstacktest\"),\n\t\t\tRegionSlug:  pulumi.String(\"eu\"),\n\t\t\tDescription: pulumi.String(\"Test Grafana Cloud Stack\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.Stack;\nimport com.pulumi.grafana.cloud.StackArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new Stack(\"test\", StackArgs.builder()\n            .name(\"gcloudstacktest\")\n            .slug(\"gcloudstacktest\")\n            .regionSlug(\"eu\")\n            .description(\"Test Grafana Cloud Stack\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:cloud:Stack\n    properties:\n      name: gcloudstacktest\n      slug: gcloudstacktest\n      regionSlug: eu\n      description: Test Grafana Cloud Stack\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_cloud_stack.name \"{{ stackSlugOrID }}\"\n```\n\n",
             "properties": {
+                "alertmanagerAllowlistUrl": {
+                    "type": "string",
+                    "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Alertmanager instances.\n"
+                },
                 "alertmanagerIpAllowListCname": {
                     "type": "string",
                     "description": "Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)\n"
@@ -16410,6 +16582,10 @@
                 "description": {
                     "type": "string",
                     "description": "Description of stack.\n"
+                },
+                "fleetManagementAllowlistUrl": {
+                    "type": "string",
+                    "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Fleet Management instance.\n"
                 },
                 "fleetManagementName": {
                     "type": "string",
@@ -16456,9 +16632,17 @@
                     "type": "integer",
                     "description": "User ID of the Fleet Management instance configured for this stack.\n"
                 },
+                "grafanasAllowlistUrl": {
+                    "type": "string",
+                    "description": "Allowlist API endpoint that returns the source IP addresses to allow for the grafana instance.\n"
+                },
                 "grafanasIpAllowListCname": {
                     "type": "string",
                     "description": "Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)\n"
+                },
+                "graphiteAllowlistUrl": {
+                    "type": "string",
+                    "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Graphite instance.\n"
                 },
                 "graphiteIpAllowListCname": {
                     "type": "string",
@@ -16515,6 +16699,10 @@
                         "type": "string"
                     },
                     "description": "A map of labels to assign to the stack. Label keys and values must match the following regexp: \"^[a-zA-Z0-9/\\-._]+$\" and stacks cannot have more than 10 labels.\n"
+                },
+                "logsAllowlistUrl": {
+                    "type": "string",
+                    "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Logs instance.\n"
                 },
                 "logsIpAllowListCname": {
                     "type": "string",
@@ -16672,6 +16860,10 @@
                     "type": "string",
                     "description": "Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)\n"
                 },
+                "profilesAllowlistUrl": {
+                    "type": "string",
+                    "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Profiles instance.\n"
+                },
                 "profilesIpAllowListCname": {
                     "type": "string",
                     "description": "Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)\n"
@@ -16716,6 +16908,10 @@
                 },
                 "profilesUserId": {
                     "type": "integer"
+                },
+                "prometheusAllowlistUrl": {
+                    "type": "string",
+                    "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Prometheus instance.\n"
                 },
                 "prometheusIpAllowListCname": {
                     "type": "string",
@@ -16790,6 +16986,10 @@
                     "type": "string",
                     "description": "Status of the stack.\n"
                 },
+                "tracesAllowlistUrl": {
+                    "type": "string",
+                    "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Traces instance.\n"
+                },
                 "tracesIpAllowListCname": {
                     "type": "string",
                     "description": "Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)\n"
@@ -16850,6 +17050,7 @@
                 }
             },
             "required": [
+                "alertmanagerAllowlistUrl",
                 "alertmanagerIpAllowListCname",
                 "alertmanagerName",
                 "alertmanagerStatus",
@@ -16859,6 +17060,7 @@
                 "clusterName",
                 "clusterSlug",
                 "connectionsApiUrl",
+                "fleetManagementAllowlistUrl",
                 "fleetManagementName",
                 "fleetManagementPrivateConnectivityInfoAvailabilityZoneIds",
                 "fleetManagementPrivateConnectivityInfoAvailabilityZones",
@@ -16868,7 +17070,9 @@
                 "fleetManagementStatus",
                 "fleetManagementUrl",
                 "fleetManagementUserId",
+                "grafanasAllowlistUrl",
                 "grafanasIpAllowListCname",
+                "graphiteAllowlistUrl",
                 "graphiteIpAllowListCname",
                 "graphiteName",
                 "graphitePrivateConnectivityInfoAvailabilityZoneIds",
@@ -16880,6 +17084,7 @@
                 "graphiteUrl",
                 "graphiteUserId",
                 "influxUrl",
+                "logsAllowlistUrl",
                 "logsIpAllowListCname",
                 "logsName",
                 "logsPrivateConnectivityInfoAvailabilityZoneIds",
@@ -16911,6 +17116,7 @@
                 "pdcGatewayPrivateConnectivityInfoPrivateDns",
                 "pdcGatewayPrivateConnectivityInfoRegions",
                 "pdcGatewayPrivateConnectivityInfoServiceName",
+                "profilesAllowlistUrl",
                 "profilesIpAllowListCname",
                 "profilesName",
                 "profilesPrivateConnectivityInfoAvailabilityZoneIds",
@@ -16921,6 +17127,7 @@
                 "profilesStatus",
                 "profilesUrl",
                 "profilesUserId",
+                "prometheusAllowlistUrl",
                 "prometheusIpAllowListCname",
                 "prometheusName",
                 "prometheusPrivateConnectivityInfoAvailabilityZoneIds",
@@ -16936,6 +17143,7 @@
                 "slug",
                 "smUrl",
                 "status",
+                "tracesAllowlistUrl",
                 "tracesIpAllowListCname",
                 "tracesName",
                 "tracesPrivateConnectivityInfoAvailabilityZoneIds",
@@ -16996,6 +17204,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Stack resources.\n",
                 "properties": {
+                    "alertmanagerAllowlistUrl": {
+                        "type": "string",
+                        "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Alertmanager instances.\n"
+                    },
                     "alertmanagerIpAllowListCname": {
                         "type": "string",
                         "description": "Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)\n"
@@ -17039,6 +17251,10 @@
                     "description": {
                         "type": "string",
                         "description": "Description of stack.\n"
+                    },
+                    "fleetManagementAllowlistUrl": {
+                        "type": "string",
+                        "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Fleet Management instance.\n"
                     },
                     "fleetManagementName": {
                         "type": "string",
@@ -17085,9 +17301,17 @@
                         "type": "integer",
                         "description": "User ID of the Fleet Management instance configured for this stack.\n"
                     },
+                    "grafanasAllowlistUrl": {
+                        "type": "string",
+                        "description": "Allowlist API endpoint that returns the source IP addresses to allow for the grafana instance.\n"
+                    },
                     "grafanasIpAllowListCname": {
                         "type": "string",
                         "description": "Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)\n"
+                    },
+                    "graphiteAllowlistUrl": {
+                        "type": "string",
+                        "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Graphite instance.\n"
                     },
                     "graphiteIpAllowListCname": {
                         "type": "string",
@@ -17144,6 +17368,10 @@
                             "type": "string"
                         },
                         "description": "A map of labels to assign to the stack. Label keys and values must match the following regexp: \"^[a-zA-Z0-9/\\-._]+$\" and stacks cannot have more than 10 labels.\n"
+                    },
+                    "logsAllowlistUrl": {
+                        "type": "string",
+                        "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Logs instance.\n"
                     },
                     "logsIpAllowListCname": {
                         "type": "string",
@@ -17301,6 +17529,10 @@
                         "type": "string",
                         "description": "Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)\n"
                     },
+                    "profilesAllowlistUrl": {
+                        "type": "string",
+                        "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Profiles instance.\n"
+                    },
                     "profilesIpAllowListCname": {
                         "type": "string",
                         "description": "Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)\n"
@@ -17345,6 +17577,10 @@
                     },
                     "profilesUserId": {
                         "type": "integer"
+                    },
+                    "prometheusAllowlistUrl": {
+                        "type": "string",
+                        "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Prometheus instance.\n"
                     },
                     "prometheusIpAllowListCname": {
                         "type": "string",
@@ -17419,6 +17655,10 @@
                     "status": {
                         "type": "string",
                         "description": "Status of the stack.\n"
+                    },
+                    "tracesAllowlistUrl": {
+                        "type": "string",
+                        "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Traces instance.\n"
                     },
                     "tracesIpAllowListCname": {
                         "type": "string",
@@ -20290,6 +20530,55 @@
                 "type": "object"
             }
         },
+        "grafana:index/appsQueriesQueryV1:AppsQueriesQueryV1": {
+            "description": "Manages Grafana Saved Queries, also known as the Query Library, using the Grafana App Platform API (`queries.grafana.app/v1`).\n\nThe datasource query stored in each target, the target's variable replacements, and a variable's value list definition are passed as raw JSON strings (use `jsonencode()`) because their shape depends on the datasource.\n\n* [Query Library documentation](https://grafana.com/docs/grafana/latest/explore/query-management/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.AppsQueriesQueryV1(\"example\", {\n    metadata: {\n        uid: \"example-saved-query\",\n    },\n    spec: {\n        title: \"Requests per second\",\n        description: \"Prometheus rate of HTTP requests\",\n        isVisible: true,\n        tags: [\n            \"http\",\n            \"prometheus\",\n        ],\n        targets: [{\n            propertiesJson: JSON.stringify({\n                refId: \"A\",\n                expr: \"rate(http_requests_total[$__rate_interval])\",\n                datasource: {\n                    type: \"prometheus\",\n                    uid: \"my-prometheus-uid\",\n                },\n            }),\n        }],\n    },\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumiverse_grafana as grafana\n\nexample = grafana.AppsQueriesQueryV1(\"example\",\n    metadata={\n        \"uid\": \"example-saved-query\",\n    },\n    spec={\n        \"title\": \"Requests per second\",\n        \"description\": \"Prometheus rate of HTTP requests\",\n        \"is_visible\": True,\n        \"tags\": [\n            \"http\",\n            \"prometheus\",\n        ],\n        \"targets\": [{\n            \"properties_json\": json.dumps({\n                \"refId\": \"A\",\n                \"expr\": \"rate(http_requests_total[$__rate_interval])\",\n                \"datasource\": {\n                    \"type\": \"prometheus\",\n                    \"uid\": \"my-prometheus-uid\",\n                },\n            }),\n        }],\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.AppsQueriesQueryV1(\"example\", new()\n    {\n        Metadata = new Grafana.Inputs.AppsQueriesQueryV1MetadataArgs\n        {\n            Uid = \"example-saved-query\",\n        },\n        Spec = new Grafana.Inputs.AppsQueriesQueryV1SpecArgs\n        {\n            Title = \"Requests per second\",\n            Description = \"Prometheus rate of HTTP requests\",\n            IsVisible = true,\n            Tags = new[]\n            {\n                \"http\",\n                \"prometheus\",\n            },\n            Targets = new[]\n            {\n                new Grafana.Inputs.AppsQueriesQueryV1SpecTargetArgs\n                {\n                    PropertiesJson = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"refId\"] = \"A\",\n                        [\"expr\"] = \"rate(http_requests_total[$__rate_interval])\",\n                        [\"datasource\"] = new Dictionary\u003cstring, object?\u003e\n                        {\n                            [\"type\"] = \"prometheus\",\n                            [\"uid\"] = \"my-prometheus-uid\",\n                        },\n                    }),\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"refId\": \"A\",\n\t\t\t\"expr\":  \"rate(http_requests_total[$__rate_interval])\",\n\t\t\t\"datasource\": map[string]interface{}{\n\t\t\t\t\"type\": \"prometheus\",\n\t\t\t\t\"uid\":  \"my-prometheus-uid\",\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = grafana.NewAppsQueriesQueryV1(ctx, \"example\", \u0026grafana.AppsQueriesQueryV1Args{\n\t\t\tMetadata: \u0026grafana.AppsQueriesQueryV1MetadataArgs{\n\t\t\t\tUid: pulumi.String(\"example-saved-query\"),\n\t\t\t},\n\t\t\tSpec: \u0026grafana.AppsQueriesQueryV1SpecArgs{\n\t\t\t\tTitle:       pulumi.String(\"Requests per second\"),\n\t\t\t\tDescription: pulumi.String(\"Prometheus rate of HTTP requests\"),\n\t\t\t\tIsVisible:   pulumi.Bool(true),\n\t\t\t\tTags: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"http\"),\n\t\t\t\t\tpulumi.String(\"prometheus\"),\n\t\t\t\t},\n\t\t\t\tTargets: grafana.AppsQueriesQueryV1SpecTargetArray{\n\t\t\t\t\t\u0026grafana.AppsQueriesQueryV1SpecTargetArgs{\n\t\t\t\t\t\tPropertiesJson: pulumi.String(pulumi.String(json0)),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.AppsQueriesQueryV1;\nimport com.pulumi.grafana.AppsQueriesQueryV1Args;\nimport com.pulumi.grafana.inputs.AppsQueriesQueryV1MetadataArgs;\nimport com.pulumi.grafana.inputs.AppsQueriesQueryV1SpecArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new AppsQueriesQueryV1(\"example\", AppsQueriesQueryV1Args.builder()\n            .metadata(AppsQueriesQueryV1MetadataArgs.builder()\n                .uid(\"example-saved-query\")\n                .build())\n            .spec(AppsQueriesQueryV1SpecArgs.builder()\n                .title(\"Requests per second\")\n                .description(\"Prometheus rate of HTTP requests\")\n                .isVisible(true)\n                .tags(                \n                    \"http\",\n                    \"prometheus\")\n                .targets(AppsQueriesQueryV1SpecTargetArgs.builder()\n                    .propertiesJson(serializeJson(\n                        jsonObject(\n                            jsonProperty(\"refId\", \"A\"),\n                            jsonProperty(\"expr\", \"rate(http_requests_total[$__rate_interval])\"),\n                            jsonProperty(\"datasource\", jsonObject(\n                                jsonProperty(\"type\", \"prometheus\"),\n                                jsonProperty(\"uid\", \"my-prometheus-uid\")\n                            ))\n                        )))\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:AppsQueriesQueryV1\n    properties:\n      metadata:\n        uid: example-saved-query\n      spec:\n        title: Requests per second\n        description: Prometheus rate of HTTP requests\n        isVisible: true\n        tags:\n          - http\n          - prometheus\n        targets:\n          - propertiesJson:\n              fn::toJSON:\n                refId: A\n                expr: rate(http_requests_total[$__rate_interval])\n                datasource:\n                  type: prometheus\n                  uid: my-prometheus-uid\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n!/bin/bash\nImport an existing saved query by its UID\n\n```sh\n$ pulumi import grafana:index/appsQueriesQueryV1:AppsQueriesQueryV1 example example-saved-query\n```\n\n",
+            "properties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:index/AppsQueriesQueryV1Metadata:AppsQueriesQueryV1Metadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:index/AppsQueriesQueryV1Options:AppsQueriesQueryV1Options",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:index/AppsQueriesQueryV1Spec:AppsQueriesQueryV1Spec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "inputProperties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:index/AppsQueriesQueryV1Metadata:AppsQueriesQueryV1Metadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:index/AppsQueriesQueryV1Options:AppsQueriesQueryV1Options",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:index/AppsQueriesQueryV1Spec:AppsQueriesQueryV1Spec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AppsQueriesQueryV1 resources.\n",
+                "properties": {
+                    "metadata": {
+                        "$ref": "#/types/grafana:index/AppsQueriesQueryV1Metadata:AppsQueriesQueryV1Metadata",
+                        "description": "The metadata of the resource.\n"
+                    },
+                    "options": {
+                        "$ref": "#/types/grafana:index/AppsQueriesQueryV1Options:AppsQueriesQueryV1Options",
+                        "description": "Options for applying the resource.\n"
+                    },
+                    "spec": {
+                        "$ref": "#/types/grafana:index/AppsQueriesQueryV1Spec:AppsQueriesQueryV1Spec",
+                        "description": "The spec of the resource.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:k6/installation:Installation": {
             "description": "Sets up the k6 App on a Grafana Cloud instance and generates a token. \nOnce a Grafana Cloud stack is created, a user can either use this resource or go into the UI to install k6.\nThis resource cannot be imported but it can be used on an existing k6 App installation without issues.\n\n**Note that this resource must be used on a provider configured with Grafana Cloud credentials.**\n\n* [Official documentation](https://grafana.com/docs/grafana-cloud/testing/k6/)\n\nRequired access policy scopes:\n\n* stacks:read\n* stacks:write\n* subscriptions:read\n* orgs:read\n* stack-service-accounts:write\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst config = new pulumi.Config();\n// Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\nconst cloudAccessPolicyToken = config.requireObject\u003cany\u003e(\"cloudAccessPolicyToken\");\nconst stackSlug = config.requireObject\u003cany\u003e(\"stackSlug\");\nconst cloudRegion = config.get(\"cloudRegion\") || \"us\";\nconst k6Stack = new grafana.cloud.Stack(\"k6_stack\", {\n    name: stackSlug,\n    slug: stackSlug,\n    regionSlug: cloudRegion,\n});\n// Step 2: Create a Service Account and a token to install the k6 App\nconst k6Sa = new grafana.cloud.StackServiceAccount(\"k6_sa\", {\n    stackSlug: stackSlug,\n    name: `${stackSlug}-k6-app`,\n    role: \"Admin\",\n    isDisabled: false,\n});\nconst k6SaToken = new grafana.cloud.StackServiceAccountToken(\"k6_sa_token\", {\n    stackSlug: stackSlug,\n    name: `${stackSlug}-k6-app-token`,\n    serviceAccountId: k6Sa.id,\n});\n// Step 3: Install the k6 App on the stack\nconst k6Installation = new grafana.k6.Installation(\"k6_installation\", {\n    cloudAccessPolicyToken: cloudAccessPolicyToken,\n    stackId: k6Stack.id,\n    grafanaSaToken: k6SaToken.key,\n    grafanaUser: \"admin\",\n});\nconst myK6Project = new grafana.k6.Project(\"my_k6_project\", {name: \"k6 Project created with TF\"});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nconfig = pulumi.Config()\n# Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\ncloud_access_policy_token = config.require_object(\"cloudAccessPolicyToken\")\nstack_slug = config.require_object(\"stackSlug\")\ncloud_region = config.get(\"cloudRegion\")\nif cloud_region is None:\n    cloud_region = \"us\"\nk6_stack = grafana.cloud.Stack(\"k6_stack\",\n    name=stack_slug,\n    slug=stack_slug,\n    region_slug=cloud_region)\n# Step 2: Create a Service Account and a token to install the k6 App\nk6_sa = grafana.cloud.StackServiceAccount(\"k6_sa\",\n    stack_slug=stack_slug,\n    name=f\"{stack_slug}-k6-app\",\n    role=\"Admin\",\n    is_disabled=False)\nk6_sa_token = grafana.cloud.StackServiceAccountToken(\"k6_sa_token\",\n    stack_slug=stack_slug,\n    name=f\"{stack_slug}-k6-app-token\",\n    service_account_id=k6_sa.id)\n# Step 3: Install the k6 App on the stack\nk6_installation = grafana.k6.Installation(\"k6_installation\",\n    cloud_access_policy_token=cloud_access_policy_token,\n    stack_id=k6_stack.id,\n    grafana_sa_token=k6_sa_token.key,\n    grafana_user=\"admin\")\nmy_k6_project = grafana.k6.Project(\"my_k6_project\", name=\"k6 Project created with TF\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    // Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\n    var cloudAccessPolicyToken = config.RequireObject\u003cdynamic\u003e(\"cloudAccessPolicyToken\");\n    var stackSlug = config.RequireObject\u003cdynamic\u003e(\"stackSlug\");\n    var cloudRegion = config.Get(\"cloudRegion\") ?? \"us\";\n    var k6Stack = new Grafana.Cloud.Stack(\"k6_stack\", new()\n    {\n        Name = stackSlug,\n        Slug = stackSlug,\n        RegionSlug = cloudRegion,\n    });\n\n    // Step 2: Create a Service Account and a token to install the k6 App\n    var k6Sa = new Grafana.Cloud.StackServiceAccount(\"k6_sa\", new()\n    {\n        StackSlug = stackSlug,\n        Name = $\"{stackSlug}-k6-app\",\n        Role = \"Admin\",\n        IsDisabled = false,\n    });\n\n    var k6SaToken = new Grafana.Cloud.StackServiceAccountToken(\"k6_sa_token\", new()\n    {\n        StackSlug = stackSlug,\n        Name = $\"{stackSlug}-k6-app-token\",\n        ServiceAccountId = k6Sa.Id,\n    });\n\n    // Step 3: Install the k6 App on the stack\n    var k6Installation = new Grafana.K6.Installation(\"k6_installation\", new()\n    {\n        CloudAccessPolicyToken = cloudAccessPolicyToken,\n        StackId = k6Stack.Id,\n        GrafanaSaToken = k6SaToken.Key,\n        GrafanaUser = \"admin\",\n    });\n\n    var myK6Project = new Grafana.K6.Project(\"my_k6_project\", new()\n    {\n        Name = \"k6 Project created with TF\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\t// Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\n\t\tcloudAccessPolicyToken := cfg.RequireObject(\"cloudAccessPolicyToken\")\n\t\tstackSlug := cfg.RequireObject(\"stackSlug\")\n\t\tcloudRegion := \"us\"\n\t\tif param := cfg.Get(\"cloudRegion\"); param != \"\" {\n\t\t\tcloudRegion = param\n\t\t}\n\t\tk6Stack, err := cloud.NewStack(ctx, \"k6_stack\", \u0026cloud.StackArgs{\n\t\t\tName:       pulumi.Any(stackSlug),\n\t\t\tSlug:       pulumi.Any(stackSlug),\n\t\t\tRegionSlug: pulumi.String(pulumi.String(cloudRegion)),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Step 2: Create a Service Account and a token to install the k6 App\n\t\tk6Sa, err := cloud.NewStackServiceAccount(ctx, \"k6_sa\", \u0026cloud.StackServiceAccountArgs{\n\t\t\tStackSlug:  pulumi.Any(stackSlug),\n\t\t\tName:       pulumi.Sprintf(\"%v-k6-app\", stackSlug),\n\t\t\tRole:       pulumi.String(\"Admin\"),\n\t\t\tIsDisabled: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tk6SaToken, err := cloud.NewStackServiceAccountToken(ctx, \"k6_sa_token\", \u0026cloud.StackServiceAccountTokenArgs{\n\t\t\tStackSlug:        pulumi.Any(stackSlug),\n\t\t\tName:             pulumi.Sprintf(\"%v-k6-app-token\", stackSlug),\n\t\t\tServiceAccountId: k6Sa.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Step 3: Install the k6 App on the stack\n\t\t_, err = k6.NewInstallation(ctx, \"k6_installation\", \u0026k6.InstallationArgs{\n\t\t\tCloudAccessPolicyToken: pulumi.Any(cloudAccessPolicyToken),\n\t\t\tStackId:                k6Stack.ID(),\n\t\t\tGrafanaSaToken:         k6SaToken.Key,\n\t\t\tGrafanaUser:            pulumi.String(\"admin\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k6.NewProject(ctx, \"my_k6_project\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"k6 Project created with TF\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.Stack;\nimport com.pulumi.grafana.cloud.StackArgs;\nimport com.pulumi.grafana.cloud.StackServiceAccount;\nimport com.pulumi.grafana.cloud.StackServiceAccountArgs;\nimport com.pulumi.grafana.cloud.StackServiceAccountToken;\nimport com.pulumi.grafana.cloud.StackServiceAccountTokenArgs;\nimport com.pulumi.grafana.k6.Installation;\nimport com.pulumi.grafana.k6.InstallationArgs;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var cloudAccessPolicyToken = config.require(\"cloudAccessPolicyToken\");\n        final var stackSlug = config.require(\"stackSlug\");\n        final var cloudRegion = config.get(\"cloudRegion\").orElse(\"us\");\n        var k6Stack = new Stack(\"k6Stack\", StackArgs.builder()\n            .name(stackSlug)\n            .slug(stackSlug)\n            .regionSlug(cloudRegion)\n            .build());\n\n        // Step 2: Create a Service Account and a token to install the k6 App\n        var k6Sa = new StackServiceAccount(\"k6Sa\", StackServiceAccountArgs.builder()\n            .stackSlug(stackSlug)\n            .name(String.format(\"%s-k6-app\", stackSlug))\n            .role(\"Admin\")\n            .isDisabled(false)\n            .build());\n\n        var k6SaToken = new StackServiceAccountToken(\"k6SaToken\", StackServiceAccountTokenArgs.builder()\n            .stackSlug(stackSlug)\n            .name(String.format(\"%s-k6-app-token\", stackSlug))\n            .serviceAccountId(k6Sa.id())\n            .build());\n\n        // Step 3: Install the k6 App on the stack\n        var k6Installation = new Installation(\"k6Installation\", InstallationArgs.builder()\n            .cloudAccessPolicyToken(cloudAccessPolicyToken)\n            .stackId(k6Stack.id())\n            .grafanaSaToken(k6SaToken.key())\n            .grafanaUser(\"admin\")\n            .build());\n\n        var myK6Project = new Project(\"myK6Project\", ProjectArgs.builder()\n            .name(\"k6 Project created with TF\")\n            .build());\n\n    }\n}\n```\n```yaml\nconfiguration:\n  cloudAccessPolicyToken:\n    type: dynamic\n  stackSlug:\n    type: dynamic\n  cloudRegion:\n    type: string\n    default: us\nresources:\n  k6Stack:\n    type: grafana:cloud:Stack\n    name: k6_stack\n    properties:\n      name: ${stackSlug}\n      slug: ${stackSlug}\n      regionSlug: ${cloudRegion}\n  # Step 2: Create a Service Account and a token to install the k6 App\n  k6Sa:\n    type: grafana:cloud:StackServiceAccount\n    name: k6_sa\n    properties:\n      stackSlug: ${stackSlug}\n      name: ${stackSlug}-k6-app\n      role: Admin\n      isDisabled: false\n  k6SaToken:\n    type: grafana:cloud:StackServiceAccountToken\n    name: k6_sa_token\n    properties:\n      stackSlug: ${stackSlug}\n      name: ${stackSlug}-k6-app-token\n      serviceAccountId: ${k6Sa.id}\n  # Step 3: Install the k6 App on the stack\n  k6Installation:\n    type: grafana:k6:Installation\n    name: k6_installation\n    properties:\n      cloudAccessPolicyToken: ${cloudAccessPolicyToken}\n      stackId: ${k6Stack.id}\n      grafanaSaToken: ${k6SaToken.key}\n      grafanaUser: admin\n  myK6Project:\n    type: grafana:k6:Project\n    name: my_k6_project\n    properties:\n      name: k6 Project created with TF\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
@@ -20424,6 +20713,10 @@
                     "type": "string",
                     "description": "The date when the load test was created.\n"
                 },
+                "k6Version": {
+                    "type": "string",
+                    "description": "Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "Human-friendly identifier of the load test.\n"
@@ -20443,6 +20736,7 @@
             },
             "required": [
                 "created",
+                "k6Version",
                 "name",
                 "projectId",
                 "script",
@@ -20453,6 +20747,10 @@
                     "type": "string",
                     "description": "Identifier of a baseline test run used for results comparison.\n",
                     "deprecationMessage": "Setting the baseline test run is no longer supported by this resource. This attribute is ignored and will be removed in a future release."
+                },
+                "k6Version": {
+                    "type": "string",
+                    "description": "Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2\n"
                 },
                 "name": {
                     "type": "string",
@@ -20482,6 +20780,10 @@
                     "created": {
                         "type": "string",
                         "description": "The date when the load test was created.\n"
+                    },
+                    "k6Version": {
+                        "type": "string",
+                        "description": "Identifier of the k6 version used to run the test. If not set, the test is pinned at creation to the current default major version established by Grafana Cloud. Example: 2\n"
                     },
                     "name": {
                         "type": "string",
@@ -21659,6 +21961,10 @@
                     },
                     "description": "A list of string-to-string mappings for dynamic labels. Each map must include one key named \"key\" and one key named \"value\" (using the \u003cspan pulumi-lang-nodejs=\"`grafana.onCall.getLabel`\" pulumi-lang-dotnet=\"`grafana.onCall.getLabel`\" pulumi-lang-go=\"`onCall.getLabel`\" pulumi-lang-python=\"`on_call_get_label`\" pulumi-lang-yaml=\"`grafana.onCall.getLabel`\" pulumi-lang-java=\"`grafana.onCall.getLabel`\"\u003e`grafana.onCall.getLabel`\u003c/span\u003e datasource).\n"
                 },
+                "inboundEmail": {
+                    "type": "string",
+                    "description": "The inbound email address for the integration. Only available for integration type \u003cspan pulumi-lang-nodejs=\"`inboundEmail`\" pulumi-lang-dotnet=\"`InboundEmail`\" pulumi-lang-go=\"`inboundEmail`\" pulumi-lang-python=\"`inbound_email`\" pulumi-lang-yaml=\"`inboundEmail`\" pulumi-lang-java=\"`inboundEmail`\"\u003e`inboundEmail`\u003c/span\u003e.\n"
+                },
                 "labels": {
                     "type": "array",
                     "items": {
@@ -21692,6 +21998,7 @@
             },
             "required": [
                 "defaultRoute",
+                "inboundEmail",
                 "link",
                 "name",
                 "type"
@@ -21759,6 +22066,10 @@
                             }
                         },
                         "description": "A list of string-to-string mappings for dynamic labels. Each map must include one key named \"key\" and one key named \"value\" (using the \u003cspan pulumi-lang-nodejs=\"`grafana.onCall.getLabel`\" pulumi-lang-dotnet=\"`grafana.onCall.getLabel`\" pulumi-lang-go=\"`onCall.getLabel`\" pulumi-lang-python=\"`on_call_get_label`\" pulumi-lang-yaml=\"`grafana.onCall.getLabel`\" pulumi-lang-java=\"`grafana.onCall.getLabel`\"\u003e`grafana.onCall.getLabel`\u003c/span\u003e datasource).\n"
+                    },
+                    "inboundEmail": {
+                        "type": "string",
+                        "description": "The inbound email address for the integration. Only available for integration type \u003cspan pulumi-lang-nodejs=\"`inboundEmail`\" pulumi-lang-dotnet=\"`InboundEmail`\" pulumi-lang-go=\"`inboundEmail`\" pulumi-lang-python=\"`inbound_email`\" pulumi-lang-yaml=\"`inboundEmail`\" pulumi-lang-java=\"`inboundEmail`\"\u003e`inboundEmail`\u003c/span\u003e.\n"
                     },
                     "labels": {
                         "type": "array",
@@ -24777,8 +25088,15 @@
             ]
         },
         "grafana:oss/team:Team": {
-            "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst viewer = new grafana.oss.User(\"viewer\", {\n    name: \"Viewer\",\n    email: \"viewer@example.com\",\n    login: \"viewer\",\n    password: \"my-password\",\n});\nconst test_team = new grafana.oss.Team(\"test-team\", {\n    name: \"Test Team\",\n    email: \"teamemail@example.com\",\n    members: [viewer.email],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nviewer = grafana.oss.User(\"viewer\",\n    name=\"Viewer\",\n    email=\"viewer@example.com\",\n    login=\"viewer\",\n    password=\"my-password\")\ntest_team = grafana.oss.Team(\"test-team\",\n    name=\"Test Team\",\n    email=\"teamemail@example.com\",\n    members=[viewer.email])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var viewer = new Grafana.Oss.User(\"viewer\", new()\n    {\n        Name = \"Viewer\",\n        Email = \"viewer@example.com\",\n        Login = \"viewer\",\n        Password = \"my-password\",\n    });\n\n    var test_team = new Grafana.Oss.Team(\"test-team\", new()\n    {\n        Name = \"Test Team\",\n        Email = \"teamemail@example.com\",\n        Members = new[]\n        {\n            viewer.Email,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tviewer, err := oss.NewUser(ctx, \"viewer\", \u0026oss.UserArgs{\n\t\t\tName:     pulumi.String(\"Viewer\"),\n\t\t\tEmail:    pulumi.String(\"viewer@example.com\"),\n\t\t\tLogin:    pulumi.String(\"viewer\"),\n\t\t\tPassword: pulumi.String(\"my-password\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oss.NewTeam(ctx, \"test-team\", \u0026oss.TeamArgs{\n\t\t\tName:  pulumi.String(\"Test Team\"),\n\t\t\tEmail: pulumi.String(\"teamemail@example.com\"),\n\t\t\tMembers: pulumi.StringArray{\n\t\t\t\tviewer.Email,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.User;\nimport com.pulumi.grafana.oss.UserArgs;\nimport com.pulumi.grafana.oss.Team;\nimport com.pulumi.grafana.oss.TeamArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var viewer = new User(\"viewer\", UserArgs.builder()\n            .name(\"Viewer\")\n            .email(\"viewer@example.com\")\n            .login(\"viewer\")\n            .password(\"my-password\")\n            .build());\n\n        var test_team = new Team(\"test-team\", TeamArgs.builder()\n            .name(\"Test Team\")\n            .email(\"teamemail@example.com\")\n            .members(viewer.email())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  viewer:\n    type: grafana:oss:User\n    properties:\n      name: Viewer\n      email: viewer@example.com\n      login: viewer\n      password: my-password\n  test-team:\n    type: grafana:oss:Team\n    properties:\n      name: Test Team\n      email: teamemail@example.com\n      members:\n        - ${viewer.email}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_team.name \"{{ id }}\"\nterraform import grafana_team.name \"{{ orgID }}:{{ id }}\"\n```\n\n",
+            "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst viewer = new grafana.oss.User(\"viewer\", {\n    name: \"Viewer\",\n    email: \"viewer@example.com\",\n    login: \"viewer\",\n    password: \"my-password\",\n});\nconst teamAdmin = new grafana.oss.User(\"team_admin\", {\n    name: \"Team Admin\",\n    email: \"team-admin@example.com\",\n    login: \"team-admin\",\n    password: \"my-password-2\",\n});\nconst test_team = new grafana.oss.Team(\"test-team\", {\n    name: \"Test Team\",\n    email: \"teamemail@example.com\",\n    members: [viewer.email],\n    admins: [teamAdmin.email],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nviewer = grafana.oss.User(\"viewer\",\n    name=\"Viewer\",\n    email=\"viewer@example.com\",\n    login=\"viewer\",\n    password=\"my-password\")\nteam_admin = grafana.oss.User(\"team_admin\",\n    name=\"Team Admin\",\n    email=\"team-admin@example.com\",\n    login=\"team-admin\",\n    password=\"my-password-2\")\ntest_team = grafana.oss.Team(\"test-team\",\n    name=\"Test Team\",\n    email=\"teamemail@example.com\",\n    members=[viewer.email],\n    admins=[team_admin.email])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var viewer = new Grafana.Oss.User(\"viewer\", new()\n    {\n        Name = \"Viewer\",\n        Email = \"viewer@example.com\",\n        Login = \"viewer\",\n        Password = \"my-password\",\n    });\n\n    var teamAdmin = new Grafana.Oss.User(\"team_admin\", new()\n    {\n        Name = \"Team Admin\",\n        Email = \"team-admin@example.com\",\n        Login = \"team-admin\",\n        Password = \"my-password-2\",\n    });\n\n    var test_team = new Grafana.Oss.Team(\"test-team\", new()\n    {\n        Name = \"Test Team\",\n        Email = \"teamemail@example.com\",\n        Members = new[]\n        {\n            viewer.Email,\n        },\n        Admins = new[]\n        {\n            teamAdmin.Email,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tviewer, err := oss.NewUser(ctx, \"viewer\", \u0026oss.UserArgs{\n\t\t\tName:     pulumi.String(\"Viewer\"),\n\t\t\tEmail:    pulumi.String(\"viewer@example.com\"),\n\t\t\tLogin:    pulumi.String(\"viewer\"),\n\t\t\tPassword: pulumi.String(\"my-password\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tteamAdmin, err := oss.NewUser(ctx, \"team_admin\", \u0026oss.UserArgs{\n\t\t\tName:     pulumi.String(\"Team Admin\"),\n\t\t\tEmail:    pulumi.String(\"team-admin@example.com\"),\n\t\t\tLogin:    pulumi.String(\"team-admin\"),\n\t\t\tPassword: pulumi.String(\"my-password-2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oss.NewTeam(ctx, \"test-team\", \u0026oss.TeamArgs{\n\t\t\tName:  pulumi.String(\"Test Team\"),\n\t\t\tEmail: pulumi.String(\"teamemail@example.com\"),\n\t\t\tMembers: pulumi.StringArray{\n\t\t\t\tviewer.Email,\n\t\t\t},\n\t\t\tAdmins: pulumi.StringArray{\n\t\t\t\tteamAdmin.Email,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.User;\nimport com.pulumi.grafana.oss.UserArgs;\nimport com.pulumi.grafana.oss.Team;\nimport com.pulumi.grafana.oss.TeamArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var viewer = new User(\"viewer\", UserArgs.builder()\n            .name(\"Viewer\")\n            .email(\"viewer@example.com\")\n            .login(\"viewer\")\n            .password(\"my-password\")\n            .build());\n\n        var teamAdmin = new User(\"teamAdmin\", UserArgs.builder()\n            .name(\"Team Admin\")\n            .email(\"team-admin@example.com\")\n            .login(\"team-admin\")\n            .password(\"my-password-2\")\n            .build());\n\n        var test_team = new Team(\"test-team\", TeamArgs.builder()\n            .name(\"Test Team\")\n            .email(\"teamemail@example.com\")\n            .members(viewer.email())\n            .admins(teamAdmin.email())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  viewer:\n    type: grafana:oss:User\n    properties:\n      name: Viewer\n      email: viewer@example.com\n      login: viewer\n      password: my-password\n  teamAdmin:\n    type: grafana:oss:User\n    name: team_admin\n    properties:\n      name: Team Admin\n      email: team-admin@example.com\n      login: team-admin\n      password: my-password-2\n  test-team:\n    type: grafana:oss:Team\n    properties:\n      name: Test Team\n      email: teamemail@example.com\n      members:\n        - ${viewer.email}\n      admins:\n        - ${teamAdmin.email}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_team.name \"{{ id }}\"\nterraform import grafana_team.name \"{{ orgID }}:{{ id }}\"\n```\n\n",
             "properties": {
+                "admins": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into \u003cspan pulumi-lang-nodejs=\"`members`\" pulumi-lang-dotnet=\"`Members`\" pulumi-lang-go=\"`members`\" pulumi-lang-python=\"`members`\" pulumi-lang-yaml=\"`members`\" pulumi-lang-java=\"`members`\"\u003e`members`\u003c/span\u003e are demoted; administrators only present in state (for example from the UI) are preserved until \u003cspan pulumi-lang-nodejs=\"`admins`\" pulumi-lang-dotnet=\"`Admins`\" pulumi-lang-go=\"`admins`\" pulumi-lang-python=\"`admins`\" pulumi-lang-yaml=\"`admins`\" pulumi-lang-java=\"`admins`\"\u003e`admins`\u003c/span\u003e is set explicitly, including to `[]`."
+                },
                 "email": {
                     "type": "string",
                     "description": "An email address for the team."
@@ -24792,7 +25110,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana."
+                    "description": "A set of email addresses corresponding to users who should be given ordinary membership to the team. Use \u003cspan pulumi-lang-nodejs=\"`admins`\" pulumi-lang-dotnet=\"`Admins`\" pulumi-lang-go=\"`admins`\" pulumi-lang-python=\"`admins`\" pulumi-lang-yaml=\"`admins`\" pulumi-lang-java=\"`admins`\"\u003e`admins`\u003c/span\u003e to grant team administrator rights. Note: users specified here must already exist in Grafana."
                 },
                 "name": {
                     "type": "string",
@@ -24819,6 +25137,7 @@
                 }
             },
             "required": [
+                "admins",
                 "email",
                 "ignoreExternallySyncedMembers",
                 "members",
@@ -24828,6 +25147,13 @@
                 "teamUid"
             ],
             "inputProperties": {
+                "admins": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into \u003cspan pulumi-lang-nodejs=\"`members`\" pulumi-lang-dotnet=\"`Members`\" pulumi-lang-go=\"`members`\" pulumi-lang-python=\"`members`\" pulumi-lang-yaml=\"`members`\" pulumi-lang-java=\"`members`\"\u003e`members`\u003c/span\u003e are demoted; administrators only present in state (for example from the UI) are preserved until \u003cspan pulumi-lang-nodejs=\"`admins`\" pulumi-lang-dotnet=\"`Admins`\" pulumi-lang-go=\"`admins`\" pulumi-lang-python=\"`admins`\" pulumi-lang-yaml=\"`admins`\" pulumi-lang-java=\"`admins`\"\u003e`admins`\u003c/span\u003e is set explicitly, including to `[]`."
+                },
                 "email": {
                     "type": "string",
                     "description": "An email address for the team."
@@ -24841,7 +25167,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana."
+                    "description": "A set of email addresses corresponding to users who should be given ordinary membership to the team. Use \u003cspan pulumi-lang-nodejs=\"`admins`\" pulumi-lang-dotnet=\"`Admins`\" pulumi-lang-go=\"`admins`\" pulumi-lang-python=\"`admins`\" pulumi-lang-yaml=\"`admins`\" pulumi-lang-java=\"`admins`\"\u003e`admins`\u003c/span\u003e to grant team administrator rights. Note: users specified here must already exist in Grafana."
                 },
                 "name": {
                     "type": "string",
@@ -24862,6 +25188,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Team resources.\n",
                 "properties": {
+                    "admins": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into \u003cspan pulumi-lang-nodejs=\"`members`\" pulumi-lang-dotnet=\"`Members`\" pulumi-lang-go=\"`members`\" pulumi-lang-python=\"`members`\" pulumi-lang-yaml=\"`members`\" pulumi-lang-java=\"`members`\"\u003e`members`\u003c/span\u003e are demoted; administrators only present in state (for example from the UI) are preserved until \u003cspan pulumi-lang-nodejs=\"`admins`\" pulumi-lang-dotnet=\"`Admins`\" pulumi-lang-go=\"`admins`\" pulumi-lang-python=\"`admins`\" pulumi-lang-yaml=\"`admins`\" pulumi-lang-java=\"`admins`\"\u003e`admins`\u003c/span\u003e is set explicitly, including to `[]`."
+                    },
                     "email": {
                         "type": "string",
                         "description": "An email address for the team."
@@ -24875,7 +25208,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana."
+                        "description": "A set of email addresses corresponding to users who should be given ordinary membership to the team. Use \u003cspan pulumi-lang-nodejs=\"`admins`\" pulumi-lang-dotnet=\"`Admins`\" pulumi-lang-go=\"`admins`\" pulumi-lang-python=\"`admins`\" pulumi-lang-yaml=\"`admins`\" pulumi-lang-java=\"`admins`\"\u003e`admins`\u003c/span\u003e to grant team administrator rights. Note: users specified here must already exist in Grafana."
                     },
                     "name": {
                         "type": "string",
@@ -25896,6 +26229,10 @@
             "outputs": {
                 "description": "A collection of values returned by getStack.\n",
                 "properties": {
+                    "alertmanagerAllowlistUrl": {
+                        "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Alertmanager instances.\n",
+                        "type": "string"
+                    },
                     "alertmanagerIpAllowListCname": {
                         "description": "Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)\n",
                         "type": "string"
@@ -25938,6 +26275,10 @@
                     },
                     "description": {
                         "description": "Description of stack.\n",
+                        "type": "string"
+                    },
+                    "fleetManagementAllowlistUrl": {
+                        "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Fleet Management instance.\n",
                         "type": "string"
                     },
                     "fleetManagementName": {
@@ -25985,8 +26326,16 @@
                         "description": "User ID of the Fleet Management instance configured for this stack.\n",
                         "type": "integer"
                     },
+                    "grafanasAllowlistUrl": {
+                        "description": "Allowlist API endpoint that returns the source IP addresses to allow for the grafana instance.\n",
+                        "type": "string"
+                    },
                     "grafanasIpAllowListCname": {
                         "description": "Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)\n",
+                        "type": "string"
+                    },
+                    "graphiteAllowlistUrl": {
+                        "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Graphite instance.\n",
                         "type": "string"
                     },
                     "graphiteIpAllowListCname": {
@@ -26048,6 +26397,10 @@
                         },
                         "description": "A map of labels to assign to the stack. Label keys and values must match the following regexp: \"^[a-zA-Z0-9/\\-._]+$\" and stacks cannot have more than 10 labels.\n",
                         "type": "object"
+                    },
+                    "logsAllowlistUrl": {
+                        "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Logs instance.\n",
+                        "type": "string"
                     },
                     "logsIpAllowListCname": {
                         "description": "Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)\n",
@@ -26205,6 +26558,10 @@
                         "description": "Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)\n",
                         "type": "string"
                     },
+                    "profilesAllowlistUrl": {
+                        "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Profiles instance.\n",
+                        "type": "string"
+                    },
                     "profilesIpAllowListCname": {
                         "description": "Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)\n",
                         "type": "string"
@@ -26249,6 +26606,10 @@
                     },
                     "profilesUserId": {
                         "type": "integer"
+                    },
+                    "prometheusAllowlistUrl": {
+                        "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Prometheus instance.\n",
+                        "type": "string"
                     },
                     "prometheusIpAllowListCname": {
                         "description": "Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)\n",
@@ -26323,6 +26684,10 @@
                         "description": "Status of the stack.\n",
                         "type": "string"
                     },
+                    "tracesAllowlistUrl": {
+                        "description": "Allowlist API endpoint that returns the source IP addresses to allow for the Traces instance.\n",
+                        "type": "string"
+                    },
                     "tracesIpAllowListCname": {
                         "description": "Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)\n",
                         "type": "string"
@@ -26375,6 +26740,7 @@
                     }
                 },
                 "required": [
+                    "alertmanagerAllowlistUrl",
                     "alertmanagerIpAllowListCname",
                     "alertmanagerName",
                     "alertmanagerStatus",
@@ -26386,6 +26752,7 @@
                     "connectionsApiUrl",
                     "deleteProtection",
                     "description",
+                    "fleetManagementAllowlistUrl",
                     "fleetManagementName",
                     "fleetManagementPrivateConnectivityInfoAvailabilityZoneIds",
                     "fleetManagementPrivateConnectivityInfoAvailabilityZones",
@@ -26395,7 +26762,9 @@
                     "fleetManagementStatus",
                     "fleetManagementUrl",
                     "fleetManagementUserId",
+                    "grafanasAllowlistUrl",
                     "grafanasIpAllowListCname",
+                    "graphiteAllowlistUrl",
                     "graphiteIpAllowListCname",
                     "graphiteName",
                     "graphitePrivateConnectivityInfoAvailabilityZoneIds",
@@ -26409,6 +26778,7 @@
                     "id",
                     "influxUrl",
                     "labels",
+                    "logsAllowlistUrl",
                     "logsIpAllowListCname",
                     "logsName",
                     "logsPrivateConnectivityInfoAvailabilityZoneIds",
@@ -26440,6 +26810,7 @@
                     "pdcGatewayPrivateConnectivityInfoPrivateDns",
                     "pdcGatewayPrivateConnectivityInfoRegions",
                     "pdcGatewayPrivateConnectivityInfoServiceName",
+                    "profilesAllowlistUrl",
                     "profilesIpAllowListCname",
                     "profilesName",
                     "profilesPrivateConnectivityInfoAvailabilityZoneIds",
@@ -26450,6 +26821,7 @@
                     "profilesStatus",
                     "profilesUrl",
                     "profilesUserId",
+                    "prometheusAllowlistUrl",
                     "prometheusIpAllowListCname",
                     "prometheusName",
                     "prometheusPrivateConnectivityInfoAvailabilityZoneIds",
@@ -26466,6 +26838,7 @@
                     "slug",
                     "smUrl",
                     "status",
+                    "tracesAllowlistUrl",
                     "tracesIpAllowListCname",
                     "tracesName",
                     "tracesPrivateConnectivityInfoAvailabilityZoneIds",
@@ -27170,6 +27543,10 @@
                         "description": "Numeric identifier of the load test.\n",
                         "type": "string"
                     },
+                    "k6Version": {
+                        "description": "Identifier of the k6 version used to run the test.\n",
+                        "type": "string"
+                    },
                     "name": {
                         "description": "Human-friendly identifier of the load test.\n",
                         "type": "string"
@@ -27191,6 +27568,7 @@
                     "baselineTestRunId",
                     "created",
                     "id",
+                    "k6Version",
                     "name",
                     "projectId",
                     "script",
@@ -28648,6 +29026,13 @@
             "outputs": {
                 "description": "A collection of values returned by getTeam.\n",
                 "properties": {
+                    "admins": {
+                        "description": "A set of email addresses corresponding to users who are administrators of the team.\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
                     "email": {
                         "description": "An email address for the team.\n",
                         "type": "string"
@@ -28657,7 +29042,7 @@
                         "type": "string"
                     },
                     "members": {
-                        "description": "A set of email addresses corresponding to users who are members of the team.\n",
+                        "description": "A set of email addresses corresponding to users who are ordinary members of the team.\n",
                         "items": {
                             "type": "string"
                         },
@@ -28699,6 +29084,7 @@
                     }
                 },
                 "required": [
+                    "admins",
                     "email",
                     "id",
                     "members",
