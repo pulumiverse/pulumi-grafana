@@ -12,19 +12,19 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
-__all__ = ['Agento11yRuleActionArgs', 'Agento11yRuleAction']
+__all__ = ['RuleActionArgs', 'RuleAction']
 
 @pulumi.input_type
-class Agento11yRuleActionArgs:
+class RuleActionArgs:
     def __init__(__self__, *,
                  collection_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  condition: pulumi.Input[_builtins.str],
                  rule_id: pulumi.Input[_builtins.str],
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None):
         """
-        The set of arguments for constructing a Agento11yRuleAction resource.
+        The set of arguments for constructing a RuleAction resource.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] collection_ids: IDs of the collections that matching conversations are added to. Must be non-empty.
         :param pulumi.Input[_builtins.str] condition: Aggregate verdict that triggers the action. One of `all_evaluators_pass`, `all_evaluators_fail`.
@@ -87,14 +87,14 @@ class Agento11yRuleActionArgs:
 
 
 @pulumi.input_type
-class _Agento11yRuleActionState:
+class _RuleActionState:
     def __init__(__self__, *,
                  collection_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  condition: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  rule_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering Agento11yRuleAction resources.
+        Input properties used for looking up and filtering RuleAction resources.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] collection_ids: IDs of the collections that matching conversations are added to. Must be non-empty.
         :param pulumi.Input[_builtins.str] condition: Aggregate verdict that triggers the action. One of `all_evaluators_pass`, `all_evaluators_fail`.
@@ -159,8 +159,8 @@ class _Agento11yRuleActionState:
         pulumi.set(self, "rule_id", value)
 
 
-@pulumi.type_token("grafana:index/agento11yRuleAction:Agento11yRuleAction")
-class Agento11yRuleAction(pulumi.CustomResource):
+@pulumi.type_token("grafana:agento11y/ruleAction:RuleAction")
+class RuleAction(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -182,7 +182,7 @@ class Agento11yRuleAction(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        example = grafana.Agento11yEvaluator("example",
+        example = grafana.agento11y.Evaluator("example",
             evaluator_id="no_secrets",
             version="1",
             kind="regex",
@@ -193,15 +193,15 @@ class Agento11yRuleAction(pulumi.CustomResource):
                 "key": "clean",
                 "type": "bool",
             }]))
-        example_agento11y_evaluation_rule = grafana.Agento11yEvaluationRule("example",
+        example_evaluation_rule = grafana.agento11y.EvaluationRule("example",
             rule_id="score_user_turns",
             selector="user_visible_turn",
             sample_rate=0.1,
             evaluator_ids=[example.evaluator_id])
         # Adds conversations to a collection when every evaluator on the rule fails.
         # The referenced collection must already exist in Agent Observability.
-        example_agento11y_rule_action = grafana.Agento11yRuleAction("example",
-            rule_id=example_agento11y_evaluation_rule.rule_id,
+        example_rule_action = grafana.agento11y.RuleAction("example",
+            rule_id=example_evaluation_rule.rule_id,
             condition="all_evaluators_fail",
             collection_ids=["failed-evaluations"])
         ```
@@ -224,7 +224,7 @@ class Agento11yRuleAction(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Agento11yRuleActionArgs,
+                 args: RuleActionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages an action attached to a Grafana Agent Observability evaluation rule. When the rule's aggregate verdict matches the configured condition, matching conversations are added to one or more collections.
@@ -238,7 +238,7 @@ class Agento11yRuleAction(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        example = grafana.Agento11yEvaluator("example",
+        example = grafana.agento11y.Evaluator("example",
             evaluator_id="no_secrets",
             version="1",
             kind="regex",
@@ -249,15 +249,15 @@ class Agento11yRuleAction(pulumi.CustomResource):
                 "key": "clean",
                 "type": "bool",
             }]))
-        example_agento11y_evaluation_rule = grafana.Agento11yEvaluationRule("example",
+        example_evaluation_rule = grafana.agento11y.EvaluationRule("example",
             rule_id="score_user_turns",
             selector="user_visible_turn",
             sample_rate=0.1,
             evaluator_ids=[example.evaluator_id])
         # Adds conversations to a collection when every evaluator on the rule fails.
         # The referenced collection must already exist in Agent Observability.
-        example_agento11y_rule_action = grafana.Agento11yRuleAction("example",
-            rule_id=example_agento11y_evaluation_rule.rule_id,
+        example_rule_action = grafana.agento11y.RuleAction("example",
+            rule_id=example_evaluation_rule.rule_id,
             condition="all_evaluators_fail",
             collection_ids=["failed-evaluations"])
         ```
@@ -270,12 +270,12 @@ class Agento11yRuleAction(pulumi.CustomResource):
 
 
         :param str resource_name: The name of the resource.
-        :param Agento11yRuleActionArgs args: The arguments to use to populate this resource's properties.
+        :param RuleActionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(Agento11yRuleActionArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(RuleActionArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -295,7 +295,7 @@ class Agento11yRuleAction(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = Agento11yRuleActionArgs.__new__(Agento11yRuleActionArgs)
+            __props__ = RuleActionArgs.__new__(RuleActionArgs)
 
             if collection_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'collection_ids'")
@@ -307,8 +307,8 @@ class Agento11yRuleAction(pulumi.CustomResource):
             if rule_id is None and not opts.urn:
                 raise TypeError("Missing required property 'rule_id'")
             __props__.__dict__["rule_id"] = rule_id
-        super(Agento11yRuleAction, __self__).__init__(
-            'grafana:index/agento11yRuleAction:Agento11yRuleAction',
+        super(RuleAction, __self__).__init__(
+            'grafana:agento11y/ruleAction:RuleAction',
             resource_name,
             __props__,
             opts)
@@ -320,9 +320,9 @@ class Agento11yRuleAction(pulumi.CustomResource):
             collection_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             condition: Optional[pulumi.Input[_builtins.str]] = None,
             enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            rule_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Agento11yRuleAction':
+            rule_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'RuleAction':
         """
-        Get an existing Agento11yRuleAction resource's state with the given name, id, and optional extra
+        Get an existing RuleAction resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -335,13 +335,13 @@ class Agento11yRuleAction(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _Agento11yRuleActionState.__new__(_Agento11yRuleActionState)
+        __props__ = _RuleActionState.__new__(_RuleActionState)
 
         __props__.__dict__["collection_ids"] = collection_ids
         __props__.__dict__["condition"] = condition
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["rule_id"] = rule_id
-        return Agento11yRuleAction(resource_name, opts=opts, __props__=__props__)
+        return RuleAction(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="collectionIds")

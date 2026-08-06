@@ -5,16 +5,19 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface Agento11yHookRuleRedact {
-    /**
-     * Optional stable identifier for the pattern.
-     */
-    id?: pulumi.Input<string>;
-    /**
-     * Regular expression to redact.
-     */
-    regex: pulumi.Input<string>;
+export namespace agento11y {
+    export interface HookRuleRedact {
+        /**
+         * Optional stable identifier for the pattern.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * Regular expression to redact.
+         */
+        regex: pulumi.Input<string>;
+    }
 }
+
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**

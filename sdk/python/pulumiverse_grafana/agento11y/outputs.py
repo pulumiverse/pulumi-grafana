@@ -12,14 +12,14 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
 __all__ = [
-    'Agento11yHookRuleRedact',
+    'HookRuleRedact',
 ]
 
 @pulumi.output_type
-class Agento11yHookRuleRedact(dict):
+class HookRuleRedact(dict):
     def __init__(__self__, *,
                  regex: _builtins.str,
                  id: Optional[_builtins.str] = None):

@@ -12,12 +12,12 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
-__all__ = ['Agento11yEvaluationRuleArgs', 'Agento11yEvaluationRule']
+__all__ = ['EvaluationRuleArgs', 'EvaluationRule']
 
 @pulumi.input_type
-class Agento11yEvaluationRuleArgs:
+class EvaluationRuleArgs:
     def __init__(__self__, *,
                  evaluator_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  rule_id: pulumi.Input[_builtins.str],
@@ -28,7 +28,7 @@ class Agento11yEvaluationRuleArgs:
                  sample_rate: Optional[pulumi.Input[_builtins.float]] = None,
                  selector: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        The set of arguments for constructing a Agento11yEvaluationRule resource.
+        The set of arguments for constructing a EvaluationRule resource.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] evaluator_ids: IDs of the evaluators to run against matching generations. Must be non-empty.
         :param pulumi.Input[_builtins.str] rule_id: Tenant-unique identifier of the rule. Changing this forces a new resource.
@@ -152,7 +152,7 @@ class Agento11yEvaluationRuleArgs:
 
 
 @pulumi.input_type
-class _Agento11yEvaluationRuleState:
+class _EvaluationRuleState:
     def __init__(__self__, *,
                  alert_rule_uids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -163,7 +163,7 @@ class _Agento11yEvaluationRuleState:
                  sample_rate: Optional[pulumi.Input[_builtins.float]] = None,
                  selector: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering Agento11yEvaluationRule resources.
+        Input properties used for looking up and filtering EvaluationRule resources.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] alert_rule_uids: Optional Grafana alert rule UIDs associated with this evaluation rule.
         :param pulumi.Input[_builtins.bool] enabled: Whether the rule is enabled. Defaults to `true`.
@@ -288,8 +288,8 @@ class _Agento11yEvaluationRuleState:
         pulumi.set(self, "selector", value)
 
 
-@pulumi.type_token("grafana:index/agento11yEvaluationRule:Agento11yEvaluationRule")
-class Agento11yEvaluationRule(pulumi.CustomResource):
+@pulumi.type_token("grafana:agento11y/evaluationRule:EvaluationRule")
+class EvaluationRule(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -315,7 +315,7 @@ class Agento11yEvaluationRule(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        example = grafana.Agento11yEvaluator("example",
+        example = grafana.agento11y.Evaluator("example",
             evaluator_id="no_secrets",
             version="1",
             kind="regex",
@@ -326,7 +326,7 @@ class Agento11yEvaluationRule(pulumi.CustomResource):
                 "key": "clean",
                 "type": "bool",
             }]))
-        example_agento11y_evaluation_rule = grafana.Agento11yEvaluationRule("example",
+        example_evaluation_rule = grafana.agento11y.EvaluationRule("example",
             rule_id="score_user_turns",
             enabled=True,
             selector="user_visible_turn",
@@ -359,7 +359,7 @@ class Agento11yEvaluationRule(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Agento11yEvaluationRuleArgs,
+                 args: EvaluationRuleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages a Grafana Agent Observability online evaluation rule. Rules select which agent generations (or whole conversations) are sampled and scored by one or more evaluators.
@@ -373,7 +373,7 @@ class Agento11yEvaluationRule(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        example = grafana.Agento11yEvaluator("example",
+        example = grafana.agento11y.Evaluator("example",
             evaluator_id="no_secrets",
             version="1",
             kind="regex",
@@ -384,7 +384,7 @@ class Agento11yEvaluationRule(pulumi.CustomResource):
                 "key": "clean",
                 "type": "bool",
             }]))
-        example_agento11y_evaluation_rule = grafana.Agento11yEvaluationRule("example",
+        example_evaluation_rule = grafana.agento11y.EvaluationRule("example",
             rule_id="score_user_turns",
             enabled=True,
             selector="user_visible_turn",
@@ -403,12 +403,12 @@ class Agento11yEvaluationRule(pulumi.CustomResource):
 
 
         :param str resource_name: The name of the resource.
-        :param Agento11yEvaluationRuleArgs args: The arguments to use to populate this resource's properties.
+        :param EvaluationRuleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(Agento11yEvaluationRuleArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(EvaluationRuleArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -432,7 +432,7 @@ class Agento11yEvaluationRule(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = Agento11yEvaluationRuleArgs.__new__(Agento11yEvaluationRuleArgs)
+            __props__ = EvaluationRuleArgs.__new__(EvaluationRuleArgs)
 
             __props__.__dict__["alert_rule_uids"] = alert_rule_uids
             __props__.__dict__["enabled"] = enabled
@@ -446,8 +446,8 @@ class Agento11yEvaluationRule(pulumi.CustomResource):
             __props__.__dict__["rule_id"] = rule_id
             __props__.__dict__["sample_rate"] = sample_rate
             __props__.__dict__["selector"] = selector
-        super(Agento11yEvaluationRule, __self__).__init__(
-            'grafana:index/agento11yEvaluationRule:Agento11yEvaluationRule',
+        super(EvaluationRule, __self__).__init__(
+            'grafana:agento11y/evaluationRule:EvaluationRule',
             resource_name,
             __props__,
             opts)
@@ -463,9 +463,9 @@ class Agento11yEvaluationRule(pulumi.CustomResource):
             min_idle_seconds: Optional[pulumi.Input[_builtins.int]] = None,
             rule_id: Optional[pulumi.Input[_builtins.str]] = None,
             sample_rate: Optional[pulumi.Input[_builtins.float]] = None,
-            selector: Optional[pulumi.Input[_builtins.str]] = None) -> 'Agento11yEvaluationRule':
+            selector: Optional[pulumi.Input[_builtins.str]] = None) -> 'EvaluationRule':
         """
-        Get an existing Agento11yEvaluationRule resource's state with the given name, id, and optional extra
+        Get an existing EvaluationRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -482,7 +482,7 @@ class Agento11yEvaluationRule(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _Agento11yEvaluationRuleState.__new__(_Agento11yEvaluationRuleState)
+        __props__ = _EvaluationRuleState.__new__(_EvaluationRuleState)
 
         __props__.__dict__["alert_rule_uids"] = alert_rule_uids
         __props__.__dict__["enabled"] = enabled
@@ -492,7 +492,7 @@ class Agento11yEvaluationRule(pulumi.CustomResource):
         __props__.__dict__["rule_id"] = rule_id
         __props__.__dict__["sample_rate"] = sample_rate
         __props__.__dict__["selector"] = selector
-        return Agento11yEvaluationRule(resource_name, opts=opts, __props__=__props__)
+        return EvaluationRule(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="alertRuleUids")

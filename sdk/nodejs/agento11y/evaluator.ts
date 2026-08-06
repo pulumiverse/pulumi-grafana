@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Manages a Grafana Agent Observability evaluator definition. Evaluators score agent generations or conversations (LLM judge, JSON schema, regex, or heuristic).
@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const example = new grafana.Agento11yEvaluator("example", {
+ * const example = new grafana.agento11y.Evaluator("example", {
  *     evaluatorId: "no_secrets",
  *     version: "1",
  *     kind: "regex",
@@ -36,9 +36,9 @@ import * as utilities from "./utilities";
  * terraform import grafana_agento11y_evaluator.name "{{ evaluator_id }}"
  * ```
  */
-export class Agento11yEvaluator extends pulumi.CustomResource {
+export class Evaluator extends pulumi.CustomResource {
     /**
-     * Get an existing Agento11yEvaluator resource's state with the given name, ID, and optional extra
+     * Get an existing Evaluator resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -46,22 +46,22 @@ export class Agento11yEvaluator extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: Agento11yEvaluatorState, opts?: pulumi.CustomResourceOptions): Agento11yEvaluator {
-        return new Agento11yEvaluator(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: EvaluatorState, opts?: pulumi.CustomResourceOptions): Evaluator {
+        return new Evaluator(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/agento11yEvaluator:Agento11yEvaluator';
+    public static readonly __pulumiType = 'grafana:agento11y/evaluator:Evaluator';
 
     /**
-     * Returns true if the given object is an instance of Agento11yEvaluator.  This is designed to work even
+     * Returns true if the given object is an instance of Evaluator.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is Agento11yEvaluator {
+    public static isInstance(obj: any): obj is Evaluator {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Agento11yEvaluator.__pulumiType;
+        return obj['__pulumiType'] === Evaluator.__pulumiType;
     }
 
     /**
@@ -90,18 +90,18 @@ export class Agento11yEvaluator extends pulumi.CustomResource {
     declare public readonly version: pulumi.Output<string>;
 
     /**
-     * Create a Agento11yEvaluator resource with the given unique name, arguments, and options.
+     * Create a Evaluator resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: Agento11yEvaluatorArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: Agento11yEvaluatorArgs | Agento11yEvaluatorState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: EvaluatorArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: EvaluatorArgs | EvaluatorState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as Agento11yEvaluatorState | undefined;
+            const state = argsOrState as EvaluatorState | undefined;
             resourceInputs["config"] = state?.config;
             resourceInputs["description"] = state?.description;
             resourceInputs["evaluatorId"] = state?.evaluatorId;
@@ -109,7 +109,7 @@ export class Agento11yEvaluator extends pulumi.CustomResource {
             resourceInputs["outputKeys"] = state?.outputKeys;
             resourceInputs["version"] = state?.version;
         } else {
-            const args = argsOrState as Agento11yEvaluatorArgs | undefined;
+            const args = argsOrState as EvaluatorArgs | undefined;
             if (args?.config === undefined && !opts.urn) {
                 throw new Error("Missing required property 'config'");
             }
@@ -133,14 +133,14 @@ export class Agento11yEvaluator extends pulumi.CustomResource {
             resourceInputs["version"] = args?.version;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(Agento11yEvaluator.__pulumiType, name, resourceInputs, opts);
+        super(Evaluator.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering Agento11yEvaluator resources.
+ * Input properties used for looking up and filtering Evaluator resources.
  */
-export interface Agento11yEvaluatorState {
+export interface EvaluatorState {
     /**
      * Kind-specific evaluator configuration, encoded as a JSON object string. The server normalizes this payload, so it is managed from configuration and not refreshed from the API.
      */
@@ -168,9 +168,9 @@ export interface Agento11yEvaluatorState {
 }
 
 /**
- * The set of arguments for constructing a Agento11yEvaluator resource.
+ * The set of arguments for constructing a Evaluator resource.
  */
-export interface Agento11yEvaluatorArgs {
+export interface EvaluatorArgs {
     /**
      * Kind-specific evaluator configuration, encoded as a JSON object string. The server normalizes this payload, so it is managed from configuration and not refreshed from the API.
      */

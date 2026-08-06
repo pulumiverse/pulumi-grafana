@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Agento11y
 {
     /// <summary>
     /// Manages a Grafana Agent Observability evaluator definition. Evaluators score agent generations or conversations (LLM judge, JSON schema, regex, or heuristic).
@@ -26,7 +26,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Grafana.Agento11yEvaluator("example", new()
+    ///     var example = new Grafana.Agento11y.Evaluator("example", new()
     ///     {
     ///         EvaluatorId = "no_secrets",
     ///         Version = "1",
@@ -55,8 +55,8 @@ namespace Pulumiverse.Grafana
     /// terraform import grafana_agento11y_evaluator.name "{{ evaluator_id }}"
     /// ```
     /// </summary>
-    [GrafanaResourceType("grafana:index/agento11yEvaluator:Agento11yEvaluator")]
-    public partial class Agento11yEvaluator : global::Pulumi.CustomResource
+    [GrafanaResourceType("grafana:agento11y/evaluator:Evaluator")]
+    public partial class Evaluator : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Kind-specific evaluator configuration, encoded as a JSON object string. The server normalizes this payload, so it is managed from configuration and not refreshed from the API.
@@ -96,19 +96,19 @@ namespace Pulumiverse.Grafana
 
 
         /// <summary>
-        /// Create a Agento11yEvaluator resource with the given unique name, arguments, and options.
+        /// Create a Evaluator resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Agento11yEvaluator(string name, Agento11yEvaluatorArgs args, CustomResourceOptions? options = null)
-            : base("grafana:index/agento11yEvaluator:Agento11yEvaluator", name, args ?? new Agento11yEvaluatorArgs(), MakeResourceOptions(options, ""))
+        public Evaluator(string name, EvaluatorArgs args, CustomResourceOptions? options = null)
+            : base("grafana:agento11y/evaluator:Evaluator", name, args ?? new EvaluatorArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private Agento11yEvaluator(string name, Input<string> id, Agento11yEvaluatorState? state = null, CustomResourceOptions? options = null)
-            : base("grafana:index/agento11yEvaluator:Agento11yEvaluator", name, state, MakeResourceOptions(options, id))
+        private Evaluator(string name, Input<string> id, EvaluatorState? state = null, CustomResourceOptions? options = null)
+            : base("grafana:agento11y/evaluator:Evaluator", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -125,7 +125,7 @@ namespace Pulumiverse.Grafana
             return merged;
         }
         /// <summary>
-        /// Get an existing Agento11yEvaluator resource's state with the given name, ID, and optional extra
+        /// Get an existing Evaluator resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -133,13 +133,13 @@ namespace Pulumiverse.Grafana
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static Agento11yEvaluator Get(string name, Input<string> id, Agento11yEvaluatorState? state = null, CustomResourceOptions? options = null)
+        public static Evaluator Get(string name, Input<string> id, EvaluatorState? state = null, CustomResourceOptions? options = null)
         {
-            return new Agento11yEvaluator(name, id, state, options);
+            return new Evaluator(name, id, state, options);
         }
     }
 
-    public sealed class Agento11yEvaluatorArgs : global::Pulumi.ResourceArgs
+    public sealed class EvaluatorArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Kind-specific evaluator configuration, encoded as a JSON object string. The server normalizes this payload, so it is managed from configuration and not refreshed from the API.
@@ -177,13 +177,13 @@ namespace Pulumiverse.Grafana
         [Input("version", required: true)]
         public Input<string> Version { get; set; } = null!;
 
-        public Agento11yEvaluatorArgs()
+        public EvaluatorArgs()
         {
         }
-        public static new Agento11yEvaluatorArgs Empty => new Agento11yEvaluatorArgs();
+        public static new EvaluatorArgs Empty => new EvaluatorArgs();
     }
 
-    public sealed class Agento11yEvaluatorState : global::Pulumi.ResourceArgs
+    public sealed class EvaluatorState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Kind-specific evaluator configuration, encoded as a JSON object string. The server normalizes this payload, so it is managed from configuration and not refreshed from the API.
@@ -221,9 +221,9 @@ namespace Pulumiverse.Grafana
         [Input("version")]
         public Input<string>? Version { get; set; }
 
-        public Agento11yEvaluatorState()
+        public EvaluatorState()
         {
         }
-        public static new Agento11yEvaluatorState Empty => new Agento11yEvaluatorState();
+        public static new EvaluatorState Empty => new EvaluatorState();
     }
 }

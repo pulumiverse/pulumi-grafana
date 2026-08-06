@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Agento11y
 {
     /// <summary>
     /// Manages a Grafana Agent Observability online evaluation rule. Rules select which agent generations (or whole conversations) are sampled and scored by one or more evaluators.
@@ -26,7 +26,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Grafana.Agento11yEvaluator("example", new()
+    ///     var example = new Grafana.Agento11y.Evaluator("example", new()
     ///     {
     ///         EvaluatorId = "no_secrets",
     ///         Version = "1",
@@ -45,7 +45,7 @@ namespace Pulumiverse.Grafana
     ///         }),
     ///     });
     /// 
-    ///     var exampleAgento11yEvaluationRule = new Grafana.Agento11yEvaluationRule("example", new()
+    ///     var exampleEvaluationRule = new Grafana.Agento11y.EvaluationRule("example", new()
     ///     {
     ///         RuleId = "score_user_turns",
     ///         Enabled = true,
@@ -70,8 +70,8 @@ namespace Pulumiverse.Grafana
     /// terraform import grafana_agento11y_evaluation_rule.name "{{ rule_id }}"
     /// ```
     /// </summary>
-    [GrafanaResourceType("grafana:index/agento11yEvaluationRule:Agento11yEvaluationRule")]
-    public partial class Agento11yEvaluationRule : global::Pulumi.CustomResource
+    [GrafanaResourceType("grafana:agento11y/evaluationRule:EvaluationRule")]
+    public partial class EvaluationRule : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Optional Grafana alert rule UIDs associated with this evaluation rule.
@@ -123,19 +123,19 @@ namespace Pulumiverse.Grafana
 
 
         /// <summary>
-        /// Create a Agento11yEvaluationRule resource with the given unique name, arguments, and options.
+        /// Create a EvaluationRule resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Agento11yEvaluationRule(string name, Agento11yEvaluationRuleArgs args, CustomResourceOptions? options = null)
-            : base("grafana:index/agento11yEvaluationRule:Agento11yEvaluationRule", name, args ?? new Agento11yEvaluationRuleArgs(), MakeResourceOptions(options, ""))
+        public EvaluationRule(string name, EvaluationRuleArgs args, CustomResourceOptions? options = null)
+            : base("grafana:agento11y/evaluationRule:EvaluationRule", name, args ?? new EvaluationRuleArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private Agento11yEvaluationRule(string name, Input<string> id, Agento11yEvaluationRuleState? state = null, CustomResourceOptions? options = null)
-            : base("grafana:index/agento11yEvaluationRule:Agento11yEvaluationRule", name, state, MakeResourceOptions(options, id))
+        private EvaluationRule(string name, Input<string> id, EvaluationRuleState? state = null, CustomResourceOptions? options = null)
+            : base("grafana:agento11y/evaluationRule:EvaluationRule", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -152,7 +152,7 @@ namespace Pulumiverse.Grafana
             return merged;
         }
         /// <summary>
-        /// Get an existing Agento11yEvaluationRule resource's state with the given name, ID, and optional extra
+        /// Get an existing EvaluationRule resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -160,13 +160,13 @@ namespace Pulumiverse.Grafana
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static Agento11yEvaluationRule Get(string name, Input<string> id, Agento11yEvaluationRuleState? state = null, CustomResourceOptions? options = null)
+        public static EvaluationRule Get(string name, Input<string> id, EvaluationRuleState? state = null, CustomResourceOptions? options = null)
         {
-            return new Agento11yEvaluationRule(name, id, state, options);
+            return new EvaluationRule(name, id, state, options);
         }
     }
 
-    public sealed class Agento11yEvaluationRuleArgs : global::Pulumi.ResourceArgs
+    public sealed class EvaluationRuleArgs : global::Pulumi.ResourceArgs
     {
         [Input("alertRuleUids")]
         private InputList<string>? _alertRuleUids;
@@ -228,13 +228,13 @@ namespace Pulumiverse.Grafana
         [Input("selector")]
         public Input<string>? Selector { get; set; }
 
-        public Agento11yEvaluationRuleArgs()
+        public EvaluationRuleArgs()
         {
         }
-        public static new Agento11yEvaluationRuleArgs Empty => new Agento11yEvaluationRuleArgs();
+        public static new EvaluationRuleArgs Empty => new EvaluationRuleArgs();
     }
 
-    public sealed class Agento11yEvaluationRuleState : global::Pulumi.ResourceArgs
+    public sealed class EvaluationRuleState : global::Pulumi.ResourceArgs
     {
         [Input("alertRuleUids")]
         private InputList<string>? _alertRuleUids;
@@ -296,9 +296,9 @@ namespace Pulumiverse.Grafana
         [Input("selector")]
         public Input<string>? Selector { get; set; }
 
-        public Agento11yEvaluationRuleState()
+        public EvaluationRuleState()
         {
         }
-        public static new Agento11yEvaluationRuleState Empty => new Agento11yEvaluationRuleState();
+        public static new EvaluationRuleState Empty => new EvaluationRuleState();
     }
 }

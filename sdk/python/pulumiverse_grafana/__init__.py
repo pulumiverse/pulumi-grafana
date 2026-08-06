@@ -6,16 +6,12 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
-from .agento11y_evaluation_rule import *
-from .agento11y_evaluator import *
-from .agento11y_hook_rule import *
-from .agento11y_rule_action import *
 from .provider import *
-from ._inputs import *
-from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
+    import pulumiverse_grafana.agento11y as __agento11y
+    agento11y = __agento11y
     import pulumiverse_grafana.alerting as __alerting
     alerting = __alerting
     import pulumiverse_grafana.apps as __apps
@@ -53,6 +49,7 @@ if typing.TYPE_CHECKING:
     import pulumiverse_grafana.syntheticmonitoring as __syntheticmonitoring
     syntheticmonitoring = __syntheticmonitoring
 else:
+    agento11y = _utilities.lazy_import('pulumiverse_grafana.agento11y')
     alerting = _utilities.lazy_import('pulumiverse_grafana.alerting')
     apps = _utilities.lazy_import('pulumiverse_grafana.apps')
     assert_ = _utilities.lazy_import('pulumiverse_grafana.assert_')
@@ -75,6 +72,38 @@ else:
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "grafana",
+  "mod": "agento11y/evaluationRule",
+  "fqn": "pulumiverse_grafana.agento11y",
+  "classes": {
+   "grafana:agento11y/evaluationRule:EvaluationRule": "EvaluationRule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "agento11y/evaluator",
+  "fqn": "pulumiverse_grafana.agento11y",
+  "classes": {
+   "grafana:agento11y/evaluator:Evaluator": "Evaluator"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "agento11y/hookRule",
+  "fqn": "pulumiverse_grafana.agento11y",
+  "classes": {
+   "grafana:agento11y/hookRule:HookRule": "HookRule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "agento11y/ruleAction",
+  "fqn": "pulumiverse_grafana.agento11y",
+  "classes": {
+   "grafana:agento11y/ruleAction:RuleAction": "RuleAction"
+  }
+ },
  {
   "pkg": "grafana",
   "mod": "alerting/alertEnrichment",
@@ -673,38 +702,6 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.frontendobservability",
   "classes": {
    "grafana:frontendObservability/app:App": "App"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/agento11yEvaluationRule",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/agento11yEvaluationRule:Agento11yEvaluationRule": "Agento11yEvaluationRule"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/agento11yEvaluator",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/agento11yEvaluator:Agento11yEvaluator": "Agento11yEvaluator"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/agento11yHookRule",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/agento11yHookRule:Agento11yHookRule": "Agento11yHookRule"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/agento11yRuleAction",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/agento11yRuleAction:Agento11yRuleAction": "Agento11yRuleAction"
   }
  },
  {

@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * Manages a Grafana Agent Observability hook (guard) rule. Hook rules run synchronously on the request path and can deny or warn on matching generations, block tool calls, or redact content.
@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const example = new grafana.Agento11yHookRule("example", {
+ * const example = new grafana.agento11y.HookRule("example", {
  *     ruleId: "block_destructive_tools",
  *     phase: "preflight",
  *     actionOnFail: "deny",
@@ -38,9 +38,9 @@ import * as utilities from "./utilities";
  * terraform import grafana_agento11y_hook_rule.name "{{ rule_id }}"
  * ```
  */
-export class Agento11yHookRule extends pulumi.CustomResource {
+export class HookRule extends pulumi.CustomResource {
     /**
-     * Get an existing Agento11yHookRule resource's state with the given name, ID, and optional extra
+     * Get an existing HookRule resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -48,22 +48,22 @@ export class Agento11yHookRule extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: Agento11yHookRuleState, opts?: pulumi.CustomResourceOptions): Agento11yHookRule {
-        return new Agento11yHookRule(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: HookRuleState, opts?: pulumi.CustomResourceOptions): HookRule {
+        return new HookRule(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/agento11yHookRule:Agento11yHookRule';
+    public static readonly __pulumiType = 'grafana:agento11y/hookRule:HookRule';
 
     /**
-     * Returns true if the given object is an instance of Agento11yHookRule.  This is designed to work even
+     * Returns true if the given object is an instance of HookRule.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is Agento11yHookRule {
+    public static isInstance(obj: any): obj is HookRule {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Agento11yHookRule.__pulumiType;
+        return obj['__pulumiType'] === HookRule.__pulumiType;
     }
 
     /**
@@ -97,7 +97,7 @@ export class Agento11yHookRule extends pulumi.CustomResource {
     /**
      * Ordered regex redaction patterns applied to request/response text.
      */
-    declare public readonly redacts: pulumi.Output<outputs.Agento11yHookRuleRedact[] | undefined>;
+    declare public readonly redacts: pulumi.Output<outputs.agento11y.HookRuleRedact[] | undefined>;
     /**
      * Tenant-unique identifier of the hook rule. Changing this forces a new resource.
      */
@@ -112,18 +112,18 @@ export class Agento11yHookRule extends pulumi.CustomResource {
     declare public readonly shortCircuit: pulumi.Output<boolean>;
 
     /**
-     * Create a Agento11yHookRule resource with the given unique name, arguments, and options.
+     * Create a HookRule resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: Agento11yHookRuleArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: Agento11yHookRuleArgs | Agento11yHookRuleState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: HookRuleArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: HookRuleArgs | HookRuleState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as Agento11yHookRuleState | undefined;
+            const state = argsOrState as HookRuleState | undefined;
             resourceInputs["actionOnFail"] = state?.actionOnFail;
             resourceInputs["blockedTools"] = state?.blockedTools;
             resourceInputs["enabled"] = state?.enabled;
@@ -136,7 +136,7 @@ export class Agento11yHookRule extends pulumi.CustomResource {
             resourceInputs["selector"] = state?.selector;
             resourceInputs["shortCircuit"] = state?.shortCircuit;
         } else {
-            const args = argsOrState as Agento11yHookRuleArgs | undefined;
+            const args = argsOrState as HookRuleArgs | undefined;
             if (args?.ruleId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ruleId'");
             }
@@ -153,14 +153,14 @@ export class Agento11yHookRule extends pulumi.CustomResource {
             resourceInputs["shortCircuit"] = args?.shortCircuit;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(Agento11yHookRule.__pulumiType, name, resourceInputs, opts);
+        super(HookRule.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering Agento11yHookRule resources.
+ * Input properties used for looking up and filtering HookRule resources.
  */
-export interface Agento11yHookRuleState {
+export interface HookRuleState {
     /**
      * Action taken when the hook fails. One of `deny`, `warn`. Defaults to `deny`.
      */
@@ -192,7 +192,7 @@ export interface Agento11yHookRuleState {
     /**
      * Ordered regex redaction patterns applied to request/response text.
      */
-    redacts?: pulumi.Input<pulumi.Input<inputs.Agento11yHookRuleRedact>[]>;
+    redacts?: pulumi.Input<pulumi.Input<inputs.agento11y.HookRuleRedact>[]>;
     /**
      * Tenant-unique identifier of the hook rule. Changing this forces a new resource.
      */
@@ -208,9 +208,9 @@ export interface Agento11yHookRuleState {
 }
 
 /**
- * The set of arguments for constructing a Agento11yHookRule resource.
+ * The set of arguments for constructing a HookRule resource.
  */
-export interface Agento11yHookRuleArgs {
+export interface HookRuleArgs {
     /**
      * Action taken when the hook fails. One of `deny`, `warn`. Defaults to `deny`.
      */
@@ -242,7 +242,7 @@ export interface Agento11yHookRuleArgs {
     /**
      * Ordered regex redaction patterns applied to request/response text.
      */
-    redacts?: pulumi.Input<pulumi.Input<inputs.Agento11yHookRuleRedact>[]>;
+    redacts?: pulumi.Input<pulumi.Input<inputs.agento11y.HookRuleRedact>[]>;
     /**
      * Tenant-unique identifier of the hook rule. Changing this forces a new resource.
      */

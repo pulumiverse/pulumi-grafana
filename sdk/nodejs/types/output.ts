@@ -5,15 +5,18 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface Agento11yHookRuleRedact {
-    /**
-     * Optional stable identifier for the pattern.
-     */
-    id?: string;
-    /**
-     * Regular expression to redact.
-     */
-    regex: string;
+export namespace agento11y {
+    export interface HookRuleRedact {
+        /**
+         * Optional stable identifier for the pattern.
+         */
+        id?: string;
+        /**
+         * Regular expression to redact.
+         */
+        regex: string;
+    }
+
 }
 
 export namespace alerting {

@@ -8,29 +8,26 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Agento11y.Inputs
 {
 
-    [OutputType]
-    public sealed class Agento11yHookRuleRedact
+    public sealed class HookRuleRedactGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Optional stable identifier for the pattern.
         /// </summary>
-        public readonly string? Id;
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
         /// <summary>
         /// Regular expression to redact.
         /// </summary>
-        public readonly string Regex;
+        [Input("regex", required: true)]
+        public Input<string> Regex { get; set; } = null!;
 
-        [OutputConstructor]
-        private Agento11yHookRuleRedact(
-            string? id,
-
-            string regex)
+        public HookRuleRedactGetArgs()
         {
-            Id = id;
-            Regex = regex;
         }
+        public static new HookRuleRedactGetArgs Empty => new HookRuleRedactGetArgs();
     }
 }

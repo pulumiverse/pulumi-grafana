@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Agento11y
 {
     /// <summary>
     /// Manages a Grafana Agent Observability hook (guard) rule. Hook rules run synchronously on the request path and can deny or warn on matching generations, block tool calls, or redact content.
@@ -25,7 +25,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Grafana.Agento11yHookRule("example", new()
+    ///     var example = new Grafana.Agento11y.HookRule("example", new()
     ///     {
     ///         RuleId = "block_destructive_tools",
     ///         Phase = "preflight",
@@ -37,7 +37,7 @@ namespace Pulumiverse.Grafana
     ///         },
     ///         Redacts = new[]
     ///         {
-    ///             new Grafana.Inputs.Agento11yHookRuleRedactArgs
+    ///             new Grafana.Agento11y.Inputs.HookRuleRedactArgs
     ///             {
     ///                 Id = "emails",
     ///                 Regex = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+",
@@ -54,8 +54,8 @@ namespace Pulumiverse.Grafana
     /// terraform import grafana_agento11y_hook_rule.name "{{ rule_id }}"
     /// ```
     /// </summary>
-    [GrafanaResourceType("grafana:index/agento11yHookRule:Agento11yHookRule")]
-    public partial class Agento11yHookRule : global::Pulumi.CustomResource
+    [GrafanaResourceType("grafana:agento11y/hookRule:HookRule")]
+    public partial class HookRule : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Action taken when the hook fails. One of `Deny`, `Warn`. Defaults to `Deny`.
@@ -103,7 +103,7 @@ namespace Pulumiverse.Grafana
         /// Ordered regex redaction patterns applied to request/response text.
         /// </summary>
         [Output("redacts")]
-        public Output<ImmutableArray<Outputs.Agento11yHookRuleRedact>> Redacts { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.HookRuleRedact>> Redacts { get; private set; } = null!;
 
         /// <summary>
         /// Tenant-unique identifier of the hook rule. Changing this forces a new resource.
@@ -125,19 +125,19 @@ namespace Pulumiverse.Grafana
 
 
         /// <summary>
-        /// Create a Agento11yHookRule resource with the given unique name, arguments, and options.
+        /// Create a HookRule resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Agento11yHookRule(string name, Agento11yHookRuleArgs args, CustomResourceOptions? options = null)
-            : base("grafana:index/agento11yHookRule:Agento11yHookRule", name, args ?? new Agento11yHookRuleArgs(), MakeResourceOptions(options, ""))
+        public HookRule(string name, HookRuleArgs args, CustomResourceOptions? options = null)
+            : base("grafana:agento11y/hookRule:HookRule", name, args ?? new HookRuleArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private Agento11yHookRule(string name, Input<string> id, Agento11yHookRuleState? state = null, CustomResourceOptions? options = null)
-            : base("grafana:index/agento11yHookRule:Agento11yHookRule", name, state, MakeResourceOptions(options, id))
+        private HookRule(string name, Input<string> id, HookRuleState? state = null, CustomResourceOptions? options = null)
+            : base("grafana:agento11y/hookRule:HookRule", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -154,7 +154,7 @@ namespace Pulumiverse.Grafana
             return merged;
         }
         /// <summary>
-        /// Get an existing Agento11yHookRule resource's state with the given name, ID, and optional extra
+        /// Get an existing HookRule resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -162,13 +162,13 @@ namespace Pulumiverse.Grafana
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static Agento11yHookRule Get(string name, Input<string> id, Agento11yHookRuleState? state = null, CustomResourceOptions? options = null)
+        public static HookRule Get(string name, Input<string> id, HookRuleState? state = null, CustomResourceOptions? options = null)
         {
-            return new Agento11yHookRule(name, id, state, options);
+            return new HookRule(name, id, state, options);
         }
     }
 
-    public sealed class Agento11yHookRuleArgs : global::Pulumi.ResourceArgs
+    public sealed class HookRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Action taken when the hook fails. One of `Deny`, `Warn`. Defaults to `Deny`.
@@ -225,14 +225,14 @@ namespace Pulumiverse.Grafana
         public Input<int>? Priority { get; set; }
 
         [Input("redacts")]
-        private InputList<Inputs.Agento11yHookRuleRedactArgs>? _redacts;
+        private InputList<Inputs.HookRuleRedactArgs>? _redacts;
 
         /// <summary>
         /// Ordered regex redaction patterns applied to request/response text.
         /// </summary>
-        public InputList<Inputs.Agento11yHookRuleRedactArgs> Redacts
+        public InputList<Inputs.HookRuleRedactArgs> Redacts
         {
-            get => _redacts ?? (_redacts = new InputList<Inputs.Agento11yHookRuleRedactArgs>());
+            get => _redacts ?? (_redacts = new InputList<Inputs.HookRuleRedactArgs>());
             set => _redacts = value;
         }
 
@@ -254,13 +254,13 @@ namespace Pulumiverse.Grafana
         [Input("shortCircuit")]
         public Input<bool>? ShortCircuit { get; set; }
 
-        public Agento11yHookRuleArgs()
+        public HookRuleArgs()
         {
         }
-        public static new Agento11yHookRuleArgs Empty => new Agento11yHookRuleArgs();
+        public static new HookRuleArgs Empty => new HookRuleArgs();
     }
 
-    public sealed class Agento11yHookRuleState : global::Pulumi.ResourceArgs
+    public sealed class HookRuleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Action taken when the hook fails. One of `Deny`, `Warn`. Defaults to `Deny`.
@@ -317,14 +317,14 @@ namespace Pulumiverse.Grafana
         public Input<int>? Priority { get; set; }
 
         [Input("redacts")]
-        private InputList<Inputs.Agento11yHookRuleRedactGetArgs>? _redacts;
+        private InputList<Inputs.HookRuleRedactGetArgs>? _redacts;
 
         /// <summary>
         /// Ordered regex redaction patterns applied to request/response text.
         /// </summary>
-        public InputList<Inputs.Agento11yHookRuleRedactGetArgs> Redacts
+        public InputList<Inputs.HookRuleRedactGetArgs> Redacts
         {
-            get => _redacts ?? (_redacts = new InputList<Inputs.Agento11yHookRuleRedactGetArgs>());
+            get => _redacts ?? (_redacts = new InputList<Inputs.HookRuleRedactGetArgs>());
             set => _redacts = value;
         }
 
@@ -346,9 +346,9 @@ namespace Pulumiverse.Grafana
         [Input("shortCircuit")]
         public Input<bool>? ShortCircuit { get; set; }
 
-        public Agento11yHookRuleState()
+        public HookRuleState()
         {
         }
-        public static new Agento11yHookRuleState Empty => new Agento11yHookRuleState();
+        public static new HookRuleState Empty => new HookRuleState();
     }
 }

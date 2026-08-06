@@ -12,14 +12,14 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
 __all__ = [
-    'Agento11yHookRuleRedactArgs',
-    'Agento11yHookRuleRedactArgsDict',
+    'HookRuleRedactArgs',
+    'HookRuleRedactArgsDict',
 ]
 
-class Agento11yHookRuleRedactArgsDict(TypedDict):
+class HookRuleRedactArgsDict(TypedDict):
     regex: pulumi.Input[_builtins.str]
     """
     Regular expression to redact.
@@ -30,7 +30,7 @@ class Agento11yHookRuleRedactArgsDict(TypedDict):
     """
 
 @pulumi.input_type
-class Agento11yHookRuleRedactArgs:
+class HookRuleRedactArgs:
     def __init__(__self__, *,
                  regex: pulumi.Input[_builtins.str],
                  id: Optional[pulumi.Input[_builtins.str]] = None):

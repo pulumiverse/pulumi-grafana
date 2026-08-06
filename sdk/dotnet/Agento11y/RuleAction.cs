@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Agento11y
 {
     /// <summary>
     /// Manages an action attached to a Grafana Agent Observability evaluation rule. When the rule's aggregate verdict matches the configured condition, matching conversations are added to one or more collections.
@@ -26,7 +26,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Grafana.Agento11yEvaluator("example", new()
+    ///     var example = new Grafana.Agento11y.Evaluator("example", new()
     ///     {
     ///         EvaluatorId = "no_secrets",
     ///         Version = "1",
@@ -45,7 +45,7 @@ namespace Pulumiverse.Grafana
     ///         }),
     ///     });
     /// 
-    ///     var exampleAgento11yEvaluationRule = new Grafana.Agento11yEvaluationRule("example", new()
+    ///     var exampleEvaluationRule = new Grafana.Agento11y.EvaluationRule("example", new()
     ///     {
     ///         RuleId = "score_user_turns",
     ///         Selector = "user_visible_turn",
@@ -58,9 +58,9 @@ namespace Pulumiverse.Grafana
     /// 
     ///     // Adds conversations to a collection when every evaluator on the rule fails.
     ///     // The referenced collection must already exist in Agent Observability.
-    ///     var exampleAgento11yRuleAction = new Grafana.Agento11yRuleAction("example", new()
+    ///     var exampleRuleAction = new Grafana.Agento11y.RuleAction("example", new()
     ///     {
-    ///         RuleId = exampleAgento11yEvaluationRule.RuleId,
+    ///         RuleId = exampleEvaluationRule.RuleId,
     ///         Condition = "all_evaluators_fail",
     ///         CollectionIds = new[]
     ///         {
@@ -77,8 +77,8 @@ namespace Pulumiverse.Grafana
     /// terraform import grafana_agento11y_rule_action.name "{{ rule_id }}:{{ action_id }}"
     /// ```
     /// </summary>
-    [GrafanaResourceType("grafana:index/agento11yRuleAction:Agento11yRuleAction")]
-    public partial class Agento11yRuleAction : global::Pulumi.CustomResource
+    [GrafanaResourceType("grafana:agento11y/ruleAction:RuleAction")]
+    public partial class RuleAction : global::Pulumi.CustomResource
     {
         /// <summary>
         /// IDs of the collections that matching conversations are added to. Must be non-empty.
@@ -106,19 +106,19 @@ namespace Pulumiverse.Grafana
 
 
         /// <summary>
-        /// Create a Agento11yRuleAction resource with the given unique name, arguments, and options.
+        /// Create a RuleAction resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Agento11yRuleAction(string name, Agento11yRuleActionArgs args, CustomResourceOptions? options = null)
-            : base("grafana:index/agento11yRuleAction:Agento11yRuleAction", name, args ?? new Agento11yRuleActionArgs(), MakeResourceOptions(options, ""))
+        public RuleAction(string name, RuleActionArgs args, CustomResourceOptions? options = null)
+            : base("grafana:agento11y/ruleAction:RuleAction", name, args ?? new RuleActionArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private Agento11yRuleAction(string name, Input<string> id, Agento11yRuleActionState? state = null, CustomResourceOptions? options = null)
-            : base("grafana:index/agento11yRuleAction:Agento11yRuleAction", name, state, MakeResourceOptions(options, id))
+        private RuleAction(string name, Input<string> id, RuleActionState? state = null, CustomResourceOptions? options = null)
+            : base("grafana:agento11y/ruleAction:RuleAction", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -135,7 +135,7 @@ namespace Pulumiverse.Grafana
             return merged;
         }
         /// <summary>
-        /// Get an existing Agento11yRuleAction resource's state with the given name, ID, and optional extra
+        /// Get an existing RuleAction resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -143,13 +143,13 @@ namespace Pulumiverse.Grafana
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static Agento11yRuleAction Get(string name, Input<string> id, Agento11yRuleActionState? state = null, CustomResourceOptions? options = null)
+        public static RuleAction Get(string name, Input<string> id, RuleActionState? state = null, CustomResourceOptions? options = null)
         {
-            return new Agento11yRuleAction(name, id, state, options);
+            return new RuleAction(name, id, state, options);
         }
     }
 
-    public sealed class Agento11yRuleActionArgs : global::Pulumi.ResourceArgs
+    public sealed class RuleActionArgs : global::Pulumi.ResourceArgs
     {
         [Input("collectionIds", required: true)]
         private InputList<string>? _collectionIds;
@@ -181,13 +181,13 @@ namespace Pulumiverse.Grafana
         [Input("ruleId", required: true)]
         public Input<string> RuleId { get; set; } = null!;
 
-        public Agento11yRuleActionArgs()
+        public RuleActionArgs()
         {
         }
-        public static new Agento11yRuleActionArgs Empty => new Agento11yRuleActionArgs();
+        public static new RuleActionArgs Empty => new RuleActionArgs();
     }
 
-    public sealed class Agento11yRuleActionState : global::Pulumi.ResourceArgs
+    public sealed class RuleActionState : global::Pulumi.ResourceArgs
     {
         [Input("collectionIds")]
         private InputList<string>? _collectionIds;
@@ -219,9 +219,9 @@ namespace Pulumiverse.Grafana
         [Input("ruleId")]
         public Input<string>? RuleId { get; set; }
 
-        public Agento11yRuleActionState()
+        public RuleActionState()
         {
         }
-        public static new Agento11yRuleActionState Empty => new Agento11yRuleActionState();
+        public static new RuleActionState Empty => new RuleActionState();
     }
 }

@@ -12,14 +12,14 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['Agento11yHookRuleArgs', 'Agento11yHookRule']
+__all__ = ['HookRuleArgs', 'HookRule']
 
 @pulumi.input_type
-class Agento11yHookRuleArgs:
+class HookRuleArgs:
     def __init__(__self__, *,
                  rule_id: pulumi.Input[_builtins.str],
                  action_on_fail: Optional[pulumi.Input[_builtins.str]] = None,
@@ -29,11 +29,11 @@ class Agento11yHookRuleArgs:
                  match: Optional[pulumi.Input[_builtins.str]] = None,
                  phase: Optional[pulumi.Input[_builtins.str]] = None,
                  priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 redacts: Optional[pulumi.Input[Sequence[pulumi.Input['Agento11yHookRuleRedactArgs']]]] = None,
+                 redacts: Optional[pulumi.Input[Sequence[pulumi.Input['HookRuleRedactArgs']]]] = None,
                  selector: Optional[pulumi.Input[_builtins.str]] = None,
                  short_circuit: Optional[pulumi.Input[_builtins.bool]] = None):
         """
-        The set of arguments for constructing a Agento11yHookRule resource.
+        The set of arguments for constructing a HookRule resource.
 
         :param pulumi.Input[_builtins.str] rule_id: Tenant-unique identifier of the hook rule. Changing this forces a new resource.
         :param pulumi.Input[_builtins.str] action_on_fail: Action taken when the hook fails. One of `deny`, `warn`. Defaults to `deny`.
@@ -43,7 +43,7 @@ class Agento11yHookRuleArgs:
         :param pulumi.Input[_builtins.str] match: Optional JSON object of match filters (for example `{"agent_name":"checkout-*"}`). Omit to match everything.
         :param pulumi.Input[_builtins.str] phase: When the hook runs. One of `preflight`, `postflight`. Defaults to `preflight`.
         :param pulumi.Input[_builtins.int] priority: Evaluation priority; lower priority rules run first. Defaults to `0`.
-        :param pulumi.Input[Sequence[pulumi.Input['Agento11yHookRuleRedactArgs']]] redacts: Ordered regex redaction patterns applied to request/response text.
+        :param pulumi.Input[Sequence[pulumi.Input['HookRuleRedactArgs']]] redacts: Ordered regex redaction patterns applied to request/response text.
         :param pulumi.Input[_builtins.str] selector: Which generations the hook applies to. One of `all`, `user_visible_turn`, `all_assistant_generations`, `tool_call_steps`, `errored_generations`. Defaults to `all`.
         :param pulumi.Input[_builtins.bool] short_circuit: When `true` (default), stop at the first failed rule. When `false`, run all evaluators and deny if any failed.
         """
@@ -167,14 +167,14 @@ class Agento11yHookRuleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def redacts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Agento11yHookRuleRedactArgs']]]]:
+    def redacts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HookRuleRedactArgs']]]]:
         """
         Ordered regex redaction patterns applied to request/response text.
         """
         return pulumi.get(self, "redacts")
 
     @redacts.setter
-    def redacts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Agento11yHookRuleRedactArgs']]]]):
+    def redacts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['HookRuleRedactArgs']]]]):
         pulumi.set(self, "redacts", value)
 
     @_builtins.property
@@ -203,7 +203,7 @@ class Agento11yHookRuleArgs:
 
 
 @pulumi.input_type
-class _Agento11yHookRuleState:
+class _HookRuleState:
     def __init__(__self__, *,
                  action_on_fail: Optional[pulumi.Input[_builtins.str]] = None,
                  blocked_tools: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -212,12 +212,12 @@ class _Agento11yHookRuleState:
                  match: Optional[pulumi.Input[_builtins.str]] = None,
                  phase: Optional[pulumi.Input[_builtins.str]] = None,
                  priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 redacts: Optional[pulumi.Input[Sequence[pulumi.Input['Agento11yHookRuleRedactArgs']]]] = None,
+                 redacts: Optional[pulumi.Input[Sequence[pulumi.Input['HookRuleRedactArgs']]]] = None,
                  rule_id: Optional[pulumi.Input[_builtins.str]] = None,
                  selector: Optional[pulumi.Input[_builtins.str]] = None,
                  short_circuit: Optional[pulumi.Input[_builtins.bool]] = None):
         """
-        Input properties used for looking up and filtering Agento11yHookRule resources.
+        Input properties used for looking up and filtering HookRule resources.
 
         :param pulumi.Input[_builtins.str] action_on_fail: Action taken when the hook fails. One of `deny`, `warn`. Defaults to `deny`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] blocked_tools: Glob patterns of tool call names to block (for example `["delete_*"]`).
@@ -226,7 +226,7 @@ class _Agento11yHookRuleState:
         :param pulumi.Input[_builtins.str] match: Optional JSON object of match filters (for example `{"agent_name":"checkout-*"}`). Omit to match everything.
         :param pulumi.Input[_builtins.str] phase: When the hook runs. One of `preflight`, `postflight`. Defaults to `preflight`.
         :param pulumi.Input[_builtins.int] priority: Evaluation priority; lower priority rules run first. Defaults to `0`.
-        :param pulumi.Input[Sequence[pulumi.Input['Agento11yHookRuleRedactArgs']]] redacts: Ordered regex redaction patterns applied to request/response text.
+        :param pulumi.Input[Sequence[pulumi.Input['HookRuleRedactArgs']]] redacts: Ordered regex redaction patterns applied to request/response text.
         :param pulumi.Input[_builtins.str] rule_id: Tenant-unique identifier of the hook rule. Changing this forces a new resource.
         :param pulumi.Input[_builtins.str] selector: Which generations the hook applies to. One of `all`, `user_visible_turn`, `all_assistant_generations`, `tool_call_steps`, `errored_generations`. Defaults to `all`.
         :param pulumi.Input[_builtins.bool] short_circuit: When `true` (default), stop at the first failed rule. When `false`, run all evaluators and deny if any failed.
@@ -340,14 +340,14 @@ class _Agento11yHookRuleState:
 
     @_builtins.property
     @pulumi.getter
-    def redacts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Agento11yHookRuleRedactArgs']]]]:
+    def redacts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HookRuleRedactArgs']]]]:
         """
         Ordered regex redaction patterns applied to request/response text.
         """
         return pulumi.get(self, "redacts")
 
     @redacts.setter
-    def redacts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Agento11yHookRuleRedactArgs']]]]):
+    def redacts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['HookRuleRedactArgs']]]]):
         pulumi.set(self, "redacts", value)
 
     @_builtins.property
@@ -387,8 +387,8 @@ class _Agento11yHookRuleState:
         pulumi.set(self, "short_circuit", value)
 
 
-@pulumi.type_token("grafana:index/agento11yHookRule:Agento11yHookRule")
-class Agento11yHookRule(pulumi.CustomResource):
+@pulumi.type_token("grafana:agento11y/hookRule:HookRule")
+class HookRule(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -400,7 +400,7 @@ class Agento11yHookRule(pulumi.CustomResource):
                  match: Optional[pulumi.Input[_builtins.str]] = None,
                  phase: Optional[pulumi.Input[_builtins.str]] = None,
                  priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 redacts: Optional[pulumi.Input[Sequence[pulumi.Input[Union['Agento11yHookRuleRedactArgs', 'Agento11yHookRuleRedactArgsDict']]]]] = None,
+                 redacts: Optional[pulumi.Input[Sequence[pulumi.Input[Union['HookRuleRedactArgs', 'HookRuleRedactArgsDict']]]]] = None,
                  rule_id: Optional[pulumi.Input[_builtins.str]] = None,
                  selector: Optional[pulumi.Input[_builtins.str]] = None,
                  short_circuit: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -416,7 +416,7 @@ class Agento11yHookRule(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        example = grafana.Agento11yHookRule("example",
+        example = grafana.agento11y.HookRule("example",
             rule_id="block_destructive_tools",
             phase="preflight",
             action_on_fail="deny",
@@ -446,7 +446,7 @@ class Agento11yHookRule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] match: Optional JSON object of match filters (for example `{"agent_name":"checkout-*"}`). Omit to match everything.
         :param pulumi.Input[_builtins.str] phase: When the hook runs. One of `preflight`, `postflight`. Defaults to `preflight`.
         :param pulumi.Input[_builtins.int] priority: Evaluation priority; lower priority rules run first. Defaults to `0`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['Agento11yHookRuleRedactArgs', 'Agento11yHookRuleRedactArgsDict']]]] redacts: Ordered regex redaction patterns applied to request/response text.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['HookRuleRedactArgs', 'HookRuleRedactArgsDict']]]] redacts: Ordered regex redaction patterns applied to request/response text.
         :param pulumi.Input[_builtins.str] rule_id: Tenant-unique identifier of the hook rule. Changing this forces a new resource.
         :param pulumi.Input[_builtins.str] selector: Which generations the hook applies to. One of `all`, `user_visible_turn`, `all_assistant_generations`, `tool_call_steps`, `errored_generations`. Defaults to `all`.
         :param pulumi.Input[_builtins.bool] short_circuit: When `true` (default), stop at the first failed rule. When `false`, run all evaluators and deny if any failed.
@@ -455,7 +455,7 @@ class Agento11yHookRule(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Agento11yHookRuleArgs,
+                 args: HookRuleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages a Grafana Agent Observability hook (guard) rule. Hook rules run synchronously on the request path and can deny or warn on matching generations, block tool calls, or redact content.
@@ -468,7 +468,7 @@ class Agento11yHookRule(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        example = grafana.Agento11yHookRule("example",
+        example = grafana.agento11y.HookRule("example",
             rule_id="block_destructive_tools",
             phase="preflight",
             action_on_fail="deny",
@@ -490,12 +490,12 @@ class Agento11yHookRule(pulumi.CustomResource):
 
 
         :param str resource_name: The name of the resource.
-        :param Agento11yHookRuleArgs args: The arguments to use to populate this resource's properties.
+        :param HookRuleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(Agento11yHookRuleArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(HookRuleArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -511,7 +511,7 @@ class Agento11yHookRule(pulumi.CustomResource):
                  match: Optional[pulumi.Input[_builtins.str]] = None,
                  phase: Optional[pulumi.Input[_builtins.str]] = None,
                  priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 redacts: Optional[pulumi.Input[Sequence[pulumi.Input[Union['Agento11yHookRuleRedactArgs', 'Agento11yHookRuleRedactArgsDict']]]]] = None,
+                 redacts: Optional[pulumi.Input[Sequence[pulumi.Input[Union['HookRuleRedactArgs', 'HookRuleRedactArgsDict']]]]] = None,
                  rule_id: Optional[pulumi.Input[_builtins.str]] = None,
                  selector: Optional[pulumi.Input[_builtins.str]] = None,
                  short_circuit: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -522,7 +522,7 @@ class Agento11yHookRule(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = Agento11yHookRuleArgs.__new__(Agento11yHookRuleArgs)
+            __props__ = HookRuleArgs.__new__(HookRuleArgs)
 
             __props__.__dict__["action_on_fail"] = action_on_fail
             __props__.__dict__["blocked_tools"] = blocked_tools
@@ -537,8 +537,8 @@ class Agento11yHookRule(pulumi.CustomResource):
             __props__.__dict__["rule_id"] = rule_id
             __props__.__dict__["selector"] = selector
             __props__.__dict__["short_circuit"] = short_circuit
-        super(Agento11yHookRule, __self__).__init__(
-            'grafana:index/agento11yHookRule:Agento11yHookRule',
+        super(HookRule, __self__).__init__(
+            'grafana:agento11y/hookRule:HookRule',
             resource_name,
             __props__,
             opts)
@@ -554,12 +554,12 @@ class Agento11yHookRule(pulumi.CustomResource):
             match: Optional[pulumi.Input[_builtins.str]] = None,
             phase: Optional[pulumi.Input[_builtins.str]] = None,
             priority: Optional[pulumi.Input[_builtins.int]] = None,
-            redacts: Optional[pulumi.Input[Sequence[pulumi.Input[Union['Agento11yHookRuleRedactArgs', 'Agento11yHookRuleRedactArgsDict']]]]] = None,
+            redacts: Optional[pulumi.Input[Sequence[pulumi.Input[Union['HookRuleRedactArgs', 'HookRuleRedactArgsDict']]]]] = None,
             rule_id: Optional[pulumi.Input[_builtins.str]] = None,
             selector: Optional[pulumi.Input[_builtins.str]] = None,
-            short_circuit: Optional[pulumi.Input[_builtins.bool]] = None) -> 'Agento11yHookRule':
+            short_circuit: Optional[pulumi.Input[_builtins.bool]] = None) -> 'HookRule':
         """
-        Get an existing Agento11yHookRule resource's state with the given name, id, and optional extra
+        Get an existing HookRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -572,14 +572,14 @@ class Agento11yHookRule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] match: Optional JSON object of match filters (for example `{"agent_name":"checkout-*"}`). Omit to match everything.
         :param pulumi.Input[_builtins.str] phase: When the hook runs. One of `preflight`, `postflight`. Defaults to `preflight`.
         :param pulumi.Input[_builtins.int] priority: Evaluation priority; lower priority rules run first. Defaults to `0`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['Agento11yHookRuleRedactArgs', 'Agento11yHookRuleRedactArgsDict']]]] redacts: Ordered regex redaction patterns applied to request/response text.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['HookRuleRedactArgs', 'HookRuleRedactArgsDict']]]] redacts: Ordered regex redaction patterns applied to request/response text.
         :param pulumi.Input[_builtins.str] rule_id: Tenant-unique identifier of the hook rule. Changing this forces a new resource.
         :param pulumi.Input[_builtins.str] selector: Which generations the hook applies to. One of `all`, `user_visible_turn`, `all_assistant_generations`, `tool_call_steps`, `errored_generations`. Defaults to `all`.
         :param pulumi.Input[_builtins.bool] short_circuit: When `true` (default), stop at the first failed rule. When `false`, run all evaluators and deny if any failed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _Agento11yHookRuleState.__new__(_Agento11yHookRuleState)
+        __props__ = _HookRuleState.__new__(_HookRuleState)
 
         __props__.__dict__["action_on_fail"] = action_on_fail
         __props__.__dict__["blocked_tools"] = blocked_tools
@@ -592,7 +592,7 @@ class Agento11yHookRule(pulumi.CustomResource):
         __props__.__dict__["rule_id"] = rule_id
         __props__.__dict__["selector"] = selector
         __props__.__dict__["short_circuit"] = short_circuit
-        return Agento11yHookRule(resource_name, opts=opts, __props__=__props__)
+        return HookRule(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="actionOnFail")
@@ -652,7 +652,7 @@ class Agento11yHookRule(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def redacts(self) -> pulumi.Output[Optional[Sequence['outputs.Agento11yHookRuleRedact']]]:
+    def redacts(self) -> pulumi.Output[Optional[Sequence['outputs.HookRuleRedact']]]:
         """
         Ordered regex redaction patterns applied to request/response text.
         """

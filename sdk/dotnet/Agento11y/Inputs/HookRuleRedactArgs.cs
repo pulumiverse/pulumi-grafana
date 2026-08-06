@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Agento11y.Inputs
 {
 
-    public sealed class Agento11yHookRuleRedactArgs : global::Pulumi.ResourceArgs
+    public sealed class HookRuleRedactArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Optional stable identifier for the pattern.
@@ -25,9 +25,9 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("regex", required: true)]
         public Input<string> Regex { get; set; } = null!;
 
-        public Agento11yHookRuleRedactArgs()
+        public HookRuleRedactArgs()
         {
         }
-        public static new Agento11yHookRuleRedactArgs Empty => new Agento11yHookRuleRedactArgs();
+        public static new HookRuleRedactArgs Empty => new HookRuleRedactArgs();
     }
 }

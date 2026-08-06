@@ -12,12 +12,12 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
-__all__ = ['Agento11yEvaluatorArgs', 'Agento11yEvaluator']
+__all__ = ['EvaluatorArgs', 'Evaluator']
 
 @pulumi.input_type
-class Agento11yEvaluatorArgs:
+class EvaluatorArgs:
     def __init__(__self__, *,
                  config: pulumi.Input[_builtins.str],
                  evaluator_id: pulumi.Input[_builtins.str],
@@ -26,7 +26,7 @@ class Agento11yEvaluatorArgs:
                  version: pulumi.Input[_builtins.str],
                  description: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        The set of arguments for constructing a Agento11yEvaluator resource.
+        The set of arguments for constructing a Evaluator resource.
 
         :param pulumi.Input[_builtins.str] config: Kind-specific evaluator configuration, encoded as a JSON object string. The server normalizes this payload, so it is managed from configuration and not refreshed from the API.
         :param pulumi.Input[_builtins.str] evaluator_id: Tenant-unique identifier of the evaluator. Changing this forces a new resource.
@@ -117,7 +117,7 @@ class Agento11yEvaluatorArgs:
 
 
 @pulumi.input_type
-class _Agento11yEvaluatorState:
+class _EvaluatorState:
     def __init__(__self__, *,
                  config: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -126,7 +126,7 @@ class _Agento11yEvaluatorState:
                  output_keys: Optional[pulumi.Input[_builtins.str]] = None,
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering Agento11yEvaluator resources.
+        Input properties used for looking up and filtering Evaluator resources.
 
         :param pulumi.Input[_builtins.str] config: Kind-specific evaluator configuration, encoded as a JSON object string. The server normalizes this payload, so it is managed from configuration and not refreshed from the API.
         :param pulumi.Input[_builtins.str] description: Optional human-readable description of the evaluator.
@@ -221,8 +221,8 @@ class _Agento11yEvaluatorState:
         pulumi.set(self, "version", value)
 
 
-@pulumi.type_token("grafana:index/agento11yEvaluator:Agento11yEvaluator")
-class Agento11yEvaluator(pulumi.CustomResource):
+@pulumi.type_token("grafana:agento11y/evaluator:Evaluator")
+class Evaluator(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -246,7 +246,7 @@ class Agento11yEvaluator(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        example = grafana.Agento11yEvaluator("example",
+        example = grafana.agento11y.Evaluator("example",
             evaluator_id="no_secrets",
             version="1",
             kind="regex",
@@ -280,7 +280,7 @@ class Agento11yEvaluator(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Agento11yEvaluatorArgs,
+                 args: EvaluatorArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages a Grafana Agent Observability evaluator definition. Evaluators score agent generations or conversations (LLM judge, JSON schema, regex, or heuristic).
@@ -294,7 +294,7 @@ class Agento11yEvaluator(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        example = grafana.Agento11yEvaluator("example",
+        example = grafana.agento11y.Evaluator("example",
             evaluator_id="no_secrets",
             version="1",
             kind="regex",
@@ -316,12 +316,12 @@ class Agento11yEvaluator(pulumi.CustomResource):
 
 
         :param str resource_name: The name of the resource.
-        :param Agento11yEvaluatorArgs args: The arguments to use to populate this resource's properties.
+        :param EvaluatorArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(Agento11yEvaluatorArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(EvaluatorArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -343,7 +343,7 @@ class Agento11yEvaluator(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = Agento11yEvaluatorArgs.__new__(Agento11yEvaluatorArgs)
+            __props__ = EvaluatorArgs.__new__(EvaluatorArgs)
 
             if config is None and not opts.urn:
                 raise TypeError("Missing required property 'config'")
@@ -361,8 +361,8 @@ class Agento11yEvaluator(pulumi.CustomResource):
             if version is None and not opts.urn:
                 raise TypeError("Missing required property 'version'")
             __props__.__dict__["version"] = version
-        super(Agento11yEvaluator, __self__).__init__(
-            'grafana:index/agento11yEvaluator:Agento11yEvaluator',
+        super(Evaluator, __self__).__init__(
+            'grafana:agento11y/evaluator:Evaluator',
             resource_name,
             __props__,
             opts)
@@ -376,9 +376,9 @@ class Agento11yEvaluator(pulumi.CustomResource):
             evaluator_id: Optional[pulumi.Input[_builtins.str]] = None,
             kind: Optional[pulumi.Input[_builtins.str]] = None,
             output_keys: Optional[pulumi.Input[_builtins.str]] = None,
-            version: Optional[pulumi.Input[_builtins.str]] = None) -> 'Agento11yEvaluator':
+            version: Optional[pulumi.Input[_builtins.str]] = None) -> 'Evaluator':
         """
-        Get an existing Agento11yEvaluator resource's state with the given name, id, and optional extra
+        Get an existing Evaluator resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -393,7 +393,7 @@ class Agento11yEvaluator(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _Agento11yEvaluatorState.__new__(_Agento11yEvaluatorState)
+        __props__ = _EvaluatorState.__new__(_EvaluatorState)
 
         __props__.__dict__["config"] = config
         __props__.__dict__["description"] = description
@@ -401,7 +401,7 @@ class Agento11yEvaluator(pulumi.CustomResource):
         __props__.__dict__["kind"] = kind
         __props__.__dict__["output_keys"] = output_keys
         __props__.__dict__["version"] = version
-        return Agento11yEvaluator(resource_name, opts=opts, __props__=__props__)
+        return Evaluator(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter

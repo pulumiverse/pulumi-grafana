@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Manages a Grafana Agent Observability online evaluation rule. Rules select which agent generations (or whole conversations) are sampled and scored by one or more evaluators.
@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const example = new grafana.Agento11yEvaluator("example", {
+ * const example = new grafana.agento11y.Evaluator("example", {
  *     evaluatorId: "no_secrets",
  *     version: "1",
  *     kind: "regex",
@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  *         type: "bool",
  *     }]),
  * });
- * const exampleAgento11yEvaluationRule = new grafana.Agento11yEvaluationRule("example", {
+ * const exampleEvaluationRule = new grafana.agento11y.EvaluationRule("example", {
  *     ruleId: "score_user_turns",
  *     enabled: true,
  *     selector: "user_visible_turn",
@@ -45,9 +45,9 @@ import * as utilities from "./utilities";
  * terraform import grafana_agento11y_evaluation_rule.name "{{ rule_id }}"
  * ```
  */
-export class Agento11yEvaluationRule extends pulumi.CustomResource {
+export class EvaluationRule extends pulumi.CustomResource {
     /**
-     * Get an existing Agento11yEvaluationRule resource's state with the given name, ID, and optional extra
+     * Get an existing EvaluationRule resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -55,22 +55,22 @@ export class Agento11yEvaluationRule extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: Agento11yEvaluationRuleState, opts?: pulumi.CustomResourceOptions): Agento11yEvaluationRule {
-        return new Agento11yEvaluationRule(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: EvaluationRuleState, opts?: pulumi.CustomResourceOptions): EvaluationRule {
+        return new EvaluationRule(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/agento11yEvaluationRule:Agento11yEvaluationRule';
+    public static readonly __pulumiType = 'grafana:agento11y/evaluationRule:EvaluationRule';
 
     /**
-     * Returns true if the given object is an instance of Agento11yEvaluationRule.  This is designed to work even
+     * Returns true if the given object is an instance of EvaluationRule.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is Agento11yEvaluationRule {
+    public static isInstance(obj: any): obj is EvaluationRule {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Agento11yEvaluationRule.__pulumiType;
+        return obj['__pulumiType'] === EvaluationRule.__pulumiType;
     }
 
     /**
@@ -107,18 +107,18 @@ export class Agento11yEvaluationRule extends pulumi.CustomResource {
     declare public readonly selector: pulumi.Output<string>;
 
     /**
-     * Create a Agento11yEvaluationRule resource with the given unique name, arguments, and options.
+     * Create a EvaluationRule resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: Agento11yEvaluationRuleArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: Agento11yEvaluationRuleArgs | Agento11yEvaluationRuleState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: EvaluationRuleArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: EvaluationRuleArgs | EvaluationRuleState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as Agento11yEvaluationRuleState | undefined;
+            const state = argsOrState as EvaluationRuleState | undefined;
             resourceInputs["alertRuleUids"] = state?.alertRuleUids;
             resourceInputs["enabled"] = state?.enabled;
             resourceInputs["evaluatorIds"] = state?.evaluatorIds;
@@ -128,7 +128,7 @@ export class Agento11yEvaluationRule extends pulumi.CustomResource {
             resourceInputs["sampleRate"] = state?.sampleRate;
             resourceInputs["selector"] = state?.selector;
         } else {
-            const args = argsOrState as Agento11yEvaluationRuleArgs | undefined;
+            const args = argsOrState as EvaluationRuleArgs | undefined;
             if (args?.evaluatorIds === undefined && !opts.urn) {
                 throw new Error("Missing required property 'evaluatorIds'");
             }
@@ -145,14 +145,14 @@ export class Agento11yEvaluationRule extends pulumi.CustomResource {
             resourceInputs["selector"] = args?.selector;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(Agento11yEvaluationRule.__pulumiType, name, resourceInputs, opts);
+        super(EvaluationRule.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering Agento11yEvaluationRule resources.
+ * Input properties used for looking up and filtering EvaluationRule resources.
  */
-export interface Agento11yEvaluationRuleState {
+export interface EvaluationRuleState {
     /**
      * Optional Grafana alert rule UIDs associated with this evaluation rule.
      */
@@ -188,9 +188,9 @@ export interface Agento11yEvaluationRuleState {
 }
 
 /**
- * The set of arguments for constructing a Agento11yEvaluationRule resource.
+ * The set of arguments for constructing a EvaluationRule resource.
  */
-export interface Agento11yEvaluationRuleArgs {
+export interface EvaluationRuleArgs {
     /**
      * Optional Grafana alert rule UIDs associated with this evaluation rule.
      */

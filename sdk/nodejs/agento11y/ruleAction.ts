@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Manages an action attached to a Grafana Agent Observability evaluation rule. When the rule's aggregate verdict matches the configured condition, matching conversations are added to one or more collections.
@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const example = new grafana.Agento11yEvaluator("example", {
+ * const example = new grafana.agento11y.Evaluator("example", {
  *     evaluatorId: "no_secrets",
  *     version: "1",
  *     kind: "regex",
@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  *         type: "bool",
  *     }]),
  * });
- * const exampleAgento11yEvaluationRule = new grafana.Agento11yEvaluationRule("example", {
+ * const exampleEvaluationRule = new grafana.agento11y.EvaluationRule("example", {
  *     ruleId: "score_user_turns",
  *     selector: "user_visible_turn",
  *     sampleRate: 0.1,
@@ -35,8 +35,8 @@ import * as utilities from "./utilities";
  * });
  * // Adds conversations to a collection when every evaluator on the rule fails.
  * // The referenced collection must already exist in Agent Observability.
- * const exampleAgento11yRuleAction = new grafana.Agento11yRuleAction("example", {
- *     ruleId: exampleAgento11yEvaluationRule.ruleId,
+ * const exampleRuleAction = new grafana.agento11y.RuleAction("example", {
+ *     ruleId: exampleEvaluationRule.ruleId,
  *     condition: "all_evaluators_fail",
  *     collectionIds: ["failed-evaluations"],
  * });
@@ -48,9 +48,9 @@ import * as utilities from "./utilities";
  * terraform import grafana_agento11y_rule_action.name "{{ rule_id }}:{{ action_id }}"
  * ```
  */
-export class Agento11yRuleAction extends pulumi.CustomResource {
+export class RuleAction extends pulumi.CustomResource {
     /**
-     * Get an existing Agento11yRuleAction resource's state with the given name, ID, and optional extra
+     * Get an existing RuleAction resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -58,22 +58,22 @@ export class Agento11yRuleAction extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: Agento11yRuleActionState, opts?: pulumi.CustomResourceOptions): Agento11yRuleAction {
-        return new Agento11yRuleAction(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RuleActionState, opts?: pulumi.CustomResourceOptions): RuleAction {
+        return new RuleAction(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/agento11yRuleAction:Agento11yRuleAction';
+    public static readonly __pulumiType = 'grafana:agento11y/ruleAction:RuleAction';
 
     /**
-     * Returns true if the given object is an instance of Agento11yRuleAction.  This is designed to work even
+     * Returns true if the given object is an instance of RuleAction.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is Agento11yRuleAction {
+    public static isInstance(obj: any): obj is RuleAction {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Agento11yRuleAction.__pulumiType;
+        return obj['__pulumiType'] === RuleAction.__pulumiType;
     }
 
     /**
@@ -94,24 +94,24 @@ export class Agento11yRuleAction extends pulumi.CustomResource {
     declare public readonly ruleId: pulumi.Output<string>;
 
     /**
-     * Create a Agento11yRuleAction resource with the given unique name, arguments, and options.
+     * Create a RuleAction resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: Agento11yRuleActionArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: Agento11yRuleActionArgs | Agento11yRuleActionState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: RuleActionArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: RuleActionArgs | RuleActionState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as Agento11yRuleActionState | undefined;
+            const state = argsOrState as RuleActionState | undefined;
             resourceInputs["collectionIds"] = state?.collectionIds;
             resourceInputs["condition"] = state?.condition;
             resourceInputs["enabled"] = state?.enabled;
             resourceInputs["ruleId"] = state?.ruleId;
         } else {
-            const args = argsOrState as Agento11yRuleActionArgs | undefined;
+            const args = argsOrState as RuleActionArgs | undefined;
             if (args?.collectionIds === undefined && !opts.urn) {
                 throw new Error("Missing required property 'collectionIds'");
             }
@@ -127,14 +127,14 @@ export class Agento11yRuleAction extends pulumi.CustomResource {
             resourceInputs["ruleId"] = args?.ruleId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(Agento11yRuleAction.__pulumiType, name, resourceInputs, opts);
+        super(RuleAction.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering Agento11yRuleAction resources.
+ * Input properties used for looking up and filtering RuleAction resources.
  */
-export interface Agento11yRuleActionState {
+export interface RuleActionState {
     /**
      * IDs of the collections that matching conversations are added to. Must be non-empty.
      */
@@ -154,9 +154,9 @@ export interface Agento11yRuleActionState {
 }
 
 /**
- * The set of arguments for constructing a Agento11yRuleAction resource.
+ * The set of arguments for constructing a RuleAction resource.
  */
-export interface Agento11yRuleActionArgs {
+export interface RuleActionArgs {
     /**
      * IDs of the collections that matching conversations are added to. Must be non-empty.
      */
