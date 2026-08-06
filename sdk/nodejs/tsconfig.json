@@ -13,6 +13,10 @@
         "strict": true
     },
     "files": [
+        "agento11yEvaluationRule.ts",
+        "agento11yEvaluator.ts",
+        "agento11yHookRule.ts",
+        "agento11yRuleAction.ts",
         "alerting/alertEnrichment.ts",
         "alerting/alertRuleV0Alpha1.ts",
         "alerting/contactPoint.ts",

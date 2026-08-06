@@ -5,6 +5,26 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { Agento11yEvaluationRuleArgs, Agento11yEvaluationRuleState } from "./agento11yEvaluationRule";
+export type Agento11yEvaluationRule = import("./agento11yEvaluationRule").Agento11yEvaluationRule;
+export const Agento11yEvaluationRule: typeof import("./agento11yEvaluationRule").Agento11yEvaluationRule = null as any;
+utilities.lazyLoad(exports, ["Agento11yEvaluationRule"], () => require("./agento11yEvaluationRule"));
+
+export { Agento11yEvaluatorArgs, Agento11yEvaluatorState } from "./agento11yEvaluator";
+export type Agento11yEvaluator = import("./agento11yEvaluator").Agento11yEvaluator;
+export const Agento11yEvaluator: typeof import("./agento11yEvaluator").Agento11yEvaluator = null as any;
+utilities.lazyLoad(exports, ["Agento11yEvaluator"], () => require("./agento11yEvaluator"));
+
+export { Agento11yHookRuleArgs, Agento11yHookRuleState } from "./agento11yHookRule";
+export type Agento11yHookRule = import("./agento11yHookRule").Agento11yHookRule;
+export const Agento11yHookRule: typeof import("./agento11yHookRule").Agento11yHookRule = null as any;
+utilities.lazyLoad(exports, ["Agento11yHookRule"], () => require("./agento11yHookRule"));
+
+export { Agento11yRuleActionArgs, Agento11yRuleActionState } from "./agento11yRuleAction";
+export type Agento11yRuleAction = import("./agento11yRuleAction").Agento11yRuleAction;
+export const Agento11yRuleAction: typeof import("./agento11yRuleAction").Agento11yRuleAction = null as any;
+utilities.lazyLoad(exports, ["Agento11yRuleAction"], () => require("./agento11yRuleAction"));
+
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -51,6 +71,28 @@ export {
     syntheticmonitoring,
     types,
 };
+
+const _module = {
+    version: utilities.getVersion(),
+    construct: (name: string, type: string, urn: string): pulumi.Resource => {
+        switch (type) {
+            case "grafana:index/agento11yEvaluationRule:Agento11yEvaluationRule":
+                return new Agento11yEvaluationRule(name, <any>undefined, { urn })
+            case "grafana:index/agento11yEvaluator:Agento11yEvaluator":
+                return new Agento11yEvaluator(name, <any>undefined, { urn })
+            case "grafana:index/agento11yHookRule:Agento11yHookRule":
+                return new Agento11yHookRule(name, <any>undefined, { urn })
+            case "grafana:index/agento11yRuleAction:Agento11yRuleAction":
+                return new Agento11yRuleAction(name, <any>undefined, { urn })
+            default:
+                throw new Error(`unknown resource type ${type}`);
+        }
+    },
+};
+pulumi.runtime.registerResourceModule("grafana", "index/agento11yEvaluationRule", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/agento11yEvaluator", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/agento11yHookRule", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/agento11yRuleAction", _module)
 pulumi.runtime.registerResourcePackage("grafana", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {
