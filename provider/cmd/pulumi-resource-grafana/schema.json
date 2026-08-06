@@ -8965,6 +8965,22 @@
                 }
             }
         },
+        "grafana:index/Agento11yHookRuleRedact:Agento11yHookRuleRedact": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Optional stable identifier for the pattern.\n"
+                },
+                "regex": {
+                    "type": "string",
+                    "description": "Regular expression to redact.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "regex"
+            ]
+        },
         "grafana:k6/ScheduleCron:ScheduleCron": {
             "properties": {
                 "schedule": {
@@ -20574,6 +20590,508 @@
                     "stackId": {
                         "type": "integer",
                         "description": "The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:index/agento11yEvaluationRule:Agento11yEvaluationRule": {
+            "description": "Manages a Grafana Agent Observability online evaluation rule. Rules select which agent generations (or whole conversations) are sampled and scored by one or more evaluators.\n\nRequires a Grafana instance with the `grafana-agento11y-app` plugin installed.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.Agento11yEvaluator(\"example\", {\n    evaluatorId: \"no_secrets\",\n    version: \"1\",\n    kind: \"regex\",\n    config: JSON.stringify({\n        pattern: \"(?i)(api[_-]?key|password|secret)\",\n    }),\n    outputKeys: JSON.stringify([{\n        key: \"clean\",\n        type: \"bool\",\n    }]),\n});\nconst exampleAgento11yEvaluationRule = new grafana.Agento11yEvaluationRule(\"example\", {\n    ruleId: \"score_user_turns\",\n    enabled: true,\n    selector: \"user_visible_turn\",\n    sampleRate: 0.1,\n    evaluatorIds: [example.evaluatorId],\n    match: JSON.stringify({\n        agent_name: \"checkout-*\",\n    }),\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumiverse_grafana as grafana\n\nexample = grafana.Agento11yEvaluator(\"example\",\n    evaluator_id=\"no_secrets\",\n    version=\"1\",\n    kind=\"regex\",\n    config=json.dumps({\n        \"pattern\": \"(?i)(api[_-]?key|password|secret)\",\n    }),\n    output_keys=json.dumps([{\n        \"key\": \"clean\",\n        \"type\": \"bool\",\n    }]))\nexample_agento11y_evaluation_rule = grafana.Agento11yEvaluationRule(\"example\",\n    rule_id=\"score_user_turns\",\n    enabled=True,\n    selector=\"user_visible_turn\",\n    sample_rate=0.1,\n    evaluator_ids=[example.evaluator_id],\n    match=json.dumps({\n        \"agent_name\": \"checkout-*\",\n    }))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Agento11yEvaluator(\"example\", new()\n    {\n        EvaluatorId = \"no_secrets\",\n        Version = \"1\",\n        Kind = \"regex\",\n        Config = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"pattern\"] = \"(?i)(api[_-]?key|password|secret)\",\n        }),\n        OutputKeys = JsonSerializer.Serialize(new[]\n        {\n            new Dictionary\u003cstring, object?\u003e\n            {\n                [\"key\"] = \"clean\",\n                [\"type\"] = \"bool\",\n            },\n        }),\n    });\n\n    var exampleAgento11yEvaluationRule = new Grafana.Agento11yEvaluationRule(\"example\", new()\n    {\n        RuleId = \"score_user_turns\",\n        Enabled = true,\n        Selector = \"user_visible_turn\",\n        SampleRate = 0.1,\n        EvaluatorIds = new[]\n        {\n            example.EvaluatorId,\n        },\n        Match = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"agent_name\"] = \"checkout-*\",\n        }),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"pattern\": \"(?i)(api[_-]?key|password|secret)\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\ttmpJSON1, err := json.Marshal([]map[string]interface{}{\n\t\t\tmap[string]interface{}{\n\t\t\t\t\"key\":  \"clean\",\n\t\t\t\t\"type\": \"bool\",\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson1 := string(tmpJSON1)\n\t\texample, err := grafana.NewAgento11yEvaluator(ctx, \"example\", \u0026grafana.Agento11yEvaluatorArgs{\n\t\t\tEvaluatorId: pulumi.String(\"no_secrets\"),\n\t\t\tVersion:     pulumi.String(\"1\"),\n\t\t\tKind:        pulumi.String(\"regex\"),\n\t\t\tConfig:      pulumi.String(pulumi.String(json0)),\n\t\t\tOutputKeys:  pulumi.String(pulumi.String(json1)),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON2, err := json.Marshal(map[string]interface{}{\n\t\t\t\"agent_name\": \"checkout-*\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson2 := string(tmpJSON2)\n\t\t_, err = grafana.NewAgento11yEvaluationRule(ctx, \"example\", \u0026grafana.Agento11yEvaluationRuleArgs{\n\t\t\tRuleId:     pulumi.String(\"score_user_turns\"),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t\tSelector:   pulumi.String(\"user_visible_turn\"),\n\t\t\tSampleRate: pulumi.Float64(0.1),\n\t\t\tEvaluatorIds: pulumi.StringArray{\n\t\t\t\texample.EvaluatorId,\n\t\t\t},\n\t\t\tMatch: pulumi.String(pulumi.String(json2)),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.Agento11yEvaluator;\nimport com.pulumi.grafana.Agento11yEvaluatorArgs;\nimport com.pulumi.grafana.Agento11yEvaluationRule;\nimport com.pulumi.grafana.Agento11yEvaluationRuleArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Agento11yEvaluator(\"example\", Agento11yEvaluatorArgs.builder()\n            .evaluatorId(\"no_secrets\")\n            .version(\"1\")\n            .kind(\"regex\")\n            .config(serializeJson(\n                jsonObject(\n                    jsonProperty(\"pattern\", \"(?i)(api[_-]?key|password|secret)\")\n                )))\n            .outputKeys(serializeJson(\n                jsonArray(jsonObject(\n                    jsonProperty(\"key\", \"clean\"),\n                    jsonProperty(\"type\", \"bool\")\n                ))))\n            .build());\n\n        var exampleAgento11yEvaluationRule = new Agento11yEvaluationRule(\"exampleAgento11yEvaluationRule\", Agento11yEvaluationRuleArgs.builder()\n            .ruleId(\"score_user_turns\")\n            .enabled(true)\n            .selector(\"user_visible_turn\")\n            .sampleRate(0.1)\n            .evaluatorIds(example.evaluatorId())\n            .match(serializeJson(\n                jsonObject(\n                    jsonProperty(\"agent_name\", \"checkout-*\")\n                )))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:Agento11yEvaluator\n    properties:\n      evaluatorId: no_secrets\n      version: '1'\n      kind: regex\n      config:\n        fn::toJSON:\n          pattern: (?i)(api[_-]?key|password|secret)\n      outputKeys:\n        fn::toJSON:\n          - key: clean\n            type: bool\n  exampleAgento11yEvaluationRule:\n    type: grafana:Agento11yEvaluationRule\n    name: example\n    properties:\n      ruleId: score_user_turns\n      enabled: true\n      selector: user_visible_turn\n      sampleRate: 0.1\n      evaluatorIds:\n        - ${example.evaluatorId}\n      match:\n        fn::toJSON:\n          agent_name: checkout-*\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_agento11y_evaluation_rule.name \"{{ rule_id }}\"\n```\n\n",
+            "properties": {
+                "alertRuleUids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Optional Grafana alert rule UIDs associated with this evaluation rule.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether the rule is enabled. Defaults to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e.\n"
+                },
+                "evaluatorIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "IDs of the evaluators to run against matching generations. Must be non-empty.\n"
+                },
+                "match": {
+                    "type": "string",
+                    "description": "Optional JSON object of match filters (for example `{\u003cspan pulumi-lang-nodejs=\"\"agentName\"\" pulumi-lang-dotnet=\"\"AgentName\"\" pulumi-lang-go=\"\"agentName\"\" pulumi-lang-python=\"\"agent_name\"\" pulumi-lang-yaml=\"\"agentName\"\" pulumi-lang-java=\"\"agentName\"\"\u003e\"agentName\"\u003c/span\u003e:\"checkout-*\"}`). Omit to match everything.\n"
+                },
+                "minIdleSeconds": {
+                    "type": "integer",
+                    "description": "Idle window, in seconds, before a conversation-scope rule runs. Required when \u003cspan pulumi-lang-nodejs=\"`selector`\" pulumi-lang-dotnet=\"`Selector`\" pulumi-lang-go=\"`selector`\" pulumi-lang-python=\"`selector`\" pulumi-lang-yaml=\"`selector`\" pulumi-lang-java=\"`selector`\"\u003e`selector`\u003c/span\u003e is \u003cspan pulumi-lang-nodejs=\"`conversation`\" pulumi-lang-dotnet=\"`Conversation`\" pulumi-lang-go=\"`conversation`\" pulumi-lang-python=\"`conversation`\" pulumi-lang-yaml=\"`conversation`\" pulumi-lang-java=\"`conversation`\"\u003e`conversation`\u003c/span\u003e; must be unset otherwise.\n"
+                },
+                "ruleId": {
+                    "type": "string",
+                    "description": "Tenant-unique identifier of the rule. Changing this forces a new resource.\n"
+                },
+                "sampleRate": {
+                    "type": "number",
+                    "description": "Fraction of matching generations to evaluate, in `[0,1]`. Defaults to `0.01`.\n"
+                },
+                "selector": {
+                    "type": "string",
+                    "description": "Which generations the rule applies to. One of \u003cspan pulumi-lang-nodejs=\"`userVisibleTurn`\" pulumi-lang-dotnet=\"`UserVisibleTurn`\" pulumi-lang-go=\"`userVisibleTurn`\" pulumi-lang-python=\"`user_visible_turn`\" pulumi-lang-yaml=\"`userVisibleTurn`\" pulumi-lang-java=\"`userVisibleTurn`\"\u003e`userVisibleTurn`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`allAssistantGenerations`\" pulumi-lang-dotnet=\"`AllAssistantGenerations`\" pulumi-lang-go=\"`allAssistantGenerations`\" pulumi-lang-python=\"`all_assistant_generations`\" pulumi-lang-yaml=\"`allAssistantGenerations`\" pulumi-lang-java=\"`allAssistantGenerations`\"\u003e`allAssistantGenerations`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`toolCallSteps`\" pulumi-lang-dotnet=\"`ToolCallSteps`\" pulumi-lang-go=\"`toolCallSteps`\" pulumi-lang-python=\"`tool_call_steps`\" pulumi-lang-yaml=\"`toolCallSteps`\" pulumi-lang-java=\"`toolCallSteps`\"\u003e`toolCallSteps`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`erroredGenerations`\" pulumi-lang-dotnet=\"`ErroredGenerations`\" pulumi-lang-go=\"`erroredGenerations`\" pulumi-lang-python=\"`errored_generations`\" pulumi-lang-yaml=\"`erroredGenerations`\" pulumi-lang-java=\"`erroredGenerations`\"\u003e`erroredGenerations`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`conversation`\" pulumi-lang-dotnet=\"`Conversation`\" pulumi-lang-go=\"`conversation`\" pulumi-lang-python=\"`conversation`\" pulumi-lang-yaml=\"`conversation`\" pulumi-lang-java=\"`conversation`\"\u003e`conversation`\u003c/span\u003e. Defaults to \u003cspan pulumi-lang-nodejs=\"`userVisibleTurn`\" pulumi-lang-dotnet=\"`UserVisibleTurn`\" pulumi-lang-go=\"`userVisibleTurn`\" pulumi-lang-python=\"`user_visible_turn`\" pulumi-lang-yaml=\"`userVisibleTurn`\" pulumi-lang-java=\"`userVisibleTurn`\"\u003e`userVisibleTurn`\u003c/span\u003e.\n"
+                }
+            },
+            "required": [
+                "enabled",
+                "evaluatorIds",
+                "ruleId",
+                "sampleRate",
+                "selector"
+            ],
+            "inputProperties": {
+                "alertRuleUids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Optional Grafana alert rule UIDs associated with this evaluation rule.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether the rule is enabled. Defaults to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e.\n"
+                },
+                "evaluatorIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "IDs of the evaluators to run against matching generations. Must be non-empty.\n"
+                },
+                "match": {
+                    "type": "string",
+                    "description": "Optional JSON object of match filters (for example `{\u003cspan pulumi-lang-nodejs=\"\"agentName\"\" pulumi-lang-dotnet=\"\"AgentName\"\" pulumi-lang-go=\"\"agentName\"\" pulumi-lang-python=\"\"agent_name\"\" pulumi-lang-yaml=\"\"agentName\"\" pulumi-lang-java=\"\"agentName\"\"\u003e\"agentName\"\u003c/span\u003e:\"checkout-*\"}`). Omit to match everything.\n"
+                },
+                "minIdleSeconds": {
+                    "type": "integer",
+                    "description": "Idle window, in seconds, before a conversation-scope rule runs. Required when \u003cspan pulumi-lang-nodejs=\"`selector`\" pulumi-lang-dotnet=\"`Selector`\" pulumi-lang-go=\"`selector`\" pulumi-lang-python=\"`selector`\" pulumi-lang-yaml=\"`selector`\" pulumi-lang-java=\"`selector`\"\u003e`selector`\u003c/span\u003e is \u003cspan pulumi-lang-nodejs=\"`conversation`\" pulumi-lang-dotnet=\"`Conversation`\" pulumi-lang-go=\"`conversation`\" pulumi-lang-python=\"`conversation`\" pulumi-lang-yaml=\"`conversation`\" pulumi-lang-java=\"`conversation`\"\u003e`conversation`\u003c/span\u003e; must be unset otherwise.\n"
+                },
+                "ruleId": {
+                    "type": "string",
+                    "description": "Tenant-unique identifier of the rule. Changing this forces a new resource.\n"
+                },
+                "sampleRate": {
+                    "type": "number",
+                    "description": "Fraction of matching generations to evaluate, in `[0,1]`. Defaults to `0.01`.\n"
+                },
+                "selector": {
+                    "type": "string",
+                    "description": "Which generations the rule applies to. One of \u003cspan pulumi-lang-nodejs=\"`userVisibleTurn`\" pulumi-lang-dotnet=\"`UserVisibleTurn`\" pulumi-lang-go=\"`userVisibleTurn`\" pulumi-lang-python=\"`user_visible_turn`\" pulumi-lang-yaml=\"`userVisibleTurn`\" pulumi-lang-java=\"`userVisibleTurn`\"\u003e`userVisibleTurn`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`allAssistantGenerations`\" pulumi-lang-dotnet=\"`AllAssistantGenerations`\" pulumi-lang-go=\"`allAssistantGenerations`\" pulumi-lang-python=\"`all_assistant_generations`\" pulumi-lang-yaml=\"`allAssistantGenerations`\" pulumi-lang-java=\"`allAssistantGenerations`\"\u003e`allAssistantGenerations`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`toolCallSteps`\" pulumi-lang-dotnet=\"`ToolCallSteps`\" pulumi-lang-go=\"`toolCallSteps`\" pulumi-lang-python=\"`tool_call_steps`\" pulumi-lang-yaml=\"`toolCallSteps`\" pulumi-lang-java=\"`toolCallSteps`\"\u003e`toolCallSteps`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`erroredGenerations`\" pulumi-lang-dotnet=\"`ErroredGenerations`\" pulumi-lang-go=\"`erroredGenerations`\" pulumi-lang-python=\"`errored_generations`\" pulumi-lang-yaml=\"`erroredGenerations`\" pulumi-lang-java=\"`erroredGenerations`\"\u003e`erroredGenerations`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`conversation`\" pulumi-lang-dotnet=\"`Conversation`\" pulumi-lang-go=\"`conversation`\" pulumi-lang-python=\"`conversation`\" pulumi-lang-yaml=\"`conversation`\" pulumi-lang-java=\"`conversation`\"\u003e`conversation`\u003c/span\u003e. Defaults to \u003cspan pulumi-lang-nodejs=\"`userVisibleTurn`\" pulumi-lang-dotnet=\"`UserVisibleTurn`\" pulumi-lang-go=\"`userVisibleTurn`\" pulumi-lang-python=\"`user_visible_turn`\" pulumi-lang-yaml=\"`userVisibleTurn`\" pulumi-lang-java=\"`userVisibleTurn`\"\u003e`userVisibleTurn`\u003c/span\u003e.\n"
+                }
+            },
+            "requiredInputs": [
+                "evaluatorIds",
+                "ruleId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Agento11yEvaluationRule resources.\n",
+                "properties": {
+                    "alertRuleUids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Optional Grafana alert rule UIDs associated with this evaluation rule.\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "Whether the rule is enabled. Defaults to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e.\n"
+                    },
+                    "evaluatorIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "IDs of the evaluators to run against matching generations. Must be non-empty.\n"
+                    },
+                    "match": {
+                        "type": "string",
+                        "description": "Optional JSON object of match filters (for example `{\u003cspan pulumi-lang-nodejs=\"\"agentName\"\" pulumi-lang-dotnet=\"\"AgentName\"\" pulumi-lang-go=\"\"agentName\"\" pulumi-lang-python=\"\"agent_name\"\" pulumi-lang-yaml=\"\"agentName\"\" pulumi-lang-java=\"\"agentName\"\"\u003e\"agentName\"\u003c/span\u003e:\"checkout-*\"}`). Omit to match everything.\n"
+                    },
+                    "minIdleSeconds": {
+                        "type": "integer",
+                        "description": "Idle window, in seconds, before a conversation-scope rule runs. Required when \u003cspan pulumi-lang-nodejs=\"`selector`\" pulumi-lang-dotnet=\"`Selector`\" pulumi-lang-go=\"`selector`\" pulumi-lang-python=\"`selector`\" pulumi-lang-yaml=\"`selector`\" pulumi-lang-java=\"`selector`\"\u003e`selector`\u003c/span\u003e is \u003cspan pulumi-lang-nodejs=\"`conversation`\" pulumi-lang-dotnet=\"`Conversation`\" pulumi-lang-go=\"`conversation`\" pulumi-lang-python=\"`conversation`\" pulumi-lang-yaml=\"`conversation`\" pulumi-lang-java=\"`conversation`\"\u003e`conversation`\u003c/span\u003e; must be unset otherwise.\n"
+                    },
+                    "ruleId": {
+                        "type": "string",
+                        "description": "Tenant-unique identifier of the rule. Changing this forces a new resource.\n"
+                    },
+                    "sampleRate": {
+                        "type": "number",
+                        "description": "Fraction of matching generations to evaluate, in `[0,1]`. Defaults to `0.01`.\n"
+                    },
+                    "selector": {
+                        "type": "string",
+                        "description": "Which generations the rule applies to. One of \u003cspan pulumi-lang-nodejs=\"`userVisibleTurn`\" pulumi-lang-dotnet=\"`UserVisibleTurn`\" pulumi-lang-go=\"`userVisibleTurn`\" pulumi-lang-python=\"`user_visible_turn`\" pulumi-lang-yaml=\"`userVisibleTurn`\" pulumi-lang-java=\"`userVisibleTurn`\"\u003e`userVisibleTurn`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`allAssistantGenerations`\" pulumi-lang-dotnet=\"`AllAssistantGenerations`\" pulumi-lang-go=\"`allAssistantGenerations`\" pulumi-lang-python=\"`all_assistant_generations`\" pulumi-lang-yaml=\"`allAssistantGenerations`\" pulumi-lang-java=\"`allAssistantGenerations`\"\u003e`allAssistantGenerations`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`toolCallSteps`\" pulumi-lang-dotnet=\"`ToolCallSteps`\" pulumi-lang-go=\"`toolCallSteps`\" pulumi-lang-python=\"`tool_call_steps`\" pulumi-lang-yaml=\"`toolCallSteps`\" pulumi-lang-java=\"`toolCallSteps`\"\u003e`toolCallSteps`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`erroredGenerations`\" pulumi-lang-dotnet=\"`ErroredGenerations`\" pulumi-lang-go=\"`erroredGenerations`\" pulumi-lang-python=\"`errored_generations`\" pulumi-lang-yaml=\"`erroredGenerations`\" pulumi-lang-java=\"`erroredGenerations`\"\u003e`erroredGenerations`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`conversation`\" pulumi-lang-dotnet=\"`Conversation`\" pulumi-lang-go=\"`conversation`\" pulumi-lang-python=\"`conversation`\" pulumi-lang-yaml=\"`conversation`\" pulumi-lang-java=\"`conversation`\"\u003e`conversation`\u003c/span\u003e. Defaults to \u003cspan pulumi-lang-nodejs=\"`userVisibleTurn`\" pulumi-lang-dotnet=\"`UserVisibleTurn`\" pulumi-lang-go=\"`userVisibleTurn`\" pulumi-lang-python=\"`user_visible_turn`\" pulumi-lang-yaml=\"`userVisibleTurn`\" pulumi-lang-java=\"`userVisibleTurn`\"\u003e`userVisibleTurn`\u003c/span\u003e.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:index/agento11yEvaluator:Agento11yEvaluator": {
+            "description": "Manages a Grafana Agent Observability evaluator definition. Evaluators score agent generations or conversations (LLM judge, JSON schema, regex, or heuristic).\n\nRequires a Grafana instance with the `grafana-agento11y-app` plugin installed.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.Agento11yEvaluator(\"example\", {\n    evaluatorId: \"no_secrets\",\n    version: \"1\",\n    kind: \"regex\",\n    description: \"Flags assistant responses that leak secrets.\",\n    config: JSON.stringify({\n        pattern: \"(?i)(api[_-]?key|password|secret)\",\n    }),\n    outputKeys: JSON.stringify([{\n        key: \"clean\",\n        type: \"bool\",\n    }]),\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumiverse_grafana as grafana\n\nexample = grafana.Agento11yEvaluator(\"example\",\n    evaluator_id=\"no_secrets\",\n    version=\"1\",\n    kind=\"regex\",\n    description=\"Flags assistant responses that leak secrets.\",\n    config=json.dumps({\n        \"pattern\": \"(?i)(api[_-]?key|password|secret)\",\n    }),\n    output_keys=json.dumps([{\n        \"key\": \"clean\",\n        \"type\": \"bool\",\n    }]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Agento11yEvaluator(\"example\", new()\n    {\n        EvaluatorId = \"no_secrets\",\n        Version = \"1\",\n        Kind = \"regex\",\n        Description = \"Flags assistant responses that leak secrets.\",\n        Config = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"pattern\"] = \"(?i)(api[_-]?key|password|secret)\",\n        }),\n        OutputKeys = JsonSerializer.Serialize(new[]\n        {\n            new Dictionary\u003cstring, object?\u003e\n            {\n                [\"key\"] = \"clean\",\n                [\"type\"] = \"bool\",\n            },\n        }),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"pattern\": \"(?i)(api[_-]?key|password|secret)\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\ttmpJSON1, err := json.Marshal([]map[string]interface{}{\n\t\t\tmap[string]interface{}{\n\t\t\t\t\"key\":  \"clean\",\n\t\t\t\t\"type\": \"bool\",\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson1 := string(tmpJSON1)\n\t\t_, err = grafana.NewAgento11yEvaluator(ctx, \"example\", \u0026grafana.Agento11yEvaluatorArgs{\n\t\t\tEvaluatorId: pulumi.String(\"no_secrets\"),\n\t\t\tVersion:     pulumi.String(\"1\"),\n\t\t\tKind:        pulumi.String(\"regex\"),\n\t\t\tDescription: pulumi.String(\"Flags assistant responses that leak secrets.\"),\n\t\t\tConfig:      pulumi.String(pulumi.String(json0)),\n\t\t\tOutputKeys:  pulumi.String(pulumi.String(json1)),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.Agento11yEvaluator;\nimport com.pulumi.grafana.Agento11yEvaluatorArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Agento11yEvaluator(\"example\", Agento11yEvaluatorArgs.builder()\n            .evaluatorId(\"no_secrets\")\n            .version(\"1\")\n            .kind(\"regex\")\n            .description(\"Flags assistant responses that leak secrets.\")\n            .config(serializeJson(\n                jsonObject(\n                    jsonProperty(\"pattern\", \"(?i)(api[_-]?key|password|secret)\")\n                )))\n            .outputKeys(serializeJson(\n                jsonArray(jsonObject(\n                    jsonProperty(\"key\", \"clean\"),\n                    jsonProperty(\"type\", \"bool\")\n                ))))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:Agento11yEvaluator\n    properties:\n      evaluatorId: no_secrets\n      version: '1'\n      kind: regex\n      description: Flags assistant responses that leak secrets.\n      config:\n        fn::toJSON:\n          pattern: (?i)(api[_-]?key|password|secret)\n      outputKeys:\n        fn::toJSON:\n          - key: clean\n            type: bool\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_agento11y_evaluator.name \"{{ evaluator_id }}\"\n```\n\n",
+            "properties": {
+                "config": {
+                    "type": "string",
+                    "description": "Kind-specific evaluator configuration, encoded as a JSON object string. The server normalizes this payload, so it is managed from configuration and not refreshed from the API.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Optional human-readable description of the evaluator.\n"
+                },
+                "evaluatorId": {
+                    "type": "string",
+                    "description": "Tenant-unique identifier of the evaluator. Changing this forces a new resource.\n"
+                },
+                "kind": {
+                    "type": "string",
+                    "description": "The evaluator kind. One of \u003cspan pulumi-lang-nodejs=\"`llmJudge`\" pulumi-lang-dotnet=\"`LlmJudge`\" pulumi-lang-go=\"`llmJudge`\" pulumi-lang-python=\"`llm_judge`\" pulumi-lang-yaml=\"`llmJudge`\" pulumi-lang-java=\"`llmJudge`\"\u003e`llmJudge`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`jsonSchema`\" pulumi-lang-dotnet=\"`JsonSchema`\" pulumi-lang-go=\"`jsonSchema`\" pulumi-lang-python=\"`json_schema`\" pulumi-lang-yaml=\"`jsonSchema`\" pulumi-lang-java=\"`jsonSchema`\"\u003e`jsonSchema`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`regex`\" pulumi-lang-dotnet=\"`Regex`\" pulumi-lang-go=\"`regex`\" pulumi-lang-python=\"`regex`\" pulumi-lang-yaml=\"`regex`\" pulumi-lang-java=\"`regex`\"\u003e`regex`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`heuristic`\" pulumi-lang-dotnet=\"`Heuristic`\" pulumi-lang-go=\"`heuristic`\" pulumi-lang-python=\"`heuristic`\" pulumi-lang-yaml=\"`heuristic`\" pulumi-lang-java=\"`heuristic`\"\u003e`heuristic`\u003c/span\u003e.\n"
+                },
+                "outputKeys": {
+                    "type": "string",
+                    "description": "JSON array of output key definitions produced by the evaluator (for example `[{\"key\":\"score\",\"type\":\"number\",\u003cspan pulumi-lang-nodejs=\"\"passThreshold\"\" pulumi-lang-dotnet=\"\"PassThreshold\"\" pulumi-lang-go=\"\"passThreshold\"\" pulumi-lang-python=\"\"pass_threshold\"\" pulumi-lang-yaml=\"\"passThreshold\"\" pulumi-lang-java=\"\"passThreshold\"\"\u003e\"passThreshold\"\u003c/span\u003e:0.5}]`). Managed from configuration and not refreshed from the API.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "Version label of the evaluator definition.\n"
+                }
+            },
+            "required": [
+                "config",
+                "evaluatorId",
+                "kind",
+                "outputKeys",
+                "version"
+            ],
+            "inputProperties": {
+                "config": {
+                    "type": "string",
+                    "description": "Kind-specific evaluator configuration, encoded as a JSON object string. The server normalizes this payload, so it is managed from configuration and not refreshed from the API.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Optional human-readable description of the evaluator.\n"
+                },
+                "evaluatorId": {
+                    "type": "string",
+                    "description": "Tenant-unique identifier of the evaluator. Changing this forces a new resource.\n"
+                },
+                "kind": {
+                    "type": "string",
+                    "description": "The evaluator kind. One of \u003cspan pulumi-lang-nodejs=\"`llmJudge`\" pulumi-lang-dotnet=\"`LlmJudge`\" pulumi-lang-go=\"`llmJudge`\" pulumi-lang-python=\"`llm_judge`\" pulumi-lang-yaml=\"`llmJudge`\" pulumi-lang-java=\"`llmJudge`\"\u003e`llmJudge`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`jsonSchema`\" pulumi-lang-dotnet=\"`JsonSchema`\" pulumi-lang-go=\"`jsonSchema`\" pulumi-lang-python=\"`json_schema`\" pulumi-lang-yaml=\"`jsonSchema`\" pulumi-lang-java=\"`jsonSchema`\"\u003e`jsonSchema`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`regex`\" pulumi-lang-dotnet=\"`Regex`\" pulumi-lang-go=\"`regex`\" pulumi-lang-python=\"`regex`\" pulumi-lang-yaml=\"`regex`\" pulumi-lang-java=\"`regex`\"\u003e`regex`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`heuristic`\" pulumi-lang-dotnet=\"`Heuristic`\" pulumi-lang-go=\"`heuristic`\" pulumi-lang-python=\"`heuristic`\" pulumi-lang-yaml=\"`heuristic`\" pulumi-lang-java=\"`heuristic`\"\u003e`heuristic`\u003c/span\u003e.\n"
+                },
+                "outputKeys": {
+                    "type": "string",
+                    "description": "JSON array of output key definitions produced by the evaluator (for example `[{\"key\":\"score\",\"type\":\"number\",\u003cspan pulumi-lang-nodejs=\"\"passThreshold\"\" pulumi-lang-dotnet=\"\"PassThreshold\"\" pulumi-lang-go=\"\"passThreshold\"\" pulumi-lang-python=\"\"pass_threshold\"\" pulumi-lang-yaml=\"\"passThreshold\"\" pulumi-lang-java=\"\"passThreshold\"\"\u003e\"passThreshold\"\u003c/span\u003e:0.5}]`). Managed from configuration and not refreshed from the API.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "Version label of the evaluator definition.\n"
+                }
+            },
+            "requiredInputs": [
+                "config",
+                "evaluatorId",
+                "kind",
+                "outputKeys",
+                "version"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Agento11yEvaluator resources.\n",
+                "properties": {
+                    "config": {
+                        "type": "string",
+                        "description": "Kind-specific evaluator configuration, encoded as a JSON object string. The server normalizes this payload, so it is managed from configuration and not refreshed from the API.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Optional human-readable description of the evaluator.\n"
+                    },
+                    "evaluatorId": {
+                        "type": "string",
+                        "description": "Tenant-unique identifier of the evaluator. Changing this forces a new resource.\n"
+                    },
+                    "kind": {
+                        "type": "string",
+                        "description": "The evaluator kind. One of \u003cspan pulumi-lang-nodejs=\"`llmJudge`\" pulumi-lang-dotnet=\"`LlmJudge`\" pulumi-lang-go=\"`llmJudge`\" pulumi-lang-python=\"`llm_judge`\" pulumi-lang-yaml=\"`llmJudge`\" pulumi-lang-java=\"`llmJudge`\"\u003e`llmJudge`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`jsonSchema`\" pulumi-lang-dotnet=\"`JsonSchema`\" pulumi-lang-go=\"`jsonSchema`\" pulumi-lang-python=\"`json_schema`\" pulumi-lang-yaml=\"`jsonSchema`\" pulumi-lang-java=\"`jsonSchema`\"\u003e`jsonSchema`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`regex`\" pulumi-lang-dotnet=\"`Regex`\" pulumi-lang-go=\"`regex`\" pulumi-lang-python=\"`regex`\" pulumi-lang-yaml=\"`regex`\" pulumi-lang-java=\"`regex`\"\u003e`regex`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`heuristic`\" pulumi-lang-dotnet=\"`Heuristic`\" pulumi-lang-go=\"`heuristic`\" pulumi-lang-python=\"`heuristic`\" pulumi-lang-yaml=\"`heuristic`\" pulumi-lang-java=\"`heuristic`\"\u003e`heuristic`\u003c/span\u003e.\n"
+                    },
+                    "outputKeys": {
+                        "type": "string",
+                        "description": "JSON array of output key definitions produced by the evaluator (for example `[{\"key\":\"score\",\"type\":\"number\",\u003cspan pulumi-lang-nodejs=\"\"passThreshold\"\" pulumi-lang-dotnet=\"\"PassThreshold\"\" pulumi-lang-go=\"\"passThreshold\"\" pulumi-lang-python=\"\"pass_threshold\"\" pulumi-lang-yaml=\"\"passThreshold\"\" pulumi-lang-java=\"\"passThreshold\"\"\u003e\"passThreshold\"\u003c/span\u003e:0.5}]`). Managed from configuration and not refreshed from the API.\n"
+                    },
+                    "version": {
+                        "type": "string",
+                        "description": "Version label of the evaluator definition.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:index/agento11yHookRule:Agento11yHookRule": {
+            "description": "Manages a Grafana Agent Observability hook (guard) rule. Hook rules run synchronously on the request path and can deny or warn on matching generations, block tool calls, or redact content.\n\nAt least one of \u003cspan pulumi-lang-nodejs=\"`evaluatorIds`\" pulumi-lang-dotnet=\"`EvaluatorIds`\" pulumi-lang-go=\"`evaluatorIds`\" pulumi-lang-python=\"`evaluator_ids`\" pulumi-lang-yaml=\"`evaluatorIds`\" pulumi-lang-java=\"`evaluatorIds`\"\u003e`evaluatorIds`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`blockedTools`\" pulumi-lang-dotnet=\"`BlockedTools`\" pulumi-lang-go=\"`blockedTools`\" pulumi-lang-python=\"`blocked_tools`\" pulumi-lang-yaml=\"`blockedTools`\" pulumi-lang-java=\"`blockedTools`\"\u003e`blockedTools`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`redact`\" pulumi-lang-dotnet=\"`Redact`\" pulumi-lang-go=\"`redact`\" pulumi-lang-python=\"`redact`\" pulumi-lang-yaml=\"`redact`\" pulumi-lang-java=\"`redact`\"\u003e`redact`\u003c/span\u003e must be set. Requires a Grafana instance with the `grafana-agento11y-app` plugin installed.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.Agento11yHookRule(\"example\", {\n    ruleId: \"block_destructive_tools\",\n    phase: \"preflight\",\n    actionOnFail: \"deny\",\n    blockedTools: [\n        \"delete_*\",\n        \"drop_*\",\n    ],\n    redacts: [{\n        id: \"emails\",\n        regex: \"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nexample = grafana.Agento11yHookRule(\"example\",\n    rule_id=\"block_destructive_tools\",\n    phase=\"preflight\",\n    action_on_fail=\"deny\",\n    blocked_tools=[\n        \"delete_*\",\n        \"drop_*\",\n    ],\n    redacts=[{\n        \"id\": \"emails\",\n        \"regex\": \"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\",\n    }])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Agento11yHookRule(\"example\", new()\n    {\n        RuleId = \"block_destructive_tools\",\n        Phase = \"preflight\",\n        ActionOnFail = \"deny\",\n        BlockedTools = new[]\n        {\n            \"delete_*\",\n            \"drop_*\",\n        },\n        Redacts = new[]\n        {\n            new Grafana.Inputs.Agento11yHookRuleRedactArgs\n            {\n                Id = \"emails\",\n                Regex = \"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := grafana.NewAgento11yHookRule(ctx, \"example\", \u0026grafana.Agento11yHookRuleArgs{\n\t\t\tRuleId:       pulumi.String(\"block_destructive_tools\"),\n\t\t\tPhase:        pulumi.String(\"preflight\"),\n\t\t\tActionOnFail: pulumi.String(\"deny\"),\n\t\t\tBlockedTools: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"delete_*\"),\n\t\t\t\tpulumi.String(\"drop_*\"),\n\t\t\t},\n\t\t\tRedacts: grafana.Agento11yHookRuleRedactArray{\n\t\t\t\t\u0026grafana.Agento11yHookRuleRedactArgs{\n\t\t\t\t\tId:    pulumi.String(\"emails\"),\n\t\t\t\t\tRegex: pulumi.String(\"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.Agento11yHookRule;\nimport com.pulumi.grafana.Agento11yHookRuleArgs;\nimport com.pulumi.grafana.inputs.Agento11yHookRuleRedactArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Agento11yHookRule(\"example\", Agento11yHookRuleArgs.builder()\n            .ruleId(\"block_destructive_tools\")\n            .phase(\"preflight\")\n            .actionOnFail(\"deny\")\n            .blockedTools(            \n                \"delete_*\",\n                \"drop_*\")\n            .redacts(Agento11yHookRuleRedactArgs.builder()\n                .id(\"emails\")\n                .regex(\"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:Agento11yHookRule\n    properties:\n      ruleId: block_destructive_tools\n      phase: preflight\n      actionOnFail: deny\n      blockedTools:\n        - delete_*\n        - drop_*\n      redacts:\n        - id: emails\n          regex: '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+'\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_agento11y_hook_rule.name \"{{ rule_id }}\"\n```\n\n",
+            "properties": {
+                "actionOnFail": {
+                    "type": "string",
+                    "description": "Action taken when the hook fails. One of \u003cspan pulumi-lang-nodejs=\"`deny`\" pulumi-lang-dotnet=\"`Deny`\" pulumi-lang-go=\"`deny`\" pulumi-lang-python=\"`deny`\" pulumi-lang-yaml=\"`deny`\" pulumi-lang-java=\"`deny`\"\u003e`deny`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`warn`\" pulumi-lang-dotnet=\"`Warn`\" pulumi-lang-go=\"`warn`\" pulumi-lang-python=\"`warn`\" pulumi-lang-yaml=\"`warn`\" pulumi-lang-java=\"`warn`\"\u003e`warn`\u003c/span\u003e. Defaults to \u003cspan pulumi-lang-nodejs=\"`deny`\" pulumi-lang-dotnet=\"`Deny`\" pulumi-lang-go=\"`deny`\" pulumi-lang-python=\"`deny`\" pulumi-lang-yaml=\"`deny`\" pulumi-lang-java=\"`deny`\"\u003e`deny`\u003c/span\u003e.\n"
+                },
+                "blockedTools": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Glob patterns of tool call names to block (for example `[\"delete_*\"]`).\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether the hook rule is enabled. Defaults to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e.\n"
+                },
+                "evaluatorIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "IDs of the evaluators to run synchronously. Optional when \u003cspan pulumi-lang-nodejs=\"`blockedTools`\" pulumi-lang-dotnet=\"`BlockedTools`\" pulumi-lang-go=\"`blockedTools`\" pulumi-lang-python=\"`blocked_tools`\" pulumi-lang-yaml=\"`blockedTools`\" pulumi-lang-java=\"`blockedTools`\"\u003e`blockedTools`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`redact`\" pulumi-lang-dotnet=\"`Redact`\" pulumi-lang-go=\"`redact`\" pulumi-lang-python=\"`redact`\" pulumi-lang-yaml=\"`redact`\" pulumi-lang-java=\"`redact`\"\u003e`redact`\u003c/span\u003e is set.\n"
+                },
+                "match": {
+                    "type": "string",
+                    "description": "Optional JSON object of match filters (for example `{\u003cspan pulumi-lang-nodejs=\"\"agentName\"\" pulumi-lang-dotnet=\"\"AgentName\"\" pulumi-lang-go=\"\"agentName\"\" pulumi-lang-python=\"\"agent_name\"\" pulumi-lang-yaml=\"\"agentName\"\" pulumi-lang-java=\"\"agentName\"\"\u003e\"agentName\"\u003c/span\u003e:\"checkout-*\"}`). Omit to match everything.\n"
+                },
+                "phase": {
+                    "type": "string",
+                    "description": "When the hook runs. One of \u003cspan pulumi-lang-nodejs=\"`preflight`\" pulumi-lang-dotnet=\"`Preflight`\" pulumi-lang-go=\"`preflight`\" pulumi-lang-python=\"`preflight`\" pulumi-lang-yaml=\"`preflight`\" pulumi-lang-java=\"`preflight`\"\u003e`preflight`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`postflight`\" pulumi-lang-dotnet=\"`Postflight`\" pulumi-lang-go=\"`postflight`\" pulumi-lang-python=\"`postflight`\" pulumi-lang-yaml=\"`postflight`\" pulumi-lang-java=\"`postflight`\"\u003e`postflight`\u003c/span\u003e. Defaults to \u003cspan pulumi-lang-nodejs=\"`preflight`\" pulumi-lang-dotnet=\"`Preflight`\" pulumi-lang-go=\"`preflight`\" pulumi-lang-python=\"`preflight`\" pulumi-lang-yaml=\"`preflight`\" pulumi-lang-java=\"`preflight`\"\u003e`preflight`\u003c/span\u003e.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Evaluation priority; lower priority rules run first. Defaults to \u003cspan pulumi-lang-nodejs=\"`0`\" pulumi-lang-dotnet=\"`0`\" pulumi-lang-go=\"`0`\" pulumi-lang-python=\"`0`\" pulumi-lang-yaml=\"`0`\" pulumi-lang-java=\"`0`\"\u003e`0`\u003c/span\u003e.\n"
+                },
+                "redacts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:index/Agento11yHookRuleRedact:Agento11yHookRuleRedact"
+                    },
+                    "description": "Ordered regex redaction patterns applied to request/response text.\n"
+                },
+                "ruleId": {
+                    "type": "string",
+                    "description": "Tenant-unique identifier of the hook rule. Changing this forces a new resource.\n"
+                },
+                "selector": {
+                    "type": "string",
+                    "description": "Which generations the hook applies to. One of \u003cspan pulumi-lang-nodejs=\"`all`\" pulumi-lang-dotnet=\"`All`\" pulumi-lang-go=\"`all`\" pulumi-lang-python=\"`all`\" pulumi-lang-yaml=\"`all`\" pulumi-lang-java=\"`all`\"\u003e`all`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`userVisibleTurn`\" pulumi-lang-dotnet=\"`UserVisibleTurn`\" pulumi-lang-go=\"`userVisibleTurn`\" pulumi-lang-python=\"`user_visible_turn`\" pulumi-lang-yaml=\"`userVisibleTurn`\" pulumi-lang-java=\"`userVisibleTurn`\"\u003e`userVisibleTurn`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`allAssistantGenerations`\" pulumi-lang-dotnet=\"`AllAssistantGenerations`\" pulumi-lang-go=\"`allAssistantGenerations`\" pulumi-lang-python=\"`all_assistant_generations`\" pulumi-lang-yaml=\"`allAssistantGenerations`\" pulumi-lang-java=\"`allAssistantGenerations`\"\u003e`allAssistantGenerations`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`toolCallSteps`\" pulumi-lang-dotnet=\"`ToolCallSteps`\" pulumi-lang-go=\"`toolCallSteps`\" pulumi-lang-python=\"`tool_call_steps`\" pulumi-lang-yaml=\"`toolCallSteps`\" pulumi-lang-java=\"`toolCallSteps`\"\u003e`toolCallSteps`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`erroredGenerations`\" pulumi-lang-dotnet=\"`ErroredGenerations`\" pulumi-lang-go=\"`erroredGenerations`\" pulumi-lang-python=\"`errored_generations`\" pulumi-lang-yaml=\"`erroredGenerations`\" pulumi-lang-java=\"`erroredGenerations`\"\u003e`erroredGenerations`\u003c/span\u003e. Defaults to \u003cspan pulumi-lang-nodejs=\"`all`\" pulumi-lang-dotnet=\"`All`\" pulumi-lang-go=\"`all`\" pulumi-lang-python=\"`all`\" pulumi-lang-yaml=\"`all`\" pulumi-lang-java=\"`all`\"\u003e`all`\u003c/span\u003e.\n"
+                },
+                "shortCircuit": {
+                    "type": "boolean",
+                    "description": "When \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e (default), stop at the first failed rule. When \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e, run all evaluators and deny if any failed.\n"
+                }
+            },
+            "required": [
+                "actionOnFail",
+                "enabled",
+                "phase",
+                "priority",
+                "ruleId",
+                "selector",
+                "shortCircuit"
+            ],
+            "inputProperties": {
+                "actionOnFail": {
+                    "type": "string",
+                    "description": "Action taken when the hook fails. One of \u003cspan pulumi-lang-nodejs=\"`deny`\" pulumi-lang-dotnet=\"`Deny`\" pulumi-lang-go=\"`deny`\" pulumi-lang-python=\"`deny`\" pulumi-lang-yaml=\"`deny`\" pulumi-lang-java=\"`deny`\"\u003e`deny`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`warn`\" pulumi-lang-dotnet=\"`Warn`\" pulumi-lang-go=\"`warn`\" pulumi-lang-python=\"`warn`\" pulumi-lang-yaml=\"`warn`\" pulumi-lang-java=\"`warn`\"\u003e`warn`\u003c/span\u003e. Defaults to \u003cspan pulumi-lang-nodejs=\"`deny`\" pulumi-lang-dotnet=\"`Deny`\" pulumi-lang-go=\"`deny`\" pulumi-lang-python=\"`deny`\" pulumi-lang-yaml=\"`deny`\" pulumi-lang-java=\"`deny`\"\u003e`deny`\u003c/span\u003e.\n"
+                },
+                "blockedTools": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Glob patterns of tool call names to block (for example `[\"delete_*\"]`).\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether the hook rule is enabled. Defaults to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e.\n"
+                },
+                "evaluatorIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "IDs of the evaluators to run synchronously. Optional when \u003cspan pulumi-lang-nodejs=\"`blockedTools`\" pulumi-lang-dotnet=\"`BlockedTools`\" pulumi-lang-go=\"`blockedTools`\" pulumi-lang-python=\"`blocked_tools`\" pulumi-lang-yaml=\"`blockedTools`\" pulumi-lang-java=\"`blockedTools`\"\u003e`blockedTools`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`redact`\" pulumi-lang-dotnet=\"`Redact`\" pulumi-lang-go=\"`redact`\" pulumi-lang-python=\"`redact`\" pulumi-lang-yaml=\"`redact`\" pulumi-lang-java=\"`redact`\"\u003e`redact`\u003c/span\u003e is set.\n"
+                },
+                "match": {
+                    "type": "string",
+                    "description": "Optional JSON object of match filters (for example `{\u003cspan pulumi-lang-nodejs=\"\"agentName\"\" pulumi-lang-dotnet=\"\"AgentName\"\" pulumi-lang-go=\"\"agentName\"\" pulumi-lang-python=\"\"agent_name\"\" pulumi-lang-yaml=\"\"agentName\"\" pulumi-lang-java=\"\"agentName\"\"\u003e\"agentName\"\u003c/span\u003e:\"checkout-*\"}`). Omit to match everything.\n"
+                },
+                "phase": {
+                    "type": "string",
+                    "description": "When the hook runs. One of \u003cspan pulumi-lang-nodejs=\"`preflight`\" pulumi-lang-dotnet=\"`Preflight`\" pulumi-lang-go=\"`preflight`\" pulumi-lang-python=\"`preflight`\" pulumi-lang-yaml=\"`preflight`\" pulumi-lang-java=\"`preflight`\"\u003e`preflight`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`postflight`\" pulumi-lang-dotnet=\"`Postflight`\" pulumi-lang-go=\"`postflight`\" pulumi-lang-python=\"`postflight`\" pulumi-lang-yaml=\"`postflight`\" pulumi-lang-java=\"`postflight`\"\u003e`postflight`\u003c/span\u003e. Defaults to \u003cspan pulumi-lang-nodejs=\"`preflight`\" pulumi-lang-dotnet=\"`Preflight`\" pulumi-lang-go=\"`preflight`\" pulumi-lang-python=\"`preflight`\" pulumi-lang-yaml=\"`preflight`\" pulumi-lang-java=\"`preflight`\"\u003e`preflight`\u003c/span\u003e.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Evaluation priority; lower priority rules run first. Defaults to \u003cspan pulumi-lang-nodejs=\"`0`\" pulumi-lang-dotnet=\"`0`\" pulumi-lang-go=\"`0`\" pulumi-lang-python=\"`0`\" pulumi-lang-yaml=\"`0`\" pulumi-lang-java=\"`0`\"\u003e`0`\u003c/span\u003e.\n"
+                },
+                "redacts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:index/Agento11yHookRuleRedact:Agento11yHookRuleRedact"
+                    },
+                    "description": "Ordered regex redaction patterns applied to request/response text.\n"
+                },
+                "ruleId": {
+                    "type": "string",
+                    "description": "Tenant-unique identifier of the hook rule. Changing this forces a new resource.\n"
+                },
+                "selector": {
+                    "type": "string",
+                    "description": "Which generations the hook applies to. One of \u003cspan pulumi-lang-nodejs=\"`all`\" pulumi-lang-dotnet=\"`All`\" pulumi-lang-go=\"`all`\" pulumi-lang-python=\"`all`\" pulumi-lang-yaml=\"`all`\" pulumi-lang-java=\"`all`\"\u003e`all`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`userVisibleTurn`\" pulumi-lang-dotnet=\"`UserVisibleTurn`\" pulumi-lang-go=\"`userVisibleTurn`\" pulumi-lang-python=\"`user_visible_turn`\" pulumi-lang-yaml=\"`userVisibleTurn`\" pulumi-lang-java=\"`userVisibleTurn`\"\u003e`userVisibleTurn`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`allAssistantGenerations`\" pulumi-lang-dotnet=\"`AllAssistantGenerations`\" pulumi-lang-go=\"`allAssistantGenerations`\" pulumi-lang-python=\"`all_assistant_generations`\" pulumi-lang-yaml=\"`allAssistantGenerations`\" pulumi-lang-java=\"`allAssistantGenerations`\"\u003e`allAssistantGenerations`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`toolCallSteps`\" pulumi-lang-dotnet=\"`ToolCallSteps`\" pulumi-lang-go=\"`toolCallSteps`\" pulumi-lang-python=\"`tool_call_steps`\" pulumi-lang-yaml=\"`toolCallSteps`\" pulumi-lang-java=\"`toolCallSteps`\"\u003e`toolCallSteps`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`erroredGenerations`\" pulumi-lang-dotnet=\"`ErroredGenerations`\" pulumi-lang-go=\"`erroredGenerations`\" pulumi-lang-python=\"`errored_generations`\" pulumi-lang-yaml=\"`erroredGenerations`\" pulumi-lang-java=\"`erroredGenerations`\"\u003e`erroredGenerations`\u003c/span\u003e. Defaults to \u003cspan pulumi-lang-nodejs=\"`all`\" pulumi-lang-dotnet=\"`All`\" pulumi-lang-go=\"`all`\" pulumi-lang-python=\"`all`\" pulumi-lang-yaml=\"`all`\" pulumi-lang-java=\"`all`\"\u003e`all`\u003c/span\u003e.\n"
+                },
+                "shortCircuit": {
+                    "type": "boolean",
+                    "description": "When \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e (default), stop at the first failed rule. When \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e, run all evaluators and deny if any failed.\n"
+                }
+            },
+            "requiredInputs": [
+                "ruleId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Agento11yHookRule resources.\n",
+                "properties": {
+                    "actionOnFail": {
+                        "type": "string",
+                        "description": "Action taken when the hook fails. One of \u003cspan pulumi-lang-nodejs=\"`deny`\" pulumi-lang-dotnet=\"`Deny`\" pulumi-lang-go=\"`deny`\" pulumi-lang-python=\"`deny`\" pulumi-lang-yaml=\"`deny`\" pulumi-lang-java=\"`deny`\"\u003e`deny`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`warn`\" pulumi-lang-dotnet=\"`Warn`\" pulumi-lang-go=\"`warn`\" pulumi-lang-python=\"`warn`\" pulumi-lang-yaml=\"`warn`\" pulumi-lang-java=\"`warn`\"\u003e`warn`\u003c/span\u003e. Defaults to \u003cspan pulumi-lang-nodejs=\"`deny`\" pulumi-lang-dotnet=\"`Deny`\" pulumi-lang-go=\"`deny`\" pulumi-lang-python=\"`deny`\" pulumi-lang-yaml=\"`deny`\" pulumi-lang-java=\"`deny`\"\u003e`deny`\u003c/span\u003e.\n"
+                    },
+                    "blockedTools": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Glob patterns of tool call names to block (for example `[\"delete_*\"]`).\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "Whether the hook rule is enabled. Defaults to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e.\n"
+                    },
+                    "evaluatorIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "IDs of the evaluators to run synchronously. Optional when \u003cspan pulumi-lang-nodejs=\"`blockedTools`\" pulumi-lang-dotnet=\"`BlockedTools`\" pulumi-lang-go=\"`blockedTools`\" pulumi-lang-python=\"`blocked_tools`\" pulumi-lang-yaml=\"`blockedTools`\" pulumi-lang-java=\"`blockedTools`\"\u003e`blockedTools`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`redact`\" pulumi-lang-dotnet=\"`Redact`\" pulumi-lang-go=\"`redact`\" pulumi-lang-python=\"`redact`\" pulumi-lang-yaml=\"`redact`\" pulumi-lang-java=\"`redact`\"\u003e`redact`\u003c/span\u003e is set.\n"
+                    },
+                    "match": {
+                        "type": "string",
+                        "description": "Optional JSON object of match filters (for example `{\u003cspan pulumi-lang-nodejs=\"\"agentName\"\" pulumi-lang-dotnet=\"\"AgentName\"\" pulumi-lang-go=\"\"agentName\"\" pulumi-lang-python=\"\"agent_name\"\" pulumi-lang-yaml=\"\"agentName\"\" pulumi-lang-java=\"\"agentName\"\"\u003e\"agentName\"\u003c/span\u003e:\"checkout-*\"}`). Omit to match everything.\n"
+                    },
+                    "phase": {
+                        "type": "string",
+                        "description": "When the hook runs. One of \u003cspan pulumi-lang-nodejs=\"`preflight`\" pulumi-lang-dotnet=\"`Preflight`\" pulumi-lang-go=\"`preflight`\" pulumi-lang-python=\"`preflight`\" pulumi-lang-yaml=\"`preflight`\" pulumi-lang-java=\"`preflight`\"\u003e`preflight`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`postflight`\" pulumi-lang-dotnet=\"`Postflight`\" pulumi-lang-go=\"`postflight`\" pulumi-lang-python=\"`postflight`\" pulumi-lang-yaml=\"`postflight`\" pulumi-lang-java=\"`postflight`\"\u003e`postflight`\u003c/span\u003e. Defaults to \u003cspan pulumi-lang-nodejs=\"`preflight`\" pulumi-lang-dotnet=\"`Preflight`\" pulumi-lang-go=\"`preflight`\" pulumi-lang-python=\"`preflight`\" pulumi-lang-yaml=\"`preflight`\" pulumi-lang-java=\"`preflight`\"\u003e`preflight`\u003c/span\u003e.\n"
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "description": "Evaluation priority; lower priority rules run first. Defaults to \u003cspan pulumi-lang-nodejs=\"`0`\" pulumi-lang-dotnet=\"`0`\" pulumi-lang-go=\"`0`\" pulumi-lang-python=\"`0`\" pulumi-lang-yaml=\"`0`\" pulumi-lang-java=\"`0`\"\u003e`0`\u003c/span\u003e.\n"
+                    },
+                    "redacts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/grafana:index/Agento11yHookRuleRedact:Agento11yHookRuleRedact"
+                        },
+                        "description": "Ordered regex redaction patterns applied to request/response text.\n"
+                    },
+                    "ruleId": {
+                        "type": "string",
+                        "description": "Tenant-unique identifier of the hook rule. Changing this forces a new resource.\n"
+                    },
+                    "selector": {
+                        "type": "string",
+                        "description": "Which generations the hook applies to. One of \u003cspan pulumi-lang-nodejs=\"`all`\" pulumi-lang-dotnet=\"`All`\" pulumi-lang-go=\"`all`\" pulumi-lang-python=\"`all`\" pulumi-lang-yaml=\"`all`\" pulumi-lang-java=\"`all`\"\u003e`all`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`userVisibleTurn`\" pulumi-lang-dotnet=\"`UserVisibleTurn`\" pulumi-lang-go=\"`userVisibleTurn`\" pulumi-lang-python=\"`user_visible_turn`\" pulumi-lang-yaml=\"`userVisibleTurn`\" pulumi-lang-java=\"`userVisibleTurn`\"\u003e`userVisibleTurn`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`allAssistantGenerations`\" pulumi-lang-dotnet=\"`AllAssistantGenerations`\" pulumi-lang-go=\"`allAssistantGenerations`\" pulumi-lang-python=\"`all_assistant_generations`\" pulumi-lang-yaml=\"`allAssistantGenerations`\" pulumi-lang-java=\"`allAssistantGenerations`\"\u003e`allAssistantGenerations`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`toolCallSteps`\" pulumi-lang-dotnet=\"`ToolCallSteps`\" pulumi-lang-go=\"`toolCallSteps`\" pulumi-lang-python=\"`tool_call_steps`\" pulumi-lang-yaml=\"`toolCallSteps`\" pulumi-lang-java=\"`toolCallSteps`\"\u003e`toolCallSteps`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`erroredGenerations`\" pulumi-lang-dotnet=\"`ErroredGenerations`\" pulumi-lang-go=\"`erroredGenerations`\" pulumi-lang-python=\"`errored_generations`\" pulumi-lang-yaml=\"`erroredGenerations`\" pulumi-lang-java=\"`erroredGenerations`\"\u003e`erroredGenerations`\u003c/span\u003e. Defaults to \u003cspan pulumi-lang-nodejs=\"`all`\" pulumi-lang-dotnet=\"`All`\" pulumi-lang-go=\"`all`\" pulumi-lang-python=\"`all`\" pulumi-lang-yaml=\"`all`\" pulumi-lang-java=\"`all`\"\u003e`all`\u003c/span\u003e.\n"
+                    },
+                    "shortCircuit": {
+                        "type": "boolean",
+                        "description": "When \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e (default), stop at the first failed rule. When \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e, run all evaluators and deny if any failed.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:index/agento11yRuleAction:Agento11yRuleAction": {
+            "description": "Manages an action attached to a Grafana Agent Observability evaluation rule. When the rule's aggregate verdict matches the configured condition, matching conversations are added to one or more collections.\n\nRequires a Grafana instance with the `grafana-agento11y-app` plugin installed.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.Agento11yEvaluator(\"example\", {\n    evaluatorId: \"no_secrets\",\n    version: \"1\",\n    kind: \"regex\",\n    config: JSON.stringify({\n        pattern: \"(?i)(api[_-]?key|password|secret)\",\n    }),\n    outputKeys: JSON.stringify([{\n        key: \"clean\",\n        type: \"bool\",\n    }]),\n});\nconst exampleAgento11yEvaluationRule = new grafana.Agento11yEvaluationRule(\"example\", {\n    ruleId: \"score_user_turns\",\n    selector: \"user_visible_turn\",\n    sampleRate: 0.1,\n    evaluatorIds: [example.evaluatorId],\n});\n// Adds conversations to a collection when every evaluator on the rule fails.\n// The referenced collection must already exist in Agent Observability.\nconst exampleAgento11yRuleAction = new grafana.Agento11yRuleAction(\"example\", {\n    ruleId: exampleAgento11yEvaluationRule.ruleId,\n    condition: \"all_evaluators_fail\",\n    collectionIds: [\"failed-evaluations\"],\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumiverse_grafana as grafana\n\nexample = grafana.Agento11yEvaluator(\"example\",\n    evaluator_id=\"no_secrets\",\n    version=\"1\",\n    kind=\"regex\",\n    config=json.dumps({\n        \"pattern\": \"(?i)(api[_-]?key|password|secret)\",\n    }),\n    output_keys=json.dumps([{\n        \"key\": \"clean\",\n        \"type\": \"bool\",\n    }]))\nexample_agento11y_evaluation_rule = grafana.Agento11yEvaluationRule(\"example\",\n    rule_id=\"score_user_turns\",\n    selector=\"user_visible_turn\",\n    sample_rate=0.1,\n    evaluator_ids=[example.evaluator_id])\n# Adds conversations to a collection when every evaluator on the rule fails.\n# The referenced collection must already exist in Agent Observability.\nexample_agento11y_rule_action = grafana.Agento11yRuleAction(\"example\",\n    rule_id=example_agento11y_evaluation_rule.rule_id,\n    condition=\"all_evaluators_fail\",\n    collection_ids=[\"failed-evaluations\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Agento11yEvaluator(\"example\", new()\n    {\n        EvaluatorId = \"no_secrets\",\n        Version = \"1\",\n        Kind = \"regex\",\n        Config = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"pattern\"] = \"(?i)(api[_-]?key|password|secret)\",\n        }),\n        OutputKeys = JsonSerializer.Serialize(new[]\n        {\n            new Dictionary\u003cstring, object?\u003e\n            {\n                [\"key\"] = \"clean\",\n                [\"type\"] = \"bool\",\n            },\n        }),\n    });\n\n    var exampleAgento11yEvaluationRule = new Grafana.Agento11yEvaluationRule(\"example\", new()\n    {\n        RuleId = \"score_user_turns\",\n        Selector = \"user_visible_turn\",\n        SampleRate = 0.1,\n        EvaluatorIds = new[]\n        {\n            example.EvaluatorId,\n        },\n    });\n\n    // Adds conversations to a collection when every evaluator on the rule fails.\n    // The referenced collection must already exist in Agent Observability.\n    var exampleAgento11yRuleAction = new Grafana.Agento11yRuleAction(\"example\", new()\n    {\n        RuleId = exampleAgento11yEvaluationRule.RuleId,\n        Condition = \"all_evaluators_fail\",\n        CollectionIds = new[]\n        {\n            \"failed-evaluations\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"pattern\": \"(?i)(api[_-]?key|password|secret)\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\ttmpJSON1, err := json.Marshal([]map[string]interface{}{\n\t\t\tmap[string]interface{}{\n\t\t\t\t\"key\":  \"clean\",\n\t\t\t\t\"type\": \"bool\",\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson1 := string(tmpJSON1)\n\t\texample, err := grafana.NewAgento11yEvaluator(ctx, \"example\", \u0026grafana.Agento11yEvaluatorArgs{\n\t\t\tEvaluatorId: pulumi.String(\"no_secrets\"),\n\t\t\tVersion:     pulumi.String(\"1\"),\n\t\t\tKind:        pulumi.String(\"regex\"),\n\t\t\tConfig:      pulumi.String(pulumi.String(json0)),\n\t\t\tOutputKeys:  pulumi.String(pulumi.String(json1)),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleAgento11yEvaluationRule, err := grafana.NewAgento11yEvaluationRule(ctx, \"example\", \u0026grafana.Agento11yEvaluationRuleArgs{\n\t\t\tRuleId:     pulumi.String(\"score_user_turns\"),\n\t\t\tSelector:   pulumi.String(\"user_visible_turn\"),\n\t\t\tSampleRate: pulumi.Float64(0.1),\n\t\t\tEvaluatorIds: pulumi.StringArray{\n\t\t\t\texample.EvaluatorId,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Adds conversations to a collection when every evaluator on the rule fails.\n\t\t// The referenced collection must already exist in Agent Observability.\n\t\t_, err = grafana.NewAgento11yRuleAction(ctx, \"example\", \u0026grafana.Agento11yRuleActionArgs{\n\t\t\tRuleId:    exampleAgento11yEvaluationRule.RuleId,\n\t\t\tCondition: pulumi.String(\"all_evaluators_fail\"),\n\t\t\tCollectionIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"failed-evaluations\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.Agento11yEvaluator;\nimport com.pulumi.grafana.Agento11yEvaluatorArgs;\nimport com.pulumi.grafana.Agento11yEvaluationRule;\nimport com.pulumi.grafana.Agento11yEvaluationRuleArgs;\nimport com.pulumi.grafana.Agento11yRuleAction;\nimport com.pulumi.grafana.Agento11yRuleActionArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Agento11yEvaluator(\"example\", Agento11yEvaluatorArgs.builder()\n            .evaluatorId(\"no_secrets\")\n            .version(\"1\")\n            .kind(\"regex\")\n            .config(serializeJson(\n                jsonObject(\n                    jsonProperty(\"pattern\", \"(?i)(api[_-]?key|password|secret)\")\n                )))\n            .outputKeys(serializeJson(\n                jsonArray(jsonObject(\n                    jsonProperty(\"key\", \"clean\"),\n                    jsonProperty(\"type\", \"bool\")\n                ))))\n            .build());\n\n        var exampleAgento11yEvaluationRule = new Agento11yEvaluationRule(\"exampleAgento11yEvaluationRule\", Agento11yEvaluationRuleArgs.builder()\n            .ruleId(\"score_user_turns\")\n            .selector(\"user_visible_turn\")\n            .sampleRate(0.1)\n            .evaluatorIds(example.evaluatorId())\n            .build());\n\n        // Adds conversations to a collection when every evaluator on the rule fails.\n        // The referenced collection must already exist in Agent Observability.\n        var exampleAgento11yRuleAction = new Agento11yRuleAction(\"exampleAgento11yRuleAction\", Agento11yRuleActionArgs.builder()\n            .ruleId(exampleAgento11yEvaluationRule.ruleId())\n            .condition(\"all_evaluators_fail\")\n            .collectionIds(\"failed-evaluations\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:Agento11yEvaluator\n    properties:\n      evaluatorId: no_secrets\n      version: '1'\n      kind: regex\n      config:\n        fn::toJSON:\n          pattern: (?i)(api[_-]?key|password|secret)\n      outputKeys:\n        fn::toJSON:\n          - key: clean\n            type: bool\n  exampleAgento11yEvaluationRule:\n    type: grafana:Agento11yEvaluationRule\n    name: example\n    properties:\n      ruleId: score_user_turns\n      selector: user_visible_turn\n      sampleRate: 0.1\n      evaluatorIds:\n        - ${example.evaluatorId}\n  # Adds conversations to a collection when every evaluator on the rule fails.\n  # The referenced collection must already exist in Agent Observability.\n  exampleAgento11yRuleAction:\n    type: grafana:Agento11yRuleAction\n    name: example\n    properties:\n      ruleId: ${exampleAgento11yEvaluationRule.ruleId}\n      condition: all_evaluators_fail\n      collectionIds:\n        - failed-evaluations\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_agento11y_rule_action.name \"{{ rule_id }}:{{ action_id }}\"\n```\n\n",
+            "properties": {
+                "collectionIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "IDs of the collections that matching conversations are added to. Must be non-empty.\n"
+                },
+                "condition": {
+                    "type": "string",
+                    "description": "Aggregate verdict that triggers the action. One of \u003cspan pulumi-lang-nodejs=\"`allEvaluatorsPass`\" pulumi-lang-dotnet=\"`AllEvaluatorsPass`\" pulumi-lang-go=\"`allEvaluatorsPass`\" pulumi-lang-python=\"`all_evaluators_pass`\" pulumi-lang-yaml=\"`allEvaluatorsPass`\" pulumi-lang-java=\"`allEvaluatorsPass`\"\u003e`allEvaluatorsPass`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`allEvaluatorsFail`\" pulumi-lang-dotnet=\"`AllEvaluatorsFail`\" pulumi-lang-go=\"`allEvaluatorsFail`\" pulumi-lang-python=\"`all_evaluators_fail`\" pulumi-lang-yaml=\"`allEvaluatorsFail`\" pulumi-lang-java=\"`allEvaluatorsFail`\"\u003e`allEvaluatorsFail`\u003c/span\u003e.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether the action is enabled. Defaults to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e.\n"
+                },
+                "ruleId": {
+                    "type": "string",
+                    "description": "ID of the evaluation rule this action is attached to. Changing this forces a new resource.\n"
+                }
+            },
+            "required": [
+                "collectionIds",
+                "condition",
+                "enabled",
+                "ruleId"
+            ],
+            "inputProperties": {
+                "collectionIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "IDs of the collections that matching conversations are added to. Must be non-empty.\n"
+                },
+                "condition": {
+                    "type": "string",
+                    "description": "Aggregate verdict that triggers the action. One of \u003cspan pulumi-lang-nodejs=\"`allEvaluatorsPass`\" pulumi-lang-dotnet=\"`AllEvaluatorsPass`\" pulumi-lang-go=\"`allEvaluatorsPass`\" pulumi-lang-python=\"`all_evaluators_pass`\" pulumi-lang-yaml=\"`allEvaluatorsPass`\" pulumi-lang-java=\"`allEvaluatorsPass`\"\u003e`allEvaluatorsPass`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`allEvaluatorsFail`\" pulumi-lang-dotnet=\"`AllEvaluatorsFail`\" pulumi-lang-go=\"`allEvaluatorsFail`\" pulumi-lang-python=\"`all_evaluators_fail`\" pulumi-lang-yaml=\"`allEvaluatorsFail`\" pulumi-lang-java=\"`allEvaluatorsFail`\"\u003e`allEvaluatorsFail`\u003c/span\u003e.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether the action is enabled. Defaults to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e.\n"
+                },
+                "ruleId": {
+                    "type": "string",
+                    "description": "ID of the evaluation rule this action is attached to. Changing this forces a new resource.\n"
+                }
+            },
+            "requiredInputs": [
+                "collectionIds",
+                "condition",
+                "ruleId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Agento11yRuleAction resources.\n",
+                "properties": {
+                    "collectionIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "IDs of the collections that matching conversations are added to. Must be non-empty.\n"
+                    },
+                    "condition": {
+                        "type": "string",
+                        "description": "Aggregate verdict that triggers the action. One of \u003cspan pulumi-lang-nodejs=\"`allEvaluatorsPass`\" pulumi-lang-dotnet=\"`AllEvaluatorsPass`\" pulumi-lang-go=\"`allEvaluatorsPass`\" pulumi-lang-python=\"`all_evaluators_pass`\" pulumi-lang-yaml=\"`allEvaluatorsPass`\" pulumi-lang-java=\"`allEvaluatorsPass`\"\u003e`allEvaluatorsPass`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`allEvaluatorsFail`\" pulumi-lang-dotnet=\"`AllEvaluatorsFail`\" pulumi-lang-go=\"`allEvaluatorsFail`\" pulumi-lang-python=\"`all_evaluators_fail`\" pulumi-lang-yaml=\"`allEvaluatorsFail`\" pulumi-lang-java=\"`allEvaluatorsFail`\"\u003e`allEvaluatorsFail`\u003c/span\u003e.\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "Whether the action is enabled. Defaults to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e.\n"
+                    },
+                    "ruleId": {
+                        "type": "string",
+                        "description": "ID of the evaluation rule this action is attached to. Changing this forces a new resource.\n"
                     }
                 },
                 "type": "object"
