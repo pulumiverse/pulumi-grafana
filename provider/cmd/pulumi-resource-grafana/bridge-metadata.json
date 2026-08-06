@@ -1,6 +1,46 @@
 {
     "auto-aliasing": {
         "resources": {
+            "grafana_agento11y_evaluation_rule": {
+                "current": "grafana:agento11y/evaluationRule:EvaluationRule",
+                "majorVersion": 2,
+                "fields": {
+                    "alert_rule_uids": {
+                        "maxItemsOne": false
+                    },
+                    "evaluator_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "grafana_agento11y_evaluator": {
+                "current": "grafana:agento11y/evaluator:Evaluator",
+                "majorVersion": 2
+            },
+            "grafana_agento11y_hook_rule": {
+                "current": "grafana:agento11y/hookRule:HookRule",
+                "majorVersion": 2,
+                "fields": {
+                    "blocked_tools": {
+                        "maxItemsOne": false
+                    },
+                    "evaluator_ids": {
+                        "maxItemsOne": false
+                    },
+                    "redact": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "grafana_agento11y_rule_action": {
+                "current": "grafana:agento11y/ruleAction:RuleAction",
+                "majorVersion": 2,
+                "fields": {
+                    "collection_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "grafana_annotation": {
                 "current": "grafana:oss/annotation:Annotation",
                 "majorVersion": 2,
@@ -2727,6 +2767,10 @@
     },
     "mux": {
         "resources": {
+            "grafana:agento11y/evaluationRule:EvaluationRule": 1,
+            "grafana:agento11y/evaluator:Evaluator": 1,
+            "grafana:agento11y/hookRule:HookRule": 1,
+            "grafana:agento11y/ruleAction:RuleAction": 1,
             "grafana:alerting/alertEnrichment:AlertEnrichment": 1,
             "grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1": 1,
             "grafana:alerting/contactPoint:ContactPoint": 0,

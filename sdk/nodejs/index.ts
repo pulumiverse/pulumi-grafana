@@ -10,6 +10,7 @@ import { Provider } from "./provider";
 
 
 // Export sub-modules:
+import * as agento11y from "./agento11y";
 import * as alerting from "./alerting";
 import * as apps from "./apps";
 import * as assert from "./assert";
@@ -31,6 +32,7 @@ import * as syntheticmonitoring from "./syntheticmonitoring";
 import * as types from "./types";
 
 export {
+    agento11y,
     alerting,
     apps,
     assert,

@@ -31,6 +31,7 @@ const (
 	grafanaMod = "index" // the toplevel module
 	// further modules follow the grouping of the upstream TF provider
 	// https://registry.terraform.io/providers/grafana/grafana/latest/docs
+	agento11yMod             = "agento11y"
 	alertingMod              = "alerting"
 	appsMod                  = "apps"
 	assertsMod               = "assert"
@@ -916,6 +917,7 @@ func Provider() tfbridge.ProviderInfo {
 			"grafana_",
 			"index",
 			map[string]string{
+				"agento11y":            agento11yMod,
 				"alerting":             alertingMod,
 				"asserts":              assertsMod,
 				"assistant":            assistantMod,

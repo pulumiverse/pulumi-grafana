@@ -10,6 +10,8 @@ from .provider import *
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
+    import pulumiverse_grafana.agento11y as __agento11y
+    agento11y = __agento11y
     import pulumiverse_grafana.alerting as __alerting
     alerting = __alerting
     import pulumiverse_grafana.apps as __apps
@@ -47,6 +49,7 @@ if typing.TYPE_CHECKING:
     import pulumiverse_grafana.syntheticmonitoring as __syntheticmonitoring
     syntheticmonitoring = __syntheticmonitoring
 else:
+    agento11y = _utilities.lazy_import('pulumiverse_grafana.agento11y')
     alerting = _utilities.lazy_import('pulumiverse_grafana.alerting')
     apps = _utilities.lazy_import('pulumiverse_grafana.apps')
     assert_ = _utilities.lazy_import('pulumiverse_grafana.assert_')
@@ -69,6 +72,38 @@ else:
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "grafana",
+  "mod": "agento11y/evaluationRule",
+  "fqn": "pulumiverse_grafana.agento11y",
+  "classes": {
+   "grafana:agento11y/evaluationRule:EvaluationRule": "EvaluationRule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "agento11y/evaluator",
+  "fqn": "pulumiverse_grafana.agento11y",
+  "classes": {
+   "grafana:agento11y/evaluator:Evaluator": "Evaluator"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "agento11y/hookRule",
+  "fqn": "pulumiverse_grafana.agento11y",
+  "classes": {
+   "grafana:agento11y/hookRule:HookRule": "HookRule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "agento11y/ruleAction",
+  "fqn": "pulumiverse_grafana.agento11y",
+  "classes": {
+   "grafana:agento11y/ruleAction:RuleAction": "RuleAction"
+  }
+ },
  {
   "pkg": "grafana",
   "mod": "alerting/alertEnrichment",
