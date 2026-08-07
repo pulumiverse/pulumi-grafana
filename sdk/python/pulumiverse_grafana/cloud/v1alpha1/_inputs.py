@@ -33,6 +33,20 @@ __all__ = [
     'ProductActivationK8sO11yConfigOptionsArgsDict',
     'ProductActivationK8sO11yConfigSpecArgs',
     'ProductActivationK8sO11yConfigSpecArgsDict',
+    'ServiceModelComponentMetadataArgs',
+    'ServiceModelComponentMetadataArgsDict',
+    'ServiceModelComponentOptionsArgs',
+    'ServiceModelComponentOptionsArgsDict',
+    'ServiceModelComponentSpecArgs',
+    'ServiceModelComponentSpecArgsDict',
+    'ServiceModelComponentSpecDependsOnRefArgs',
+    'ServiceModelComponentSpecDependsOnRefArgsDict',
+    'ServiceModelComponentSpecIdentifierArgs',
+    'ServiceModelComponentSpecIdentifierArgsDict',
+    'ServiceModelComponentSpecLinkArgs',
+    'ServiceModelComponentSpecLinkArgsDict',
+    'ServiceModelComponentSpecOwnerRefArgs',
+    'ServiceModelComponentSpecOwnerRefArgsDict',
 ]
 
 class ProductActivationAppO11yConfigMetadataArgsDict(TypedDict):
@@ -648,5 +662,602 @@ class ProductActivationK8sO11yConfigSpecArgs:
     @enabled.setter
     def enabled(self, value: pulumi.Input[_builtins.bool]):
         pulumi.set(self, "enabled", value)
+
+
+class ServiceModelComponentMetadataArgsDict(TypedDict):
+    uid: pulumi.Input[_builtins.str]
+    """
+    The unique identifier of the resource.
+    """
+    annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Annotations of the resource.
+    """
+    folder_uid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The full URL of the resource.
+    """
+    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The globally unique identifier of a resource, used by the API for tracking.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The version of the resource.
+    """
+
+@pulumi.input_type
+class ServiceModelComponentMetadataArgs:
+    def __init__(__self__, *,
+                 uid: pulumi.Input[_builtins.str],
+                 annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
+                 url: Optional[pulumi.Input[_builtins.str]] = None,
+                 uuid: Optional[pulumi.Input[_builtins.str]] = None,
+                 version: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] uid: The unique identifier of the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Annotations of the resource.
+        :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+        :param pulumi.Input[_builtins.str] url: The full URL of the resource.
+        :param pulumi.Input[_builtins.str] uuid: The globally unique identifier of a resource, used by the API for tracking.
+        :param pulumi.Input[_builtins.str] version: The version of the resource.
+        """
+        pulumi.set(__self__, "uid", uid)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if folder_uid is not None:
+            pulumi.set(__self__, "folder_uid", folder_uid)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> pulumi.Input[_builtins.str]:
+        """
+        The unique identifier of the resource.
+        """
+        return pulumi.get(self, "uid")
+
+    @uid.setter
+    def uid(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "uid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Annotations of the resource.
+        """
+        return pulumi.get(self, "annotations")
+
+    @annotations.setter
+    def annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "annotations", value)
+
+    @_builtins.property
+    @pulumi.getter(name="folderUid")
+    def folder_uid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+        """
+        return pulumi.get(self, "folder_uid")
+
+    @folder_uid.setter
+    def folder_uid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "folder_uid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The full URL of the resource.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "url", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The globally unique identifier of a resource, used by the API for tracking.
+        """
+        return pulumi.get(self, "uuid")
+
+    @uuid.setter
+    def uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "uuid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The version of the resource.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "version", value)
+
+
+class ServiceModelComponentOptionsArgsDict(TypedDict):
+    manager_identity: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+    """
+    overwrite: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+    """
+
+@pulumi.input_type
+class ServiceModelComponentOptionsArgs:
+    def __init__(__self__, *,
+                 manager_identity: Optional[pulumi.Input[_builtins.str]] = None,
+                 overwrite: Optional[pulumi.Input[_builtins.bool]] = None):
+        """
+        :param pulumi.Input[_builtins.str] manager_identity: Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+        :param pulumi.Input[_builtins.bool] overwrite: Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        if manager_identity is not None:
+            pulumi.set(__self__, "manager_identity", manager_identity)
+        if overwrite is not None:
+            pulumi.set(__self__, "overwrite", overwrite)
+
+    @_builtins.property
+    @pulumi.getter(name="managerIdentity")
+    def manager_identity(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+        """
+        return pulumi.get(self, "manager_identity")
+
+    @manager_identity.setter
+    def manager_identity(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "manager_identity", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def overwrite(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        return pulumi.get(self, "overwrite")
+
+    @overwrite.setter
+    def overwrite(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "overwrite", value)
+
+
+class ServiceModelComponentSpecArgsDict(TypedDict):
+    title: pulumi.Input[_builtins.str]
+    """
+    Display name of the service.
+    """
+    depends_on_refs: NotRequired[pulumi.Input[Sequence[pulumi.Input['ServiceModelComponentSpecDependsOnRefArgsDict']]]]
+    """
+    References to services this service depends on.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Description of the service.
+    """
+    identifiers: NotRequired[pulumi.Input[Sequence[pulumi.Input['ServiceModelComponentSpecIdentifierArgsDict']]]]
+    """
+    Additional key/value pairs used to match resources to the service: a resource matches when it has a label or tag with the same key and value. For example, an identifier with key `namespace` and value `checkout-prod` matches alerts, SLOs and dashboards labeled or tagged `namespace=checkout-prod`. Maximum of 5. A `service_name` identifier equal to `metadata.uid` is implicit; add an explicit `service_name` when the telemetry value differs from the uid, for example because it contains characters the uid does not allow (such as uppercase letters, dots or underscores); the explicit value is matched in addition to the uid.
+    """
+    links: NotRequired[pulumi.Input[Sequence[pulumi.Input['ServiceModelComponentSpecLinkArgsDict']]]]
+    """
+    Links attached to the service (documentation, repository, etc.).
+    """
+    owner_ref: NotRequired[pulumi.Input['ServiceModelComponentSpecOwnerRefArgsDict']]
+    """
+    Reference to the team owning the service. Set `name` to the Grafana team UID; `api_version` and `kind` default to a Grafana IAM team reference.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Component type. Defaults to `service`, the only type currently displayed by Service Center.
+    """
+
+@pulumi.input_type
+class ServiceModelComponentSpecArgs:
+    def __init__(__self__, *,
+                 title: pulumi.Input[_builtins.str],
+                 depends_on_refs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceModelComponentSpecDependsOnRefArgs']]]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
+                 identifiers: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceModelComponentSpecIdentifierArgs']]]] = None,
+                 links: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceModelComponentSpecLinkArgs']]]] = None,
+                 owner_ref: Optional[pulumi.Input['ServiceModelComponentSpecOwnerRefArgs']] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] title: Display name of the service.
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceModelComponentSpecDependsOnRefArgs']]] depends_on_refs: References to services this service depends on.
+        :param pulumi.Input[_builtins.str] description: Description of the service.
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceModelComponentSpecIdentifierArgs']]] identifiers: Additional key/value pairs used to match resources to the service: a resource matches when it has a label or tag with the same key and value. For example, an identifier with key `namespace` and value `checkout-prod` matches alerts, SLOs and dashboards labeled or tagged `namespace=checkout-prod`. Maximum of 5. A `service_name` identifier equal to `metadata.uid` is implicit; add an explicit `service_name` when the telemetry value differs from the uid, for example because it contains characters the uid does not allow (such as uppercase letters, dots or underscores); the explicit value is matched in addition to the uid.
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceModelComponentSpecLinkArgs']]] links: Links attached to the service (documentation, repository, etc.).
+        :param pulumi.Input['ServiceModelComponentSpecOwnerRefArgs'] owner_ref: Reference to the team owning the service. Set `name` to the Grafana team UID; `api_version` and `kind` default to a Grafana IAM team reference.
+        :param pulumi.Input[_builtins.str] type: Component type. Defaults to `service`, the only type currently displayed by Service Center.
+        """
+        pulumi.set(__self__, "title", title)
+        if depends_on_refs is not None:
+            pulumi.set(__self__, "depends_on_refs", depends_on_refs)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if identifiers is not None:
+            pulumi.set(__self__, "identifiers", identifiers)
+        if links is not None:
+            pulumi.set(__self__, "links", links)
+        if owner_ref is not None:
+            pulumi.set(__self__, "owner_ref", owner_ref)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> pulumi.Input[_builtins.str]:
+        """
+        Display name of the service.
+        """
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "title", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dependsOnRefs")
+    def depends_on_refs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceModelComponentSpecDependsOnRefArgs']]]]:
+        """
+        References to services this service depends on.
+        """
+        return pulumi.get(self, "depends_on_refs")
+
+    @depends_on_refs.setter
+    def depends_on_refs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceModelComponentSpecDependsOnRefArgs']]]]):
+        pulumi.set(self, "depends_on_refs", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Description of the service.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def identifiers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceModelComponentSpecIdentifierArgs']]]]:
+        """
+        Additional key/value pairs used to match resources to the service: a resource matches when it has a label or tag with the same key and value. For example, an identifier with key `namespace` and value `checkout-prod` matches alerts, SLOs and dashboards labeled or tagged `namespace=checkout-prod`. Maximum of 5. A `service_name` identifier equal to `metadata.uid` is implicit; add an explicit `service_name` when the telemetry value differs from the uid, for example because it contains characters the uid does not allow (such as uppercase letters, dots or underscores); the explicit value is matched in addition to the uid.
+        """
+        return pulumi.get(self, "identifiers")
+
+    @identifiers.setter
+    def identifiers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceModelComponentSpecIdentifierArgs']]]]):
+        pulumi.set(self, "identifiers", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def links(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceModelComponentSpecLinkArgs']]]]:
+        """
+        Links attached to the service (documentation, repository, etc.).
+        """
+        return pulumi.get(self, "links")
+
+    @links.setter
+    def links(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceModelComponentSpecLinkArgs']]]]):
+        pulumi.set(self, "links", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ownerRef")
+    def owner_ref(self) -> Optional[pulumi.Input['ServiceModelComponentSpecOwnerRefArgs']]:
+        """
+        Reference to the team owning the service. Set `name` to the Grafana team UID; `api_version` and `kind` default to a Grafana IAM team reference.
+        """
+        return pulumi.get(self, "owner_ref")
+
+    @owner_ref.setter
+    def owner_ref(self, value: Optional[pulumi.Input['ServiceModelComponentSpecOwnerRefArgs']]):
+        pulumi.set(self, "owner_ref", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Component type. Defaults to `service`, the only type currently displayed by Service Center.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+
+class ServiceModelComponentSpecDependsOnRefArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Name (`metadata.uid`) of the component this service depends on.
+    """
+    api_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    API version of the referenced object. Defaults to `servicemodel.ext.grafana.com/v1alpha1`.
+    """
+    kind: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Kind of the referenced object. Defaults to `Component`.
+    """
+
+@pulumi.input_type
+class ServiceModelComponentSpecDependsOnRefArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[_builtins.str],
+                 api_version: Optional[pulumi.Input[_builtins.str]] = None,
+                 kind: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] name: Name (`metadata.uid`) of the component this service depends on.
+        :param pulumi.Input[_builtins.str] api_version: API version of the referenced object. Defaults to `servicemodel.ext.grafana.com/v1alpha1`.
+        :param pulumi.Input[_builtins.str] kind: Kind of the referenced object. Defaults to `Component`.
+        """
+        pulumi.set(__self__, "name", name)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", api_version)
+        if kind is not None:
+            pulumi.set(__self__, "kind", kind)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Name (`metadata.uid`) of the component this service depends on.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="apiVersion")
+    def api_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        API version of the referenced object. Defaults to `servicemodel.ext.grafana.com/v1alpha1`.
+        """
+        return pulumi.get(self, "api_version")
+
+    @api_version.setter
+    def api_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def kind(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Kind of the referenced object. Defaults to `Component`.
+        """
+        return pulumi.get(self, "kind")
+
+    @kind.setter
+    def kind(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "kind", value)
+
+
+class ServiceModelComponentSpecIdentifierArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Identifier key.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Identifier value.
+    """
+
+@pulumi.input_type
+class ServiceModelComponentSpecIdentifierArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] key: Identifier key.
+        :param pulumi.Input[_builtins.str] value: Identifier value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[_builtins.str]:
+        """
+        Identifier key.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        Identifier value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+class ServiceModelComponentSpecLinkArgsDict(TypedDict):
+    url: pulumi.Input[_builtins.str]
+    """
+    URL of the link.
+    """
+    icon: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Icon of the link.
+    """
+    title: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Display title of the link.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Type of the link. The Service Center UI uses `documentation`, `repository`, `backlog` and `custom`.
+    """
+
+@pulumi.input_type
+class ServiceModelComponentSpecLinkArgs:
+    def __init__(__self__, *,
+                 url: pulumi.Input[_builtins.str],
+                 icon: Optional[pulumi.Input[_builtins.str]] = None,
+                 title: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] url: URL of the link.
+        :param pulumi.Input[_builtins.str] icon: Icon of the link.
+        :param pulumi.Input[_builtins.str] title: Display title of the link.
+        :param pulumi.Input[_builtins.str] type: Type of the link. The Service Center UI uses `documentation`, `repository`, `backlog` and `custom`.
+        """
+        pulumi.set(__self__, "url", url)
+        if icon is not None:
+            pulumi.set(__self__, "icon", icon)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> pulumi.Input[_builtins.str]:
+        """
+        URL of the link.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "url", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def icon(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Icon of the link.
+        """
+        return pulumi.get(self, "icon")
+
+    @icon.setter
+    def icon(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "icon", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Display title of the link.
+        """
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "title", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Type of the link. The Service Center UI uses `documentation`, `repository`, `backlog` and `custom`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+
+class ServiceModelComponentSpecOwnerRefArgsDict(TypedDict):
+    api_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    API version of the referenced object. Defaults to `iam.grafana.app/v0alpha1`.
+    """
+    kind: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Kind of the referenced object. Defaults to `Team`.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name of the referenced object. For the default team reference, this is the Grafana team UID.
+    """
+
+@pulumi.input_type
+class ServiceModelComponentSpecOwnerRefArgs:
+    def __init__(__self__, *,
+                 api_version: Optional[pulumi.Input[_builtins.str]] = None,
+                 kind: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] api_version: API version of the referenced object. Defaults to `iam.grafana.app/v0alpha1`.
+        :param pulumi.Input[_builtins.str] kind: Kind of the referenced object. Defaults to `Team`.
+        :param pulumi.Input[_builtins.str] name: Name of the referenced object. For the default team reference, this is the Grafana team UID.
+        """
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", api_version)
+        if kind is not None:
+            pulumi.set(__self__, "kind", kind)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="apiVersion")
+    def api_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        API version of the referenced object. Defaults to `iam.grafana.app/v0alpha1`.
+        """
+        return pulumi.get(self, "api_version")
+
+    @api_version.setter
+    def api_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def kind(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Kind of the referenced object. Defaults to `Team`.
+        """
+        return pulumi.get(self, "kind")
+
+    @kind.setter
+    def kind(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "kind", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Name of the referenced object. For the default team reference, this is the Grafana team UID.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
 
 

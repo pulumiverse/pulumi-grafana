@@ -1,6 +1,10 @@
 {
     "auto-aliasing": {
         "resources": {
+            "grafana_agento11y_collection": {
+                "current": "grafana:agento11y/collection:Collection",
+                "majorVersion": 2
+            },
             "grafana_agento11y_evaluation_rule": {
                 "current": "grafana:agento11y/evaluationRule:EvaluationRule",
                 "majorVersion": 2,
@@ -451,6 +455,22 @@
                 ],
                 "majorVersion": 2
             },
+            "grafana_apps_rules_rulesequence_v0alpha1": {
+                "current": "grafana:alerting/v0alpha1/ruleSequence:RuleSequence",
+                "majorVersion": 2,
+                "fields": {
+                    "spec": {
+                        "fields": {
+                            "alerting_rules": {
+                                "maxItemsOne": false
+                            },
+                            "recording_rules": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
             "grafana_apps_secret_keeper_activation_v1beta1": {
                 "current": "grafana:enterprise/v1beta1/secretKeeperActivation:SecretKeeperActivation",
                 "majorVersion": 2
@@ -466,6 +486,25 @@
                     "spec": {
                         "fields": {
                             "decrypters": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
+            "grafana_apps_servicemodel_component_v1alpha1": {
+                "current": "grafana:cloud/v1alpha1/serviceModelComponent:ServiceModelComponent",
+                "majorVersion": 2,
+                "fields": {
+                    "spec": {
+                        "fields": {
+                            "depends_on_refs": {
+                                "maxItemsOne": false
+                            },
+                            "identifiers": {
+                                "maxItemsOne": false
+                            },
+                            "links": {
                                 "maxItemsOne": false
                             }
                         }
@@ -2767,6 +2806,7 @@
     },
     "mux": {
         "resources": {
+            "grafana:agento11y/collection:Collection": 1,
             "grafana:agento11y/evaluationRule:EvaluationRule": 1,
             "grafana:agento11y/evaluator:Evaluator": 1,
             "grafana:agento11y/hookRule:HookRule": 1,
@@ -2781,6 +2821,7 @@
             "grafana:alerting/ruleGroup:RuleGroup": 0,
             "grafana:alerting/v0alpha1/alertRule:AlertRule": 1,
             "grafana:alerting/v0alpha1/recordingRule:RecordingRule": 1,
+            "grafana:alerting/v0alpha1/ruleSequence:RuleSequence": 1,
             "grafana:alerting/v1beta1/alertEnrichment:AlertEnrichment": 1,
             "grafana:alerting/v1beta1/notificationsInhibitionRule:NotificationsInhibitionRule": 1,
             "grafana:alerting/v1beta1/notificationsRoutingTree:NotificationsRoutingTree": 1,
@@ -2823,6 +2864,7 @@
             "grafana:cloud/v1alpha1/productActivationAppO11yConfig:ProductActivationAppO11yConfig": 1,
             "grafana:cloud/v1alpha1/productActivationDbO11yConfig:ProductActivationDbO11yConfig": 1,
             "grafana:cloud/v1alpha1/productActivationK8sO11yConfig:ProductActivationK8sO11yConfig": 1,
+            "grafana:cloud/v1alpha1/serviceModelComponent:ServiceModelComponent": 1,
             "grafana:cloudProvider/awsAccount:AwsAccount": 1,
             "grafana:cloudProvider/awsCloudwatchScrapeJob:AwsCloudwatchScrapeJob": 1,
             "grafana:cloudProvider/awsResourceMetadataScrapeJob:AwsResourceMetadataScrapeJob": 1,

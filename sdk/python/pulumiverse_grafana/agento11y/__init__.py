@@ -6,6 +6,7 @@ import builtins as _builtins
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .collection import *
 from .evaluation_rule import *
 from .evaluator import *
 from .hook_rule import *

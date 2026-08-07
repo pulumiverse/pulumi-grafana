@@ -74,6 +74,14 @@ _utilities.register(
 [
  {
   "pkg": "grafana",
+  "mod": "agento11y/collection",
+  "fqn": "pulumiverse_grafana.agento11y",
+  "classes": {
+   "grafana:agento11y/collection:Collection": "Collection"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "agento11y/evaluationRule",
   "fqn": "pulumiverse_grafana.agento11y",
   "classes": {
@@ -182,6 +190,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.alerting.v0alpha1",
   "classes": {
    "grafana:alerting/v0alpha1/recordingRule:RecordingRule": "RecordingRule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "alerting/v0alpha1/ruleSequence",
+  "fqn": "pulumiverse_grafana.alerting.v0alpha1",
+  "classes": {
+   "grafana:alerting/v0alpha1/ruleSequence:RuleSequence": "RuleSequence"
   }
  },
  {
@@ -518,6 +534,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.cloud.v1alpha1",
   "classes": {
    "grafana:cloud/v1alpha1/productActivationK8sO11yConfig:ProductActivationK8sO11yConfig": "ProductActivationK8sO11yConfig"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloud/v1alpha1/serviceModelComponent",
+  "fqn": "pulumiverse_grafana.cloud.v1alpha1",
+  "classes": {
+   "grafana:cloud/v1alpha1/serviceModelComponent:ServiceModelComponent": "ServiceModelComponent"
   }
  },
  {

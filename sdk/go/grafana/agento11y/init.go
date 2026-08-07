@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "grafana:agento11y/collection:Collection":
+		r = &Collection{}
 	case "grafana:agento11y/evaluationRule:EvaluationRule":
 		r = &EvaluationRule{}
 	case "grafana:agento11y/evaluator:Evaluator":
@@ -42,6 +44,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"agento11y/collection",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"agento11y/evaluationRule",

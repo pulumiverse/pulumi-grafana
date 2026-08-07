@@ -2416,6 +2416,894 @@ func (o RecordingRuleSpecTriggerPtrOutput) Interval() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type RuleSequenceMetadata struct {
+	// Annotations of the resource.
+	Annotations map[string]string `pulumi:"annotations"`
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+	FolderUid *string `pulumi:"folderUid"`
+	// The unique identifier of the resource.
+	Uid string `pulumi:"uid"`
+	// The full URL of the resource.
+	Url *string `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid *string `pulumi:"uuid"`
+	// The version of the resource.
+	Version *string `pulumi:"version"`
+}
+
+// RuleSequenceMetadataInput is an input type that accepts RuleSequenceMetadataArgs and RuleSequenceMetadataOutput values.
+// You can construct a concrete instance of `RuleSequenceMetadataInput` via:
+//
+//	RuleSequenceMetadataArgs{...}
+type RuleSequenceMetadataInput interface {
+	pulumi.Input
+
+	ToRuleSequenceMetadataOutput() RuleSequenceMetadataOutput
+	ToRuleSequenceMetadataOutputWithContext(context.Context) RuleSequenceMetadataOutput
+}
+
+type RuleSequenceMetadataArgs struct {
+	// Annotations of the resource.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The unique identifier of the resource.
+	Uid pulumi.StringInput `pulumi:"uid"`
+	// The full URL of the resource.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
+	// The version of the resource.
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (RuleSequenceMetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceMetadata)(nil)).Elem()
+}
+
+func (i RuleSequenceMetadataArgs) ToRuleSequenceMetadataOutput() RuleSequenceMetadataOutput {
+	return i.ToRuleSequenceMetadataOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceMetadataArgs) ToRuleSequenceMetadataOutputWithContext(ctx context.Context) RuleSequenceMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceMetadataOutput)
+}
+
+func (i RuleSequenceMetadataArgs) ToRuleSequenceMetadataPtrOutput() RuleSequenceMetadataPtrOutput {
+	return i.ToRuleSequenceMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceMetadataArgs) ToRuleSequenceMetadataPtrOutputWithContext(ctx context.Context) RuleSequenceMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceMetadataOutput).ToRuleSequenceMetadataPtrOutputWithContext(ctx)
+}
+
+// RuleSequenceMetadataPtrInput is an input type that accepts RuleSequenceMetadataArgs, RuleSequenceMetadataPtr and RuleSequenceMetadataPtrOutput values.
+// You can construct a concrete instance of `RuleSequenceMetadataPtrInput` via:
+//
+//	        RuleSequenceMetadataArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleSequenceMetadataPtrInput interface {
+	pulumi.Input
+
+	ToRuleSequenceMetadataPtrOutput() RuleSequenceMetadataPtrOutput
+	ToRuleSequenceMetadataPtrOutputWithContext(context.Context) RuleSequenceMetadataPtrOutput
+}
+
+type ruleSequenceMetadataPtrType RuleSequenceMetadataArgs
+
+func RuleSequenceMetadataPtr(v *RuleSequenceMetadataArgs) RuleSequenceMetadataPtrInput {
+	return (*ruleSequenceMetadataPtrType)(v)
+}
+
+func (*ruleSequenceMetadataPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleSequenceMetadata)(nil)).Elem()
+}
+
+func (i *ruleSequenceMetadataPtrType) ToRuleSequenceMetadataPtrOutput() RuleSequenceMetadataPtrOutput {
+	return i.ToRuleSequenceMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleSequenceMetadataPtrType) ToRuleSequenceMetadataPtrOutputWithContext(ctx context.Context) RuleSequenceMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceMetadataPtrOutput)
+}
+
+type RuleSequenceMetadataOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceMetadata)(nil)).Elem()
+}
+
+func (o RuleSequenceMetadataOutput) ToRuleSequenceMetadataOutput() RuleSequenceMetadataOutput {
+	return o
+}
+
+func (o RuleSequenceMetadataOutput) ToRuleSequenceMetadataOutputWithContext(ctx context.Context) RuleSequenceMetadataOutput {
+	return o
+}
+
+func (o RuleSequenceMetadataOutput) ToRuleSequenceMetadataPtrOutput() RuleSequenceMetadataPtrOutput {
+	return o.ToRuleSequenceMetadataPtrOutputWithContext(context.Background())
+}
+
+func (o RuleSequenceMetadataOutput) ToRuleSequenceMetadataPtrOutputWithContext(ctx context.Context) RuleSequenceMetadataPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleSequenceMetadata) *RuleSequenceMetadata {
+		return &v
+	}).(RuleSequenceMetadataPtrOutput)
+}
+
+// Annotations of the resource.
+func (o RuleSequenceMetadataOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RuleSequenceMetadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+func (o RuleSequenceMetadataOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleSequenceMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o RuleSequenceMetadataOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleSequenceMetadata) string { return v.Uid }).(pulumi.StringOutput)
+}
+
+// The full URL of the resource.
+func (o RuleSequenceMetadataOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleSequenceMetadata) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o RuleSequenceMetadataOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleSequenceMetadata) *string { return v.Uuid }).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o RuleSequenceMetadataOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleSequenceMetadata) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type RuleSequenceMetadataPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceMetadataPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleSequenceMetadata)(nil)).Elem()
+}
+
+func (o RuleSequenceMetadataPtrOutput) ToRuleSequenceMetadataPtrOutput() RuleSequenceMetadataPtrOutput {
+	return o
+}
+
+func (o RuleSequenceMetadataPtrOutput) ToRuleSequenceMetadataPtrOutputWithContext(ctx context.Context) RuleSequenceMetadataPtrOutput {
+	return o
+}
+
+func (o RuleSequenceMetadataPtrOutput) Elem() RuleSequenceMetadataOutput {
+	return o.ApplyT(func(v *RuleSequenceMetadata) RuleSequenceMetadata {
+		if v != nil {
+			return *v
+		}
+		var ret RuleSequenceMetadata
+		return ret
+	}).(RuleSequenceMetadataOutput)
+}
+
+// Annotations of the resource.
+func (o RuleSequenceMetadataPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RuleSequenceMetadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+func (o RuleSequenceMetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleSequenceMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FolderUid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o RuleSequenceMetadataPtrOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleSequenceMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The full URL of the resource.
+func (o RuleSequenceMetadataPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleSequenceMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o RuleSequenceMetadataPtrOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleSequenceMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Uuid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o RuleSequenceMetadataPtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleSequenceMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Version
+	}).(pulumi.StringPtrOutput)
+}
+
+type RuleSequenceOptions struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity *string `pulumi:"managerIdentity"`
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite *bool `pulumi:"overwrite"`
+}
+
+// RuleSequenceOptionsInput is an input type that accepts RuleSequenceOptionsArgs and RuleSequenceOptionsOutput values.
+// You can construct a concrete instance of `RuleSequenceOptionsInput` via:
+//
+//	RuleSequenceOptionsArgs{...}
+type RuleSequenceOptionsInput interface {
+	pulumi.Input
+
+	ToRuleSequenceOptionsOutput() RuleSequenceOptionsOutput
+	ToRuleSequenceOptionsOutputWithContext(context.Context) RuleSequenceOptionsOutput
+}
+
+type RuleSequenceOptionsArgs struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity pulumi.StringPtrInput `pulumi:"managerIdentity"`
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
+}
+
+func (RuleSequenceOptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceOptions)(nil)).Elem()
+}
+
+func (i RuleSequenceOptionsArgs) ToRuleSequenceOptionsOutput() RuleSequenceOptionsOutput {
+	return i.ToRuleSequenceOptionsOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceOptionsArgs) ToRuleSequenceOptionsOutputWithContext(ctx context.Context) RuleSequenceOptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceOptionsOutput)
+}
+
+func (i RuleSequenceOptionsArgs) ToRuleSequenceOptionsPtrOutput() RuleSequenceOptionsPtrOutput {
+	return i.ToRuleSequenceOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceOptionsArgs) ToRuleSequenceOptionsPtrOutputWithContext(ctx context.Context) RuleSequenceOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceOptionsOutput).ToRuleSequenceOptionsPtrOutputWithContext(ctx)
+}
+
+// RuleSequenceOptionsPtrInput is an input type that accepts RuleSequenceOptionsArgs, RuleSequenceOptionsPtr and RuleSequenceOptionsPtrOutput values.
+// You can construct a concrete instance of `RuleSequenceOptionsPtrInput` via:
+//
+//	        RuleSequenceOptionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleSequenceOptionsPtrInput interface {
+	pulumi.Input
+
+	ToRuleSequenceOptionsPtrOutput() RuleSequenceOptionsPtrOutput
+	ToRuleSequenceOptionsPtrOutputWithContext(context.Context) RuleSequenceOptionsPtrOutput
+}
+
+type ruleSequenceOptionsPtrType RuleSequenceOptionsArgs
+
+func RuleSequenceOptionsPtr(v *RuleSequenceOptionsArgs) RuleSequenceOptionsPtrInput {
+	return (*ruleSequenceOptionsPtrType)(v)
+}
+
+func (*ruleSequenceOptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleSequenceOptions)(nil)).Elem()
+}
+
+func (i *ruleSequenceOptionsPtrType) ToRuleSequenceOptionsPtrOutput() RuleSequenceOptionsPtrOutput {
+	return i.ToRuleSequenceOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleSequenceOptionsPtrType) ToRuleSequenceOptionsPtrOutputWithContext(ctx context.Context) RuleSequenceOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceOptionsPtrOutput)
+}
+
+type RuleSequenceOptionsOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceOptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceOptions)(nil)).Elem()
+}
+
+func (o RuleSequenceOptionsOutput) ToRuleSequenceOptionsOutput() RuleSequenceOptionsOutput {
+	return o
+}
+
+func (o RuleSequenceOptionsOutput) ToRuleSequenceOptionsOutputWithContext(ctx context.Context) RuleSequenceOptionsOutput {
+	return o
+}
+
+func (o RuleSequenceOptionsOutput) ToRuleSequenceOptionsPtrOutput() RuleSequenceOptionsPtrOutput {
+	return o.ToRuleSequenceOptionsPtrOutputWithContext(context.Background())
+}
+
+func (o RuleSequenceOptionsOutput) ToRuleSequenceOptionsPtrOutputWithContext(ctx context.Context) RuleSequenceOptionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleSequenceOptions) *RuleSequenceOptions {
+		return &v
+	}).(RuleSequenceOptionsPtrOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o RuleSequenceOptionsOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleSequenceOptions) *string { return v.ManagerIdentity }).(pulumi.StringPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o RuleSequenceOptionsOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v RuleSequenceOptions) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
+}
+
+type RuleSequenceOptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceOptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleSequenceOptions)(nil)).Elem()
+}
+
+func (o RuleSequenceOptionsPtrOutput) ToRuleSequenceOptionsPtrOutput() RuleSequenceOptionsPtrOutput {
+	return o
+}
+
+func (o RuleSequenceOptionsPtrOutput) ToRuleSequenceOptionsPtrOutputWithContext(ctx context.Context) RuleSequenceOptionsPtrOutput {
+	return o
+}
+
+func (o RuleSequenceOptionsPtrOutput) Elem() RuleSequenceOptionsOutput {
+	return o.ApplyT(func(v *RuleSequenceOptions) RuleSequenceOptions {
+		if v != nil {
+			return *v
+		}
+		var ret RuleSequenceOptions
+		return ret
+	}).(RuleSequenceOptionsOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o RuleSequenceOptionsPtrOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleSequenceOptions) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ManagerIdentity
+	}).(pulumi.StringPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o RuleSequenceOptionsPtrOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RuleSequenceOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Overwrite
+	}).(pulumi.BoolPtrOutput)
+}
+
+type RuleSequenceSpec struct {
+	// The alert rules that belong to this sequence, evaluated in the order listed. Each entry references an alert rule by its `name` (the rule's UID).
+	AlertingRules []RuleSequenceSpecAlertingRule `pulumi:"alertingRules"`
+	// The recording rules that belong to this sequence, evaluated in the order listed. At least one recording rule is required. Each entry references a recording rule by its `name` (the rule's UID).
+	RecordingRules []RuleSequenceSpecRecordingRule `pulumi:"recordingRules"`
+	// The trigger configuration shared by every rule in the sequence.
+	Trigger *RuleSequenceSpecTrigger `pulumi:"trigger"`
+}
+
+// RuleSequenceSpecInput is an input type that accepts RuleSequenceSpecArgs and RuleSequenceSpecOutput values.
+// You can construct a concrete instance of `RuleSequenceSpecInput` via:
+//
+//	RuleSequenceSpecArgs{...}
+type RuleSequenceSpecInput interface {
+	pulumi.Input
+
+	ToRuleSequenceSpecOutput() RuleSequenceSpecOutput
+	ToRuleSequenceSpecOutputWithContext(context.Context) RuleSequenceSpecOutput
+}
+
+type RuleSequenceSpecArgs struct {
+	// The alert rules that belong to this sequence, evaluated in the order listed. Each entry references an alert rule by its `name` (the rule's UID).
+	AlertingRules RuleSequenceSpecAlertingRuleArrayInput `pulumi:"alertingRules"`
+	// The recording rules that belong to this sequence, evaluated in the order listed. At least one recording rule is required. Each entry references a recording rule by its `name` (the rule's UID).
+	RecordingRules RuleSequenceSpecRecordingRuleArrayInput `pulumi:"recordingRules"`
+	// The trigger configuration shared by every rule in the sequence.
+	Trigger RuleSequenceSpecTriggerPtrInput `pulumi:"trigger"`
+}
+
+func (RuleSequenceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceSpec)(nil)).Elem()
+}
+
+func (i RuleSequenceSpecArgs) ToRuleSequenceSpecOutput() RuleSequenceSpecOutput {
+	return i.ToRuleSequenceSpecOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceSpecArgs) ToRuleSequenceSpecOutputWithContext(ctx context.Context) RuleSequenceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecOutput)
+}
+
+func (i RuleSequenceSpecArgs) ToRuleSequenceSpecPtrOutput() RuleSequenceSpecPtrOutput {
+	return i.ToRuleSequenceSpecPtrOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceSpecArgs) ToRuleSequenceSpecPtrOutputWithContext(ctx context.Context) RuleSequenceSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecOutput).ToRuleSequenceSpecPtrOutputWithContext(ctx)
+}
+
+// RuleSequenceSpecPtrInput is an input type that accepts RuleSequenceSpecArgs, RuleSequenceSpecPtr and RuleSequenceSpecPtrOutput values.
+// You can construct a concrete instance of `RuleSequenceSpecPtrInput` via:
+//
+//	        RuleSequenceSpecArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleSequenceSpecPtrInput interface {
+	pulumi.Input
+
+	ToRuleSequenceSpecPtrOutput() RuleSequenceSpecPtrOutput
+	ToRuleSequenceSpecPtrOutputWithContext(context.Context) RuleSequenceSpecPtrOutput
+}
+
+type ruleSequenceSpecPtrType RuleSequenceSpecArgs
+
+func RuleSequenceSpecPtr(v *RuleSequenceSpecArgs) RuleSequenceSpecPtrInput {
+	return (*ruleSequenceSpecPtrType)(v)
+}
+
+func (*ruleSequenceSpecPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleSequenceSpec)(nil)).Elem()
+}
+
+func (i *ruleSequenceSpecPtrType) ToRuleSequenceSpecPtrOutput() RuleSequenceSpecPtrOutput {
+	return i.ToRuleSequenceSpecPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleSequenceSpecPtrType) ToRuleSequenceSpecPtrOutputWithContext(ctx context.Context) RuleSequenceSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecPtrOutput)
+}
+
+type RuleSequenceSpecOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceSpec)(nil)).Elem()
+}
+
+func (o RuleSequenceSpecOutput) ToRuleSequenceSpecOutput() RuleSequenceSpecOutput {
+	return o
+}
+
+func (o RuleSequenceSpecOutput) ToRuleSequenceSpecOutputWithContext(ctx context.Context) RuleSequenceSpecOutput {
+	return o
+}
+
+func (o RuleSequenceSpecOutput) ToRuleSequenceSpecPtrOutput() RuleSequenceSpecPtrOutput {
+	return o.ToRuleSequenceSpecPtrOutputWithContext(context.Background())
+}
+
+func (o RuleSequenceSpecOutput) ToRuleSequenceSpecPtrOutputWithContext(ctx context.Context) RuleSequenceSpecPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleSequenceSpec) *RuleSequenceSpec {
+		return &v
+	}).(RuleSequenceSpecPtrOutput)
+}
+
+// The alert rules that belong to this sequence, evaluated in the order listed. Each entry references an alert rule by its `name` (the rule's UID).
+func (o RuleSequenceSpecOutput) AlertingRules() RuleSequenceSpecAlertingRuleArrayOutput {
+	return o.ApplyT(func(v RuleSequenceSpec) []RuleSequenceSpecAlertingRule { return v.AlertingRules }).(RuleSequenceSpecAlertingRuleArrayOutput)
+}
+
+// The recording rules that belong to this sequence, evaluated in the order listed. At least one recording rule is required. Each entry references a recording rule by its `name` (the rule's UID).
+func (o RuleSequenceSpecOutput) RecordingRules() RuleSequenceSpecRecordingRuleArrayOutput {
+	return o.ApplyT(func(v RuleSequenceSpec) []RuleSequenceSpecRecordingRule { return v.RecordingRules }).(RuleSequenceSpecRecordingRuleArrayOutput)
+}
+
+// The trigger configuration shared by every rule in the sequence.
+func (o RuleSequenceSpecOutput) Trigger() RuleSequenceSpecTriggerPtrOutput {
+	return o.ApplyT(func(v RuleSequenceSpec) *RuleSequenceSpecTrigger { return v.Trigger }).(RuleSequenceSpecTriggerPtrOutput)
+}
+
+type RuleSequenceSpecPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceSpecPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleSequenceSpec)(nil)).Elem()
+}
+
+func (o RuleSequenceSpecPtrOutput) ToRuleSequenceSpecPtrOutput() RuleSequenceSpecPtrOutput {
+	return o
+}
+
+func (o RuleSequenceSpecPtrOutput) ToRuleSequenceSpecPtrOutputWithContext(ctx context.Context) RuleSequenceSpecPtrOutput {
+	return o
+}
+
+func (o RuleSequenceSpecPtrOutput) Elem() RuleSequenceSpecOutput {
+	return o.ApplyT(func(v *RuleSequenceSpec) RuleSequenceSpec {
+		if v != nil {
+			return *v
+		}
+		var ret RuleSequenceSpec
+		return ret
+	}).(RuleSequenceSpecOutput)
+}
+
+// The alert rules that belong to this sequence, evaluated in the order listed. Each entry references an alert rule by its `name` (the rule's UID).
+func (o RuleSequenceSpecPtrOutput) AlertingRules() RuleSequenceSpecAlertingRuleArrayOutput {
+	return o.ApplyT(func(v *RuleSequenceSpec) []RuleSequenceSpecAlertingRule {
+		if v == nil {
+			return nil
+		}
+		return v.AlertingRules
+	}).(RuleSequenceSpecAlertingRuleArrayOutput)
+}
+
+// The recording rules that belong to this sequence, evaluated in the order listed. At least one recording rule is required. Each entry references a recording rule by its `name` (the rule's UID).
+func (o RuleSequenceSpecPtrOutput) RecordingRules() RuleSequenceSpecRecordingRuleArrayOutput {
+	return o.ApplyT(func(v *RuleSequenceSpec) []RuleSequenceSpecRecordingRule {
+		if v == nil {
+			return nil
+		}
+		return v.RecordingRules
+	}).(RuleSequenceSpecRecordingRuleArrayOutput)
+}
+
+// The trigger configuration shared by every rule in the sequence.
+func (o RuleSequenceSpecPtrOutput) Trigger() RuleSequenceSpecTriggerPtrOutput {
+	return o.ApplyT(func(v *RuleSequenceSpec) *RuleSequenceSpecTrigger {
+		if v == nil {
+			return nil
+		}
+		return v.Trigger
+	}).(RuleSequenceSpecTriggerPtrOutput)
+}
+
+type RuleSequenceSpecAlertingRule struct {
+	Name string `pulumi:"name"`
+}
+
+// RuleSequenceSpecAlertingRuleInput is an input type that accepts RuleSequenceSpecAlertingRuleArgs and RuleSequenceSpecAlertingRuleOutput values.
+// You can construct a concrete instance of `RuleSequenceSpecAlertingRuleInput` via:
+//
+//	RuleSequenceSpecAlertingRuleArgs{...}
+type RuleSequenceSpecAlertingRuleInput interface {
+	pulumi.Input
+
+	ToRuleSequenceSpecAlertingRuleOutput() RuleSequenceSpecAlertingRuleOutput
+	ToRuleSequenceSpecAlertingRuleOutputWithContext(context.Context) RuleSequenceSpecAlertingRuleOutput
+}
+
+type RuleSequenceSpecAlertingRuleArgs struct {
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (RuleSequenceSpecAlertingRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceSpecAlertingRule)(nil)).Elem()
+}
+
+func (i RuleSequenceSpecAlertingRuleArgs) ToRuleSequenceSpecAlertingRuleOutput() RuleSequenceSpecAlertingRuleOutput {
+	return i.ToRuleSequenceSpecAlertingRuleOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceSpecAlertingRuleArgs) ToRuleSequenceSpecAlertingRuleOutputWithContext(ctx context.Context) RuleSequenceSpecAlertingRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecAlertingRuleOutput)
+}
+
+// RuleSequenceSpecAlertingRuleArrayInput is an input type that accepts RuleSequenceSpecAlertingRuleArray and RuleSequenceSpecAlertingRuleArrayOutput values.
+// You can construct a concrete instance of `RuleSequenceSpecAlertingRuleArrayInput` via:
+//
+//	RuleSequenceSpecAlertingRuleArray{ RuleSequenceSpecAlertingRuleArgs{...} }
+type RuleSequenceSpecAlertingRuleArrayInput interface {
+	pulumi.Input
+
+	ToRuleSequenceSpecAlertingRuleArrayOutput() RuleSequenceSpecAlertingRuleArrayOutput
+	ToRuleSequenceSpecAlertingRuleArrayOutputWithContext(context.Context) RuleSequenceSpecAlertingRuleArrayOutput
+}
+
+type RuleSequenceSpecAlertingRuleArray []RuleSequenceSpecAlertingRuleInput
+
+func (RuleSequenceSpecAlertingRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleSequenceSpecAlertingRule)(nil)).Elem()
+}
+
+func (i RuleSequenceSpecAlertingRuleArray) ToRuleSequenceSpecAlertingRuleArrayOutput() RuleSequenceSpecAlertingRuleArrayOutput {
+	return i.ToRuleSequenceSpecAlertingRuleArrayOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceSpecAlertingRuleArray) ToRuleSequenceSpecAlertingRuleArrayOutputWithContext(ctx context.Context) RuleSequenceSpecAlertingRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecAlertingRuleArrayOutput)
+}
+
+type RuleSequenceSpecAlertingRuleOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceSpecAlertingRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceSpecAlertingRule)(nil)).Elem()
+}
+
+func (o RuleSequenceSpecAlertingRuleOutput) ToRuleSequenceSpecAlertingRuleOutput() RuleSequenceSpecAlertingRuleOutput {
+	return o
+}
+
+func (o RuleSequenceSpecAlertingRuleOutput) ToRuleSequenceSpecAlertingRuleOutputWithContext(ctx context.Context) RuleSequenceSpecAlertingRuleOutput {
+	return o
+}
+
+func (o RuleSequenceSpecAlertingRuleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleSequenceSpecAlertingRule) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type RuleSequenceSpecAlertingRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceSpecAlertingRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleSequenceSpecAlertingRule)(nil)).Elem()
+}
+
+func (o RuleSequenceSpecAlertingRuleArrayOutput) ToRuleSequenceSpecAlertingRuleArrayOutput() RuleSequenceSpecAlertingRuleArrayOutput {
+	return o
+}
+
+func (o RuleSequenceSpecAlertingRuleArrayOutput) ToRuleSequenceSpecAlertingRuleArrayOutputWithContext(ctx context.Context) RuleSequenceSpecAlertingRuleArrayOutput {
+	return o
+}
+
+func (o RuleSequenceSpecAlertingRuleArrayOutput) Index(i pulumi.IntInput) RuleSequenceSpecAlertingRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RuleSequenceSpecAlertingRule {
+		return vs[0].([]RuleSequenceSpecAlertingRule)[vs[1].(int)]
+	}).(RuleSequenceSpecAlertingRuleOutput)
+}
+
+type RuleSequenceSpecRecordingRule struct {
+	Name string `pulumi:"name"`
+}
+
+// RuleSequenceSpecRecordingRuleInput is an input type that accepts RuleSequenceSpecRecordingRuleArgs and RuleSequenceSpecRecordingRuleOutput values.
+// You can construct a concrete instance of `RuleSequenceSpecRecordingRuleInput` via:
+//
+//	RuleSequenceSpecRecordingRuleArgs{...}
+type RuleSequenceSpecRecordingRuleInput interface {
+	pulumi.Input
+
+	ToRuleSequenceSpecRecordingRuleOutput() RuleSequenceSpecRecordingRuleOutput
+	ToRuleSequenceSpecRecordingRuleOutputWithContext(context.Context) RuleSequenceSpecRecordingRuleOutput
+}
+
+type RuleSequenceSpecRecordingRuleArgs struct {
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (RuleSequenceSpecRecordingRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceSpecRecordingRule)(nil)).Elem()
+}
+
+func (i RuleSequenceSpecRecordingRuleArgs) ToRuleSequenceSpecRecordingRuleOutput() RuleSequenceSpecRecordingRuleOutput {
+	return i.ToRuleSequenceSpecRecordingRuleOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceSpecRecordingRuleArgs) ToRuleSequenceSpecRecordingRuleOutputWithContext(ctx context.Context) RuleSequenceSpecRecordingRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecRecordingRuleOutput)
+}
+
+// RuleSequenceSpecRecordingRuleArrayInput is an input type that accepts RuleSequenceSpecRecordingRuleArray and RuleSequenceSpecRecordingRuleArrayOutput values.
+// You can construct a concrete instance of `RuleSequenceSpecRecordingRuleArrayInput` via:
+//
+//	RuleSequenceSpecRecordingRuleArray{ RuleSequenceSpecRecordingRuleArgs{...} }
+type RuleSequenceSpecRecordingRuleArrayInput interface {
+	pulumi.Input
+
+	ToRuleSequenceSpecRecordingRuleArrayOutput() RuleSequenceSpecRecordingRuleArrayOutput
+	ToRuleSequenceSpecRecordingRuleArrayOutputWithContext(context.Context) RuleSequenceSpecRecordingRuleArrayOutput
+}
+
+type RuleSequenceSpecRecordingRuleArray []RuleSequenceSpecRecordingRuleInput
+
+func (RuleSequenceSpecRecordingRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleSequenceSpecRecordingRule)(nil)).Elem()
+}
+
+func (i RuleSequenceSpecRecordingRuleArray) ToRuleSequenceSpecRecordingRuleArrayOutput() RuleSequenceSpecRecordingRuleArrayOutput {
+	return i.ToRuleSequenceSpecRecordingRuleArrayOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceSpecRecordingRuleArray) ToRuleSequenceSpecRecordingRuleArrayOutputWithContext(ctx context.Context) RuleSequenceSpecRecordingRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecRecordingRuleArrayOutput)
+}
+
+type RuleSequenceSpecRecordingRuleOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceSpecRecordingRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceSpecRecordingRule)(nil)).Elem()
+}
+
+func (o RuleSequenceSpecRecordingRuleOutput) ToRuleSequenceSpecRecordingRuleOutput() RuleSequenceSpecRecordingRuleOutput {
+	return o
+}
+
+func (o RuleSequenceSpecRecordingRuleOutput) ToRuleSequenceSpecRecordingRuleOutputWithContext(ctx context.Context) RuleSequenceSpecRecordingRuleOutput {
+	return o
+}
+
+func (o RuleSequenceSpecRecordingRuleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleSequenceSpecRecordingRule) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type RuleSequenceSpecRecordingRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceSpecRecordingRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleSequenceSpecRecordingRule)(nil)).Elem()
+}
+
+func (o RuleSequenceSpecRecordingRuleArrayOutput) ToRuleSequenceSpecRecordingRuleArrayOutput() RuleSequenceSpecRecordingRuleArrayOutput {
+	return o
+}
+
+func (o RuleSequenceSpecRecordingRuleArrayOutput) ToRuleSequenceSpecRecordingRuleArrayOutputWithContext(ctx context.Context) RuleSequenceSpecRecordingRuleArrayOutput {
+	return o
+}
+
+func (o RuleSequenceSpecRecordingRuleArrayOutput) Index(i pulumi.IntInput) RuleSequenceSpecRecordingRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RuleSequenceSpecRecordingRule {
+		return vs[0].([]RuleSequenceSpecRecordingRule)[vs[1].(int)]
+	}).(RuleSequenceSpecRecordingRuleOutput)
+}
+
+type RuleSequenceSpecTrigger struct {
+	// The interval at which the rules in the sequence should be evaluated.
+	Interval string `pulumi:"interval"`
+}
+
+// RuleSequenceSpecTriggerInput is an input type that accepts RuleSequenceSpecTriggerArgs and RuleSequenceSpecTriggerOutput values.
+// You can construct a concrete instance of `RuleSequenceSpecTriggerInput` via:
+//
+//	RuleSequenceSpecTriggerArgs{...}
+type RuleSequenceSpecTriggerInput interface {
+	pulumi.Input
+
+	ToRuleSequenceSpecTriggerOutput() RuleSequenceSpecTriggerOutput
+	ToRuleSequenceSpecTriggerOutputWithContext(context.Context) RuleSequenceSpecTriggerOutput
+}
+
+type RuleSequenceSpecTriggerArgs struct {
+	// The interval at which the rules in the sequence should be evaluated.
+	Interval pulumi.StringInput `pulumi:"interval"`
+}
+
+func (RuleSequenceSpecTriggerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceSpecTrigger)(nil)).Elem()
+}
+
+func (i RuleSequenceSpecTriggerArgs) ToRuleSequenceSpecTriggerOutput() RuleSequenceSpecTriggerOutput {
+	return i.ToRuleSequenceSpecTriggerOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceSpecTriggerArgs) ToRuleSequenceSpecTriggerOutputWithContext(ctx context.Context) RuleSequenceSpecTriggerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecTriggerOutput)
+}
+
+func (i RuleSequenceSpecTriggerArgs) ToRuleSequenceSpecTriggerPtrOutput() RuleSequenceSpecTriggerPtrOutput {
+	return i.ToRuleSequenceSpecTriggerPtrOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceSpecTriggerArgs) ToRuleSequenceSpecTriggerPtrOutputWithContext(ctx context.Context) RuleSequenceSpecTriggerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecTriggerOutput).ToRuleSequenceSpecTriggerPtrOutputWithContext(ctx)
+}
+
+// RuleSequenceSpecTriggerPtrInput is an input type that accepts RuleSequenceSpecTriggerArgs, RuleSequenceSpecTriggerPtr and RuleSequenceSpecTriggerPtrOutput values.
+// You can construct a concrete instance of `RuleSequenceSpecTriggerPtrInput` via:
+//
+//	        RuleSequenceSpecTriggerArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleSequenceSpecTriggerPtrInput interface {
+	pulumi.Input
+
+	ToRuleSequenceSpecTriggerPtrOutput() RuleSequenceSpecTriggerPtrOutput
+	ToRuleSequenceSpecTriggerPtrOutputWithContext(context.Context) RuleSequenceSpecTriggerPtrOutput
+}
+
+type ruleSequenceSpecTriggerPtrType RuleSequenceSpecTriggerArgs
+
+func RuleSequenceSpecTriggerPtr(v *RuleSequenceSpecTriggerArgs) RuleSequenceSpecTriggerPtrInput {
+	return (*ruleSequenceSpecTriggerPtrType)(v)
+}
+
+func (*ruleSequenceSpecTriggerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleSequenceSpecTrigger)(nil)).Elem()
+}
+
+func (i *ruleSequenceSpecTriggerPtrType) ToRuleSequenceSpecTriggerPtrOutput() RuleSequenceSpecTriggerPtrOutput {
+	return i.ToRuleSequenceSpecTriggerPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleSequenceSpecTriggerPtrType) ToRuleSequenceSpecTriggerPtrOutputWithContext(ctx context.Context) RuleSequenceSpecTriggerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecTriggerPtrOutput)
+}
+
+type RuleSequenceSpecTriggerOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceSpecTriggerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceSpecTrigger)(nil)).Elem()
+}
+
+func (o RuleSequenceSpecTriggerOutput) ToRuleSequenceSpecTriggerOutput() RuleSequenceSpecTriggerOutput {
+	return o
+}
+
+func (o RuleSequenceSpecTriggerOutput) ToRuleSequenceSpecTriggerOutputWithContext(ctx context.Context) RuleSequenceSpecTriggerOutput {
+	return o
+}
+
+func (o RuleSequenceSpecTriggerOutput) ToRuleSequenceSpecTriggerPtrOutput() RuleSequenceSpecTriggerPtrOutput {
+	return o.ToRuleSequenceSpecTriggerPtrOutputWithContext(context.Background())
+}
+
+func (o RuleSequenceSpecTriggerOutput) ToRuleSequenceSpecTriggerPtrOutputWithContext(ctx context.Context) RuleSequenceSpecTriggerPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleSequenceSpecTrigger) *RuleSequenceSpecTrigger {
+		return &v
+	}).(RuleSequenceSpecTriggerPtrOutput)
+}
+
+// The interval at which the rules in the sequence should be evaluated.
+func (o RuleSequenceSpecTriggerOutput) Interval() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleSequenceSpecTrigger) string { return v.Interval }).(pulumi.StringOutput)
+}
+
+type RuleSequenceSpecTriggerPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceSpecTriggerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleSequenceSpecTrigger)(nil)).Elem()
+}
+
+func (o RuleSequenceSpecTriggerPtrOutput) ToRuleSequenceSpecTriggerPtrOutput() RuleSequenceSpecTriggerPtrOutput {
+	return o
+}
+
+func (o RuleSequenceSpecTriggerPtrOutput) ToRuleSequenceSpecTriggerPtrOutputWithContext(ctx context.Context) RuleSequenceSpecTriggerPtrOutput {
+	return o
+}
+
+func (o RuleSequenceSpecTriggerPtrOutput) Elem() RuleSequenceSpecTriggerOutput {
+	return o.ApplyT(func(v *RuleSequenceSpecTrigger) RuleSequenceSpecTrigger {
+		if v != nil {
+			return *v
+		}
+		var ret RuleSequenceSpecTrigger
+		return ret
+	}).(RuleSequenceSpecTriggerOutput)
+}
+
+// The interval at which the rules in the sequence should be evaluated.
+func (o RuleSequenceSpecTriggerPtrOutput) Interval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleSequenceSpecTrigger) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Interval
+	}).(pulumi.StringPtrOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleMetadataInput)(nil)).Elem(), AlertRuleMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleMetadataPtrInput)(nil)).Elem(), AlertRuleMetadataArgs{})
@@ -2439,6 +3327,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleSpecPtrInput)(nil)).Elem(), RecordingRuleSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleSpecTriggerInput)(nil)).Elem(), RecordingRuleSpecTriggerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleSpecTriggerPtrInput)(nil)).Elem(), RecordingRuleSpecTriggerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceMetadataInput)(nil)).Elem(), RuleSequenceMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceMetadataPtrInput)(nil)).Elem(), RuleSequenceMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceOptionsInput)(nil)).Elem(), RuleSequenceOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceOptionsPtrInput)(nil)).Elem(), RuleSequenceOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceSpecInput)(nil)).Elem(), RuleSequenceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceSpecPtrInput)(nil)).Elem(), RuleSequenceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceSpecAlertingRuleInput)(nil)).Elem(), RuleSequenceSpecAlertingRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceSpecAlertingRuleArrayInput)(nil)).Elem(), RuleSequenceSpecAlertingRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceSpecRecordingRuleInput)(nil)).Elem(), RuleSequenceSpecRecordingRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceSpecRecordingRuleArrayInput)(nil)).Elem(), RuleSequenceSpecRecordingRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceSpecTriggerInput)(nil)).Elem(), RuleSequenceSpecTriggerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceSpecTriggerPtrInput)(nil)).Elem(), RuleSequenceSpecTriggerArgs{})
 	pulumi.RegisterOutputType(AlertRuleMetadataOutput{})
 	pulumi.RegisterOutputType(AlertRuleMetadataPtrOutput{})
 	pulumi.RegisterOutputType(AlertRuleOptionsOutput{})
@@ -2461,4 +3361,16 @@ func init() {
 	pulumi.RegisterOutputType(RecordingRuleSpecPtrOutput{})
 	pulumi.RegisterOutputType(RecordingRuleSpecTriggerOutput{})
 	pulumi.RegisterOutputType(RecordingRuleSpecTriggerPtrOutput{})
+	pulumi.RegisterOutputType(RuleSequenceMetadataOutput{})
+	pulumi.RegisterOutputType(RuleSequenceMetadataPtrOutput{})
+	pulumi.RegisterOutputType(RuleSequenceOptionsOutput{})
+	pulumi.RegisterOutputType(RuleSequenceOptionsPtrOutput{})
+	pulumi.RegisterOutputType(RuleSequenceSpecOutput{})
+	pulumi.RegisterOutputType(RuleSequenceSpecPtrOutput{})
+	pulumi.RegisterOutputType(RuleSequenceSpecAlertingRuleOutput{})
+	pulumi.RegisterOutputType(RuleSequenceSpecAlertingRuleArrayOutput{})
+	pulumi.RegisterOutputType(RuleSequenceSpecRecordingRuleOutput{})
+	pulumi.RegisterOutputType(RuleSequenceSpecRecordingRuleArrayOutput{})
+	pulumi.RegisterOutputType(RuleSequenceSpecTriggerOutput{})
+	pulumi.RegisterOutputType(RuleSequenceSpecTriggerPtrOutput{})
 }

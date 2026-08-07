@@ -7,7 +7,7 @@ import * as utilities from "../utilities";
 /**
  * Manages an action attached to a Grafana Agent Observability evaluation rule. When the rule's aggregate verdict matches the configured condition, matching conversations are added to one or more collections.
  *
- * Requires a Grafana instance with the `grafana-agento11y-app` plugin installed.
+ * Requires a Grafana instance with the `grafana-agento11y-app` plugin installed. Writes require a user or service account with the `grafana-agento11y-app.eval:write` permission, which only the Admin basic role grants by default.
  *
  * ## Example Usage
  *
@@ -33,12 +33,15 @@ import * as utilities from "../utilities";
  *     sampleRate: 0.1,
  *     evaluatorIds: [example.evaluatorId],
  * });
+ * const failed = new grafana.agento11y.Collection("failed", {
+ *     name: "Failed evaluations",
+ *     description: "Conversations where every evaluator failed.",
+ * });
  * // Adds conversations to a collection when every evaluator on the rule fails.
- * // The referenced collection must already exist in Agent Observability.
  * const exampleRuleAction = new grafana.agento11y.RuleAction("example", {
  *     ruleId: exampleEvaluationRule.ruleId,
  *     condition: "all_evaluators_fail",
- *     collectionIds: ["failed-evaluations"],
+ *     collectionIds: [failed.id],
  * });
  * ```
  *

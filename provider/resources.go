@@ -260,6 +260,9 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
+			"grafana_apps_rules_rulesequence_v0alpha1": {
+				Tok: grafanaVersionedResource(alertingMod, "v0alpha1", "RuleSequence"),
+			},
 			"grafana_contact_point": {
 				Tok: grafanaResource(alertingMod, "ContactPoint"),
 				Aliases: []tfbridge.AliasInfo{
@@ -371,6 +374,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(cloudMod, "ProductActivationK8sO11yConfigV1Alpha1"),
 					},
 				},
+			},
+			"grafana_apps_servicemodel_component_v1alpha1": {
+				Tok: grafanaVersionedResource(cloudMod, "v1alpha1", "ServiceModelComponent"),
 			},
 
 			// Enterprise

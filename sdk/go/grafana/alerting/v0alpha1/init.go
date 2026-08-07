@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AlertRule{}
 	case "grafana:alerting/v0alpha1/recordingRule:RecordingRule":
 		r = &RecordingRule{}
+	case "grafana:alerting/v0alpha1/ruleSequence:RuleSequence":
+		r = &RuleSequence{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -46,6 +48,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"alerting/v0alpha1/recordingRule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"alerting/v0alpha1/ruleSequence",
 		&module{version},
 	)
 }

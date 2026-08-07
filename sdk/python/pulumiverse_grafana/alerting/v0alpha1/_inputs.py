@@ -37,6 +37,18 @@ __all__ = [
     'RecordingRuleSpecArgsDict',
     'RecordingRuleSpecTriggerArgs',
     'RecordingRuleSpecTriggerArgsDict',
+    'RuleSequenceMetadataArgs',
+    'RuleSequenceMetadataArgsDict',
+    'RuleSequenceOptionsArgs',
+    'RuleSequenceOptionsArgsDict',
+    'RuleSequenceSpecArgs',
+    'RuleSequenceSpecArgsDict',
+    'RuleSequenceSpecAlertingRuleArgs',
+    'RuleSequenceSpecAlertingRuleArgsDict',
+    'RuleSequenceSpecRecordingRuleArgs',
+    'RuleSequenceSpecRecordingRuleArgsDict',
+    'RuleSequenceSpecTriggerArgs',
+    'RuleSequenceSpecTriggerArgsDict',
 ]
 
 class AlertRuleMetadataArgsDict(TypedDict):
@@ -1246,6 +1258,317 @@ class RecordingRuleSpecTriggerArgs:
     def interval(self) -> pulumi.Input[_builtins.str]:
         """
         The interval at which the recording rule should be evaluated.
+        """
+        return pulumi.get(self, "interval")
+
+    @interval.setter
+    def interval(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "interval", value)
+
+
+class RuleSequenceMetadataArgsDict(TypedDict):
+    uid: pulumi.Input[_builtins.str]
+    """
+    The unique identifier of the resource.
+    """
+    annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Annotations of the resource.
+    """
+    folder_uid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The full URL of the resource.
+    """
+    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The globally unique identifier of a resource, used by the API for tracking.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The version of the resource.
+    """
+
+@pulumi.input_type
+class RuleSequenceMetadataArgs:
+    def __init__(__self__, *,
+                 uid: pulumi.Input[_builtins.str],
+                 annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
+                 url: Optional[pulumi.Input[_builtins.str]] = None,
+                 uuid: Optional[pulumi.Input[_builtins.str]] = None,
+                 version: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] uid: The unique identifier of the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Annotations of the resource.
+        :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+        :param pulumi.Input[_builtins.str] url: The full URL of the resource.
+        :param pulumi.Input[_builtins.str] uuid: The globally unique identifier of a resource, used by the API for tracking.
+        :param pulumi.Input[_builtins.str] version: The version of the resource.
+        """
+        pulumi.set(__self__, "uid", uid)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if folder_uid is not None:
+            pulumi.set(__self__, "folder_uid", folder_uid)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> pulumi.Input[_builtins.str]:
+        """
+        The unique identifier of the resource.
+        """
+        return pulumi.get(self, "uid")
+
+    @uid.setter
+    def uid(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "uid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Annotations of the resource.
+        """
+        return pulumi.get(self, "annotations")
+
+    @annotations.setter
+    def annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "annotations", value)
+
+    @_builtins.property
+    @pulumi.getter(name="folderUid")
+    def folder_uid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+        """
+        return pulumi.get(self, "folder_uid")
+
+    @folder_uid.setter
+    def folder_uid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "folder_uid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The full URL of the resource.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "url", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The globally unique identifier of a resource, used by the API for tracking.
+        """
+        return pulumi.get(self, "uuid")
+
+    @uuid.setter
+    def uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "uuid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The version of the resource.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "version", value)
+
+
+class RuleSequenceOptionsArgsDict(TypedDict):
+    manager_identity: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+    """
+    overwrite: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+    """
+
+@pulumi.input_type
+class RuleSequenceOptionsArgs:
+    def __init__(__self__, *,
+                 manager_identity: Optional[pulumi.Input[_builtins.str]] = None,
+                 overwrite: Optional[pulumi.Input[_builtins.bool]] = None):
+        """
+        :param pulumi.Input[_builtins.str] manager_identity: Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+        :param pulumi.Input[_builtins.bool] overwrite: Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        if manager_identity is not None:
+            pulumi.set(__self__, "manager_identity", manager_identity)
+        if overwrite is not None:
+            pulumi.set(__self__, "overwrite", overwrite)
+
+    @_builtins.property
+    @pulumi.getter(name="managerIdentity")
+    def manager_identity(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+        """
+        return pulumi.get(self, "manager_identity")
+
+    @manager_identity.setter
+    def manager_identity(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "manager_identity", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def overwrite(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        return pulumi.get(self, "overwrite")
+
+    @overwrite.setter
+    def overwrite(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "overwrite", value)
+
+
+class RuleSequenceSpecArgsDict(TypedDict):
+    recording_rules: pulumi.Input[Sequence[pulumi.Input['RuleSequenceSpecRecordingRuleArgsDict']]]
+    """
+    The recording rules that belong to this sequence, evaluated in the order listed. At least one recording rule is required. Each entry references a recording rule by its `name` (the rule's UID).
+    """
+    alerting_rules: NotRequired[pulumi.Input[Sequence[pulumi.Input['RuleSequenceSpecAlertingRuleArgsDict']]]]
+    """
+    The alert rules that belong to this sequence, evaluated in the order listed. Each entry references an alert rule by its `name` (the rule's UID).
+    """
+    trigger: NotRequired[pulumi.Input['RuleSequenceSpecTriggerArgsDict']]
+    """
+    The trigger configuration shared by every rule in the sequence.
+    """
+
+@pulumi.input_type
+class RuleSequenceSpecArgs:
+    def __init__(__self__, *,
+                 recording_rules: pulumi.Input[Sequence[pulumi.Input['RuleSequenceSpecRecordingRuleArgs']]],
+                 alerting_rules: Optional[pulumi.Input[Sequence[pulumi.Input['RuleSequenceSpecAlertingRuleArgs']]]] = None,
+                 trigger: Optional[pulumi.Input['RuleSequenceSpecTriggerArgs']] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['RuleSequenceSpecRecordingRuleArgs']]] recording_rules: The recording rules that belong to this sequence, evaluated in the order listed. At least one recording rule is required. Each entry references a recording rule by its `name` (the rule's UID).
+        :param pulumi.Input[Sequence[pulumi.Input['RuleSequenceSpecAlertingRuleArgs']]] alerting_rules: The alert rules that belong to this sequence, evaluated in the order listed. Each entry references an alert rule by its `name` (the rule's UID).
+        :param pulumi.Input['RuleSequenceSpecTriggerArgs'] trigger: The trigger configuration shared by every rule in the sequence.
+        """
+        pulumi.set(__self__, "recording_rules", recording_rules)
+        if alerting_rules is not None:
+            pulumi.set(__self__, "alerting_rules", alerting_rules)
+        if trigger is not None:
+            pulumi.set(__self__, "trigger", trigger)
+
+    @_builtins.property
+    @pulumi.getter(name="recordingRules")
+    def recording_rules(self) -> pulumi.Input[Sequence[pulumi.Input['RuleSequenceSpecRecordingRuleArgs']]]:
+        """
+        The recording rules that belong to this sequence, evaluated in the order listed. At least one recording rule is required. Each entry references a recording rule by its `name` (the rule's UID).
+        """
+        return pulumi.get(self, "recording_rules")
+
+    @recording_rules.setter
+    def recording_rules(self, value: pulumi.Input[Sequence[pulumi.Input['RuleSequenceSpecRecordingRuleArgs']]]):
+        pulumi.set(self, "recording_rules", value)
+
+    @_builtins.property
+    @pulumi.getter(name="alertingRules")
+    def alerting_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RuleSequenceSpecAlertingRuleArgs']]]]:
+        """
+        The alert rules that belong to this sequence, evaluated in the order listed. Each entry references an alert rule by its `name` (the rule's UID).
+        """
+        return pulumi.get(self, "alerting_rules")
+
+    @alerting_rules.setter
+    def alerting_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RuleSequenceSpecAlertingRuleArgs']]]]):
+        pulumi.set(self, "alerting_rules", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def trigger(self) -> Optional[pulumi.Input['RuleSequenceSpecTriggerArgs']]:
+        """
+        The trigger configuration shared by every rule in the sequence.
+        """
+        return pulumi.get(self, "trigger")
+
+    @trigger.setter
+    def trigger(self, value: Optional[pulumi.Input['RuleSequenceSpecTriggerArgs']]):
+        pulumi.set(self, "trigger", value)
+
+
+class RuleSequenceSpecAlertingRuleArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+
+@pulumi.input_type
+class RuleSequenceSpecAlertingRuleArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[_builtins.str]):
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+
+class RuleSequenceSpecRecordingRuleArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+
+@pulumi.input_type
+class RuleSequenceSpecRecordingRuleArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[_builtins.str]):
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+
+class RuleSequenceSpecTriggerArgsDict(TypedDict):
+    interval: pulumi.Input[_builtins.str]
+    """
+    The interval at which the rules in the sequence should be evaluated.
+    """
+
+@pulumi.input_type
+class RuleSequenceSpecTriggerArgs:
+    def __init__(__self__, *,
+                 interval: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] interval: The interval at which the rules in the sequence should be evaluated.
+        """
+        pulumi.set(__self__, "interval", interval)
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> pulumi.Input[_builtins.str]:
+        """
+        The interval at which the rules in the sequence should be evaluated.
         """
         return pulumi.get(self, "interval")
 

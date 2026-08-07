@@ -8,5 +8,6 @@ import typing
 # Export this package's modules as members:
 from .alert_rule import *
 from .recording_rule import *
+from .rule_sequence import *
 from ._inputs import *
 from . import outputs

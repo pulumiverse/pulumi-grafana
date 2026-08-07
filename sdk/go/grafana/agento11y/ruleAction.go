@@ -14,7 +14,7 @@ import (
 
 // Manages an action attached to a Grafana Agent Observability evaluation rule. When the rule's aggregate verdict matches the configured condition, matching conversations are added to one or more collections.
 //
-// Requires a Grafana instance with the `grafana-agento11y-app` plugin installed.
+// Requires a Grafana instance with the `grafana-agento11y-app` plugin installed. Writes require a user or service account with the `grafana-agento11y-app.eval:write` permission, which only the Admin basic role grants by default.
 //
 // ## Example Usage
 //
@@ -70,13 +70,19 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			failed, err := agento11y.NewCollection(ctx, "failed", &agento11y.CollectionArgs{
+//				Name:        pulumi.String("Failed evaluations"),
+//				Description: pulumi.String("Conversations where every evaluator failed."),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			// Adds conversations to a collection when every evaluator on the rule fails.
-//			// The referenced collection must already exist in Agent Observability.
 //			_, err = agento11y.NewRuleAction(ctx, "example", &agento11y.RuleActionArgs{
 //				RuleId:    exampleEvaluationRule.RuleId,
 //				Condition: pulumi.String("all_evaluators_fail"),
 //				CollectionIds: pulumi.StringArray{
-//					pulumi.String("failed-evaluations"),
+//					failed.ID(),
 //				},
 //			})
 //			if err != nil {
