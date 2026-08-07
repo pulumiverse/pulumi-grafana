@@ -24,9 +24,10 @@ import (
 
 // all of the token components used below.
 const (
+	providerName = "grafana"
 	// This variable controls the default name of the package in the package
 	// registries for nodejs and python:
-	grafanaPkg = "grafana"
+	grafanaPkg = providerName
 	// modules:
 	grafanaMod = "index" // the toplevel module
 	// further modules follow the grouping of the upstream TF provider
@@ -108,9 +109,17 @@ func Provider() tfbridge.ProviderInfo {
 		grafana.FrameworkProvider(version.Version))
 
 	// Create a Pulumi provider mapping
+	const stringType = "string"
+	const alertingVersion0Alpha1 = "alerting/v0alpha1"
+	const alertingVersion1Beta1 = "alerting/v1beta1"
+	const appsVersioin0Alpha1 = "apps/v0alpha1"
+	const appsVersion1Beta1 = "apps/v1beta1"
+	const appsVersion2Beta1 = "apps/v2beta1"
+	const cloudVersion1Alpha1 = "cloud/v1alpha1"
+	const enterpriseVersion1Beta1 = "enterprise/v1beta1"
 	prov := tfbridge.ProviderInfo{
 		P:           p,
-		Name:        "grafana",
+		Name:        providerName,
 		DisplayName: "Grafana",
 		Publisher:   "pulumiverse",
 		//nolint:lll
@@ -118,15 +127,15 @@ func Provider() tfbridge.ProviderInfo {
 		PluginDownloadURL:       "github://api.github.com/pulumiverse",
 		Version:                 version.Version,
 		Description:             "A Pulumi package for creating and managing grafana.",
-		Keywords:                []string{"pulumi", "grafana", "pulumiverse"},
+		Keywords:                []string{"pulumi", providerName, "pulumiverse"},
 		License:                 "Apache-2.0",
 		Homepage:                "https://grafana.com",
 		Repository:              "https://github.com/pulumiverse/pulumi-grafana",
-		GitHubOrg:               "grafana",
+		GitHubOrg:               providerName,
 		TFProviderModuleVersion: "v4",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"auth": {
-				Type:   "string",
+				Type:   stringType,
 				Secret: boolRef(true),
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"GRAFANA_AUTH"},
@@ -138,7 +147,7 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 			"cloud_access_policy_token": {
-				Type:   "string",
+				Type:   stringType,
 				Secret: boolRef(true),
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"GRAFANA_CLOUD_ACCESS_POLICY_TOKEN"},
@@ -209,7 +218,7 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 			"url": {
-				Type: "string",
+				Type: stringType,
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"GRAFANA_URL"},
 				},
@@ -472,7 +481,7 @@ func Provider() tfbridge.ProviderInfo {
 			// Frontend Observability
 			"grafana_frontend_o11y_app": {
 				Fields: map[string]*tfbridge.SchemaInfo{
-					"id": {Type: "string"},
+					"id": {Type: stringType},
 				},
 			},
 
@@ -639,7 +648,7 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 				Docs: &tfbridge.DocInfo{
-					Source: "service_account.md",
+					Source: "service_account.md", //nolint:goconst
 				},
 			},
 			"grafana_service_account_permission": {
@@ -844,13 +853,13 @@ func Provider() tfbridge.ProviderInfo {
 			//Overlay: &tfbridge.OverlayInfo{},
 			RespectSchemaVersion: true,
 			ModuleToPackage: map[string]string{
-				"alerting/v0alpha1":  "alerting/v0alpha1",
-				"alerting/v1beta1":   "alerting/v1beta1",
-				"apps/v0alpha1":      "apps/v0alpha1",
-				"apps/v1beta1":       "apps/v1beta1",
-				"apps/v2beta1":       "apps/v2beta1",
-				"cloud/v1alpha1":     "cloud/v1alpha1",
-				"enterprise/v1beta1": "enterprise/v1beta1",
+				alertingVersion0Alpha1:  alertingVersion0Alpha1,
+				alertingVersion1Beta1:   alertingVersion1Beta1,
+				appsVersioin0Alpha1:     appsVersioin0Alpha1,
+				appsVersion1Beta1:       appsVersion1Beta1,
+				appsVersion2Beta1:       appsVersion2Beta1,
+				cloudVersion1Alpha1:     cloudVersion1Alpha1,
+				enterpriseVersion1Beta1: enterpriseVersion1Beta1,
 			},
 		},
 		Python: &tfbridge.PythonInfo{
@@ -859,13 +868,13 @@ func Provider() tfbridge.ProviderInfo {
 			PyProject:            struct{ Enabled bool }{true},
 			RespectSchemaVersion: true,
 			ModuleNameOverrides: map[string]string{
-				"alerting/v0alpha1":  "alerting/v0alpha1",
-				"alerting/v1beta1":   "alerting/v1beta1",
-				"apps/v0alpha1":      "apps/v0alpha1",
-				"apps/v1beta1":       "apps/v1beta1",
-				"apps/v2beta1":       "apps/v2beta1",
-				"cloud/v1alpha1":     "cloud/v1alpha1",
-				"enterprise/v1beta1": "enterprise/v1beta1",
+				alertingVersion0Alpha1:  alertingVersion0Alpha1,
+				alertingVersion1Beta1:   alertingVersion1Beta1,
+				appsVersioin0Alpha1:     appsVersioin0Alpha1,
+				appsVersion1Beta1:       appsVersion1Beta1,
+				appsVersion2Beta1:       appsVersion2Beta1,
+				cloudVersion1Alpha1:     cloudVersion1Alpha1,
+				enterpriseVersion1Beta1: enterpriseVersion1Beta1,
 			},
 		},
 		Golang: &tfbridge.GolangInfo{
@@ -878,13 +887,13 @@ func Provider() tfbridge.ProviderInfo {
 			GenerateResourceContainerTypes: true,
 			RespectSchemaVersion:           true,
 			ModuleToPackage: map[string]string{
-				"alerting/v0alpha1":  "alerting/v0alpha1",
-				"alerting/v1beta1":   "alerting/v1beta1",
-				"apps/v0alpha1":      "apps/v0alpha1",
-				"apps/v1beta1":       "apps/v1beta1",
-				"apps/v2beta1":       "apps/v2beta1",
-				"cloud/v1alpha1":     "cloud/v1alpha1",
-				"enterprise/v1beta1": "enterprise/v1beta1",
+				alertingVersion0Alpha1:  alertingVersion0Alpha1,
+				alertingVersion1Beta1:   alertingVersion1Beta1,
+				appsVersioin0Alpha1:     appsVersioin0Alpha1,
+				appsVersion1Beta1:       appsVersion1Beta1,
+				appsVersion2Beta1:       appsVersion2Beta1,
+				cloudVersion1Alpha1:     cloudVersion1Alpha1,
+				enterpriseVersion1Beta1: enterpriseVersion1Beta1,
 			},
 			PackageImportAliases: map[string]string{
 				"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting/v0alpha1":  "alertingv0alpha1",
@@ -900,13 +909,13 @@ func Provider() tfbridge.ProviderInfo {
 			RootNamespace:        "Pulumiverse",
 			RespectSchemaVersion: true,
 			Namespaces: map[string]string{
-				"alerting/v0alpha1":  "Alerting.V0Alpha1",
-				"alerting/v1beta1":   "Alerting.V1Beta1",
-				"apps/v0alpha1":      "Apps.V0Alpha1",
-				"apps/v1beta1":       "Apps.V1Beta1",
-				"apps/v2beta1":       "Apps.V2Beta1",
-				"cloud/v1alpha1":     "Cloud.V1Alpha1",
-				"enterprise/v1beta1": "Enterprise.V1Beta1",
+				alertingVersion0Alpha1:  "Alerting.V0Alpha1",
+				alertingVersion1Beta1:   "Alerting.V1Beta1",
+				appsVersioin0Alpha1:     "Apps.V0Alpha1",
+				appsVersion1Beta1:       "Apps.V1Beta1",
+				appsVersion2Beta1:       "Apps.V2Beta1",
+				cloudVersion1Alpha1:     "Cloud.V1Alpha1",
+				enterpriseVersion1Beta1: "Enterprise.V1Beta1",
 			},
 		},
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
