@@ -6,7 +6,11 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .apps_rules_rulesequence_v0alpha1 import *
+from .apps_servicemodel_component_v1alpha1 import *
 from .provider import *
+from ._inputs import *
+from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -72,6 +76,14 @@ else:
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "grafana",
+  "mod": "agento11y/collection",
+  "fqn": "pulumiverse_grafana.agento11y",
+  "classes": {
+   "grafana:agento11y/collection:Collection": "Collection"
+  }
+ },
  {
   "pkg": "grafana",
   "mod": "agento11y/evaluationRule",
@@ -702,6 +714,22 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.frontendobservability",
   "classes": {
    "grafana:frontendObservability/app:App": "App"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/appsRulesRulesequenceV0alpha1",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/appsRulesRulesequenceV0alpha1:AppsRulesRulesequenceV0alpha1": "AppsRulesRulesequenceV0alpha1"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/appsServicemodelComponentV1alpha1",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/appsServicemodelComponentV1alpha1:AppsServicemodelComponentV1alpha1": "AppsServicemodelComponentV1alpha1"
   }
  },
  {

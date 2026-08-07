@@ -13,6 +13,7 @@
         "strict": true
     },
     "files": [
+        "agento11y/collection.ts",
         "agento11y/evaluationRule.ts",
         "agento11y/evaluator.ts",
         "agento11y/hookRule.ts",
@@ -49,6 +50,8 @@
         "apps/v2/index.ts",
         "apps/v2beta1/dashboard.ts",
         "apps/v2beta1/index.ts",
+        "appsRulesRulesequenceV0alpha1.ts",
+        "appsServicemodelComponentV1alpha1.ts",
         "assert/customModelRules.ts",
         "assert/index.ts",
         "assert/logConfig.ts",

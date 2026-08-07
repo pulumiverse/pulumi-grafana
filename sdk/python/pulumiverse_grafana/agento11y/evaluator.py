@@ -237,7 +237,7 @@ class Evaluator(pulumi.CustomResource):
         """
         Manages a Grafana Agent Observability evaluator definition. Evaluators score agent generations or conversations (LLM judge, JSON schema, regex, or heuristic).
 
-        Requires a Grafana instance with the `grafana-agento11y-app` plugin installed.
+        Requires a Grafana instance with the `grafana-agento11y-app` plugin installed. Writes require a user or service account with the `grafana-agento11y-app.eval:write` permission, which only the Admin basic role grants by default.
 
         ## Example Usage
 
@@ -285,7 +285,7 @@ class Evaluator(pulumi.CustomResource):
         """
         Manages a Grafana Agent Observability evaluator definition. Evaluators score agent generations or conversations (LLM judge, JSON schema, regex, or heuristic).
 
-        Requires a Grafana instance with the `grafana-agento11y-app` plugin installed.
+        Requires a Grafana instance with the `grafana-agento11y-app` plugin installed. Writes require a user or service account with the `grafana-agento11y-app.eval:write` permission, which only the Admin basic role grants by default.
 
         ## Example Usage
 

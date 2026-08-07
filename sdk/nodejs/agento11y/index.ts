@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { CollectionArgs, CollectionState } from "./collection";
+export type Collection = import("./collection").Collection;
+export const Collection: typeof import("./collection").Collection = null as any;
+utilities.lazyLoad(exports, ["Collection"], () => require("./collection"));
+
 export { EvaluationRuleArgs, EvaluationRuleState } from "./evaluationRule";
 export type EvaluationRule = import("./evaluationRule").EvaluationRule;
 export const EvaluationRule: typeof import("./evaluationRule").EvaluationRule = null as any;
@@ -30,6 +35,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "grafana:agento11y/collection:Collection":
+                return new Collection(name, <any>undefined, { urn })
             case "grafana:agento11y/evaluationRule:EvaluationRule":
                 return new EvaluationRule(name, <any>undefined, { urn })
             case "grafana:agento11y/evaluator:Evaluator":
@@ -43,6 +50,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("grafana", "agento11y/collection", _module)
 pulumi.runtime.registerResourceModule("grafana", "agento11y/evaluationRule", _module)
 pulumi.runtime.registerResourceModule("grafana", "agento11y/evaluator", _module)
 pulumi.runtime.registerResourceModule("grafana", "agento11y/hookRule", _module)

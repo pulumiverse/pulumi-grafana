@@ -9,7 +9,7 @@ import * as utilities from "../utilities";
 /**
  * Manages a Grafana Agent Observability hook (guard) rule. Hook rules run synchronously on the request path and can deny or warn on matching generations, block tool calls, or redact content.
  *
- * At least one of `evaluatorIds`, `blockedTools`, or `redact` must be set. Requires a Grafana instance with the `grafana-agento11y-app` plugin installed.
+ * At least one of `evaluatorIds`, `blockedTools`, or `redact` must be set. Requires a Grafana instance with the `grafana-agento11y-app` plugin installed. Writes require a user or service account with the `grafana-agento11y-app.eval:write` permission, which only the Admin basic role grants by default.
  *
  * ## Example Usage
  *

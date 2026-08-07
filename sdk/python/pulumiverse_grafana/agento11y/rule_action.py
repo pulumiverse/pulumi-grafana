@@ -173,7 +173,7 @@ class RuleAction(pulumi.CustomResource):
         """
         Manages an action attached to a Grafana Agent Observability evaluation rule. When the rule's aggregate verdict matches the configured condition, matching conversations are added to one or more collections.
 
-        Requires a Grafana instance with the `grafana-agento11y-app` plugin installed.
+        Requires a Grafana instance with the `grafana-agento11y-app` plugin installed. Writes require a user or service account with the `grafana-agento11y-app.eval:write` permission, which only the Admin basic role grants by default.
 
         ## Example Usage
 
@@ -198,12 +198,14 @@ class RuleAction(pulumi.CustomResource):
             selector="user_visible_turn",
             sample_rate=0.1,
             evaluator_ids=[example.evaluator_id])
+        failed = grafana.agento11y.Collection("failed",
+            name="Failed evaluations",
+            description="Conversations where every evaluator failed.")
         # Adds conversations to a collection when every evaluator on the rule fails.
-        # The referenced collection must already exist in Agent Observability.
         example_rule_action = grafana.agento11y.RuleAction("example",
             rule_id=example_evaluation_rule.rule_id,
             condition="all_evaluators_fail",
-            collection_ids=["failed-evaluations"])
+            collection_ids=[failed.id])
         ```
 
         ## Import
@@ -229,7 +231,7 @@ class RuleAction(pulumi.CustomResource):
         """
         Manages an action attached to a Grafana Agent Observability evaluation rule. When the rule's aggregate verdict matches the configured condition, matching conversations are added to one or more collections.
 
-        Requires a Grafana instance with the `grafana-agento11y-app` plugin installed.
+        Requires a Grafana instance with the `grafana-agento11y-app` plugin installed. Writes require a user or service account with the `grafana-agento11y-app.eval:write` permission, which only the Admin basic role grants by default.
 
         ## Example Usage
 
@@ -254,12 +256,14 @@ class RuleAction(pulumi.CustomResource):
             selector="user_visible_turn",
             sample_rate=0.1,
             evaluator_ids=[example.evaluator_id])
+        failed = grafana.agento11y.Collection("failed",
+            name="Failed evaluations",
+            description="Conversations where every evaluator failed.")
         # Adds conversations to a collection when every evaluator on the rule fails.
-        # The referenced collection must already exist in Agent Observability.
         example_rule_action = grafana.agento11y.RuleAction("example",
             rule_id=example_evaluation_rule.rule_id,
             condition="all_evaluators_fail",
-            collection_ids=["failed-evaluations"])
+            collection_ids=[failed.id])
         ```
 
         ## Import
