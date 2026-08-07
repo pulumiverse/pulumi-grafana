@@ -27,6 +27,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ProductActivationDbO11yConfig{}
 	case "grafana:cloud/v1alpha1/productActivationK8sO11yConfig:ProductActivationK8sO11yConfig":
 		r = &ProductActivationK8sO11yConfig{}
+	case "grafana:cloud/v1alpha1/serviceModelComponent:ServiceModelComponent":
+		r = &ServiceModelComponent{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -53,6 +55,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"cloud/v1alpha1/productActivationK8sO11yConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"cloud/v1alpha1/serviceModelComponent",
 		&module{version},
 	)
 }

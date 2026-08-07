@@ -1588,6 +1588,1165 @@ func (o ProductActivationK8sO11yConfigSpecPtrOutput) Enabled() pulumi.BoolPtrOut
 	}).(pulumi.BoolPtrOutput)
 }
 
+type ServiceModelComponentMetadata struct {
+	// Annotations of the resource.
+	Annotations map[string]string `pulumi:"annotations"`
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+	FolderUid *string `pulumi:"folderUid"`
+	// The unique identifier of the resource.
+	Uid string `pulumi:"uid"`
+	// The full URL of the resource.
+	Url *string `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid *string `pulumi:"uuid"`
+	// The version of the resource.
+	Version *string `pulumi:"version"`
+}
+
+// ServiceModelComponentMetadataInput is an input type that accepts ServiceModelComponentMetadataArgs and ServiceModelComponentMetadataOutput values.
+// You can construct a concrete instance of `ServiceModelComponentMetadataInput` via:
+//
+//	ServiceModelComponentMetadataArgs{...}
+type ServiceModelComponentMetadataInput interface {
+	pulumi.Input
+
+	ToServiceModelComponentMetadataOutput() ServiceModelComponentMetadataOutput
+	ToServiceModelComponentMetadataOutputWithContext(context.Context) ServiceModelComponentMetadataOutput
+}
+
+type ServiceModelComponentMetadataArgs struct {
+	// Annotations of the resource.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The unique identifier of the resource.
+	Uid pulumi.StringInput `pulumi:"uid"`
+	// The full URL of the resource.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
+	// The version of the resource.
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (ServiceModelComponentMetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceModelComponentMetadata)(nil)).Elem()
+}
+
+func (i ServiceModelComponentMetadataArgs) ToServiceModelComponentMetadataOutput() ServiceModelComponentMetadataOutput {
+	return i.ToServiceModelComponentMetadataOutputWithContext(context.Background())
+}
+
+func (i ServiceModelComponentMetadataArgs) ToServiceModelComponentMetadataOutputWithContext(ctx context.Context) ServiceModelComponentMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceModelComponentMetadataOutput)
+}
+
+func (i ServiceModelComponentMetadataArgs) ToServiceModelComponentMetadataPtrOutput() ServiceModelComponentMetadataPtrOutput {
+	return i.ToServiceModelComponentMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i ServiceModelComponentMetadataArgs) ToServiceModelComponentMetadataPtrOutputWithContext(ctx context.Context) ServiceModelComponentMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceModelComponentMetadataOutput).ToServiceModelComponentMetadataPtrOutputWithContext(ctx)
+}
+
+// ServiceModelComponentMetadataPtrInput is an input type that accepts ServiceModelComponentMetadataArgs, ServiceModelComponentMetadataPtr and ServiceModelComponentMetadataPtrOutput values.
+// You can construct a concrete instance of `ServiceModelComponentMetadataPtrInput` via:
+//
+//	        ServiceModelComponentMetadataArgs{...}
+//
+//	or:
+//
+//	        nil
+type ServiceModelComponentMetadataPtrInput interface {
+	pulumi.Input
+
+	ToServiceModelComponentMetadataPtrOutput() ServiceModelComponentMetadataPtrOutput
+	ToServiceModelComponentMetadataPtrOutputWithContext(context.Context) ServiceModelComponentMetadataPtrOutput
+}
+
+type serviceModelComponentMetadataPtrType ServiceModelComponentMetadataArgs
+
+func ServiceModelComponentMetadataPtr(v *ServiceModelComponentMetadataArgs) ServiceModelComponentMetadataPtrInput {
+	return (*serviceModelComponentMetadataPtrType)(v)
+}
+
+func (*serviceModelComponentMetadataPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceModelComponentMetadata)(nil)).Elem()
+}
+
+func (i *serviceModelComponentMetadataPtrType) ToServiceModelComponentMetadataPtrOutput() ServiceModelComponentMetadataPtrOutput {
+	return i.ToServiceModelComponentMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i *serviceModelComponentMetadataPtrType) ToServiceModelComponentMetadataPtrOutputWithContext(ctx context.Context) ServiceModelComponentMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceModelComponentMetadataPtrOutput)
+}
+
+type ServiceModelComponentMetadataOutput struct{ *pulumi.OutputState }
+
+func (ServiceModelComponentMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceModelComponentMetadata)(nil)).Elem()
+}
+
+func (o ServiceModelComponentMetadataOutput) ToServiceModelComponentMetadataOutput() ServiceModelComponentMetadataOutput {
+	return o
+}
+
+func (o ServiceModelComponentMetadataOutput) ToServiceModelComponentMetadataOutputWithContext(ctx context.Context) ServiceModelComponentMetadataOutput {
+	return o
+}
+
+func (o ServiceModelComponentMetadataOutput) ToServiceModelComponentMetadataPtrOutput() ServiceModelComponentMetadataPtrOutput {
+	return o.ToServiceModelComponentMetadataPtrOutputWithContext(context.Background())
+}
+
+func (o ServiceModelComponentMetadataOutput) ToServiceModelComponentMetadataPtrOutputWithContext(ctx context.Context) ServiceModelComponentMetadataPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceModelComponentMetadata) *ServiceModelComponentMetadata {
+		return &v
+	}).(ServiceModelComponentMetadataPtrOutput)
+}
+
+// Annotations of the resource.
+func (o ServiceModelComponentMetadataOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ServiceModelComponentMetadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+func (o ServiceModelComponentMetadataOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceModelComponentMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o ServiceModelComponentMetadataOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceModelComponentMetadata) string { return v.Uid }).(pulumi.StringOutput)
+}
+
+// The full URL of the resource.
+func (o ServiceModelComponentMetadataOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceModelComponentMetadata) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o ServiceModelComponentMetadataOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceModelComponentMetadata) *string { return v.Uuid }).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o ServiceModelComponentMetadataOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceModelComponentMetadata) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type ServiceModelComponentMetadataPtrOutput struct{ *pulumi.OutputState }
+
+func (ServiceModelComponentMetadataPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceModelComponentMetadata)(nil)).Elem()
+}
+
+func (o ServiceModelComponentMetadataPtrOutput) ToServiceModelComponentMetadataPtrOutput() ServiceModelComponentMetadataPtrOutput {
+	return o
+}
+
+func (o ServiceModelComponentMetadataPtrOutput) ToServiceModelComponentMetadataPtrOutputWithContext(ctx context.Context) ServiceModelComponentMetadataPtrOutput {
+	return o
+}
+
+func (o ServiceModelComponentMetadataPtrOutput) Elem() ServiceModelComponentMetadataOutput {
+	return o.ApplyT(func(v *ServiceModelComponentMetadata) ServiceModelComponentMetadata {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceModelComponentMetadata
+		return ret
+	}).(ServiceModelComponentMetadataOutput)
+}
+
+// Annotations of the resource.
+func (o ServiceModelComponentMetadataPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ServiceModelComponentMetadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+func (o ServiceModelComponentMetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceModelComponentMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FolderUid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o ServiceModelComponentMetadataPtrOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceModelComponentMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The full URL of the resource.
+func (o ServiceModelComponentMetadataPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceModelComponentMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o ServiceModelComponentMetadataPtrOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceModelComponentMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Uuid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o ServiceModelComponentMetadataPtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceModelComponentMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Version
+	}).(pulumi.StringPtrOutput)
+}
+
+type ServiceModelComponentOptions struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity *string `pulumi:"managerIdentity"`
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite *bool `pulumi:"overwrite"`
+}
+
+// ServiceModelComponentOptionsInput is an input type that accepts ServiceModelComponentOptionsArgs and ServiceModelComponentOptionsOutput values.
+// You can construct a concrete instance of `ServiceModelComponentOptionsInput` via:
+//
+//	ServiceModelComponentOptionsArgs{...}
+type ServiceModelComponentOptionsInput interface {
+	pulumi.Input
+
+	ToServiceModelComponentOptionsOutput() ServiceModelComponentOptionsOutput
+	ToServiceModelComponentOptionsOutputWithContext(context.Context) ServiceModelComponentOptionsOutput
+}
+
+type ServiceModelComponentOptionsArgs struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity pulumi.StringPtrInput `pulumi:"managerIdentity"`
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
+}
+
+func (ServiceModelComponentOptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceModelComponentOptions)(nil)).Elem()
+}
+
+func (i ServiceModelComponentOptionsArgs) ToServiceModelComponentOptionsOutput() ServiceModelComponentOptionsOutput {
+	return i.ToServiceModelComponentOptionsOutputWithContext(context.Background())
+}
+
+func (i ServiceModelComponentOptionsArgs) ToServiceModelComponentOptionsOutputWithContext(ctx context.Context) ServiceModelComponentOptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceModelComponentOptionsOutput)
+}
+
+func (i ServiceModelComponentOptionsArgs) ToServiceModelComponentOptionsPtrOutput() ServiceModelComponentOptionsPtrOutput {
+	return i.ToServiceModelComponentOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i ServiceModelComponentOptionsArgs) ToServiceModelComponentOptionsPtrOutputWithContext(ctx context.Context) ServiceModelComponentOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceModelComponentOptionsOutput).ToServiceModelComponentOptionsPtrOutputWithContext(ctx)
+}
+
+// ServiceModelComponentOptionsPtrInput is an input type that accepts ServiceModelComponentOptionsArgs, ServiceModelComponentOptionsPtr and ServiceModelComponentOptionsPtrOutput values.
+// You can construct a concrete instance of `ServiceModelComponentOptionsPtrInput` via:
+//
+//	        ServiceModelComponentOptionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ServiceModelComponentOptionsPtrInput interface {
+	pulumi.Input
+
+	ToServiceModelComponentOptionsPtrOutput() ServiceModelComponentOptionsPtrOutput
+	ToServiceModelComponentOptionsPtrOutputWithContext(context.Context) ServiceModelComponentOptionsPtrOutput
+}
+
+type serviceModelComponentOptionsPtrType ServiceModelComponentOptionsArgs
+
+func ServiceModelComponentOptionsPtr(v *ServiceModelComponentOptionsArgs) ServiceModelComponentOptionsPtrInput {
+	return (*serviceModelComponentOptionsPtrType)(v)
+}
+
+func (*serviceModelComponentOptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceModelComponentOptions)(nil)).Elem()
+}
+
+func (i *serviceModelComponentOptionsPtrType) ToServiceModelComponentOptionsPtrOutput() ServiceModelComponentOptionsPtrOutput {
+	return i.ToServiceModelComponentOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *serviceModelComponentOptionsPtrType) ToServiceModelComponentOptionsPtrOutputWithContext(ctx context.Context) ServiceModelComponentOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceModelComponentOptionsPtrOutput)
+}
+
+type ServiceModelComponentOptionsOutput struct{ *pulumi.OutputState }
+
+func (ServiceModelComponentOptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceModelComponentOptions)(nil)).Elem()
+}
+
+func (o ServiceModelComponentOptionsOutput) ToServiceModelComponentOptionsOutput() ServiceModelComponentOptionsOutput {
+	return o
+}
+
+func (o ServiceModelComponentOptionsOutput) ToServiceModelComponentOptionsOutputWithContext(ctx context.Context) ServiceModelComponentOptionsOutput {
+	return o
+}
+
+func (o ServiceModelComponentOptionsOutput) ToServiceModelComponentOptionsPtrOutput() ServiceModelComponentOptionsPtrOutput {
+	return o.ToServiceModelComponentOptionsPtrOutputWithContext(context.Background())
+}
+
+func (o ServiceModelComponentOptionsOutput) ToServiceModelComponentOptionsPtrOutputWithContext(ctx context.Context) ServiceModelComponentOptionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceModelComponentOptions) *ServiceModelComponentOptions {
+		return &v
+	}).(ServiceModelComponentOptionsPtrOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o ServiceModelComponentOptionsOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceModelComponentOptions) *string { return v.ManagerIdentity }).(pulumi.StringPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o ServiceModelComponentOptionsOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceModelComponentOptions) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
+}
+
+type ServiceModelComponentOptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (ServiceModelComponentOptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceModelComponentOptions)(nil)).Elem()
+}
+
+func (o ServiceModelComponentOptionsPtrOutput) ToServiceModelComponentOptionsPtrOutput() ServiceModelComponentOptionsPtrOutput {
+	return o
+}
+
+func (o ServiceModelComponentOptionsPtrOutput) ToServiceModelComponentOptionsPtrOutputWithContext(ctx context.Context) ServiceModelComponentOptionsPtrOutput {
+	return o
+}
+
+func (o ServiceModelComponentOptionsPtrOutput) Elem() ServiceModelComponentOptionsOutput {
+	return o.ApplyT(func(v *ServiceModelComponentOptions) ServiceModelComponentOptions {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceModelComponentOptions
+		return ret
+	}).(ServiceModelComponentOptionsOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o ServiceModelComponentOptionsPtrOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceModelComponentOptions) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ManagerIdentity
+	}).(pulumi.StringPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o ServiceModelComponentOptionsPtrOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceModelComponentOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Overwrite
+	}).(pulumi.BoolPtrOutput)
+}
+
+type ServiceModelComponentSpec struct {
+	// References to services this service depends on.
+	DependsOnRefs []ServiceModelComponentSpecDependsOnRef `pulumi:"dependsOnRefs"`
+	// Description of the service.
+	Description *string `pulumi:"description"`
+	// Additional key/value pairs used to match resources to the service: a resource matches when it has a label or tag with the same key and value. For example, an identifier with key `namespace` and value `checkout-prod` matches alerts, SLOs and dashboards labeled or tagged `namespace=checkout-prod`. Maximum of 5. A `serviceName` identifier equal to `metadata.uid` is implicit; add an explicit `serviceName` when the telemetry value differs from the uid, for example because it contains characters the uid does not allow (such as uppercase letters, dots or underscores); the explicit value is matched in addition to the uid.
+	Identifiers []ServiceModelComponentSpecIdentifier `pulumi:"identifiers"`
+	// Links attached to the service (documentation, repository, etc.).
+	Links []ServiceModelComponentSpecLink `pulumi:"links"`
+	// Reference to the team owning the service. Set `name` to the Grafana team UID; `apiVersion` and `kind` default to a Grafana IAM team reference.
+	OwnerRef *ServiceModelComponentSpecOwnerRef `pulumi:"ownerRef"`
+	// Display name of the service.
+	Title string `pulumi:"title"`
+	// Component type. Defaults to `service`, the only type currently displayed by Service Center.
+	Type *string `pulumi:"type"`
+}
+
+// ServiceModelComponentSpecInput is an input type that accepts ServiceModelComponentSpecArgs and ServiceModelComponentSpecOutput values.
+// You can construct a concrete instance of `ServiceModelComponentSpecInput` via:
+//
+//	ServiceModelComponentSpecArgs{...}
+type ServiceModelComponentSpecInput interface {
+	pulumi.Input
+
+	ToServiceModelComponentSpecOutput() ServiceModelComponentSpecOutput
+	ToServiceModelComponentSpecOutputWithContext(context.Context) ServiceModelComponentSpecOutput
+}
+
+type ServiceModelComponentSpecArgs struct {
+	// References to services this service depends on.
+	DependsOnRefs ServiceModelComponentSpecDependsOnRefArrayInput `pulumi:"dependsOnRefs"`
+	// Description of the service.
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// Additional key/value pairs used to match resources to the service: a resource matches when it has a label or tag with the same key and value. For example, an identifier with key `namespace` and value `checkout-prod` matches alerts, SLOs and dashboards labeled or tagged `namespace=checkout-prod`. Maximum of 5. A `serviceName` identifier equal to `metadata.uid` is implicit; add an explicit `serviceName` when the telemetry value differs from the uid, for example because it contains characters the uid does not allow (such as uppercase letters, dots or underscores); the explicit value is matched in addition to the uid.
+	Identifiers ServiceModelComponentSpecIdentifierArrayInput `pulumi:"identifiers"`
+	// Links attached to the service (documentation, repository, etc.).
+	Links ServiceModelComponentSpecLinkArrayInput `pulumi:"links"`
+	// Reference to the team owning the service. Set `name` to the Grafana team UID; `apiVersion` and `kind` default to a Grafana IAM team reference.
+	OwnerRef ServiceModelComponentSpecOwnerRefPtrInput `pulumi:"ownerRef"`
+	// Display name of the service.
+	Title pulumi.StringInput `pulumi:"title"`
+	// Component type. Defaults to `service`, the only type currently displayed by Service Center.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (ServiceModelComponentSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceModelComponentSpec)(nil)).Elem()
+}
+
+func (i ServiceModelComponentSpecArgs) ToServiceModelComponentSpecOutput() ServiceModelComponentSpecOutput {
+	return i.ToServiceModelComponentSpecOutputWithContext(context.Background())
+}
+
+func (i ServiceModelComponentSpecArgs) ToServiceModelComponentSpecOutputWithContext(ctx context.Context) ServiceModelComponentSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceModelComponentSpecOutput)
+}
+
+func (i ServiceModelComponentSpecArgs) ToServiceModelComponentSpecPtrOutput() ServiceModelComponentSpecPtrOutput {
+	return i.ToServiceModelComponentSpecPtrOutputWithContext(context.Background())
+}
+
+func (i ServiceModelComponentSpecArgs) ToServiceModelComponentSpecPtrOutputWithContext(ctx context.Context) ServiceModelComponentSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceModelComponentSpecOutput).ToServiceModelComponentSpecPtrOutputWithContext(ctx)
+}
+
+// ServiceModelComponentSpecPtrInput is an input type that accepts ServiceModelComponentSpecArgs, ServiceModelComponentSpecPtr and ServiceModelComponentSpecPtrOutput values.
+// You can construct a concrete instance of `ServiceModelComponentSpecPtrInput` via:
+//
+//	        ServiceModelComponentSpecArgs{...}
+//
+//	or:
+//
+//	        nil
+type ServiceModelComponentSpecPtrInput interface {
+	pulumi.Input
+
+	ToServiceModelComponentSpecPtrOutput() ServiceModelComponentSpecPtrOutput
+	ToServiceModelComponentSpecPtrOutputWithContext(context.Context) ServiceModelComponentSpecPtrOutput
+}
+
+type serviceModelComponentSpecPtrType ServiceModelComponentSpecArgs
+
+func ServiceModelComponentSpecPtr(v *ServiceModelComponentSpecArgs) ServiceModelComponentSpecPtrInput {
+	return (*serviceModelComponentSpecPtrType)(v)
+}
+
+func (*serviceModelComponentSpecPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceModelComponentSpec)(nil)).Elem()
+}
+
+func (i *serviceModelComponentSpecPtrType) ToServiceModelComponentSpecPtrOutput() ServiceModelComponentSpecPtrOutput {
+	return i.ToServiceModelComponentSpecPtrOutputWithContext(context.Background())
+}
+
+func (i *serviceModelComponentSpecPtrType) ToServiceModelComponentSpecPtrOutputWithContext(ctx context.Context) ServiceModelComponentSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceModelComponentSpecPtrOutput)
+}
+
+type ServiceModelComponentSpecOutput struct{ *pulumi.OutputState }
+
+func (ServiceModelComponentSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceModelComponentSpec)(nil)).Elem()
+}
+
+func (o ServiceModelComponentSpecOutput) ToServiceModelComponentSpecOutput() ServiceModelComponentSpecOutput {
+	return o
+}
+
+func (o ServiceModelComponentSpecOutput) ToServiceModelComponentSpecOutputWithContext(ctx context.Context) ServiceModelComponentSpecOutput {
+	return o
+}
+
+func (o ServiceModelComponentSpecOutput) ToServiceModelComponentSpecPtrOutput() ServiceModelComponentSpecPtrOutput {
+	return o.ToServiceModelComponentSpecPtrOutputWithContext(context.Background())
+}
+
+func (o ServiceModelComponentSpecOutput) ToServiceModelComponentSpecPtrOutputWithContext(ctx context.Context) ServiceModelComponentSpecPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceModelComponentSpec) *ServiceModelComponentSpec {
+		return &v
+	}).(ServiceModelComponentSpecPtrOutput)
+}
+
+// References to services this service depends on.
+func (o ServiceModelComponentSpecOutput) DependsOnRefs() ServiceModelComponentSpecDependsOnRefArrayOutput {
+	return o.ApplyT(func(v ServiceModelComponentSpec) []ServiceModelComponentSpecDependsOnRef { return v.DependsOnRefs }).(ServiceModelComponentSpecDependsOnRefArrayOutput)
+}
+
+// Description of the service.
+func (o ServiceModelComponentSpecOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceModelComponentSpec) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Additional key/value pairs used to match resources to the service: a resource matches when it has a label or tag with the same key and value. For example, an identifier with key `namespace` and value `checkout-prod` matches alerts, SLOs and dashboards labeled or tagged `namespace=checkout-prod`. Maximum of 5. A `serviceName` identifier equal to `metadata.uid` is implicit; add an explicit `serviceName` when the telemetry value differs from the uid, for example because it contains characters the uid does not allow (such as uppercase letters, dots or underscores); the explicit value is matched in addition to the uid.
+func (o ServiceModelComponentSpecOutput) Identifiers() ServiceModelComponentSpecIdentifierArrayOutput {
+	return o.ApplyT(func(v ServiceModelComponentSpec) []ServiceModelComponentSpecIdentifier { return v.Identifiers }).(ServiceModelComponentSpecIdentifierArrayOutput)
+}
+
+// Links attached to the service (documentation, repository, etc.).
+func (o ServiceModelComponentSpecOutput) Links() ServiceModelComponentSpecLinkArrayOutput {
+	return o.ApplyT(func(v ServiceModelComponentSpec) []ServiceModelComponentSpecLink { return v.Links }).(ServiceModelComponentSpecLinkArrayOutput)
+}
+
+// Reference to the team owning the service. Set `name` to the Grafana team UID; `apiVersion` and `kind` default to a Grafana IAM team reference.
+func (o ServiceModelComponentSpecOutput) OwnerRef() ServiceModelComponentSpecOwnerRefPtrOutput {
+	return o.ApplyT(func(v ServiceModelComponentSpec) *ServiceModelComponentSpecOwnerRef { return v.OwnerRef }).(ServiceModelComponentSpecOwnerRefPtrOutput)
+}
+
+// Display name of the service.
+func (o ServiceModelComponentSpecOutput) Title() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceModelComponentSpec) string { return v.Title }).(pulumi.StringOutput)
+}
+
+// Component type. Defaults to `service`, the only type currently displayed by Service Center.
+func (o ServiceModelComponentSpecOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceModelComponentSpec) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type ServiceModelComponentSpecPtrOutput struct{ *pulumi.OutputState }
+
+func (ServiceModelComponentSpecPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceModelComponentSpec)(nil)).Elem()
+}
+
+func (o ServiceModelComponentSpecPtrOutput) ToServiceModelComponentSpecPtrOutput() ServiceModelComponentSpecPtrOutput {
+	return o
+}
+
+func (o ServiceModelComponentSpecPtrOutput) ToServiceModelComponentSpecPtrOutputWithContext(ctx context.Context) ServiceModelComponentSpecPtrOutput {
+	return o
+}
+
+func (o ServiceModelComponentSpecPtrOutput) Elem() ServiceModelComponentSpecOutput {
+	return o.ApplyT(func(v *ServiceModelComponentSpec) ServiceModelComponentSpec {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceModelComponentSpec
+		return ret
+	}).(ServiceModelComponentSpecOutput)
+}
+
+// References to services this service depends on.
+func (o ServiceModelComponentSpecPtrOutput) DependsOnRefs() ServiceModelComponentSpecDependsOnRefArrayOutput {
+	return o.ApplyT(func(v *ServiceModelComponentSpec) []ServiceModelComponentSpecDependsOnRef {
+		if v == nil {
+			return nil
+		}
+		return v.DependsOnRefs
+	}).(ServiceModelComponentSpecDependsOnRefArrayOutput)
+}
+
+// Description of the service.
+func (o ServiceModelComponentSpecPtrOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceModelComponentSpec) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
+}
+
+// Additional key/value pairs used to match resources to the service: a resource matches when it has a label or tag with the same key and value. For example, an identifier with key `namespace` and value `checkout-prod` matches alerts, SLOs and dashboards labeled or tagged `namespace=checkout-prod`. Maximum of 5. A `serviceName` identifier equal to `metadata.uid` is implicit; add an explicit `serviceName` when the telemetry value differs from the uid, for example because it contains characters the uid does not allow (such as uppercase letters, dots or underscores); the explicit value is matched in addition to the uid.
+func (o ServiceModelComponentSpecPtrOutput) Identifiers() ServiceModelComponentSpecIdentifierArrayOutput {
+	return o.ApplyT(func(v *ServiceModelComponentSpec) []ServiceModelComponentSpecIdentifier {
+		if v == nil {
+			return nil
+		}
+		return v.Identifiers
+	}).(ServiceModelComponentSpecIdentifierArrayOutput)
+}
+
+// Links attached to the service (documentation, repository, etc.).
+func (o ServiceModelComponentSpecPtrOutput) Links() ServiceModelComponentSpecLinkArrayOutput {
+	return o.ApplyT(func(v *ServiceModelComponentSpec) []ServiceModelComponentSpecLink {
+		if v == nil {
+			return nil
+		}
+		return v.Links
+	}).(ServiceModelComponentSpecLinkArrayOutput)
+}
+
+// Reference to the team owning the service. Set `name` to the Grafana team UID; `apiVersion` and `kind` default to a Grafana IAM team reference.
+func (o ServiceModelComponentSpecPtrOutput) OwnerRef() ServiceModelComponentSpecOwnerRefPtrOutput {
+	return o.ApplyT(func(v *ServiceModelComponentSpec) *ServiceModelComponentSpecOwnerRef {
+		if v == nil {
+			return nil
+		}
+		return v.OwnerRef
+	}).(ServiceModelComponentSpecOwnerRefPtrOutput)
+}
+
+// Display name of the service.
+func (o ServiceModelComponentSpecPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceModelComponentSpec) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
+}
+
+// Component type. Defaults to `service`, the only type currently displayed by Service Center.
+func (o ServiceModelComponentSpecPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceModelComponentSpec) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+type ServiceModelComponentSpecDependsOnRef struct {
+	// API version of the referenced object. Defaults to `servicemodel.ext.grafana.com/v1alpha1`.
+	ApiVersion *string `pulumi:"apiVersion"`
+	// Kind of the referenced object. Defaults to `Component`.
+	Kind *string `pulumi:"kind"`
+	// Name (`metadata.uid`) of the component this service depends on.
+	Name string `pulumi:"name"`
+}
+
+// ServiceModelComponentSpecDependsOnRefInput is an input type that accepts ServiceModelComponentSpecDependsOnRefArgs and ServiceModelComponentSpecDependsOnRefOutput values.
+// You can construct a concrete instance of `ServiceModelComponentSpecDependsOnRefInput` via:
+//
+//	ServiceModelComponentSpecDependsOnRefArgs{...}
+type ServiceModelComponentSpecDependsOnRefInput interface {
+	pulumi.Input
+
+	ToServiceModelComponentSpecDependsOnRefOutput() ServiceModelComponentSpecDependsOnRefOutput
+	ToServiceModelComponentSpecDependsOnRefOutputWithContext(context.Context) ServiceModelComponentSpecDependsOnRefOutput
+}
+
+type ServiceModelComponentSpecDependsOnRefArgs struct {
+	// API version of the referenced object. Defaults to `servicemodel.ext.grafana.com/v1alpha1`.
+	ApiVersion pulumi.StringPtrInput `pulumi:"apiVersion"`
+	// Kind of the referenced object. Defaults to `Component`.
+	Kind pulumi.StringPtrInput `pulumi:"kind"`
+	// Name (`metadata.uid`) of the component this service depends on.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (ServiceModelComponentSpecDependsOnRefArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceModelComponentSpecDependsOnRef)(nil)).Elem()
+}
+
+func (i ServiceModelComponentSpecDependsOnRefArgs) ToServiceModelComponentSpecDependsOnRefOutput() ServiceModelComponentSpecDependsOnRefOutput {
+	return i.ToServiceModelComponentSpecDependsOnRefOutputWithContext(context.Background())
+}
+
+func (i ServiceModelComponentSpecDependsOnRefArgs) ToServiceModelComponentSpecDependsOnRefOutputWithContext(ctx context.Context) ServiceModelComponentSpecDependsOnRefOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceModelComponentSpecDependsOnRefOutput)
+}
+
+// ServiceModelComponentSpecDependsOnRefArrayInput is an input type that accepts ServiceModelComponentSpecDependsOnRefArray and ServiceModelComponentSpecDependsOnRefArrayOutput values.
+// You can construct a concrete instance of `ServiceModelComponentSpecDependsOnRefArrayInput` via:
+//
+//	ServiceModelComponentSpecDependsOnRefArray{ ServiceModelComponentSpecDependsOnRefArgs{...} }
+type ServiceModelComponentSpecDependsOnRefArrayInput interface {
+	pulumi.Input
+
+	ToServiceModelComponentSpecDependsOnRefArrayOutput() ServiceModelComponentSpecDependsOnRefArrayOutput
+	ToServiceModelComponentSpecDependsOnRefArrayOutputWithContext(context.Context) ServiceModelComponentSpecDependsOnRefArrayOutput
+}
+
+type ServiceModelComponentSpecDependsOnRefArray []ServiceModelComponentSpecDependsOnRefInput
+
+func (ServiceModelComponentSpecDependsOnRefArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceModelComponentSpecDependsOnRef)(nil)).Elem()
+}
+
+func (i ServiceModelComponentSpecDependsOnRefArray) ToServiceModelComponentSpecDependsOnRefArrayOutput() ServiceModelComponentSpecDependsOnRefArrayOutput {
+	return i.ToServiceModelComponentSpecDependsOnRefArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceModelComponentSpecDependsOnRefArray) ToServiceModelComponentSpecDependsOnRefArrayOutputWithContext(ctx context.Context) ServiceModelComponentSpecDependsOnRefArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceModelComponentSpecDependsOnRefArrayOutput)
+}
+
+type ServiceModelComponentSpecDependsOnRefOutput struct{ *pulumi.OutputState }
+
+func (ServiceModelComponentSpecDependsOnRefOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceModelComponentSpecDependsOnRef)(nil)).Elem()
+}
+
+func (o ServiceModelComponentSpecDependsOnRefOutput) ToServiceModelComponentSpecDependsOnRefOutput() ServiceModelComponentSpecDependsOnRefOutput {
+	return o
+}
+
+func (o ServiceModelComponentSpecDependsOnRefOutput) ToServiceModelComponentSpecDependsOnRefOutputWithContext(ctx context.Context) ServiceModelComponentSpecDependsOnRefOutput {
+	return o
+}
+
+// API version of the referenced object. Defaults to `servicemodel.ext.grafana.com/v1alpha1`.
+func (o ServiceModelComponentSpecDependsOnRefOutput) ApiVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceModelComponentSpecDependsOnRef) *string { return v.ApiVersion }).(pulumi.StringPtrOutput)
+}
+
+// Kind of the referenced object. Defaults to `Component`.
+func (o ServiceModelComponentSpecDependsOnRefOutput) Kind() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceModelComponentSpecDependsOnRef) *string { return v.Kind }).(pulumi.StringPtrOutput)
+}
+
+// Name (`metadata.uid`) of the component this service depends on.
+func (o ServiceModelComponentSpecDependsOnRefOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceModelComponentSpecDependsOnRef) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type ServiceModelComponentSpecDependsOnRefArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceModelComponentSpecDependsOnRefArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceModelComponentSpecDependsOnRef)(nil)).Elem()
+}
+
+func (o ServiceModelComponentSpecDependsOnRefArrayOutput) ToServiceModelComponentSpecDependsOnRefArrayOutput() ServiceModelComponentSpecDependsOnRefArrayOutput {
+	return o
+}
+
+func (o ServiceModelComponentSpecDependsOnRefArrayOutput) ToServiceModelComponentSpecDependsOnRefArrayOutputWithContext(ctx context.Context) ServiceModelComponentSpecDependsOnRefArrayOutput {
+	return o
+}
+
+func (o ServiceModelComponentSpecDependsOnRefArrayOutput) Index(i pulumi.IntInput) ServiceModelComponentSpecDependsOnRefOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceModelComponentSpecDependsOnRef {
+		return vs[0].([]ServiceModelComponentSpecDependsOnRef)[vs[1].(int)]
+	}).(ServiceModelComponentSpecDependsOnRefOutput)
+}
+
+type ServiceModelComponentSpecIdentifier struct {
+	// Identifier key.
+	Key string `pulumi:"key"`
+	// Identifier value.
+	Value string `pulumi:"value"`
+}
+
+// ServiceModelComponentSpecIdentifierInput is an input type that accepts ServiceModelComponentSpecIdentifierArgs and ServiceModelComponentSpecIdentifierOutput values.
+// You can construct a concrete instance of `ServiceModelComponentSpecIdentifierInput` via:
+//
+//	ServiceModelComponentSpecIdentifierArgs{...}
+type ServiceModelComponentSpecIdentifierInput interface {
+	pulumi.Input
+
+	ToServiceModelComponentSpecIdentifierOutput() ServiceModelComponentSpecIdentifierOutput
+	ToServiceModelComponentSpecIdentifierOutputWithContext(context.Context) ServiceModelComponentSpecIdentifierOutput
+}
+
+type ServiceModelComponentSpecIdentifierArgs struct {
+	// Identifier key.
+	Key pulumi.StringInput `pulumi:"key"`
+	// Identifier value.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ServiceModelComponentSpecIdentifierArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceModelComponentSpecIdentifier)(nil)).Elem()
+}
+
+func (i ServiceModelComponentSpecIdentifierArgs) ToServiceModelComponentSpecIdentifierOutput() ServiceModelComponentSpecIdentifierOutput {
+	return i.ToServiceModelComponentSpecIdentifierOutputWithContext(context.Background())
+}
+
+func (i ServiceModelComponentSpecIdentifierArgs) ToServiceModelComponentSpecIdentifierOutputWithContext(ctx context.Context) ServiceModelComponentSpecIdentifierOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceModelComponentSpecIdentifierOutput)
+}
+
+// ServiceModelComponentSpecIdentifierArrayInput is an input type that accepts ServiceModelComponentSpecIdentifierArray and ServiceModelComponentSpecIdentifierArrayOutput values.
+// You can construct a concrete instance of `ServiceModelComponentSpecIdentifierArrayInput` via:
+//
+//	ServiceModelComponentSpecIdentifierArray{ ServiceModelComponentSpecIdentifierArgs{...} }
+type ServiceModelComponentSpecIdentifierArrayInput interface {
+	pulumi.Input
+
+	ToServiceModelComponentSpecIdentifierArrayOutput() ServiceModelComponentSpecIdentifierArrayOutput
+	ToServiceModelComponentSpecIdentifierArrayOutputWithContext(context.Context) ServiceModelComponentSpecIdentifierArrayOutput
+}
+
+type ServiceModelComponentSpecIdentifierArray []ServiceModelComponentSpecIdentifierInput
+
+func (ServiceModelComponentSpecIdentifierArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceModelComponentSpecIdentifier)(nil)).Elem()
+}
+
+func (i ServiceModelComponentSpecIdentifierArray) ToServiceModelComponentSpecIdentifierArrayOutput() ServiceModelComponentSpecIdentifierArrayOutput {
+	return i.ToServiceModelComponentSpecIdentifierArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceModelComponentSpecIdentifierArray) ToServiceModelComponentSpecIdentifierArrayOutputWithContext(ctx context.Context) ServiceModelComponentSpecIdentifierArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceModelComponentSpecIdentifierArrayOutput)
+}
+
+type ServiceModelComponentSpecIdentifierOutput struct{ *pulumi.OutputState }
+
+func (ServiceModelComponentSpecIdentifierOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceModelComponentSpecIdentifier)(nil)).Elem()
+}
+
+func (o ServiceModelComponentSpecIdentifierOutput) ToServiceModelComponentSpecIdentifierOutput() ServiceModelComponentSpecIdentifierOutput {
+	return o
+}
+
+func (o ServiceModelComponentSpecIdentifierOutput) ToServiceModelComponentSpecIdentifierOutputWithContext(ctx context.Context) ServiceModelComponentSpecIdentifierOutput {
+	return o
+}
+
+// Identifier key.
+func (o ServiceModelComponentSpecIdentifierOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceModelComponentSpecIdentifier) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Identifier value.
+func (o ServiceModelComponentSpecIdentifierOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceModelComponentSpecIdentifier) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ServiceModelComponentSpecIdentifierArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceModelComponentSpecIdentifierArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceModelComponentSpecIdentifier)(nil)).Elem()
+}
+
+func (o ServiceModelComponentSpecIdentifierArrayOutput) ToServiceModelComponentSpecIdentifierArrayOutput() ServiceModelComponentSpecIdentifierArrayOutput {
+	return o
+}
+
+func (o ServiceModelComponentSpecIdentifierArrayOutput) ToServiceModelComponentSpecIdentifierArrayOutputWithContext(ctx context.Context) ServiceModelComponentSpecIdentifierArrayOutput {
+	return o
+}
+
+func (o ServiceModelComponentSpecIdentifierArrayOutput) Index(i pulumi.IntInput) ServiceModelComponentSpecIdentifierOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceModelComponentSpecIdentifier {
+		return vs[0].([]ServiceModelComponentSpecIdentifier)[vs[1].(int)]
+	}).(ServiceModelComponentSpecIdentifierOutput)
+}
+
+type ServiceModelComponentSpecLink struct {
+	// Icon of the link.
+	Icon *string `pulumi:"icon"`
+	// Display title of the link.
+	Title *string `pulumi:"title"`
+	// Type of the link. The Service Center UI uses `documentation`, `repository`, `backlog` and `custom`.
+	Type *string `pulumi:"type"`
+	// URL of the link.
+	Url string `pulumi:"url"`
+}
+
+// ServiceModelComponentSpecLinkInput is an input type that accepts ServiceModelComponentSpecLinkArgs and ServiceModelComponentSpecLinkOutput values.
+// You can construct a concrete instance of `ServiceModelComponentSpecLinkInput` via:
+//
+//	ServiceModelComponentSpecLinkArgs{...}
+type ServiceModelComponentSpecLinkInput interface {
+	pulumi.Input
+
+	ToServiceModelComponentSpecLinkOutput() ServiceModelComponentSpecLinkOutput
+	ToServiceModelComponentSpecLinkOutputWithContext(context.Context) ServiceModelComponentSpecLinkOutput
+}
+
+type ServiceModelComponentSpecLinkArgs struct {
+	// Icon of the link.
+	Icon pulumi.StringPtrInput `pulumi:"icon"`
+	// Display title of the link.
+	Title pulumi.StringPtrInput `pulumi:"title"`
+	// Type of the link. The Service Center UI uses `documentation`, `repository`, `backlog` and `custom`.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+	// URL of the link.
+	Url pulumi.StringInput `pulumi:"url"`
+}
+
+func (ServiceModelComponentSpecLinkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceModelComponentSpecLink)(nil)).Elem()
+}
+
+func (i ServiceModelComponentSpecLinkArgs) ToServiceModelComponentSpecLinkOutput() ServiceModelComponentSpecLinkOutput {
+	return i.ToServiceModelComponentSpecLinkOutputWithContext(context.Background())
+}
+
+func (i ServiceModelComponentSpecLinkArgs) ToServiceModelComponentSpecLinkOutputWithContext(ctx context.Context) ServiceModelComponentSpecLinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceModelComponentSpecLinkOutput)
+}
+
+// ServiceModelComponentSpecLinkArrayInput is an input type that accepts ServiceModelComponentSpecLinkArray and ServiceModelComponentSpecLinkArrayOutput values.
+// You can construct a concrete instance of `ServiceModelComponentSpecLinkArrayInput` via:
+//
+//	ServiceModelComponentSpecLinkArray{ ServiceModelComponentSpecLinkArgs{...} }
+type ServiceModelComponentSpecLinkArrayInput interface {
+	pulumi.Input
+
+	ToServiceModelComponentSpecLinkArrayOutput() ServiceModelComponentSpecLinkArrayOutput
+	ToServiceModelComponentSpecLinkArrayOutputWithContext(context.Context) ServiceModelComponentSpecLinkArrayOutput
+}
+
+type ServiceModelComponentSpecLinkArray []ServiceModelComponentSpecLinkInput
+
+func (ServiceModelComponentSpecLinkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceModelComponentSpecLink)(nil)).Elem()
+}
+
+func (i ServiceModelComponentSpecLinkArray) ToServiceModelComponentSpecLinkArrayOutput() ServiceModelComponentSpecLinkArrayOutput {
+	return i.ToServiceModelComponentSpecLinkArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceModelComponentSpecLinkArray) ToServiceModelComponentSpecLinkArrayOutputWithContext(ctx context.Context) ServiceModelComponentSpecLinkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceModelComponentSpecLinkArrayOutput)
+}
+
+type ServiceModelComponentSpecLinkOutput struct{ *pulumi.OutputState }
+
+func (ServiceModelComponentSpecLinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceModelComponentSpecLink)(nil)).Elem()
+}
+
+func (o ServiceModelComponentSpecLinkOutput) ToServiceModelComponentSpecLinkOutput() ServiceModelComponentSpecLinkOutput {
+	return o
+}
+
+func (o ServiceModelComponentSpecLinkOutput) ToServiceModelComponentSpecLinkOutputWithContext(ctx context.Context) ServiceModelComponentSpecLinkOutput {
+	return o
+}
+
+// Icon of the link.
+func (o ServiceModelComponentSpecLinkOutput) Icon() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceModelComponentSpecLink) *string { return v.Icon }).(pulumi.StringPtrOutput)
+}
+
+// Display title of the link.
+func (o ServiceModelComponentSpecLinkOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceModelComponentSpecLink) *string { return v.Title }).(pulumi.StringPtrOutput)
+}
+
+// Type of the link. The Service Center UI uses `documentation`, `repository`, `backlog` and `custom`.
+func (o ServiceModelComponentSpecLinkOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceModelComponentSpecLink) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+// URL of the link.
+func (o ServiceModelComponentSpecLinkOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceModelComponentSpecLink) string { return v.Url }).(pulumi.StringOutput)
+}
+
+type ServiceModelComponentSpecLinkArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceModelComponentSpecLinkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceModelComponentSpecLink)(nil)).Elem()
+}
+
+func (o ServiceModelComponentSpecLinkArrayOutput) ToServiceModelComponentSpecLinkArrayOutput() ServiceModelComponentSpecLinkArrayOutput {
+	return o
+}
+
+func (o ServiceModelComponentSpecLinkArrayOutput) ToServiceModelComponentSpecLinkArrayOutputWithContext(ctx context.Context) ServiceModelComponentSpecLinkArrayOutput {
+	return o
+}
+
+func (o ServiceModelComponentSpecLinkArrayOutput) Index(i pulumi.IntInput) ServiceModelComponentSpecLinkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceModelComponentSpecLink {
+		return vs[0].([]ServiceModelComponentSpecLink)[vs[1].(int)]
+	}).(ServiceModelComponentSpecLinkOutput)
+}
+
+type ServiceModelComponentSpecOwnerRef struct {
+	// API version of the referenced object. Defaults to `iam.grafana.app/v0alpha1`.
+	ApiVersion *string `pulumi:"apiVersion"`
+	// Kind of the referenced object. Defaults to `Team`.
+	Kind *string `pulumi:"kind"`
+	// Name of the referenced object. For the default team reference, this is the Grafana team UID.
+	Name *string `pulumi:"name"`
+}
+
+// ServiceModelComponentSpecOwnerRefInput is an input type that accepts ServiceModelComponentSpecOwnerRefArgs and ServiceModelComponentSpecOwnerRefOutput values.
+// You can construct a concrete instance of `ServiceModelComponentSpecOwnerRefInput` via:
+//
+//	ServiceModelComponentSpecOwnerRefArgs{...}
+type ServiceModelComponentSpecOwnerRefInput interface {
+	pulumi.Input
+
+	ToServiceModelComponentSpecOwnerRefOutput() ServiceModelComponentSpecOwnerRefOutput
+	ToServiceModelComponentSpecOwnerRefOutputWithContext(context.Context) ServiceModelComponentSpecOwnerRefOutput
+}
+
+type ServiceModelComponentSpecOwnerRefArgs struct {
+	// API version of the referenced object. Defaults to `iam.grafana.app/v0alpha1`.
+	ApiVersion pulumi.StringPtrInput `pulumi:"apiVersion"`
+	// Kind of the referenced object. Defaults to `Team`.
+	Kind pulumi.StringPtrInput `pulumi:"kind"`
+	// Name of the referenced object. For the default team reference, this is the Grafana team UID.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (ServiceModelComponentSpecOwnerRefArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceModelComponentSpecOwnerRef)(nil)).Elem()
+}
+
+func (i ServiceModelComponentSpecOwnerRefArgs) ToServiceModelComponentSpecOwnerRefOutput() ServiceModelComponentSpecOwnerRefOutput {
+	return i.ToServiceModelComponentSpecOwnerRefOutputWithContext(context.Background())
+}
+
+func (i ServiceModelComponentSpecOwnerRefArgs) ToServiceModelComponentSpecOwnerRefOutputWithContext(ctx context.Context) ServiceModelComponentSpecOwnerRefOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceModelComponentSpecOwnerRefOutput)
+}
+
+func (i ServiceModelComponentSpecOwnerRefArgs) ToServiceModelComponentSpecOwnerRefPtrOutput() ServiceModelComponentSpecOwnerRefPtrOutput {
+	return i.ToServiceModelComponentSpecOwnerRefPtrOutputWithContext(context.Background())
+}
+
+func (i ServiceModelComponentSpecOwnerRefArgs) ToServiceModelComponentSpecOwnerRefPtrOutputWithContext(ctx context.Context) ServiceModelComponentSpecOwnerRefPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceModelComponentSpecOwnerRefOutput).ToServiceModelComponentSpecOwnerRefPtrOutputWithContext(ctx)
+}
+
+// ServiceModelComponentSpecOwnerRefPtrInput is an input type that accepts ServiceModelComponentSpecOwnerRefArgs, ServiceModelComponentSpecOwnerRefPtr and ServiceModelComponentSpecOwnerRefPtrOutput values.
+// You can construct a concrete instance of `ServiceModelComponentSpecOwnerRefPtrInput` via:
+//
+//	        ServiceModelComponentSpecOwnerRefArgs{...}
+//
+//	or:
+//
+//	        nil
+type ServiceModelComponentSpecOwnerRefPtrInput interface {
+	pulumi.Input
+
+	ToServiceModelComponentSpecOwnerRefPtrOutput() ServiceModelComponentSpecOwnerRefPtrOutput
+	ToServiceModelComponentSpecOwnerRefPtrOutputWithContext(context.Context) ServiceModelComponentSpecOwnerRefPtrOutput
+}
+
+type serviceModelComponentSpecOwnerRefPtrType ServiceModelComponentSpecOwnerRefArgs
+
+func ServiceModelComponentSpecOwnerRefPtr(v *ServiceModelComponentSpecOwnerRefArgs) ServiceModelComponentSpecOwnerRefPtrInput {
+	return (*serviceModelComponentSpecOwnerRefPtrType)(v)
+}
+
+func (*serviceModelComponentSpecOwnerRefPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceModelComponentSpecOwnerRef)(nil)).Elem()
+}
+
+func (i *serviceModelComponentSpecOwnerRefPtrType) ToServiceModelComponentSpecOwnerRefPtrOutput() ServiceModelComponentSpecOwnerRefPtrOutput {
+	return i.ToServiceModelComponentSpecOwnerRefPtrOutputWithContext(context.Background())
+}
+
+func (i *serviceModelComponentSpecOwnerRefPtrType) ToServiceModelComponentSpecOwnerRefPtrOutputWithContext(ctx context.Context) ServiceModelComponentSpecOwnerRefPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceModelComponentSpecOwnerRefPtrOutput)
+}
+
+type ServiceModelComponentSpecOwnerRefOutput struct{ *pulumi.OutputState }
+
+func (ServiceModelComponentSpecOwnerRefOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceModelComponentSpecOwnerRef)(nil)).Elem()
+}
+
+func (o ServiceModelComponentSpecOwnerRefOutput) ToServiceModelComponentSpecOwnerRefOutput() ServiceModelComponentSpecOwnerRefOutput {
+	return o
+}
+
+func (o ServiceModelComponentSpecOwnerRefOutput) ToServiceModelComponentSpecOwnerRefOutputWithContext(ctx context.Context) ServiceModelComponentSpecOwnerRefOutput {
+	return o
+}
+
+func (o ServiceModelComponentSpecOwnerRefOutput) ToServiceModelComponentSpecOwnerRefPtrOutput() ServiceModelComponentSpecOwnerRefPtrOutput {
+	return o.ToServiceModelComponentSpecOwnerRefPtrOutputWithContext(context.Background())
+}
+
+func (o ServiceModelComponentSpecOwnerRefOutput) ToServiceModelComponentSpecOwnerRefPtrOutputWithContext(ctx context.Context) ServiceModelComponentSpecOwnerRefPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceModelComponentSpecOwnerRef) *ServiceModelComponentSpecOwnerRef {
+		return &v
+	}).(ServiceModelComponentSpecOwnerRefPtrOutput)
+}
+
+// API version of the referenced object. Defaults to `iam.grafana.app/v0alpha1`.
+func (o ServiceModelComponentSpecOwnerRefOutput) ApiVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceModelComponentSpecOwnerRef) *string { return v.ApiVersion }).(pulumi.StringPtrOutput)
+}
+
+// Kind of the referenced object. Defaults to `Team`.
+func (o ServiceModelComponentSpecOwnerRefOutput) Kind() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceModelComponentSpecOwnerRef) *string { return v.Kind }).(pulumi.StringPtrOutput)
+}
+
+// Name of the referenced object. For the default team reference, this is the Grafana team UID.
+func (o ServiceModelComponentSpecOwnerRefOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceModelComponentSpecOwnerRef) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type ServiceModelComponentSpecOwnerRefPtrOutput struct{ *pulumi.OutputState }
+
+func (ServiceModelComponentSpecOwnerRefPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceModelComponentSpecOwnerRef)(nil)).Elem()
+}
+
+func (o ServiceModelComponentSpecOwnerRefPtrOutput) ToServiceModelComponentSpecOwnerRefPtrOutput() ServiceModelComponentSpecOwnerRefPtrOutput {
+	return o
+}
+
+func (o ServiceModelComponentSpecOwnerRefPtrOutput) ToServiceModelComponentSpecOwnerRefPtrOutputWithContext(ctx context.Context) ServiceModelComponentSpecOwnerRefPtrOutput {
+	return o
+}
+
+func (o ServiceModelComponentSpecOwnerRefPtrOutput) Elem() ServiceModelComponentSpecOwnerRefOutput {
+	return o.ApplyT(func(v *ServiceModelComponentSpecOwnerRef) ServiceModelComponentSpecOwnerRef {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceModelComponentSpecOwnerRef
+		return ret
+	}).(ServiceModelComponentSpecOwnerRefOutput)
+}
+
+// API version of the referenced object. Defaults to `iam.grafana.app/v0alpha1`.
+func (o ServiceModelComponentSpecOwnerRefPtrOutput) ApiVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceModelComponentSpecOwnerRef) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiVersion
+	}).(pulumi.StringPtrOutput)
+}
+
+// Kind of the referenced object. Defaults to `Team`.
+func (o ServiceModelComponentSpecOwnerRefPtrOutput) Kind() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceModelComponentSpecOwnerRef) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Kind
+	}).(pulumi.StringPtrOutput)
+}
+
+// Name of the referenced object. For the default team reference, this is the Grafana team UID.
+func (o ServiceModelComponentSpecOwnerRefPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceModelComponentSpecOwnerRef) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationAppO11yConfigMetadataInput)(nil)).Elem(), ProductActivationAppO11yConfigMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationAppO11yConfigMetadataPtrInput)(nil)).Elem(), ProductActivationAppO11yConfigMetadataArgs{})
@@ -1607,6 +2766,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationK8sO11yConfigOptionsPtrInput)(nil)).Elem(), ProductActivationK8sO11yConfigOptionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationK8sO11yConfigSpecInput)(nil)).Elem(), ProductActivationK8sO11yConfigSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationK8sO11yConfigSpecPtrInput)(nil)).Elem(), ProductActivationK8sO11yConfigSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceModelComponentMetadataInput)(nil)).Elem(), ServiceModelComponentMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceModelComponentMetadataPtrInput)(nil)).Elem(), ServiceModelComponentMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceModelComponentOptionsInput)(nil)).Elem(), ServiceModelComponentOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceModelComponentOptionsPtrInput)(nil)).Elem(), ServiceModelComponentOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceModelComponentSpecInput)(nil)).Elem(), ServiceModelComponentSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceModelComponentSpecPtrInput)(nil)).Elem(), ServiceModelComponentSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceModelComponentSpecDependsOnRefInput)(nil)).Elem(), ServiceModelComponentSpecDependsOnRefArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceModelComponentSpecDependsOnRefArrayInput)(nil)).Elem(), ServiceModelComponentSpecDependsOnRefArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceModelComponentSpecIdentifierInput)(nil)).Elem(), ServiceModelComponentSpecIdentifierArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceModelComponentSpecIdentifierArrayInput)(nil)).Elem(), ServiceModelComponentSpecIdentifierArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceModelComponentSpecLinkInput)(nil)).Elem(), ServiceModelComponentSpecLinkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceModelComponentSpecLinkArrayInput)(nil)).Elem(), ServiceModelComponentSpecLinkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceModelComponentSpecOwnerRefInput)(nil)).Elem(), ServiceModelComponentSpecOwnerRefArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceModelComponentSpecOwnerRefPtrInput)(nil)).Elem(), ServiceModelComponentSpecOwnerRefArgs{})
 	pulumi.RegisterOutputType(ProductActivationAppO11yConfigMetadataOutput{})
 	pulumi.RegisterOutputType(ProductActivationAppO11yConfigMetadataPtrOutput{})
 	pulumi.RegisterOutputType(ProductActivationAppO11yConfigOptionsOutput{})
@@ -1625,4 +2798,18 @@ func init() {
 	pulumi.RegisterOutputType(ProductActivationK8sO11yConfigOptionsPtrOutput{})
 	pulumi.RegisterOutputType(ProductActivationK8sO11yConfigSpecOutput{})
 	pulumi.RegisterOutputType(ProductActivationK8sO11yConfigSpecPtrOutput{})
+	pulumi.RegisterOutputType(ServiceModelComponentMetadataOutput{})
+	pulumi.RegisterOutputType(ServiceModelComponentMetadataPtrOutput{})
+	pulumi.RegisterOutputType(ServiceModelComponentOptionsOutput{})
+	pulumi.RegisterOutputType(ServiceModelComponentOptionsPtrOutput{})
+	pulumi.RegisterOutputType(ServiceModelComponentSpecOutput{})
+	pulumi.RegisterOutputType(ServiceModelComponentSpecPtrOutput{})
+	pulumi.RegisterOutputType(ServiceModelComponentSpecDependsOnRefOutput{})
+	pulumi.RegisterOutputType(ServiceModelComponentSpecDependsOnRefArrayOutput{})
+	pulumi.RegisterOutputType(ServiceModelComponentSpecIdentifierOutput{})
+	pulumi.RegisterOutputType(ServiceModelComponentSpecIdentifierArrayOutput{})
+	pulumi.RegisterOutputType(ServiceModelComponentSpecLinkOutput{})
+	pulumi.RegisterOutputType(ServiceModelComponentSpecLinkArrayOutput{})
+	pulumi.RegisterOutputType(ServiceModelComponentSpecOwnerRefOutput{})
+	pulumi.RegisterOutputType(ServiceModelComponentSpecOwnerRefPtrOutput{})
 }

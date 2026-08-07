@@ -6,11 +6,7 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
-from .apps_rules_rulesequence_v0alpha1 import *
-from .apps_servicemodel_component_v1alpha1 import *
 from .provider import *
-from ._inputs import *
-from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -194,6 +190,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.alerting.v0alpha1",
   "classes": {
    "grafana:alerting/v0alpha1/recordingRule:RecordingRule": "RecordingRule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "alerting/v0alpha1/ruleSequence",
+  "fqn": "pulumiverse_grafana.alerting.v0alpha1",
+  "classes": {
+   "grafana:alerting/v0alpha1/ruleSequence:RuleSequence": "RuleSequence"
   }
  },
  {
@@ -534,6 +538,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "cloud/v1alpha1/serviceModelComponent",
+  "fqn": "pulumiverse_grafana.cloud.v1alpha1",
+  "classes": {
+   "grafana:cloud/v1alpha1/serviceModelComponent:ServiceModelComponent": "ServiceModelComponent"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "cloudProvider/awsAccount",
   "fqn": "pulumiverse_grafana.cloudprovider",
   "classes": {
@@ -714,22 +726,6 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.frontendobservability",
   "classes": {
    "grafana:frontendObservability/app:App": "App"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/appsRulesRulesequenceV0alpha1",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/appsRulesRulesequenceV0alpha1:AppsRulesRulesequenceV0alpha1": "AppsRulesRulesequenceV0alpha1"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/appsServicemodelComponentV1alpha1",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/appsServicemodelComponentV1alpha1:AppsServicemodelComponentV1alpha1": "AppsServicemodelComponentV1alpha1"
   }
  },
  {

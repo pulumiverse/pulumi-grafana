@@ -15,6 +15,11 @@ export type RecordingRule = import("./recordingRule").RecordingRule;
 export const RecordingRule: typeof import("./recordingRule").RecordingRule = null as any;
 utilities.lazyLoad(exports, ["RecordingRule"], () => require("./recordingRule"));
 
+export { RuleSequenceArgs, RuleSequenceState } from "./ruleSequence";
+export type RuleSequence = import("./ruleSequence").RuleSequence;
+export const RuleSequence: typeof import("./ruleSequence").RuleSequence = null as any;
+utilities.lazyLoad(exports, ["RuleSequence"], () => require("./ruleSequence"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -24,6 +29,8 @@ const _module = {
                 return new AlertRule(name, <any>undefined, { urn })
             case "grafana:alerting/v0alpha1/recordingRule:RecordingRule":
                 return new RecordingRule(name, <any>undefined, { urn })
+            case "grafana:alerting/v0alpha1/ruleSequence:RuleSequence":
+                return new RuleSequence(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -31,3 +38,4 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("grafana", "alerting/v0alpha1/alertRule", _module)
 pulumi.runtime.registerResourceModule("grafana", "alerting/v0alpha1/recordingRule", _module)
+pulumi.runtime.registerResourceModule("grafana", "alerting/v0alpha1/ruleSequence", _module)

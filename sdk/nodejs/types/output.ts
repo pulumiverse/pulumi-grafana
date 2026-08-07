@@ -5,203 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface AppsRulesRulesequenceV0alpha1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations: {[key: string]: string};
-    /**
-     * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
-     */
-    folderUid?: string;
-    /**
-     * The unique identifier of the resource.
-     */
-    uid: string;
-    /**
-     * The full URL of the resource.
-     */
-    url: string;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid: string;
-    /**
-     * The version of the resource.
-     */
-    version: string;
-}
-
-export interface AppsRulesRulesequenceV0alpha1Options {
-    /**
-     * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
-     */
-    managerIdentity?: string;
-    /**
-     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-     */
-    overwrite?: boolean;
-}
-
-export interface AppsRulesRulesequenceV0alpha1Spec {
-    /**
-     * The alert rules that belong to this sequence, evaluated in the order listed. Each entry references an alert rule by its `name` (the rule's UID).
-     */
-    alertingRules?: outputs.AppsRulesRulesequenceV0alpha1SpecAlertingRule[];
-    /**
-     * The recording rules that belong to this sequence, evaluated in the order listed. At least one recording rule is required. Each entry references a recording rule by its `name` (the rule's UID).
-     */
-    recordingRules: outputs.AppsRulesRulesequenceV0alpha1SpecRecordingRule[];
-    /**
-     * The trigger configuration shared by every rule in the sequence.
-     */
-    trigger?: outputs.AppsRulesRulesequenceV0alpha1SpecTrigger;
-}
-
-export interface AppsRulesRulesequenceV0alpha1SpecAlertingRule {
-    name: string;
-}
-
-export interface AppsRulesRulesequenceV0alpha1SpecRecordingRule {
-    name: string;
-}
-
-export interface AppsRulesRulesequenceV0alpha1SpecTrigger {
-    /**
-     * The interval at which the rules in the sequence should be evaluated.
-     */
-    interval: string;
-}
-
-export interface AppsServicemodelComponentV1alpha1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations: {[key: string]: string};
-    /**
-     * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
-     */
-    folderUid?: string;
-    /**
-     * The unique identifier of the resource.
-     */
-    uid: string;
-    /**
-     * The full URL of the resource.
-     */
-    url: string;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid: string;
-    /**
-     * The version of the resource.
-     */
-    version: string;
-}
-
-export interface AppsServicemodelComponentV1alpha1Options {
-    /**
-     * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
-     */
-    managerIdentity?: string;
-    /**
-     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-     */
-    overwrite?: boolean;
-}
-
-export interface AppsServicemodelComponentV1alpha1Spec {
-    /**
-     * References to services this service depends on.
-     */
-    dependsOnRefs?: outputs.AppsServicemodelComponentV1alpha1SpecDependsOnRef[];
-    /**
-     * Description of the service.
-     */
-    description?: string;
-    /**
-     * Additional key/value pairs used to match resources to the service: a resource matches when it has a label or tag with the same key and value. For example, an identifier with key `namespace` and value `checkout-prod` matches alerts, SLOs and dashboards labeled or tagged `namespace=checkout-prod`. Maximum of 5. A `serviceName` identifier equal to `metadata.uid` is implicit; add an explicit `serviceName` when the telemetry value differs from the uid, for example because it contains characters the uid does not allow (such as uppercase letters, dots or underscores); the explicit value is matched in addition to the uid.
-     */
-    identifiers?: outputs.AppsServicemodelComponentV1alpha1SpecIdentifier[];
-    /**
-     * Links attached to the service (documentation, repository, etc.).
-     */
-    links?: outputs.AppsServicemodelComponentV1alpha1SpecLink[];
-    /**
-     * Reference to the team owning the service. Set `name` to the Grafana team UID; `apiVersion` and `kind` default to a Grafana IAM team reference.
-     */
-    ownerRef?: outputs.AppsServicemodelComponentV1alpha1SpecOwnerRef;
-    /**
-     * Display name of the service.
-     */
-    title: string;
-    /**
-     * Component type. Defaults to `service`, the only type currently displayed by Service Center.
-     */
-    type: string;
-}
-
-export interface AppsServicemodelComponentV1alpha1SpecDependsOnRef {
-    /**
-     * API version of the referenced object. Defaults to `servicemodel.ext.grafana.com/v1alpha1`.
-     */
-    apiVersion: string;
-    /**
-     * Kind of the referenced object. Defaults to `Component`.
-     */
-    kind: string;
-    /**
-     * Name (`metadata.uid`) of the component this service depends on.
-     */
-    name: string;
-}
-
-export interface AppsServicemodelComponentV1alpha1SpecIdentifier {
-    /**
-     * Identifier key.
-     */
-    key: string;
-    /**
-     * Identifier value.
-     */
-    value: string;
-}
-
-export interface AppsServicemodelComponentV1alpha1SpecLink {
-    /**
-     * Icon of the link.
-     */
-    icon?: string;
-    /**
-     * Display title of the link.
-     */
-    title?: string;
-    /**
-     * Type of the link. The Service Center UI uses `documentation`, `repository`, `backlog` and `custom`.
-     */
-    type?: string;
-    /**
-     * URL of the link.
-     */
-    url: string;
-}
-
-export interface AppsServicemodelComponentV1alpha1SpecOwnerRef {
-    /**
-     * API version of the referenced object. Defaults to `iam.grafana.app/v0alpha1`.
-     */
-    apiVersion: string;
-    /**
-     * Kind of the referenced object. Defaults to `Team`.
-     */
-    kind: string;
-    /**
-     * Name of the referenced object. For the default team reference, this is the Grafana team UID.
-     */
-    name?: string;
-}
-
 export namespace agento11y {
     export interface HookRuleRedact {
         /**
@@ -2856,6 +2659,74 @@ export namespace alerting {
             interval: string;
         }
 
+        export interface RuleSequenceMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+             */
+            folderUid?: string;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface RuleSequenceOptions {
+            /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface RuleSequenceSpec {
+            /**
+             * The alert rules that belong to this sequence, evaluated in the order listed. Each entry references an alert rule by its `name` (the rule's UID).
+             */
+            alertingRules?: outputs.alerting.v0alpha1.RuleSequenceSpecAlertingRule[];
+            /**
+             * The recording rules that belong to this sequence, evaluated in the order listed. At least one recording rule is required. Each entry references a recording rule by its `name` (the rule's UID).
+             */
+            recordingRules: outputs.alerting.v0alpha1.RuleSequenceSpecRecordingRule[];
+            /**
+             * The trigger configuration shared by every rule in the sequence.
+             */
+            trigger?: outputs.alerting.v0alpha1.RuleSequenceSpecTrigger;
+        }
+
+        export interface RuleSequenceSpecAlertingRule {
+            name: string;
+        }
+
+        export interface RuleSequenceSpecRecordingRule {
+            name: string;
+        }
+
+        export interface RuleSequenceSpecTrigger {
+            /**
+             * The interval at which the rules in the sequence should be evaluated.
+             */
+            interval: string;
+        }
+
     }
 
     export namespace v1beta1 {
@@ -5205,6 +5076,135 @@ export namespace cloud {
              * Whether Kubernetes observability is enabled.
              */
             enabled: boolean;
+        }
+
+        export interface ServiceModelComponentMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+             */
+            folderUid?: string;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface ServiceModelComponentOptions {
+            /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface ServiceModelComponentSpec {
+            /**
+             * References to services this service depends on.
+             */
+            dependsOnRefs?: outputs.cloud.v1alpha1.ServiceModelComponentSpecDependsOnRef[];
+            /**
+             * Description of the service.
+             */
+            description?: string;
+            /**
+             * Additional key/value pairs used to match resources to the service: a resource matches when it has a label or tag with the same key and value. For example, an identifier with key `namespace` and value `checkout-prod` matches alerts, SLOs and dashboards labeled or tagged `namespace=checkout-prod`. Maximum of 5. A `serviceName` identifier equal to `metadata.uid` is implicit; add an explicit `serviceName` when the telemetry value differs from the uid, for example because it contains characters the uid does not allow (such as uppercase letters, dots or underscores); the explicit value is matched in addition to the uid.
+             */
+            identifiers?: outputs.cloud.v1alpha1.ServiceModelComponentSpecIdentifier[];
+            /**
+             * Links attached to the service (documentation, repository, etc.).
+             */
+            links?: outputs.cloud.v1alpha1.ServiceModelComponentSpecLink[];
+            /**
+             * Reference to the team owning the service. Set `name` to the Grafana team UID; `apiVersion` and `kind` default to a Grafana IAM team reference.
+             */
+            ownerRef?: outputs.cloud.v1alpha1.ServiceModelComponentSpecOwnerRef;
+            /**
+             * Display name of the service.
+             */
+            title: string;
+            /**
+             * Component type. Defaults to `service`, the only type currently displayed by Service Center.
+             */
+            type: string;
+        }
+
+        export interface ServiceModelComponentSpecDependsOnRef {
+            /**
+             * API version of the referenced object. Defaults to `servicemodel.ext.grafana.com/v1alpha1`.
+             */
+            apiVersion: string;
+            /**
+             * Kind of the referenced object. Defaults to `Component`.
+             */
+            kind: string;
+            /**
+             * Name (`metadata.uid`) of the component this service depends on.
+             */
+            name: string;
+        }
+
+        export interface ServiceModelComponentSpecIdentifier {
+            /**
+             * Identifier key.
+             */
+            key: string;
+            /**
+             * Identifier value.
+             */
+            value: string;
+        }
+
+        export interface ServiceModelComponentSpecLink {
+            /**
+             * Icon of the link.
+             */
+            icon?: string;
+            /**
+             * Display title of the link.
+             */
+            title?: string;
+            /**
+             * Type of the link. The Service Center UI uses `documentation`, `repository`, `backlog` and `custom`.
+             */
+            type?: string;
+            /**
+             * URL of the link.
+             */
+            url: string;
+        }
+
+        export interface ServiceModelComponentSpecOwnerRef {
+            /**
+             * API version of the referenced object. Defaults to `iam.grafana.app/v0alpha1`.
+             */
+            apiVersion: string;
+            /**
+             * Kind of the referenced object. Defaults to `Team`.
+             */
+            kind: string;
+            /**
+             * Name of the referenced object. For the default team reference, this is the Grafana team UID.
+             */
+            name?: string;
         }
 
     }

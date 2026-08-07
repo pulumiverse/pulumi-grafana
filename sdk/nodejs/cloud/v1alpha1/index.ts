@@ -20,6 +20,11 @@ export type ProductActivationK8sO11yConfig = import("./productActivationK8sO11yC
 export const ProductActivationK8sO11yConfig: typeof import("./productActivationK8sO11yConfig").ProductActivationK8sO11yConfig = null as any;
 utilities.lazyLoad(exports, ["ProductActivationK8sO11yConfig"], () => require("./productActivationK8sO11yConfig"));
 
+export { ServiceModelComponentArgs, ServiceModelComponentState } from "./serviceModelComponent";
+export type ServiceModelComponent = import("./serviceModelComponent").ServiceModelComponent;
+export const ServiceModelComponent: typeof import("./serviceModelComponent").ServiceModelComponent = null as any;
+utilities.lazyLoad(exports, ["ServiceModelComponent"], () => require("./serviceModelComponent"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -31,6 +36,8 @@ const _module = {
                 return new ProductActivationDbO11yConfig(name, <any>undefined, { urn })
             case "grafana:cloud/v1alpha1/productActivationK8sO11yConfig:ProductActivationK8sO11yConfig":
                 return new ProductActivationK8sO11yConfig(name, <any>undefined, { urn })
+            case "grafana:cloud/v1alpha1/serviceModelComponent:ServiceModelComponent":
+                return new ServiceModelComponent(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -39,3 +46,4 @@ const _module = {
 pulumi.runtime.registerResourceModule("grafana", "cloud/v1alpha1/productActivationAppO11yConfig", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/v1alpha1/productActivationDbO11yConfig", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/v1alpha1/productActivationK8sO11yConfig", _module)
+pulumi.runtime.registerResourceModule("grafana", "cloud/v1alpha1/serviceModelComponent", _module)
