@@ -1,3 +1,0 @@
-name: grafana
-description: A Pulumi resource provider for grafana.
-language: nodejs
