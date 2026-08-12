@@ -19,13 +19,24 @@ namespace Pulumiverse.Grafana.K6
     /// 
     /// * [Official documentation](https://grafana.com/docs/grafana-cloud/testing/k6/)
     /// 
-    /// Required access policy scopes:
+    /// The provider's `CloudAccessPolicyToken` needs the following scopes to manage the resources in the example below:
     /// 
     /// * stacks:read
     /// * stacks:write
-    /// * subscriptions:read
-    /// * orgs:read
+    /// * stacks:delete
     /// * stack-service-accounts:write
+    /// * accesspolicies:read
+    /// * accesspolicies:write
+    /// * accesspolicies:delete
+    /// 
+    /// The publisher token (`PublisherToken`) is a stack-scoped access policy token with the following scopes, used by Grafana Cloud k6 to publish test metrics to the stack and process thresholds:
+    /// 
+    /// * metrics:read
+    /// * metrics:write
+    /// * rules:read
+    /// * rules:write
+    /// 
+    /// It is required when creating new installations.
     /// 
     /// ## Example Usage
     /// 
@@ -38,7 +49,7 @@ namespace Pulumiverse.Grafana.K6
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     var config = new Config();
-    ///     // Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write
+    ///     // Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write, accesspolicies:read|write|delete
     ///     var cloudAccessPolicyToken = config.RequireObject&lt;dynamic&gt;("cloudAccessPolicyToken");
     ///     var stackSlug = config.RequireObject&lt;dynamic&gt;("stackSlug");
     ///     var cloudRegion = config.Get("cloudRegion") ?? "us";
@@ -65,10 +76,39 @@ namespace Pulumiverse.Grafana.K6
     ///         ServiceAccountId = k6Sa.Id,
     ///     });
     /// 
-    ///     // Step 3: Install the k6 App on the stack
+    ///     // Step 3: Create an access policy and token used by k6 to publish test metrics to the stack
+    ///     var k6MetricsPublisher = new Grafana.Cloud.AccessPolicy("k6_metrics_publisher", new()
+    ///     {
+    ///         Region = cloudRegion,
+    ///         Name = $"{stackSlug}-k6-metrics-publisher",
+    ///         Scopes = new[]
+    ///         {
+    ///             "metrics:read",
+    ///             "metrics:write",
+    ///             "rules:read",
+    ///             "rules:write",
+    ///         },
+    ///         Realms = new[]
+    ///         {
+    ///             new Grafana.Cloud.Inputs.AccessPolicyRealmArgs
+    ///             {
+    ///                 Type = "stack",
+    ///                 Identifier = k6Stack.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var k6MetricsPublisherAccessPolicyToken = new Grafana.Cloud.AccessPolicyToken("k6_metrics_publisher", new()
+    ///     {
+    ///         Region = cloudRegion,
+    ///         AccessPolicyId = k6MetricsPublisher.PolicyId,
+    ///         Name = $"{stackSlug}-k6-metrics-publisher",
+    ///     });
+    /// 
+    ///     // Step 4: Install the k6 App on the stack
     ///     var k6Installation = new Grafana.K6.Installation("k6_installation", new()
     ///     {
-    ///         CloudAccessPolicyToken = cloudAccessPolicyToken,
+    ///         PublisherToken = k6MetricsPublisherAccessPolicyToken.Token,
     ///         StackId = k6Stack.Id,
     ///         GrafanaSaToken = k6SaToken.Key,
     ///         GrafanaUser = "admin",
@@ -86,10 +126,10 @@ namespace Pulumiverse.Grafana.K6
     public partial class Installation : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
+        /// Deprecated: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token. It is no longer used to install the k6 App and can be safely removed.
         /// </summary>
         [Output("cloudAccessPolicyToken")]
-        public Output<string> CloudAccessPolicyToken { get; private set; } = null!;
+        public Output<string?> CloudAccessPolicyToken { get; private set; } = null!;
 
         /// <summary>
         /// The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.
@@ -120,6 +160,12 @@ namespace Pulumiverse.Grafana.K6
         /// </summary>
         [Output("k6Organization")]
         public Output<string> K6Organization { get; private set; } = null!;
+
+        /// <summary>
+        /// A [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token with `metrics:read`, `metrics:write`, `rules:read` and `rules:write` scopes on the stack, used by Grafana Cloud k6 to publish test metrics to the stack and process thresholds.
+        /// </summary>
+        [Output("publisherToken")]
+        public Output<string?> PublisherToken { get; private set; } = null!;
 
         /// <summary>
         /// The identifier of the stack to install k6 on.
@@ -156,6 +202,7 @@ namespace Pulumiverse.Grafana.K6
                     "cloudAccessPolicyToken",
                     "grafanaSaToken",
                     "k6AccessToken",
+                    "publisherToken",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -180,12 +227,13 @@ namespace Pulumiverse.Grafana.K6
 
     public sealed class InstallationArgs : global::Pulumi.ResourceArgs
     {
-        [Input("cloudAccessPolicyToken", required: true)]
+        [Input("cloudAccessPolicyToken")]
         private Input<string>? _cloudAccessPolicyToken;
 
         /// <summary>
-        /// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
+        /// Deprecated: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token. It is no longer used to install the k6 App and can be safely removed.
         /// </summary>
+        [Obsolete(@"This attribute is no longer used by the k6 Cloud API and will be removed in the next major release. It can be safely removed from your configuration.")]
         public Input<string>? CloudAccessPolicyToken
         {
             get => _cloudAccessPolicyToken;
@@ -224,6 +272,22 @@ namespace Pulumiverse.Grafana.K6
         [Input("k6ApiUrl")]
         public Input<string>? K6ApiUrl { get; set; }
 
+        [Input("publisherToken")]
+        private Input<string>? _publisherToken;
+
+        /// <summary>
+        /// A [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token with `metrics:read`, `metrics:write`, `rules:read` and `rules:write` scopes on the stack, used by Grafana Cloud k6 to publish test metrics to the stack and process thresholds.
+        /// </summary>
+        public Input<string>? PublisherToken
+        {
+            get => _publisherToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _publisherToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         /// <summary>
         /// The identifier of the stack to install k6 on.
         /// </summary>
@@ -242,8 +306,9 @@ namespace Pulumiverse.Grafana.K6
         private Input<string>? _cloudAccessPolicyToken;
 
         /// <summary>
-        /// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
+        /// Deprecated: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token. It is no longer used to install the k6 App and can be safely removed.
         /// </summary>
+        [Obsolete(@"This attribute is no longer used by the k6 Cloud API and will be removed in the next major release. It can be safely removed from your configuration.")]
         public Input<string>? CloudAccessPolicyToken
         {
             get => _cloudAccessPolicyToken;
@@ -303,6 +368,22 @@ namespace Pulumiverse.Grafana.K6
         /// </summary>
         [Input("k6Organization")]
         public Input<string>? K6Organization { get; set; }
+
+        [Input("publisherToken")]
+        private Input<string>? _publisherToken;
+
+        /// <summary>
+        /// A [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token with `metrics:read`, `metrics:write`, `rules:read` and `rules:write` scopes on the stack, used by Grafana Cloud k6 to publish test metrics to the stack and process thresholds.
+        /// </summary>
+        public Input<string>? PublisherToken
+        {
+            get => _publisherToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _publisherToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The identifier of the stack to install k6 on.

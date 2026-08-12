@@ -19,38 +19,34 @@ __all__ = ['InstallationArgs', 'Installation']
 @pulumi.input_type
 class InstallationArgs:
     def __init__(__self__, *,
-                 cloud_access_policy_token: pulumi.Input[_builtins.str],
                  grafana_sa_token: pulumi.Input[_builtins.str],
                  grafana_user: pulumi.Input[_builtins.str],
                  stack_id: pulumi.Input[_builtins.str],
-                 k6_api_url: Optional[pulumi.Input[_builtins.str]] = None):
+                 cloud_access_policy_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 k6_api_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 publisher_token: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Installation resource.
 
-        :param pulumi.Input[_builtins.str] cloud_access_policy_token: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
         :param pulumi.Input[_builtins.str] grafana_sa_token: The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.
         :param pulumi.Input[_builtins.str] grafana_user: The user to use for the installation.
         :param pulumi.Input[_builtins.str] stack_id: The identifier of the stack to install k6 on.
+        :param pulumi.Input[_builtins.str] cloud_access_policy_token: Deprecated: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token. It is no longer used to install the k6 App and can be safely removed.
         :param pulumi.Input[_builtins.str] k6_api_url: The Grafana Cloud k6 API url.
+        :param pulumi.Input[_builtins.str] publisher_token: A [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token with `metrics:read`, `metrics:write`, `rules:read` and `rules:write` scopes on the stack, used by Grafana Cloud k6 to publish test metrics to the stack and process thresholds.
         """
-        pulumi.set(__self__, "cloud_access_policy_token", cloud_access_policy_token)
         pulumi.set(__self__, "grafana_sa_token", grafana_sa_token)
         pulumi.set(__self__, "grafana_user", grafana_user)
         pulumi.set(__self__, "stack_id", stack_id)
+        if cloud_access_policy_token is not None:
+            warnings.warn("""This attribute is no longer used by the k6 Cloud API and will be removed in the next major release. It can be safely removed from your configuration.""", DeprecationWarning)
+            pulumi.log.warn("""cloud_access_policy_token is deprecated: This attribute is no longer used by the k6 Cloud API and will be removed in the next major release. It can be safely removed from your configuration.""")
+        if cloud_access_policy_token is not None:
+            pulumi.set(__self__, "cloud_access_policy_token", cloud_access_policy_token)
         if k6_api_url is not None:
             pulumi.set(__self__, "k6_api_url", k6_api_url)
-
-    @_builtins.property
-    @pulumi.getter(name="cloudAccessPolicyToken")
-    def cloud_access_policy_token(self) -> pulumi.Input[_builtins.str]:
-        """
-        The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
-        """
-        return pulumi.get(self, "cloud_access_policy_token")
-
-    @cloud_access_policy_token.setter
-    def cloud_access_policy_token(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "cloud_access_policy_token", value)
+        if publisher_token is not None:
+            pulumi.set(__self__, "publisher_token", publisher_token)
 
     @_builtins.property
     @pulumi.getter(name="grafanaSaToken")
@@ -89,6 +85,19 @@ class InstallationArgs:
         pulumi.set(self, "stack_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="cloudAccessPolicyToken")
+    @_utilities.deprecated("""This attribute is no longer used by the k6 Cloud API and will be removed in the next major release. It can be safely removed from your configuration.""")
+    def cloud_access_policy_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Deprecated: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token. It is no longer used to install the k6 App and can be safely removed.
+        """
+        return pulumi.get(self, "cloud_access_policy_token")
+
+    @cloud_access_policy_token.setter
+    def cloud_access_policy_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "cloud_access_policy_token", value)
+
+    @_builtins.property
     @pulumi.getter(name="k6ApiUrl")
     def k6_api_url(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -100,6 +109,18 @@ class InstallationArgs:
     def k6_api_url(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "k6_api_url", value)
 
+    @_builtins.property
+    @pulumi.getter(name="publisherToken")
+    def publisher_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token with `metrics:read`, `metrics:write`, `rules:read` and `rules:write` scopes on the stack, used by Grafana Cloud k6 to publish test metrics to the stack and process thresholds.
+        """
+        return pulumi.get(self, "publisher_token")
+
+    @publisher_token.setter
+    def publisher_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "publisher_token", value)
+
 
 @pulumi.input_type
 class _InstallationState:
@@ -110,18 +131,23 @@ class _InstallationState:
                  k6_access_token: Optional[pulumi.Input[_builtins.str]] = None,
                  k6_api_url: Optional[pulumi.Input[_builtins.str]] = None,
                  k6_organization: Optional[pulumi.Input[_builtins.str]] = None,
+                 publisher_token: Optional[pulumi.Input[_builtins.str]] = None,
                  stack_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Installation resources.
 
-        :param pulumi.Input[_builtins.str] cloud_access_policy_token: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
+        :param pulumi.Input[_builtins.str] cloud_access_policy_token: Deprecated: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token. It is no longer used to install the k6 App and can be safely removed.
         :param pulumi.Input[_builtins.str] grafana_sa_token: The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.
         :param pulumi.Input[_builtins.str] grafana_user: The user to use for the installation.
         :param pulumi.Input[_builtins.str] k6_access_token: Generated token to access the k6 API.
         :param pulumi.Input[_builtins.str] k6_api_url: The Grafana Cloud k6 API url.
         :param pulumi.Input[_builtins.str] k6_organization: The identifier of the k6 organization.
+        :param pulumi.Input[_builtins.str] publisher_token: A [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token with `metrics:read`, `metrics:write`, `rules:read` and `rules:write` scopes on the stack, used by Grafana Cloud k6 to publish test metrics to the stack and process thresholds.
         :param pulumi.Input[_builtins.str] stack_id: The identifier of the stack to install k6 on.
         """
+        if cloud_access_policy_token is not None:
+            warnings.warn("""This attribute is no longer used by the k6 Cloud API and will be removed in the next major release. It can be safely removed from your configuration.""", DeprecationWarning)
+            pulumi.log.warn("""cloud_access_policy_token is deprecated: This attribute is no longer used by the k6 Cloud API and will be removed in the next major release. It can be safely removed from your configuration.""")
         if cloud_access_policy_token is not None:
             pulumi.set(__self__, "cloud_access_policy_token", cloud_access_policy_token)
         if grafana_sa_token is not None:
@@ -134,14 +160,17 @@ class _InstallationState:
             pulumi.set(__self__, "k6_api_url", k6_api_url)
         if k6_organization is not None:
             pulumi.set(__self__, "k6_organization", k6_organization)
+        if publisher_token is not None:
+            pulumi.set(__self__, "publisher_token", publisher_token)
         if stack_id is not None:
             pulumi.set(__self__, "stack_id", stack_id)
 
     @_builtins.property
     @pulumi.getter(name="cloudAccessPolicyToken")
+    @_utilities.deprecated("""This attribute is no longer used by the k6 Cloud API and will be removed in the next major release. It can be safely removed from your configuration.""")
     def cloud_access_policy_token(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
+        Deprecated: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token. It is no longer used to install the k6 App and can be safely removed.
         """
         return pulumi.get(self, "cloud_access_policy_token")
 
@@ -210,6 +239,18 @@ class _InstallationState:
         pulumi.set(self, "k6_organization", value)
 
     @_builtins.property
+    @pulumi.getter(name="publisherToken")
+    def publisher_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token with `metrics:read`, `metrics:write`, `rules:read` and `rules:write` scopes on the stack, used by Grafana Cloud k6 to publish test metrics to the stack and process thresholds.
+        """
+        return pulumi.get(self, "publisher_token")
+
+    @publisher_token.setter
+    def publisher_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "publisher_token", value)
+
+    @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -232,6 +273,7 @@ class Installation(pulumi.CustomResource):
                  grafana_sa_token: Optional[pulumi.Input[_builtins.str]] = None,
                  grafana_user: Optional[pulumi.Input[_builtins.str]] = None,
                  k6_api_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 publisher_token: Optional[pulumi.Input[_builtins.str]] = None,
                  stack_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
@@ -243,13 +285,24 @@ class Installation(pulumi.CustomResource):
 
         * [Official documentation](https://grafana.com/docs/grafana-cloud/testing/k6/)
 
-        Required access policy scopes:
+        The provider's `cloud_access_policy_token` needs the following scopes to manage the resources in the example below:
 
         * stacks:read
         * stacks:write
-        * subscriptions:read
-        * orgs:read
+        * stacks:delete
         * stack-service-accounts:write
+        * accesspolicies:read
+        * accesspolicies:write
+        * accesspolicies:delete
+
+        The publisher token (`publisher_token`) is a stack-scoped access policy token with the following scopes, used by Grafana Cloud k6 to publish test metrics to the stack and process thresholds:
+
+        * metrics:read
+        * metrics:write
+        * rules:read
+        * rules:write
+
+        It is required when creating new installations.
 
         ## Example Usage
 
@@ -258,7 +311,7 @@ class Installation(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         config = pulumi.Config()
-        # Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write
+        # Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write, accesspolicies:read|write|delete
         cloud_access_policy_token = config.require_object("cloudAccessPolicyToken")
         stack_slug = config.require_object("stackSlug")
         cloud_region = config.get("cloudRegion")
@@ -278,9 +331,27 @@ class Installation(pulumi.CustomResource):
             stack_slug=stack_slug,
             name=f"{stack_slug}-k6-app-token",
             service_account_id=k6_sa.id)
-        # Step 3: Install the k6 App on the stack
+        # Step 3: Create an access policy and token used by k6 to publish test metrics to the stack
+        k6_metrics_publisher = grafana.cloud.AccessPolicy("k6_metrics_publisher",
+            region=cloud_region,
+            name=f"{stack_slug}-k6-metrics-publisher",
+            scopes=[
+                "metrics:read",
+                "metrics:write",
+                "rules:read",
+                "rules:write",
+            ],
+            realms=[{
+                "type": "stack",
+                "identifier": k6_stack.id,
+            }])
+        k6_metrics_publisher_access_policy_token = grafana.cloud.AccessPolicyToken("k6_metrics_publisher",
+            region=cloud_region,
+            access_policy_id=k6_metrics_publisher.policy_id,
+            name=f"{stack_slug}-k6-metrics-publisher")
+        # Step 4: Install the k6 App on the stack
         k6_installation = grafana.k6.Installation("k6_installation",
-            cloud_access_policy_token=cloud_access_policy_token,
+            publisher_token=k6_metrics_publisher_access_policy_token.token,
             stack_id=k6_stack.id,
             grafana_sa_token=k6_sa_token.key,
             grafana_user="admin")
@@ -290,10 +361,11 @@ class Installation(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] cloud_access_policy_token: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
+        :param pulumi.Input[_builtins.str] cloud_access_policy_token: Deprecated: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token. It is no longer used to install the k6 App and can be safely removed.
         :param pulumi.Input[_builtins.str] grafana_sa_token: The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.
         :param pulumi.Input[_builtins.str] grafana_user: The user to use for the installation.
         :param pulumi.Input[_builtins.str] k6_api_url: The Grafana Cloud k6 API url.
+        :param pulumi.Input[_builtins.str] publisher_token: A [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token with `metrics:read`, `metrics:write`, `rules:read` and `rules:write` scopes on the stack, used by Grafana Cloud k6 to publish test metrics to the stack and process thresholds.
         :param pulumi.Input[_builtins.str] stack_id: The identifier of the stack to install k6 on.
         """
         ...
@@ -311,13 +383,24 @@ class Installation(pulumi.CustomResource):
 
         * [Official documentation](https://grafana.com/docs/grafana-cloud/testing/k6/)
 
-        Required access policy scopes:
+        The provider's `cloud_access_policy_token` needs the following scopes to manage the resources in the example below:
 
         * stacks:read
         * stacks:write
-        * subscriptions:read
-        * orgs:read
+        * stacks:delete
         * stack-service-accounts:write
+        * accesspolicies:read
+        * accesspolicies:write
+        * accesspolicies:delete
+
+        The publisher token (`publisher_token`) is a stack-scoped access policy token with the following scopes, used by Grafana Cloud k6 to publish test metrics to the stack and process thresholds:
+
+        * metrics:read
+        * metrics:write
+        * rules:read
+        * rules:write
+
+        It is required when creating new installations.
 
         ## Example Usage
 
@@ -326,7 +409,7 @@ class Installation(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         config = pulumi.Config()
-        # Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write
+        # Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write, accesspolicies:read|write|delete
         cloud_access_policy_token = config.require_object("cloudAccessPolicyToken")
         stack_slug = config.require_object("stackSlug")
         cloud_region = config.get("cloudRegion")
@@ -346,9 +429,27 @@ class Installation(pulumi.CustomResource):
             stack_slug=stack_slug,
             name=f"{stack_slug}-k6-app-token",
             service_account_id=k6_sa.id)
-        # Step 3: Install the k6 App on the stack
+        # Step 3: Create an access policy and token used by k6 to publish test metrics to the stack
+        k6_metrics_publisher = grafana.cloud.AccessPolicy("k6_metrics_publisher",
+            region=cloud_region,
+            name=f"{stack_slug}-k6-metrics-publisher",
+            scopes=[
+                "metrics:read",
+                "metrics:write",
+                "rules:read",
+                "rules:write",
+            ],
+            realms=[{
+                "type": "stack",
+                "identifier": k6_stack.id,
+            }])
+        k6_metrics_publisher_access_policy_token = grafana.cloud.AccessPolicyToken("k6_metrics_publisher",
+            region=cloud_region,
+            access_policy_id=k6_metrics_publisher.policy_id,
+            name=f"{stack_slug}-k6-metrics-publisher")
+        # Step 4: Install the k6 App on the stack
         k6_installation = grafana.k6.Installation("k6_installation",
-            cloud_access_policy_token=cloud_access_policy_token,
+            publisher_token=k6_metrics_publisher_access_policy_token.token,
             stack_id=k6_stack.id,
             grafana_sa_token=k6_sa_token.key,
             grafana_user="admin")
@@ -375,6 +476,7 @@ class Installation(pulumi.CustomResource):
                  grafana_sa_token: Optional[pulumi.Input[_builtins.str]] = None,
                  grafana_user: Optional[pulumi.Input[_builtins.str]] = None,
                  k6_api_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 publisher_token: Optional[pulumi.Input[_builtins.str]] = None,
                  stack_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -385,8 +487,6 @@ class Installation(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = InstallationArgs.__new__(InstallationArgs)
 
-            if cloud_access_policy_token is None and not opts.urn:
-                raise TypeError("Missing required property 'cloud_access_policy_token'")
             __props__.__dict__["cloud_access_policy_token"] = None if cloud_access_policy_token is None else pulumi.Output.secret(cloud_access_policy_token)
             if grafana_sa_token is None and not opts.urn:
                 raise TypeError("Missing required property 'grafana_sa_token'")
@@ -395,12 +495,13 @@ class Installation(pulumi.CustomResource):
                 raise TypeError("Missing required property 'grafana_user'")
             __props__.__dict__["grafana_user"] = grafana_user
             __props__.__dict__["k6_api_url"] = k6_api_url
+            __props__.__dict__["publisher_token"] = None if publisher_token is None else pulumi.Output.secret(publisher_token)
             if stack_id is None and not opts.urn:
                 raise TypeError("Missing required property 'stack_id'")
             __props__.__dict__["stack_id"] = stack_id
             __props__.__dict__["k6_access_token"] = None
             __props__.__dict__["k6_organization"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["cloudAccessPolicyToken", "grafanaSaToken", "k6AccessToken"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["cloudAccessPolicyToken", "grafanaSaToken", "k6AccessToken", "publisherToken"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Installation, __self__).__init__(
             'grafana:k6/installation:Installation',
@@ -418,6 +519,7 @@ class Installation(pulumi.CustomResource):
             k6_access_token: Optional[pulumi.Input[_builtins.str]] = None,
             k6_api_url: Optional[pulumi.Input[_builtins.str]] = None,
             k6_organization: Optional[pulumi.Input[_builtins.str]] = None,
+            publisher_token: Optional[pulumi.Input[_builtins.str]] = None,
             stack_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Installation':
         """
         Get an existing Installation resource's state with the given name, id, and optional extra
@@ -426,12 +528,13 @@ class Installation(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] cloud_access_policy_token: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
+        :param pulumi.Input[_builtins.str] cloud_access_policy_token: Deprecated: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token. It is no longer used to install the k6 App and can be safely removed.
         :param pulumi.Input[_builtins.str] grafana_sa_token: The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.
         :param pulumi.Input[_builtins.str] grafana_user: The user to use for the installation.
         :param pulumi.Input[_builtins.str] k6_access_token: Generated token to access the k6 API.
         :param pulumi.Input[_builtins.str] k6_api_url: The Grafana Cloud k6 API url.
         :param pulumi.Input[_builtins.str] k6_organization: The identifier of the k6 organization.
+        :param pulumi.Input[_builtins.str] publisher_token: A [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token with `metrics:read`, `metrics:write`, `rules:read` and `rules:write` scopes on the stack, used by Grafana Cloud k6 to publish test metrics to the stack and process thresholds.
         :param pulumi.Input[_builtins.str] stack_id: The identifier of the stack to install k6 on.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -444,14 +547,16 @@ class Installation(pulumi.CustomResource):
         __props__.__dict__["k6_access_token"] = k6_access_token
         __props__.__dict__["k6_api_url"] = k6_api_url
         __props__.__dict__["k6_organization"] = k6_organization
+        __props__.__dict__["publisher_token"] = publisher_token
         __props__.__dict__["stack_id"] = stack_id
         return Installation(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="cloudAccessPolicyToken")
-    def cloud_access_policy_token(self) -> pulumi.Output[_builtins.str]:
+    @_utilities.deprecated("""This attribute is no longer used by the k6 Cloud API and will be removed in the next major release. It can be safely removed from your configuration.""")
+    def cloud_access_policy_token(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
+        Deprecated: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token. It is no longer used to install the k6 App and can be safely removed.
         """
         return pulumi.get(self, "cloud_access_policy_token")
 
@@ -494,6 +599,14 @@ class Installation(pulumi.CustomResource):
         The identifier of the k6 organization.
         """
         return pulumi.get(self, "k6_organization")
+
+    @_builtins.property
+    @pulumi.getter(name="publisherToken")
+    def publisher_token(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        A [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token with `metrics:read`, `metrics:write`, `rules:read` and `rules:write` scopes on the stack, used by Grafana Cloud k6 to publish test metrics to the stack and process thresholds.
+        """
+        return pulumi.get(self, "publisher_token")
 
     @_builtins.property
     @pulumi.getter(name="stackId")
