@@ -14,6 +14,9 @@
                     },
                     "evaluator_ids": {
                         "maxItemsOne": false
+                    },
+                    "filterable_tag_keys": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -700,6 +703,10 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "grafana_assistant_terms_acceptance": {
+                "current": "grafana:assistant/termsAcceptance:TermsAcceptance",
+                "majorVersion": 2
             },
             "grafana_cloud_access_policy": {
                 "current": "grafana:cloud/accessPolicy:AccessPolicy",
@@ -2847,6 +2854,7 @@
             "grafana:assistant/quickstart:Quickstart": 1,
             "grafana:assistant/rule:Rule": 1,
             "grafana:assistant/skill:Skill": 1,
+            "grafana:assistant/termsAcceptance:TermsAcceptance": 1,
             "grafana:cloud/accessPolicy:AccessPolicy": 0,
             "grafana:cloud/accessPolicyRotatingToken:AccessPolicyRotatingToken": 0,
             "grafana:cloud/accessPolicyToken:AccessPolicyToken": 0,
