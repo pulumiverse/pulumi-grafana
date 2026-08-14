@@ -74,6 +74,11 @@ import (
 //				EvaluatorIds: pulumi.StringArray{
 //					example.EvaluatorId,
 //				},
+//				ExecutionMode: pulumi.String("parallel"),
+//				FilterableTagKeys: pulumi.StringArray{
+//					pulumi.String("environment"),
+//					pulumi.String("team"),
+//				},
 //				Match: pulumi.String(pulumi.String(json2)),
 //			})
 //			if err != nil {
@@ -99,6 +104,10 @@ type EvaluationRule struct {
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// IDs of the evaluators to run against matching generations. Must be non-empty.
 	EvaluatorIds pulumi.StringArrayOutput `pulumi:"evaluatorIds"`
+	// How evaluators execute. `parallel` runs all evaluators independently; `sequential` treats `evaluatorIds` as an ordered gate chain. Defaults to `parallel`.
+	ExecutionMode pulumi.StringOutput `pulumi:"executionMode"`
+	// Generation tag keys to promote to Prometheus labels on evaluation metrics. Supports at most 10 unique, non-empty keys and cannot be set when `selector` is `conversation`.
+	FilterableTagKeys pulumi.StringArrayOutput `pulumi:"filterableTagKeys"`
 	// Optional JSON object of match filters (for example `{"agentName":"checkout-*"}`). Omit to match everything.
 	Match pulumi.StringPtrOutput `pulumi:"match"`
 	// Idle window, in seconds, before a conversation-scope rule runs. Required when `selector` is `conversation`; must be unset otherwise.
@@ -153,6 +162,10 @@ type evaluationRuleState struct {
 	Enabled *bool `pulumi:"enabled"`
 	// IDs of the evaluators to run against matching generations. Must be non-empty.
 	EvaluatorIds []string `pulumi:"evaluatorIds"`
+	// How evaluators execute. `parallel` runs all evaluators independently; `sequential` treats `evaluatorIds` as an ordered gate chain. Defaults to `parallel`.
+	ExecutionMode *string `pulumi:"executionMode"`
+	// Generation tag keys to promote to Prometheus labels on evaluation metrics. Supports at most 10 unique, non-empty keys and cannot be set when `selector` is `conversation`.
+	FilterableTagKeys []string `pulumi:"filterableTagKeys"`
 	// Optional JSON object of match filters (for example `{"agentName":"checkout-*"}`). Omit to match everything.
 	Match *string `pulumi:"match"`
 	// Idle window, in seconds, before a conversation-scope rule runs. Required when `selector` is `conversation`; must be unset otherwise.
@@ -172,6 +185,10 @@ type EvaluationRuleState struct {
 	Enabled pulumi.BoolPtrInput
 	// IDs of the evaluators to run against matching generations. Must be non-empty.
 	EvaluatorIds pulumi.StringArrayInput
+	// How evaluators execute. `parallel` runs all evaluators independently; `sequential` treats `evaluatorIds` as an ordered gate chain. Defaults to `parallel`.
+	ExecutionMode pulumi.StringPtrInput
+	// Generation tag keys to promote to Prometheus labels on evaluation metrics. Supports at most 10 unique, non-empty keys and cannot be set when `selector` is `conversation`.
+	FilterableTagKeys pulumi.StringArrayInput
 	// Optional JSON object of match filters (for example `{"agentName":"checkout-*"}`). Omit to match everything.
 	Match pulumi.StringPtrInput
 	// Idle window, in seconds, before a conversation-scope rule runs. Required when `selector` is `conversation`; must be unset otherwise.
@@ -195,6 +212,10 @@ type evaluationRuleArgs struct {
 	Enabled *bool `pulumi:"enabled"`
 	// IDs of the evaluators to run against matching generations. Must be non-empty.
 	EvaluatorIds []string `pulumi:"evaluatorIds"`
+	// How evaluators execute. `parallel` runs all evaluators independently; `sequential` treats `evaluatorIds` as an ordered gate chain. Defaults to `parallel`.
+	ExecutionMode *string `pulumi:"executionMode"`
+	// Generation tag keys to promote to Prometheus labels on evaluation metrics. Supports at most 10 unique, non-empty keys and cannot be set when `selector` is `conversation`.
+	FilterableTagKeys []string `pulumi:"filterableTagKeys"`
 	// Optional JSON object of match filters (for example `{"agentName":"checkout-*"}`). Omit to match everything.
 	Match *string `pulumi:"match"`
 	// Idle window, in seconds, before a conversation-scope rule runs. Required when `selector` is `conversation`; must be unset otherwise.
@@ -215,6 +236,10 @@ type EvaluationRuleArgs struct {
 	Enabled pulumi.BoolPtrInput
 	// IDs of the evaluators to run against matching generations. Must be non-empty.
 	EvaluatorIds pulumi.StringArrayInput
+	// How evaluators execute. `parallel` runs all evaluators independently; `sequential` treats `evaluatorIds` as an ordered gate chain. Defaults to `parallel`.
+	ExecutionMode pulumi.StringPtrInput
+	// Generation tag keys to promote to Prometheus labels on evaluation metrics. Supports at most 10 unique, non-empty keys and cannot be set when `selector` is `conversation`.
+	FilterableTagKeys pulumi.StringArrayInput
 	// Optional JSON object of match filters (for example `{"agentName":"checkout-*"}`). Omit to match everything.
 	Match pulumi.StringPtrInput
 	// Idle window, in seconds, before a conversation-scope rule runs. Required when `selector` is `conversation`; must be unset otherwise.
@@ -327,6 +352,16 @@ func (o EvaluationRuleOutput) Enabled() pulumi.BoolOutput {
 // IDs of the evaluators to run against matching generations. Must be non-empty.
 func (o EvaluationRuleOutput) EvaluatorIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *EvaluationRule) pulumi.StringArrayOutput { return v.EvaluatorIds }).(pulumi.StringArrayOutput)
+}
+
+// How evaluators execute. `parallel` runs all evaluators independently; `sequential` treats `evaluatorIds` as an ordered gate chain. Defaults to `parallel`.
+func (o EvaluationRuleOutput) ExecutionMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *EvaluationRule) pulumi.StringOutput { return v.ExecutionMode }).(pulumi.StringOutput)
+}
+
+// Generation tag keys to promote to Prometheus labels on evaluation metrics. Supports at most 10 unique, non-empty keys and cannot be set when `selector` is `conversation`.
+func (o EvaluationRuleOutput) FilterableTagKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *EvaluationRule) pulumi.StringArrayOutput { return v.FilterableTagKeys }).(pulumi.StringArrayOutput)
 }
 
 // Optional JSON object of match filters (for example `{"agentName":"checkout-*"}`). Omit to match everything.

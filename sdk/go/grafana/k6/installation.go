@@ -20,12 +20,11 @@ import (
 //
 // * [Official documentation](https://grafana.com/docs/grafana-cloud/testing/k6/)
 //
-// Required access policy scopes:
+// The provider's `cloudAccessPolicyToken` needs the following scopes to manage the resources in the example below:
 //
 // * stacks:read
 // * stacks:write
-// * subscriptions:read
-// * orgs:read
+// * stacks:delete
 // * stack-service-accounts:write
 //
 // ## Example Usage
@@ -80,10 +79,9 @@ import (
 //			}
 //			// Step 3: Install the k6 App on the stack
 //			_, err = k6.NewInstallation(ctx, "k6_installation", &k6.InstallationArgs{
-//				CloudAccessPolicyToken: pulumi.Any(cloudAccessPolicyToken),
-//				StackId:                k6Stack.ID(),
-//				GrafanaSaToken:         k6SaToken.Key,
-//				GrafanaUser:            pulumi.String("admin"),
+//				StackId:        k6Stack.ID(),
+//				GrafanaSaToken: k6SaToken.Key,
+//				GrafanaUser:    pulumi.String("admin"),
 //			})
 //			if err != nil {
 //				return err
@@ -102,8 +100,10 @@ import (
 type Installation struct {
 	pulumi.CustomResourceState
 
-	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
-	CloudAccessPolicyToken pulumi.StringOutput `pulumi:"cloudAccessPolicyToken"`
+	// Deprecated: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token. It is no longer used to install the k6 App and can be safely removed.
+	//
+	// Deprecated: This attribute is no longer used by the k6 Cloud API and will be removed in the next major release. It can be safely removed from your configuration.
+	CloudAccessPolicyToken pulumi.StringPtrOutput `pulumi:"cloudAccessPolicyToken"`
 	// The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.
 	GrafanaSaToken pulumi.StringOutput `pulumi:"grafanaSaToken"`
 	// The user to use for the installation.
@@ -125,9 +125,6 @@ func NewInstallation(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.CloudAccessPolicyToken == nil {
-		return nil, errors.New("invalid value for required argument 'CloudAccessPolicyToken'")
-	}
 	if args.GrafanaSaToken == nil {
 		return nil, errors.New("invalid value for required argument 'GrafanaSaToken'")
 	}
@@ -138,7 +135,7 @@ func NewInstallation(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'StackId'")
 	}
 	if args.CloudAccessPolicyToken != nil {
-		args.CloudAccessPolicyToken = pulumi.ToSecret(args.CloudAccessPolicyToken).(pulumi.StringInput)
+		args.CloudAccessPolicyToken = pulumi.ToSecret(args.CloudAccessPolicyToken).(pulumi.StringPtrInput)
 	}
 	if args.GrafanaSaToken != nil {
 		args.GrafanaSaToken = pulumi.ToSecret(args.GrafanaSaToken).(pulumi.StringInput)
@@ -172,7 +169,9 @@ func GetInstallation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Installation resources.
 type installationState struct {
-	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
+	// Deprecated: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token. It is no longer used to install the k6 App and can be safely removed.
+	//
+	// Deprecated: This attribute is no longer used by the k6 Cloud API and will be removed in the next major release. It can be safely removed from your configuration.
 	CloudAccessPolicyToken *string `pulumi:"cloudAccessPolicyToken"`
 	// The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.
 	GrafanaSaToken *string `pulumi:"grafanaSaToken"`
@@ -189,7 +188,9 @@ type installationState struct {
 }
 
 type InstallationState struct {
-	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
+	// Deprecated: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token. It is no longer used to install the k6 App and can be safely removed.
+	//
+	// Deprecated: This attribute is no longer used by the k6 Cloud API and will be removed in the next major release. It can be safely removed from your configuration.
 	CloudAccessPolicyToken pulumi.StringPtrInput
 	// The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.
 	GrafanaSaToken pulumi.StringPtrInput
@@ -210,8 +211,10 @@ func (InstallationState) ElementType() reflect.Type {
 }
 
 type installationArgs struct {
-	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
-	CloudAccessPolicyToken string `pulumi:"cloudAccessPolicyToken"`
+	// Deprecated: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token. It is no longer used to install the k6 App and can be safely removed.
+	//
+	// Deprecated: This attribute is no longer used by the k6 Cloud API and will be removed in the next major release. It can be safely removed from your configuration.
+	CloudAccessPolicyToken *string `pulumi:"cloudAccessPolicyToken"`
 	// The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.
 	GrafanaSaToken string `pulumi:"grafanaSaToken"`
 	// The user to use for the installation.
@@ -224,8 +227,10 @@ type installationArgs struct {
 
 // The set of arguments for constructing a Installation resource.
 type InstallationArgs struct {
-	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
-	CloudAccessPolicyToken pulumi.StringInput
+	// Deprecated: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token. It is no longer used to install the k6 App and can be safely removed.
+	//
+	// Deprecated: This attribute is no longer used by the k6 Cloud API and will be removed in the next major release. It can be safely removed from your configuration.
+	CloudAccessPolicyToken pulumi.StringPtrInput
 	// The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.
 	GrafanaSaToken pulumi.StringInput
 	// The user to use for the installation.
@@ -323,9 +328,11 @@ func (o InstallationOutput) ToInstallationOutputWithContext(ctx context.Context)
 	return o
 }
 
-// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
-func (o InstallationOutput) CloudAccessPolicyToken() pulumi.StringOutput {
-	return o.ApplyT(func(v *Installation) pulumi.StringOutput { return v.CloudAccessPolicyToken }).(pulumi.StringOutput)
+// Deprecated: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token. It is no longer used to install the k6 App and can be safely removed.
+//
+// Deprecated: This attribute is no longer used by the k6 Cloud API and will be removed in the next major release. It can be safely removed from your configuration.
+func (o InstallationOutput) CloudAccessPolicyToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Installation) pulumi.StringPtrOutput { return v.CloudAccessPolicyToken }).(pulumi.StringPtrOutput)
 }
 
 // The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.

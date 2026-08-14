@@ -23,6 +23,8 @@ class EvaluationRuleArgs:
                  rule_id: pulumi.Input[_builtins.str],
                  alert_rule_uids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 execution_mode: Optional[pulumi.Input[_builtins.str]] = None,
+                 filterable_tag_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  match: Optional[pulumi.Input[_builtins.str]] = None,
                  min_idle_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  sample_rate: Optional[pulumi.Input[_builtins.float]] = None,
@@ -34,6 +36,8 @@ class EvaluationRuleArgs:
         :param pulumi.Input[_builtins.str] rule_id: Tenant-unique identifier of the rule. Changing this forces a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] alert_rule_uids: Optional Grafana alert rule UIDs associated with this evaluation rule.
         :param pulumi.Input[_builtins.bool] enabled: Whether the rule is enabled. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] execution_mode: How evaluators execute. `parallel` runs all evaluators independently; `sequential` treats `evaluator_ids` as an ordered gate chain. Defaults to `parallel`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] filterable_tag_keys: Generation tag keys to promote to Prometheus labels on evaluation metrics. Supports at most 10 unique, non-empty keys and cannot be set when `selector` is `conversation`.
         :param pulumi.Input[_builtins.str] match: Optional JSON object of match filters (for example `{"agent_name":"checkout-*"}`). Omit to match everything.
         :param pulumi.Input[_builtins.int] min_idle_seconds: Idle window, in seconds, before a conversation-scope rule runs. Required when `selector` is `conversation`; must be unset otherwise.
         :param pulumi.Input[_builtins.float] sample_rate: Fraction of matching generations to evaluate, in `[0,1]`. Defaults to `0.01`.
@@ -45,6 +49,10 @@ class EvaluationRuleArgs:
             pulumi.set(__self__, "alert_rule_uids", alert_rule_uids)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if execution_mode is not None:
+            pulumi.set(__self__, "execution_mode", execution_mode)
+        if filterable_tag_keys is not None:
+            pulumi.set(__self__, "filterable_tag_keys", filterable_tag_keys)
         if match is not None:
             pulumi.set(__self__, "match", match)
         if min_idle_seconds is not None:
@@ -103,6 +111,30 @@ class EvaluationRuleArgs:
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
+    @pulumi.getter(name="executionMode")
+    def execution_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        How evaluators execute. `parallel` runs all evaluators independently; `sequential` treats `evaluator_ids` as an ordered gate chain. Defaults to `parallel`.
+        """
+        return pulumi.get(self, "execution_mode")
+
+    @execution_mode.setter
+    def execution_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "execution_mode", value)
+
+    @_builtins.property
+    @pulumi.getter(name="filterableTagKeys")
+    def filterable_tag_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Generation tag keys to promote to Prometheus labels on evaluation metrics. Supports at most 10 unique, non-empty keys and cannot be set when `selector` is `conversation`.
+        """
+        return pulumi.get(self, "filterable_tag_keys")
+
+    @filterable_tag_keys.setter
+    def filterable_tag_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "filterable_tag_keys", value)
+
+    @_builtins.property
     @pulumi.getter
     def match(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -157,6 +189,8 @@ class _EvaluationRuleState:
                  alert_rule_uids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  evaluator_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 execution_mode: Optional[pulumi.Input[_builtins.str]] = None,
+                 filterable_tag_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  match: Optional[pulumi.Input[_builtins.str]] = None,
                  min_idle_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  rule_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -168,6 +202,8 @@ class _EvaluationRuleState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] alert_rule_uids: Optional Grafana alert rule UIDs associated with this evaluation rule.
         :param pulumi.Input[_builtins.bool] enabled: Whether the rule is enabled. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] evaluator_ids: IDs of the evaluators to run against matching generations. Must be non-empty.
+        :param pulumi.Input[_builtins.str] execution_mode: How evaluators execute. `parallel` runs all evaluators independently; `sequential` treats `evaluator_ids` as an ordered gate chain. Defaults to `parallel`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] filterable_tag_keys: Generation tag keys to promote to Prometheus labels on evaluation metrics. Supports at most 10 unique, non-empty keys and cannot be set when `selector` is `conversation`.
         :param pulumi.Input[_builtins.str] match: Optional JSON object of match filters (for example `{"agent_name":"checkout-*"}`). Omit to match everything.
         :param pulumi.Input[_builtins.int] min_idle_seconds: Idle window, in seconds, before a conversation-scope rule runs. Required when `selector` is `conversation`; must be unset otherwise.
         :param pulumi.Input[_builtins.str] rule_id: Tenant-unique identifier of the rule. Changing this forces a new resource.
@@ -180,6 +216,10 @@ class _EvaluationRuleState:
             pulumi.set(__self__, "enabled", enabled)
         if evaluator_ids is not None:
             pulumi.set(__self__, "evaluator_ids", evaluator_ids)
+        if execution_mode is not None:
+            pulumi.set(__self__, "execution_mode", execution_mode)
+        if filterable_tag_keys is not None:
+            pulumi.set(__self__, "filterable_tag_keys", filterable_tag_keys)
         if match is not None:
             pulumi.set(__self__, "match", match)
         if min_idle_seconds is not None:
@@ -226,6 +266,30 @@ class _EvaluationRuleState:
     @evaluator_ids.setter
     def evaluator_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "evaluator_ids", value)
+
+    @_builtins.property
+    @pulumi.getter(name="executionMode")
+    def execution_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        How evaluators execute. `parallel` runs all evaluators independently; `sequential` treats `evaluator_ids` as an ordered gate chain. Defaults to `parallel`.
+        """
+        return pulumi.get(self, "execution_mode")
+
+    @execution_mode.setter
+    def execution_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "execution_mode", value)
+
+    @_builtins.property
+    @pulumi.getter(name="filterableTagKeys")
+    def filterable_tag_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Generation tag keys to promote to Prometheus labels on evaluation metrics. Supports at most 10 unique, non-empty keys and cannot be set when `selector` is `conversation`.
+        """
+        return pulumi.get(self, "filterable_tag_keys")
+
+    @filterable_tag_keys.setter
+    def filterable_tag_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "filterable_tag_keys", value)
 
     @_builtins.property
     @pulumi.getter
@@ -297,6 +361,8 @@ class EvaluationRule(pulumi.CustomResource):
                  alert_rule_uids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  evaluator_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 execution_mode: Optional[pulumi.Input[_builtins.str]] = None,
+                 filterable_tag_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  match: Optional[pulumi.Input[_builtins.str]] = None,
                  min_idle_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  rule_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -332,6 +398,11 @@ class EvaluationRule(pulumi.CustomResource):
             selector="user_visible_turn",
             sample_rate=0.1,
             evaluator_ids=[example.evaluator_id],
+            execution_mode="parallel",
+            filterable_tag_keys=[
+                "environment",
+                "team",
+            ],
             match=json.dumps({
                 "agent_name": "checkout-*",
             }))
@@ -349,6 +420,8 @@ class EvaluationRule(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] alert_rule_uids: Optional Grafana alert rule UIDs associated with this evaluation rule.
         :param pulumi.Input[_builtins.bool] enabled: Whether the rule is enabled. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] evaluator_ids: IDs of the evaluators to run against matching generations. Must be non-empty.
+        :param pulumi.Input[_builtins.str] execution_mode: How evaluators execute. `parallel` runs all evaluators independently; `sequential` treats `evaluator_ids` as an ordered gate chain. Defaults to `parallel`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] filterable_tag_keys: Generation tag keys to promote to Prometheus labels on evaluation metrics. Supports at most 10 unique, non-empty keys and cannot be set when `selector` is `conversation`.
         :param pulumi.Input[_builtins.str] match: Optional JSON object of match filters (for example `{"agent_name":"checkout-*"}`). Omit to match everything.
         :param pulumi.Input[_builtins.int] min_idle_seconds: Idle window, in seconds, before a conversation-scope rule runs. Required when `selector` is `conversation`; must be unset otherwise.
         :param pulumi.Input[_builtins.str] rule_id: Tenant-unique identifier of the rule. Changing this forces a new resource.
@@ -390,6 +463,11 @@ class EvaluationRule(pulumi.CustomResource):
             selector="user_visible_turn",
             sample_rate=0.1,
             evaluator_ids=[example.evaluator_id],
+            execution_mode="parallel",
+            filterable_tag_keys=[
+                "environment",
+                "team",
+            ],
             match=json.dumps({
                 "agent_name": "checkout-*",
             }))
@@ -420,6 +498,8 @@ class EvaluationRule(pulumi.CustomResource):
                  alert_rule_uids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  evaluator_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 execution_mode: Optional[pulumi.Input[_builtins.str]] = None,
+                 filterable_tag_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  match: Optional[pulumi.Input[_builtins.str]] = None,
                  min_idle_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  rule_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -439,6 +519,8 @@ class EvaluationRule(pulumi.CustomResource):
             if evaluator_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'evaluator_ids'")
             __props__.__dict__["evaluator_ids"] = evaluator_ids
+            __props__.__dict__["execution_mode"] = execution_mode
+            __props__.__dict__["filterable_tag_keys"] = filterable_tag_keys
             __props__.__dict__["match"] = match
             __props__.__dict__["min_idle_seconds"] = min_idle_seconds
             if rule_id is None and not opts.urn:
@@ -459,6 +541,8 @@ class EvaluationRule(pulumi.CustomResource):
             alert_rule_uids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             evaluator_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            execution_mode: Optional[pulumi.Input[_builtins.str]] = None,
+            filterable_tag_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             match: Optional[pulumi.Input[_builtins.str]] = None,
             min_idle_seconds: Optional[pulumi.Input[_builtins.int]] = None,
             rule_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -474,6 +558,8 @@ class EvaluationRule(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] alert_rule_uids: Optional Grafana alert rule UIDs associated with this evaluation rule.
         :param pulumi.Input[_builtins.bool] enabled: Whether the rule is enabled. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] evaluator_ids: IDs of the evaluators to run against matching generations. Must be non-empty.
+        :param pulumi.Input[_builtins.str] execution_mode: How evaluators execute. `parallel` runs all evaluators independently; `sequential` treats `evaluator_ids` as an ordered gate chain. Defaults to `parallel`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] filterable_tag_keys: Generation tag keys to promote to Prometheus labels on evaluation metrics. Supports at most 10 unique, non-empty keys and cannot be set when `selector` is `conversation`.
         :param pulumi.Input[_builtins.str] match: Optional JSON object of match filters (for example `{"agent_name":"checkout-*"}`). Omit to match everything.
         :param pulumi.Input[_builtins.int] min_idle_seconds: Idle window, in seconds, before a conversation-scope rule runs. Required when `selector` is `conversation`; must be unset otherwise.
         :param pulumi.Input[_builtins.str] rule_id: Tenant-unique identifier of the rule. Changing this forces a new resource.
@@ -487,6 +573,8 @@ class EvaluationRule(pulumi.CustomResource):
         __props__.__dict__["alert_rule_uids"] = alert_rule_uids
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["evaluator_ids"] = evaluator_ids
+        __props__.__dict__["execution_mode"] = execution_mode
+        __props__.__dict__["filterable_tag_keys"] = filterable_tag_keys
         __props__.__dict__["match"] = match
         __props__.__dict__["min_idle_seconds"] = min_idle_seconds
         __props__.__dict__["rule_id"] = rule_id
@@ -517,6 +605,22 @@ class EvaluationRule(pulumi.CustomResource):
         IDs of the evaluators to run against matching generations. Must be non-empty.
         """
         return pulumi.get(self, "evaluator_ids")
+
+    @_builtins.property
+    @pulumi.getter(name="executionMode")
+    def execution_mode(self) -> pulumi.Output[_builtins.str]:
+        """
+        How evaluators execute. `parallel` runs all evaluators independently; `sequential` treats `evaluator_ids` as an ordered gate chain. Defaults to `parallel`.
+        """
+        return pulumi.get(self, "execution_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="filterableTagKeys")
+    def filterable_tag_keys(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        Generation tag keys to promote to Prometheus labels on evaluation metrics. Supports at most 10 unique, non-empty keys and cannot be set when `selector` is `conversation`.
+        """
+        return pulumi.get(self, "filterable_tag_keys")
 
     @_builtins.property
     @pulumi.getter

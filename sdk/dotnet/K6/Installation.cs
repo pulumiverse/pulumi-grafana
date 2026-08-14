@@ -19,12 +19,11 @@ namespace Pulumiverse.Grafana.K6
     /// 
     /// * [Official documentation](https://grafana.com/docs/grafana-cloud/testing/k6/)
     /// 
-    /// Required access policy scopes:
+    /// The provider's `CloudAccessPolicyToken` needs the following scopes to manage the resources in the example below:
     /// 
     /// * stacks:read
     /// * stacks:write
-    /// * subscriptions:read
-    /// * orgs:read
+    /// * stacks:delete
     /// * stack-service-accounts:write
     /// 
     /// ## Example Usage
@@ -68,7 +67,6 @@ namespace Pulumiverse.Grafana.K6
     ///     // Step 3: Install the k6 App on the stack
     ///     var k6Installation = new Grafana.K6.Installation("k6_installation", new()
     ///     {
-    ///         CloudAccessPolicyToken = cloudAccessPolicyToken,
     ///         StackId = k6Stack.Id,
     ///         GrafanaSaToken = k6SaToken.Key,
     ///         GrafanaUser = "admin",
@@ -86,10 +84,10 @@ namespace Pulumiverse.Grafana.K6
     public partial class Installation : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
+        /// Deprecated: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token. It is no longer used to install the k6 App and can be safely removed.
         /// </summary>
         [Output("cloudAccessPolicyToken")]
-        public Output<string> CloudAccessPolicyToken { get; private set; } = null!;
+        public Output<string?> CloudAccessPolicyToken { get; private set; } = null!;
 
         /// <summary>
         /// The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.
@@ -180,12 +178,13 @@ namespace Pulumiverse.Grafana.K6
 
     public sealed class InstallationArgs : global::Pulumi.ResourceArgs
     {
-        [Input("cloudAccessPolicyToken", required: true)]
+        [Input("cloudAccessPolicyToken")]
         private Input<string>? _cloudAccessPolicyToken;
 
         /// <summary>
-        /// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
+        /// Deprecated: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token. It is no longer used to install the k6 App and can be safely removed.
         /// </summary>
+        [Obsolete(@"This attribute is no longer used by the k6 Cloud API and will be removed in the next major release. It can be safely removed from your configuration.")]
         public Input<string>? CloudAccessPolicyToken
         {
             get => _cloudAccessPolicyToken;
@@ -242,8 +241,9 @@ namespace Pulumiverse.Grafana.K6
         private Input<string>? _cloudAccessPolicyToken;
 
         /// <summary>
-        /// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
+        /// Deprecated: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) token. It is no longer used to install the k6 App and can be safely removed.
         /// </summary>
+        [Obsolete(@"This attribute is no longer used by the k6 Cloud API and will be removed in the next major release. It can be safely removed from your configuration.")]
         public Input<string>? CloudAccessPolicyToken
         {
             get => _cloudAccessPolicyToken;

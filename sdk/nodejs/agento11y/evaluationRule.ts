@@ -33,6 +33,11 @@ import * as utilities from "../utilities";
  *     selector: "user_visible_turn",
  *     sampleRate: 0.1,
  *     evaluatorIds: [example.evaluatorId],
+ *     executionMode: "parallel",
+ *     filterableTagKeys: [
+ *         "environment",
+ *         "team",
+ *     ],
  *     match: JSON.stringify({
  *         agent_name: "checkout-*",
  *     }),
@@ -86,6 +91,14 @@ export class EvaluationRule extends pulumi.CustomResource {
      */
     declare public readonly evaluatorIds: pulumi.Output<string[]>;
     /**
+     * How evaluators execute. `parallel` runs all evaluators independently; `sequential` treats `evaluatorIds` as an ordered gate chain. Defaults to `parallel`.
+     */
+    declare public readonly executionMode: pulumi.Output<string>;
+    /**
+     * Generation tag keys to promote to Prometheus labels on evaluation metrics. Supports at most 10 unique, non-empty keys and cannot be set when `selector` is `conversation`.
+     */
+    declare public readonly filterableTagKeys: pulumi.Output<string[] | undefined>;
+    /**
      * Optional JSON object of match filters (for example `{"agentName":"checkout-*"}`). Omit to match everything.
      */
     declare public readonly match: pulumi.Output<string | undefined>;
@@ -122,6 +135,8 @@ export class EvaluationRule extends pulumi.CustomResource {
             resourceInputs["alertRuleUids"] = state?.alertRuleUids;
             resourceInputs["enabled"] = state?.enabled;
             resourceInputs["evaluatorIds"] = state?.evaluatorIds;
+            resourceInputs["executionMode"] = state?.executionMode;
+            resourceInputs["filterableTagKeys"] = state?.filterableTagKeys;
             resourceInputs["match"] = state?.match;
             resourceInputs["minIdleSeconds"] = state?.minIdleSeconds;
             resourceInputs["ruleId"] = state?.ruleId;
@@ -138,6 +153,8 @@ export class EvaluationRule extends pulumi.CustomResource {
             resourceInputs["alertRuleUids"] = args?.alertRuleUids;
             resourceInputs["enabled"] = args?.enabled;
             resourceInputs["evaluatorIds"] = args?.evaluatorIds;
+            resourceInputs["executionMode"] = args?.executionMode;
+            resourceInputs["filterableTagKeys"] = args?.filterableTagKeys;
             resourceInputs["match"] = args?.match;
             resourceInputs["minIdleSeconds"] = args?.minIdleSeconds;
             resourceInputs["ruleId"] = args?.ruleId;
@@ -165,6 +182,14 @@ export interface EvaluationRuleState {
      * IDs of the evaluators to run against matching generations. Must be non-empty.
      */
     evaluatorIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * How evaluators execute. `parallel` runs all evaluators independently; `sequential` treats `evaluatorIds` as an ordered gate chain. Defaults to `parallel`.
+     */
+    executionMode?: pulumi.Input<string>;
+    /**
+     * Generation tag keys to promote to Prometheus labels on evaluation metrics. Supports at most 10 unique, non-empty keys and cannot be set when `selector` is `conversation`.
+     */
+    filterableTagKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Optional JSON object of match filters (for example `{"agentName":"checkout-*"}`). Omit to match everything.
      */
@@ -203,6 +228,14 @@ export interface EvaluationRuleArgs {
      * IDs of the evaluators to run against matching generations. Must be non-empty.
      */
     evaluatorIds: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * How evaluators execute. `parallel` runs all evaluators independently; `sequential` treats `evaluatorIds` as an ordered gate chain. Defaults to `parallel`.
+     */
+    executionMode?: pulumi.Input<string>;
+    /**
+     * Generation tag keys to promote to Prometheus labels on evaluation metrics. Supports at most 10 unique, non-empty keys and cannot be set when `selector` is `conversation`.
+     */
+    filterableTagKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Optional JSON object of match filters (for example `{"agentName":"checkout-*"}`). Omit to match everything.
      */

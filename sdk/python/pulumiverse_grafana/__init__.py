@@ -402,6 +402,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "assistant/termsAcceptance",
+  "fqn": "pulumiverse_grafana.assistant",
+  "classes": {
+   "grafana:assistant/termsAcceptance:TermsAcceptance": "TermsAcceptance"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "cloud/accessPolicy",
   "fqn": "pulumiverse_grafana.cloud",
   "classes": {
