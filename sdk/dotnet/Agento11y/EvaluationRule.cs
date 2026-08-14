@@ -55,6 +55,12 @@ namespace Pulumiverse.Grafana.Agento11y
     ///         {
     ///             example.EvaluatorId,
     ///         },
+    ///         ExecutionMode = "parallel",
+    ///         FilterableTagKeys = new[]
+    ///         {
+    ///             "environment",
+    ///             "team",
+    ///         },
     ///         Match = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
     ///             ["agent_name"] = "checkout-*",
@@ -90,6 +96,18 @@ namespace Pulumiverse.Grafana.Agento11y
         /// </summary>
         [Output("evaluatorIds")]
         public Output<ImmutableArray<string>> EvaluatorIds { get; private set; } = null!;
+
+        /// <summary>
+        /// How evaluators execute. `Parallel` runs all evaluators independently; `Sequential` treats `EvaluatorIds` as an ordered gate chain. Defaults to `Parallel`.
+        /// </summary>
+        [Output("executionMode")]
+        public Output<string> ExecutionMode { get; private set; } = null!;
+
+        /// <summary>
+        /// Generation tag keys to promote to Prometheus labels on evaluation metrics. Supports at most 10 unique, non-empty keys and cannot be set when `Selector` is `Conversation`.
+        /// </summary>
+        [Output("filterableTagKeys")]
+        public Output<ImmutableArray<string>> FilterableTagKeys { get; private set; } = null!;
 
         /// <summary>
         /// Optional JSON object of match filters (for example `{"AgentName":"checkout-*"}`). Omit to match everything.
@@ -199,6 +217,24 @@ namespace Pulumiverse.Grafana.Agento11y
         }
 
         /// <summary>
+        /// How evaluators execute. `Parallel` runs all evaluators independently; `Sequential` treats `EvaluatorIds` as an ordered gate chain. Defaults to `Parallel`.
+        /// </summary>
+        [Input("executionMode")]
+        public Input<string>? ExecutionMode { get; set; }
+
+        [Input("filterableTagKeys")]
+        private InputList<string>? _filterableTagKeys;
+
+        /// <summary>
+        /// Generation tag keys to promote to Prometheus labels on evaluation metrics. Supports at most 10 unique, non-empty keys and cannot be set when `Selector` is `Conversation`.
+        /// </summary>
+        public InputList<string> FilterableTagKeys
+        {
+            get => _filterableTagKeys ?? (_filterableTagKeys = new InputList<string>());
+            set => _filterableTagKeys = value;
+        }
+
+        /// <summary>
         /// Optional JSON object of match filters (for example `{"AgentName":"checkout-*"}`). Omit to match everything.
         /// </summary>
         [Input("match")]
@@ -264,6 +300,24 @@ namespace Pulumiverse.Grafana.Agento11y
         {
             get => _evaluatorIds ?? (_evaluatorIds = new InputList<string>());
             set => _evaluatorIds = value;
+        }
+
+        /// <summary>
+        /// How evaluators execute. `Parallel` runs all evaluators independently; `Sequential` treats `EvaluatorIds` as an ordered gate chain. Defaults to `Parallel`.
+        /// </summary>
+        [Input("executionMode")]
+        public Input<string>? ExecutionMode { get; set; }
+
+        [Input("filterableTagKeys")]
+        private InputList<string>? _filterableTagKeys;
+
+        /// <summary>
+        /// Generation tag keys to promote to Prometheus labels on evaluation metrics. Supports at most 10 unique, non-empty keys and cannot be set when `Selector` is `Conversation`.
+        /// </summary>
+        public InputList<string> FilterableTagKeys
+        {
+            get => _filterableTagKeys ?? (_filterableTagKeys = new InputList<string>());
+            set => _filterableTagKeys = value;
         }
 
         /// <summary>

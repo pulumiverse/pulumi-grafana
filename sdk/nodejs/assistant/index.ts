@@ -25,6 +25,11 @@ export type Skill = import("./skill").Skill;
 export const Skill: typeof import("./skill").Skill = null as any;
 utilities.lazyLoad(exports, ["Skill"], () => require("./skill"));
 
+export { TermsAcceptanceArgs, TermsAcceptanceState } from "./termsAcceptance";
+export type TermsAcceptance = import("./termsAcceptance").TermsAcceptance;
+export const TermsAcceptance: typeof import("./termsAcceptance").TermsAcceptance = null as any;
+utilities.lazyLoad(exports, ["TermsAcceptance"], () => require("./termsAcceptance"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -38,6 +43,8 @@ const _module = {
                 return new Rule(name, <any>undefined, { urn })
             case "grafana:assistant/skill:Skill":
                 return new Skill(name, <any>undefined, { urn })
+            case "grafana:assistant/termsAcceptance:TermsAcceptance":
+                return new TermsAcceptance(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -47,3 +54,4 @@ pulumi.runtime.registerResourceModule("grafana", "assistant/mcpServer", _module)
 pulumi.runtime.registerResourceModule("grafana", "assistant/quickstart", _module)
 pulumi.runtime.registerResourceModule("grafana", "assistant/rule", _module)
 pulumi.runtime.registerResourceModule("grafana", "assistant/skill", _module)
+pulumi.runtime.registerResourceModule("grafana", "assistant/termsAcceptance", _module)

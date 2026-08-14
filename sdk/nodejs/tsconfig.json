@@ -66,6 +66,7 @@
         "assistant/quickstart.ts",
         "assistant/rule.ts",
         "assistant/skill.ts",
+        "assistant/termsAcceptance.ts",
         "cloud/accessPolicy.ts",
         "cloud/accessPolicyRotatingToken.ts",
         "cloud/accessPolicyToken.ts",

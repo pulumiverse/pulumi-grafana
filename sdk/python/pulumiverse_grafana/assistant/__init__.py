@@ -10,5 +10,6 @@ from .mcp_server import *
 from .quickstart import *
 from .rule import *
 from .skill import *
+from .terms_acceptance import *
 from ._inputs import *
 from . import outputs
