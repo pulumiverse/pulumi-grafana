@@ -7036,7 +7036,7 @@ export namespace slo {
          */
         queries?: outputs.slo.GetSlosSloQuery[];
         /**
-         * The search expression associated with this SLO.
+         * The Knowledge Graph search expression scoping this SLO to a set of entities. When set, the SLO links to the Asserts RCA workbench and its burn-rate alert rules carry a `workbenchTroubleshootUrl` annotation.
          */
         searchExpression: string;
         /**

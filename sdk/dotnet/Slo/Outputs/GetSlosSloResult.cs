@@ -43,7 +43,7 @@ namespace Pulumiverse.Grafana.Slo.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloQueryResult> Queries;
         /// <summary>
-        /// The search expression associated with this SLO.
+        /// The Knowledge Graph search expression scoping this SLO to a set of entities. When set, the SLO links to the Asserts RCA workbench and its burn-rate alert rules carry a `WorkbenchTroubleshootUrl` annotation.
         /// </summary>
         public readonly string SearchExpression;
         /// <summary>
