@@ -86,7 +86,7 @@ namespace Pulumiverse.Grafana.Slo.Inputs
         }
 
         /// <summary>
-        /// The search expression associated with this SLO.
+        /// The Knowledge Graph search expression scoping this SLO to a set of entities. When set, the SLO links to the Asserts RCA workbench and its burn-rate alert rules carry a `WorkbenchTroubleshootUrl` annotation.
         /// </summary>
         [Input("searchExpression", required: true)]
         public string SearchExpression { get; set; } = null!;

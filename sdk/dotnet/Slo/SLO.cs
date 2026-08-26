@@ -332,6 +332,61 @@ namespace Pulumiverse.Grafana.Slo
     /// 
     /// For a complete list, see [supported data sources](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/set-up/additionaldatasources/#supported-data-sources).
     /// 
+    /// ### RCA workbench entities - Knowledge Graph search expression
+    /// 
+    /// Set `SearchExpression` to scope the SLO to a set of Knowledge Graph entities. The SLO then links to the Asserts RCA workbench from the SLO list and performance pages, and its generated burn-rate alert rules carry a `WorkbenchTroubleshootUrl` annotation pointing at those entities.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var searchExpression = new Grafana.Slo.SLO("search_expression", new()
+    ///     {
+    ///         Name = "Terraform Testing - Entity Search Expression",
+    ///         Description = "Terraform Description - Entity Search Expression",
+    ///         Queries = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOQueryArgs
+    ///             {
+    ///                 Freeform = new Grafana.Slo.Inputs.SLOQueryFreeformArgs
+    ///                 {
+    ///                     Query = "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+    ///                 },
+    ///                 Type = "freeform",
+    ///             },
+    ///         },
+    ///         Objectives = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
+    ///             {
+    ///                 Value = 0.995,
+    ///                 Window = "30d",
+    ///             },
+    ///         },
+    ///         DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs
+    ///         {
+    ///             Uid = "grafanacloud-prom",
+    ///         },
+    ///         Labels = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOLabelArgs
+    ///             {
+    ///                 Key = "slo",
+    ///                 Value = "terraform",
+    ///             },
+    ///         },
+    ///         SearchExpression = "shipping connected services",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// For the expression syntax, see [predefined searches](https://grafana.com/docs/grafana-cloud/platform/knowledge-graph/troubleshoot-infra-apps/explore-entity-graph/#use-predefined-searches).
+    /// 
     /// For additional help with SLOs, view our [documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/).
     /// 
     /// ## Import
@@ -396,7 +451,7 @@ namespace Pulumiverse.Grafana.Slo
         public Output<ImmutableArray<Outputs.SLOQuery>> Queries { get; private set; } = null!;
 
         /// <summary>
-        /// The name of a search expression in Grafana Asserts. Must be non-empty if set; omit the attribute entirely to leave it unset. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+        /// A Knowledge Graph search expression scoping this SLO to a set of entities, for example "shipping connected services". When set, the SLO links to the Asserts RCA workbench from the SLO list and performance pages, and generated burn-rate alert rules carry a `WorkbenchTroubleshootUrl` annotation pointing at the matching entities. See [predefined searches](https://grafana.com/docs/grafana-cloud/platform/knowledge-graph/troubleshoot-infra-apps/explore-entity-graph/#use-predefined-searches) for the expression syntax. Must be non-empty if set; omit the attribute entirely to leave it unset.
         /// </summary>
         [Output("searchExpression")]
         public Output<string?> SearchExpression { get; private set; } = null!;
@@ -529,7 +584,7 @@ namespace Pulumiverse.Grafana.Slo
         }
 
         /// <summary>
-        /// The name of a search expression in Grafana Asserts. Must be non-empty if set; omit the attribute entirely to leave it unset. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+        /// A Knowledge Graph search expression scoping this SLO to a set of entities, for example "shipping connected services". When set, the SLO links to the Asserts RCA workbench from the SLO list and performance pages, and generated burn-rate alert rules carry a `WorkbenchTroubleshootUrl` annotation pointing at the matching entities. See [predefined searches](https://grafana.com/docs/grafana-cloud/platform/knowledge-graph/troubleshoot-infra-apps/explore-entity-graph/#use-predefined-searches) for the expression syntax. Must be non-empty if set; omit the attribute entirely to leave it unset.
         /// </summary>
         [Input("searchExpression")]
         public Input<string>? SearchExpression { get; set; }
@@ -619,7 +674,7 @@ namespace Pulumiverse.Grafana.Slo
         }
 
         /// <summary>
-        /// The name of a search expression in Grafana Asserts. Must be non-empty if set; omit the attribute entirely to leave it unset. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+        /// A Knowledge Graph search expression scoping this SLO to a set of entities, for example "shipping connected services". When set, the SLO links to the Asserts RCA workbench from the SLO list and performance pages, and generated burn-rate alert rules carry a `WorkbenchTroubleshootUrl` annotation pointing at the matching entities. See [predefined searches](https://grafana.com/docs/grafana-cloud/platform/knowledge-graph/troubleshoot-infra-apps/explore-entity-graph/#use-predefined-searches) for the expression syntax. Must be non-empty if set; omit the attribute entirely to leave it unset.
         /// </summary>
         [Input("searchExpression")]
         public Input<string>? SearchExpression { get; set; }

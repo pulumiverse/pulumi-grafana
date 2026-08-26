@@ -7151,7 +7151,7 @@ export namespace slo {
          */
         queries?: inputs.slo.GetSlosSloQuery[];
         /**
-         * The search expression associated with this SLO.
+         * The Knowledge Graph search expression scoping this SLO to a set of entities. When set, the SLO links to the Asserts RCA workbench and its burn-rate alert rules carry a `workbenchTroubleshootUrl` annotation.
          */
         searchExpression?: string;
         /**
@@ -7190,7 +7190,7 @@ export namespace slo {
          */
         queries?: pulumi.Input<pulumi.Input<inputs.slo.GetSlosSloQueryArgs>[]>;
         /**
-         * The search expression associated with this SLO.
+         * The Knowledge Graph search expression scoping this SLO to a set of entities. When set, the SLO links to the Asserts RCA workbench and its burn-rate alert rules carry a `workbenchTroubleshootUrl` annotation.
          */
         searchExpression?: pulumi.Input<string>;
         /**

@@ -221,6 +221,40 @@ import * as utilities from "../utilities";
  *
  * For a complete list, see [supported data sources](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/set-up/additionaldatasources/#supported-data-sources).
  *
+ * ### RCA workbench entities - Knowledge Graph search expression
+ *
+ * Set `searchExpression` to scope the SLO to a set of Knowledge Graph entities. The SLO then links to the Asserts RCA workbench from the SLO list and performance pages, and its generated burn-rate alert rules carry a `workbenchTroubleshootUrl` annotation pointing at those entities.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const searchExpression = new grafana.slo.SLO("search_expression", {
+ *     name: "Terraform Testing - Entity Search Expression",
+ *     description: "Terraform Description - Entity Search Expression",
+ *     queries: [{
+ *         freeform: {
+ *             query: "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+ *         },
+ *         type: "freeform",
+ *     }],
+ *     objectives: [{
+ *         value: 0.995,
+ *         window: "30d",
+ *     }],
+ *     destinationDatasource: {
+ *         uid: "grafanacloud-prom",
+ *     },
+ *     labels: [{
+ *         key: "slo",
+ *         value: "terraform",
+ *     }],
+ *     searchExpression: "shipping connected services",
+ * });
+ * ```
+ *
+ * For the expression syntax, see [predefined searches](https://grafana.com/docs/grafana-cloud/platform/knowledge-graph/troubleshoot-infra-apps/explore-entity-graph/#use-predefined-searches).
+ *
  * For additional help with SLOs, view our [documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/).
  *
  * ## Import
@@ -294,7 +328,7 @@ export class SLO extends pulumi.CustomResource {
      */
     declare public readonly queries: pulumi.Output<outputs.slo.SLOQuery[] | undefined>;
     /**
-     * The name of a search expression in Grafana Asserts. Must be non-empty if set; omit the attribute entirely to leave it unset. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+     * A Knowledge Graph search expression scoping this SLO to a set of entities, for example "shipping connected services". When set, the SLO links to the Asserts RCA workbench from the SLO list and performance pages, and generated burn-rate alert rules carry a `workbenchTroubleshootUrl` annotation pointing at the matching entities. See [predefined searches](https://grafana.com/docs/grafana-cloud/platform/knowledge-graph/troubleshoot-infra-apps/explore-entity-graph/#use-predefined-searches) for the expression syntax. Must be non-empty if set; omit the attribute entirely to leave it unset.
      */
     declare public readonly searchExpression: pulumi.Output<string | undefined>;
     /**
@@ -389,7 +423,7 @@ export interface SLOState {
      */
     queries?: pulumi.Input<pulumi.Input<inputs.slo.SLOQuery>[]>;
     /**
-     * The name of a search expression in Grafana Asserts. Must be non-empty if set; omit the attribute entirely to leave it unset. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+     * A Knowledge Graph search expression scoping this SLO to a set of entities, for example "shipping connected services". When set, the SLO links to the Asserts RCA workbench from the SLO list and performance pages, and generated burn-rate alert rules carry a `workbenchTroubleshootUrl` annotation pointing at the matching entities. See [predefined searches](https://grafana.com/docs/grafana-cloud/platform/knowledge-graph/troubleshoot-infra-apps/explore-entity-graph/#use-predefined-searches) for the expression syntax. Must be non-empty if set; omit the attribute entirely to leave it unset.
      */
     searchExpression?: pulumi.Input<string>;
     /**
@@ -439,7 +473,7 @@ export interface SLOArgs {
      */
     queries?: pulumi.Input<pulumi.Input<inputs.slo.SLOQuery>[]>;
     /**
-     * The name of a search expression in Grafana Asserts. Must be non-empty if set; omit the attribute entirely to leave it unset. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+     * A Knowledge Graph search expression scoping this SLO to a set of entities, for example "shipping connected services". When set, the SLO links to the Asserts RCA workbench from the SLO list and performance pages, and generated burn-rate alert rules carry a `workbenchTroubleshootUrl` annotation pointing at the matching entities. See [predefined searches](https://grafana.com/docs/grafana-cloud/platform/knowledge-graph/troubleshoot-infra-apps/explore-entity-graph/#use-predefined-searches) for the expression syntax. Must be non-empty if set; omit the attribute entirely to leave it unset.
      */
     searchExpression?: pulumi.Input<string>;
     /**

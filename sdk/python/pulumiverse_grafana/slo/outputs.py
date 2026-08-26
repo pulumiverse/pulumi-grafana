@@ -750,7 +750,7 @@ class GetSlosSloResult(dict):
         """
         :param _builtins.str description: Description of the SLO.
         :param _builtins.str name: Name of the SLO.
-        :param _builtins.str search_expression: The search expression associated with this SLO.
+        :param _builtins.str search_expression: The Knowledge Graph search expression scoping this SLO to a set of entities. When set, the SLO links to the Asserts RCA workbench and its burn-rate alert rules carry a `workbench_troubleshoot_url` annotation.
         :param _builtins.str uuid: A unique, random identifier. This value is read-only.
         :param Sequence['GetSlosSloAlertingArgs'] alertings: Alerting configuration for the SLO.
         :param Sequence['GetSlosSloDestinationDatasourceArgs'] destination_datasources: Destination datasource configuration.
@@ -793,7 +793,7 @@ class GetSlosSloResult(dict):
     @pulumi.getter(name="searchExpression")
     def search_expression(self) -> _builtins.str:
         """
-        The search expression associated with this SLO.
+        The Knowledge Graph search expression scoping this SLO to a set of entities. When set, the SLO links to the Asserts RCA workbench and its burn-rate alert rules carry a `workbench_troubleshoot_url` annotation.
         """
         return pulumi.get(self, "search_expression")
 

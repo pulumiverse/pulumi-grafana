@@ -2480,7 +2480,7 @@ type GetSlosSlo struct {
 	Objectives []GetSlosSloObjective `pulumi:"objectives"`
 	// Query configuration for the SLO.
 	Queries []GetSlosSloQuery `pulumi:"queries"`
-	// The search expression associated with this SLO.
+	// The Knowledge Graph search expression scoping this SLO to a set of entities. When set, the SLO links to the Asserts RCA workbench and its burn-rate alert rules carry a `workbenchTroubleshootUrl` annotation.
 	SearchExpression string `pulumi:"searchExpression"`
 	// A unique, random identifier. This value is read-only.
 	Uuid string `pulumi:"uuid"`
@@ -2512,7 +2512,7 @@ type GetSlosSloArgs struct {
 	Objectives GetSlosSloObjectiveArrayInput `pulumi:"objectives"`
 	// Query configuration for the SLO.
 	Queries GetSlosSloQueryArrayInput `pulumi:"queries"`
-	// The search expression associated with this SLO.
+	// The Knowledge Graph search expression scoping this SLO to a set of entities. When set, the SLO links to the Asserts RCA workbench and its burn-rate alert rules carry a `workbenchTroubleshootUrl` annotation.
 	SearchExpression pulumi.StringInput `pulumi:"searchExpression"`
 	// A unique, random identifier. This value is read-only.
 	Uuid pulumi.StringInput `pulumi:"uuid"`
@@ -2604,7 +2604,7 @@ func (o GetSlosSloOutput) Queries() GetSlosSloQueryArrayOutput {
 	return o.ApplyT(func(v GetSlosSlo) []GetSlosSloQuery { return v.Queries }).(GetSlosSloQueryArrayOutput)
 }
 
-// The search expression associated with this SLO.
+// The Knowledge Graph search expression scoping this SLO to a set of entities. When set, the SLO links to the Asserts RCA workbench and its burn-rate alert rules carry a `workbenchTroubleshootUrl` annotation.
 func (o GetSlosSloOutput) SearchExpression() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSlo) string { return v.SearchExpression }).(pulumi.StringOutput)
 }
