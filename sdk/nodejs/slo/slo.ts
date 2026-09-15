@@ -136,6 +136,43 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### Separate source and destination datasources
+ *
+ * By default the SLI query is evaluated against the datasource named in `destinationDatasource`. Set `sourceDatasourceUid` on the `freeform` or `ratio` block to read the raw metrics from a different datasource while still writing the generated recording and alerting rules to the destination.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const sourcePrometheus = new grafana.oss.DataSource("source_prometheus", {
+ *     type: "prometheus",
+ *     name: "SLO Source Prometheus",
+ *     url: "https://prometheus.example.com/",
+ * });
+ * const sourceDatasource = new grafana.slo.SLO("source_datasource", {
+ *     name: "Terraform Testing - Separate Source Datasource",
+ *     description: "Terraform Description - Separate Source Datasource",
+ *     queries: [{
+ *         freeform: {
+ *             query: "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+ *             sourceDatasourceUid: sourcePrometheus.uid,
+ *         },
+ *         type: "freeform",
+ *     }],
+ *     objectives: [{
+ *         value: 0.995,
+ *         window: "30d",
+ *     }],
+ *     destinationDatasource: {
+ *         uid: "grafanacloud-prom",
+ *     },
+ *     labels: [{
+ *         key: "slo",
+ *         value: "terraform",
+ *     }],
+ * });
+ * ```
+ *
  * ### Grafana Queries - Any supported datasource
  *
  * Grafana Queries use the grafanaQueries field. It expects a JSON string list of valid grafana query JSON objects, the same as you'll find assigned to a Grafana Dashboard panel `targets` field.
