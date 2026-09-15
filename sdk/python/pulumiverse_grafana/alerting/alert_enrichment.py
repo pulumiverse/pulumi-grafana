@@ -150,7 +150,7 @@ class AlertEnrichment(pulumi.CustomResource):
         """
         Manages [Grafana Cloud Alert Enrichment](https://grafana.com/docs/grafana-cloud/alerting-and-irm/alerting/configure-notifications/alert-enrichment/).
 
-        Alert enrichment is currently in public preview. Grafana Labs offers limited support, and breaking changes might occur prior to the feature being made generally available.
+        Alert enrichment is generally available.
 
         ## Example Usage
 
@@ -302,7 +302,7 @@ class AlertEnrichment(pulumi.CustomResource):
         """
         Manages [Grafana Cloud Alert Enrichment](https://grafana.com/docs/grafana-cloud/alerting-and-irm/alerting/configure-notifications/alert-enrichment/).
 
-        Alert enrichment is currently in public preview. Grafana Labs offers limited support, and breaking changes might occur prior to the feature being made generally available.
+        Alert enrichment is generally available.
 
         ## Example Usage
 

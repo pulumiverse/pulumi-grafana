@@ -18,11 +18,19 @@ namespace Pulumiverse.Grafana.Slo.Outputs
         /// The PromQL query string.
         /// </summary>
         public readonly string Query;
+        /// <summary>
+        /// Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+        /// </summary>
+        public readonly string SourceDatasourceUid;
 
         [OutputConstructor]
-        private GetSlosSloQueryFreeformResult(string query)
+        private GetSlosSloQueryFreeformResult(
+            string query,
+
+            string sourceDatasourceUid)
         {
             Query = query;
+            SourceDatasourceUid = sourceDatasourceUid;
         }
     }
 }

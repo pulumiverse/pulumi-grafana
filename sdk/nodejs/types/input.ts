@@ -7580,6 +7580,10 @@ export namespace slo {
          * The PromQL query string.
          */
         query?: string;
+        /**
+         * Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+         */
+        sourceDatasourceUid?: string;
     }
 
     export interface GetSlosSloQueryFreeformArgs {
@@ -7587,6 +7591,10 @@ export namespace slo {
          * The PromQL query string.
          */
         query?: pulumi.Input<string>;
+        /**
+         * Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+         */
+        sourceDatasourceUid?: pulumi.Input<string>;
     }
 
     export interface GetSlosSloQueryGrafanaQueries {
@@ -7609,6 +7617,10 @@ export namespace slo {
          */
         groupByLabels?: string[];
         /**
+         * Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+         */
+        sourceDatasourceUid?: string;
+        /**
          * Counter metric for success events (numerator).
          */
         successMetric?: string;
@@ -7623,6 +7635,10 @@ export namespace slo {
          * Labels used for grouping.
          */
         groupByLabels?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+         */
+        sourceDatasourceUid?: pulumi.Input<string>;
         /**
          * Counter metric for success events (numerator).
          */
@@ -7826,6 +7842,10 @@ export namespace slo {
          * Freeform Query Field - valid promQl
          */
         query: pulumi.Input<string>;
+        /**
+         * Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+         */
+        sourceDatasourceUid?: pulumi.Input<string>;
     }
 
     export interface SLOQueryGrafanaQueries {
@@ -7840,6 +7860,10 @@ export namespace slo {
          * Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
          */
         groupByLabels?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+         */
+        sourceDatasourceUid?: pulumi.Input<string>;
         /**
          * Counter metric for success events (numerator)
          */
