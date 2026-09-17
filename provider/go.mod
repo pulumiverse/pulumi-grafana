@@ -5,7 +5,7 @@ go 1.26.5
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20260318212141-5525259d096b
 
 require (
-	github.com/grafana/terraform-provider-grafana/v4 v4.45.2
+	github.com/grafana/terraform-provider-grafana/v4 v4.46.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.125.0
 	github.com/pulumi/pulumi/sdk/v3 v3.226.0
 )
@@ -147,7 +147,7 @@ require (
 	github.com/grafana/otel-profiling-go v0.5.1 // indirect
 	github.com/grafana/pyroscope-go/godeltaprof v0.1.9 // indirect
 	github.com/grafana/river v0.3.0 // indirect
-	github.com/grafana/slo-openapi-client/go/slo v0.0.0-20260327172536-7bee3b953aed // indirect
+	github.com/grafana/slo-openapi-client/go/slo v0.0.0-20260730190738-75fe08b09d87 // indirect
 	github.com/grafana/synthetic-monitoring-agent v0.62.0 // indirect
 	github.com/grafana/synthetic-monitoring-api-go-client v0.20.5 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus v1.1.0 // indirect
