@@ -2019,6 +2019,8 @@ func (o SLOQueryArrayOutput) Index(i pulumi.IntInput) SLOQueryOutput {
 type SLOQueryFreeform struct {
 	// Freeform Query Field - valid promQl
 	Query string `pulumi:"query"`
+	// Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+	SourceDatasourceUid *string `pulumi:"sourceDatasourceUid"`
 }
 
 // SLOQueryFreeformInput is an input type that accepts SLOQueryFreeformArgs and SLOQueryFreeformOutput values.
@@ -2035,6 +2037,8 @@ type SLOQueryFreeformInput interface {
 type SLOQueryFreeformArgs struct {
 	// Freeform Query Field - valid promQl
 	Query pulumi.StringInput `pulumi:"query"`
+	// Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+	SourceDatasourceUid pulumi.StringPtrInput `pulumi:"sourceDatasourceUid"`
 }
 
 func (SLOQueryFreeformArgs) ElementType() reflect.Type {
@@ -2119,6 +2123,11 @@ func (o SLOQueryFreeformOutput) Query() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOQueryFreeform) string { return v.Query }).(pulumi.StringOutput)
 }
 
+// Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+func (o SLOQueryFreeformOutput) SourceDatasourceUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SLOQueryFreeform) *string { return v.SourceDatasourceUid }).(pulumi.StringPtrOutput)
+}
+
 type SLOQueryFreeformPtrOutput struct{ *pulumi.OutputState }
 
 func (SLOQueryFreeformPtrOutput) ElementType() reflect.Type {
@@ -2150,6 +2159,16 @@ func (o SLOQueryFreeformPtrOutput) Query() pulumi.StringPtrOutput {
 			return nil
 		}
 		return &v.Query
+	}).(pulumi.StringPtrOutput)
+}
+
+// Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+func (o SLOQueryFreeformPtrOutput) SourceDatasourceUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SLOQueryFreeform) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SourceDatasourceUid
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -2293,6 +2312,8 @@ func (o SLOQueryGrafanaQueriesPtrOutput) GrafanaQueries() pulumi.StringPtrOutput
 type SLOQueryRatio struct {
 	// Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
 	GroupByLabels []string `pulumi:"groupByLabels"`
+	// Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+	SourceDatasourceUid *string `pulumi:"sourceDatasourceUid"`
 	// Counter metric for success events (numerator)
 	SuccessMetric string `pulumi:"successMetric"`
 	// Metric for total events (denominator)
@@ -2313,6 +2334,8 @@ type SLOQueryRatioInput interface {
 type SLOQueryRatioArgs struct {
 	// Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
 	GroupByLabels pulumi.StringArrayInput `pulumi:"groupByLabels"`
+	// Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+	SourceDatasourceUid pulumi.StringPtrInput `pulumi:"sourceDatasourceUid"`
 	// Counter metric for success events (numerator)
 	SuccessMetric pulumi.StringInput `pulumi:"successMetric"`
 	// Metric for total events (denominator)
@@ -2401,6 +2424,11 @@ func (o SLOQueryRatioOutput) GroupByLabels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SLOQueryRatio) []string { return v.GroupByLabels }).(pulumi.StringArrayOutput)
 }
 
+// Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+func (o SLOQueryRatioOutput) SourceDatasourceUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SLOQueryRatio) *string { return v.SourceDatasourceUid }).(pulumi.StringPtrOutput)
+}
+
 // Counter metric for success events (numerator)
 func (o SLOQueryRatioOutput) SuccessMetric() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOQueryRatio) string { return v.SuccessMetric }).(pulumi.StringOutput)
@@ -2443,6 +2471,16 @@ func (o SLOQueryRatioPtrOutput) GroupByLabels() pulumi.StringArrayOutput {
 		}
 		return v.GroupByLabels
 	}).(pulumi.StringArrayOutput)
+}
+
+// Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+func (o SLOQueryRatioPtrOutput) SourceDatasourceUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SLOQueryRatio) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SourceDatasourceUid
+	}).(pulumi.StringPtrOutput)
 }
 
 // Counter metric for success events (numerator)
@@ -4520,6 +4558,8 @@ func (o GetSlosSloQueryArrayOutput) Index(i pulumi.IntInput) GetSlosSloQueryOutp
 type GetSlosSloQueryFreeform struct {
 	// The PromQL query string.
 	Query string `pulumi:"query"`
+	// Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+	SourceDatasourceUid string `pulumi:"sourceDatasourceUid"`
 }
 
 // GetSlosSloQueryFreeformInput is an input type that accepts GetSlosSloQueryFreeformArgs and GetSlosSloQueryFreeformOutput values.
@@ -4536,6 +4576,8 @@ type GetSlosSloQueryFreeformInput interface {
 type GetSlosSloQueryFreeformArgs struct {
 	// The PromQL query string.
 	Query pulumi.StringInput `pulumi:"query"`
+	// Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+	SourceDatasourceUid pulumi.StringInput `pulumi:"sourceDatasourceUid"`
 }
 
 func (GetSlosSloQueryFreeformArgs) ElementType() reflect.Type {
@@ -4620,6 +4662,11 @@ func (o GetSlosSloQueryFreeformOutput) Query() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloQueryFreeform) string { return v.Query }).(pulumi.StringOutput)
 }
 
+// Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+func (o GetSlosSloQueryFreeformOutput) SourceDatasourceUid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloQueryFreeform) string { return v.SourceDatasourceUid }).(pulumi.StringOutput)
+}
+
 type GetSlosSloQueryFreeformPtrOutput struct{ *pulumi.OutputState }
 
 func (GetSlosSloQueryFreeformPtrOutput) ElementType() reflect.Type {
@@ -4651,6 +4698,16 @@ func (o GetSlosSloQueryFreeformPtrOutput) Query() pulumi.StringPtrOutput {
 			return nil
 		}
 		return &v.Query
+	}).(pulumi.StringPtrOutput)
+}
+
+// Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+func (o GetSlosSloQueryFreeformPtrOutput) SourceDatasourceUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetSlosSloQueryFreeform) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.SourceDatasourceUid
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -4794,6 +4851,8 @@ func (o GetSlosSloQueryGrafanaQueriesPtrOutput) GrafanaQueries() pulumi.StringPt
 type GetSlosSloQueryRatio struct {
 	// Labels used for grouping.
 	GroupByLabels []string `pulumi:"groupByLabels"`
+	// Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+	SourceDatasourceUid string `pulumi:"sourceDatasourceUid"`
 	// Counter metric for success events (numerator).
 	SuccessMetric string `pulumi:"successMetric"`
 	// Metric for total events (denominator).
@@ -4814,6 +4873,8 @@ type GetSlosSloQueryRatioInput interface {
 type GetSlosSloQueryRatioArgs struct {
 	// Labels used for grouping.
 	GroupByLabels pulumi.StringArrayInput `pulumi:"groupByLabels"`
+	// Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+	SourceDatasourceUid pulumi.StringInput `pulumi:"sourceDatasourceUid"`
 	// Counter metric for success events (numerator).
 	SuccessMetric pulumi.StringInput `pulumi:"successMetric"`
 	// Metric for total events (denominator).
@@ -4902,6 +4963,11 @@ func (o GetSlosSloQueryRatioOutput) GroupByLabels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSlosSloQueryRatio) []string { return v.GroupByLabels }).(pulumi.StringArrayOutput)
 }
 
+// Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+func (o GetSlosSloQueryRatioOutput) SourceDatasourceUid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloQueryRatio) string { return v.SourceDatasourceUid }).(pulumi.StringOutput)
+}
+
 // Counter metric for success events (numerator).
 func (o GetSlosSloQueryRatioOutput) SuccessMetric() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloQueryRatio) string { return v.SuccessMetric }).(pulumi.StringOutput)
@@ -4944,6 +5010,16 @@ func (o GetSlosSloQueryRatioPtrOutput) GroupByLabels() pulumi.StringArrayOutput 
 		}
 		return v.GroupByLabels
 	}).(pulumi.StringArrayOutput)
+}
+
+// Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+func (o GetSlosSloQueryRatioPtrOutput) SourceDatasourceUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetSlosSloQueryRatio) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.SourceDatasourceUid
+	}).(pulumi.StringPtrOutput)
 }
 
 // Counter metric for success events (numerator).

@@ -209,6 +209,66 @@ namespace Pulumiverse.Grafana.Slo
     /// });
     /// ```
     /// 
+    /// ### Separate source and destination datasources
+    /// 
+    /// By default the SLI query is evaluated against the datasource named in `DestinationDatasource`. Set `SourceDatasourceUid` on the `Freeform` or `Ratio` block to read the raw metrics from a different datasource while still writing the generated recording and alerting rules to the destination.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var sourcePrometheus = new Grafana.Oss.DataSource("source_prometheus", new()
+    ///     {
+    ///         Type = "prometheus",
+    ///         Name = "SLO Source Prometheus",
+    ///         Url = "https://prometheus.example.com/",
+    ///     });
+    /// 
+    ///     var sourceDatasource = new Grafana.Slo.SLO("source_datasource", new()
+    ///     {
+    ///         Name = "Terraform Testing - Separate Source Datasource",
+    ///         Description = "Terraform Description - Separate Source Datasource",
+    ///         Queries = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOQueryArgs
+    ///             {
+    ///                 Freeform = new Grafana.Slo.Inputs.SLOQueryFreeformArgs
+    ///                 {
+    ///                     Query = "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+    ///                     SourceDatasourceUid = sourcePrometheus.Uid,
+    ///                 },
+    ///                 Type = "freeform",
+    ///             },
+    ///         },
+    ///         Objectives = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
+    ///             {
+    ///                 Value = 0.995,
+    ///                 Window = "30d",
+    ///             },
+    ///         },
+    ///         DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs
+    ///         {
+    ///             Uid = "grafanacloud-prom",
+    ///         },
+    ///         Labels = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOLabelArgs
+    ///             {
+    ///                 Key = "slo",
+    ///                 Value = "terraform",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Grafana Queries - Any supported datasource
     /// 
     /// Grafana Queries use the GrafanaQueries field. It expects a JSON string list of valid grafana query JSON objects, the same as you'll find assigned to a Grafana Dashboard panel `Targets` field.

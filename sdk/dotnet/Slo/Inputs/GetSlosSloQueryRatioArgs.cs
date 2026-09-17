@@ -26,6 +26,12 @@ namespace Pulumiverse.Grafana.Slo.Inputs
         }
 
         /// <summary>
+        /// Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+        /// </summary>
+        [Input("sourceDatasourceUid", required: true)]
+        public Input<string> SourceDatasourceUid { get; set; } = null!;
+
+        /// <summary>
         /// Counter metric for success events (numerator).
         /// </summary>
         [Input("successMetric", required: true)]

@@ -622,12 +622,33 @@ class SLOQuery(dict):
 
 @pulumi.output_type
 class SLOQueryFreeform(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "sourceDatasourceUid":
+            suggest = "source_datasource_uid"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SLOQueryFreeform. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SLOQueryFreeform.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SLOQueryFreeform.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
-                 query: _builtins.str):
+                 query: _builtins.str,
+                 source_datasource_uid: Optional[_builtins.str] = None):
         """
         :param _builtins.str query: Freeform Query Field - valid promQl
+        :param _builtins.str source_datasource_uid: Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
         """
         pulumi.set(__self__, "query", query)
+        if source_datasource_uid is not None:
+            pulumi.set(__self__, "source_datasource_uid", source_datasource_uid)
 
     @_builtins.property
     @pulumi.getter
@@ -636,6 +657,14 @@ class SLOQueryFreeform(dict):
         Freeform Query Field - valid promQl
         """
         return pulumi.get(self, "query")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceDatasourceUid")
+    def source_datasource_uid(self) -> Optional[_builtins.str]:
+        """
+        Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+        """
+        return pulumi.get(self, "source_datasource_uid")
 
 
 @pulumi.output_type
@@ -684,6 +713,8 @@ class SLOQueryRatio(dict):
             suggest = "total_metric"
         elif key == "groupByLabels":
             suggest = "group_by_labels"
+        elif key == "sourceDatasourceUid":
+            suggest = "source_datasource_uid"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in SLOQueryRatio. Access the value via the '{suggest}' property getter instead.")
@@ -699,16 +730,20 @@ class SLOQueryRatio(dict):
     def __init__(__self__, *,
                  success_metric: _builtins.str,
                  total_metric: _builtins.str,
-                 group_by_labels: Optional[Sequence[_builtins.str]] = None):
+                 group_by_labels: Optional[Sequence[_builtins.str]] = None,
+                 source_datasource_uid: Optional[_builtins.str] = None):
         """
         :param _builtins.str success_metric: Counter metric for success events (numerator)
         :param _builtins.str total_metric: Metric for total events (denominator)
         :param Sequence[_builtins.str] group_by_labels: Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        :param _builtins.str source_datasource_uid: Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
         """
         pulumi.set(__self__, "success_metric", success_metric)
         pulumi.set(__self__, "total_metric", total_metric)
         if group_by_labels is not None:
             pulumi.set(__self__, "group_by_labels", group_by_labels)
+        if source_datasource_uid is not None:
+            pulumi.set(__self__, "source_datasource_uid", source_datasource_uid)
 
     @_builtins.property
     @pulumi.getter(name="successMetric")
@@ -733,6 +768,14 @@ class SLOQueryRatio(dict):
         Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         """
         return pulumi.get(self, "group_by_labels")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceDatasourceUid")
+    def source_datasource_uid(self) -> Optional[_builtins.str]:
+        """
+        Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+        """
+        return pulumi.get(self, "source_datasource_uid")
 
 
 @pulumi.output_type
@@ -1360,11 +1403,14 @@ class GetSlosSloQueryResult(dict):
 @pulumi.output_type
 class GetSlosSloQueryFreeformResult(dict):
     def __init__(__self__, *,
-                 query: _builtins.str):
+                 query: _builtins.str,
+                 source_datasource_uid: _builtins.str):
         """
         :param _builtins.str query: The PromQL query string.
+        :param _builtins.str source_datasource_uid: Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
         """
         pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "source_datasource_uid", source_datasource_uid)
 
     @_builtins.property
     @pulumi.getter
@@ -1373,6 +1419,14 @@ class GetSlosSloQueryFreeformResult(dict):
         The PromQL query string.
         """
         return pulumi.get(self, "query")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceDatasourceUid")
+    def source_datasource_uid(self) -> _builtins.str:
+        """
+        Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+        """
+        return pulumi.get(self, "source_datasource_uid")
 
 
 @pulumi.output_type
@@ -1397,14 +1451,17 @@ class GetSlosSloQueryGrafanaQueriesResult(dict):
 class GetSlosSloQueryRatioResult(dict):
     def __init__(__self__, *,
                  group_by_labels: Sequence[_builtins.str],
+                 source_datasource_uid: _builtins.str,
                  success_metric: _builtins.str,
                  total_metric: _builtins.str):
         """
         :param Sequence[_builtins.str] group_by_labels: Labels used for grouping.
+        :param _builtins.str source_datasource_uid: Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
         :param _builtins.str success_metric: Counter metric for success events (numerator).
         :param _builtins.str total_metric: Metric for total events (denominator).
         """
         pulumi.set(__self__, "group_by_labels", group_by_labels)
+        pulumi.set(__self__, "source_datasource_uid", source_datasource_uid)
         pulumi.set(__self__, "success_metric", success_metric)
         pulumi.set(__self__, "total_metric", total_metric)
 
@@ -1415,6 +1472,14 @@ class GetSlosSloQueryRatioResult(dict):
         Labels used for grouping.
         """
         return pulumi.get(self, "group_by_labels")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceDatasourceUid")
+    def source_datasource_uid(self) -> _builtins.str:
+        """
+        Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+        """
+        return pulumi.get(self, "source_datasource_uid")
 
     @_builtins.property
     @pulumi.getter(name="successMetric")

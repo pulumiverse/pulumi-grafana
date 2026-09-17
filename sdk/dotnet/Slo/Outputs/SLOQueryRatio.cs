@@ -19,6 +19,10 @@ namespace Pulumiverse.Grafana.Slo.Outputs
         /// </summary>
         public readonly ImmutableArray<string> GroupByLabels;
         /// <summary>
+        /// Datasource UID the SLO query runs against. When empty, the query is run against the same datasource as the destination datasource.
+        /// </summary>
+        public readonly string? SourceDatasourceUid;
+        /// <summary>
         /// Counter metric for success events (numerator)
         /// </summary>
         public readonly string SuccessMetric;
@@ -31,11 +35,14 @@ namespace Pulumiverse.Grafana.Slo.Outputs
         private SLOQueryRatio(
             ImmutableArray<string> groupByLabels,
 
+            string? sourceDatasourceUid,
+
             string successMetric,
 
             string totalMetric)
         {
             GroupByLabels = groupByLabels;
+            SourceDatasourceUid = sourceDatasourceUid;
             SuccessMetric = successMetric;
             TotalMetric = totalMetric;
         }
