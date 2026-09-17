@@ -187,6 +187,68 @@ import (
 //
 // ```
 //
+// ### Separate source and destination datasources
+//
+// By default the SLI query is evaluated against the datasource named in `destinationDatasource`. Set `sourceDatasourceUid` on the `freeform` or `ratio` block to read the raw metrics from a different datasource while still writing the generated recording and alerting rules to the destination.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/slo"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			sourcePrometheus, err := oss.NewDataSource(ctx, "source_prometheus", &oss.DataSourceArgs{
+//				Type: pulumi.String("prometheus"),
+//				Name: pulumi.String("SLO Source Prometheus"),
+//				Url:  pulumi.String("https://prometheus.example.com/"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = slo.NewSLO(ctx, "source_datasource", &slo.SLOArgs{
+//				Name:        pulumi.String("Terraform Testing - Separate Source Datasource"),
+//				Description: pulumi.String("Terraform Description - Separate Source Datasource"),
+//				Queries: slo.SLOQueryArray{
+//					&slo.SLOQueryArgs{
+//						Freeform: &slo.SLOQueryFreeformArgs{
+//							Query:               pulumi.String("sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))"),
+//							SourceDatasourceUid: sourcePrometheus.Uid,
+//						},
+//						Type: pulumi.String("freeform"),
+//					},
+//				},
+//				Objectives: slo.SLOObjectiveArray{
+//					&slo.SLOObjectiveArgs{
+//						Value:  pulumi.Float64(0.995),
+//						Window: pulumi.String("30d"),
+//					},
+//				},
+//				DestinationDatasource: &slo.SLODestinationDatasourceArgs{
+//					Uid: pulumi.String("grafanacloud-prom"),
+//				},
+//				Labels: slo.SLOLabelArray{
+//					&slo.SLOLabelArgs{
+//						Key:   pulumi.String("slo"),
+//						Value: pulumi.String("terraform"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Grafana Queries - Any supported datasource
 //
 // Grafana Queries use the grafanaQueries field. It expects a JSON string list of valid grafana query JSON objects, the same as you'll find assigned to a Grafana Dashboard panel `targets` field.

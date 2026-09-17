@@ -516,6 +516,41 @@ class SLO(pulumi.CustomResource):
             })
         ```
 
+        ### Separate source and destination datasources
+
+        By default the SLI query is evaluated against the datasource named in `destination_datasource`. Set `source_datasource_uid` on the `freeform` or `ratio` block to read the raw metrics from a different datasource while still writing the generated recording and alerting rules to the destination.
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        source_prometheus = grafana.oss.DataSource("source_prometheus",
+            type="prometheus",
+            name="SLO Source Prometheus",
+            url="https://prometheus.example.com/")
+        source_datasource = grafana.slo.SLO("source_datasource",
+            name="Terraform Testing - Separate Source Datasource",
+            description="Terraform Description - Separate Source Datasource",
+            queries=[{
+                "freeform": {
+                    "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+                    "source_datasource_uid": source_prometheus.uid,
+                },
+                "type": "freeform",
+            }],
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
+            destination_datasource={
+                "uid": "grafanacloud-prom",
+            },
+            labels=[{
+                "key": "slo",
+                "value": "terraform",
+            }])
+        ```
+
         ### Grafana Queries - Any supported datasource
 
         Grafana Queries use the grafana_queries field. It expects a JSON string list of valid grafana query JSON objects, the same as you'll find assigned to a Grafana Dashboard panel `targets` field.
@@ -792,6 +827,41 @@ class SLO(pulumi.CustomResource):
                     }],
                 },
             })
+        ```
+
+        ### Separate source and destination datasources
+
+        By default the SLI query is evaluated against the datasource named in `destination_datasource`. Set `source_datasource_uid` on the `freeform` or `ratio` block to read the raw metrics from a different datasource while still writing the generated recording and alerting rules to the destination.
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        source_prometheus = grafana.oss.DataSource("source_prometheus",
+            type="prometheus",
+            name="SLO Source Prometheus",
+            url="https://prometheus.example.com/")
+        source_datasource = grafana.slo.SLO("source_datasource",
+            name="Terraform Testing - Separate Source Datasource",
+            description="Terraform Description - Separate Source Datasource",
+            queries=[{
+                "freeform": {
+                    "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+                    "source_datasource_uid": source_prometheus.uid,
+                },
+                "type": "freeform",
+            }],
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
+            destination_datasource={
+                "uid": "grafanacloud-prom",
+            },
+            labels=[{
+                "key": "slo",
+                "value": "terraform",
+            }])
         ```
 
         ### Grafana Queries - Any supported datasource
