@@ -20,6 +20,9 @@ import * as utilities from "../utilities";
  *     authenticationBasicPassword: "my-password",
  *     url: "https://grafana.com/metrics",
  *     scrapeIntervalSeconds: 120,
+ *     staticLabels: {
+ *         example: "value",
+ *     },
  * });
  * ```
  *
@@ -90,6 +93,10 @@ export class MetricsEndpointScrapeJob extends pulumi.CustomResource {
      */
     declare public readonly stackId: pulumi.Output<string>;
     /**
+     * Extra labels to add to scraped series
+     */
+    declare public readonly staticLabels: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * The url to scrape metrics from; a valid HTTPs URL is required.
      */
     declare public readonly url: pulumi.Output<string>;
@@ -115,6 +122,7 @@ export class MetricsEndpointScrapeJob extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["scrapeIntervalSeconds"] = state?.scrapeIntervalSeconds;
             resourceInputs["stackId"] = state?.stackId;
+            resourceInputs["staticLabels"] = state?.staticLabels;
             resourceInputs["url"] = state?.url;
         } else {
             const args = argsOrState as MetricsEndpointScrapeJobArgs | undefined;
@@ -135,6 +143,7 @@ export class MetricsEndpointScrapeJob extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["scrapeIntervalSeconds"] = args?.scrapeIntervalSeconds;
             resourceInputs["stackId"] = args?.stackId;
+            resourceInputs["staticLabels"] = args?.staticLabels;
             resourceInputs["url"] = args?.url;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -181,6 +190,10 @@ export interface MetricsEndpointScrapeJobState {
      */
     stackId?: pulumi.Input<string>;
     /**
+     * Extra labels to add to scraped series
+     */
+    staticLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
      * The url to scrape metrics from; a valid HTTPs URL is required.
      */
     url?: pulumi.Input<string>;
@@ -222,6 +235,10 @@ export interface MetricsEndpointScrapeJobArgs {
      * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
      */
     stackId: pulumi.Input<string>;
+    /**
+     * Extra labels to add to scraped series
+     */
+    staticLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The url to scrape metrics from; a valid HTTPs URL is required.
      */

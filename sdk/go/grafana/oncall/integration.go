@@ -25,11 +25,11 @@ type Integration struct {
 
 	// The Default route for all alerts from the given integration
 	DefaultRoute IntegrationDefaultRouteOutput `pulumi:"defaultRoute"`
-	// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
+	// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are Jinja2 templates evaluated when an alert is received, and are not restricted.
 	DynamicLabels pulumi.StringMapArrayOutput `pulumi:"dynamicLabels"`
 	// The inbound email address for the integration. Only available for integration type `inboundEmail`.
 	InboundEmail pulumi.StringOutput `pulumi:"inboundEmail"`
-	// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
+	// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit.
 	Labels pulumi.StringMapArrayOutput `pulumi:"labels"`
 	// The link for using in an integrated tool.
 	Link pulumi.StringOutput `pulumi:"link"`
@@ -81,11 +81,11 @@ func GetIntegration(ctx *pulumi.Context,
 type integrationState struct {
 	// The Default route for all alerts from the given integration
 	DefaultRoute *IntegrationDefaultRoute `pulumi:"defaultRoute"`
-	// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
+	// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are Jinja2 templates evaluated when an alert is received, and are not restricted.
 	DynamicLabels []map[string]string `pulumi:"dynamicLabels"`
 	// The inbound email address for the integration. Only available for integration type `inboundEmail`.
 	InboundEmail *string `pulumi:"inboundEmail"`
-	// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
+	// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit.
 	Labels []map[string]string `pulumi:"labels"`
 	// The link for using in an integrated tool.
 	Link *string `pulumi:"link"`
@@ -102,11 +102,11 @@ type integrationState struct {
 type IntegrationState struct {
 	// The Default route for all alerts from the given integration
 	DefaultRoute IntegrationDefaultRoutePtrInput
-	// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
+	// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are Jinja2 templates evaluated when an alert is received, and are not restricted.
 	DynamicLabels pulumi.StringMapArrayInput
 	// The inbound email address for the integration. Only available for integration type `inboundEmail`.
 	InboundEmail pulumi.StringPtrInput
-	// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
+	// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit.
 	Labels pulumi.StringMapArrayInput
 	// The link for using in an integrated tool.
 	Link pulumi.StringPtrInput
@@ -127,9 +127,9 @@ func (IntegrationState) ElementType() reflect.Type {
 type integrationArgs struct {
 	// The Default route for all alerts from the given integration
 	DefaultRoute IntegrationDefaultRoute `pulumi:"defaultRoute"`
-	// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
+	// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are Jinja2 templates evaluated when an alert is received, and are not restricted.
 	DynamicLabels []map[string]string `pulumi:"dynamicLabels"`
-	// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
+	// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit.
 	Labels []map[string]string `pulumi:"labels"`
 	// The name of the service integration.
 	Name *string `pulumi:"name"`
@@ -145,9 +145,9 @@ type integrationArgs struct {
 type IntegrationArgs struct {
 	// The Default route for all alerts from the given integration
 	DefaultRoute IntegrationDefaultRouteInput
-	// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
+	// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are Jinja2 templates evaluated when an alert is received, and are not restricted.
 	DynamicLabels pulumi.StringMapArrayInput
-	// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
+	// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit.
 	Labels pulumi.StringMapArrayInput
 	// The name of the service integration.
 	Name pulumi.StringPtrInput
@@ -251,7 +251,7 @@ func (o IntegrationOutput) DefaultRoute() IntegrationDefaultRouteOutput {
 	return o.ApplyT(func(v *Integration) IntegrationDefaultRouteOutput { return v.DefaultRoute }).(IntegrationDefaultRouteOutput)
 }
 
-// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
+// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are Jinja2 templates evaluated when an alert is received, and are not restricted.
 func (o IntegrationOutput) DynamicLabels() pulumi.StringMapArrayOutput {
 	return o.ApplyT(func(v *Integration) pulumi.StringMapArrayOutput { return v.DynamicLabels }).(pulumi.StringMapArrayOutput)
 }
@@ -261,7 +261,7 @@ func (o IntegrationOutput) InboundEmail() pulumi.StringOutput {
 	return o.ApplyT(func(v *Integration) pulumi.StringOutput { return v.InboundEmail }).(pulumi.StringOutput)
 }
 
-// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
+// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit.
 func (o IntegrationOutput) Labels() pulumi.StringMapArrayOutput {
 	return o.ApplyT(func(v *Integration) pulumi.StringMapArrayOutput { return v.Labels }).(pulumi.StringMapArrayOutput)
 }

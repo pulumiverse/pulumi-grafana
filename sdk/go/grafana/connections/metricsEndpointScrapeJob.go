@@ -35,6 +35,9 @@ import (
 //				AuthenticationBasicPassword: pulumi.String("my-password"),
 //				Url:                         pulumi.String("https://grafana.com/metrics"),
 //				ScrapeIntervalSeconds:       pulumi.Int(120),
+//				StaticLabels: pulumi.StringMap{
+//					"example": pulumi.String("value"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -69,6 +72,8 @@ type MetricsEndpointScrapeJob struct {
 	ScrapeIntervalSeconds pulumi.IntOutput `pulumi:"scrapeIntervalSeconds"`
 	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId pulumi.StringOutput `pulumi:"stackId"`
+	// Extra labels to add to scraped series
+	StaticLabels pulumi.StringMapOutput `pulumi:"staticLabels"`
 	// The url to scrape metrics from; a valid HTTPs URL is required.
 	Url pulumi.StringOutput `pulumi:"url"`
 }
@@ -139,6 +144,8 @@ type metricsEndpointScrapeJobState struct {
 	ScrapeIntervalSeconds *int `pulumi:"scrapeIntervalSeconds"`
 	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId *string `pulumi:"stackId"`
+	// Extra labels to add to scraped series
+	StaticLabels map[string]string `pulumi:"staticLabels"`
 	// The url to scrape metrics from; a valid HTTPs URL is required.
 	Url *string `pulumi:"url"`
 }
@@ -160,6 +167,8 @@ type MetricsEndpointScrapeJobState struct {
 	ScrapeIntervalSeconds pulumi.IntPtrInput
 	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId pulumi.StringPtrInput
+	// Extra labels to add to scraped series
+	StaticLabels pulumi.StringMapInput
 	// The url to scrape metrics from; a valid HTTPs URL is required.
 	Url pulumi.StringPtrInput
 }
@@ -185,6 +194,8 @@ type metricsEndpointScrapeJobArgs struct {
 	ScrapeIntervalSeconds *int `pulumi:"scrapeIntervalSeconds"`
 	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId string `pulumi:"stackId"`
+	// Extra labels to add to scraped series
+	StaticLabels map[string]string `pulumi:"staticLabels"`
 	// The url to scrape metrics from; a valid HTTPs URL is required.
 	Url string `pulumi:"url"`
 }
@@ -207,6 +218,8 @@ type MetricsEndpointScrapeJobArgs struct {
 	ScrapeIntervalSeconds pulumi.IntPtrInput
 	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId pulumi.StringInput
+	// Extra labels to add to scraped series
+	StaticLabels pulumi.StringMapInput
 	// The url to scrape metrics from; a valid HTTPs URL is required.
 	Url pulumi.StringInput
 }
@@ -336,6 +349,11 @@ func (o MetricsEndpointScrapeJobOutput) ScrapeIntervalSeconds() pulumi.IntOutput
 // The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 func (o MetricsEndpointScrapeJobOutput) StackId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MetricsEndpointScrapeJob) pulumi.StringOutput { return v.StackId }).(pulumi.StringOutput)
+}
+
+// Extra labels to add to scraped series
+func (o MetricsEndpointScrapeJobOutput) StaticLabels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *MetricsEndpointScrapeJob) pulumi.StringMapOutput { return v.StaticLabels }).(pulumi.StringMapOutput)
 }
 
 // The url to scrape metrics from; a valid HTTPs URL is required.

@@ -49,7 +49,7 @@ class GetLabelResult:
     @pulumi.getter
     def key(self) -> _builtins.str:
         """
-        The key for the label.
+        The key for the label. Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter.
         """
         return pulumi.get(self, "key")
 
@@ -57,7 +57,7 @@ class GetLabelResult:
     @pulumi.getter
     def value(self) -> _builtins.str:
         """
-        The value of the label.
+        The value of the label. When the label is used as a static label, values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit. When the label is used as a dynamic label, the value is a Jinja2 template evaluated when an alert is received, and is not restricted.
         """
         return pulumi.get(self, "value")
 
@@ -80,8 +80,8 @@ def get_label(key: Optional[_builtins.str] = None,
     * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
 
 
-    :param _builtins.str key: The key for the label.
-    :param _builtins.str value: The value of the label.
+    :param _builtins.str key: The key for the label. Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter.
+    :param _builtins.str value: The value of the label. When the label is used as a static label, values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit. When the label is used as a dynamic label, the value is a Jinja2 template evaluated when an alert is received, and is not restricted.
     """
     __args__ = dict()
     __args__['key'] = key
@@ -100,8 +100,8 @@ def get_label_output(key: Optional[pulumi.Input[_builtins.str]] = None,
     * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
 
 
-    :param _builtins.str key: The key for the label.
-    :param _builtins.str value: The value of the label.
+    :param _builtins.str key: The key for the label. Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter.
+    :param _builtins.str value: The value of the label. When the label is used as a static label, values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit. When the label is used as a dynamic label, the value is a Jinja2 template evaluated when an alert is received, and is not restricted.
     """
     __args__ = dict()
     __args__['key'] = key

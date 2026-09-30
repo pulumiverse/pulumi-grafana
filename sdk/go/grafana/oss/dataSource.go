@@ -150,6 +150,29 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			tmpJSON8, err := json.Marshal(map[string]interface{}{
+//				"httpMethod":    "POST",
+//				"authType":      "default",
+//				"defaultRegion": "us-east-1",
+//				"assumeRoleArn": "arn:aws:iam::123456789012:role/my-grafana-role",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json8 := string(tmpJSON8)
+//			// Amazon Managed Service for Prometheus (AMP) using the dedicated plugin.
+//			// Use the grafana-amazonprometheus-datasource type with assumeRoleArn.
+//			// Note: the core 'prometheus' type does not support IAM role assumption
+//			// ('assumeRoleArn' or 'sigV4AssumeRoleArn') — use this AMP plugin type instead.
+//			_, err = oss.NewDataSource(ctx, "amp", &oss.DataSourceArgs{
+//				Type:            pulumi.String("grafana-amazonprometheus-datasource"),
+//				Name:            pulumi.String("amp"),
+//				Url:             pulumi.String("https://aps-workspaces.us-east-1.amazonaws.com/workspaces/ws-example"),
+//				JsonDataEncoded: pulumi.String(pulumi.String(json8)),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}

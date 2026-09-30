@@ -81,10 +81,10 @@ def get_aws_cloudwatch_scrape_jobs(scrape_jobs: Optional[Sequence[Union['GetAwsC
     """
     This data source allows you to look up all existing Grafana Cloud AWS CloudWatch Scrape Job resources in your stack.
 
-    See the Grafana Provider configuration docs
+    Refer to Configure authentication for the Grafana Provider
     for information on authentication and required access policy scopes.
 
-    * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+    * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-infrastructure/monitor-cloud-provider/aws/)
 
     ## Example Usage
 
@@ -116,10 +116,10 @@ def get_aws_cloudwatch_scrape_jobs_output(scrape_jobs: Optional[pulumi.Input[Opt
     """
     This data source allows you to look up all existing Grafana Cloud AWS CloudWatch Scrape Job resources in your stack.
 
-    See the Grafana Provider configuration docs
+    Refer to Configure authentication for the Grafana Provider
     for information on authentication and required access policy scopes.
 
-    * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+    * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-infrastructure/monitor-cloud-provider/aws/)
 
     ## Example Usage
 

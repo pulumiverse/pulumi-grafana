@@ -8224,10 +8224,10 @@ class RuleGroupRuleNotificationSettings(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "contactPoint":
-            suggest = "contact_point"
-        elif key == "activeTimings":
+        if key == "activeTimings":
             suggest = "active_timings"
+        elif key == "contactPoint":
+            suggest = "contact_point"
         elif key == "groupBies":
             suggest = "group_bies"
         elif key == "groupInterval":
@@ -8251,25 +8251,28 @@ class RuleGroupRuleNotificationSettings(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 contact_point: _builtins.str,
                  active_timings: Optional[Sequence[_builtins.str]] = None,
+                 contact_point: Optional[_builtins.str] = None,
                  group_bies: Optional[Sequence[_builtins.str]] = None,
                  group_interval: Optional[_builtins.str] = None,
                  group_wait: Optional[_builtins.str] = None,
                  mute_timings: Optional[Sequence[_builtins.str]] = None,
+                 policy: Optional[_builtins.str] = None,
                  repeat_interval: Optional[_builtins.str] = None):
         """
-        :param _builtins.str contact_point: The contact point to route notifications that match this rule to.
         :param Sequence[_builtins.str] active_timings: A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+        :param _builtins.str contact_point: The contact point to route notifications that match this rule to. Exactly one of `contact_point` or `policy` must be set.
         :param Sequence[_builtins.str] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
         :param _builtins.str group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param _builtins.str group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
         :param Sequence[_builtins.str] mute_timings: A list of mute timing names to apply to alerts that match this policy.
+        :param _builtins.str policy: The name of the notification policy to route notifications that match this rule through. Mutually exclusive with `contact_point` and all other fields in this block. Exactly one of `contact_point` or `policy` must be set.
         :param _builtins.str repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         """
-        pulumi.set(__self__, "contact_point", contact_point)
         if active_timings is not None:
             pulumi.set(__self__, "active_timings", active_timings)
+        if contact_point is not None:
+            pulumi.set(__self__, "contact_point", contact_point)
         if group_bies is not None:
             pulumi.set(__self__, "group_bies", group_bies)
         if group_interval is not None:
@@ -8278,16 +8281,10 @@ class RuleGroupRuleNotificationSettings(dict):
             pulumi.set(__self__, "group_wait", group_wait)
         if mute_timings is not None:
             pulumi.set(__self__, "mute_timings", mute_timings)
+        if policy is not None:
+            pulumi.set(__self__, "policy", policy)
         if repeat_interval is not None:
             pulumi.set(__self__, "repeat_interval", repeat_interval)
-
-    @_builtins.property
-    @pulumi.getter(name="contactPoint")
-    def contact_point(self) -> _builtins.str:
-        """
-        The contact point to route notifications that match this rule to.
-        """
-        return pulumi.get(self, "contact_point")
 
     @_builtins.property
     @pulumi.getter(name="activeTimings")
@@ -8296,6 +8293,14 @@ class RuleGroupRuleNotificationSettings(dict):
         A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
         """
         return pulumi.get(self, "active_timings")
+
+    @_builtins.property
+    @pulumi.getter(name="contactPoint")
+    def contact_point(self) -> Optional[_builtins.str]:
+        """
+        The contact point to route notifications that match this rule to. Exactly one of `contact_point` or `policy` must be set.
+        """
+        return pulumi.get(self, "contact_point")
 
     @_builtins.property
     @pulumi.getter(name="groupBies")
@@ -8328,6 +8333,14 @@ class RuleGroupRuleNotificationSettings(dict):
         A list of mute timing names to apply to alerts that match this policy.
         """
         return pulumi.get(self, "mute_timings")
+
+    @_builtins.property
+    @pulumi.getter
+    def policy(self) -> Optional[_builtins.str]:
+        """
+        The name of the notification policy to route notifications that match this rule through. Mutually exclusive with `contact_point` and all other fields in this block. Exactly one of `contact_point` or `policy` must be set.
+        """
+        return pulumi.get(self, "policy")
 
     @_builtins.property
     @pulumi.getter(name="repeatInterval")

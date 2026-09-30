@@ -31,6 +31,10 @@ namespace Pulumiverse.Grafana.Connections
     ///         AuthenticationBasicPassword = "my-password",
     ///         Url = "https://grafana.com/metrics",
     ///         ScrapeIntervalSeconds = 120,
+    ///         StaticLabels = 
+    ///         {
+    ///             { "example", "value" },
+    ///         },
     ///     });
     /// 
     /// });
@@ -92,6 +96,12 @@ namespace Pulumiverse.Grafana.Connections
         /// </summary>
         [Output("stackId")]
         public Output<string> StackId { get; private set; } = null!;
+
+        /// <summary>
+        /// Extra labels to add to scraped series
+        /// </summary>
+        [Output("staticLabels")]
+        public Output<ImmutableDictionary<string, string>?> StaticLabels { get; private set; } = null!;
 
         /// <summary>
         /// The url to scrape metrics from; a valid HTTPs URL is required.
@@ -219,6 +229,18 @@ namespace Pulumiverse.Grafana.Connections
         [Input("stackId", required: true)]
         public Input<string> StackId { get; set; } = null!;
 
+        [Input("staticLabels")]
+        private InputMap<string>? _staticLabels;
+
+        /// <summary>
+        /// Extra labels to add to scraped series
+        /// </summary>
+        public InputMap<string> StaticLabels
+        {
+            get => _staticLabels ?? (_staticLabels = new InputMap<string>());
+            set => _staticLabels = value;
+        }
+
         /// <summary>
         /// The url to scrape metrics from; a valid HTTPs URL is required.
         /// </summary>
@@ -300,6 +322,18 @@ namespace Pulumiverse.Grafana.Connections
         /// </summary>
         [Input("stackId")]
         public Input<string>? StackId { get; set; }
+
+        [Input("staticLabels")]
+        private InputMap<string>? _staticLabels;
+
+        /// <summary>
+        /// Extra labels to add to scraped series
+        /// </summary>
+        public InputMap<string> StaticLabels
+        {
+            get => _staticLabels ?? (_staticLabels = new InputMap<string>());
+            set => _staticLabels = value;
+        }
 
         /// <summary>
         /// The url to scrape metrics from; a valid HTTPs URL is required.

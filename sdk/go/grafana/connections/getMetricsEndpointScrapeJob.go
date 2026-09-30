@@ -53,6 +53,8 @@ type LookupMetricsEndpointScrapeJobArgs struct {
 	Name string `pulumi:"name"`
 	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId string `pulumi:"stackId"`
+	// Extra labels to add to scraped series
+	StaticLabels map[string]string `pulumi:"staticLabels"`
 }
 
 // A collection of values returned by getMetricsEndpointScrapeJob.
@@ -75,6 +77,8 @@ type LookupMetricsEndpointScrapeJobResult struct {
 	ScrapeIntervalSeconds int `pulumi:"scrapeIntervalSeconds"`
 	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId string `pulumi:"stackId"`
+	// Extra labels to add to scraped series
+	StaticLabels map[string]string `pulumi:"staticLabels"`
 	// The url to scrape metrics.
 	Url string `pulumi:"url"`
 }
@@ -94,6 +98,8 @@ type LookupMetricsEndpointScrapeJobOutputArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId pulumi.StringInput `pulumi:"stackId"`
+	// Extra labels to add to scraped series
+	StaticLabels pulumi.StringMapInput `pulumi:"staticLabels"`
 }
 
 func (LookupMetricsEndpointScrapeJobOutputArgs) ElementType() reflect.Type {
@@ -158,6 +164,11 @@ func (o LookupMetricsEndpointScrapeJobResultOutput) ScrapeIntervalSeconds() pulu
 // The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 func (o LookupMetricsEndpointScrapeJobResultOutput) StackId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMetricsEndpointScrapeJobResult) string { return v.StackId }).(pulumi.StringOutput)
+}
+
+// Extra labels to add to scraped series
+func (o LookupMetricsEndpointScrapeJobResultOutput) StaticLabels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupMetricsEndpointScrapeJobResult) map[string]string { return v.StaticLabels }).(pulumi.StringMapOutput)
 }
 
 // The url to scrape metrics.

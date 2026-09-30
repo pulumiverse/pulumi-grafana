@@ -19,9 +19,9 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly ImmutableArray<string> ActiveTimings;
         /// <summary>
-        /// The contact point to route notifications that match this rule to.
+        /// The contact point to route notifications that match this rule to. Exactly one of `ContactPoint` or `Policy` must be set.
         /// </summary>
-        public readonly string ContactPoint;
+        public readonly string? ContactPoint;
         /// <summary>
         /// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
         /// </summary>
@@ -39,6 +39,10 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly ImmutableArray<string> MuteTimings;
         /// <summary>
+        /// The name of the notification policy to route notifications that match this rule through. Mutually exclusive with `ContactPoint` and all other fields in this block. Exactly one of `ContactPoint` or `Policy` must be set.
+        /// </summary>
+        public readonly string? Policy;
+        /// <summary>
         /// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         /// </summary>
         public readonly string? RepeatInterval;
@@ -47,7 +51,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         private RuleGroupRuleNotificationSettings(
             ImmutableArray<string> activeTimings,
 
-            string contactPoint,
+            string? contactPoint,
 
             ImmutableArray<string> groupBies,
 
@@ -57,6 +61,8 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
 
             ImmutableArray<string> muteTimings,
 
+            string? policy,
+
             string? repeatInterval)
         {
             ActiveTimings = activeTimings;
@@ -65,6 +71,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
             GroupInterval = groupInterval;
             GroupWait = groupWait;
             MuteTimings = muteTimings;
+            Policy = policy;
             RepeatInterval = repeatInterval;
         }
     }
