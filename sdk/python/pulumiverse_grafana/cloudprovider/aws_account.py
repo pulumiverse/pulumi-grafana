@@ -189,10 +189,10 @@ class AwsAccount(pulumi.CustomResource):
         """
         This resource allows you to link your AWS Account to Grafana Cloud for use in creating Cloud Provider resources.
 
-        See the Grafana Provider configuration docs
+        Refer to Configure authentication for the Grafana Provider
         for information on authentication and required access policy scopes.
 
-        * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+        * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-infrastructure/monitor-cloud-provider/aws/)
 
         ## Example Usage
 
@@ -237,10 +237,10 @@ class AwsAccount(pulumi.CustomResource):
         """
         This resource allows you to link your AWS Account to Grafana Cloud for use in creating Cloud Provider resources.
 
-        See the Grafana Provider configuration docs
+        Refer to Configure authentication for the Grafana Provider
         for information on authentication and required access policy scopes.
 
-        * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+        * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-infrastructure/monitor-cloud-provider/aws/)
 
         ## Example Usage
 

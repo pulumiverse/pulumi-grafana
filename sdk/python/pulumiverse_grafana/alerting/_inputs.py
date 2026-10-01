@@ -11246,13 +11246,13 @@ class RuleGroupRuleDataRelativeTimeRangeArgs:
 
 
 class RuleGroupRuleNotificationSettingsArgsDict(TypedDict):
-    contact_point: pulumi.Input[_builtins.str]
-    """
-    The contact point to route notifications that match this rule to.
-    """
     active_timings: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
     """
     A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+    """
+    contact_point: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The contact point to route notifications that match this rule to. Exactly one of `contact_point` or `policy` must be set.
     """
     group_bies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
     """
@@ -11270,6 +11270,10 @@ class RuleGroupRuleNotificationSettingsArgsDict(TypedDict):
     """
     A list of mute timing names to apply to alerts that match this policy.
     """
+    policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the notification policy to route notifications that match this rule through. Mutually exclusive with `contact_point` and all other fields in this block. Exactly one of `contact_point` or `policy` must be set.
+    """
     repeat_interval: NotRequired[pulumi.Input[_builtins.str]]
     """
     Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
@@ -11278,25 +11282,28 @@ class RuleGroupRuleNotificationSettingsArgsDict(TypedDict):
 @pulumi.input_type
 class RuleGroupRuleNotificationSettingsArgs:
     def __init__(__self__, *,
-                 contact_point: pulumi.Input[_builtins.str],
                  active_timings: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 contact_point: Optional[pulumi.Input[_builtins.str]] = None,
                  group_bies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  group_interval: Optional[pulumi.Input[_builtins.str]] = None,
                  group_wait: Optional[pulumi.Input[_builtins.str]] = None,
                  mute_timings: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 policy: Optional[pulumi.Input[_builtins.str]] = None,
                  repeat_interval: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] contact_point: The contact point to route notifications that match this rule to.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] active_timings: A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+        :param pulumi.Input[_builtins.str] contact_point: The contact point to route notifications that match this rule to. Exactly one of `contact_point` or `policy` must be set.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
         :param pulumi.Input[_builtins.str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[_builtins.str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] mute_timings: A list of mute timing names to apply to alerts that match this policy.
+        :param pulumi.Input[_builtins.str] policy: The name of the notification policy to route notifications that match this rule through. Mutually exclusive with `contact_point` and all other fields in this block. Exactly one of `contact_point` or `policy` must be set.
         :param pulumi.Input[_builtins.str] repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         """
-        pulumi.set(__self__, "contact_point", contact_point)
         if active_timings is not None:
             pulumi.set(__self__, "active_timings", active_timings)
+        if contact_point is not None:
+            pulumi.set(__self__, "contact_point", contact_point)
         if group_bies is not None:
             pulumi.set(__self__, "group_bies", group_bies)
         if group_interval is not None:
@@ -11305,20 +11312,10 @@ class RuleGroupRuleNotificationSettingsArgs:
             pulumi.set(__self__, "group_wait", group_wait)
         if mute_timings is not None:
             pulumi.set(__self__, "mute_timings", mute_timings)
+        if policy is not None:
+            pulumi.set(__self__, "policy", policy)
         if repeat_interval is not None:
             pulumi.set(__self__, "repeat_interval", repeat_interval)
-
-    @_builtins.property
-    @pulumi.getter(name="contactPoint")
-    def contact_point(self) -> pulumi.Input[_builtins.str]:
-        """
-        The contact point to route notifications that match this rule to.
-        """
-        return pulumi.get(self, "contact_point")
-
-    @contact_point.setter
-    def contact_point(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "contact_point", value)
 
     @_builtins.property
     @pulumi.getter(name="activeTimings")
@@ -11331,6 +11328,18 @@ class RuleGroupRuleNotificationSettingsArgs:
     @active_timings.setter
     def active_timings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "active_timings", value)
+
+    @_builtins.property
+    @pulumi.getter(name="contactPoint")
+    def contact_point(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The contact point to route notifications that match this rule to. Exactly one of `contact_point` or `policy` must be set.
+        """
+        return pulumi.get(self, "contact_point")
+
+    @contact_point.setter
+    def contact_point(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "contact_point", value)
 
     @_builtins.property
     @pulumi.getter(name="groupBies")
@@ -11379,6 +11388,18 @@ class RuleGroupRuleNotificationSettingsArgs:
     @mute_timings.setter
     def mute_timings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "mute_timings", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the notification policy to route notifications that match this rule through. Mutually exclusive with `contact_point` and all other fields in this block. Exactly one of `contact_point` or `policy` must be set.
+        """
+        return pulumi.get(self, "policy")
+
+    @policy.setter
+    def policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "policy", value)
 
     @_builtins.property
     @pulumi.getter(name="repeatInterval")

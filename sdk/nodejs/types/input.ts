@@ -2350,9 +2350,9 @@ export namespace alerting {
          */
         activeTimings?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The contact point to route notifications that match this rule to.
+         * The contact point to route notifications that match this rule to. Exactly one of `contactPoint` or `policy` must be set.
          */
-        contactPoint: pulumi.Input<string>;
+        contactPoint?: pulumi.Input<string>;
         /**
          * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
          */
@@ -2369,6 +2369,10 @@ export namespace alerting {
          * A list of mute timing names to apply to alerts that match this policy.
          */
         muteTimings?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The name of the notification policy to route notifications that match this rule through. Mutually exclusive with `contactPoint` and all other fields in this block. Exactly one of `contactPoint` or `policy` must be set.
+         */
+        policy?: pulumi.Input<string>;
         /**
          * Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
          */
@@ -5210,7 +5214,11 @@ export namespace cloudProvider {
 
     export interface AwsCloudwatchScrapeJobService {
         /**
-         * One or more configuration blocks to configure metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+         * Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+         */
+        enhancedMetrics?: pulumi.Input<pulumi.Input<inputs.cloudProvider.AwsCloudwatchScrapeJobServiceEnhancedMetric>[]>;
+        /**
+         * Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
          */
         metrics?: pulumi.Input<pulumi.Input<inputs.cloudProvider.AwsCloudwatchScrapeJobServiceMetric>[]>;
         /**
@@ -5229,6 +5237,13 @@ export namespace cloudProvider {
          * A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
          */
         tagsToAddToMetrics?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface AwsCloudwatchScrapeJobServiceEnhancedMetric {
+        /**
+         * The name of the enhanced metric to scrape.
+         */
+        name: pulumi.Input<string>;
     }
 
     export interface AwsCloudwatchScrapeJobServiceMetric {
@@ -5366,7 +5381,11 @@ export namespace cloudProvider {
 
     export interface GetAwsCloudwatchScrapeJobService {
         /**
-         * One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+         * Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+         */
+        enhancedMetrics?: inputs.cloudProvider.GetAwsCloudwatchScrapeJobServiceEnhancedMetric[];
+        /**
+         * Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
          */
         metrics?: inputs.cloudProvider.GetAwsCloudwatchScrapeJobServiceMetric[];
         /**
@@ -5389,7 +5408,11 @@ export namespace cloudProvider {
 
     export interface GetAwsCloudwatchScrapeJobServiceArgs {
         /**
-         * One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+         * Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+         */
+        enhancedMetrics?: pulumi.Input<pulumi.Input<inputs.cloudProvider.GetAwsCloudwatchScrapeJobServiceEnhancedMetricArgs>[]>;
+        /**
+         * Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
          */
         metrics?: pulumi.Input<pulumi.Input<inputs.cloudProvider.GetAwsCloudwatchScrapeJobServiceMetricArgs>[]>;
         /**
@@ -5408,6 +5431,20 @@ export namespace cloudProvider {
          * A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
          */
         tagsToAddToMetrics?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface GetAwsCloudwatchScrapeJobServiceEnhancedMetric {
+        /**
+         * The name of the enhanced metric to scrape.
+         */
+        name?: string;
+    }
+
+    export interface GetAwsCloudwatchScrapeJobServiceEnhancedMetricArgs {
+        /**
+         * The name of the enhanced metric to scrape.
+         */
+        name?: pulumi.Input<string>;
     }
 
     export interface GetAwsCloudwatchScrapeJobServiceMetric {
@@ -5618,7 +5655,11 @@ export namespace cloudProvider {
 
     export interface GetAwsCloudwatchScrapeJobsScrapeJobService {
         /**
-         * One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+         * Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+         */
+        enhancedMetrics?: inputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetric[];
+        /**
+         * Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
          */
         metrics?: inputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobServiceMetric[];
         /**
@@ -5641,7 +5682,11 @@ export namespace cloudProvider {
 
     export interface GetAwsCloudwatchScrapeJobsScrapeJobServiceArgs {
         /**
-         * One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+         * Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+         */
+        enhancedMetrics?: pulumi.Input<pulumi.Input<inputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArgs>[]>;
+        /**
+         * Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
          */
         metrics?: pulumi.Input<pulumi.Input<inputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgs>[]>;
         /**
@@ -5660,6 +5705,20 @@ export namespace cloudProvider {
          * A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
          */
         tagsToAddToMetrics?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetric {
+        /**
+         * The name of the enhanced metric to scrape.
+         */
+        name?: string;
+    }
+
+    export interface GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArgs {
+        /**
+         * The name of the enhanced metric to scrape.
+         */
+        name?: pulumi.Input<string>;
     }
 
     export interface GetAwsCloudwatchScrapeJobsScrapeJobServiceMetric {

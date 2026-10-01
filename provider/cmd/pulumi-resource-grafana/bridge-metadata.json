@@ -802,6 +802,9 @@
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
+                                "enhanced_metric": {
+                                    "maxItemsOne": false
+                                },
                                 "metric": {
                                     "maxItemsOne": false,
                                     "elem": {
@@ -2174,6 +2177,9 @@
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
+                                "enhanced_metric": {
+                                    "maxItemsOne": false
+                                },
                                 "metric": {
                                     "maxItemsOne": false,
                                     "elem": {
@@ -2227,6 +2233,9 @@
                                     "maxItemsOne": false,
                                     "elem": {
                                         "fields": {
+                                            "enhanced_metric": {
+                                                "maxItemsOne": false
+                                            },
                                             "metric": {
                                                 "maxItemsOne": false,
                                                 "elem": {

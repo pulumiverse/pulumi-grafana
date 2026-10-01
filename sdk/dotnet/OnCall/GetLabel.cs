@@ -35,13 +35,13 @@ namespace Pulumiverse.Grafana.OnCall
     public sealed class GetLabelArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The key for the label.
+        /// The key for the label. Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter.
         /// </summary>
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
 
         /// <summary>
-        /// The value of the label.
+        /// The value of the label. When the label is used as a static label, values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit. When the label is used as a dynamic label, the value is a Jinja2 template evaluated when an alert is received, and is not restricted.
         /// </summary>
         [Input("value", required: true)]
         public string Value { get; set; } = null!;
@@ -55,13 +55,13 @@ namespace Pulumiverse.Grafana.OnCall
     public sealed class GetLabelInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The key for the label.
+        /// The key for the label. Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter.
         /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
         /// <summary>
-        /// The value of the label.
+        /// The value of the label. When the label is used as a static label, values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit. When the label is used as a dynamic label, the value is a Jinja2 template evaluated when an alert is received, and is not restricted.
         /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
@@ -81,11 +81,11 @@ namespace Pulumiverse.Grafana.OnCall
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The key for the label.
+        /// The key for the label. Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter.
         /// </summary>
         public readonly string Key;
         /// <summary>
-        /// The value of the label.
+        /// The value of the label. When the label is used as a static label, values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit. When the label is used as a dynamic label, the value is a Jinja2 template evaluated when an alert is received, and is not restricted.
         /// </summary>
         public readonly string Value;
 

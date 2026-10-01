@@ -13,11 +13,23 @@ namespace Pulumiverse.Grafana.CloudProvider.Inputs
 
     public sealed class GetAwsCloudwatchScrapeJobServiceArgs : global::Pulumi.InvokeArgs
     {
+        [Input("enhancedMetrics")]
+        private List<Inputs.GetAwsCloudwatchScrapeJobServiceEnhancedMetricArgs>? _enhancedMetrics;
+
+        /// <summary>
+        /// Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `Metric` or `EnhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+        /// </summary>
+        public List<Inputs.GetAwsCloudwatchScrapeJobServiceEnhancedMetricArgs> EnhancedMetrics
+        {
+            get => _enhancedMetrics ?? (_enhancedMetrics = new List<Inputs.GetAwsCloudwatchScrapeJobServiceEnhancedMetricArgs>());
+            set => _enhancedMetrics = value;
+        }
+
         [Input("metrics")]
         private List<Inputs.GetAwsCloudwatchScrapeJobServiceMetricArgs>? _metrics;
 
         /// <summary>
-        /// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+        /// Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `Metric` or `EnhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
         /// </summary>
         public List<Inputs.GetAwsCloudwatchScrapeJobServiceMetricArgs> Metrics
         {

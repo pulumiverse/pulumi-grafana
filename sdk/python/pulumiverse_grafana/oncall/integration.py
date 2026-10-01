@@ -33,8 +33,8 @@ class IntegrationArgs:
 
         :param pulumi.Input['IntegrationDefaultRouteArgs'] default_route: The Default route for all alerts from the given integration
         :param pulumi.Input[_builtins.str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.
-        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] dynamic_labels: A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
-        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] labels: A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] dynamic_labels: A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are Jinja2 templates evaluated when an alert is received, and are not restricted.
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] labels: A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit.
         :param pulumi.Input[_builtins.str] name: The name of the service integration.
         :param pulumi.Input[_builtins.str] team_id: The ID of the OnCall team (using the `on_call_get_team` datasource).
         :param pulumi.Input['IntegrationTemplatesArgs'] templates: Jinja2 templates for Alert payload. An empty templates block will be ignored.
@@ -80,7 +80,7 @@ class IntegrationArgs:
     @pulumi.getter(name="dynamicLabels")
     def dynamic_labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]:
         """
-        A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are Jinja2 templates evaluated when an alert is received, and are not restricted.
         """
         return pulumi.get(self, "dynamic_labels")
 
@@ -92,7 +92,7 @@ class IntegrationArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]:
         """
-        A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit.
         """
         return pulumi.get(self, "labels")
 
@@ -153,9 +153,9 @@ class _IntegrationState:
         Input properties used for looking up and filtering Integration resources.
 
         :param pulumi.Input['IntegrationDefaultRouteArgs'] default_route: The Default route for all alerts from the given integration
-        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] dynamic_labels: A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] dynamic_labels: A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are Jinja2 templates evaluated when an alert is received, and are not restricted.
         :param pulumi.Input[_builtins.str] inbound_email: The inbound email address for the integration. Only available for integration type `inbound_email`.
-        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] labels: A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] labels: A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit.
         :param pulumi.Input[_builtins.str] link: The link for using in an integrated tool.
         :param pulumi.Input[_builtins.str] name: The name of the service integration.
         :param pulumi.Input[_builtins.str] team_id: The ID of the OnCall team (using the `on_call_get_team` datasource).
@@ -197,7 +197,7 @@ class _IntegrationState:
     @pulumi.getter(name="dynamicLabels")
     def dynamic_labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]:
         """
-        A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are Jinja2 templates evaluated when an alert is received, and are not restricted.
         """
         return pulumi.get(self, "dynamic_labels")
 
@@ -221,7 +221,7 @@ class _IntegrationState:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]:
         """
-        A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit.
         """
         return pulumi.get(self, "labels")
 
@@ -318,8 +318,8 @@ class Integration(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['IntegrationDefaultRouteArgs', 'IntegrationDefaultRouteArgsDict']] default_route: The Default route for all alerts from the given integration
-        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] dynamic_labels: A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
-        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] labels: A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] dynamic_labels: A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are Jinja2 templates evaluated when an alert is received, and are not restricted.
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] labels: A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit.
         :param pulumi.Input[_builtins.str] name: The name of the service integration.
         :param pulumi.Input[_builtins.str] team_id: The ID of the OnCall team (using the `on_call_get_team` datasource).
         :param pulumi.Input[Union['IntegrationTemplatesArgs', 'IntegrationTemplatesArgsDict']] templates: Jinja2 templates for Alert payload. An empty templates block will be ignored.
@@ -413,9 +413,9 @@ class Integration(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['IntegrationDefaultRouteArgs', 'IntegrationDefaultRouteArgsDict']] default_route: The Default route for all alerts from the given integration
-        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] dynamic_labels: A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] dynamic_labels: A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are Jinja2 templates evaluated when an alert is received, and are not restricted.
         :param pulumi.Input[_builtins.str] inbound_email: The inbound email address for the integration. Only available for integration type `inbound_email`.
-        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] labels: A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] labels: A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit.
         :param pulumi.Input[_builtins.str] link: The link for using in an integrated tool.
         :param pulumi.Input[_builtins.str] name: The name of the service integration.
         :param pulumi.Input[_builtins.str] team_id: The ID of the OnCall team (using the `on_call_get_team` datasource).
@@ -449,7 +449,7 @@ class Integration(pulumi.CustomResource):
     @pulumi.getter(name="dynamicLabels")
     def dynamic_labels(self) -> pulumi.Output[Optional[Sequence[Mapping[str, _builtins.str]]]]:
         """
-        A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are Jinja2 templates evaluated when an alert is received, and are not restricted.
         """
         return pulumi.get(self, "dynamic_labels")
 
@@ -465,7 +465,7 @@ class Integration(pulumi.CustomResource):
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Sequence[Mapping[str, _builtins.str]]]]:
         """
-        A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit.
         """
         return pulumi.get(self, "labels")
 

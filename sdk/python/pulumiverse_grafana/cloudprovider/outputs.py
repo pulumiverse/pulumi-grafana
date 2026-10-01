@@ -19,6 +19,7 @@ __all__ = [
     'AwsCloudwatchScrapeJobCustomNamespace',
     'AwsCloudwatchScrapeJobCustomNamespaceMetric',
     'AwsCloudwatchScrapeJobService',
+    'AwsCloudwatchScrapeJobServiceEnhancedMetric',
     'AwsCloudwatchScrapeJobServiceMetric',
     'AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter',
     'AwsResourceMetadataScrapeJobService',
@@ -30,12 +31,14 @@ __all__ = [
     'GetAwsCloudwatchScrapeJobCustomNamespaceResult',
     'GetAwsCloudwatchScrapeJobCustomNamespaceMetricResult',
     'GetAwsCloudwatchScrapeJobServiceResult',
+    'GetAwsCloudwatchScrapeJobServiceEnhancedMetricResult',
     'GetAwsCloudwatchScrapeJobServiceMetricResult',
     'GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterResult',
     'GetAwsCloudwatchScrapeJobsScrapeJobResult',
     'GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceResult',
     'GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricResult',
     'GetAwsCloudwatchScrapeJobsScrapeJobServiceResult',
+    'GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricResult',
     'GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricResult',
     'GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterResult',
     'GetAzureCredentialAutoDiscoveryConfigurationResult',
@@ -137,7 +140,9 @@ class AwsCloudwatchScrapeJobService(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "resourceDiscoveryTagFilters":
+        if key == "enhancedMetrics":
+            suggest = "enhanced_metrics"
+        elif key == "resourceDiscoveryTagFilters":
             suggest = "resource_discovery_tag_filters"
         elif key == "scrapeIntervalSeconds":
             suggest = "scrape_interval_seconds"
@@ -157,18 +162,22 @@ class AwsCloudwatchScrapeJobService(dict):
 
     def __init__(__self__, *,
                  name: _builtins.str,
+                 enhanced_metrics: Optional[Sequence['outputs.AwsCloudwatchScrapeJobServiceEnhancedMetric']] = None,
                  metrics: Optional[Sequence['outputs.AwsCloudwatchScrapeJobServiceMetric']] = None,
                  resource_discovery_tag_filters: Optional[Sequence['outputs.AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter']] = None,
                  scrape_interval_seconds: Optional[_builtins.int] = None,
                  tags_to_add_to_metrics: Optional[Sequence[_builtins.str]] = None):
         """
         :param _builtins.str name: The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
-        :param Sequence['AwsCloudwatchScrapeJobServiceMetricArgs'] metrics: One or more configuration blocks to configure metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+        :param Sequence['AwsCloudwatchScrapeJobServiceEnhancedMetricArgs'] enhanced_metrics: Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhanced_metric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+        :param Sequence['AwsCloudwatchScrapeJobServiceMetricArgs'] metrics: Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhanced_metric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
         :param Sequence['AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs'] resource_discovery_tag_filters: One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
         :param _builtins.int scrape_interval_seconds: The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.
         :param Sequence[_builtins.str] tags_to_add_to_metrics: A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
         """
         pulumi.set(__self__, "name", name)
+        if enhanced_metrics is not None:
+            pulumi.set(__self__, "enhanced_metrics", enhanced_metrics)
         if metrics is not None:
             pulumi.set(__self__, "metrics", metrics)
         if resource_discovery_tag_filters is not None:
@@ -187,10 +196,18 @@ class AwsCloudwatchScrapeJobService(dict):
         return pulumi.get(self, "name")
 
     @_builtins.property
+    @pulumi.getter(name="enhancedMetrics")
+    def enhanced_metrics(self) -> Optional[Sequence['outputs.AwsCloudwatchScrapeJobServiceEnhancedMetric']]:
+        """
+        Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhanced_metric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+        """
+        return pulumi.get(self, "enhanced_metrics")
+
+    @_builtins.property
     @pulumi.getter
     def metrics(self) -> Optional[Sequence['outputs.AwsCloudwatchScrapeJobServiceMetric']]:
         """
-        One or more configuration blocks to configure metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+        Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhanced_metric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
         """
         return pulumi.get(self, "metrics")
 
@@ -217,6 +234,24 @@ class AwsCloudwatchScrapeJobService(dict):
         A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
         """
         return pulumi.get(self, "tags_to_add_to_metrics")
+
+
+@pulumi.output_type
+class AwsCloudwatchScrapeJobServiceEnhancedMetric(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str):
+        """
+        :param _builtins.str name: The name of the enhanced metric to scrape.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the enhanced metric to scrape.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -584,18 +619,22 @@ class GetAwsCloudwatchScrapeJobServiceResult(dict):
                  name: _builtins.str,
                  scrape_interval_seconds: _builtins.int,
                  tags_to_add_to_metrics: Sequence[_builtins.str],
+                 enhanced_metrics: Optional[Sequence['outputs.GetAwsCloudwatchScrapeJobServiceEnhancedMetricResult']] = None,
                  metrics: Optional[Sequence['outputs.GetAwsCloudwatchScrapeJobServiceMetricResult']] = None,
                  resource_discovery_tag_filters: Optional[Sequence['outputs.GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterResult']] = None):
         """
         :param _builtins.str name: The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
         :param _builtins.int scrape_interval_seconds: The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
         :param Sequence[_builtins.str] tags_to_add_to_metrics: A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
-        :param Sequence['GetAwsCloudwatchScrapeJobServiceMetricArgs'] metrics: One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+        :param Sequence['GetAwsCloudwatchScrapeJobServiceEnhancedMetricArgs'] enhanced_metrics: Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhanced_metric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+        :param Sequence['GetAwsCloudwatchScrapeJobServiceMetricArgs'] metrics: Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhanced_metric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
         :param Sequence['GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs'] resource_discovery_tag_filters: One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "scrape_interval_seconds", scrape_interval_seconds)
         pulumi.set(__self__, "tags_to_add_to_metrics", tags_to_add_to_metrics)
+        if enhanced_metrics is not None:
+            pulumi.set(__self__, "enhanced_metrics", enhanced_metrics)
         if metrics is not None:
             pulumi.set(__self__, "metrics", metrics)
         if resource_discovery_tag_filters is not None:
@@ -626,10 +665,18 @@ class GetAwsCloudwatchScrapeJobServiceResult(dict):
         return pulumi.get(self, "tags_to_add_to_metrics")
 
     @_builtins.property
+    @pulumi.getter(name="enhancedMetrics")
+    def enhanced_metrics(self) -> Optional[Sequence['outputs.GetAwsCloudwatchScrapeJobServiceEnhancedMetricResult']]:
+        """
+        Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhanced_metric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+        """
+        return pulumi.get(self, "enhanced_metrics")
+
+    @_builtins.property
     @pulumi.getter
     def metrics(self) -> Optional[Sequence['outputs.GetAwsCloudwatchScrapeJobServiceMetricResult']]:
         """
-        One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+        Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhanced_metric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
         """
         return pulumi.get(self, "metrics")
 
@@ -640,6 +687,24 @@ class GetAwsCloudwatchScrapeJobServiceResult(dict):
         One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
         """
         return pulumi.get(self, "resource_discovery_tag_filters")
+
+
+@pulumi.output_type
+class GetAwsCloudwatchScrapeJobServiceEnhancedMetricResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str):
+        """
+        :param _builtins.str name: The name of the enhanced metric to scrape.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the enhanced metric to scrape.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -928,18 +993,22 @@ class GetAwsCloudwatchScrapeJobsScrapeJobServiceResult(dict):
                  name: _builtins.str,
                  scrape_interval_seconds: _builtins.int,
                  tags_to_add_to_metrics: Sequence[_builtins.str],
+                 enhanced_metrics: Optional[Sequence['outputs.GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricResult']] = None,
                  metrics: Optional[Sequence['outputs.GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricResult']] = None,
                  resource_discovery_tag_filters: Optional[Sequence['outputs.GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterResult']] = None):
         """
         :param _builtins.str name: The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
         :param _builtins.int scrape_interval_seconds: The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
         :param Sequence[_builtins.str] tags_to_add_to_metrics: A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
-        :param Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgs'] metrics: One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+        :param Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArgs'] enhanced_metrics: Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhanced_metric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+        :param Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgs'] metrics: Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhanced_metric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
         :param Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs'] resource_discovery_tag_filters: One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "scrape_interval_seconds", scrape_interval_seconds)
         pulumi.set(__self__, "tags_to_add_to_metrics", tags_to_add_to_metrics)
+        if enhanced_metrics is not None:
+            pulumi.set(__self__, "enhanced_metrics", enhanced_metrics)
         if metrics is not None:
             pulumi.set(__self__, "metrics", metrics)
         if resource_discovery_tag_filters is not None:
@@ -970,10 +1039,18 @@ class GetAwsCloudwatchScrapeJobsScrapeJobServiceResult(dict):
         return pulumi.get(self, "tags_to_add_to_metrics")
 
     @_builtins.property
+    @pulumi.getter(name="enhancedMetrics")
+    def enhanced_metrics(self) -> Optional[Sequence['outputs.GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricResult']]:
+        """
+        Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhanced_metric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+        """
+        return pulumi.get(self, "enhanced_metrics")
+
+    @_builtins.property
     @pulumi.getter
     def metrics(self) -> Optional[Sequence['outputs.GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricResult']]:
         """
-        One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+        Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhanced_metric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
         """
         return pulumi.get(self, "metrics")
 
@@ -984,6 +1061,24 @@ class GetAwsCloudwatchScrapeJobsScrapeJobServiceResult(dict):
         One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
         """
         return pulumi.get(self, "resource_discovery_tag_filters")
+
+
+@pulumi.output_type
+class GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str):
+        """
+        :param _builtins.str name: The name of the enhanced metric to scrape.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the enhanced metric to scrape.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type

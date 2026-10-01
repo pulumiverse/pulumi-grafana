@@ -13,11 +13,23 @@ namespace Pulumiverse.Grafana.CloudProvider.Inputs
 
     public sealed class AwsCloudwatchScrapeJobServiceGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("enhancedMetrics")]
+        private InputList<Inputs.AwsCloudwatchScrapeJobServiceEnhancedMetricGetArgs>? _enhancedMetrics;
+
+        /// <summary>
+        /// Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `Metric` or `EnhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+        /// </summary>
+        public InputList<Inputs.AwsCloudwatchScrapeJobServiceEnhancedMetricGetArgs> EnhancedMetrics
+        {
+            get => _enhancedMetrics ?? (_enhancedMetrics = new InputList<Inputs.AwsCloudwatchScrapeJobServiceEnhancedMetricGetArgs>());
+            set => _enhancedMetrics = value;
+        }
+
         [Input("metrics")]
         private InputList<Inputs.AwsCloudwatchScrapeJobServiceMetricGetArgs>? _metrics;
 
         /// <summary>
-        /// One or more configuration blocks to configure metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+        /// Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `Metric` or `EnhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
         /// </summary>
         public InputList<Inputs.AwsCloudwatchScrapeJobServiceMetricGetArgs> Metrics
         {

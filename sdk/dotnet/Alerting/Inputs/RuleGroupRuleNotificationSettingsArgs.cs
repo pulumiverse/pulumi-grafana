@@ -26,10 +26,10 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         }
 
         /// <summary>
-        /// The contact point to route notifications that match this rule to.
+        /// The contact point to route notifications that match this rule to. Exactly one of `ContactPoint` or `Policy` must be set.
         /// </summary>
-        [Input("contactPoint", required: true)]
-        public Input<string> ContactPoint { get; set; } = null!;
+        [Input("contactPoint")]
+        public Input<string>? ContactPoint { get; set; }
 
         [Input("groupBies")]
         private InputList<string>? _groupBies;
@@ -66,6 +66,12 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
             get => _muteTimings ?? (_muteTimings = new InputList<string>());
             set => _muteTimings = value;
         }
+
+        /// <summary>
+        /// The name of the notification policy to route notifications that match this rule through. Mutually exclusive with `ContactPoint` and all other fields in this block. Exactly one of `ContactPoint` or `Policy` must be set.
+        /// </summary>
+        [Input("policy")]
+        public Input<string>? Policy { get; set; }
 
         /// <summary>
         /// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.

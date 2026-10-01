@@ -388,10 +388,10 @@ class AzureCredential(pulumi.CustomResource):
         """
         This resource allows you to autodiscover resources in your Azure tenant and scrape Azure Monitor metrics for those resources in Grafana Cloud without needing to run your own infrastructure.
 
-        See the Grafana Provider configuration docs
+        Refer to Configure authentication for the Grafana Provider
         for information on authentication and required access policy scopes.
 
-        * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/azure/)
+        * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-infrastructure/monitor-cloud-provider/azure/)
 
         ## Example Usage
 
@@ -476,10 +476,10 @@ class AzureCredential(pulumi.CustomResource):
         """
         This resource allows you to autodiscover resources in your Azure tenant and scrape Azure Monitor metrics for those resources in Grafana Cloud without needing to run your own infrastructure.
 
-        See the Grafana Provider configuration docs
+        Refer to Configure authentication for the Grafana Provider
         for information on authentication and required access policy scopes.
 
-        * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/azure/)
+        * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-infrastructure/monitor-cloud-provider/azure/)
 
         ## Example Usage
 

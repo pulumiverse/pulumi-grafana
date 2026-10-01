@@ -49,7 +49,7 @@ export class Integration extends pulumi.CustomResource {
      */
     declare public readonly defaultRoute: pulumi.Output<outputs.onCall.IntegrationDefaultRoute>;
     /**
-     * A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
+     * A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are Jinja2 templates evaluated when an alert is received, and are not restricted.
      */
     declare public readonly dynamicLabels: pulumi.Output<{[key: string]: string}[] | undefined>;
     /**
@@ -57,7 +57,7 @@ export class Integration extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly inboundEmail: pulumi.Output<string>;
     /**
-     * A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
+     * A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit.
      */
     declare public readonly labels: pulumi.Output<{[key: string]: string}[] | undefined>;
     /**
@@ -135,7 +135,7 @@ export interface IntegrationState {
      */
     defaultRoute?: pulumi.Input<inputs.onCall.IntegrationDefaultRoute>;
     /**
-     * A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
+     * A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are Jinja2 templates evaluated when an alert is received, and are not restricted.
      */
     dynamicLabels?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
     /**
@@ -143,7 +143,7 @@ export interface IntegrationState {
      */
     inboundEmail?: pulumi.Input<string>;
     /**
-     * A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
+     * A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit.
      */
     labels?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
     /**
@@ -177,11 +177,11 @@ export interface IntegrationArgs {
      */
     defaultRoute: pulumi.Input<inputs.onCall.IntegrationDefaultRoute>;
     /**
-     * A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
+     * A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are Jinja2 templates evaluated when an alert is received, and are not restricted.
      */
     dynamicLabels?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
     /**
-     * A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
+     * A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit.
      */
     labels?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
     /**

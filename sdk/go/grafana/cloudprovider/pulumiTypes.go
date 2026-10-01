@@ -237,7 +237,9 @@ func (o AwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput) Index(i pulumi.I
 }
 
 type AwsCloudwatchScrapeJobService struct {
-	// One or more configuration blocks to configure metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+	// Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+	EnhancedMetrics []AwsCloudwatchScrapeJobServiceEnhancedMetric `pulumi:"enhancedMetrics"`
+	// Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
 	Metrics []AwsCloudwatchScrapeJobServiceMetric `pulumi:"metrics"`
 	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
 	Name string `pulumi:"name"`
@@ -261,7 +263,9 @@ type AwsCloudwatchScrapeJobServiceInput interface {
 }
 
 type AwsCloudwatchScrapeJobServiceArgs struct {
-	// One or more configuration blocks to configure metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+	// Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+	EnhancedMetrics AwsCloudwatchScrapeJobServiceEnhancedMetricArrayInput `pulumi:"enhancedMetrics"`
+	// Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
 	Metrics AwsCloudwatchScrapeJobServiceMetricArrayInput `pulumi:"metrics"`
 	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
 	Name pulumi.StringInput `pulumi:"name"`
@@ -324,7 +328,14 @@ func (o AwsCloudwatchScrapeJobServiceOutput) ToAwsCloudwatchScrapeJobServiceOutp
 	return o
 }
 
-// One or more configuration blocks to configure metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+// Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+func (o AwsCloudwatchScrapeJobServiceOutput) EnhancedMetrics() AwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput {
+	return o.ApplyT(func(v AwsCloudwatchScrapeJobService) []AwsCloudwatchScrapeJobServiceEnhancedMetric {
+		return v.EnhancedMetrics
+	}).(AwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput)
+}
+
+// Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
 func (o AwsCloudwatchScrapeJobServiceOutput) Metrics() AwsCloudwatchScrapeJobServiceMetricArrayOutput {
 	return o.ApplyT(func(v AwsCloudwatchScrapeJobService) []AwsCloudwatchScrapeJobServiceMetric { return v.Metrics }).(AwsCloudwatchScrapeJobServiceMetricArrayOutput)
 }
@@ -369,6 +380,103 @@ func (o AwsCloudwatchScrapeJobServiceArrayOutput) Index(i pulumi.IntInput) AwsCl
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AwsCloudwatchScrapeJobService {
 		return vs[0].([]AwsCloudwatchScrapeJobService)[vs[1].(int)]
 	}).(AwsCloudwatchScrapeJobServiceOutput)
+}
+
+type AwsCloudwatchScrapeJobServiceEnhancedMetric struct {
+	// The name of the enhanced metric to scrape.
+	Name string `pulumi:"name"`
+}
+
+// AwsCloudwatchScrapeJobServiceEnhancedMetricInput is an input type that accepts AwsCloudwatchScrapeJobServiceEnhancedMetricArgs and AwsCloudwatchScrapeJobServiceEnhancedMetricOutput values.
+// You can construct a concrete instance of `AwsCloudwatchScrapeJobServiceEnhancedMetricInput` via:
+//
+//	AwsCloudwatchScrapeJobServiceEnhancedMetricArgs{...}
+type AwsCloudwatchScrapeJobServiceEnhancedMetricInput interface {
+	pulumi.Input
+
+	ToAwsCloudwatchScrapeJobServiceEnhancedMetricOutput() AwsCloudwatchScrapeJobServiceEnhancedMetricOutput
+	ToAwsCloudwatchScrapeJobServiceEnhancedMetricOutputWithContext(context.Context) AwsCloudwatchScrapeJobServiceEnhancedMetricOutput
+}
+
+type AwsCloudwatchScrapeJobServiceEnhancedMetricArgs struct {
+	// The name of the enhanced metric to scrape.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (AwsCloudwatchScrapeJobServiceEnhancedMetricArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AwsCloudwatchScrapeJobServiceEnhancedMetric)(nil)).Elem()
+}
+
+func (i AwsCloudwatchScrapeJobServiceEnhancedMetricArgs) ToAwsCloudwatchScrapeJobServiceEnhancedMetricOutput() AwsCloudwatchScrapeJobServiceEnhancedMetricOutput {
+	return i.ToAwsCloudwatchScrapeJobServiceEnhancedMetricOutputWithContext(context.Background())
+}
+
+func (i AwsCloudwatchScrapeJobServiceEnhancedMetricArgs) ToAwsCloudwatchScrapeJobServiceEnhancedMetricOutputWithContext(ctx context.Context) AwsCloudwatchScrapeJobServiceEnhancedMetricOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AwsCloudwatchScrapeJobServiceEnhancedMetricOutput)
+}
+
+// AwsCloudwatchScrapeJobServiceEnhancedMetricArrayInput is an input type that accepts AwsCloudwatchScrapeJobServiceEnhancedMetricArray and AwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput values.
+// You can construct a concrete instance of `AwsCloudwatchScrapeJobServiceEnhancedMetricArrayInput` via:
+//
+//	AwsCloudwatchScrapeJobServiceEnhancedMetricArray{ AwsCloudwatchScrapeJobServiceEnhancedMetricArgs{...} }
+type AwsCloudwatchScrapeJobServiceEnhancedMetricArrayInput interface {
+	pulumi.Input
+
+	ToAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput() AwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput
+	ToAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutputWithContext(context.Context) AwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput
+}
+
+type AwsCloudwatchScrapeJobServiceEnhancedMetricArray []AwsCloudwatchScrapeJobServiceEnhancedMetricInput
+
+func (AwsCloudwatchScrapeJobServiceEnhancedMetricArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AwsCloudwatchScrapeJobServiceEnhancedMetric)(nil)).Elem()
+}
+
+func (i AwsCloudwatchScrapeJobServiceEnhancedMetricArray) ToAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput() AwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput {
+	return i.ToAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutputWithContext(context.Background())
+}
+
+func (i AwsCloudwatchScrapeJobServiceEnhancedMetricArray) ToAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutputWithContext(ctx context.Context) AwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput)
+}
+
+type AwsCloudwatchScrapeJobServiceEnhancedMetricOutput struct{ *pulumi.OutputState }
+
+func (AwsCloudwatchScrapeJobServiceEnhancedMetricOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AwsCloudwatchScrapeJobServiceEnhancedMetric)(nil)).Elem()
+}
+
+func (o AwsCloudwatchScrapeJobServiceEnhancedMetricOutput) ToAwsCloudwatchScrapeJobServiceEnhancedMetricOutput() AwsCloudwatchScrapeJobServiceEnhancedMetricOutput {
+	return o
+}
+
+func (o AwsCloudwatchScrapeJobServiceEnhancedMetricOutput) ToAwsCloudwatchScrapeJobServiceEnhancedMetricOutputWithContext(ctx context.Context) AwsCloudwatchScrapeJobServiceEnhancedMetricOutput {
+	return o
+}
+
+// The name of the enhanced metric to scrape.
+func (o AwsCloudwatchScrapeJobServiceEnhancedMetricOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v AwsCloudwatchScrapeJobServiceEnhancedMetric) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type AwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput struct{ *pulumi.OutputState }
+
+func (AwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AwsCloudwatchScrapeJobServiceEnhancedMetric)(nil)).Elem()
+}
+
+func (o AwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput) ToAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput() AwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput {
+	return o
+}
+
+func (o AwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput) ToAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutputWithContext(ctx context.Context) AwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput {
+	return o
+}
+
+func (o AwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput) Index(i pulumi.IntInput) AwsCloudwatchScrapeJobServiceEnhancedMetricOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AwsCloudwatchScrapeJobServiceEnhancedMetric {
+		return vs[0].([]AwsCloudwatchScrapeJobServiceEnhancedMetric)[vs[1].(int)]
+	}).(AwsCloudwatchScrapeJobServiceEnhancedMetricOutput)
 }
 
 type AwsCloudwatchScrapeJobServiceMetric struct {
@@ -1460,7 +1568,9 @@ func (o GetAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput) Index(i pulum
 }
 
 type GetAwsCloudwatchScrapeJobService struct {
-	// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+	// Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+	EnhancedMetrics []GetAwsCloudwatchScrapeJobServiceEnhancedMetric `pulumi:"enhancedMetrics"`
+	// Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
 	Metrics []GetAwsCloudwatchScrapeJobServiceMetric `pulumi:"metrics"`
 	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
 	Name string `pulumi:"name"`
@@ -1484,7 +1594,9 @@ type GetAwsCloudwatchScrapeJobServiceInput interface {
 }
 
 type GetAwsCloudwatchScrapeJobServiceArgs struct {
-	// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+	// Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+	EnhancedMetrics GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayInput `pulumi:"enhancedMetrics"`
+	// Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
 	Metrics GetAwsCloudwatchScrapeJobServiceMetricArrayInput `pulumi:"metrics"`
 	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
 	Name pulumi.StringInput `pulumi:"name"`
@@ -1547,7 +1659,14 @@ func (o GetAwsCloudwatchScrapeJobServiceOutput) ToGetAwsCloudwatchScrapeJobServi
 	return o
 }
 
-// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+// Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+func (o GetAwsCloudwatchScrapeJobServiceOutput) EnhancedMetrics() GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput {
+	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobService) []GetAwsCloudwatchScrapeJobServiceEnhancedMetric {
+		return v.EnhancedMetrics
+	}).(GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput)
+}
+
+// Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
 func (o GetAwsCloudwatchScrapeJobServiceOutput) Metrics() GetAwsCloudwatchScrapeJobServiceMetricArrayOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobService) []GetAwsCloudwatchScrapeJobServiceMetric { return v.Metrics }).(GetAwsCloudwatchScrapeJobServiceMetricArrayOutput)
 }
@@ -1592,6 +1711,103 @@ func (o GetAwsCloudwatchScrapeJobServiceArrayOutput) Index(i pulumi.IntInput) Ge
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAwsCloudwatchScrapeJobService {
 		return vs[0].([]GetAwsCloudwatchScrapeJobService)[vs[1].(int)]
 	}).(GetAwsCloudwatchScrapeJobServiceOutput)
+}
+
+type GetAwsCloudwatchScrapeJobServiceEnhancedMetric struct {
+	// The name of the enhanced metric to scrape.
+	Name string `pulumi:"name"`
+}
+
+// GetAwsCloudwatchScrapeJobServiceEnhancedMetricInput is an input type that accepts GetAwsCloudwatchScrapeJobServiceEnhancedMetricArgs and GetAwsCloudwatchScrapeJobServiceEnhancedMetricOutput values.
+// You can construct a concrete instance of `GetAwsCloudwatchScrapeJobServiceEnhancedMetricInput` via:
+//
+//	GetAwsCloudwatchScrapeJobServiceEnhancedMetricArgs{...}
+type GetAwsCloudwatchScrapeJobServiceEnhancedMetricInput interface {
+	pulumi.Input
+
+	ToGetAwsCloudwatchScrapeJobServiceEnhancedMetricOutput() GetAwsCloudwatchScrapeJobServiceEnhancedMetricOutput
+	ToGetAwsCloudwatchScrapeJobServiceEnhancedMetricOutputWithContext(context.Context) GetAwsCloudwatchScrapeJobServiceEnhancedMetricOutput
+}
+
+type GetAwsCloudwatchScrapeJobServiceEnhancedMetricArgs struct {
+	// The name of the enhanced metric to scrape.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetAwsCloudwatchScrapeJobServiceEnhancedMetricArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAwsCloudwatchScrapeJobServiceEnhancedMetric)(nil)).Elem()
+}
+
+func (i GetAwsCloudwatchScrapeJobServiceEnhancedMetricArgs) ToGetAwsCloudwatchScrapeJobServiceEnhancedMetricOutput() GetAwsCloudwatchScrapeJobServiceEnhancedMetricOutput {
+	return i.ToGetAwsCloudwatchScrapeJobServiceEnhancedMetricOutputWithContext(context.Background())
+}
+
+func (i GetAwsCloudwatchScrapeJobServiceEnhancedMetricArgs) ToGetAwsCloudwatchScrapeJobServiceEnhancedMetricOutputWithContext(ctx context.Context) GetAwsCloudwatchScrapeJobServiceEnhancedMetricOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAwsCloudwatchScrapeJobServiceEnhancedMetricOutput)
+}
+
+// GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayInput is an input type that accepts GetAwsCloudwatchScrapeJobServiceEnhancedMetricArray and GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput values.
+// You can construct a concrete instance of `GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayInput` via:
+//
+//	GetAwsCloudwatchScrapeJobServiceEnhancedMetricArray{ GetAwsCloudwatchScrapeJobServiceEnhancedMetricArgs{...} }
+type GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayInput interface {
+	pulumi.Input
+
+	ToGetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput() GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput
+	ToGetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutputWithContext(context.Context) GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput
+}
+
+type GetAwsCloudwatchScrapeJobServiceEnhancedMetricArray []GetAwsCloudwatchScrapeJobServiceEnhancedMetricInput
+
+func (GetAwsCloudwatchScrapeJobServiceEnhancedMetricArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAwsCloudwatchScrapeJobServiceEnhancedMetric)(nil)).Elem()
+}
+
+func (i GetAwsCloudwatchScrapeJobServiceEnhancedMetricArray) ToGetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput() GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput {
+	return i.ToGetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutputWithContext(context.Background())
+}
+
+func (i GetAwsCloudwatchScrapeJobServiceEnhancedMetricArray) ToGetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutputWithContext(ctx context.Context) GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput)
+}
+
+type GetAwsCloudwatchScrapeJobServiceEnhancedMetricOutput struct{ *pulumi.OutputState }
+
+func (GetAwsCloudwatchScrapeJobServiceEnhancedMetricOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAwsCloudwatchScrapeJobServiceEnhancedMetric)(nil)).Elem()
+}
+
+func (o GetAwsCloudwatchScrapeJobServiceEnhancedMetricOutput) ToGetAwsCloudwatchScrapeJobServiceEnhancedMetricOutput() GetAwsCloudwatchScrapeJobServiceEnhancedMetricOutput {
+	return o
+}
+
+func (o GetAwsCloudwatchScrapeJobServiceEnhancedMetricOutput) ToGetAwsCloudwatchScrapeJobServiceEnhancedMetricOutputWithContext(ctx context.Context) GetAwsCloudwatchScrapeJobServiceEnhancedMetricOutput {
+	return o
+}
+
+// The name of the enhanced metric to scrape.
+func (o GetAwsCloudwatchScrapeJobServiceEnhancedMetricOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobServiceEnhancedMetric) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAwsCloudwatchScrapeJobServiceEnhancedMetric)(nil)).Elem()
+}
+
+func (o GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput) ToGetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput() GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput {
+	return o
+}
+
+func (o GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput) ToGetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutputWithContext(ctx context.Context) GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput {
+	return o
+}
+
+func (o GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput) Index(i pulumi.IntInput) GetAwsCloudwatchScrapeJobServiceEnhancedMetricOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAwsCloudwatchScrapeJobServiceEnhancedMetric {
+		return vs[0].([]GetAwsCloudwatchScrapeJobServiceEnhancedMetric)[vs[1].(int)]
+	}).(GetAwsCloudwatchScrapeJobServiceEnhancedMetricOutput)
 }
 
 type GetAwsCloudwatchScrapeJobServiceMetric struct {
@@ -2239,7 +2455,9 @@ func (o GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput) Ind
 }
 
 type GetAwsCloudwatchScrapeJobsScrapeJobService struct {
-	// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+	// Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+	EnhancedMetrics []GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetric `pulumi:"enhancedMetrics"`
+	// Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
 	Metrics []GetAwsCloudwatchScrapeJobsScrapeJobServiceMetric `pulumi:"metrics"`
 	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
 	Name string `pulumi:"name"`
@@ -2263,7 +2481,9 @@ type GetAwsCloudwatchScrapeJobsScrapeJobServiceInput interface {
 }
 
 type GetAwsCloudwatchScrapeJobsScrapeJobServiceArgs struct {
-	// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+	// Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+	EnhancedMetrics GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayInput `pulumi:"enhancedMetrics"`
+	// Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
 	Metrics GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayInput `pulumi:"metrics"`
 	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
 	Name pulumi.StringInput `pulumi:"name"`
@@ -2326,7 +2546,14 @@ func (o GetAwsCloudwatchScrapeJobsScrapeJobServiceOutput) ToGetAwsCloudwatchScra
 	return o
 }
 
-// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+// Configuration block representing AWS enhanced metrics as supported by Yet Another CloudWatch Exporter (YACE) to scrape. Each block must represent a distinct enhanced metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
+func (o GetAwsCloudwatchScrapeJobsScrapeJobServiceOutput) EnhancedMetrics() GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutput {
+	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsScrapeJobService) []GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetric {
+		return v.EnhancedMetrics
+	}).(GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutput)
+}
+
+// Configuration block representing CloudWatch metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. At least one `metric` or `enhancedMetric` block must be configured. When accessing this as an attribute reference, it is a list of objects.
 func (o GetAwsCloudwatchScrapeJobsScrapeJobServiceOutput) Metrics() GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsScrapeJobService) []GetAwsCloudwatchScrapeJobsScrapeJobServiceMetric {
 		return v.Metrics
@@ -2373,6 +2600,103 @@ func (o GetAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput) Index(i pulumi.In
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAwsCloudwatchScrapeJobsScrapeJobService {
 		return vs[0].([]GetAwsCloudwatchScrapeJobsScrapeJobService)[vs[1].(int)]
 	}).(GetAwsCloudwatchScrapeJobsScrapeJobServiceOutput)
+}
+
+type GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetric struct {
+	// The name of the enhanced metric to scrape.
+	Name string `pulumi:"name"`
+}
+
+// GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricInput is an input type that accepts GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArgs and GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutput values.
+// You can construct a concrete instance of `GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricInput` via:
+//
+//	GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArgs{...}
+type GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricInput interface {
+	pulumi.Input
+
+	ToGetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutput() GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutput
+	ToGetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutputWithContext(context.Context) GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutput
+}
+
+type GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArgs struct {
+	// The name of the enhanced metric to scrape.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetric)(nil)).Elem()
+}
+
+func (i GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArgs) ToGetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutput() GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutput {
+	return i.ToGetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutputWithContext(context.Background())
+}
+
+func (i GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArgs) ToGetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutputWithContext(ctx context.Context) GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutput)
+}
+
+// GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayInput is an input type that accepts GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArray and GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutput values.
+// You can construct a concrete instance of `GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayInput` via:
+//
+//	GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArray{ GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArgs{...} }
+type GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayInput interface {
+	pulumi.Input
+
+	ToGetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutput() GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutput
+	ToGetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutputWithContext(context.Context) GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutput
+}
+
+type GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArray []GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricInput
+
+func (GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetric)(nil)).Elem()
+}
+
+func (i GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArray) ToGetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutput() GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutput {
+	return i.ToGetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutputWithContext(context.Background())
+}
+
+func (i GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArray) ToGetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutputWithContext(ctx context.Context) GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutput)
+}
+
+type GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutput struct{ *pulumi.OutputState }
+
+func (GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetric)(nil)).Elem()
+}
+
+func (o GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutput) ToGetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutput() GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutput {
+	return o
+}
+
+func (o GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutput) ToGetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutputWithContext(ctx context.Context) GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutput {
+	return o
+}
+
+// The name of the enhanced metric to scrape.
+func (o GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetric) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetric)(nil)).Elem()
+}
+
+func (o GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutput) ToGetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutput() GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutput {
+	return o
+}
+
+func (o GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutput) ToGetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutputWithContext(ctx context.Context) GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutput {
+	return o
+}
+
+func (o GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutput) Index(i pulumi.IntInput) GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetric {
+		return vs[0].([]GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetric)[vs[1].(int)]
+	}).(GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutput)
 }
 
 type GetAwsCloudwatchScrapeJobsScrapeJobServiceMetric struct {
@@ -3024,6 +3348,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AwsCloudwatchScrapeJobCustomNamespaceMetricArrayInput)(nil)).Elem(), AwsCloudwatchScrapeJobCustomNamespaceMetricArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AwsCloudwatchScrapeJobServiceInput)(nil)).Elem(), AwsCloudwatchScrapeJobServiceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AwsCloudwatchScrapeJobServiceArrayInput)(nil)).Elem(), AwsCloudwatchScrapeJobServiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AwsCloudwatchScrapeJobServiceEnhancedMetricInput)(nil)).Elem(), AwsCloudwatchScrapeJobServiceEnhancedMetricArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AwsCloudwatchScrapeJobServiceEnhancedMetricArrayInput)(nil)).Elem(), AwsCloudwatchScrapeJobServiceEnhancedMetricArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AwsCloudwatchScrapeJobServiceMetricInput)(nil)).Elem(), AwsCloudwatchScrapeJobServiceMetricArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AwsCloudwatchScrapeJobServiceMetricArrayInput)(nil)).Elem(), AwsCloudwatchScrapeJobServiceMetricArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterInput)(nil)).Elem(), AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs{})
@@ -3046,6 +3372,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAwsCloudwatchScrapeJobCustomNamespaceMetricArrayInput)(nil)).Elem(), GetAwsCloudwatchScrapeJobCustomNamespaceMetricArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAwsCloudwatchScrapeJobServiceInput)(nil)).Elem(), GetAwsCloudwatchScrapeJobServiceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAwsCloudwatchScrapeJobServiceArrayInput)(nil)).Elem(), GetAwsCloudwatchScrapeJobServiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAwsCloudwatchScrapeJobServiceEnhancedMetricInput)(nil)).Elem(), GetAwsCloudwatchScrapeJobServiceEnhancedMetricArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayInput)(nil)).Elem(), GetAwsCloudwatchScrapeJobServiceEnhancedMetricArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAwsCloudwatchScrapeJobServiceMetricInput)(nil)).Elem(), GetAwsCloudwatchScrapeJobServiceMetricArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAwsCloudwatchScrapeJobServiceMetricArrayInput)(nil)).Elem(), GetAwsCloudwatchScrapeJobServiceMetricArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterInput)(nil)).Elem(), GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs{})
@@ -3058,6 +3386,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayInput)(nil)).Elem(), GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAwsCloudwatchScrapeJobsScrapeJobServiceInput)(nil)).Elem(), GetAwsCloudwatchScrapeJobsScrapeJobServiceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAwsCloudwatchScrapeJobsScrapeJobServiceArrayInput)(nil)).Elem(), GetAwsCloudwatchScrapeJobsScrapeJobServiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricInput)(nil)).Elem(), GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayInput)(nil)).Elem(), GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricInput)(nil)).Elem(), GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayInput)(nil)).Elem(), GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterInput)(nil)).Elem(), GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs{})
@@ -3076,6 +3406,8 @@ func init() {
 	pulumi.RegisterOutputType(AwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput{})
 	pulumi.RegisterOutputType(AwsCloudwatchScrapeJobServiceOutput{})
 	pulumi.RegisterOutputType(AwsCloudwatchScrapeJobServiceArrayOutput{})
+	pulumi.RegisterOutputType(AwsCloudwatchScrapeJobServiceEnhancedMetricOutput{})
+	pulumi.RegisterOutputType(AwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput{})
 	pulumi.RegisterOutputType(AwsCloudwatchScrapeJobServiceMetricOutput{})
 	pulumi.RegisterOutputType(AwsCloudwatchScrapeJobServiceMetricArrayOutput{})
 	pulumi.RegisterOutputType(AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput{})
@@ -3098,6 +3430,8 @@ func init() {
 	pulumi.RegisterOutputType(GetAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput{})
 	pulumi.RegisterOutputType(GetAwsCloudwatchScrapeJobServiceOutput{})
 	pulumi.RegisterOutputType(GetAwsCloudwatchScrapeJobServiceArrayOutput{})
+	pulumi.RegisterOutputType(GetAwsCloudwatchScrapeJobServiceEnhancedMetricOutput{})
+	pulumi.RegisterOutputType(GetAwsCloudwatchScrapeJobServiceEnhancedMetricArrayOutput{})
 	pulumi.RegisterOutputType(GetAwsCloudwatchScrapeJobServiceMetricOutput{})
 	pulumi.RegisterOutputType(GetAwsCloudwatchScrapeJobServiceMetricArrayOutput{})
 	pulumi.RegisterOutputType(GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput{})
@@ -3110,6 +3444,8 @@ func init() {
 	pulumi.RegisterOutputType(GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput{})
 	pulumi.RegisterOutputType(GetAwsCloudwatchScrapeJobsScrapeJobServiceOutput{})
 	pulumi.RegisterOutputType(GetAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput{})
+	pulumi.RegisterOutputType(GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricOutput{})
+	pulumi.RegisterOutputType(GetAwsCloudwatchScrapeJobsScrapeJobServiceEnhancedMetricArrayOutput{})
 	pulumi.RegisterOutputType(GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput{})
 	pulumi.RegisterOutputType(GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput{})
 	pulumi.RegisterOutputType(GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput{})

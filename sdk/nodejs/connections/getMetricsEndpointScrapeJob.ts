@@ -22,6 +22,7 @@ export function getMetricsEndpointScrapeJob(args: GetMetricsEndpointScrapeJobArg
     return pulumi.runtime.invoke("grafana:connections/getMetricsEndpointScrapeJob:getMetricsEndpointScrapeJob", {
         "name": args.name,
         "stackId": args.stackId,
+        "staticLabels": args.staticLabels,
     }, opts);
 }
 
@@ -37,6 +38,10 @@ export interface GetMetricsEndpointScrapeJobArgs {
      * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
      */
     stackId: string;
+    /**
+     * Extra labels to add to scraped series
+     */
+    staticLabels?: {[key: string]: string};
 }
 
 /**
@@ -80,6 +85,10 @@ export interface GetMetricsEndpointScrapeJobResult {
      */
     readonly stackId: string;
     /**
+     * Extra labels to add to scraped series
+     */
+    readonly staticLabels?: {[key: string]: string};
+    /**
      * The url to scrape metrics.
      */
     readonly url: string;
@@ -102,6 +111,7 @@ export function getMetricsEndpointScrapeJobOutput(args: GetMetricsEndpointScrape
     return pulumi.runtime.invokeOutput("grafana:connections/getMetricsEndpointScrapeJob:getMetricsEndpointScrapeJob", {
         "name": args.name,
         "stackId": args.stackId,
+        "staticLabels": args.staticLabels,
     }, opts);
 }
 
@@ -117,4 +127,8 @@ export interface GetMetricsEndpointScrapeJobOutputArgs {
      * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
      */
     stackId: pulumi.Input<string>;
+    /**
+     * Extra labels to add to scraped series
+     */
+    staticLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

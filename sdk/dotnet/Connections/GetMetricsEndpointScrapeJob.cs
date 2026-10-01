@@ -97,6 +97,18 @@ namespace Pulumiverse.Grafana.Connections
         [Input("stackId", required: true)]
         public string StackId { get; set; } = null!;
 
+        [Input("staticLabels")]
+        private Dictionary<string, string>? _staticLabels;
+
+        /// <summary>
+        /// Extra labels to add to scraped series
+        /// </summary>
+        public Dictionary<string, string> StaticLabels
+        {
+            get => _staticLabels ?? (_staticLabels = new Dictionary<string, string>());
+            set => _staticLabels = value;
+        }
+
         public GetMetricsEndpointScrapeJobArgs()
         {
         }
@@ -116,6 +128,18 @@ namespace Pulumiverse.Grafana.Connections
         /// </summary>
         [Input("stackId", required: true)]
         public Input<string> StackId { get; set; } = null!;
+
+        [Input("staticLabels")]
+        private InputMap<string>? _staticLabels;
+
+        /// <summary>
+        /// Extra labels to add to scraped series
+        /// </summary>
+        public InputMap<string> StaticLabels
+        {
+            get => _staticLabels ?? (_staticLabels = new InputMap<string>());
+            set => _staticLabels = value;
+        }
 
         public GetMetricsEndpointScrapeJobInvokeArgs()
         {
@@ -164,6 +188,10 @@ namespace Pulumiverse.Grafana.Connections
         /// </summary>
         public readonly string StackId;
         /// <summary>
+        /// Extra labels to add to scraped series
+        /// </summary>
+        public readonly ImmutableDictionary<string, string>? StaticLabels;
+        /// <summary>
         /// The url to scrape metrics.
         /// </summary>
         public readonly string Url;
@@ -188,6 +216,8 @@ namespace Pulumiverse.Grafana.Connections
 
             string stackId,
 
+            ImmutableDictionary<string, string>? staticLabels,
+
             string url)
         {
             AuthenticationBasicPassword = authenticationBasicPassword;
@@ -199,6 +229,7 @@ namespace Pulumiverse.Grafana.Connections
             Name = name;
             ScrapeIntervalSeconds = scrapeIntervalSeconds;
             StackId = stackId;
+            StaticLabels = staticLabels;
             Url = url;
         }
     }

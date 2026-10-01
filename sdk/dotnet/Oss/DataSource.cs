@@ -110,6 +110,24 @@ namespace Pulumiverse.Grafana.Oss
     ///         }),
     ///     });
     /// 
+    ///     // Amazon Managed Service for Prometheus (AMP) using the dedicated plugin.
+    ///     // Use the grafana-amazonprometheus-datasource type with assumeRoleArn.
+    ///     // Note: the core 'prometheus' type does not support IAM role assumption
+    ///     // ('assumeRoleArn' or 'sigV4AssumeRoleArn') — use this AMP plugin type instead.
+    ///     var amp = new Grafana.Oss.DataSource("amp", new()
+    ///     {
+    ///         Type = "grafana-amazonprometheus-datasource",
+    ///         Name = "amp",
+    ///         Url = "https://aps-workspaces.us-east-1.amazonaws.com/workspaces/ws-example",
+    ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["httpMethod"] = "POST",
+    ///             ["authType"] = "default",
+    ///             ["defaultRegion"] = "us-east-1",
+    ///             ["assumeRoleArn"] = "arn:aws:iam::123456789012:role/my-grafana-role",
+    ///         }),
+    ///     });
+    /// 
     /// });
     /// ```
     /// 

@@ -20,11 +20,11 @@ export function getLabel(args: GetLabelArgs, opts?: pulumi.InvokeOptions): Promi
  */
 export interface GetLabelArgs {
     /**
-     * The key for the label.
+     * The key for the label. Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter.
      */
     key: string;
     /**
-     * The value of the label.
+     * The value of the label. When the label is used as a static label, values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit. When the label is used as a dynamic label, the value is a Jinja2 template evaluated when an alert is received, and is not restricted.
      */
     value: string;
 }
@@ -38,11 +38,11 @@ export interface GetLabelResult {
      */
     readonly id: string;
     /**
-     * The key for the label.
+     * The key for the label. Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter.
      */
     readonly key: string;
     /**
-     * The value of the label.
+     * The value of the label. When the label is used as a static label, values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit. When the label is used as a dynamic label, the value is a Jinja2 template evaluated when an alert is received, and is not restricted.
      */
     readonly value: string;
 }
@@ -62,11 +62,11 @@ export function getLabelOutput(args: GetLabelOutputArgs, opts?: pulumi.InvokeOut
  */
 export interface GetLabelOutputArgs {
     /**
-     * The key for the label.
+     * The key for the label. Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter.
      */
     key: pulumi.Input<string>;
     /**
-     * The value of the label.
+     * The value of the label. When the label is used as a static label, values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit. When the label is used as a dynamic label, the value is a Jinja2 template evaluated when an alert is received, and is not restricted.
      */
     value: pulumi.Input<string>;
 }

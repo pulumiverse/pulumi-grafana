@@ -30,7 +30,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<Outputs.IntegrationDefaultRoute> DefaultRoute { get; private set; } = null!;
 
         /// <summary>
-        /// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
+        /// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are Jinja2 templates evaluated when an alert is received, and are not restricted.
         /// </summary>
         [Output("dynamicLabels")]
         public Output<ImmutableArray<ImmutableDictionary<string, string>>> DynamicLabels { get; private set; } = null!;
@@ -42,7 +42,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<string> InboundEmail { get; private set; } = null!;
 
         /// <summary>
-        /// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
+        /// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableArray<ImmutableDictionary<string, string>>> Labels { get; private set; } = null!;
@@ -134,7 +134,7 @@ namespace Pulumiverse.Grafana.OnCall
         private InputList<ImmutableDictionary<string, string>>? _dynamicLabels;
 
         /// <summary>
-        /// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
+        /// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are Jinja2 templates evaluated when an alert is received, and are not restricted.
         /// </summary>
         public InputList<ImmutableDictionary<string, string>> DynamicLabels
         {
@@ -146,7 +146,7 @@ namespace Pulumiverse.Grafana.OnCall
         private InputList<ImmutableDictionary<string, string>>? _labels;
 
         /// <summary>
-        /// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
+        /// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit.
         /// </summary>
         public InputList<ImmutableDictionary<string, string>> Labels
         {
@@ -196,7 +196,7 @@ namespace Pulumiverse.Grafana.OnCall
         private InputList<ImmutableDictionary<string, string>>? _dynamicLabels;
 
         /// <summary>
-        /// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
+        /// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are Jinja2 templates evaluated when an alert is received, and are not restricted.
         /// </summary>
         public InputList<ImmutableDictionary<string, string>> DynamicLabels
         {
@@ -214,7 +214,7 @@ namespace Pulumiverse.Grafana.OnCall
         private InputList<ImmutableDictionary<string, string>>? _labels;
 
         /// <summary>
-        /// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
+        /// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource). Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter. Values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit.
         /// </summary>
         public InputList<ImmutableDictionary<string, string>> Labels
         {

@@ -9,10 +9,10 @@ import * as utilities from "../utilities";
 /**
  * This data source allows you to look up an existing Grafana Cloud Azure Credential resource in your stack.
  *
- * See the Grafana Provider configuration docs
+ * Refer to Configure authentication for the Grafana Provider
  * for information on authentication and required access policy scopes.
  *
- * * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/azure/)
+ * * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-infrastructure/monitor-cloud-provider/azure/)
  *
  * ## Example Usage
  *
@@ -161,10 +161,10 @@ export interface GetAzureCredentialResult {
 /**
  * This data source allows you to look up an existing Grafana Cloud Azure Credential resource in your stack.
  *
- * See the Grafana Provider configuration docs
+ * Refer to Configure authentication for the Grafana Provider
  * for information on authentication and required access policy scopes.
  *
- * * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/azure/)
+ * * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-infrastructure/monitor-cloud-provider/azure/)
  *
  * ## Example Usage
  *

@@ -24,9 +24,9 @@ func GetLabel(ctx *pulumi.Context, args *GetLabelArgs, opts ...pulumi.InvokeOpti
 
 // A collection of arguments for invoking getLabel.
 type GetLabelArgs struct {
-	// The key for the label.
+	// The key for the label. Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter.
 	Key string `pulumi:"key"`
-	// The value of the label.
+	// The value of the label. When the label is used as a static label, values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit. When the label is used as a dynamic label, the value is a Jinja2 template evaluated when an alert is received, and is not restricted.
 	Value string `pulumi:"value"`
 }
 
@@ -34,9 +34,9 @@ type GetLabelArgs struct {
 type GetLabelResult struct {
 	// The ID of the label.
 	Id string `pulumi:"id"`
-	// The key for the label.
+	// The key for the label. Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter.
 	Key string `pulumi:"key"`
-	// The value of the label.
+	// The value of the label. When the label is used as a static label, values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit. When the label is used as a dynamic label, the value is a Jinja2 template evaluated when an alert is received, and is not restricted.
 	Value string `pulumi:"value"`
 }
 
@@ -51,9 +51,9 @@ func GetLabelOutput(ctx *pulumi.Context, args GetLabelOutputArgs, opts ...pulumi
 
 // A collection of arguments for invoking getLabel.
 type GetLabelOutputArgs struct {
-	// The key for the label.
+	// The key for the label. Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter.
 	Key pulumi.StringInput `pulumi:"key"`
-	// The value of the label.
+	// The value of the label. When the label is used as a static label, values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit. When the label is used as a dynamic label, the value is a Jinja2 template evaluated when an alert is received, and is not restricted.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -81,12 +81,12 @@ func (o GetLabelResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLabelResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The key for the label.
+// The key for the label. Keys are 1-63 characters, can only contain alphanumeric characters or underscores, and must start and end with a letter.
 func (o GetLabelResultOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLabelResult) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// The value of the label.
+// The value of the label. When the label is used as a static label, values are 1-63 characters, can only contain alphanumeric characters, hyphens, underscores and periods, must start with a letter and must end with a letter or digit. When the label is used as a dynamic label, the value is a Jinja2 template evaluated when an alert is received, and is not restricted.
 func (o GetLabelResultOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLabelResult) string { return v.Value }).(pulumi.StringOutput)
 }

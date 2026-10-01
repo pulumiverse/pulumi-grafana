@@ -16358,8 +16358,8 @@ func (o RuleGroupRuleDataRelativeTimeRangeOutput) To() pulumi.IntOutput {
 type RuleGroupRuleNotificationSettings struct {
 	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
 	ActiveTimings []string `pulumi:"activeTimings"`
-	// The contact point to route notifications that match this rule to.
-	ContactPoint string `pulumi:"contactPoint"`
+	// The contact point to route notifications that match this rule to. Exactly one of `contactPoint` or `policy` must be set.
+	ContactPoint *string `pulumi:"contactPoint"`
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
 	GroupBies []string `pulumi:"groupBies"`
 	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
@@ -16368,6 +16368,8 @@ type RuleGroupRuleNotificationSettings struct {
 	GroupWait *string `pulumi:"groupWait"`
 	// A list of mute timing names to apply to alerts that match this policy.
 	MuteTimings []string `pulumi:"muteTimings"`
+	// The name of the notification policy to route notifications that match this rule through. Mutually exclusive with `contactPoint` and all other fields in this block. Exactly one of `contactPoint` or `policy` must be set.
+	Policy *string `pulumi:"policy"`
 	// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
 	RepeatInterval *string `pulumi:"repeatInterval"`
 }
@@ -16386,8 +16388,8 @@ type RuleGroupRuleNotificationSettingsInput interface {
 type RuleGroupRuleNotificationSettingsArgs struct {
 	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
 	ActiveTimings pulumi.StringArrayInput `pulumi:"activeTimings"`
-	// The contact point to route notifications that match this rule to.
-	ContactPoint pulumi.StringInput `pulumi:"contactPoint"`
+	// The contact point to route notifications that match this rule to. Exactly one of `contactPoint` or `policy` must be set.
+	ContactPoint pulumi.StringPtrInput `pulumi:"contactPoint"`
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
 	GroupBies pulumi.StringArrayInput `pulumi:"groupBies"`
 	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
@@ -16396,6 +16398,8 @@ type RuleGroupRuleNotificationSettingsArgs struct {
 	GroupWait pulumi.StringPtrInput `pulumi:"groupWait"`
 	// A list of mute timing names to apply to alerts that match this policy.
 	MuteTimings pulumi.StringArrayInput `pulumi:"muteTimings"`
+	// The name of the notification policy to route notifications that match this rule through. Mutually exclusive with `contactPoint` and all other fields in this block. Exactly one of `contactPoint` or `policy` must be set.
+	Policy pulumi.StringPtrInput `pulumi:"policy"`
 	// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
 	RepeatInterval pulumi.StringPtrInput `pulumi:"repeatInterval"`
 }
@@ -16482,9 +16486,9 @@ func (o RuleGroupRuleNotificationSettingsOutput) ActiveTimings() pulumi.StringAr
 	return o.ApplyT(func(v RuleGroupRuleNotificationSettings) []string { return v.ActiveTimings }).(pulumi.StringArrayOutput)
 }
 
-// The contact point to route notifications that match this rule to.
-func (o RuleGroupRuleNotificationSettingsOutput) ContactPoint() pulumi.StringOutput {
-	return o.ApplyT(func(v RuleGroupRuleNotificationSettings) string { return v.ContactPoint }).(pulumi.StringOutput)
+// The contact point to route notifications that match this rule to. Exactly one of `contactPoint` or `policy` must be set.
+func (o RuleGroupRuleNotificationSettingsOutput) ContactPoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleGroupRuleNotificationSettings) *string { return v.ContactPoint }).(pulumi.StringPtrOutput)
 }
 
 // A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
@@ -16505,6 +16509,11 @@ func (o RuleGroupRuleNotificationSettingsOutput) GroupWait() pulumi.StringPtrOut
 // A list of mute timing names to apply to alerts that match this policy.
 func (o RuleGroupRuleNotificationSettingsOutput) MuteTimings() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RuleGroupRuleNotificationSettings) []string { return v.MuteTimings }).(pulumi.StringArrayOutput)
+}
+
+// The name of the notification policy to route notifications that match this rule through. Mutually exclusive with `contactPoint` and all other fields in this block. Exactly one of `contactPoint` or `policy` must be set.
+func (o RuleGroupRuleNotificationSettingsOutput) Policy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleGroupRuleNotificationSettings) *string { return v.Policy }).(pulumi.StringPtrOutput)
 }
 
 // Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
@@ -16546,13 +16555,13 @@ func (o RuleGroupRuleNotificationSettingsPtrOutput) ActiveTimings() pulumi.Strin
 	}).(pulumi.StringArrayOutput)
 }
 
-// The contact point to route notifications that match this rule to.
+// The contact point to route notifications that match this rule to. Exactly one of `contactPoint` or `policy` must be set.
 func (o RuleGroupRuleNotificationSettingsPtrOutput) ContactPoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RuleGroupRuleNotificationSettings) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.ContactPoint
+		return v.ContactPoint
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -16594,6 +16603,16 @@ func (o RuleGroupRuleNotificationSettingsPtrOutput) MuteTimings() pulumi.StringA
 		}
 		return v.MuteTimings
 	}).(pulumi.StringArrayOutput)
+}
+
+// The name of the notification policy to route notifications that match this rule through. Mutually exclusive with `contactPoint` and all other fields in this block. Exactly one of `contactPoint` or `policy` must be set.
+func (o RuleGroupRuleNotificationSettingsPtrOutput) Policy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleGroupRuleNotificationSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Policy
+	}).(pulumi.StringPtrOutput)
 }
 
 // Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.

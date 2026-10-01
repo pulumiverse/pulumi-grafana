@@ -26,7 +26,7 @@ class GetMetricsEndpointScrapeJobResult:
     """
     A collection of values returned by getMetricsEndpointScrapeJob.
     """
-    def __init__(__self__, authentication_basic_password=None, authentication_basic_username=None, authentication_bearer_token=None, authentication_method=None, enabled=None, id=None, name=None, scrape_interval_seconds=None, stack_id=None, url=None):
+    def __init__(__self__, authentication_basic_password=None, authentication_basic_username=None, authentication_bearer_token=None, authentication_method=None, enabled=None, id=None, name=None, scrape_interval_seconds=None, stack_id=None, static_labels=None, url=None):
         if authentication_basic_password and not isinstance(authentication_basic_password, str):
             raise TypeError("Expected argument 'authentication_basic_password' to be a str")
         pulumi.set(__self__, "authentication_basic_password", authentication_basic_password)
@@ -54,6 +54,9 @@ class GetMetricsEndpointScrapeJobResult:
         if stack_id and not isinstance(stack_id, str):
             raise TypeError("Expected argument 'stack_id' to be a str")
         pulumi.set(__self__, "stack_id", stack_id)
+        if static_labels and not isinstance(static_labels, dict):
+            raise TypeError("Expected argument 'static_labels' to be a dict")
+        pulumi.set(__self__, "static_labels", static_labels)
         if url and not isinstance(url, str):
             raise TypeError("Expected argument 'url' to be a str")
         pulumi.set(__self__, "url", url)
@@ -131,6 +134,14 @@ class GetMetricsEndpointScrapeJobResult:
         return pulumi.get(self, "stack_id")
 
     @_builtins.property
+    @pulumi.getter(name="staticLabels")
+    def static_labels(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Extra labels to add to scraped series
+        """
+        return pulumi.get(self, "static_labels")
+
+    @_builtins.property
     @pulumi.getter
     def url(self) -> _builtins.str:
         """
@@ -154,11 +165,13 @@ class AwaitableGetMetricsEndpointScrapeJobResult(GetMetricsEndpointScrapeJobResu
             name=self.name,
             scrape_interval_seconds=self.scrape_interval_seconds,
             stack_id=self.stack_id,
+            static_labels=self.static_labels,
             url=self.url)
 
 
 def get_metrics_endpoint_scrape_job(name: Optional[_builtins.str] = None,
                                     stack_id: Optional[_builtins.str] = None,
+                                    static_labels: Optional[Mapping[str, _builtins.str]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMetricsEndpointScrapeJobResult:
     """
     ## Example Usage
@@ -174,10 +187,12 @@ def get_metrics_endpoint_scrape_job(name: Optional[_builtins.str] = None,
 
     :param _builtins.str name: The name of the Metrics Endpoint Scrape Job. Part of the Terraform Resource ID.
     :param _builtins.str stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+    :param Mapping[str, _builtins.str] static_labels: Extra labels to add to scraped series
     """
     __args__ = dict()
     __args__['name'] = name
     __args__['stackId'] = stack_id
+    __args__['staticLabels'] = static_labels
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('grafana:connections/getMetricsEndpointScrapeJob:getMetricsEndpointScrapeJob', __args__, opts=opts, typ=GetMetricsEndpointScrapeJobResult).value
 
@@ -191,9 +206,11 @@ def get_metrics_endpoint_scrape_job(name: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         scrape_interval_seconds=pulumi.get(__ret__, 'scrape_interval_seconds'),
         stack_id=pulumi.get(__ret__, 'stack_id'),
+        static_labels=pulumi.get(__ret__, 'static_labels'),
         url=pulumi.get(__ret__, 'url'))
 def get_metrics_endpoint_scrape_job_output(name: Optional[pulumi.Input[_builtins.str]] = None,
                                            stack_id: Optional[pulumi.Input[_builtins.str]] = None,
+                                           static_labels: Optional[pulumi.Input[Optional[Mapping[str, _builtins.str]]]] = None,
                                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMetricsEndpointScrapeJobResult]:
     """
     ## Example Usage
@@ -209,10 +226,12 @@ def get_metrics_endpoint_scrape_job_output(name: Optional[pulumi.Input[_builtins
 
     :param _builtins.str name: The name of the Metrics Endpoint Scrape Job. Part of the Terraform Resource ID.
     :param _builtins.str stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+    :param Mapping[str, _builtins.str] static_labels: Extra labels to add to scraped series
     """
     __args__ = dict()
     __args__['name'] = name
     __args__['stackId'] = stack_id
+    __args__['staticLabels'] = static_labels
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:connections/getMetricsEndpointScrapeJob:getMetricsEndpointScrapeJob', __args__, opts=opts, typ=GetMetricsEndpointScrapeJobResult)
     return __ret__.apply(lambda __response__: GetMetricsEndpointScrapeJobResult(
@@ -225,4 +244,5 @@ def get_metrics_endpoint_scrape_job_output(name: Optional[pulumi.Input[_builtins
         name=pulumi.get(__response__, 'name'),
         scrape_interval_seconds=pulumi.get(__response__, 'scrape_interval_seconds'),
         stack_id=pulumi.get(__response__, 'stack_id'),
+        static_labels=pulumi.get(__response__, 'static_labels'),
         url=pulumi.get(__response__, 'url')))

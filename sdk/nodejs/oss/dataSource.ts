@@ -81,6 +81,21 @@ import * as utilities from "../utilities";
  *         basicAuthPassword: "password",
  *     }),
  * });
+ * // Amazon Managed Service for Prometheus (AMP) using the dedicated plugin.
+ * // Use the grafana-amazonprometheus-datasource type with assumeRoleArn.
+ * // Note: the core 'prometheus' type does not support IAM role assumption
+ * // ('assumeRoleArn' or 'sigV4AssumeRoleArn') — use this AMP plugin type instead.
+ * const amp = new grafana.oss.DataSource("amp", {
+ *     type: "grafana-amazonprometheus-datasource",
+ *     name: "amp",
+ *     url: "https://aps-workspaces.us-east-1.amazonaws.com/workspaces/ws-example",
+ *     jsonDataEncoded: JSON.stringify({
+ *         httpMethod: "POST",
+ *         authType: "default",
+ *         defaultRegion: "us-east-1",
+ *         assumeRoleArn: "arn:aws:iam::123456789012:role/my-grafana-role",
+ *     }),
+ * });
  * ```
  *
  * ## Import
