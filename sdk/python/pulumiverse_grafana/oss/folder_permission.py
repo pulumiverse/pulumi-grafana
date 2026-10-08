@@ -159,7 +159,6 @@ class FolderPermission(pulumi.CustomResource):
             password="my-password")
         collection = grafana.oss.Folder("collection", title="Folder Title")
         collection_permission = grafana.oss.FolderPermission("collectionPermission",
-            folder_uid=collection.uid,
             permissions=[
                 {
                     "role": "Editor",
@@ -173,7 +172,8 @@ class FolderPermission(pulumi.CustomResource):
                     "user_id": user.id,
                     "permission": "Admin",
                 },
-            ])
+            ],
+            folder_uid=collection.uid)
         ```
 
         ## Import
@@ -214,7 +214,6 @@ class FolderPermission(pulumi.CustomResource):
             password="my-password")
         collection = grafana.oss.Folder("collection", title="Folder Title")
         collection_permission = grafana.oss.FolderPermission("collectionPermission",
-            folder_uid=collection.uid,
             permissions=[
                 {
                     "role": "Editor",
@@ -228,7 +227,8 @@ class FolderPermission(pulumi.CustomResource):
                     "user_id": user.id,
                     "permission": "Admin",
                 },
-            ])
+            ],
+            folder_uid=collection.uid)
         ```
 
         ## Import

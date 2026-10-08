@@ -38,11 +38,11 @@ namespace Pulumiverse.Grafana.Alerting.V0Alpha1
     ///         },
     ///         Spec = new Grafana.Alerting.V0Alpha1.Inputs.RecordingRuleSpecArgs
     ///         {
-    ///             Title = "Example Recording Rule",
     ///             Trigger = new Grafana.Alerting.V0Alpha1.Inputs.RecordingRuleSpecTriggerArgs
     ///             {
     ///                 Interval = "1m",
     ///             },
+    ///             Title = "Example Recording Rule",
     ///             Paused = true,
     ///             Expressions = 
     ///             {

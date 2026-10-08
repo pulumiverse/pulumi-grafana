@@ -30,7 +30,6 @@ namespace Pulumiverse.Grafana.Alerting
     /// {
     ///     var myContactPoint = new Grafana.Alerting.ContactPoint("my_contact_point", new()
     ///     {
-    ///         Name = "My Contact Point",
     ///         Emails = new[]
     ///         {
     ///             new Grafana.Alerting.Inputs.ContactPointEmailArgs
@@ -46,6 +45,7 @@ namespace Pulumiverse.Grafana.Alerting
     ///                 DisableResolveMessage = false,
     ///             },
     ///         },
+    ///         Name = "My Contact Point",
     ///     });
     /// 
     /// });

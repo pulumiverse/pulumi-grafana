@@ -64,8 +64,17 @@ namespace Pulumiverse.Grafana.Cloud.V1Alpha1
     ///         },
     ///         Spec = new Grafana.Cloud.V1Alpha1.Inputs.ServiceModelComponentSpecArgs
     ///         {
-    ///             Title = "Checkout Service",
-    ///             Description = "Handles checkout and payment orchestration.",
+    ///             OwnerRef = new Grafana.Cloud.V1Alpha1.Inputs.ServiceModelComponentSpecOwnerRefArgs
+    ///             {
+    ///                 Name = checkout.TeamUid,
+    ///             },
+    ///             DependsOnRefs = new[]
+    ///             {
+    ///                 new Grafana.Cloud.V1Alpha1.Inputs.ServiceModelComponentSpecDependsOnRefArgs
+    ///                 {
+    ///                     Name = payments.Metadata.Apply(metadata =&gt; metadata?.Uid),
+    ///                 },
+    ///             },
     ///             Identifiers = new[]
     ///             {
     ///                 new Grafana.Cloud.V1Alpha1.Inputs.ServiceModelComponentSpecIdentifierArgs
@@ -79,17 +88,6 @@ namespace Pulumiverse.Grafana.Cloud.V1Alpha1
     ///                     Value = "checkout-prod",
     ///                 },
     ///             },
-    ///             OwnerRef = new Grafana.Cloud.V1Alpha1.Inputs.ServiceModelComponentSpecOwnerRefArgs
-    ///             {
-    ///                 Name = checkout.TeamUid,
-    ///             },
-    ///             DependsOnRefs = new[]
-    ///             {
-    ///                 new Grafana.Cloud.V1Alpha1.Inputs.ServiceModelComponentSpecDependsOnRefArgs
-    ///                 {
-    ///                     Name = payments.Metadata.Apply(metadata =&gt; metadata?.Uid),
-    ///                 },
-    ///             },
     ///             Links = new[]
     ///             {
     ///                 new Grafana.Cloud.V1Alpha1.Inputs.ServiceModelComponentSpecLinkArgs
@@ -99,6 +97,8 @@ namespace Pulumiverse.Grafana.Cloud.V1Alpha1
     ///                     Type = "repository",
     ///                 },
     ///             },
+    ///             Title = "Checkout Service",
+    ///             Description = "Handles checkout and payment orchestration.",
     ///         },
     ///     });
     /// 

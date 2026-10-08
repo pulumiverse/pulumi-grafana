@@ -60,18 +60,18 @@ import (
 //			// 3. Enables the stack with the configured datasets
 //			// Step 1: Create a Cloud Access Policy with required scopes
 //			asserts, err := cloud.NewAccessPolicy(ctx, "asserts", &cloud.AccessPolicyArgs{
+//				Realms: cloud.AccessPolicyRealmArray{
+//					&cloud.AccessPolicyRealmArgs{
+//						Type:       pulumi.String("stack"),
+//						Identifier: pulumi.String(pulumi.String(stackId)),
+//					},
+//				},
 //				Name:        pulumi.String("asserts-stack-policy"),
 //				DisplayName: pulumi.String("Asserts Stack Policy"),
 //				Scopes: pulumi.StringArray{
 //					pulumi.String("stacks:read"),
 //					pulumi.String("metrics:read"),
 //					pulumi.String("metrics:write"),
-//				},
-//				Realms: cloud.AccessPolicyRealmArray{
-//					&cloud.AccessPolicyRealmArgs{
-//						Type:       pulumi.String("stack"),
-//						Identifier: pulumi.String(pulumi.String(stackId)),
-//					},
 //				},
 //			})
 //			if err != nil {
@@ -119,11 +119,8 @@ import (
 //			// Alternative: Configure the Asserts Stack with manual dataset configuration.
 //			// Use this when your metrics use non-standard labels (e.g., a custom environment label).
 //			_, err = assert.NewStack(ctx, "custom", &assert.StackArgs{
-//				CloudAccessPolicyToken: assertsAccessPolicyToken.Token,
-//				GrafanaToken:           assertsStackServiceAccountToken.Key,
 //				Datasets: assert.StackDatasetArray{
 //					&assert.StackDatasetArgs{
-//						Type: pulumi.String("kubernetes"),
 //						FilterGroups: assert.StackDatasetFilterGroupArray{
 //							&assert.StackDatasetFilterGroupArgs{
 //								EnvLabel:  pulumi.String("deployment_environment"),
@@ -138,13 +135,11 @@ import (
 //								},
 //							},
 //						},
+//						Type: pulumi.String("kubernetes"),
 //					},
 //					&assert.StackDatasetArgs{
-//						Type: pulumi.String("prometheus"),
 //						FilterGroups: assert.StackDatasetFilterGroupArray{
 //							&assert.StackDatasetFilterGroupArgs{
-//								EnvLabel: pulumi.String("environment"),
-//								EnvName:  pulumi.String("prod"),
 //								Filters: assert.StackDatasetFilterGroupFilterArray{
 //									&assert.StackDatasetFilterGroupFilterArgs{
 //										Name:     pulumi.String("region"),
@@ -155,10 +150,15 @@ import (
 //										},
 //									},
 //								},
+//								EnvLabel: pulumi.String("environment"),
+//								EnvName:  pulumi.String("prod"),
 //							},
 //						},
+//						Type: pulumi.String("prometheus"),
 //					},
 //				},
+//				CloudAccessPolicyToken: assertsAccessPolicyToken.Token,
+//				GrafanaToken:           assertsStackServiceAccountToken.Key,
 //			})
 //			if err != nil {
 //				return err

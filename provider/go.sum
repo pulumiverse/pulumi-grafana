@@ -3492,8 +3492,8 @@ github.com/grafana/synthetic-monitoring-agent v0.62.0 h1:svWZHsORwEpPxmZ0b8FPOJK
 github.com/grafana/synthetic-monitoring-agent v0.62.0/go.mod h1:cJGmvK82UewpVDce/AAAx9N0IWFiP36S2jEkLYGS9E8=
 github.com/grafana/synthetic-monitoring-api-go-client v0.20.5 h1:FTJ4XEQQ8BSRp44MQWHphG/rZPZuN9D88b5Kruxme5A=
 github.com/grafana/synthetic-monitoring-api-go-client v0.20.5/go.mod h1:pp7YXVfOnRJGfpTZaSvT9ifXVo+utqlWE7ZUjE5BL+g=
-github.com/grafana/terraform-provider-grafana/v4 v4.47.0 h1:Rd/PSOOfKApOPLQ+lyfwyJWV8eKmWawMHZnaqujmsF4=
-github.com/grafana/terraform-provider-grafana/v4 v4.47.0/go.mod h1:HpE6pisZ/WKt9r1xqCxM2HUupKG04J2miRo/HWAFOU4=
+github.com/grafana/terraform-provider-grafana/v4 v4.48.0 h1:byYns4WMZBPd8lA2fI6Wz2kDBCBJ3TCS78abkwdGAOU=
+github.com/grafana/terraform-provider-grafana/v4 v4.48.0/go.mod h1:HpE6pisZ/WKt9r1xqCxM2HUupKG04J2miRo/HWAFOU4=
 github.com/grpc-ecosystem/go-grpc-middleware v1.0.1-0.20190118093823-f849b5445de4/go.mod h1:FiyG127CGDf3tlThmgyCl78X/SZQqEOJBCDaAfeWzPs=
 github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus v1.1.0 h1:QGLs/O40yoNK9vmy4rhUGBVyMf1lISBGtXRpsu/Qu/o=
 github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus v1.1.0/go.mod h1:hM2alZsMUni80N33RBe6J0e423LB+odMj7d3EMP9l20=

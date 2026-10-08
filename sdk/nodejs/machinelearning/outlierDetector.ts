@@ -24,6 +24,13 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const myDbscanOutlierDetector = new grafana.machinelearning.OutlierDetector("my_dbscan_outlier_detector", {
+ *     algorithm: {
+ *         config: {
+ *             epsilon: 1,
+ *         },
+ *         name: "dbscan",
+ *         sensitivity: 0.5,
+ *     },
  *     name: "My DBSCAN outlier detector",
  *     description: "My DBSCAN Outlier Detector",
  *     metric: "tf_test_dbscan_job",
@@ -33,13 +40,6 @@ import * as utilities from "../utilities";
  *         expr: "grafanacloud_grafana_instance_active_user_count",
  *     },
  *     interval: 300,
- *     algorithm: {
- *         name: "dbscan",
- *         sensitivity: 0.5,
- *         config: {
- *             epsilon: 1,
- *         },
- *     },
  * });
  * ```
  *
@@ -52,6 +52,10 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const myMadOutlierDetector = new grafana.machinelearning.OutlierDetector("my_mad_outlier_detector", {
+ *     algorithm: {
+ *         name: "mad",
+ *         sensitivity: 0.7,
+ *     },
  *     name: "My MAD outlier detector",
  *     description: "My MAD Outlier Detector",
  *     metric: "tf_test_mad_job",
@@ -61,10 +65,6 @@ import * as utilities from "../utilities";
  *         expr: "grafanacloud_grafana_instance_active_user_count",
  *     },
  *     interval: 300,
- *     algorithm: {
- *         name: "mad",
- *         sensitivity: 0.7,
- *     },
  * });
  * ```
  *

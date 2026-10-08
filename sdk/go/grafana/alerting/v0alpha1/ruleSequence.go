@@ -69,10 +69,10 @@ import (
 // FolderUid: rulesequenceFolder.Uid,
 // },
 // Spec: &alertingv0alpha1.RecordingRuleSpecArgs{
-// Title: pulumi.String("Example Sequence Recording Rule"),
 // Trigger: &alertingv0alpha1.RecordingRuleSpecTriggerArgs{
 // Interval: pulumi.String("1m"),
 // },
+// Title: pulumi.String("Example Sequence Recording Rule"),
 // Expressions: pulumi.StringMap{
 // "A": pulumi.String(pulumi.String(json0)),
 // },
@@ -116,10 +116,10 @@ import (
 // FolderUid: rulesequenceFolder.Uid,
 // },
 // Spec: &alertingv0alpha1.AlertRuleSpecArgs{
-// Title: pulumi.String("Example Sequence Alert Rule"),
 // Trigger: &alertingv0alpha1.AlertRuleSpecTriggerArgs{
 // Interval: pulumi.String("1m"),
 // },
+// Title: pulumi.String("Example Sequence Alert Rule"),
 // Expressions: pulumi.StringMap{
 // "A": pulumi.String(pulumi.String(json1)),
 // },

@@ -60,13 +60,23 @@ import (
 //				return err
 //			}
 //			_, err = cloudprovider.NewAwsCloudwatchScrapeJob(ctx, "test", &cloudprovider.AwsCloudwatchScrapeJobArgs{
-//				StackId:              pulumi.String(pulumi.String(test.Id)),
-//				Name:                 pulumi.String("my-cloudwatch-scrape-job"),
-//				AwsAccountResourceId: testAwsAccount.ResourceId,
-//				ExportTags:           pulumi.Bool(true),
+//				CustomNamespaces: cloudprovider.AwsCloudwatchScrapeJobCustomNamespaceArray{
+//					&cloudprovider.AwsCloudwatchScrapeJobCustomNamespaceArgs{
+//						Metrics: cloudprovider.AwsCloudwatchScrapeJobCustomNamespaceMetricArray{
+//							&cloudprovider.AwsCloudwatchScrapeJobCustomNamespaceMetricArgs{
+//								Name: pulumi.String("CoolMetric"),
+//								Statistics: pulumi.StringArray{
+//									pulumi.String("Maximum"),
+//									pulumi.String("Sum"),
+//								},
+//							},
+//						},
+//						Name:                  pulumi.String("CoolApp"),
+//						ScrapeIntervalSeconds: pulumi.Int(300),
+//					},
+//				},
 //				Services: cloudprovider.AwsCloudwatchScrapeJobServiceArray{
 //					&cloudprovider.AwsCloudwatchScrapeJobServiceArgs{
-//						Name: pulumi.String("AWS/EC2"),
 //						Metrics: cloudprovider.AwsCloudwatchScrapeJobServiceMetricArray{
 //							&cloudprovider.AwsCloudwatchScrapeJobServiceMetricArgs{
 //								Name: pulumi.String("CPUUtilization"),
@@ -81,33 +91,23 @@ import (
 //								},
 //							},
 //						},
-//						ScrapeIntervalSeconds: pulumi.Int(300),
 //						ResourceDiscoveryTagFilters: cloudprovider.AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray{
 //							&cloudprovider.AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs{
 //								Key:   pulumi.String("k8s.io/cluster-autoscaler/enabled"),
 //								Value: pulumi.String("true"),
 //							},
 //						},
+//						Name:                  pulumi.String("AWS/EC2"),
+//						ScrapeIntervalSeconds: pulumi.Int(300),
 //						TagsToAddToMetrics: pulumi.StringArray{
 //							pulumi.String("eks:cluster-name"),
 //						},
 //					},
 //				},
-//				CustomNamespaces: cloudprovider.AwsCloudwatchScrapeJobCustomNamespaceArray{
-//					&cloudprovider.AwsCloudwatchScrapeJobCustomNamespaceArgs{
-//						Name: pulumi.String("CoolApp"),
-//						Metrics: cloudprovider.AwsCloudwatchScrapeJobCustomNamespaceMetricArray{
-//							&cloudprovider.AwsCloudwatchScrapeJobCustomNamespaceMetricArgs{
-//								Name: pulumi.String("CoolMetric"),
-//								Statistics: pulumi.StringArray{
-//									pulumi.String("Maximum"),
-//									pulumi.String("Sum"),
-//								},
-//							},
-//						},
-//						ScrapeIntervalSeconds: pulumi.Int(300),
-//					},
-//				},
+//				StackId:              pulumi.String(pulumi.String(test.Id)),
+//				Name:                 pulumi.String("my-cloudwatch-scrape-job"),
+//				AwsAccountResourceId: testAwsAccount.ResourceId,
+//				ExportTags:           pulumi.Bool(true),
 //				StaticLabels: pulumi.StringMap{
 //					"label1": pulumi.String("value1"),
 //					"label2": pulumi.String("value2"),

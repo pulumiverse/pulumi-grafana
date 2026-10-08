@@ -32,7 +32,6 @@ namespace Pulumiverse.Grafana.Alerting
     /// {
     ///     var aContactPoint = new Grafana.Alerting.ContactPoint("a_contact_point", new()
     ///     {
-    ///         Name = "A Contact Point",
     ///         Emails = new[]
     ///         {
     ///             new Grafana.Alerting.Inputs.ContactPointEmailArgs
@@ -45,11 +44,11 @@ namespace Pulumiverse.Grafana.Alerting
     ///                 Message = "{{ len .Alerts.Firing }} firing.",
     ///             },
     ///         },
+    ///         Name = "A Contact Point",
     ///     });
     /// 
     ///     var aMuteTiming = new Grafana.Alerting.MuteTiming("a_mute_timing", new()
     ///     {
-    ///         Name = "Some Mute Timing",
     ///         Intervals = new[]
     ///         {
     ///             new Grafana.Alerting.Inputs.MuteTimingIntervalArgs
@@ -60,11 +59,11 @@ namespace Pulumiverse.Grafana.Alerting
     ///                 },
     ///             },
     ///         },
+    ///         Name = "Some Mute Timing",
     ///     });
     /// 
     ///     var workingHours = new Grafana.Alerting.MuteTiming("working_hours", new()
     ///     {
-    ///         Name = "Working Hours",
     ///         Intervals = new[]
     ///         {
     ///             new Grafana.Alerting.Inputs.MuteTimingIntervalArgs
@@ -79,18 +78,11 @@ namespace Pulumiverse.Grafana.Alerting
     ///                 },
     ///             },
     ///         },
+    ///         Name = "Working Hours",
     ///     });
     /// 
     ///     var myNotificationPolicy = new Grafana.Alerting.NotificationPolicy("my_notification_policy", new()
     ///     {
-    ///         GroupBies = new[]
-    ///         {
-    ///             "...",
-    ///         },
-    ///         ContactPoint = aContactPoint.Name,
-    ///         GroupWait = "45s",
-    ///         GroupInterval = "6m",
-    ///         RepeatInterval = "3h",
     ///         Policies = new[]
     ///         {
     ///             new Grafana.Alerting.Inputs.NotificationPolicyPolicyArgs
@@ -116,19 +108,6 @@ namespace Pulumiverse.Grafana.Alerting
     ///                         Value = "host.*|host-b.*",
     ///                     },
     ///                 },
-    ///                 ContactPoint = aContactPoint.Name,
-    ///                 Continue = true,
-    ///                 MuteTimings = new[]
-    ///                 {
-    ///                     aMuteTiming.Name,
-    ///                 },
-    ///                 ActiveTimings = new[]
-    ///                 {
-    ///                     workingHours.Name,
-    ///                 },
-    ///                 GroupWait = "45s",
-    ///                 GroupInterval = "6m",
-    ///                 RepeatInterval = "3h",
     ///                 Policies = new[]
     ///                 {
     ///                     new Grafana.Alerting.Inputs.NotificationPolicyPolicyPolicyArgs
@@ -149,6 +128,19 @@ namespace Pulumiverse.Grafana.Alerting
     ///                         },
     ///                     },
     ///                 },
+    ///                 ContactPoint = aContactPoint.Name,
+    ///                 Continue = true,
+    ///                 MuteTimings = new[]
+    ///                 {
+    ///                     aMuteTiming.Name,
+    ///                 },
+    ///                 ActiveTimings = new[]
+    ///                 {
+    ///                     workingHours.Name,
+    ///                 },
+    ///                 GroupWait = "45s",
+    ///                 GroupInterval = "6m",
+    ///                 RepeatInterval = "3h",
     ///             },
     ///             new Grafana.Alerting.Inputs.NotificationPolicyPolicyArgs
     ///             {
@@ -168,6 +160,14 @@ namespace Pulumiverse.Grafana.Alerting
     ///                 },
     ///             },
     ///         },
+    ///         GroupBies = new[]
+    ///         {
+    ///             "...",
+    ///         },
+    ///         ContactPoint = aContactPoint.Name,
+    ///         GroupWait = "45s",
+    ///         GroupInterval = "6m",
+    ///         RepeatInterval = "3h",
     ///     });
     /// 
     /// });

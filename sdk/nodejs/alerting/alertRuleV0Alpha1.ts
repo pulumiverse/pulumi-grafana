@@ -24,10 +24,15 @@ import * as utilities from "../utilities";
  *         folderUid: alertruleFolder.uid,
  *     },
  *     spec: {
- *         title: "Example Alert Rule",
  *         trigger: {
  *             interval: "1m",
  *         },
+ *         notificationSettings: {
+ *             simplifiedRouting: {
+ *                 contactPoint: "grafana-default-email",
+ *             },
+ *         },
+ *         title: "Example Alert Rule",
  *         paused: true,
  *         expressions: {
  *             A: JSON.stringify({
@@ -97,11 +102,6 @@ import * as utilities from "../utilities";
  *         noDataState: "KeepLast",
  *         execErrState: "KeepLast",
  *         missingSeriesEvalsToResolve: 5,
- *         notificationSettings: {
- *             simplifiedRouting: {
- *                 contactPoint: "grafana-default-email",
- *             },
- *         },
  *         panelRef: {
  *             dashboard_uid: "dashboard123",
  *             panel_id: "5",

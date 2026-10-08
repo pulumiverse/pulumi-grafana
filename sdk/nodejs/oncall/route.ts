@@ -20,15 +20,11 @@ import * as utilities from "../utilities";
  * });
  * const _default = new grafana.oncall.EscalationChain("default", {name: "default"});
  * const exampleIntegration = new grafana.oncall.Integration("example_integration", {
+ *     defaultRoute: {},
  *     name: "Grafana Integration",
  *     type: "grafana",
- *     defaultRoute: {},
  * });
  * const exampleRoute = new grafana.oncall.Route("example_route", {
- *     integrationId: exampleIntegration.id,
- *     escalationChainId: _default.id,
- *     routingRegex: "us-(east|west)",
- *     position: 0,
  *     slack: {
  *         channelId: exampleSlackChannel.then(exampleSlackChannel => exampleSlackChannel.slackId),
  *         enabled: true,
@@ -41,6 +37,10 @@ import * as utilities from "../utilities";
  *         id: "ONCALLMSTEAMSID",
  *         enabled: false,
  *     },
+ *     integrationId: exampleIntegration.id,
+ *     escalationChainId: _default.id,
+ *     routingRegex: "us-(east|west)",
+ *     position: 0,
  * });
  * ```
  *

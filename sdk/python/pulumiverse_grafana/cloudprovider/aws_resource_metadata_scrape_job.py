@@ -317,17 +317,17 @@ class AwsResourceMetadataScrapeJob(pulumi.CustomResource):
                 "us-west-1",
             ])
         test_aws_resource_metadata_scrape_job = grafana.cloudprovider.AwsResourceMetadataScrapeJob("test",
-            stack_id=test.id,
-            name="my-aws-resource-metadata-scrape-job",
-            aws_account_resource_id=test_aws_account.resource_id,
             services=[{
-                "name": "AWS/EC2",
-                "scrape_interval_seconds": 300,
                 "resource_discovery_tag_filters": [{
                     "key": "k8s.io/cluster-autoscaler/enabled",
                     "value": "true",
                 }],
+                "name": "AWS/EC2",
+                "scrape_interval_seconds": 300,
             }],
+            stack_id=test.id,
+            name="my-aws-resource-metadata-scrape-job",
+            aws_account_resource_id=test_aws_account.resource_id,
             static_labels={
                 "label1": "value1",
                 "label2": "value2",
@@ -386,17 +386,17 @@ class AwsResourceMetadataScrapeJob(pulumi.CustomResource):
                 "us-west-1",
             ])
         test_aws_resource_metadata_scrape_job = grafana.cloudprovider.AwsResourceMetadataScrapeJob("test",
-            stack_id=test.id,
-            name="my-aws-resource-metadata-scrape-job",
-            aws_account_resource_id=test_aws_account.resource_id,
             services=[{
-                "name": "AWS/EC2",
-                "scrape_interval_seconds": 300,
                 "resource_discovery_tag_filters": [{
                     "key": "k8s.io/cluster-autoscaler/enabled",
                     "value": "true",
                 }],
+                "name": "AWS/EC2",
+                "scrape_interval_seconds": 300,
             }],
+            stack_id=test.id,
+            name="my-aws-resource-metadata-scrape-job",
+            aws_account_resource_id=test_aws_account.resource_id,
             static_labels={
                 "label1": "value1",
                 "label2": "value2",

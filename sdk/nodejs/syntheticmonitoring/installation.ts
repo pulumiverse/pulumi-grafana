@@ -36,6 +36,10 @@ import * as utilities from "../utilities";
  * });
  * // Step 2: Install Synthetic Monitoring on the stack
  * const smMetricsPublish = new grafana.cloud.AccessPolicy("sm_metrics_publish", {
+ *     realms: [{
+ *         type: "stack",
+ *         identifier: smStack.id,
+ *     }],
  *     region: cloudRegion,
  *     name: "metric-publisher-for-sm",
  *     scopes: [
@@ -44,10 +48,6 @@ import * as utilities from "../utilities";
  *         "logs:write",
  *         "traces:write",
  *     ],
- *     realms: [{
- *         type: "stack",
- *         identifier: smStack.id,
- *     }],
  * });
  * const smMetricsPublishAccessPolicyToken = new grafana.cloud.AccessPolicyToken("sm_metrics_publish", {
  *     region: cloudRegion,

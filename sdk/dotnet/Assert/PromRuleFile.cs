@@ -26,14 +26,10 @@ namespace Pulumiverse.Grafana.Assert
     ///     // Basic recording rule for latency metrics
     ///     var latencyMetrics = new Grafana.Assert.PromRuleFile("latency_metrics", new()
     ///     {
-    ///         Name = "custom-latency-metrics",
-    ///         Active = true,
     ///         Groups = new[]
     ///         {
     ///             new Grafana.Assert.Inputs.PromRuleFileGroupArgs
     ///             {
-    ///                 Name = "latency_recording_rules",
-    ///                 Interval = "30s",
     ///                 Rules = new[]
     ///                 {
     ///                     new Grafana.Assert.Inputs.PromRuleFileGroupRuleArgs
@@ -57,21 +53,21 @@ namespace Pulumiverse.Grafana.Assert
     ///                         },
     ///                     },
     ///                 },
+    ///                 Name = "latency_recording_rules",
+    ///                 Interval = "30s",
     ///             },
     ///         },
+    ///         Name = "custom-latency-metrics",
+    ///         Active = true,
     ///     });
     /// 
     ///     // Alert rules for high latency
     ///     var latencyAlerts = new Grafana.Assert.PromRuleFile("latency_alerts", new()
     ///     {
-    ///         Name = "custom-latency-alerts",
-    ///         Active = true,
     ///         Groups = new[]
     ///         {
     ///             new Grafana.Assert.Inputs.PromRuleFileGroupArgs
     ///             {
-    ///                 Name = "latency_alerting",
-    ///                 Interval = "30s",
     ///                 Rules = new[]
     ///                 {
     ///                     new Grafana.Assert.Inputs.PromRuleFileGroupRuleArgs
@@ -107,21 +103,21 @@ namespace Pulumiverse.Grafana.Assert
     ///                         },
     ///                     },
     ///                 },
+    ///                 Name = "latency_alerting",
+    ///                 Interval = "30s",
     ///             },
     ///         },
+    ///         Name = "custom-latency-alerts",
+    ///         Active = true,
     ///     });
     /// 
     ///     // Comprehensive monitoring rules with multiple groups
     ///     var comprehensiveMonitoring = new Grafana.Assert.PromRuleFile("comprehensive_monitoring", new()
     ///     {
-    ///         Name = "custom-comprehensive-monitoring",
-    ///         Active = true,
     ///         Groups = new[]
     ///         {
     ///             new Grafana.Assert.Inputs.PromRuleFileGroupArgs
     ///             {
-    ///                 Name = "latency_monitoring",
-    ///                 Interval = "30s",
     ///                 Rules = new[]
     ///                 {
     ///                     new Grafana.Assert.Inputs.PromRuleFileGroupRuleArgs
@@ -148,11 +144,11 @@ namespace Pulumiverse.Grafana.Assert
     ///                         },
     ///                     },
     ///                 },
+    ///                 Name = "latency_monitoring",
+    ///                 Interval = "30s",
     ///             },
     ///             new Grafana.Assert.Inputs.PromRuleFileGroupArgs
     ///             {
-    ///                 Name = "error_monitoring",
-    ///                 Interval = "1m",
     ///                 Rules = new[]
     ///                 {
     ///                     new Grafana.Assert.Inputs.PromRuleFileGroupRuleArgs
@@ -181,11 +177,11 @@ namespace Pulumiverse.Grafana.Assert
     ///                         },
     ///                     },
     ///                 },
+    ///                 Name = "error_monitoring",
+    ///                 Interval = "1m",
     ///             },
     ///             new Grafana.Assert.Inputs.PromRuleFileGroupArgs
     ///             {
-    ///                 Name = "throughput_monitoring",
-    ///                 Interval = "1m",
     ///                 Rules = new[]
     ///                 {
     ///                     new Grafana.Assert.Inputs.PromRuleFileGroupRuleArgs
@@ -214,21 +210,21 @@ namespace Pulumiverse.Grafana.Assert
     ///                         },
     ///                     },
     ///                 },
+    ///                 Name = "throughput_monitoring",
+    ///                 Interval = "1m",
     ///             },
     ///         },
+    ///         Name = "custom-comprehensive-monitoring",
+    ///         Active = true,
     ///     });
     /// 
     ///     // Rules with conditional enablement
     ///     var conditionalRules = new Grafana.Assert.PromRuleFile("conditional_rules", new()
     ///     {
-    ///         Name = "custom-conditional-rules",
-    ///         Active = true,
     ///         Groups = new[]
     ///         {
     ///             new Grafana.Assert.Inputs.PromRuleFileGroupArgs
     ///             {
-    ///                 Name = "environment_specific_rules",
-    ///                 Interval = "30s",
     ///                 Rules = new[]
     ///                 {
     ///                     new Grafana.Assert.Inputs.PromRuleFileGroupRuleArgs
@@ -264,21 +260,21 @@ namespace Pulumiverse.Grafana.Assert
     ///                         },
     ///                     },
     ///                 },
+    ///                 Name = "environment_specific_rules",
+    ///                 Interval = "30s",
     ///             },
     ///         },
+    ///         Name = "custom-conditional-rules",
+    ///         Active = true,
     ///     });
     /// 
     ///     // Inactive rules (for staging/testing)
     ///     var stagingRules = new Grafana.Assert.PromRuleFile("staging_rules", new()
     ///     {
-    ///         Name = "custom-staging-rules",
-    ///         Active = false,
     ///         Groups = new[]
     ///         {
     ///             new Grafana.Assert.Inputs.PromRuleFileGroupArgs
     ///             {
-    ///                 Name = "staging_tests",
-    ///                 Interval = "1m",
     ///                 Rules = new[]
     ///                 {
     ///                     new Grafana.Assert.Inputs.PromRuleFileGroupRuleArgs
@@ -291,21 +287,21 @@ namespace Pulumiverse.Grafana.Assert
     ///                         },
     ///                     },
     ///                 },
+    ///                 Name = "staging_tests",
+    ///                 Interval = "1m",
     ///             },
     ///         },
+    ///         Name = "custom-staging-rules",
+    ///         Active = false,
     ///     });
     /// 
     ///     // SLO-based alerting
     ///     var sloAlerts = new Grafana.Assert.PromRuleFile("slo_alerts", new()
     ///     {
-    ///         Name = "custom-slo-alerts",
-    ///         Active = true,
     ///         Groups = new[]
     ///         {
     ///             new Grafana.Assert.Inputs.PromRuleFileGroupArgs
     ///             {
-    ///                 Name = "slo_monitoring",
-    ///                 Interval = "1m",
     ///                 Rules = new[]
     ///                 {
     ///                     new Grafana.Assert.Inputs.PromRuleFileGroupRuleArgs
@@ -335,8 +331,12 @@ namespace Pulumiverse.Grafana.Assert
     ///                         },
     ///                     },
     ///                 },
+    ///                 Name = "slo_monitoring",
+    ///                 Interval = "1m",
     ///             },
     ///         },
+    ///         Name = "custom-slo-alerts",
+    ///         Active = true,
     ///     });
     /// 
     /// });

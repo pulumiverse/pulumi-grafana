@@ -24,6 +24,13 @@ import * as utilities from "../utilities";
  *     slug: "<your org slug>",
  * });
  * const test = new grafana.cloud.AccessPolicy("test", {
+ *     realms: [{
+ *         labelPolicies: [{
+ *             selector: "{namespace=\"default\"}",
+ *         }],
+ *         type: "org",
+ *         identifier: current.then(current => current.id),
+ *     }],
  *     region: "prod-us-east-0",
  *     name: "my-policy",
  *     displayName: "My Policy",
@@ -31,13 +38,6 @@ import * as utilities from "../utilities";
  *         "metrics:read",
  *         "logs:read",
  *     ],
- *     realms: [{
- *         type: "org",
- *         identifier: current.then(current => current.id),
- *         labelPolicies: [{
- *             selector: "{namespace=\"default\"}",
- *         }],
- *     }],
  * });
  * const testAccessPolicyToken = new grafana.cloud.AccessPolicyToken("test", {
  *     region: "prod-us-east-0",

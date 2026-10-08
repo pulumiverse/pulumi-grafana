@@ -227,12 +227,18 @@ def get_aws_cloudwatch_scrape_job(custom_namespaces: Optional[Sequence[Union['Ge
             "us-west-1",
         ])
     test_aws_cloudwatch_scrape_job = grafana.cloudprovider.AwsCloudwatchScrapeJob("test",
-        stack_id=test.id,
-        name="my-cloudwatch-scrape-job",
-        aws_account_resource_id=test_aws_account.resource_id,
-        export_tags=True,
+        custom_namespaces=[{
+            "metrics": [{
+                "name": "CoolMetric",
+                "statistics": [
+                    "Maximum",
+                    "Sum",
+                ],
+            }],
+            "name": "CoolApp",
+            "scrape_interval_seconds": 300,
+        }],
         services=[{
-            "name": "AWS/EC2",
             "metrics": [
                 {
                     "name": "CPUUtilization",
@@ -243,24 +249,18 @@ def get_aws_cloudwatch_scrape_job(custom_namespaces: Optional[Sequence[Union['Ge
                     "statistics": ["Maximum"],
                 },
             ],
-            "scrape_interval_seconds": 300,
             "resource_discovery_tag_filters": [{
                 "key": "k8s.io/cluster-autoscaler/enabled",
                 "value": "true",
             }],
+            "name": "AWS/EC2",
+            "scrape_interval_seconds": 300,
             "tags_to_add_to_metrics": ["eks:cluster-name"],
         }],
-        custom_namespaces=[{
-            "name": "CoolApp",
-            "metrics": [{
-                "name": "CoolMetric",
-                "statistics": [
-                    "Maximum",
-                    "Sum",
-                ],
-            }],
-            "scrape_interval_seconds": 300,
-        }],
+        stack_id=test.id,
+        name="my-cloudwatch-scrape-job",
+        aws_account_resource_id=test_aws_account.resource_id,
+        export_tags=True,
         static_labels={
             "label1": "value1",
             "label2": "value2",
@@ -329,12 +329,18 @@ def get_aws_cloudwatch_scrape_job_output(custom_namespaces: Optional[pulumi.Inpu
             "us-west-1",
         ])
     test_aws_cloudwatch_scrape_job = grafana.cloudprovider.AwsCloudwatchScrapeJob("test",
-        stack_id=test.id,
-        name="my-cloudwatch-scrape-job",
-        aws_account_resource_id=test_aws_account.resource_id,
-        export_tags=True,
+        custom_namespaces=[{
+            "metrics": [{
+                "name": "CoolMetric",
+                "statistics": [
+                    "Maximum",
+                    "Sum",
+                ],
+            }],
+            "name": "CoolApp",
+            "scrape_interval_seconds": 300,
+        }],
         services=[{
-            "name": "AWS/EC2",
             "metrics": [
                 {
                     "name": "CPUUtilization",
@@ -345,24 +351,18 @@ def get_aws_cloudwatch_scrape_job_output(custom_namespaces: Optional[pulumi.Inpu
                     "statistics": ["Maximum"],
                 },
             ],
-            "scrape_interval_seconds": 300,
             "resource_discovery_tag_filters": [{
                 "key": "k8s.io/cluster-autoscaler/enabled",
                 "value": "true",
             }],
+            "name": "AWS/EC2",
+            "scrape_interval_seconds": 300,
             "tags_to_add_to_metrics": ["eks:cluster-name"],
         }],
-        custom_namespaces=[{
-            "name": "CoolApp",
-            "metrics": [{
-                "name": "CoolMetric",
-                "statistics": [
-                    "Maximum",
-                    "Sum",
-                ],
-            }],
-            "scrape_interval_seconds": 300,
-        }],
+        stack_id=test.id,
+        name="my-cloudwatch-scrape-job",
+        aws_account_resource_id=test_aws_account.resource_id,
+        export_tags=True,
         static_labels={
             "label1": "value1",
             "label2": "value2",

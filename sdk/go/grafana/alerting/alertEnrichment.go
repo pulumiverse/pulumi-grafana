@@ -51,35 +51,6 @@ import (
 //					Uid: pulumi.String("test_enrichment"),
 //				},
 //				Spec: &alertingv1beta1.AlertEnrichmentSpecArgs{
-//					Title:       pulumi.String("Comprehensive alert enrichment"),
-//					Description: pulumi.String("Demonstrates many enrichment steps and configurations"),
-//					AlertRuleUids: pulumi.StringArray{
-//						pulumi.String("alert-rule-1"),
-//						pulumi.String("alert-rule-2"),
-//					},
-//					Receivers: pulumi.StringArray{
-//						pulumi.String("webhook"),
-//						pulumi.String("slack-critical"),
-//					},
-//					LabelMatchers: alertingv1beta1.AlertEnrichmentSpecLabelMatcherArray{
-//						&alertingv1beta1.AlertEnrichmentSpecLabelMatcherArgs{
-//							Type:  pulumi.String("="),
-//							Name:  pulumi.String("severity"),
-//							Value: pulumi.String("critical"),
-//						},
-//						&alertingv1beta1.AlertEnrichmentSpecLabelMatcherArgs{
-//							Type:  pulumi.String("=~"),
-//							Name:  pulumi.String("team"),
-//							Value: pulumi.String("alerting|alerting-team"),
-//						},
-//					},
-//					AnnotationMatchers: alertingv1beta1.AlertEnrichmentSpecAnnotationMatcherArray{
-//						&alertingv1beta1.AlertEnrichmentSpecAnnotationMatcherArgs{
-//							Type:  pulumi.String("!="),
-//							Name:  pulumi.String("runbook_url"),
-//							Value: pulumi.String(""),
-//						},
-//					},
 //					Steps: alertingv1beta1.AlertEnrichmentSpecStepArray{
 //						&alertingv1beta1.AlertEnrichmentSpecStepArgs{
 //							Assign: &alertingv1beta1.AlertEnrichmentSpecStepAssignArgs{
@@ -97,22 +68,22 @@ import (
 //						},
 //						&alertingv1beta1.AlertEnrichmentSpecStepArgs{
 //							DataSource: &alertingv1beta1.AlertEnrichmentSpecStepDataSourceArgs{
-//								Timeout: pulumi.String("30s"),
 //								LogsQuery: &alertingv1beta1.AlertEnrichmentSpecStepDataSourceLogsQueryArgs{
 //									DataSourceType: pulumi.String("loki"),
 //									DataSourceUid:  pulumi.String("loki-uid-123"),
 //									Expr:           pulumi.String("{job=\"my-app\"} |= \"error\""),
 //									MaxLines:       pulumi.Int(5),
 //								},
+//								Timeout: pulumi.String("30s"),
 //							},
 //						},
 //						&alertingv1beta1.AlertEnrichmentSpecStepArgs{
 //							DataSource: &alertingv1beta1.AlertEnrichmentSpecStepDataSourceArgs{
-//								Timeout: pulumi.String("30s"),
 //								RawQuery: &alertingv1beta1.AlertEnrichmentSpecStepDataSourceRawQueryArgs{
 //									RefId:   pulumi.String("A"),
 //									Request: pulumi.String(pulumi.String(json0)),
 //								},
+//								Timeout: pulumi.String("30s"),
 //							},
 //						},
 //						&alertingv1beta1.AlertEnrichmentSpecStepArgs{
@@ -165,6 +136,35 @@ import (
 //									},
 //								},
 //							},
+//						},
+//					},
+//					Title:       pulumi.String("Comprehensive alert enrichment"),
+//					Description: pulumi.String("Demonstrates many enrichment steps and configurations"),
+//					AlertRuleUids: pulumi.StringArray{
+//						pulumi.String("alert-rule-1"),
+//						pulumi.String("alert-rule-2"),
+//					},
+//					Receivers: pulumi.StringArray{
+//						pulumi.String("webhook"),
+//						pulumi.String("slack-critical"),
+//					},
+//					LabelMatchers: alertingv1beta1.AlertEnrichmentSpecLabelMatcherArray{
+//						&alertingv1beta1.AlertEnrichmentSpecLabelMatcherArgs{
+//							Type:  pulumi.String("="),
+//							Name:  pulumi.String("severity"),
+//							Value: pulumi.String("critical"),
+//						},
+//						&alertingv1beta1.AlertEnrichmentSpecLabelMatcherArgs{
+//							Type:  pulumi.String("=~"),
+//							Name:  pulumi.String("team"),
+//							Value: pulumi.String("alerting|alerting-team"),
+//						},
+//					},
+//					AnnotationMatchers: alertingv1beta1.AlertEnrichmentSpecAnnotationMatcherArray{
+//						&alertingv1beta1.AlertEnrichmentSpecAnnotationMatcherArgs{
+//							Type:  pulumi.String("!="),
+//							Name:  pulumi.String("runbook_url"),
+//							Value: pulumi.String(""),
 //						},
 //					},
 //				},
