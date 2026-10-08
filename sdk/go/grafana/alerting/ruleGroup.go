@@ -53,44 +53,26 @@ import (
 //			}
 //			json0 := string(tmpJSON0)
 //			_, err = alerting.NewRuleGroup(ctx, "my_alert_rule", &alerting.RuleGroupArgs{
-//				Name:            pulumi.String("My Rule Group"),
-//				FolderUid:       ruleFolder.Uid,
-//				IntervalSeconds: pulumi.Int(240),
-//				OrgId:           pulumi.String("1"),
 //				Rules: alerting.RuleGroupRuleArray{
 //					&alerting.RuleGroupRuleArgs{
-//						Name:         pulumi.String("My Alert Rule 1"),
-//						For:          pulumi.String("2m"),
-//						Condition:    pulumi.String("B"),
-//						NoDataState:  pulumi.String("NoData"),
-//						ExecErrState: pulumi.String("Alerting"),
-//						Annotations: pulumi.StringMap{
-//							"a": pulumi.String("b"),
-//							"c": pulumi.String("d"),
-//						},
-//						Labels: pulumi.StringMap{
-//							"e": pulumi.String("f"),
-//							"g": pulumi.String("h"),
-//						},
-//						IsPaused: pulumi.Bool(false),
 //						Datas: alerting.RuleGroupRuleDataArray{
 //							&alerting.RuleGroupRuleDataArgs{
-//								RefId:     pulumi.String("A"),
-//								QueryType: pulumi.String(""),
 //								RelativeTimeRange: &alerting.RuleGroupRuleDataRelativeTimeRangeArgs{
 //									From: pulumi.Int(600),
 //									To:   pulumi.Int(0),
 //								},
+//								RefId:         pulumi.String("A"),
+//								QueryType:     pulumi.String(""),
 //								DatasourceUid: pulumi.String("PD8C576611E62080A"),
 //								Model:         pulumi.String(pulumi.String(json0)),
 //							},
 //							&alerting.RuleGroupRuleDataArgs{
-//								RefId:     pulumi.String("B"),
-//								QueryType: pulumi.String(""),
 //								RelativeTimeRange: &alerting.RuleGroupRuleDataRelativeTimeRangeArgs{
 //									From: pulumi.Int(0),
 //									To:   pulumi.Int(0),
 //								},
+//								RefId:         pulumi.String("B"),
+//								QueryType:     pulumi.String(""),
 //								DatasourceUid: pulumi.String("-100"),
 //								Model: pulumi.String(`{
 //	    \"conditions\": [
@@ -131,8 +113,26 @@ import (
 //
 //							},
 //						},
+//						Name:         pulumi.String("My Alert Rule 1"),
+//						For:          pulumi.String("2m"),
+//						Condition:    pulumi.String("B"),
+//						NoDataState:  pulumi.String("NoData"),
+//						ExecErrState: pulumi.String("Alerting"),
+//						Annotations: pulumi.StringMap{
+//							"a": pulumi.String("b"),
+//							"c": pulumi.String("d"),
+//						},
+//						Labels: pulumi.StringMap{
+//							"e": pulumi.String("f"),
+//							"g": pulumi.String("h"),
+//						},
+//						IsPaused: pulumi.Bool(false),
 //					},
 //				},
+//				Name:            pulumi.String("My Rule Group"),
+//				FolderUid:       ruleFolder.Uid,
+//				IntervalSeconds: pulumi.Int(240),
+//				OrgId:           pulumi.String("1"),
 //			})
 //			if err != nil {
 //				return err

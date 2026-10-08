@@ -417,17 +417,17 @@ class HookRule(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         example = grafana.agento11y.HookRule("example",
+            redacts=[{
+                "id": "emails",
+                "regex": "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+",
+            }],
             rule_id="block_destructive_tools",
             phase="preflight",
             action_on_fail="deny",
             blocked_tools=[
                 "delete_*",
                 "drop_*",
-            ],
-            redacts=[{
-                "id": "emails",
-                "regex": "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+",
-            }])
+            ])
         ```
 
         ## Import
@@ -469,17 +469,17 @@ class HookRule(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         example = grafana.agento11y.HookRule("example",
+            redacts=[{
+                "id": "emails",
+                "regex": "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+",
+            }],
             rule_id="block_destructive_tools",
             phase="preflight",
             action_on_fail="deny",
             blocked_tools=[
                 "delete_*",
                 "drop_*",
-            ],
-            redacts=[{
-                "id": "emails",
-                "regex": "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+",
-            }])
+            ])
         ```
 
         ## Import

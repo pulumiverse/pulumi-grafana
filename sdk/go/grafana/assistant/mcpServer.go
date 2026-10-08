@@ -32,13 +32,13 @@ import (
 //			cfg := config.New(ctx, "")
 //			mcpToken := cfg.Require("mcpToken")
 //			_, err := assistant.NewMcpServer(ctx, "example", &assistant.McpServerArgs{
+//				Configuration: &assistant.McpServerConfigurationArgs{
+//					Url: pulumi.String("https://example.com/mcp/"),
+//				},
 //				Name:  pulumi.String("Example MCP server"),
 //				Scope: pulumi.String("tenant"),
 //				Applications: pulumi.StringArray{
 //					pulumi.String("assistant"),
-//				},
-//				Configuration: &assistant.McpServerConfigurationArgs{
-//					Url: pulumi.String("https://example.com/mcp/"),
 //				},
 //				CustomHeaders: pulumi.StringMap{
 //					"Authorization": pulumi.Sprintf("Bearer %v", mcpToken),

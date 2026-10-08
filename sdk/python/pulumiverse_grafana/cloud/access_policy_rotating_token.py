@@ -380,20 +380,20 @@ class AccessPolicyRotatingToken(pulumi.CustomResource):
 
         current = grafana.cloud.get_organization(slug="<your org slug>")
         test = grafana.cloud.AccessPolicy("test",
+            realms=[{
+                "label_policies": [{
+                    "selector": "{namespace=\\"default\\"}",
+                }],
+                "type": "org",
+                "identifier": current.id,
+            }],
             region="prod-us-east-0",
             name="my-policy",
             display_name="My Policy",
             scopes=[
                 "metrics:read",
                 "logs:read",
-            ],
-            realms=[{
-                "type": "org",
-                "identifier": current.id,
-                "label_policies": [{
-                    "selector": "{namespace=\\"default\\"}",
-                }],
-            }])
+            ])
         test_access_policy_rotating_token = grafana.cloud.AccessPolicyRotatingToken("test",
             region="prod-us-east-0",
             access_policy_id=test.policy_id,
@@ -447,20 +447,20 @@ class AccessPolicyRotatingToken(pulumi.CustomResource):
 
         current = grafana.cloud.get_organization(slug="<your org slug>")
         test = grafana.cloud.AccessPolicy("test",
+            realms=[{
+                "label_policies": [{
+                    "selector": "{namespace=\\"default\\"}",
+                }],
+                "type": "org",
+                "identifier": current.id,
+            }],
             region="prod-us-east-0",
             name="my-policy",
             display_name="My Policy",
             scopes=[
                 "metrics:read",
                 "logs:read",
-            ],
-            realms=[{
-                "type": "org",
-                "identifier": current.id,
-                "label_policies": [{
-                    "selector": "{namespace=\\"default\\"}",
-                }],
-            }])
+            ])
         test_access_policy_rotating_token = grafana.cloud.AccessPolicyRotatingToken("test",
             region="prod-us-east-0",
             access_policy_id=test.policy_id,

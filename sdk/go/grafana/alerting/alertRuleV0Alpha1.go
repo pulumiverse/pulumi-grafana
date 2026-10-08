@@ -115,10 +115,15 @@ import (
 //					FolderUid: alertruleFolder.Uid,
 //				},
 //				Spec: &alertingv0alpha1.AlertRuleSpecArgs{
-//					Title: pulumi.String("Example Alert Rule"),
 //					Trigger: &alertingv0alpha1.AlertRuleSpecTriggerArgs{
 //						Interval: pulumi.String("1m"),
 //					},
+//					NotificationSettings: &alertingv0alpha1.AlertRuleSpecNotificationSettingsArgs{
+//						SimplifiedRouting: &alertingv0alpha1.AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs{
+//							ContactPoint: pulumi.String("grafana-default-email"),
+//						},
+//					},
+//					Title:  pulumi.String("Example Alert Rule"),
 //					Paused: pulumi.Bool(true),
 //					Expressions: pulumi.StringMap{
 //						"A": pulumi.String(pulumi.String(json0)),
@@ -134,11 +139,6 @@ import (
 //					NoDataState:                 pulumi.String("KeepLast"),
 //					ExecErrState:                pulumi.String("KeepLast"),
 //					MissingSeriesEvalsToResolve: pulumi.Int(5),
-//					NotificationSettings: &alertingv0alpha1.AlertRuleSpecNotificationSettingsArgs{
-//						SimplifiedRouting: &alertingv0alpha1.AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs{
-//							ContactPoint: pulumi.String("grafana-default-email"),
-//						},
-//					},
 //					PanelRef: pulumi.StringMap{
 //						"dashboard_uid": pulumi.String("dashboard123"),
 //						"panel_id":      pulumi.String("5"),

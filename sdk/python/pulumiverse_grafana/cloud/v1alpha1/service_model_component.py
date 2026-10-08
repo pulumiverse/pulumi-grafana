@@ -180,8 +180,12 @@ class ServiceModelComponent(pulumi.CustomResource):
                 "uid": "checkout-service",
             },
             spec={
-                "title": "Checkout Service",
-                "description": "Handles checkout and payment orchestration.",
+                "owner_ref": {
+                    "name": checkout.team_uid,
+                },
+                "depends_on_refs": [{
+                    "name": payments.metadata.uid,
+                }],
                 "identifiers": [
                     {
                         "key": "service_name",
@@ -192,17 +196,13 @@ class ServiceModelComponent(pulumi.CustomResource):
                         "value": "checkout-prod",
                     },
                 ],
-                "owner_ref": {
-                    "name": checkout.team_uid,
-                },
-                "depends_on_refs": [{
-                    "name": payments.metadata.uid,
-                }],
                 "links": [{
                     "url": "https://github.com/example/checkout",
                     "title": "Source code",
                     "type": "repository",
                 }],
+                "title": "Checkout Service",
+                "description": "Handles checkout and payment orchestration.",
             })
         ```
 
@@ -266,8 +266,12 @@ class ServiceModelComponent(pulumi.CustomResource):
                 "uid": "checkout-service",
             },
             spec={
-                "title": "Checkout Service",
-                "description": "Handles checkout and payment orchestration.",
+                "owner_ref": {
+                    "name": checkout.team_uid,
+                },
+                "depends_on_refs": [{
+                    "name": payments.metadata.uid,
+                }],
                 "identifiers": [
                     {
                         "key": "service_name",
@@ -278,17 +282,13 @@ class ServiceModelComponent(pulumi.CustomResource):
                         "value": "checkout-prod",
                     },
                 ],
-                "owner_ref": {
-                    "name": checkout.team_uid,
-                },
-                "depends_on_refs": [{
-                    "name": payments.metadata.uid,
-                }],
                 "links": [{
                     "url": "https://github.com/example/checkout",
                     "title": "Source code",
                     "type": "repository",
                 }],
+                "title": "Checkout Service",
+                "description": "Handles checkout and payment orchestration.",
             })
         ```
 

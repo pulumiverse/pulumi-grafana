@@ -27,15 +27,15 @@ namespace Pulumiverse.Grafana.Assistant
     ///     var mcpToken = config.Require("mcpToken");
     ///     var example = new Grafana.Assistant.McpServer("example", new()
     ///     {
+    ///         Configuration = new Grafana.Assistant.Inputs.McpServerConfigurationArgs
+    ///         {
+    ///             Url = "https://example.com/mcp/",
+    ///         },
     ///         Name = "Example MCP server",
     ///         Scope = "tenant",
     ///         Applications = new[]
     ///         {
     ///             "assistant",
-    ///         },
-    ///         Configuration = new Grafana.Assistant.Inputs.McpServerConfigurationArgs
-    ///         {
-    ///             Url = "https://example.com/mcp/",
     ///         },
     ///         CustomHeaders = 
     ///         {

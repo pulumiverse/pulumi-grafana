@@ -31,44 +31,9 @@ namespace Pulumiverse.Grafana.Slo
     /// {
     ///     var ratio = new Grafana.Slo.SLO("ratio", new()
     ///     {
-    ///         Name = "Terraform Testing - Ratio Query",
-    ///         Description = "Terraform Description - Ratio Query",
-    ///         Queries = new[]
-    ///         {
-    ///             new Grafana.Slo.Inputs.SLOQueryArgs
-    ///             {
-    ///                 Ratio = new Grafana.Slo.Inputs.SLOQueryRatioArgs
-    ///                 {
-    ///                     SuccessMetric = "kubelet_http_requests_total{status!~\"5..\"}",
-    ///                     TotalMetric = "kubelet_http_requests_total",
-    ///                     GroupByLabels = new[]
-    ///                     {
-    ///                         "job",
-    ///                         "instance",
-    ///                     },
-    ///                 },
-    ///                 Type = "ratio",
-    ///             },
-    ///         },
-    ///         Objectives = new[]
-    ///         {
-    ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
-    ///             {
-    ///                 Value = 0.995,
-    ///                 Window = "30d",
-    ///             },
-    ///         },
     ///         DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs
     ///         {
     ///             Uid = "grafanacloud-prom",
-    ///         },
-    ///         Labels = new[]
-    ///         {
-    ///             new Grafana.Slo.Inputs.SLOLabelArgs
-    ///             {
-    ///                 Key = "slo",
-    ///                 Value = "terraform",
-    ///             },
     ///         },
     ///         Alerting = new Grafana.Slo.Inputs.SLOAlertingArgs
     ///         {
@@ -105,6 +70,41 @@ namespace Pulumiverse.Grafana.Slo
     ///                 },
     ///             },
     ///         },
+    ///         Labels = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOLabelArgs
+    ///             {
+    ///                 Key = "slo",
+    ///                 Value = "terraform",
+    ///             },
+    ///         },
+    ///         Objectives = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
+    ///             {
+    ///                 Value = 0.995,
+    ///                 Window = "30d",
+    ///             },
+    ///         },
+    ///         Queries = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOQueryArgs
+    ///             {
+    ///                 Ratio = new Grafana.Slo.Inputs.SLOQueryRatioArgs
+    ///                 {
+    ///                     SuccessMetric = "kubelet_http_requests_total{status!~\"5..\"}",
+    ///                     TotalMetric = "kubelet_http_requests_total",
+    ///                     GroupByLabels = new[]
+    ///                     {
+    ///                         "job",
+    ///                         "instance",
+    ///                     },
+    ///                 },
+    ///                 Type = "ratio",
+    ///             },
+    ///         },
+    ///         Name = "Terraform Testing - Ratio Query",
+    ///         Description = "Terraform Description - Ratio Query",
     ///     });
     /// 
     /// });
@@ -122,38 +122,9 @@ namespace Pulumiverse.Grafana.Slo
     /// {
     ///     var test = new Grafana.Slo.SLO("test", new()
     ///     {
-    ///         Name = "Terraform Testing",
-    ///         Description = "Terraform Description",
-    ///         Queries = new[]
-    ///         {
-    ///             new Grafana.Slo.Inputs.SLOQueryArgs
-    ///             {
-    ///                 Freeform = new Grafana.Slo.Inputs.SLOQueryFreeformArgs
-    ///                 {
-    ///                     Query = "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
-    ///                 },
-    ///                 Type = "freeform",
-    ///             },
-    ///         },
-    ///         Objectives = new[]
-    ///         {
-    ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
-    ///             {
-    ///                 Value = 0.995,
-    ///                 Window = "30d",
-    ///             },
-    ///         },
     ///         DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs
     ///         {
     ///             Uid = "grafanacloud-prom",
-    ///         },
-    ///         Labels = new[]
-    ///         {
-    ///             new Grafana.Slo.Inputs.SLOLabelArgs
-    ///             {
-    ///                 Key = "slo",
-    ///                 Value = "terraform",
-    ///             },
     ///         },
     ///         Alerting = new Grafana.Slo.Inputs.SLOAlertingArgs
     ///         {
@@ -204,6 +175,35 @@ namespace Pulumiverse.Grafana.Slo
     ///                 },
     ///             },
     ///         },
+    ///         Labels = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOLabelArgs
+    ///             {
+    ///                 Key = "slo",
+    ///                 Value = "terraform",
+    ///             },
+    ///         },
+    ///         Objectives = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
+    ///             {
+    ///                 Value = 0.995,
+    ///                 Window = "30d",
+    ///             },
+    ///         },
+    ///         Queries = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOQueryArgs
+    ///             {
+    ///                 Freeform = new Grafana.Slo.Inputs.SLOQueryFreeformArgs
+    ///                 {
+    ///                     Query = "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+    ///                 },
+    ///                 Type = "freeform",
+    ///             },
+    ///         },
+    ///         Name = "Terraform Testing",
+    ///         Description = "Terraform Description",
     ///     });
     /// 
     /// });
@@ -230,28 +230,6 @@ namespace Pulumiverse.Grafana.Slo
     /// 
     ///     var sourceDatasource = new Grafana.Slo.SLO("source_datasource", new()
     ///     {
-    ///         Name = "Terraform Testing - Separate Source Datasource",
-    ///         Description = "Terraform Description - Separate Source Datasource",
-    ///         Queries = new[]
-    ///         {
-    ///             new Grafana.Slo.Inputs.SLOQueryArgs
-    ///             {
-    ///                 Freeform = new Grafana.Slo.Inputs.SLOQueryFreeformArgs
-    ///                 {
-    ///                     Query = "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
-    ///                     SourceDatasourceUid = sourcePrometheus.Uid,
-    ///                 },
-    ///                 Type = "freeform",
-    ///             },
-    ///         },
-    ///         Objectives = new[]
-    ///         {
-    ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
-    ///             {
-    ///                 Value = 0.995,
-    ///                 Window = "30d",
-    ///             },
-    ///         },
     ///         DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs
     ///         {
     ///             Uid = "grafanacloud-prom",
@@ -264,6 +242,28 @@ namespace Pulumiverse.Grafana.Slo
     ///                 Value = "terraform",
     ///             },
     ///         },
+    ///         Objectives = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
+    ///             {
+    ///                 Value = 0.995,
+    ///                 Window = "30d",
+    ///             },
+    ///         },
+    ///         Queries = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOQueryArgs
+    ///             {
+    ///                 Freeform = new Grafana.Slo.Inputs.SLOQueryFreeformArgs
+    ///                 {
+    ///                     Query = "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+    ///                     SourceDatasourceUid = sourcePrometheus.Uid,
+    ///                 },
+    ///                 Type = "freeform",
+    ///             },
+    ///         },
+    ///         Name = "Terraform Testing - Separate Source Datasource",
+    ///         Description = "Terraform Description - Separate Source Datasource",
     ///     });
     /// 
     /// });
@@ -284,8 +284,61 @@ namespace Pulumiverse.Grafana.Slo
     /// {
     ///     var test = new Grafana.Slo.SLO("test", new()
     ///     {
-    ///         Name = "Terraform Testing",
-    ///         Description = "Terraform Description",
+    ///         DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs
+    ///         {
+    ///             Uid = "grafanacloud-prom",
+    ///         },
+    ///         Alerting = new Grafana.Slo.Inputs.SLOAlertingArgs
+    ///         {
+    ///             Fastburn = new Grafana.Slo.Inputs.SLOAlertingFastburnArgs
+    ///             {
+    ///                 Annotations = new[]
+    ///                 {
+    ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
+    ///                     {
+    ///                         Key = "name",
+    ///                         Value = "SLO Burn Rate Very High",
+    ///                     },
+    ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
+    ///                     {
+    ///                         Key = "description",
+    ///                         Value = "Error budget is burning too fast",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             Slowburn = new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
+    ///             {
+    ///                 Annotations = new[]
+    ///                 {
+    ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
+    ///                     {
+    ///                         Key = "name",
+    ///                         Value = "SLO Burn Rate High",
+    ///                     },
+    ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
+    ///                     {
+    ///                         Key = "description",
+    ///                         Value = "Error budget is burning too fast",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///         Labels = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOLabelArgs
+    ///             {
+    ///                 Key = "slo",
+    ///                 Value = "terraform",
+    ///             },
+    ///         },
+    ///         Objectives = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
+    ///             {
+    ///                 Value = 0.995,
+    ///                 Window = "30d",
+    ///             },
+    ///         },
     ///         Queries = new[]
     ///         {
     ///             new Grafana.Slo.Inputs.SLOQueryArgs
@@ -330,61 +383,8 @@ namespace Pulumiverse.Grafana.Slo
     ///                 Type = "grafana_queries",
     ///             },
     ///         },
-    ///         DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs
-    ///         {
-    ///             Uid = "grafanacloud-prom",
-    ///         },
-    ///         Objectives = new[]
-    ///         {
-    ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
-    ///             {
-    ///                 Value = 0.995,
-    ///                 Window = "30d",
-    ///             },
-    ///         },
-    ///         Labels = new[]
-    ///         {
-    ///             new Grafana.Slo.Inputs.SLOLabelArgs
-    ///             {
-    ///                 Key = "slo",
-    ///                 Value = "terraform",
-    ///             },
-    ///         },
-    ///         Alerting = new Grafana.Slo.Inputs.SLOAlertingArgs
-    ///         {
-    ///             Fastburn = new Grafana.Slo.Inputs.SLOAlertingFastburnArgs
-    ///             {
-    ///                 Annotations = new[]
-    ///                 {
-    ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
-    ///                     {
-    ///                         Key = "name",
-    ///                         Value = "SLO Burn Rate Very High",
-    ///                     },
-    ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
-    ///                     {
-    ///                         Key = "description",
-    ///                         Value = "Error budget is burning too fast",
-    ///                     },
-    ///                 },
-    ///             },
-    ///             Slowburn = new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
-    ///             {
-    ///                 Annotations = new[]
-    ///                 {
-    ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
-    ///                     {
-    ///                         Key = "name",
-    ///                         Value = "SLO Burn Rate High",
-    ///                     },
-    ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
-    ///                     {
-    ///                         Key = "description",
-    ///                         Value = "Error budget is burning too fast",
-    ///                     },
-    ///                 },
-    ///             },
-    ///         },
+    ///         Name = "Terraform Testing",
+    ///         Description = "Terraform Description",
     ///     });
     /// 
     /// });
@@ -406,27 +406,6 @@ namespace Pulumiverse.Grafana.Slo
     /// {
     ///     var searchExpression = new Grafana.Slo.SLO("search_expression", new()
     ///     {
-    ///         Name = "Terraform Testing - Entity Search Expression",
-    ///         Description = "Terraform Description - Entity Search Expression",
-    ///         Queries = new[]
-    ///         {
-    ///             new Grafana.Slo.Inputs.SLOQueryArgs
-    ///             {
-    ///                 Freeform = new Grafana.Slo.Inputs.SLOQueryFreeformArgs
-    ///                 {
-    ///                     Query = "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
-    ///                 },
-    ///                 Type = "freeform",
-    ///             },
-    ///         },
-    ///         Objectives = new[]
-    ///         {
-    ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
-    ///             {
-    ///                 Value = 0.995,
-    ///                 Window = "30d",
-    ///             },
-    ///         },
     ///         DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs
     ///         {
     ///             Uid = "grafanacloud-prom",
@@ -439,6 +418,27 @@ namespace Pulumiverse.Grafana.Slo
     ///                 Value = "terraform",
     ///             },
     ///         },
+    ///         Objectives = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
+    ///             {
+    ///                 Value = 0.995,
+    ///                 Window = "30d",
+    ///             },
+    ///         },
+    ///         Queries = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOQueryArgs
+    ///             {
+    ///                 Freeform = new Grafana.Slo.Inputs.SLOQueryFreeformArgs
+    ///                 {
+    ///                     Query = "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+    ///                 },
+    ///                 Type = "freeform",
+    ///             },
+    ///         },
+    ///         Name = "Terraform Testing - Entity Search Expression",
+    ///         Description = "Terraform Description - Entity Search Expression",
     ///         SearchExpression = "shipping connected services",
     ///     });
     /// 

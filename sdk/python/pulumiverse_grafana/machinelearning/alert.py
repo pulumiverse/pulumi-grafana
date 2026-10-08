@@ -407,6 +407,13 @@ class Alert(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test_alert_outlier_detector = grafana.machinelearning.OutlierDetector("test_alert_outlier_detector",
+            algorithm={
+                "config": {
+                    "epsilon": 1,
+                },
+                "name": "dbscan",
+                "sensitivity": 0.5,
+            },
             name="Test Outlier",
             metric="tf_test_alert_outlier",
             datasource_type="prometheus",
@@ -414,14 +421,7 @@ class Alert(pulumi.CustomResource):
             query_params={
                 "expr": "grafanacloud_grafana_instance_active_user_count",
             },
-            interval=300,
-            algorithm={
-                "name": "dbscan",
-                "sensitivity": 0.5,
-                "config": {
-                    "epsilon": 1,
-                },
-            })
+            interval=300)
         test_outlier_alert = grafana.machinelearning.Alert("test_outlier_alert",
             outlier_id=test_alert_outlier_detector.id,
             title="Test Alert",
@@ -491,6 +491,13 @@ class Alert(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test_alert_outlier_detector = grafana.machinelearning.OutlierDetector("test_alert_outlier_detector",
+            algorithm={
+                "config": {
+                    "epsilon": 1,
+                },
+                "name": "dbscan",
+                "sensitivity": 0.5,
+            },
             name="Test Outlier",
             metric="tf_test_alert_outlier",
             datasource_type="prometheus",
@@ -498,14 +505,7 @@ class Alert(pulumi.CustomResource):
             query_params={
                 "expr": "grafanacloud_grafana_instance_active_user_count",
             },
-            interval=300,
-            algorithm={
-                "name": "dbscan",
-                "sensitivity": 0.5,
-                "config": {
-                    "epsilon": 1,
-                },
-            })
+            interval=300)
         test_outlier_alert = grafana.machinelearning.Alert("test_outlier_alert",
             outlier_id=test_alert_outlier_detector.id,
             title="Test Alert",

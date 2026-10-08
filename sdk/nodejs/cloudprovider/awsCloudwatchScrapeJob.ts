@@ -37,12 +37,18 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * const testAwsCloudwatchScrapeJob = new grafana.cloudprovider.AwsCloudwatchScrapeJob("test", {
- *     stackId: test.then(test => test.id),
- *     name: "my-cloudwatch-scrape-job",
- *     awsAccountResourceId: testAwsAccount.resourceId,
- *     exportTags: true,
+ *     customNamespaces: [{
+ *         metrics: [{
+ *             name: "CoolMetric",
+ *             statistics: [
+ *                 "Maximum",
+ *                 "Sum",
+ *             ],
+ *         }],
+ *         name: "CoolApp",
+ *         scrapeIntervalSeconds: 300,
+ *     }],
  *     services: [{
- *         name: "AWS/EC2",
  *         metrics: [
  *             {
  *                 name: "CPUUtilization",
@@ -53,24 +59,18 @@ import * as utilities from "../utilities";
  *                 statistics: ["Maximum"],
  *             },
  *         ],
- *         scrapeIntervalSeconds: 300,
  *         resourceDiscoveryTagFilters: [{
  *             key: "k8s.io/cluster-autoscaler/enabled",
  *             value: "true",
  *         }],
+ *         name: "AWS/EC2",
+ *         scrapeIntervalSeconds: 300,
  *         tagsToAddToMetrics: ["eks:cluster-name"],
  *     }],
- *     customNamespaces: [{
- *         name: "CoolApp",
- *         metrics: [{
- *             name: "CoolMetric",
- *             statistics: [
- *                 "Maximum",
- *                 "Sum",
- *             ],
- *         }],
- *         scrapeIntervalSeconds: 300,
- *     }],
+ *     stackId: test.then(test => test.id),
+ *     name: "my-cloudwatch-scrape-job",
+ *     awsAccountResourceId: testAwsAccount.resourceId,
+ *     exportTags: true,
  *     staticLabels: {
  *         label1: "value1",
  *         label2: "value2",

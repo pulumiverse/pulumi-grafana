@@ -62,21 +62,21 @@ import (
 //				return err
 //			}
 //			_, err = cloudprovider.NewAwsResourceMetadataScrapeJob(ctx, "test", &cloudprovider.AwsResourceMetadataScrapeJobArgs{
-//				StackId:              pulumi.String(pulumi.String(test.Id)),
-//				Name:                 pulumi.String("my-aws-resource-metadata-scrape-job"),
-//				AwsAccountResourceId: testAwsAccount.ResourceId,
 //				Services: cloudprovider.AwsResourceMetadataScrapeJobServiceArray{
 //					&cloudprovider.AwsResourceMetadataScrapeJobServiceArgs{
-//						Name:                  pulumi.String("AWS/EC2"),
-//						ScrapeIntervalSeconds: pulumi.Int(300),
 //						ResourceDiscoveryTagFilters: cloudprovider.AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArray{
 //							&cloudprovider.AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs{
 //								Key:   pulumi.String("k8s.io/cluster-autoscaler/enabled"),
 //								Value: pulumi.String("true"),
 //							},
 //						},
+//						Name:                  pulumi.String("AWS/EC2"),
+//						ScrapeIntervalSeconds: pulumi.Int(300),
 //					},
 //				},
+//				StackId:              pulumi.String(pulumi.String(test.Id)),
+//				Name:                 pulumi.String("my-aws-resource-metadata-scrape-job"),
+//				AwsAccountResourceId: testAwsAccount.ResourceId,
 //				StaticLabels: pulumi.StringMap{
 //					"label1": pulumi.String("value1"),
 //					"label2": pulumi.String("value2"),

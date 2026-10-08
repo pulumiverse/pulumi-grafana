@@ -16,10 +16,6 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const production = new grafana.assert.ProfileConfig("production", {
- *     name: "production",
- *     priority: 1000,
- *     defaultConfig: false,
- *     dataSourceUid: "grafanacloud-profiles",
  *     matches: [
  *         {
  *             property: "asserts_entity_type",
@@ -43,6 +39,10 @@ import * as utilities from "../utilities";
  *             ],
  *         },
  *     ],
+ *     name: "production",
+ *     priority: 1000,
+ *     defaultConfig: false,
+ *     dataSourceUid: "grafanacloud-profiles",
  *     entityPropertyToProfileLabelMapping: {
  *         cluster: "k8s_cluster_name",
  *         namespace: "k8s_namespace_name",
@@ -52,10 +52,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * const development = new grafana.assert.ProfileConfig("development", {
- *     name: "development",
- *     priority: 2000,
- *     defaultConfig: false,
- *     dataSourceUid: "grafanacloud-profiles",
  *     matches: [
  *         {
  *             property: "asserts_entity_type",
@@ -81,6 +77,10 @@ import * as utilities from "../utilities";
  *             values: ["my sample api"],
  *         },
  *     ],
+ *     name: "development",
+ *     priority: 2000,
+ *     defaultConfig: false,
+ *     dataSourceUid: "grafanacloud-profiles",
  *     entityPropertyToProfileLabelMapping: {
  *         cluster: "k8s_cluster_name",
  *         namespace: "k8s_namespace_name",
@@ -91,13 +91,13 @@ import * as utilities from "../utilities";
  *     },
  * });
  * const minimal = new grafana.assert.ProfileConfig("minimal", {
- *     name: "minimal",
- *     priority: 3000,
- *     dataSourceUid: "pyroscope-minimal",
  *     matches: [{
  *         property: "asserts_entity_type",
  *         op: "IS NOT NULL",
  *     }],
+ *     name: "minimal",
+ *     priority: 3000,
+ *     dataSourceUid: "pyroscope-minimal",
  *     entityPropertyToProfileLabelMapping: {
  *         cluster: "k8s_cluster_name",
  *         otel_service: "service_name",

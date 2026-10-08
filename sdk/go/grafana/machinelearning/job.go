@@ -278,7 +278,6 @@ import (
 //				return err
 //			}
 //			testHoliday, err := machinelearning.NewHoliday(ctx, "test_holiday", &machinelearning.HolidayArgs{
-//				Name: pulumi.String("Test Holiday"),
 //				CustomPeriods: machinelearning.HolidayCustomPeriodArray{
 //					&machinelearning.HolidayCustomPeriodArgs{
 //						Name:      pulumi.String("First of January"),
@@ -286,6 +285,7 @@ import (
 //						EndTime:   pulumi.String("2023-01-02T00:00:00Z"),
 //					},
 //				},
+//				Name: pulumi.String("Test Holiday"),
 //			})
 //			if err != nil {
 //				return err

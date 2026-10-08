@@ -55,15 +55,10 @@ namespace Pulumiverse.Grafana.CloudProvider
     /// 
     ///     var testAwsResourceMetadataScrapeJob = new Grafana.CloudProvider.AwsResourceMetadataScrapeJob("test", new()
     ///     {
-    ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
-    ///         Name = "my-aws-resource-metadata-scrape-job",
-    ///         AwsAccountResourceId = testAwsAccount.ResourceId,
     ///         Services = new[]
     ///         {
     ///             new Grafana.CloudProvider.Inputs.AwsResourceMetadataScrapeJobServiceArgs
     ///             {
-    ///                 Name = "AWS/EC2",
-    ///                 ScrapeIntervalSeconds = 300,
     ///                 ResourceDiscoveryTagFilters = new[]
     ///                 {
     ///                     new Grafana.CloudProvider.Inputs.AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs
@@ -72,8 +67,13 @@ namespace Pulumiverse.Grafana.CloudProvider
     ///                         Value = "true",
     ///                     },
     ///                 },
+    ///                 Name = "AWS/EC2",
+    ///                 ScrapeIntervalSeconds = 300,
     ///             },
     ///         },
+    ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
+    ///         Name = "my-aws-resource-metadata-scrape-job",
+    ///         AwsAccountResourceId = testAwsAccount.ResourceId,
     ///         StaticLabels = 
     ///         {
     ///             { "label1", "value1" },

@@ -19,10 +19,6 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const superUser = new grafana.enterprise.Role("super_user", {
- *     name: "Super User",
- *     description: "My Super User description",
- *     uid: "superuseruid",
- *     global: true,
  *     permissions: [
  *         {
  *             action: "org.users:add",
@@ -37,6 +33,10 @@ import * as utilities from "../utilities";
  *             scope: "users:*",
  *         },
  *     ],
+ *     name: "Super User",
+ *     description: "My Super User description",
+ *     uid: "superuseruid",
+ *     global: true,
  * });
  * ```
  *

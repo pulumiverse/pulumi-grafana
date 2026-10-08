@@ -20,7 +20,6 @@ import * as utilities from "../utilities";
  *
  * // Configure SSO for GitHub using OAuth2
  * const githubSsoSettings = new grafana.oss.SsoSettings("github_sso_settings", {
- *     providerName: "github",
  *     oauth2Settings: {
  *         name: "Github",
  *         clientId: "<your GitHub app client id>",
@@ -32,10 +31,10 @@ import * as utilities from "../utilities";
  *         allowedOrganizations: "[\"My Organization\", \"Octocats\"]",
  *         allowedDomains: "mycompany.com mycompany.org",
  *     },
+ *     providerName: "github",
  * });
  * // Configure SSO using generic OAuth2
  * const genericSsoSettings = new grafana.oss.SsoSettings("generic_sso_settings", {
- *     providerName: "generic_oauth",
  *     oauth2Settings: {
  *         name: "Auth0",
  *         authUrl: "https://<domain>/authorize",
@@ -49,10 +48,10 @@ import * as utilities from "../utilities";
  *         usePkce: true,
  *         useRefreshToken: true,
  *     },
+ *     providerName: "generic_oauth",
  * });
  * // Configure SSO using SAML
  * const samlSsoSettings = new grafana.oss.SsoSettings("saml_sso_settings", {
- *     providerName: "saml",
  *     samlSettings: {
  *         allowSignUp: true,
  *         certificatePath: "/certs/saml.crt",
@@ -63,27 +62,13 @@ import * as utilities from "../utilities";
  *         assertionAttributeEmail: "email",
  *         nameIdFormat: "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
  *     },
+ *     providerName: "saml",
  * });
  * // Configure SSO using LDAP
  * const ldapSsoSettings = new grafana.oss.SsoSettings("ldap_sso_settings", {
- *     providerName: "ldap",
  *     ldapSettings: {
- *         enabled: true,
  *         config: {
  *             servers: [{
- *                 host: "127.0.0.1",
- *                 port: 389,
- *                 searchFilter: "(cn=%s)",
- *                 bindDn: "cn=admin,dc=grafana,dc=org",
- *                 bindPassword: "grafana",
- *                 searchBaseDns: ["dc=grafana,dc=org"],
- *                 attributes: {
- *                     name: "givenName",
- *                     surname: "sn",
- *                     username: "cn",
- *                     member_of: "memberOf",
- *                     email: "email",
- *                 },
  *                 groupMappings: [
  *                     {
  *                         groupDn: "cn=superadmins,dc=grafana,dc=org",
@@ -100,9 +85,24 @@ import * as utilities from "../utilities";
  *                         orgRole: "Viewer",
  *                     },
  *                 ],
+ *                 host: "127.0.0.1",
+ *                 port: 389,
+ *                 searchFilter: "(cn=%s)",
+ *                 bindDn: "cn=admin,dc=grafana,dc=org",
+ *                 bindPassword: "grafana",
+ *                 searchBaseDns: ["dc=grafana,dc=org"],
+ *                 attributes: {
+ *                     name: "givenName",
+ *                     surname: "sn",
+ *                     username: "cn",
+ *                     member_of: "memberOf",
+ *                     email: "email",
+ *                 },
  *             }],
  *         },
+ *         enabled: true,
  *     },
+ *     providerName: "ldap",
  * });
  * ```
  *
