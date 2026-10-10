@@ -629,25 +629,20 @@ class OnCallShift(pulumi.CustomResource):
             time_zone="UTC",
             team_id=my_team_get_team.id)
         #//////
-        # Advanced example
+        # Advanced example: a rotation built from a list of emails
         #//////
-        teams = {
-            "emea": [
-                "alfa@grafana.com",
-                "bravo@grafana.com",
-                "charlie@grafana.com",
-                "echo@grafana.com",
-                "delta@grafana.com",
-                "foxtrot@grafana.com",
-                "golf@grafana.com",
-            ],
-        }
-        # Importing users
-        all_users = {__key: grafana.onCall.get_user(username=__key) for __key, __value in enumerate(std.index.toset(input=std.index.flatten(input=[[username_list] for teamName, usernameList in teams.items()])["result"])["result"])}
-        # oncall API operates with resources ID's, so we convert emails into ID's
-        teams_map_of_user_id = {team_name: [std.index.lookup(map=all_users,
-            key=username)["result"]["id"] for username in username_list] for teamName, usernameList in teams.items()}
-        users_map_by_id = {oncall_user.id: oncall_user for username, oncallUser in all_users.items()}
+        # Reads every OnCall user once, instead of one data source per person
+        all = grafana.onCall.get_users()
+        # The people in the rotation, in order. Each person takes one turn.
+        emea_rotation = [
+            "alfa@example.com",
+            "bravo@example.com",
+            "charlie@example.com",
+        ]
+        # To list people by Grafana login instead, key this map by user.username
+        oncall_user_ids_by_email = {std.index.lower(input=user.email)["result"]: user.id for user in all.users}
+        emea_missing_emails = [email for email in emea_rotation if not std.index.contains(input=std.index.keys(input=oncall_user_ids_by_email)["result"],
+            element=std.index.lower(input=email)["result"])["result"]]
         # A 12 hour shift on week days with the on-call person rotating weekly.
         emea_weekday_shift = grafana.oncall.OnCallShift("emea_weekday_shift",
             name="EMEA Weekday Shift",
@@ -664,11 +659,10 @@ class OnCallShift(pulumi.CustomResource):
                 "FR",
             ],
             week_start="MO",
-            rolling_users=[[k] for k in std.index.flatten(input=[teams_map_of_user_id["emea"]])["result"]],
+            time_zone="UTC",
+            rolling_users=[[oncall_user_ids_by_email[std.index.lower(input=email)["result"]]] for email in emea_rotation],
             start_rotation_from_user_index=0,
             team_id=my_team_get_team.id)
-        pulumi.export("emeaWeekdayRollingUsers", [std.index.lookup(map=users_map_by_id,
-            key=k)["result"]["username"] for k in std.index.flatten(input=emea_weekday_shift.rolling_users)["result"]])
         ```
 
         ## Import
@@ -734,25 +728,20 @@ class OnCallShift(pulumi.CustomResource):
             time_zone="UTC",
             team_id=my_team_get_team.id)
         #//////
-        # Advanced example
+        # Advanced example: a rotation built from a list of emails
         #//////
-        teams = {
-            "emea": [
-                "alfa@grafana.com",
-                "bravo@grafana.com",
-                "charlie@grafana.com",
-                "echo@grafana.com",
-                "delta@grafana.com",
-                "foxtrot@grafana.com",
-                "golf@grafana.com",
-            ],
-        }
-        # Importing users
-        all_users = {__key: grafana.onCall.get_user(username=__key) for __key, __value in enumerate(std.index.toset(input=std.index.flatten(input=[[username_list] for teamName, usernameList in teams.items()])["result"])["result"])}
-        # oncall API operates with resources ID's, so we convert emails into ID's
-        teams_map_of_user_id = {team_name: [std.index.lookup(map=all_users,
-            key=username)["result"]["id"] for username in username_list] for teamName, usernameList in teams.items()}
-        users_map_by_id = {oncall_user.id: oncall_user for username, oncallUser in all_users.items()}
+        # Reads every OnCall user once, instead of one data source per person
+        all = grafana.onCall.get_users()
+        # The people in the rotation, in order. Each person takes one turn.
+        emea_rotation = [
+            "alfa@example.com",
+            "bravo@example.com",
+            "charlie@example.com",
+        ]
+        # To list people by Grafana login instead, key this map by user.username
+        oncall_user_ids_by_email = {std.index.lower(input=user.email)["result"]: user.id for user in all.users}
+        emea_missing_emails = [email for email in emea_rotation if not std.index.contains(input=std.index.keys(input=oncall_user_ids_by_email)["result"],
+            element=std.index.lower(input=email)["result"])["result"]]
         # A 12 hour shift on week days with the on-call person rotating weekly.
         emea_weekday_shift = grafana.oncall.OnCallShift("emea_weekday_shift",
             name="EMEA Weekday Shift",
@@ -769,11 +758,10 @@ class OnCallShift(pulumi.CustomResource):
                 "FR",
             ],
             week_start="MO",
-            rolling_users=[[k] for k in std.index.flatten(input=[teams_map_of_user_id["emea"]])["result"]],
+            time_zone="UTC",
+            rolling_users=[[oncall_user_ids_by_email[std.index.lower(input=email)["result"]]] for email in emea_rotation],
             start_rotation_from_user_index=0,
             team_id=my_team_get_team.id)
-        pulumi.export("emeaWeekdayRollingUsers", [std.index.lookup(map=users_map_by_id,
-            key=k)["result"]["username"] for k in std.index.flatten(input=emea_weekday_shift.rolling_users)["result"]])
         ```
 
         ## Import

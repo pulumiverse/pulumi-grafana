@@ -13,6 +13,8 @@ namespace Pulumiverse.Grafana.OnCall
     public static class GetUser
     {
         /// <summary>
+        /// Looks up a single Grafana OnCall user by username. To look up many users at once, use `grafana.onCall.getUsers`.
+        /// 
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
         /// 
         /// ## Example Usage
@@ -37,6 +39,8 @@ namespace Pulumiverse.Grafana.OnCall
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetUserResult>("grafana:onCall/getUser:getUser", args ?? new GetUserArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Looks up a single Grafana OnCall user by username. To look up many users at once, use `grafana.onCall.getUsers`.
+        /// 
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
         /// 
         /// ## Example Usage
@@ -61,6 +65,8 @@ namespace Pulumiverse.Grafana.OnCall
             => global::Pulumi.Deployment.Instance.Invoke<GetUserResult>("grafana:onCall/getUser:getUser", args ?? new GetUserInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Looks up a single Grafana OnCall user by username. To look up many users at once, use `grafana.onCall.getUsers`.
+        /// 
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
         /// 
         /// ## Example Usage
@@ -89,7 +95,7 @@ namespace Pulumiverse.Grafana.OnCall
     public sealed class GetUserArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The username of the user.
+        /// The user's Grafana login, which can differ from their email address. Matching is case-insensitive.
         /// </summary>
         [Input("username", required: true)]
         public string Username { get; set; } = null!;
@@ -103,7 +109,7 @@ namespace Pulumiverse.Grafana.OnCall
     public sealed class GetUserInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The username of the user.
+        /// The user's Grafana login, which can differ from their email address. Matching is case-insensitive.
         /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
@@ -131,7 +137,7 @@ namespace Pulumiverse.Grafana.OnCall
         /// </summary>
         public readonly string Role;
         /// <summary>
-        /// The username of the user.
+        /// The user's Grafana login, which can differ from their email address. Matching is case-insensitive.
         /// </summary>
         public readonly string Username;
 

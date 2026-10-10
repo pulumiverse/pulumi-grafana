@@ -104,13 +104,13 @@ namespace Pulumiverse.Grafana
         public Output<string?> K6Url { get; private set; } = null!;
 
         /// <summary>
-        /// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable. This is only required when using a dedicated OnCall API token. When using Grafana Cloud, OnCall can be accessed through the `Auth` and `Url` provider attributes instead.
+        /// A Grafana OnCall API token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable. A Grafana service account token set via `Auth` and `Url` is recommended instead. An OnCall API token is required for `grafana.onCall.UserNotificationRule`.
         /// </summary>
         [Output("oncallAccessToken")]
         public Output<string?> OncallAccessToken { get; private set; } = null!;
 
         /// <summary>
-        /// A Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable. This is only required when using Grafana OnCall OSS. In Grafana Cloud, the OnCall URL is automatically inferred from the Grafana instance URL.
+        /// A Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable. When `Url` and `Auth` are set, the OnCall URL is derived automatically from the IRM plugin settings and this attribute is not needed. Set it when the derived URL is not reachable from where Terraform runs (for example, a cluster-internal address), or when `Url` and `Auth` are not set. When set, it is used instead of the derived URL.
         /// </summary>
         [Output("oncallUrl")]
         public Output<string?> OncallUrl { get; private set; } = null!;
@@ -373,7 +373,7 @@ namespace Pulumiverse.Grafana
         private Input<string>? _oncallAccessToken;
 
         /// <summary>
-        /// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable. This is only required when using a dedicated OnCall API token. When using Grafana Cloud, OnCall can be accessed through the `Auth` and `Url` provider attributes instead.
+        /// A Grafana OnCall API token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable. A Grafana service account token set via `Auth` and `Url` is recommended instead. An OnCall API token is required for `grafana.onCall.UserNotificationRule`.
         /// </summary>
         public Input<string>? OncallAccessToken
         {
@@ -386,7 +386,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// A Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable. This is only required when using Grafana OnCall OSS. In Grafana Cloud, the OnCall URL is automatically inferred from the Grafana instance URL.
+        /// A Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable. When `Url` and `Auth` are set, the OnCall URL is derived automatically from the IRM plugin settings and this attribute is not needed. Set it when the derived URL is not reachable from where Terraform runs (for example, a cluster-internal address), or when `Url` and `Auth` are not set. When set, it is used instead of the derived URL.
         /// </summary>
         [Input("oncallUrl")]
         public Input<string>? OncallUrl { get; set; }

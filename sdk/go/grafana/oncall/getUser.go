@@ -11,6 +11,8 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
+// Looks up a single Grafana OnCall user by username. To look up many users at once, use `onCall.getUsers`.
+//
 // * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
 //
 // ## Example Usage
@@ -50,7 +52,7 @@ func GetUser(ctx *pulumi.Context, args *GetUserArgs, opts ...pulumi.InvokeOption
 
 // A collection of arguments for invoking getUser.
 type GetUserArgs struct {
-	// The username of the user.
+	// The user's Grafana login, which can differ from their email address. Matching is case-insensitive.
 	Username string `pulumi:"username"`
 }
 
@@ -62,7 +64,7 @@ type GetUserResult struct {
 	Id string `pulumi:"id"`
 	// The role of the user.
 	Role string `pulumi:"role"`
-	// The username of the user.
+	// The user's Grafana login, which can differ from their email address. Matching is case-insensitive.
 	Username string `pulumi:"username"`
 }
 
@@ -77,7 +79,7 @@ func GetUserOutput(ctx *pulumi.Context, args GetUserOutputArgs, opts ...pulumi.I
 
 // A collection of arguments for invoking getUser.
 type GetUserOutputArgs struct {
-	// The username of the user.
+	// The user's Grafana login, which can differ from their email address. Matching is case-insensitive.
 	Username pulumi.StringInput `pulumi:"username"`
 }
 
@@ -115,7 +117,7 @@ func (o GetUserResultOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUserResult) string { return v.Role }).(pulumi.StringOutput)
 }
 
-// The username of the user.
+// The user's Grafana login, which can differ from their email address. Matching is case-insensitive.
 func (o GetUserResultOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUserResult) string { return v.Username }).(pulumi.StringOutput)
 }

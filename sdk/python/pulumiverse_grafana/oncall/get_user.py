@@ -68,7 +68,7 @@ class GetUserResult:
     @pulumi.getter
     def username(self) -> _builtins.str:
         """
-        The username of the user.
+        The user's Grafana login, which can differ from their email address. Matching is case-insensitive.
         """
         return pulumi.get(self, "username")
 
@@ -88,6 +88,8 @@ class AwaitableGetUserResult(GetUserResult):
 def get_user(username: Optional[_builtins.str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUserResult:
     """
+    Looks up a single Grafana OnCall user by username. To look up many users at once, use `on_call_get_users`.
+
     * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
 
     ## Example Usage
@@ -100,7 +102,7 @@ def get_user(username: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str username: The username of the user.
+    :param _builtins.str username: The user's Grafana login, which can differ from their email address. Matching is case-insensitive.
     """
     __args__ = dict()
     __args__['username'] = username
@@ -115,6 +117,8 @@ def get_user(username: Optional[_builtins.str] = None,
 def get_user_output(username: Optional[pulumi.Input[_builtins.str]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserResult]:
     """
+    Looks up a single Grafana OnCall user by username. To look up many users at once, use `on_call_get_users`.
+
     * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
 
     ## Example Usage
@@ -127,7 +131,7 @@ def get_user_output(username: Optional[pulumi.Input[_builtins.str]] = None,
     ```
 
 
-    :param _builtins.str username: The username of the user.
+    :param _builtins.str username: The user's Grafana login, which can differ from their email address. Matching is case-insensitive.
     """
     __args__ = dict()
     __args__['username'] = username
