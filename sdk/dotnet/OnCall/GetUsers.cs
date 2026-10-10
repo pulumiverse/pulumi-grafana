@@ -13,19 +13,124 @@ namespace Pulumiverse.Grafana.OnCall
     public static class GetUsers
     {
         /// <summary>
+        /// Lists every user in Grafana OnCall. Each plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `grafana.onCall.getUser`.
+        /// 
+        /// Each user's `Username` is their Grafana login, which can differ from their email address. To refer to users by email, build a map from `Email` to `Id`, as shown in the example.
+        /// 
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var all = Grafana.OnCall.GetUsers.Invoke();
+        /// 
+        ///     var oncallUserIdsByEmail = .ToDictionary(item =&gt; {
+        ///         var user = item.Value;
+        ///         return Std.Index.Lower.Invoke(new()
+        ///         {
+        ///             Input = user.Email,
+        ///         }).Result;
+        ///     }, item =&gt; {
+        ///         var user = item.Value;
+        ///         return user.Id;
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["alfaOncallUserId"] = oncallUserIdsByEmail.Alfa_example_com,
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetUsersResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetUsersResult>("grafana:onCall/getUsers:getUsers", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
+        /// Lists every user in Grafana OnCall. Each plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `grafana.onCall.getUser`.
+        /// 
+        /// Each user's `Username` is their Grafana login, which can differ from their email address. To refer to users by email, build a map from `Email` to `Id`, as shown in the example.
+        /// 
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var all = Grafana.OnCall.GetUsers.Invoke();
+        /// 
+        ///     var oncallUserIdsByEmail = .ToDictionary(item =&gt; {
+        ///         var user = item.Value;
+        ///         return Std.Index.Lower.Invoke(new()
+        ///         {
+        ///             Input = user.Email,
+        ///         }).Result;
+        ///     }, item =&gt; {
+        ///         var user = item.Value;
+        ///         return user.Id;
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["alfaOncallUserId"] = oncallUserIdsByEmail.Alfa_example_com,
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetUsersResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetUsersResult>("grafana:onCall/getUsers:getUsers", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
+        /// Lists every user in Grafana OnCall. Each plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `grafana.onCall.getUser`.
+        /// 
+        /// Each user's `Username` is their Grafana login, which can differ from their email address. To refer to users by email, build a map from `Email` to `Id`, as shown in the example.
+        /// 
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var all = Grafana.OnCall.GetUsers.Invoke();
+        /// 
+        ///     var oncallUserIdsByEmail = .ToDictionary(item =&gt; {
+        ///         var user = item.Value;
+        ///         return Std.Index.Lower.Invoke(new()
+        ///         {
+        ///             Input = user.Email,
+        ///         }).Result;
+        ///     }, item =&gt; {
+        ///         var user = item.Value;
+        ///         return user.Id;
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["alfaOncallUserId"] = oncallUserIdsByEmail.Alfa_example_com,
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetUsersResult> Invoke(InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetUsersResult>("grafana:onCall/getUsers:getUsers", InvokeArgs.Empty, options.WithDefaults());
@@ -39,6 +144,9 @@ namespace Pulumiverse.Grafana.OnCall
         /// The ID of this resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Every OnCall user, with their ID, username (the Grafana login), email, and role.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetUsersUserResult> Users;
 
         [OutputConstructor]

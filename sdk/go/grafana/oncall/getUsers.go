@@ -11,7 +11,13 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
+// Lists every user in Grafana OnCall. Each plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `onCall.getUser`.
+//
+// Each user's `username` is their Grafana login, which can differ from their email address. To refer to users by email, build a map from `email` to `id`, as shown in the example.
+//
 // * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
+//
+// ## Example Usage
 func GetUsers(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetUsersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetUsersResult
@@ -25,7 +31,8 @@ func GetUsers(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetUsersResult
 // A collection of values returned by getUsers.
 type GetUsersResult struct {
 	// The ID of this resource.
-	Id    string         `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Every OnCall user, with their ID, username (the Grafana login), email, and role.
 	Users []GetUsersUser `pulumi:"users"`
 }
 
@@ -56,6 +63,7 @@ func (o GetUsersResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUsersResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Every OnCall user, with their ID, username (the Grafana login), email, and role.
 func (o GetUsersResultOutput) Users() GetUsersUserArrayOutput {
 	return o.ApplyT(func(v GetUsersResult) []GetUsersUser { return v.Users }).(GetUsersUserArrayOutput)
 }

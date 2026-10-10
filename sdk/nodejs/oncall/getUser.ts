@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * Looks up a single Grafana OnCall user by username. To look up many users at once, use `grafana.onCall.getUsers`.
+ *
  * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
  *
  * ## Example Usage
@@ -30,7 +32,7 @@ export function getUser(args: GetUserArgs, opts?: pulumi.InvokeOptions): Promise
  */
 export interface GetUserArgs {
     /**
-     * The username of the user.
+     * The user's Grafana login, which can differ from their email address. Matching is case-insensitive.
      */
     username: string;
 }
@@ -52,11 +54,13 @@ export interface GetUserResult {
      */
     readonly role: string;
     /**
-     * The username of the user.
+     * The user's Grafana login, which can differ from their email address. Matching is case-insensitive.
      */
     readonly username: string;
 }
 /**
+ * Looks up a single Grafana OnCall user by username. To look up many users at once, use `grafana.onCall.getUsers`.
+ *
  * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
  *
  * ## Example Usage
@@ -82,7 +86,7 @@ export function getUserOutput(args: GetUserOutputArgs, opts?: pulumi.InvokeOutpu
  */
 export interface GetUserOutputArgs {
     /**
-     * The username of the user.
+     * The user's Grafana login, which can differ from their email address. Matching is case-insensitive.
      */
     username: pulumi.Input<string>;
 }
