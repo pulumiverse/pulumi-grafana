@@ -80,6 +80,7 @@ import (
 //				return err
 //			}
 //			_, err = enterprise.NewDataSourcePermission(ctx, "fooPermissions", &enterprise.DataSourcePermissionArgs{
+//				DatasourceUid: foo.Uid,
 //				Permissions: enterprise.DataSourcePermissionPermissionArray{
 //					&enterprise.DataSourcePermissionPermissionArgs{
 //						TeamId:     team.ID(),
@@ -98,7 +99,6 @@ import (
 //						Permission: pulumi.String("Query"),
 //					},
 //				},
-//				DatasourceUid: foo.Uid,
 //			})
 //			if err != nil {
 //				return err

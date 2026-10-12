@@ -73,10 +73,10 @@ namespace Pulumiverse.Grafana.Oss
         ///     var tags = Grafana.Oss.GetDashboards.Invoke(new()
         ///     {
         ///         OrgId = test.Id,
-        ///         Tags = Std.Index.Jsondecode.Invoke(new()
+        ///         Tags = Std.Jsondecode.Invoke(new()
         ///         {
         ///             Input = dataSourceDashboards1.ConfigJson,
-        ///         }).Result.Tags,
+        ///         }).Result?.Tags,
         ///     });
         /// 
         ///     var folderUids = Grafana.Oss.GetDashboards.Invoke(new()
@@ -95,10 +95,10 @@ namespace Pulumiverse.Grafana.Oss
         ///         {
         ///             dataSourceDashboards1.Folder,
         ///         },
-        ///         Tags = Std.Index.Jsondecode.Invoke(new()
+        ///         Tags = Std.Jsondecode.Invoke(new()
         ///         {
         ///             Input = dataSourceDashboards1.ConfigJson,
-        ///         }).Result.Tags,
+        ///         }).Result?.Tags,
         ///     });
         /// 
         ///     // use depends_on to wait for dashboard resource to be created before searching
@@ -184,10 +184,10 @@ namespace Pulumiverse.Grafana.Oss
         ///     var tags = Grafana.Oss.GetDashboards.Invoke(new()
         ///     {
         ///         OrgId = test.Id,
-        ///         Tags = Std.Index.Jsondecode.Invoke(new()
+        ///         Tags = Std.Jsondecode.Invoke(new()
         ///         {
         ///             Input = dataSourceDashboards1.ConfigJson,
-        ///         }).Result.Tags,
+        ///         }).Result?.Tags,
         ///     });
         /// 
         ///     var folderUids = Grafana.Oss.GetDashboards.Invoke(new()
@@ -206,10 +206,10 @@ namespace Pulumiverse.Grafana.Oss
         ///         {
         ///             dataSourceDashboards1.Folder,
         ///         },
-        ///         Tags = Std.Index.Jsondecode.Invoke(new()
+        ///         Tags = Std.Jsondecode.Invoke(new()
         ///         {
         ///             Input = dataSourceDashboards1.ConfigJson,
-        ///         }).Result.Tags,
+        ///         }).Result?.Tags,
         ///     });
         /// 
         ///     // use depends_on to wait for dashboard resource to be created before searching
@@ -295,10 +295,10 @@ namespace Pulumiverse.Grafana.Oss
         ///     var tags = Grafana.Oss.GetDashboards.Invoke(new()
         ///     {
         ///         OrgId = test.Id,
-        ///         Tags = Std.Index.Jsondecode.Invoke(new()
+        ///         Tags = Std.Jsondecode.Invoke(new()
         ///         {
         ///             Input = dataSourceDashboards1.ConfigJson,
-        ///         }).Result.Tags,
+        ///         }).Result?.Tags,
         ///     });
         /// 
         ///     var folderUids = Grafana.Oss.GetDashboards.Invoke(new()
@@ -317,10 +317,10 @@ namespace Pulumiverse.Grafana.Oss
         ///         {
         ///             dataSourceDashboards1.Folder,
         ///         },
-        ///         Tags = Std.Index.Jsondecode.Invoke(new()
+        ///         Tags = Std.Jsondecode.Invoke(new()
         ///         {
         ///             Input = dataSourceDashboards1.ConfigJson,
-        ///         }).Result.Tags,
+        ///         }).Result?.Tags,
         ///     });
         /// 
         ///     // use depends_on to wait for dashboard resource to be created before searching

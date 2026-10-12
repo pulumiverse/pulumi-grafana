@@ -40,6 +40,7 @@ import * as utilities from "../utilities";
  *     role: "Viewer",
  * });
  * const fooPermissions = new grafana.enterprise.DataSourcePermission("fooPermissions", {
+ *     datasourceUid: foo.uid,
  *     permissions: [
  *         {
  *             teamId: team.id,
@@ -58,7 +59,6 @@ import * as utilities from "../utilities";
  *             permission: "Query",
  *         },
  *     ],
- *     datasourceUid: foo.uid,
  * });
  * ```
  *

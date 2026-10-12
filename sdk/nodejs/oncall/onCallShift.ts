@@ -40,29 +40,21 @@ import * as utilities from "../utilities";
  *     teamId: myTeamGetTeam.then(myTeamGetTeam => myTeamGetTeam.id),
  * });
  * ////////
- * // Advanced example
+ * // Advanced example: a rotation built from a list of emails
  * ////////
- * const teams = {
- *     emea: [
- *         "alfa@grafana.com",
- *         "bravo@grafana.com",
- *         "charlie@grafana.com",
- *         "echo@grafana.com",
- *         "delta@grafana.com",
- *         "foxtrot@grafana.com",
- *         "golf@grafana.com",
- *     ],
- * };
- * // Importing users
- * const allUsers = .reduce((__obj, [__key, __value]) => ({ ...__obj, [__key]: grafana.onCall.getUser({
- *     username: __key,
- * }) }));
- * // oncall API operates with resources ID's, so we convert emails into ID's
- * const teamsMapOfUserId = Object.entries(teams).reduce((__obj, [teamName, usernameList]) => ({ ...__obj, [teamName]: usernameList.map(username => (std.index.lookup({
- *     map: allUsers,
- *     key: username,
- * }).result.id)) }));
- * const usersMapById = _arg0_;
+ * // Reads every OnCall user once, instead of one data source per person
+ * const all = grafana.onCall.getUsers({});
+ * // The people in the rotation, in order. Each person takes one turn.
+ * const emeaRotation = [
+ *     "alfa@example.com",
+ *     "bravo@example.com",
+ *     "charlie@example.com",
+ * ];
+ * // To list people by Grafana login instead, key this map by user.username
+ * const oncallUserIdsByEmail = Promise.all([all, std.lower({
+ *     input: user.email,
+ * })]).then(([all, invoke]) => .reduce((__obj, user) => ({ ...__obj, [invoke.result]: user.id })));
+ * const emeaMissingEmails = emeaRotation.filter(email => !_arg0_.result).map(email => (email));
  * // A 12 hour shift on week days with the on-call person rotating weekly.
  * const emeaWeekdayShift = new grafana.oncall.OnCallShift("emea_weekday_shift", {
  *     name: "EMEA Weekday Shift",
@@ -79,14 +71,13 @@ import * as utilities from "../utilities";
  *         "FR",
  *     ],
  *     weekStart: "MO",
- *     rollingUsers: .map(k => ([k])),
+ *     timeZone: "UTC",
+ *     rollingUsers: emeaRotation.map(email => ([std.lower({
+ *         input: email,
+ *     }).then(invoke => oncallUserIdsByEmail[invoke.result])])),
  *     startRotationFromUserIndex: 0,
  *     teamId: myTeamGetTeam.then(myTeamGetTeam => myTeamGetTeam.id),
  * });
- * export const emeaWeekdayRollingUsers = .map(k => (std.index.lookup({
- *     map: usersMapById,
- *     key: k,
- * }).result.username));
  * ```
  *
  * ## Import

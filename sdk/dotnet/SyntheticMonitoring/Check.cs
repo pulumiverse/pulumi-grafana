@@ -35,10 +35,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// 
     ///     var dns = new Grafana.SyntheticMonitoring.Check("dns", new()
     ///     {
-    ///         Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs
-    ///         {
-    ///             Dns = null,
-    ///         },
     ///         Job = "DNS Defaults",
     ///         Target = "grafana.com",
     ///         Enabled = false,
@@ -49,6 +45,10 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///         Labels = 
     ///         {
     ///             { "foo", "bar" },
+    ///         },
+    ///         Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs
+    ///         {
+    ///             Dns = null,
     ///         },
     ///     });
     /// 
@@ -69,10 +69,32 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// 
     ///     var dns = new Grafana.SyntheticMonitoring.Check("dns", new()
     ///     {
+    ///         Job = "DNS Updated",
+    ///         Target = "grafana.net",
+    ///         Enabled = false,
+    ///         Probes = new[]
+    ///         {
+    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Frankfurt),
+    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.London),
+    ///         },
+    ///         Labels = 
+    ///         {
+    ///             { "foo", "baz" },
+    ///         },
     ///         Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs
     ///         {
     ///             Dns = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsDnsArgs
     ///             {
+    ///                 IpVersion = "Any",
+    ///                 Server = "8.8.4.4",
+    ///                 Port = 8600,
+    ///                 RecordType = "CNAME",
+    ///                 Protocol = "TCP",
+    ///                 ValidRCodes = new[]
+    ///                 {
+    ///                     "NOERROR",
+    ///                     "NOTAUTH",
+    ///                 },
     ///                 ValidateAnswerRrs = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsDnsValidateAnswerRrsArgs
     ///                 {
     ///                     FailIfMatchesRegexps = new[]
@@ -109,29 +131,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///                         },
     ///                     },
     ///                 },
-    ///                 IpVersion = "Any",
-    ///                 Server = "8.8.4.4",
-    ///                 Port = 8600,
-    ///                 RecordType = "CNAME",
-    ///                 Protocol = "TCP",
-    ///                 ValidRCodes = new[]
-    ///                 {
-    ///                     "NOERROR",
-    ///                     "NOTAUTH",
-    ///                 },
     ///             },
-    ///         },
-    ///         Job = "DNS Updated",
-    ///         Target = "grafana.net",
-    ///         Enabled = false,
-    ///         Probes = new[]
-    ///         {
-    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Frankfurt),
-    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.London),
-    ///         },
-    ///         Labels = 
-    ///         {
-    ///             { "foo", "baz" },
     ///         },
     ///     });
     /// 
@@ -152,10 +152,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// 
     ///     var http = new Grafana.SyntheticMonitoring.Check("http", new()
     ///     {
-    ///         Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs
-    ///         {
-    ///             Http = null,
-    ///         },
     ///         Job = "HTTP Defaults",
     ///         Target = "https://grafana.com",
     ///         Enabled = false,
@@ -166,6 +162,10 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///         Labels = 
     ///         {
     ///             { "foo", "bar" },
+    ///         },
+    ///         Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs
+    ///         {
+    ///             Http = null,
     ///         },
     ///     });
     /// 
@@ -186,10 +186,33 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// 
     ///     var http = new Grafana.SyntheticMonitoring.Check("http", new()
     ///     {
+    ///         Job = "HTTP Defaults",
+    ///         Target = "https://grafana.org",
+    ///         Enabled = false,
+    ///         FolderUid = "test-folder-uid",
+    ///         Probes = new[]
+    ///         {
+    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Mumbai),
+    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Mumbai),
+    ///         },
+    ///         Labels = 
+    ///         {
+    ///             { "foo", "bar" },
+    ///         },
     ///         Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs
     ///         {
     ///             Http = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsHttpArgs
     ///             {
+    ///                 IpVersion = "V6",
+    ///                 Method = "TRACE",
+    ///                 Body = "and spirit",
+    ///                 NoFollowRedirects = true,
+    ///                 BearerToken = "asdfjkl;",
+    ///                 ProxyUrl = "https://almost-there",
+    ///                 FailIfSsl = true,
+    ///                 FailIfNotSsl = true,
+    ///                 Compression = "deflate",
+    ///                 CacheBustingQueryParamName = "pineapple",
     ///                 TlsConfig = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsHttpTlsConfigArgs
     ///                 {
     ///                     ServerName = "grafana.org",
@@ -222,39 +245,14 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// -----END CERTIFICATE-----
     /// ",
     ///                 },
+    ///                 Headers = new[]
+    ///                 {
+    ///                     "Content-Type: multipart/form-data; boundary=something",
+    ///                 },
     ///                 BasicAuth = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsHttpBasicAuthArgs
     ///                 {
     ///                     Username = "open",
     ///                     Password = "sesame",
-    ///                 },
-    ///                 FailIfHeaderMatchesRegexps = new[]
-    ///                 {
-    ///                     new Grafana.SyntheticMonitoring.Inputs.CheckSettingsHttpFailIfHeaderMatchesRegexpArgs
-    ///                     {
-    ///                         Header = "Content-Type",
-    ///                         Regexp = "application/soap*",
-    ///                         AllowMissing = true,
-    ///                     },
-    ///                     new Grafana.SyntheticMonitoring.Inputs.CheckSettingsHttpFailIfHeaderMatchesRegexpArgs
-    ///                     {
-    ///                         Header = "Content-Type",
-    ///                         Regexp = "application/json",
-    ///                         AllowMissing = true,
-    ///                     },
-    ///                 },
-    ///                 IpVersion = "V6",
-    ///                 Method = "TRACE",
-    ///                 Body = "and spirit",
-    ///                 NoFollowRedirects = true,
-    ///                 BearerToken = "asdfjkl;",
-    ///                 ProxyUrl = "https://almost-there",
-    ///                 FailIfSsl = true,
-    ///                 FailIfNotSsl = true,
-    ///                 Compression = "deflate",
-    ///                 CacheBustingQueryParamName = "pineapple",
-    ///                 Headers = new[]
-    ///                 {
-    ///                     "Content-Type: multipart/form-data; boundary=something",
     ///                 },
     ///                 ValidStatusCodes = new[]
     ///                 {
@@ -275,20 +273,22 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///                 {
     ///                     ".*good stuff.*",
     ///                 },
+    ///                 FailIfHeaderMatchesRegexps = new[]
+    ///                 {
+    ///                     new Grafana.SyntheticMonitoring.Inputs.CheckSettingsHttpFailIfHeaderMatchesRegexpArgs
+    ///                     {
+    ///                         Header = "Content-Type",
+    ///                         Regexp = "application/soap*",
+    ///                         AllowMissing = true,
+    ///                     },
+    ///                     new Grafana.SyntheticMonitoring.Inputs.CheckSettingsHttpFailIfHeaderMatchesRegexpArgs
+    ///                     {
+    ///                         Header = "Content-Type",
+    ///                         Regexp = "application/json",
+    ///                         AllowMissing = true,
+    ///                     },
+    ///                 },
     ///             },
-    ///         },
-    ///         Job = "HTTP Defaults",
-    ///         Target = "https://grafana.org",
-    ///         Enabled = false,
-    ///         FolderUid = "test-folder-uid",
-    ///         Probes = new[]
-    ///         {
-    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Mumbai),
-    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Mumbai),
-    ///         },
-    ///         Labels = 
-    ///         {
-    ///             { "foo", "bar" },
     ///         },
     ///     });
     /// 
@@ -309,10 +309,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// 
     ///     var ping = new Grafana.SyntheticMonitoring.Check("ping", new()
     ///     {
-    ///         Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs
-    ///         {
-    ///             Ping = null,
-    ///         },
     ///         Job = "Ping Defaults",
     ///         Target = "grafana.com",
     ///         Enabled = false,
@@ -323,6 +319,10 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///         Labels = 
     ///         {
     ///             { "foo", "bar" },
+    ///         },
+    ///         Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs
+    ///         {
+    ///             Ping = null,
     ///         },
     ///     });
     /// 
@@ -343,15 +343,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// 
     ///     var ping = new Grafana.SyntheticMonitoring.Check("ping", new()
     ///     {
-    ///         Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs
-    ///         {
-    ///             Ping = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsPingArgs
-    ///             {
-    ///                 IpVersion = "Any",
-    ///                 PayloadSize = 20,
-    ///                 DontFragment = true,
-    ///             },
-    ///         },
     ///         Job = "Ping Updated",
     ///         Target = "grafana.net",
     ///         Enabled = false,
@@ -363,6 +354,15 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///         Labels = 
     ///         {
     ///             { "foo", "baz" },
+    ///         },
+    ///         Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs
+    ///         {
+    ///             Ping = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsPingArgs
+    ///             {
+    ///                 IpVersion = "Any",
+    ///                 PayloadSize = 20,
+    ///                 DontFragment = true,
+    ///             },
     ///         },
     ///     });
     /// 
@@ -383,10 +383,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// 
     ///     var tcp = new Grafana.SyntheticMonitoring.Check("tcp", new()
     ///     {
-    ///         Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs
-    ///         {
-    ///             Tcp = null,
-    ///         },
     ///         Job = "TCP Defaults",
     ///         Target = "grafana.com:80",
     ///         Enabled = false,
@@ -397,6 +393,10 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///         Labels = 
     ///         {
     ///             { "foo", "bar" },
+    ///         },
+    ///         Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs
+    ///         {
+    ///             Tcp = null,
     ///         },
     ///     });
     /// 
@@ -417,10 +417,38 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// 
     ///     var tcp = new Grafana.SyntheticMonitoring.Check("tcp", new()
     ///     {
+    ///         Job = "TCP Defaults",
+    ///         Target = "grafana.com:443",
+    ///         Enabled = false,
+    ///         Probes = new[]
+    ///         {
+    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Frankfurt),
+    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.London),
+    ///         },
+    ///         Labels = 
+    ///         {
+    ///             { "foo", "baz" },
+    ///         },
     ///         Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs
     ///         {
     ///             Tcp = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsTcpArgs
     ///             {
+    ///                 IpVersion = "V6",
+    ///                 Tls = true,
+    ///                 QueryResponses = new[]
+    ///                 {
+    ///                     new Grafana.SyntheticMonitoring.Inputs.CheckSettingsTcpQueryResponseArgs
+    ///                     {
+    ///                         Send = "howdy",
+    ///                         Expect = "hi",
+    ///                     },
+    ///                     new Grafana.SyntheticMonitoring.Inputs.CheckSettingsTcpQueryResponseArgs
+    ///                     {
+    ///                         Send = "like this",
+    ///                         Expect = "like that",
+    ///                         StartTls = true,
+    ///                     },
+    ///                 },
     ///                 TlsConfig = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsTcpTlsConfigArgs
     ///                 {
     ///                     ServerName = "grafana.com",
@@ -453,35 +481,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// -----END CERTIFICATE-----
     /// ",
     ///                 },
-    ///                 QueryResponses = new[]
-    ///                 {
-    ///                     new Grafana.SyntheticMonitoring.Inputs.CheckSettingsTcpQueryResponseArgs
-    ///                     {
-    ///                         Send = "howdy",
-    ///                         Expect = "hi",
-    ///                     },
-    ///                     new Grafana.SyntheticMonitoring.Inputs.CheckSettingsTcpQueryResponseArgs
-    ///                     {
-    ///                         Send = "like this",
-    ///                         Expect = "like that",
-    ///                         StartTls = true,
-    ///                     },
-    ///                 },
-    ///                 IpVersion = "V6",
-    ///                 Tls = true,
     ///             },
-    ///         },
-    ///         Job = "TCP Defaults",
-    ///         Target = "grafana.com:443",
-    ///         Enabled = false,
-    ///         Probes = new[]
-    ///         {
-    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Frankfurt),
-    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.London),
-    ///         },
-    ///         Labels = 
-    ///         {
-    ///             { "foo", "baz" },
     ///         },
     ///     });
     /// 
@@ -502,10 +502,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// 
     ///     var traceroute = new Grafana.SyntheticMonitoring.Check("traceroute", new()
     ///     {
-    ///         Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs
-    ///         {
-    ///             Traceroute = null,
-    ///         },
     ///         Job = "Traceroute defaults",
     ///         Target = "grafana.com",
     ///         Enabled = false,
@@ -518,6 +514,10 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///         Labels = 
     ///         {
     ///             { "foo", "bar" },
+    ///         },
+    ///         Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs
+    ///         {
+    ///             Traceroute = null,
     ///         },
     ///     });
     /// 
@@ -538,15 +538,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// 
     ///     var traceroute = new Grafana.SyntheticMonitoring.Check("traceroute", new()
     ///     {
-    ///         Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs
-    ///         {
-    ///             Traceroute = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsTracerouteArgs
-    ///             {
-    ///                 MaxHops = 25,
-    ///                 MaxUnknownHops = 10,
-    ///                 PtrLookup = false,
-    ///             },
-    ///         },
     ///         Job = "Traceroute complex",
     ///         Target = "grafana.net",
     ///         Enabled = false,
@@ -560,6 +551,15 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///         Labels = 
     ///         {
     ///             { "foo", "baz" },
+    ///         },
+    ///         Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs
+    ///         {
+    ///             Traceroute = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsTracerouteArgs
+    ///             {
+    ///                 MaxHops = 25,
+    ///                 MaxUnknownHops = 10,
+    ///                 PtrLookup = false,
+    ///             },
     ///         },
     ///     });
     /// 

@@ -261,7 +261,7 @@ class Pipeline(pulumi.CustomResource):
 
         test = grafana.fleetmanagement.Pipeline("test",
             name="my_pipeline",
-            contents=std.index.file(input="config.alloy")["result"],
+            contents=std.file(input="config.alloy").result,
             matchers=[
                 "collector.os=~\\".*\\"",
                 "env=\\"PROD\\"",
@@ -314,7 +314,7 @@ class Pipeline(pulumi.CustomResource):
 
         test = grafana.fleetmanagement.Pipeline("test",
             name="my_pipeline",
-            contents=std.index.file(input="config.alloy")["result"],
+            contents=std.file(input="config.alloy").result,
             matchers=[
                 "collector.os=~\\".*\\"",
                 "env=\\"PROD\\"",

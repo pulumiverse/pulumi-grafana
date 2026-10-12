@@ -16,6 +16,11 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const production = new grafana.assert.LogConfig("production", {
+ *     name: "production",
+ *     priority: 1000,
+ *     defaultConfig: false,
+ *     dataSourceUid: "grafanacloud-logs",
+ *     errorLabel: "error",
  *     matches: [
  *         {
  *             property: "asserts_entity_type",
@@ -39,11 +44,6 @@ import * as utilities from "../utilities";
  *             ],
  *         },
  *     ],
- *     name: "production",
- *     priority: 1000,
- *     defaultConfig: false,
- *     dataSourceUid: "grafanacloud-logs",
- *     errorLabel: "error",
  *     entityPropertyToLogLabelMapping: {
  *         otel_namespace: "service_namespace",
  *         otel_service: "service_name",
@@ -54,6 +54,11 @@ import * as utilities from "../utilities";
  *     filterByTraceId: true,
  * });
  * const development = new grafana.assert.LogConfig("development", {
+ *     name: "development",
+ *     priority: 2000,
+ *     defaultConfig: true,
+ *     dataSourceUid: "elasticsearch-dev",
+ *     errorLabel: "error",
  *     matches: [
  *         {
  *             property: "asserts_entity_type",
@@ -79,11 +84,6 @@ import * as utilities from "../utilities";
  *             values: ["api"],
  *         },
  *     ],
- *     name: "development",
- *     priority: 2000,
- *     defaultConfig: true,
- *     dataSourceUid: "elasticsearch-dev",
- *     errorLabel: "error",
  *     entityPropertyToLogLabelMapping: {
  *         otel_namespace: "service_namespace",
  *         otel_service: "service_name",
@@ -95,15 +95,15 @@ import * as utilities from "../utilities";
  *     filterByTraceId: true,
  * });
  * const minimal = new grafana.assert.LogConfig("minimal", {
+ *     name: "minimal",
+ *     priority: 3000,
+ *     defaultConfig: false,
+ *     dataSourceUid: "loki-minimal",
  *     matches: [{
  *         property: "asserts_entity_type",
  *         op: "IS NOT NULL",
  *         values: [],
  *     }],
- *     name: "minimal",
- *     priority: 3000,
- *     defaultConfig: false,
- *     dataSourceUid: "loki-minimal",
  * });
  * ```
  *

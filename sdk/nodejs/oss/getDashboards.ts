@@ -41,22 +41,22 @@ import * as utilities from "../utilities";
  *         tags: ["prod"],
  *     }),
  * });
- * const tags = pulumi.all([test.id, dataSourceDashboards1.configJson]).apply(([id, configJson]) => grafana.oss.getDashboardsOutput({
+ * const tags = pulumi.all([test.id, std.jsondecodeOutput({
+ *     input: dataSourceDashboards1.configJson,
+ * })]).apply(([id, invoke]) => grafana.oss.getDashboardsOutput({
  *     orgId: id,
- *     tags: std.index.jsondecode({
- *         input: configJson,
- *     }).result.tags,
+ *     tags: invoke.result?.tags,
  * }));
  * const folderUids = pulumi.all([test.id, dataSourceDashboards1.folder]).apply(([id, folder]) => grafana.oss.getDashboardsOutput({
  *     orgId: id,
  *     folderUids: [folder],
  * }));
- * const folderUidsTags = pulumi.all([test.id, dataSourceDashboards1.folder, dataSourceDashboards1.configJson]).apply(([id, folder, configJson]) => grafana.oss.getDashboardsOutput({
+ * const folderUidsTags = pulumi.all([test.id, dataSourceDashboards1.folder, std.jsondecodeOutput({
+ *     input: dataSourceDashboards1.configJson,
+ * })]).apply(([id, folder, invoke]) => grafana.oss.getDashboardsOutput({
  *     orgId: id,
  *     folderUids: [folder],
- *     tags: std.index.jsondecode({
- *         input: configJson,
- *     }).result.tags,
+ *     tags: invoke.result?.tags,
  * }));
  * // use depends_on to wait for dashboard resource to be created before searching
  * const all = grafana.oss.getDashboardsOutput({
@@ -165,22 +165,22 @@ export interface GetDashboardsResult {
  *         tags: ["prod"],
  *     }),
  * });
- * const tags = pulumi.all([test.id, dataSourceDashboards1.configJson]).apply(([id, configJson]) => grafana.oss.getDashboardsOutput({
+ * const tags = pulumi.all([test.id, std.jsondecodeOutput({
+ *     input: dataSourceDashboards1.configJson,
+ * })]).apply(([id, invoke]) => grafana.oss.getDashboardsOutput({
  *     orgId: id,
- *     tags: std.index.jsondecode({
- *         input: configJson,
- *     }).result.tags,
+ *     tags: invoke.result?.tags,
  * }));
  * const folderUids = pulumi.all([test.id, dataSourceDashboards1.folder]).apply(([id, folder]) => grafana.oss.getDashboardsOutput({
  *     orgId: id,
  *     folderUids: [folder],
  * }));
- * const folderUidsTags = pulumi.all([test.id, dataSourceDashboards1.folder, dataSourceDashboards1.configJson]).apply(([id, folder, configJson]) => grafana.oss.getDashboardsOutput({
+ * const folderUidsTags = pulumi.all([test.id, dataSourceDashboards1.folder, std.jsondecodeOutput({
+ *     input: dataSourceDashboards1.configJson,
+ * })]).apply(([id, folder, invoke]) => grafana.oss.getDashboardsOutput({
  *     orgId: id,
  *     folderUids: [folder],
- *     tags: std.index.jsondecode({
- *         input: configJson,
- *     }).result.tags,
+ *     tags: invoke.result?.tags,
  * }));
  * // use depends_on to wait for dashboard resource to be created before searching
  * const all = grafana.oss.getDashboardsOutput({

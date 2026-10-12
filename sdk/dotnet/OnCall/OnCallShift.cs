@@ -62,51 +62,39 @@ namespace Pulumiverse.Grafana.OnCall
     ///     });
     /// 
     ///     ////////
-    ///     // Advanced example
+    ///     // Advanced example: a rotation built from a list of emails
     ///     ////////
-    ///     var teams = 
+    ///     // Reads every OnCall user once, instead of one data source per person
+    ///     var all = Grafana.OnCall.GetUsers.Invoke();
+    /// 
+    ///     // The people in the rotation, in order. Each person takes one turn.
+    ///     var emeaRotation = new[]
     ///     {
-    ///         { "emea", new[]
-    ///         {
-    ///             "alfa@grafana.com",
-    ///             "bravo@grafana.com",
-    ///             "charlie@grafana.com",
-    ///             "echo@grafana.com",
-    ///             "delta@grafana.com",
-    ///             "foxtrot@grafana.com",
-    ///             "golf@grafana.com",
-    ///         } },
+    ///         "alfa@example.com",
+    ///         "bravo@example.com",
+    ///         "charlie@example.com",
     ///     };
     /// 
-    ///     // Importing users
-    ///     var allUsers = .ToDictionary(item =&gt; {
-    ///         var __key = item.Key;
-    ///         return __key;
-    ///     }, item =&gt; {
-    ///         var __key = item.Key;
-    ///         return Grafana.OnCall.GetUser.Invoke(new()
-    ///         {
-    ///             Username = __key,
+    ///     // To list people by Grafana login instead, key this map by user.username
+    ///     var oncallUserIdsByEmail = Output.Tuple(all, Std.Lower.Invoke(new()
+    ///     {
+    ///         Input = user.Email,
+    ///     })).Apply(values =&gt;
+    ///     {
+    ///         var all = values.Item1;
+    ///         var invoke = values.Item2;
+    ///         return .ToDictionary(item =&gt; {
+    ///             return invoke.Result;
+    ///         }, item =&gt; {
+    ///             var user = item.Value;
+    ///             return user.Id;
     ///         });
     ///     });
     /// 
-    ///     // oncall API operates with resources ID's, so we convert emails into ID's
-    ///     var teamsMapOfUserId = .ToDictionary(item =&gt; {
-    ///         var teamName = item.Key;
-    ///         return teamName;
-    ///     }, item =&gt; {
-    ///         var usernameList = item.Value;
-    ///         return usernameList.Select(username =&gt; 
-    ///         {
-    ///             return Std.Index.Lookup.Invoke(new()
-    ///             {
-    ///                 Map = allUsers,
-    ///                 Key = username,
-    ///             }).Result.Id;
-    ///         }).ToList();
-    ///     });
-    /// 
-    ///     var usersMapById = _arg0_;
+    ///     var emeaMissingEmails = emeaRotation.Where(email =&gt; !_arg0_.Result).Select(email =&gt; 
+    ///     {
+    ///         return email;
+    ///     }).ToList();
     /// 
     ///     // A 12 hour shift on week days with the on-call person rotating weekly.
     ///     var emeaWeekdayShift = new Grafana.OnCall.OnCallShift("emea_weekday_shift", new()
@@ -126,28 +114,21 @@ namespace Pulumiverse.Grafana.OnCall
     ///             "FR",
     ///         },
     ///         WeekStart = "MO",
-    ///         RollingUsers = .Select(k =&gt; 
+    ///         TimeZone = "UTC",
+    ///         RollingUsers = emeaRotation.Select(email =&gt; 
     ///         {
     ///             return new[]
     ///             {
-    ///                 k,
+    ///                 Std.Lower.Invoke(new()
+    ///                 {
+    ///                     Input = email,
+    ///                 }).Apply(invoke =&gt; oncallUserIdsByEmail[invoke.Result]),
     ///             };
     ///         }).ToList(),
     ///         StartRotationFromUserIndex = 0,
     ///         TeamId = myTeamGetTeam.Apply(getTeamResult =&gt; getTeamResult.Id),
     ///     });
     /// 
-    ///     return new Dictionary&lt;string, object?&gt;
-    ///     {
-    ///         ["emeaWeekdayRollingUsers"] = .Select(k =&gt; 
-    ///         {
-    ///             return Std.Index.Lookup.Invoke(new()
-    ///             {
-    ///                 Map = usersMapById,
-    ///                 Key = k,
-    ///             }).Result.Username;
-    ///         }).ToList(),
-    ///     };
     /// });
     /// ```
     /// 

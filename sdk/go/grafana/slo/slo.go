@@ -35,8 +35,35 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := slo.NewSLO(ctx, "ratio", &slo.SLOArgs{
+//				Name:        pulumi.String("Terraform Testing - Ratio Query"),
+//				Description: pulumi.String("Terraform Description - Ratio Query"),
+//				Queries: slo.SLOQueryArray{
+//					&slo.SLOQueryArgs{
+//						Ratio: &slo.SLOQueryRatioArgs{
+//							SuccessMetric: pulumi.String("kubelet_http_requests_total{status!~\"5..\"}"),
+//							TotalMetric:   pulumi.String("kubelet_http_requests_total"),
+//							GroupByLabels: pulumi.StringArray{
+//								pulumi.String("job"),
+//								pulumi.String("instance"),
+//							},
+//						},
+//						Type: pulumi.String("ratio"),
+//					},
+//				},
+//				Objectives: slo.SLOObjectiveArray{
+//					&slo.SLOObjectiveArgs{
+//						Value:  pulumi.Float64(0.995),
+//						Window: pulumi.String("30d"),
+//					},
+//				},
 //				DestinationDatasource: &slo.SLODestinationDatasourceArgs{
 //					Uid: pulumi.String("grafanacloud-prom"),
+//				},
+//				Labels: slo.SLOLabelArray{
+//					&slo.SLOLabelArgs{
+//						Key:   pulumi.String("slo"),
+//						Value: pulumi.String("terraform"),
+//					},
 //				},
 //				Alerting: &slo.SLOAlertingArgs{
 //					Fastburn: &slo.SLOAlertingFastburnArgs{
@@ -64,33 +91,6 @@ import (
 //						},
 //					},
 //				},
-//				Labels: slo.SLOLabelArray{
-//					&slo.SLOLabelArgs{
-//						Key:   pulumi.String("slo"),
-//						Value: pulumi.String("terraform"),
-//					},
-//				},
-//				Objectives: slo.SLOObjectiveArray{
-//					&slo.SLOObjectiveArgs{
-//						Value:  pulumi.Float64(0.995),
-//						Window: pulumi.String("30d"),
-//					},
-//				},
-//				Queries: slo.SLOQueryArray{
-//					&slo.SLOQueryArgs{
-//						Ratio: &slo.SLOQueryRatioArgs{
-//							SuccessMetric: pulumi.String("kubelet_http_requests_total{status!~\"5..\"}"),
-//							TotalMetric:   pulumi.String("kubelet_http_requests_total"),
-//							GroupByLabels: pulumi.StringArray{
-//								pulumi.String("job"),
-//								pulumi.String("instance"),
-//							},
-//						},
-//						Type: pulumi.String("ratio"),
-//					},
-//				},
-//				Name:        pulumi.String("Terraform Testing - Ratio Query"),
-//				Description: pulumi.String("Terraform Description - Ratio Query"),
 //			})
 //			if err != nil {
 //				return err
@@ -116,8 +116,30 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := slo.NewSLO(ctx, "test", &slo.SLOArgs{
+//				Name:        pulumi.String("Terraform Testing"),
+//				Description: pulumi.String("Terraform Description"),
+//				Queries: slo.SLOQueryArray{
+//					&slo.SLOQueryArgs{
+//						Freeform: &slo.SLOQueryFreeformArgs{
+//							Query: pulumi.String("sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))"),
+//						},
+//						Type: pulumi.String("freeform"),
+//					},
+//				},
+//				Objectives: slo.SLOObjectiveArray{
+//					&slo.SLOObjectiveArgs{
+//						Value:  pulumi.Float64(0.995),
+//						Window: pulumi.String("30d"),
+//					},
+//				},
 //				DestinationDatasource: &slo.SLODestinationDatasourceArgs{
 //					Uid: pulumi.String("grafanacloud-prom"),
+//				},
+//				Labels: slo.SLOLabelArray{
+//					&slo.SLOLabelArgs{
+//						Key:   pulumi.String("slo"),
+//						Value: pulumi.String("terraform"),
+//					},
 //				},
 //				Alerting: &slo.SLOAlertingArgs{
 //					Fastburn: &slo.SLOAlertingFastburnArgs{
@@ -155,28 +177,6 @@ import (
 //						},
 //					},
 //				},
-//				Labels: slo.SLOLabelArray{
-//					&slo.SLOLabelArgs{
-//						Key:   pulumi.String("slo"),
-//						Value: pulumi.String("terraform"),
-//					},
-//				},
-//				Objectives: slo.SLOObjectiveArray{
-//					&slo.SLOObjectiveArgs{
-//						Value:  pulumi.Float64(0.995),
-//						Window: pulumi.String("30d"),
-//					},
-//				},
-//				Queries: slo.SLOQueryArray{
-//					&slo.SLOQueryArgs{
-//						Freeform: &slo.SLOQueryFreeformArgs{
-//							Query: pulumi.String("sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))"),
-//						},
-//						Type: pulumi.String("freeform"),
-//					},
-//				},
-//				Name:        pulumi.String("Terraform Testing"),
-//				Description: pulumi.String("Terraform Description"),
 //			})
 //			if err != nil {
 //				return err
@@ -213,21 +213,8 @@ import (
 //				return err
 //			}
 //			_, err = slo.NewSLO(ctx, "source_datasource", &slo.SLOArgs{
-//				DestinationDatasource: &slo.SLODestinationDatasourceArgs{
-//					Uid: pulumi.String("grafanacloud-prom"),
-//				},
-//				Labels: slo.SLOLabelArray{
-//					&slo.SLOLabelArgs{
-//						Key:   pulumi.String("slo"),
-//						Value: pulumi.String("terraform"),
-//					},
-//				},
-//				Objectives: slo.SLOObjectiveArray{
-//					&slo.SLOObjectiveArgs{
-//						Value:  pulumi.Float64(0.995),
-//						Window: pulumi.String("30d"),
-//					},
-//				},
+//				Name:        pulumi.String("Terraform Testing - Separate Source Datasource"),
+//				Description: pulumi.String("Terraform Description - Separate Source Datasource"),
 //				Queries: slo.SLOQueryArray{
 //					&slo.SLOQueryArgs{
 //						Freeform: &slo.SLOQueryFreeformArgs{
@@ -237,8 +224,21 @@ import (
 //						Type: pulumi.String("freeform"),
 //					},
 //				},
-//				Name:        pulumi.String("Terraform Testing - Separate Source Datasource"),
-//				Description: pulumi.String("Terraform Description - Separate Source Datasource"),
+//				Objectives: slo.SLOObjectiveArray{
+//					&slo.SLOObjectiveArgs{
+//						Value:  pulumi.Float64(0.995),
+//						Window: pulumi.String("30d"),
+//					},
+//				},
+//				DestinationDatasource: &slo.SLODestinationDatasourceArgs{
+//					Uid: pulumi.String("grafanacloud-prom"),
+//				},
+//				Labels: slo.SLOLabelArray{
+//					&slo.SLOLabelArgs{
+//						Key:   pulumi.String("slo"),
+//						Value: pulumi.String("terraform"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -299,8 +299,30 @@ import (
 //			}
 //			json0 := string(tmpJSON0)
 //			_, err = slo.NewSLO(ctx, "test", &slo.SLOArgs{
+//				Name:        pulumi.String("Terraform Testing"),
+//				Description: pulumi.String("Terraform Description"),
+//				Queries: slo.SLOQueryArray{
+//					&slo.SLOQueryArgs{
+//						GrafanaQueries: &slo.SLOQueryGrafanaQueriesArgs{
+//							GrafanaQueries: pulumi.String(pulumi.String(json0)),
+//						},
+//						Type: pulumi.String("grafana_queries"),
+//					},
+//				},
 //				DestinationDatasource: &slo.SLODestinationDatasourceArgs{
 //					Uid: pulumi.String("grafanacloud-prom"),
+//				},
+//				Objectives: slo.SLOObjectiveArray{
+//					&slo.SLOObjectiveArgs{
+//						Value:  pulumi.Float64(0.995),
+//						Window: pulumi.String("30d"),
+//					},
+//				},
+//				Labels: slo.SLOLabelArray{
+//					&slo.SLOLabelArgs{
+//						Key:   pulumi.String("slo"),
+//						Value: pulumi.String("terraform"),
+//					},
 //				},
 //				Alerting: &slo.SLOAlertingArgs{
 //					Fastburn: &slo.SLOAlertingFastburnArgs{
@@ -328,28 +350,6 @@ import (
 //						},
 //					},
 //				},
-//				Labels: slo.SLOLabelArray{
-//					&slo.SLOLabelArgs{
-//						Key:   pulumi.String("slo"),
-//						Value: pulumi.String("terraform"),
-//					},
-//				},
-//				Objectives: slo.SLOObjectiveArray{
-//					&slo.SLOObjectiveArgs{
-//						Value:  pulumi.Float64(0.995),
-//						Window: pulumi.String("30d"),
-//					},
-//				},
-//				Queries: slo.SLOQueryArray{
-//					&slo.SLOQueryArgs{
-//						GrafanaQueries: &slo.SLOQueryGrafanaQueriesArgs{
-//							GrafanaQueries: pulumi.String(pulumi.String(json0)),
-//						},
-//						Type: pulumi.String("grafana_queries"),
-//					},
-//				},
-//				Name:        pulumi.String("Terraform Testing"),
-//				Description: pulumi.String("Terraform Description"),
 //			})
 //			if err != nil {
 //				return err
@@ -379,6 +379,22 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := slo.NewSLO(ctx, "search_expression", &slo.SLOArgs{
+//				Name:        pulumi.String("Terraform Testing - Entity Search Expression"),
+//				Description: pulumi.String("Terraform Description - Entity Search Expression"),
+//				Queries: slo.SLOQueryArray{
+//					&slo.SLOQueryArgs{
+//						Freeform: &slo.SLOQueryFreeformArgs{
+//							Query: pulumi.String("sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))"),
+//						},
+//						Type: pulumi.String("freeform"),
+//					},
+//				},
+//				Objectives: slo.SLOObjectiveArray{
+//					&slo.SLOObjectiveArgs{
+//						Value:  pulumi.Float64(0.995),
+//						Window: pulumi.String("30d"),
+//					},
+//				},
 //				DestinationDatasource: &slo.SLODestinationDatasourceArgs{
 //					Uid: pulumi.String("grafanacloud-prom"),
 //				},
@@ -388,22 +404,6 @@ import (
 //						Value: pulumi.String("terraform"),
 //					},
 //				},
-//				Objectives: slo.SLOObjectiveArray{
-//					&slo.SLOObjectiveArgs{
-//						Value:  pulumi.Float64(0.995),
-//						Window: pulumi.String("30d"),
-//					},
-//				},
-//				Queries: slo.SLOQueryArray{
-//					&slo.SLOQueryArgs{
-//						Freeform: &slo.SLOQueryFreeformArgs{
-//							Query: pulumi.String("sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))"),
-//						},
-//						Type: pulumi.String("freeform"),
-//					},
-//				},
-//				Name:             pulumi.String("Terraform Testing - Entity Search Expression"),
-//				Description:      pulumi.String("Terraform Description - Entity Search Expression"),
 //				SearchExpression: pulumi.String("shipping connected services"),
 //			})
 //			if err != nil {

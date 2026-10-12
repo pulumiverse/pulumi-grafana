@@ -18,42 +18,6 @@ namespace Pulumiverse.Grafana.CloudProvider
     /// 
     /// * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-infrastructure/monitor-cloud-provider/aws/)
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Aws = Pulumi.Aws;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = Grafana.Cloud.GetStack.Invoke(new()
-    ///     {
-    ///         Slug = "gcloudstacktest",
-    ///     });
-    /// 
-    ///     var testIamRole = Aws.Index.IamRole.Invoke(new()
-    ///     {
-    ///         Name = "my-role",
-    ///     });
-    /// 
-    ///     var testAwsAccount = new Grafana.CloudProvider.AwsAccount("test", new()
-    ///     {
-    ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
-    ///         RoleArn = testIamRole.Arn,
-    ///         Regions = new[]
-    ///         {
-    ///             "us-east-1",
-    ///             "us-east-2",
-    ///             "us-west-1",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// ```sh

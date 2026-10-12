@@ -36,6 +36,8 @@ if typing.TYPE_CHECKING:
     fleetmanagement = __fleetmanagement
     import pulumiverse_grafana.frontendobservability as __frontendobservability
     frontendobservability = __frontendobservability
+    import pulumiverse_grafana.incident as __incident
+    incident = __incident
     import pulumiverse_grafana.k6 as __k6
     k6 = __k6
     import pulumiverse_grafana.machinelearning as __machinelearning
@@ -62,6 +64,7 @@ else:
     experimental = _utilities.lazy_import('pulumiverse_grafana.experimental')
     fleetmanagement = _utilities.lazy_import('pulumiverse_grafana.fleetmanagement')
     frontendobservability = _utilities.lazy_import('pulumiverse_grafana.frontendobservability')
+    incident = _utilities.lazy_import('pulumiverse_grafana.incident')
     k6 = _utilities.lazy_import('pulumiverse_grafana.k6')
     machinelearning = _utilities.lazy_import('pulumiverse_grafana.machinelearning')
     oncall = _utilities.lazy_import('pulumiverse_grafana.oncall')
@@ -734,6 +737,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.frontendobservability",
   "classes": {
    "grafana:frontendObservability/app:App": "App"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "incident/role",
+  "fqn": "pulumiverse_grafana.incident",
+  "classes": {
+   "grafana:incident/role:Role": "Role"
   }
  },
  {

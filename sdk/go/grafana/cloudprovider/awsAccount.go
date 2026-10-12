@@ -19,52 +19,6 @@ import (
 //
 // * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-infrastructure/monitor-cloud-provider/aws/)
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-aws/sdk/go/aws"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloudprovider"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			test, err := cloud.LookupStack(ctx, &cloud.LookupStackArgs{
-//				Slug: "gcloudstacktest",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			testIamRole, err := aws.IamRole(ctx, map[string]interface{}{
-//				"name": "my-role",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = cloudprovider.NewAwsAccount(ctx, "test", &cloudprovider.AwsAccountArgs{
-//				StackId: pulumi.String(pulumi.String(test.Id)),
-//				RoleArn: pulumi.Any(testIamRole.Arn),
-//				Regions: pulumi.StringArray{
-//					pulumi.String("us-east-1"),
-//					pulumi.String("us-east-2"),
-//					pulumi.String("us-west-1"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // ```sh

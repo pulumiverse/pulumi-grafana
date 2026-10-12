@@ -43,6 +43,7 @@ const (
 	enterpriseMod            = "enterprise"
 	fleetManagementMod       = "fleetManagement"
 	frontendObservabilityMod = "frontendObservability"
+	incidentMod              = "incident"
 	k6Mod                    = "k6"
 	mlMod                    = "machineLearning"
 	oncallMod                = "onCall"
@@ -942,6 +943,7 @@ func Provider() tfbridge.ProviderInfo {
 				"enterprise":           enterpriseMod,
 				"fleet_management":     fleetManagementMod,
 				"frontend_o11y":        frontendObservabilityMod,
+				"incident":             incidentMod,
 				"k6":                   k6Mod,
 				"machine_learning":     mlMod,
 				"oncall":               oncallMod,

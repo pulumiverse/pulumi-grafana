@@ -152,7 +152,11 @@ class PromRuleFile(pulumi.CustomResource):
 
         # Basic recording rule for latency metrics
         latency_metrics = grafana.assert_.PromRuleFile("latency_metrics",
+            name="custom-latency-metrics",
+            active=True,
             groups=[{
+                "name": "latency_recording_rules",
+                "interval": "30s",
                 "rules": [
                     {
                         "record": "custom:latency:p95",
@@ -171,14 +175,14 @@ class PromRuleFile(pulumi.CustomResource):
                         },
                     },
                 ],
-                "name": "latency_recording_rules",
-                "interval": "30s",
-            }],
-            name="custom-latency-metrics",
-            active=True)
+            }])
         # Alert rules for high latency
         latency_alerts = grafana.assert_.PromRuleFile("latency_alerts",
+            name="custom-latency-alerts",
+            active=True,
             groups=[{
+                "name": "latency_alerting",
+                "interval": "30s",
                 "rules": [
                     {
                         "alert": "HighLatency",
@@ -207,15 +211,15 @@ class PromRuleFile(pulumi.CustomResource):
                         },
                     },
                 ],
-                "name": "latency_alerting",
-                "interval": "30s",
-            }],
-            name="custom-latency-alerts",
-            active=True)
+            }])
         # Comprehensive monitoring rules with multiple groups
         comprehensive_monitoring = grafana.assert_.PromRuleFile("comprehensive_monitoring",
+            name="custom-comprehensive-monitoring",
+            active=True,
             groups=[
                 {
+                    "name": "latency_monitoring",
+                    "interval": "30s",
                     "rules": [
                         {
                             "record": "custom:latency:p99",
@@ -236,10 +240,10 @@ class PromRuleFile(pulumi.CustomResource):
                             },
                         },
                     ],
-                    "name": "latency_monitoring",
-                    "interval": "30s",
                 },
                 {
+                    "name": "error_monitoring",
+                    "interval": "1m",
                     "rules": [
                         {
                             "record": "custom:error:rate",
@@ -262,10 +266,10 @@ class PromRuleFile(pulumi.CustomResource):
                             },
                         },
                     ],
-                    "name": "error_monitoring",
-                    "interval": "1m",
                 },
                 {
+                    "name": "throughput_monitoring",
+                    "interval": "1m",
                     "rules": [
                         {
                             "record": "custom:throughput:total",
@@ -288,15 +292,15 @@ class PromRuleFile(pulumi.CustomResource):
                             },
                         },
                     ],
-                    "name": "throughput_monitoring",
-                    "interval": "1m",
                 },
-            ],
-            name="custom-comprehensive-monitoring",
-            active=True)
+            ])
         # Rules with conditional enablement
         conditional_rules = grafana.assert_.PromRuleFile("conditional_rules",
+            name="custom-conditional-rules",
+            active=True,
             groups=[{
+                "name": "environment_specific_rules",
+                "interval": "30s",
                 "rules": [
                     {
                         "alert": "TestAlert",
@@ -322,14 +326,14 @@ class PromRuleFile(pulumi.CustomResource):
                         },
                     },
                 ],
-                "name": "environment_specific_rules",
-                "interval": "30s",
-            }],
-            name="custom-conditional-rules",
-            active=True)
+            }])
         # Inactive rules (for staging/testing)
         staging_rules = grafana.assert_.PromRuleFile("staging_rules",
+            name="custom-staging-rules",
+            active=False,
             groups=[{
+                "name": "staging_tests",
+                "interval": "1m",
                 "rules": [{
                     "record": "staging:test:metric",
                     "expr": "up",
@@ -337,14 +341,14 @@ class PromRuleFile(pulumi.CustomResource):
                         "environment": "staging",
                     },
                 }],
-                "name": "staging_tests",
-                "interval": "1m",
-            }],
-            name="custom-staging-rules",
-            active=False)
+            }])
         # SLO-based alerting
         slo_alerts = grafana.assert_.PromRuleFile("slo_alerts",
+            name="custom-slo-alerts",
+            active=True,
             groups=[{
+                "name": "slo_monitoring",
+                "interval": "1m",
                 "rules": [
                     {
                         "record": "custom:slo:availability",
@@ -368,11 +372,7 @@ class PromRuleFile(pulumi.CustomResource):
                         },
                     },
                 ],
-                "name": "slo_monitoring",
-                "interval": "1m",
-            }],
-            name="custom-slo-alerts",
-            active=True)
+            }])
         ```
 
         ## Import
@@ -405,7 +405,11 @@ class PromRuleFile(pulumi.CustomResource):
 
         # Basic recording rule for latency metrics
         latency_metrics = grafana.assert_.PromRuleFile("latency_metrics",
+            name="custom-latency-metrics",
+            active=True,
             groups=[{
+                "name": "latency_recording_rules",
+                "interval": "30s",
                 "rules": [
                     {
                         "record": "custom:latency:p95",
@@ -424,14 +428,14 @@ class PromRuleFile(pulumi.CustomResource):
                         },
                     },
                 ],
-                "name": "latency_recording_rules",
-                "interval": "30s",
-            }],
-            name="custom-latency-metrics",
-            active=True)
+            }])
         # Alert rules for high latency
         latency_alerts = grafana.assert_.PromRuleFile("latency_alerts",
+            name="custom-latency-alerts",
+            active=True,
             groups=[{
+                "name": "latency_alerting",
+                "interval": "30s",
                 "rules": [
                     {
                         "alert": "HighLatency",
@@ -460,15 +464,15 @@ class PromRuleFile(pulumi.CustomResource):
                         },
                     },
                 ],
-                "name": "latency_alerting",
-                "interval": "30s",
-            }],
-            name="custom-latency-alerts",
-            active=True)
+            }])
         # Comprehensive monitoring rules with multiple groups
         comprehensive_monitoring = grafana.assert_.PromRuleFile("comprehensive_monitoring",
+            name="custom-comprehensive-monitoring",
+            active=True,
             groups=[
                 {
+                    "name": "latency_monitoring",
+                    "interval": "30s",
                     "rules": [
                         {
                             "record": "custom:latency:p99",
@@ -489,10 +493,10 @@ class PromRuleFile(pulumi.CustomResource):
                             },
                         },
                     ],
-                    "name": "latency_monitoring",
-                    "interval": "30s",
                 },
                 {
+                    "name": "error_monitoring",
+                    "interval": "1m",
                     "rules": [
                         {
                             "record": "custom:error:rate",
@@ -515,10 +519,10 @@ class PromRuleFile(pulumi.CustomResource):
                             },
                         },
                     ],
-                    "name": "error_monitoring",
-                    "interval": "1m",
                 },
                 {
+                    "name": "throughput_monitoring",
+                    "interval": "1m",
                     "rules": [
                         {
                             "record": "custom:throughput:total",
@@ -541,15 +545,15 @@ class PromRuleFile(pulumi.CustomResource):
                             },
                         },
                     ],
-                    "name": "throughput_monitoring",
-                    "interval": "1m",
                 },
-            ],
-            name="custom-comprehensive-monitoring",
-            active=True)
+            ])
         # Rules with conditional enablement
         conditional_rules = grafana.assert_.PromRuleFile("conditional_rules",
+            name="custom-conditional-rules",
+            active=True,
             groups=[{
+                "name": "environment_specific_rules",
+                "interval": "30s",
                 "rules": [
                     {
                         "alert": "TestAlert",
@@ -575,14 +579,14 @@ class PromRuleFile(pulumi.CustomResource):
                         },
                     },
                 ],
-                "name": "environment_specific_rules",
-                "interval": "30s",
-            }],
-            name="custom-conditional-rules",
-            active=True)
+            }])
         # Inactive rules (for staging/testing)
         staging_rules = grafana.assert_.PromRuleFile("staging_rules",
+            name="custom-staging-rules",
+            active=False,
             groups=[{
+                "name": "staging_tests",
+                "interval": "1m",
                 "rules": [{
                     "record": "staging:test:metric",
                     "expr": "up",
@@ -590,14 +594,14 @@ class PromRuleFile(pulumi.CustomResource):
                         "environment": "staging",
                     },
                 }],
-                "name": "staging_tests",
-                "interval": "1m",
-            }],
-            name="custom-staging-rules",
-            active=False)
+            }])
         # SLO-based alerting
         slo_alerts = grafana.assert_.PromRuleFile("slo_alerts",
+            name="custom-slo-alerts",
+            active=True,
             groups=[{
+                "name": "slo_monitoring",
+                "interval": "1m",
                 "rules": [
                     {
                         "record": "custom:slo:availability",
@@ -621,11 +625,7 @@ class PromRuleFile(pulumi.CustomResource):
                         },
                     },
                 ],
-                "name": "slo_monitoring",
-                "interval": "1m",
-            }],
-            name="custom-slo-alerts",
-            active=True)
+            }])
         ```
 
         ## Import

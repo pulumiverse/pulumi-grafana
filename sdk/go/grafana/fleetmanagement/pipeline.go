@@ -32,7 +32,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi-std/sdk/v2/go/std"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/fleetmanagement"
 //
@@ -40,15 +40,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			invokeFile, err := std.File(ctx, map[string]interface{}{
-//				"input": "config.alloy",
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "config.alloy",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			_, err = fleetmanagement.NewPipeline(ctx, "test", &fleetmanagement.PipelineArgs{
 //				Name:     pulumi.String("my_pipeline"),
-//				Contents: invokeFile.Result,
+//				Contents: pulumi.String(invokeFile.Result),
 //				Matchers: pulumi.StringArray{
 //					pulumi.String("collector.os=~\".*\""),
 //					pulumi.String("env=\"PROD\""),

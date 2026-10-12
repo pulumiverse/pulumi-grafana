@@ -27,9 +27,9 @@ import * as utilities from "../utilities";
  *
  * const test = new grafana.fleetmanagement.Pipeline("test", {
  *     name: "my_pipeline",
- *     contents: std.index.file({
+ *     contents: std.file({
  *         input: "config.alloy",
- *     }).result,
+ *     }).then(invoke => invoke.result),
  *     matchers: [
  *         "collector.os=~\".*\"",
  *         "env=\"PROD\"",

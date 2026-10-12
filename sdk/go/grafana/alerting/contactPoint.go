@@ -33,6 +33,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := alerting.NewContactPoint(ctx, "my_contact_point", &alerting.ContactPointArgs{
+//				Name: pulumi.String("My Contact Point"),
 //				Emails: alerting.ContactPointEmailArray{
 //					&alerting.ContactPointEmailArgs{
 //						Addresses: pulumi.StringArray{
@@ -45,7 +46,6 @@ import (
 //						DisableResolveMessage: pulumi.Bool(false),
 //					},
 //				},
-//				Name: pulumi.String("My Contact Point"),
 //			})
 //			if err != nil {
 //				return err

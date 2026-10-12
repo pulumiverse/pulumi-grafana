@@ -61,6 +61,7 @@ import (
 //				return err
 //			}
 //			_, err = oss.NewDashboardPermission(ctx, "collectionPermission", &oss.DashboardPermissionArgs{
+//				DashboardUid: metrics.Uid,
 //				Permissions: oss.DashboardPermissionPermissionArray{
 //					&oss.DashboardPermissionPermissionArgs{
 //						Role:       pulumi.String("Editor"),
@@ -75,7 +76,6 @@ import (
 //						Permission: pulumi.String("Admin"),
 //					},
 //				},
-//				DashboardUid: metrics.Uid,
 //			})
 //			if err != nil {
 //				return err

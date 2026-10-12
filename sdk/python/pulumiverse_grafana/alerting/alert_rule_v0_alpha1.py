@@ -166,15 +166,10 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
                 "folder_uid": alertrule_folder.uid,
             },
             spec={
+                "title": "Example Alert Rule",
                 "trigger": {
                     "interval": "1m",
                 },
-                "notification_settings": {
-                    "simplified_routing": {
-                        "contact_point": "grafana-default-email",
-                    },
-                },
-                "title": "Example Alert Rule",
                 "paused": True,
                 "expressions": {
                     "A": json.dumps({
@@ -244,6 +239,11 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
                 "no_data_state": "KeepLast",
                 "exec_err_state": "KeepLast",
                 "missing_series_evals_to_resolve": 5,
+                "notification_settings": {
+                    "simplified_routing": {
+                        "contact_point": "grafana-default-email",
+                    },
+                },
                 "panel_ref": {
                     "dashboard_uid": "dashboard123",
                     "panel_id": "5",
@@ -283,15 +283,10 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
                 "folder_uid": alertrule_folder.uid,
             },
             spec={
+                "title": "Example Alert Rule",
                 "trigger": {
                     "interval": "1m",
                 },
-                "notification_settings": {
-                    "simplified_routing": {
-                        "contact_point": "grafana-default-email",
-                    },
-                },
-                "title": "Example Alert Rule",
                 "paused": True,
                 "expressions": {
                     "A": json.dumps({
@@ -361,6 +356,11 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
                 "no_data_state": "KeepLast",
                 "exec_err_state": "KeepLast",
                 "missing_series_evals_to_resolve": 5,
+                "notification_settings": {
+                    "simplified_routing": {
+                        "contact_point": "grafana-default-email",
+                    },
+                },
                 "panel_ref": {
                     "dashboard_uid": "dashboard123",
                     "panel_id": "5",

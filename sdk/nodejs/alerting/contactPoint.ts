@@ -21,6 +21,7 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const myContactPoint = new grafana.alerting.ContactPoint("my_contact_point", {
+ *     name: "My Contact Point",
  *     emails: [{
  *         addresses: [
  *             "one@company.org",
@@ -31,7 +32,6 @@ import * as utilities from "../utilities";
  *         singleEmail: true,
  *         disableResolveMessage: false,
  *     }],
- *     name: "My Contact Point",
  * });
  * ```
  *

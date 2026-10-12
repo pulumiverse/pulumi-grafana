@@ -148,9 +148,9 @@ def get_dashboards(folder_uids: Optional[Sequence[_builtins.str]] = None,
         }))
     tags = pulumi.Output.all(
         id=test.id,
-        config_json=data_source_dashboards1.config_json
+        invoke=std.jsondecode_output(input=data_source_dashboards1.config_json)
     ).apply(lambda resolved_outputs: grafana.oss.get_dashboards_output(org_id=resolved_outputs['id'],
-        tags=std.index.jsondecode(input=resolved_outputs['config_json'])["result"]["tags"]))
+        tags=resolved_outputs['invoke'].result["tags"]))
 
     folder_uids = pulumi.Output.all(
         id=test.id,
@@ -161,10 +161,10 @@ def get_dashboards(folder_uids: Optional[Sequence[_builtins.str]] = None,
     folder_uids_tags = pulumi.Output.all(
         id=test.id,
         folder=data_source_dashboards1.folder,
-        config_json=data_source_dashboards1.config_json
+        invoke=std.jsondecode_output(input=data_source_dashboards1.config_json)
     ).apply(lambda resolved_outputs: grafana.oss.get_dashboards_output(org_id=resolved_outputs['id'],
         folder_uids=[resolved_outputs['folder']],
-        tags=std.index.jsondecode(input=resolved_outputs['config_json'])["result"]["tags"]))
+        tags=resolved_outputs['invoke'].result["tags"]))
 
     # use depends_on to wait for dashboard resource to be created before searching
     all = grafana.oss.get_dashboards_output(org_id=test.id)
@@ -237,9 +237,9 @@ def get_dashboards_output(folder_uids: Optional[pulumi.Input[Optional[Sequence[_
         }))
     tags = pulumi.Output.all(
         id=test.id,
-        config_json=data_source_dashboards1.config_json
+        invoke=std.jsondecode_output(input=data_source_dashboards1.config_json)
     ).apply(lambda resolved_outputs: grafana.oss.get_dashboards_output(org_id=resolved_outputs['id'],
-        tags=std.index.jsondecode(input=resolved_outputs['config_json'])["result"]["tags"]))
+        tags=resolved_outputs['invoke'].result["tags"]))
 
     folder_uids = pulumi.Output.all(
         id=test.id,
@@ -250,10 +250,10 @@ def get_dashboards_output(folder_uids: Optional[pulumi.Input[Optional[Sequence[_
     folder_uids_tags = pulumi.Output.all(
         id=test.id,
         folder=data_source_dashboards1.folder,
-        config_json=data_source_dashboards1.config_json
+        invoke=std.jsondecode_output(input=data_source_dashboards1.config_json)
     ).apply(lambda resolved_outputs: grafana.oss.get_dashboards_output(org_id=resolved_outputs['id'],
         folder_uids=[resolved_outputs['folder']],
-        tags=std.index.jsondecode(input=resolved_outputs['config_json'])["result"]["tags"]))
+        tags=resolved_outputs['invoke'].result["tags"]))
 
     # use depends_on to wait for dashboard resource to be created before searching
     all = grafana.oss.get_dashboards_output(org_id=test.id)
