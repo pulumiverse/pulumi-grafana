@@ -25,7 +25,7 @@ import (
 //
 //	"encoding/json"
 //
-//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi-std/sdk/v2/go/std"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss"
 //
@@ -82,14 +82,14 @@ import (
 // if err != nil {
 // return err
 // }
-// _ = pulumi.All(test.ID(),dataSourceDashboards1.ConfigJson).ApplyT(func(_args []interface{}) (oss.GetDashboardsResult, error) {
+// _ = pulumi.All(test.ID(),std.JsondecodeOutput(ctx, std.JsondecodeOutputArgs{
+// Input: dataSourceDashboards1.ConfigJson,
+// }, nil)).ApplyT(func(_args []interface{}) (oss.GetDashboardsResult, error) {
 // id := _args[0].(string)
-// configJson := _args[1].(string)
+// invoke := _args[1].(std.JsondecodeResult)
 // return oss.GetDashboardsResult(interface{}(oss.GetDashboards(ctx, &oss.GetDashboardsArgs{
 // OrgId: pulumi.StringRef(pulumi.StringRef(id)),
-// Tags: []string(std.Jsondecode(ctx, map[string]interface{}{
-// "input": configJson,
-// }, nil).Result.Tags),
+// Tags: []string(invoke.Result.Tags),
 // }, nil))), nil
 // }).(oss.GetDashboardsResultOutput)
 // _ = pulumi.All(test.ID(),dataSourceDashboards1.Folder).ApplyT(func(_args []interface{}) (oss.GetDashboardsResult, error) {
@@ -102,18 +102,18 @@ import (
 // },
 // }, nil))), nil
 // }).(oss.GetDashboardsResultOutput)
-// _ = pulumi.All(test.ID(),dataSourceDashboards1.Folder,dataSourceDashboards1.ConfigJson).ApplyT(func(_args []interface{}) (oss.GetDashboardsResult, error) {
+// _ = pulumi.All(test.ID(),dataSourceDashboards1.Folder,std.JsondecodeOutput(ctx, std.JsondecodeOutputArgs{
+// Input: dataSourceDashboards1.ConfigJson,
+// }, nil)).ApplyT(func(_args []interface{}) (oss.GetDashboardsResult, error) {
 // id := _args[0].(string)
 // folder := _args[1].(*string)
-// configJson := _args[2].(string)
+// invoke := _args[2].(std.JsondecodeResult)
 // return oss.GetDashboardsResult(interface{}(oss.GetDashboards(ctx, &oss.GetDashboardsArgs{
 // OrgId: pulumi.StringRef(pulumi.StringRef(id)),
 // FolderUids: interface{}{
 // folder,
 // },
-// Tags: []string(std.Jsondecode(ctx, map[string]interface{}{
-// "input": configJson,
-// }, nil).Result.Tags),
+// Tags: []string(invoke.Result.Tags),
 // }, nil))), nil
 // }).(oss.GetDashboardsResultOutput)
 // // use depends_on to wait for dashboard resource to be created before searching

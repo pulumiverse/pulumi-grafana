@@ -31,6 +31,7 @@ import * as utilities from "../utilities";
  *     password: "password",
  * });
  * const testPermissions = new grafana.oss.ServiceAccountPermission("test_permissions", {
+ *     serviceAccountId: test.id,
  *     permissions: [
  *         {
  *             userId: testUser.id,
@@ -41,7 +42,6 @@ import * as utilities from "../utilities";
  *             permission: "Admin",
  *         },
  *     ],
- *     serviceAccountId: test.id,
  * });
  * ```
  *

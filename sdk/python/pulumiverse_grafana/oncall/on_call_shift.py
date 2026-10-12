@@ -640,9 +640,9 @@ class OnCallShift(pulumi.CustomResource):
             "charlie@example.com",
         ]
         # To list people by Grafana login instead, key this map by user.username
-        oncall_user_ids_by_email = {std.index.lower(input=user.email)["result"]: user.id for user in all.users}
-        emea_missing_emails = [email for email in emea_rotation if not std.index.contains(input=std.index.keys(input=oncall_user_ids_by_email)["result"],
-            element=std.index.lower(input=email)["result"])["result"]]
+        oncall_user_ids_by_email = {std.lower(input=user.email).result: user.id for user in all.users}
+        emea_missing_emails = [email for email in emea_rotation if not std.contains(input=std.keys(input=oncall_user_ids_by_email).result,
+            element=std.lower(input=email).result).result]
         # A 12 hour shift on week days with the on-call person rotating weekly.
         emea_weekday_shift = grafana.oncall.OnCallShift("emea_weekday_shift",
             name="EMEA Weekday Shift",
@@ -660,7 +660,7 @@ class OnCallShift(pulumi.CustomResource):
             ],
             week_start="MO",
             time_zone="UTC",
-            rolling_users=[[oncall_user_ids_by_email[std.index.lower(input=email)["result"]]] for email in emea_rotation],
+            rolling_users=[[oncall_user_ids_by_email[std.lower(input=email).result]] for email in emea_rotation],
             start_rotation_from_user_index=0,
             team_id=my_team_get_team.id)
         ```
@@ -739,9 +739,9 @@ class OnCallShift(pulumi.CustomResource):
             "charlie@example.com",
         ]
         # To list people by Grafana login instead, key this map by user.username
-        oncall_user_ids_by_email = {std.index.lower(input=user.email)["result"]: user.id for user in all.users}
-        emea_missing_emails = [email for email in emea_rotation if not std.index.contains(input=std.index.keys(input=oncall_user_ids_by_email)["result"],
-            element=std.index.lower(input=email)["result"])["result"]]
+        oncall_user_ids_by_email = {std.lower(input=user.email).result: user.id for user in all.users}
+        emea_missing_emails = [email for email in emea_rotation if not std.contains(input=std.keys(input=oncall_user_ids_by_email).result,
+            element=std.lower(input=email).result).result]
         # A 12 hour shift on week days with the on-call person rotating weekly.
         emea_weekday_shift = grafana.oncall.OnCallShift("emea_weekday_shift",
             name="EMEA Weekday Shift",
@@ -759,7 +759,7 @@ class OnCallShift(pulumi.CustomResource):
             ],
             week_start="MO",
             time_zone="UTC",
-            rolling_users=[[oncall_user_ids_by_email[std.index.lower(input=email)["result"]]] for email in emea_rotation],
+            rolling_users=[[oncall_user_ids_by_email[std.lower(input=email).result]] for email in emea_rotation],
             start_rotation_from_user_index=0,
             team_id=my_team_get_team.id)
         ```

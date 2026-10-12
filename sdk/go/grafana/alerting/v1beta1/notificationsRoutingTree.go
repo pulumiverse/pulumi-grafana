@@ -39,6 +39,7 @@ import (
 //					Uid: pulumi.String("my-routing-tree"),
 //				},
 //				Spec: &alertingv1beta1.NotificationsRoutingTreeSpecArgs{
+//					DisableProvenance: pulumi.Bool(false),
 //					Defaults: &alertingv1beta1.NotificationsRoutingTreeSpecDefaultsArgs{
 //						Receiver: pulumi.String("empty"),
 //						GroupBies: pulumi.StringArray{
@@ -51,19 +52,6 @@ import (
 //					},
 //					Routes: alertingv1beta1.NotificationsRoutingTreeSpecRouteArray{
 //						&alertingv1beta1.NotificationsRoutingTreeSpecRouteArgs{
-//							Routes: alertingv1beta1.NotificationsRoutingTreeSpecRouteRouteArray{
-//								&alertingv1beta1.NotificationsRoutingTreeSpecRouteRouteArgs{
-//									Receiver: pulumi.String("empty"),
-//									Continue: pulumi.Bool(true),
-//									Matchers: alertingv1beta1.NotificationsRoutingTreeSpecRouteRouteMatcherArray{
-//										&alertingv1beta1.NotificationsRoutingTreeSpecRouteRouteMatcherArgs{
-//											Type:  pulumi.String("=~"),
-//											Label: pulumi.String("team"),
-//											Value: pulumi.String("backend|platform"),
-//										},
-//									},
-//								},
-//							},
 //							Receiver: pulumi.String("empty"),
 //							Continue: pulumi.Bool(false),
 //							Matchers: alertingv1beta1.NotificationsRoutingTreeSpecRouteMatcherArray{
@@ -77,9 +65,21 @@ import (
 //							GroupBies: pulumi.StringArray{
 //								pulumi.String("alertname"),
 //							},
+//							Routes: alertingv1beta1.NotificationsRoutingTreeSpecRouteRouteArray{
+//								&alertingv1beta1.NotificationsRoutingTreeSpecRouteRouteArgs{
+//									Receiver: pulumi.String("empty"),
+//									Continue: pulumi.Bool(true),
+//									Matchers: alertingv1beta1.NotificationsRoutingTreeSpecRouteRouteMatcherArray{
+//										&alertingv1beta1.NotificationsRoutingTreeSpecRouteRouteMatcherArgs{
+//											Type:  pulumi.String("=~"),
+//											Label: pulumi.String("team"),
+//											Value: pulumi.String("backend|platform"),
+//										},
+//									},
+//								},
+//							},
 //						},
 //					},
-//					DisableProvenance: pulumi.Bool(false),
 //				},
 //			})
 //			if err != nil {

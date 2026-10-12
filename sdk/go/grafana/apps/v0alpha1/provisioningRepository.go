@@ -61,6 +61,13 @@ import (
 //					Uid: pulumi.String("my-github-folder-repo"),
 //				},
 //				Spec: &appsv0alpha1.ProvisioningRepositorySpecArgs{
+//					Title:       pulumi.String("My GitHub Folder Repository"),
+//					Description: pulumi.String("Folder-scoped GitHub repository authenticated directly with a token"),
+//					Type:        pulumi.String("github"),
+//					Workflows: pulumi.StringArray{
+//						pulumi.String("write"),
+//						pulumi.String("branch"),
+//					},
 //					Sync: &appsv0alpha1.ProvisioningRepositorySpecSyncArgs{
 //						Enabled:         pulumi.Bool(true),
 //						Target:          pulumi.String("folder"),
@@ -73,13 +80,6 @@ import (
 //					},
 //					Webhook: &appsv0alpha1.ProvisioningRepositorySpecWebhookArgs{
 //						BaseUrl: pulumi.String("https://grafana.example.com"),
-//					},
-//					Title:       pulumi.String("My GitHub Folder Repository"),
-//					Description: pulumi.String("Folder-scoped GitHub repository authenticated directly with a token"),
-//					Type:        pulumi.String("github"),
-//					Workflows: pulumi.StringArray{
-//						pulumi.String("write"),
-//						pulumi.String("branch"),
 //					},
 //				},
 //				Secure: &appsv0alpha1.ProvisioningRepositorySecureArgs{
@@ -118,6 +118,13 @@ import (
 //					Uid: pulumi.String("my-bitbucket-folder-repo"),
 //				},
 //				Spec: &appsv0alpha1.ProvisioningRepositorySpecArgs{
+//					Title:       pulumi.String("My Bitbucket Folder Repository"),
+//					Description: pulumi.String("Folder-scoped Bitbucket repository authenticated directly with an Atlassian API token"),
+//					Type:        pulumi.String("bitbucket"),
+//					Workflows: pulumi.StringArray{
+//						pulumi.String("write"),
+//						pulumi.String("branch"),
+//					},
 //					Sync: &appsv0alpha1.ProvisioningRepositorySpecSyncArgs{
 //						Enabled:         pulumi.Bool(true),
 //						Target:          pulumi.String("folder"),
@@ -128,13 +135,6 @@ import (
 //						Branch:    pulumi.String("main"),
 //						Path:      pulumi.String("grafanatftest"),
 //						TokenUser: pulumi.String("x-bitbucket-api-token-auth"),
-//					},
-//					Title:       pulumi.String("My Bitbucket Folder Repository"),
-//					Description: pulumi.String("Folder-scoped Bitbucket repository authenticated directly with an Atlassian API token"),
-//					Type:        pulumi.String("bitbucket"),
-//					Workflows: pulumi.StringArray{
-//						pulumi.String("write"),
-//						pulumi.String("branch"),
 //					},
 //				},
 //				Secure: &appsv0alpha1.ProvisioningRepositorySecureArgs{
@@ -173,6 +173,13 @@ import (
 //					Uid: pulumi.String("my-gitlab-folder-repo"),
 //				},
 //				Spec: &appsv0alpha1.ProvisioningRepositorySpecArgs{
+//					Title:       pulumi.String("My GitLab Folder Repository"),
+//					Description: pulumi.String("Folder-scoped GitLab repository authenticated directly with a token"),
+//					Type:        pulumi.String("gitlab"),
+//					Workflows: pulumi.StringArray{
+//						pulumi.String("write"),
+//						pulumi.String("branch"),
+//					},
 //					Sync: &appsv0alpha1.ProvisioningRepositorySpecSyncArgs{
 //						Enabled:         pulumi.Bool(true),
 //						Target:          pulumi.String("folder"),
@@ -182,13 +189,6 @@ import (
 //						Url:    pulumi.String("https://gitlab.com/example/grafana-dashboards"),
 //						Branch: pulumi.String("main"),
 //						Path:   pulumi.String("grafanatftest"),
-//					},
-//					Title:       pulumi.String("My GitLab Folder Repository"),
-//					Description: pulumi.String("Folder-scoped GitLab repository authenticated directly with a token"),
-//					Type:        pulumi.String("gitlab"),
-//					Workflows: pulumi.StringArray{
-//						pulumi.String("write"),
-//						pulumi.String("branch"),
 //					},
 //				},
 //				Secure: &appsv0alpha1.ProvisioningRepositorySecureArgs{
@@ -227,6 +227,12 @@ import (
 //					Uid: pulumi.String("my-pure-git-folder-repo"),
 //				},
 //				Spec: &appsv0alpha1.ProvisioningRepositorySpecArgs{
+//					Title:       pulumi.String("My Pure Git Folder Repository"),
+//					Description: pulumi.String("Folder-scoped generic Git repository authenticated with a token"),
+//					Type:        pulumi.String("git"),
+//					Workflows: pulumi.StringArray{
+//						pulumi.String("write"),
+//					},
 //					Sync: &appsv0alpha1.ProvisioningRepositorySpecSyncArgs{
 //						Enabled:         pulumi.Bool(true),
 //						Target:          pulumi.String("folder"),
@@ -237,12 +243,6 @@ import (
 //						Branch:    pulumi.String("main"),
 //						Path:      pulumi.String("grafanatftest"),
 //						TokenUser: pulumi.String("git"),
-//					},
-//					Title:       pulumi.String("My Pure Git Folder Repository"),
-//					Description: pulumi.String("Folder-scoped generic Git repository authenticated with a token"),
-//					Type:        pulumi.String("git"),
-//					Workflows: pulumi.StringArray{
-//						pulumi.String("write"),
 //					},
 //				},
 //				Secure: &appsv0alpha1.ProvisioningRepositorySecureArgs{
@@ -281,6 +281,12 @@ import (
 //					Uid: pulumi.String("my-local-folder-repo"),
 //				},
 //				Spec: &appsv0alpha1.ProvisioningRepositorySpecArgs{
+//					Title:       pulumi.String("My Local Folder Repository"),
+//					Description: pulumi.String("Folder-scoped local filesystem repository"),
+//					Type:        pulumi.String("local"),
+//					Workflows: pulumi.StringArray{
+//						pulumi.String("write"),
+//					},
 //					Sync: &appsv0alpha1.ProvisioningRepositorySpecSyncArgs{
 //						Enabled:         pulumi.Bool(true),
 //						Target:          pulumi.String("folder"),
@@ -288,12 +294,6 @@ import (
 //					},
 //					Local: &appsv0alpha1.ProvisioningRepositorySpecLocalArgs{
 //						Path: pulumi.String("/usr/share/grafana/conf/provisioning/my-local-repo"),
-//					},
-//					Title:       pulumi.String("My Local Folder Repository"),
-//					Description: pulumi.String("Folder-scoped local filesystem repository"),
-//					Type:        pulumi.String("local"),
-//					Workflows: pulumi.StringArray{
-//						pulumi.String("write"),
 //					},
 //				},
 //			})

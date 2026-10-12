@@ -55,6 +55,7 @@ import (
 //				return err
 //			}
 //			_, err = oss.NewServiceAccountPermission(ctx, "test_permissions", &oss.ServiceAccountPermissionArgs{
+//				ServiceAccountId: test.ID(),
 //				Permissions: oss.ServiceAccountPermissionPermissionArray{
 //					&oss.ServiceAccountPermissionPermissionArgs{
 //						UserId:     testUser.ID(),
@@ -65,7 +66,6 @@ import (
 //						Permission: pulumi.String("Admin"),
 //					},
 //				},
-//				ServiceAccountId: test.ID(),
 //			})
 //			if err != nil {
 //				return err

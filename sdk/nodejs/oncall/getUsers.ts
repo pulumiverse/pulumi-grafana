@@ -21,9 +21,9 @@ import * as utilities from "../utilities";
  * import * as std from "@pulumi/std";
  *
  * const all = grafana.onCall.getUsers({});
- * const oncallUserIdsByEmail = all.then(all => .reduce((__obj, user) => ({ ...__obj, [std.index.lower({
+ * const oncallUserIdsByEmail = Promise.all([all, std.lower({
  *     input: user.email,
- * }).result]: user.id })));
+ * })]).then(([all, invoke]) => .reduce((__obj, user) => ({ ...__obj, [invoke.result]: user.id })));
  * export const alfaOncallUserId = oncallUserIdsByEmail["alfa@example.com"];
  * ```
  */
@@ -61,9 +61,9 @@ export interface GetUsersResult {
  * import * as std from "@pulumi/std";
  *
  * const all = grafana.onCall.getUsers({});
- * const oncallUserIdsByEmail = all.then(all => .reduce((__obj, user) => ({ ...__obj, [std.index.lower({
+ * const oncallUserIdsByEmail = Promise.all([all, std.lower({
  *     input: user.email,
- * }).result]: user.id })));
+ * })]).then(([all, invoke]) => .reduce((__obj, user) => ({ ...__obj, [invoke.result]: user.id })));
  * export const alfaOncallUserId = oncallUserIdsByEmail["alfa@example.com"];
  * ```
  */

@@ -38,10 +38,10 @@ namespace Pulumiverse.Grafana.FleetManagement
     ///     var test = new Grafana.FleetManagement.Pipeline("test", new()
     ///     {
     ///         Name = "my_pipeline",
-    ///         Contents = Std.Index.File.Invoke(new()
+    ///         Contents = Std.File.Invoke(new()
     ///         {
     ///             Input = "config.alloy",
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///         Matchers = new[]
     ///         {
     ///             "collector.os=~\".*\"",

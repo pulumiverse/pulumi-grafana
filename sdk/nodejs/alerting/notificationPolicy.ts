@@ -23,6 +23,7 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const aContactPoint = new grafana.alerting.ContactPoint("a_contact_point", {
+ *     name: "A Contact Point",
  *     emails: [{
  *         addresses: [
  *             "one@company.org",
@@ -30,24 +31,28 @@ import * as utilities from "../utilities";
  *         ],
  *         message: "{{ len .Alerts.Firing }} firing.",
  *     }],
- *     name: "A Contact Point",
  * });
  * const aMuteTiming = new grafana.alerting.MuteTiming("a_mute_timing", {
+ *     name: "Some Mute Timing",
  *     intervals: [{
  *         weekdays: ["monday"],
  *     }],
- *     name: "Some Mute Timing",
  * });
  * const workingHours = new grafana.alerting.MuteTiming("working_hours", {
+ *     name: "Working Hours",
  *     intervals: [{
  *         times: [{
  *             start: "09:00",
  *             end: "18:00",
  *         }],
  *     }],
- *     name: "Working Hours",
  * });
  * const myNotificationPolicy = new grafana.alerting.NotificationPolicy("my_notification_policy", {
+ *     groupBies: ["..."],
+ *     contactPoint: aContactPoint.name,
+ *     groupWait: "45s",
+ *     groupInterval: "6m",
+ *     repeatInterval: "3h",
  *     policies: [
  *         {
  *             matchers: [
@@ -67,6 +72,13 @@ import * as utilities from "../utilities";
  *                     value: "host.*|host-b.*",
  *                 },
  *             ],
+ *             contactPoint: aContactPoint.name,
+ *             "continue": true,
+ *             muteTimings: [aMuteTiming.name],
+ *             activeTimings: [workingHours.name],
+ *             groupWait: "45s",
+ *             groupInterval: "6m",
+ *             repeatInterval: "3h",
  *             policies: [{
  *                 matchers: [{
  *                     label: "sublabel",
@@ -76,13 +88,6 @@ import * as utilities from "../utilities";
  *                 contactPoint: aContactPoint.name,
  *                 groupBies: ["..."],
  *             }],
- *             contactPoint: aContactPoint.name,
- *             "continue": true,
- *             muteTimings: [aMuteTiming.name],
- *             activeTimings: [workingHours.name],
- *             groupWait: "45s",
- *             groupInterval: "6m",
- *             repeatInterval: "3h",
  *         },
  *         {
  *             matchers: [{
@@ -94,11 +99,6 @@ import * as utilities from "../utilities";
  *             groupBies: ["..."],
  *         },
  *     ],
- *     groupBies: ["..."],
- *     contactPoint: aContactPoint.name,
- *     groupWait: "45s",
- *     groupInterval: "6m",
- *     repeatInterval: "3h",
  * });
  * ```
  *

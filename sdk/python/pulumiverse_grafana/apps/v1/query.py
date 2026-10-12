@@ -161,6 +161,13 @@ class Query(pulumi.CustomResource):
                 "uid": "example-saved-query",
             },
             spec={
+                "title": "Requests per second",
+                "description": "Prometheus rate of HTTP requests",
+                "is_visible": True,
+                "tags": [
+                    "http",
+                    "prometheus",
+                ],
                 "targets": [{
                     "properties_json": json.dumps({
                         "refId": "A",
@@ -171,13 +178,6 @@ class Query(pulumi.CustomResource):
                         },
                     }),
                 }],
-                "title": "Requests per second",
-                "description": "Prometheus rate of HTTP requests",
-                "is_visible": True,
-                "tags": [
-                    "http",
-                    "prometheus",
-                ],
             })
         ```
 
@@ -222,6 +222,13 @@ class Query(pulumi.CustomResource):
                 "uid": "example-saved-query",
             },
             spec={
+                "title": "Requests per second",
+                "description": "Prometheus rate of HTTP requests",
+                "is_visible": True,
+                "tags": [
+                    "http",
+                    "prometheus",
+                ],
                 "targets": [{
                     "properties_json": json.dumps({
                         "refId": "A",
@@ -232,13 +239,6 @@ class Query(pulumi.CustomResource):
                         },
                     }),
                 }],
-                "title": "Requests per second",
-                "description": "Prometheus rate of HTTP requests",
-                "is_visible": True,
-                "tags": [
-                    "http",
-                    "prometheus",
-                ],
             })
         ```
 

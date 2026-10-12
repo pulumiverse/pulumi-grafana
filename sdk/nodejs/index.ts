@@ -5,11 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export { IncidentRoleArgs, IncidentRoleState } from "./incidentRole";
-export type IncidentRole = import("./incidentRole").IncidentRole;
-export const IncidentRole: typeof import("./incidentRole").IncidentRole = null as any;
-utilities.lazyLoad(exports, ["IncidentRole"], () => require("./incidentRole"));
-
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -28,6 +23,7 @@ import * as enterprise from "./enterprise";
 import * as experimental from "./experimental";
 import * as fleetmanagement from "./fleetmanagement";
 import * as frontendobservability from "./frontendobservability";
+import * as incident from "./incident";
 import * as k6 from "./k6";
 import * as machinelearning from "./machinelearning";
 import * as oncall from "./oncall";
@@ -50,6 +46,7 @@ export {
     experimental,
     fleetmanagement,
     frontendobservability,
+    incident,
     k6,
     machinelearning,
     oncall,
@@ -58,19 +55,6 @@ export {
     syntheticmonitoring,
     types,
 };
-
-const _module = {
-    version: utilities.getVersion(),
-    construct: (name: string, type: string, urn: string): pulumi.Resource => {
-        switch (type) {
-            case "grafana:index/incidentRole:IncidentRole":
-                return new IncidentRole(name, <any>undefined, { urn })
-            default:
-                throw new Error(`unknown resource type ${type}`);
-        }
-    },
-};
-pulumi.runtime.registerResourceModule("grafana", "index/incidentRole", _module)
 pulumi.runtime.registerResourcePackage("grafana", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

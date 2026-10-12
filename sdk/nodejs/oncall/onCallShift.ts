@@ -51,17 +51,10 @@ import * as utilities from "../utilities";
  *     "charlie@example.com",
  * ];
  * // To list people by Grafana login instead, key this map by user.username
- * const oncallUserIdsByEmail = all.then(all => .reduce((__obj, user) => ({ ...__obj, [std.index.lower({
+ * const oncallUserIdsByEmail = Promise.all([all, std.lower({
  *     input: user.email,
- * }).result]: user.id })));
- * const emeaMissingEmails = emeaRotation.filter(email => !std.index.contains({
- *     input: std.index.keys({
- *         input: oncallUserIdsByEmail,
- *     }).result,
- *     element: std.index.lower({
- *         input: email,
- *     }).result,
- * }).result).map(email => (email));
+ * })]).then(([all, invoke]) => .reduce((__obj, user) => ({ ...__obj, [invoke.result]: user.id })));
+ * const emeaMissingEmails = emeaRotation.filter(email => !_arg0_.result).map(email => (email));
  * // A 12 hour shift on week days with the on-call person rotating weekly.
  * const emeaWeekdayShift = new grafana.oncall.OnCallShift("emea_weekday_shift", {
  *     name: "EMEA Weekday Shift",
@@ -79,9 +72,9 @@ import * as utilities from "../utilities";
  *     ],
  *     weekStart: "MO",
  *     timeZone: "UTC",
- *     rollingUsers: emeaRotation.map(email => ([oncallUserIdsByEmail[std.index.lower({
+ *     rollingUsers: emeaRotation.map(email => ([std.lower({
  *         input: email,
- *     }).result]])),
+ *     }).then(invoke => oncallUserIdsByEmail[invoke.result])])),
  *     startRotationFromUserIndex: 0,
  *     teamId: myTeamGetTeam.then(myTeamGetTeam => myTeamGetTeam.id),
  * });

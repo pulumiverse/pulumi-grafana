@@ -32,15 +32,19 @@ namespace Pulumiverse.Grafana.OnCall
         /// {
         ///     var all = Grafana.OnCall.GetUsers.Invoke();
         /// 
-        ///     var oncallUserIdsByEmail = .ToDictionary(item =&gt; {
-        ///         var user = item.Value;
-        ///         return Std.Index.Lower.Invoke(new()
-        ///         {
-        ///             Input = user.Email,
-        ///         }).Result;
-        ///     }, item =&gt; {
-        ///         var user = item.Value;
-        ///         return user.Id;
+        ///     var oncallUserIdsByEmail = Output.Tuple(all, Std.Lower.Invoke(new()
+        ///     {
+        ///         Input = user.Email,
+        ///     })).Apply(values =&gt;
+        ///     {
+        ///         var all = values.Item1;
+        ///         var invoke = values.Item2;
+        ///         return .ToDictionary(item =&gt; {
+        ///             return invoke.Result;
+        ///         }, item =&gt; {
+        ///             var user = item.Value;
+        ///             return user.Id;
+        ///         });
         ///     });
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
@@ -73,15 +77,19 @@ namespace Pulumiverse.Grafana.OnCall
         /// {
         ///     var all = Grafana.OnCall.GetUsers.Invoke();
         /// 
-        ///     var oncallUserIdsByEmail = .ToDictionary(item =&gt; {
-        ///         var user = item.Value;
-        ///         return Std.Index.Lower.Invoke(new()
-        ///         {
-        ///             Input = user.Email,
-        ///         }).Result;
-        ///     }, item =&gt; {
-        ///         var user = item.Value;
-        ///         return user.Id;
+        ///     var oncallUserIdsByEmail = Output.Tuple(all, Std.Lower.Invoke(new()
+        ///     {
+        ///         Input = user.Email,
+        ///     })).Apply(values =&gt;
+        ///     {
+        ///         var all = values.Item1;
+        ///         var invoke = values.Item2;
+        ///         return .ToDictionary(item =&gt; {
+        ///             return invoke.Result;
+        ///         }, item =&gt; {
+        ///             var user = item.Value;
+        ///             return user.Id;
+        ///         });
         ///     });
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
@@ -114,15 +122,19 @@ namespace Pulumiverse.Grafana.OnCall
         /// {
         ///     var all = Grafana.OnCall.GetUsers.Invoke();
         /// 
-        ///     var oncallUserIdsByEmail = .ToDictionary(item =&gt; {
-        ///         var user = item.Value;
-        ///         return Std.Index.Lower.Invoke(new()
-        ///         {
-        ///             Input = user.Email,
-        ///         }).Result;
-        ///     }, item =&gt; {
-        ///         var user = item.Value;
-        ///         return user.Id;
+        ///     var oncallUserIdsByEmail = Output.Tuple(all, Std.Lower.Invoke(new()
+        ///     {
+        ///         Input = user.Email,
+        ///     })).Apply(values =&gt;
+        ///     {
+        ///         var all = values.Item1;
+        ///         var invoke = values.Item2;
+        ///         return .ToDictionary(item =&gt; {
+        ///             return invoke.Result;
+        ///         }, item =&gt; {
+        ///             var user = item.Value;
+        ///             return user.Id;
+        ///         });
         ///     });
         /// 
         ///     return new Dictionary&lt;string, object?&gt;

@@ -76,28 +76,22 @@ namespace Pulumiverse.Grafana.OnCall
     ///     };
     /// 
     ///     // To list people by Grafana login instead, key this map by user.username
-    ///     var oncallUserIdsByEmail = .ToDictionary(item =&gt; {
-    ///         var user = item.Value;
-    ///         return Std.Index.Lower.Invoke(new()
-    ///         {
-    ///             Input = user.Email,
-    ///         }).Result;
-    ///     }, item =&gt; {
-    ///         var user = item.Value;
-    ///         return user.Id;
+    ///     var oncallUserIdsByEmail = Output.Tuple(all, Std.Lower.Invoke(new()
+    ///     {
+    ///         Input = user.Email,
+    ///     })).Apply(values =&gt;
+    ///     {
+    ///         var all = values.Item1;
+    ///         var invoke = values.Item2;
+    ///         return .ToDictionary(item =&gt; {
+    ///             return invoke.Result;
+    ///         }, item =&gt; {
+    ///             var user = item.Value;
+    ///             return user.Id;
+    ///         });
     ///     });
     /// 
-    ///     var emeaMissingEmails = emeaRotation.Where(email =&gt; !Std.Index.Contains.Invoke(new()
-    ///     {
-    ///         Input = Std.Index.Keys.Invoke(new()
-    ///         {
-    ///             Input = oncallUserIdsByEmail,
-    ///         }).Result,
-    ///         Element = Std.Index.Lower.Invoke(new()
-    ///         {
-    ///             Input = email,
-    ///         }).Result,
-    ///     }).Result).Select(email =&gt; 
+    ///     var emeaMissingEmails = emeaRotation.Where(email =&gt; !_arg0_.Result).Select(email =&gt; 
     ///     {
     ///         return email;
     ///     }).ToList();
@@ -125,10 +119,10 @@ namespace Pulumiverse.Grafana.OnCall
     ///         {
     ///             return new[]
     ///             {
-    ///                 oncallUserIdsByEmail[Std.Index.Lower.Invoke(new()
+    ///                 Std.Lower.Invoke(new()
     ///                 {
     ///                     Input = email,
-    ///                 }).Result],
+    ///                 }).Apply(invoke =&gt; oncallUserIdsByEmail[invoke.Result]),
     ///             };
     ///         }).ToList(),
     ///         StartRotationFromUserIndex = 0,

@@ -37,21 +37,6 @@ namespace Pulumiverse.Grafana.Cloud
     /// 
     ///     var test = new Grafana.Cloud.AccessPolicy("test", new()
     ///     {
-    ///         Realms = new[]
-    ///         {
-    ///             new Grafana.Cloud.Inputs.AccessPolicyRealmArgs
-    ///             {
-    ///                 LabelPolicies = new[]
-    ///                 {
-    ///                     new Grafana.Cloud.Inputs.AccessPolicyRealmLabelPolicyArgs
-    ///                     {
-    ///                         Selector = "{namespace=\"default\"}",
-    ///                     },
-    ///                 },
-    ///                 Type = "org",
-    ///                 Identifier = current.Apply(getOrganizationResult =&gt; getOrganizationResult.Id),
-    ///             },
-    ///         },
     ///         Region = "prod-us-east-0",
     ///         Name = "my-policy",
     ///         DisplayName = "My Policy",
@@ -59,6 +44,21 @@ namespace Pulumiverse.Grafana.Cloud
     ///         {
     ///             "metrics:read",
     ///             "logs:read",
+    ///         },
+    ///         Realms = new[]
+    ///         {
+    ///             new Grafana.Cloud.Inputs.AccessPolicyRealmArgs
+    ///             {
+    ///                 Type = "org",
+    ///                 Identifier = current.Apply(getOrganizationResult =&gt; getOrganizationResult.Id),
+    ///                 LabelPolicies = new[]
+    ///                 {
+    ///                     new Grafana.Cloud.Inputs.AccessPolicyRealmLabelPolicyArgs
+    ///                     {
+    ///                         Selector = "{namespace=\"default\"}",
+    ///                     },
+    ///                 },
+    ///             },
     ///         },
     ///     });
     /// 

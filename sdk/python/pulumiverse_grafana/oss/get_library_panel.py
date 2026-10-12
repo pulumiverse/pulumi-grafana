@@ -248,17 +248,22 @@ def get_library_panel(name: Optional[_builtins.str] = None,
     # create a dashboard using the library panel
     # `merge()` will add `libraryPanel` attribute to each library panel JSON
     # Grafana will then connect any library panels found in dashboard JSON
-    with_library_panel = grafana.oss.Dashboard("with_library_panel", config_json=json.dumps({
+    with_library_panel = grafana.oss.Dashboard("with_library_panel", config_json=pulumi.Output.json_dumps({
         "id": 12345,
-        "panels": [std.index.merge(input=[
-            std.index.jsondecode(input=dashboard.model_json)["result"],
+        "panels": [pulumi.Output.all(
+            invoke=std.jsondecode_output(input=dashboard.model_json),
+            name=dashboard.name,
+            uid=dashboard.uid
+    ).apply(lambda resolved_outputs: std.merge_output(input=[
+            resolved_outputs['invoke'].result,
             {
                 "libraryPanel": {
-                    "name": dashboard.name,
-                    "uid": dashboard.uid,
+                    "name": resolved_outputs['name'],
+                    "uid": resolved_outputs['uid'],
                 },
             },
-        ])["result"]],
+        ]))
+    .apply(lambda invoke: invoke.result)],
         "title": "Production Overview",
         "tags": ["templated"],
         "timezone": "browser",
@@ -340,17 +345,22 @@ def get_library_panel_output(name: Optional[pulumi.Input[Optional[_builtins.str]
     # create a dashboard using the library panel
     # `merge()` will add `libraryPanel` attribute to each library panel JSON
     # Grafana will then connect any library panels found in dashboard JSON
-    with_library_panel = grafana.oss.Dashboard("with_library_panel", config_json=json.dumps({
+    with_library_panel = grafana.oss.Dashboard("with_library_panel", config_json=pulumi.Output.json_dumps({
         "id": 12345,
-        "panels": [std.index.merge(input=[
-            std.index.jsondecode(input=dashboard.model_json)["result"],
+        "panels": [pulumi.Output.all(
+            invoke=std.jsondecode_output(input=dashboard.model_json),
+            name=dashboard.name,
+            uid=dashboard.uid
+    ).apply(lambda resolved_outputs: std.merge_output(input=[
+            resolved_outputs['invoke'].result,
             {
                 "libraryPanel": {
-                    "name": dashboard.name,
-                    "uid": dashboard.uid,
+                    "name": resolved_outputs['name'],
+                    "uid": resolved_outputs['uid'],
                 },
             },
-        ])["result"]],
+        ]))
+    .apply(lambda invoke: invoke.result)],
         "title": "Production Overview",
         "tags": ["templated"],
         "timezone": "browser",

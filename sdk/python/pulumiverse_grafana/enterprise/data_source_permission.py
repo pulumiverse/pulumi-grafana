@@ -206,6 +206,7 @@ class DataSourcePermission(pulumi.CustomResource):
             name="test-ds-permissions",
             role="Viewer")
         foo_permissions = grafana.enterprise.DataSourcePermission("fooPermissions",
+            datasource_uid=foo.uid,
             permissions=[
                 {
                     "team_id": team.id,
@@ -223,8 +224,7 @@ class DataSourcePermission(pulumi.CustomResource):
                     "user_id": sa.id,
                     "permission": "Query",
                 },
-            ],
-            datasource_uid=foo.uid)
+            ])
         ```
 
         ## Import
@@ -280,6 +280,7 @@ class DataSourcePermission(pulumi.CustomResource):
             name="test-ds-permissions",
             role="Viewer")
         foo_permissions = grafana.enterprise.DataSourcePermission("fooPermissions",
+            datasource_uid=foo.uid,
             permissions=[
                 {
                     "team_id": team.id,
@@ -297,8 +298,7 @@ class DataSourcePermission(pulumi.CustomResource):
                     "user_id": sa.id,
                     "permission": "Query",
                 },
-            ],
-            datasource_uid=foo.uid)
+            ])
         ```
 
         ## Import

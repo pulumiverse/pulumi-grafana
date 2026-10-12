@@ -48,6 +48,7 @@ namespace Pulumiverse.Grafana.Oss
     /// 
     ///     var testPermissions = new Grafana.Oss.ServiceAccountPermission("test_permissions", new()
     ///     {
+    ///         ServiceAccountId = test.Id,
     ///         Permissions = new[]
     ///         {
     ///             new Grafana.Oss.Inputs.ServiceAccountPermissionPermissionArgs
@@ -61,7 +62,6 @@ namespace Pulumiverse.Grafana.Oss
     ///                 Permission = "Admin",
     ///             },
     ///         },
-    ///         ServiceAccountId = test.Id,
     ///     });
     /// 
     /// });

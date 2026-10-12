@@ -28,6 +28,7 @@ import * as utilities from "../utilities";
  *     uid: "my-dashboard-uid",
  * })});
  * const collectionPermission = new grafana.oss.DashboardPermission("collectionPermission", {
+ *     dashboardUid: metrics.uid,
  *     permissions: [
  *         {
  *             role: "Editor",
@@ -42,7 +43,6 @@ import * as utilities from "../utilities";
  *             permission: "Admin",
  *         },
  *     ],
- *     dashboardUid: metrics.uid,
  * });
  * ```
  *

@@ -21,6 +21,7 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const myMuteTiming = new grafana.alerting.MuteTiming("my_mute_timing", {
+ *     name: "My Mute Timing",
  *     intervals: [{
  *         times: [{
  *             start: "04:56",
@@ -44,7 +45,6 @@ import * as utilities from "../utilities";
  *         ],
  *         location: "America/New_York",
  *     }],
- *     name: "My Mute Timing",
  * });
  * ```
  *

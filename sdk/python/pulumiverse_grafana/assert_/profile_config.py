@@ -248,6 +248,10 @@ class ProfileConfig(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         production = grafana.assert_.ProfileConfig("production",
+            name="production",
+            priority=1000,
+            default_config=False,
+            data_source_uid="grafanacloud-profiles",
             matches=[
                 {
                     "property": "asserts_entity_type",
@@ -271,10 +275,6 @@ class ProfileConfig(pulumi.CustomResource):
                     ],
                 },
             ],
-            name="production",
-            priority=1000,
-            default_config=False,
-            data_source_uid="grafanacloud-profiles",
             entity_property_to_profile_label_mapping={
                 "cluster": "k8s_cluster_name",
                 "namespace": "k8s_namespace_name",
@@ -283,6 +283,10 @@ class ProfileConfig(pulumi.CustomResource):
                 "otel_namespace": "service_namespace",
             })
         development = grafana.assert_.ProfileConfig("development",
+            name="development",
+            priority=2000,
+            default_config=False,
+            data_source_uid="grafanacloud-profiles",
             matches=[
                 {
                     "property": "asserts_entity_type",
@@ -308,10 +312,6 @@ class ProfileConfig(pulumi.CustomResource):
                     "values": ["my sample api"],
                 },
             ],
-            name="development",
-            priority=2000,
-            default_config=False,
-            data_source_uid="grafanacloud-profiles",
             entity_property_to_profile_label_mapping={
                 "cluster": "k8s_cluster_name",
                 "namespace": "k8s_namespace_name",
@@ -321,13 +321,13 @@ class ProfileConfig(pulumi.CustomResource):
                 "pod": "k8s_pod_name",
             })
         minimal = grafana.assert_.ProfileConfig("minimal",
+            name="minimal",
+            priority=3000,
+            data_source_uid="pyroscope-minimal",
             matches=[{
                 "property": "asserts_entity_type",
                 "op": "IS NOT NULL",
             }],
-            name="minimal",
-            priority=3000,
-            data_source_uid="pyroscope-minimal",
             entity_property_to_profile_label_mapping={
                 "cluster": "k8s_cluster_name",
                 "otel_service": "service_name",
@@ -367,6 +367,10 @@ class ProfileConfig(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         production = grafana.assert_.ProfileConfig("production",
+            name="production",
+            priority=1000,
+            default_config=False,
+            data_source_uid="grafanacloud-profiles",
             matches=[
                 {
                     "property": "asserts_entity_type",
@@ -390,10 +394,6 @@ class ProfileConfig(pulumi.CustomResource):
                     ],
                 },
             ],
-            name="production",
-            priority=1000,
-            default_config=False,
-            data_source_uid="grafanacloud-profiles",
             entity_property_to_profile_label_mapping={
                 "cluster": "k8s_cluster_name",
                 "namespace": "k8s_namespace_name",
@@ -402,6 +402,10 @@ class ProfileConfig(pulumi.CustomResource):
                 "otel_namespace": "service_namespace",
             })
         development = grafana.assert_.ProfileConfig("development",
+            name="development",
+            priority=2000,
+            default_config=False,
+            data_source_uid="grafanacloud-profiles",
             matches=[
                 {
                     "property": "asserts_entity_type",
@@ -427,10 +431,6 @@ class ProfileConfig(pulumi.CustomResource):
                     "values": ["my sample api"],
                 },
             ],
-            name="development",
-            priority=2000,
-            default_config=False,
-            data_source_uid="grafanacloud-profiles",
             entity_property_to_profile_label_mapping={
                 "cluster": "k8s_cluster_name",
                 "namespace": "k8s_namespace_name",
@@ -440,13 +440,13 @@ class ProfileConfig(pulumi.CustomResource):
                 "pod": "k8s_pod_name",
             })
         minimal = grafana.assert_.ProfileConfig("minimal",
+            name="minimal",
+            priority=3000,
+            data_source_uid="pyroscope-minimal",
             matches=[{
                 "property": "asserts_entity_type",
                 "op": "IS NOT NULL",
             }],
-            name="minimal",
-            priority=3000,
-            data_source_uid="pyroscope-minimal",
             entity_property_to_profile_label_mapping={
                 "cluster": "k8s_cluster_name",
                 "otel_service": "service_name",

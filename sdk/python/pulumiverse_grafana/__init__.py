@@ -6,7 +6,6 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
-from .incident_role import *
 from .provider import *
 
 # Make subpackages available:
@@ -37,6 +36,8 @@ if typing.TYPE_CHECKING:
     fleetmanagement = __fleetmanagement
     import pulumiverse_grafana.frontendobservability as __frontendobservability
     frontendobservability = __frontendobservability
+    import pulumiverse_grafana.incident as __incident
+    incident = __incident
     import pulumiverse_grafana.k6 as __k6
     k6 = __k6
     import pulumiverse_grafana.machinelearning as __machinelearning
@@ -63,6 +64,7 @@ else:
     experimental = _utilities.lazy_import('pulumiverse_grafana.experimental')
     fleetmanagement = _utilities.lazy_import('pulumiverse_grafana.fleetmanagement')
     frontendobservability = _utilities.lazy_import('pulumiverse_grafana.frontendobservability')
+    incident = _utilities.lazy_import('pulumiverse_grafana.incident')
     k6 = _utilities.lazy_import('pulumiverse_grafana.k6')
     machinelearning = _utilities.lazy_import('pulumiverse_grafana.machinelearning')
     oncall = _utilities.lazy_import('pulumiverse_grafana.oncall')
@@ -739,10 +741,10 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
-  "mod": "index/incidentRole",
-  "fqn": "pulumiverse_grafana",
+  "mod": "incident/role",
+  "fqn": "pulumiverse_grafana.incident",
   "classes": {
-   "grafana:index/incidentRole:IncidentRole": "IncidentRole"
+   "grafana:incident/role:Role": "Role"
   }
  },
  {

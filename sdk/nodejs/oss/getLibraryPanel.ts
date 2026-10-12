@@ -47,21 +47,21 @@ import * as utilities from "../utilities";
  * // create a dashboard using the library panel
  * // `merge()` will add `libraryPanel` attribute to each library panel JSON
  * // Grafana will then connect any library panels found in dashboard JSON
- * const withLibraryPanel = new grafana.oss.Dashboard("with_library_panel", {configJson: JSON.stringify({
+ * const withLibraryPanel = new grafana.oss.Dashboard("with_library_panel", {configJson: pulumi.jsonStringify({
  *     id: 12345,
- *     panels: [std.index.merge({
+ *     panels: [pulumi.all([std.jsondecodeOutput({
+ *         input: dashboard.modelJson,
+ *     }), dashboard.name, dashboard.uid]).apply(([invoke, name, uid]) => std.mergeOutput({
  *         input: [
- *             std.index.jsondecode({
- *                 input: dashboard.modelJson,
- *             }).result,
+ *             invoke.result,
  *             {
  *                 libraryPanel: {
- *                     name: dashboard.name,
- *                     uid: dashboard.uid,
+ *                     name: name,
+ *                     uid: uid,
  *                 },
  *             },
  *         ],
- *     }).result],
+ *     })).apply(invoke => invoke.result)],
  *     title: "Production Overview",
  *     tags: ["templated"],
  *     timezone: "browser",
@@ -207,21 +207,21 @@ export interface GetLibraryPanelResult {
  * // create a dashboard using the library panel
  * // `merge()` will add `libraryPanel` attribute to each library panel JSON
  * // Grafana will then connect any library panels found in dashboard JSON
- * const withLibraryPanel = new grafana.oss.Dashboard("with_library_panel", {configJson: JSON.stringify({
+ * const withLibraryPanel = new grafana.oss.Dashboard("with_library_panel", {configJson: pulumi.jsonStringify({
  *     id: 12345,
- *     panels: [std.index.merge({
+ *     panels: [pulumi.all([std.jsondecodeOutput({
+ *         input: dashboard.modelJson,
+ *     }), dashboard.name, dashboard.uid]).apply(([invoke, name, uid]) => std.mergeOutput({
  *         input: [
- *             std.index.jsondecode({
- *                 input: dashboard.modelJson,
- *             }).result,
+ *             invoke.result,
  *             {
  *                 libraryPanel: {
- *                     name: dashboard.name,
- *                     uid: dashboard.uid,
+ *                     name: name,
+ *                     uid: uid,
  *                 },
  *             },
  *         ],
- *     }).result],
+ *     })).apply(invoke => invoke.result)],
  *     title: "Production Overview",
  *     tags: ["templated"],
  *     timezone: "browser",

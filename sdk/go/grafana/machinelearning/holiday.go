@@ -63,6 +63,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := machinelearning.NewHoliday(ctx, "custom_periods", &machinelearning.HolidayArgs{
+//				Name:        pulumi.String("My custom periods holiday"),
+//				Description: pulumi.String("My Holiday"),
 //				CustomPeriods: machinelearning.HolidayCustomPeriodArray{
 //					&machinelearning.HolidayCustomPeriodArgs{
 //						Name:      pulumi.String("First of January"),
@@ -75,8 +77,6 @@ import (
 //						EndTime:   pulumi.String("2023-02-02T00:00:00Z"),
 //					},
 //				},
-//				Name:        pulumi.String("My custom periods holiday"),
-//				Description: pulumi.String("My Holiday"),
 //			})
 //			if err != nil {
 //				return err

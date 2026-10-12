@@ -18,12 +18,12 @@ import * as utilities from "../utilities";
  * const config = new pulumi.Config();
  * const mcpToken = config.require("mcpToken");
  * const example = new grafana.assistant.McpServer("example", {
- *     configuration: {
- *         url: "https://example.com/mcp/",
- *     },
  *     name: "Example MCP server",
  *     scope: "tenant",
  *     applications: ["assistant"],
+ *     configuration: {
+ *         url: "https://example.com/mcp/",
+ *     },
  *     customHeaders: {
  *         Authorization: `Bearer ${mcpToken}`,
  *     },

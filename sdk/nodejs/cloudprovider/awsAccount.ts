@@ -12,30 +12,6 @@ import * as utilities from "../utilities";
  *
  * * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/observe-and-act/monitor-infrastructure/monitor-cloud-provider/aws/)
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = grafana.cloud.getStack({
- *     slug: "gcloudstacktest",
- * });
- * const testIamRole = aws.index.IamRole({
- *     name: "my-role",
- * });
- * const testAwsAccount = new grafana.cloudprovider.AwsAccount("test", {
- *     stackId: test.then(test => test.id),
- *     roleArn: testIamRole.arn,
- *     regions: [
- *         "us-east-1",
- *         "us-east-2",
- *         "us-west-1",
- *     ],
- * });
- * ```
- *
  * ## Import
  *
  * ```sh

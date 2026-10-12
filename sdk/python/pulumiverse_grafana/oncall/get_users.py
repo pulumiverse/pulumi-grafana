@@ -78,7 +78,7 @@ def get_users(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUsersR
     import pulumi_std as std
 
     all = grafana.onCall.get_users()
-    oncall_user_ids_by_email = {std.index.lower(input=user.email)["result"]: user.id for user in all.users}
+    oncall_user_ids_by_email = {std.lower(input=user.email).result: user.id for user in all.users}
     pulumi.export("alfaOncallUserId", oncall_user_ids_by_email["alfa@example.com"])
     ```
     """
@@ -105,7 +105,7 @@ def get_users_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOut
     import pulumi_std as std
 
     all = grafana.onCall.get_users()
-    oncall_user_ids_by_email = {std.index.lower(input=user.email)["result"]: user.id for user in all.users}
+    oncall_user_ids_by_email = {std.lower(input=user.email).result: user.id for user in all.users}
     pulumi.export("alfaOncallUserId", oncall_user_ids_by_email["alfa@example.com"])
     ```
     """

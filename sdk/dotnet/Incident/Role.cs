@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Incident
 {
     /// <summary>
     /// Manages a Grafana Incident role that can be assigned to people during an incident.
@@ -36,7 +36,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var commander = new Grafana.IncidentRole("commander", new()
+    ///     var commander = new Grafana.Incident.Role("commander", new()
     ///     {
     ///         Name = "Commander",
     ///         Description = "Coordinates the response and owns the incident.",
@@ -53,8 +53,8 @@ namespace Pulumiverse.Grafana
     /// terraform import grafana_incident_role.name "{{ id }}"
     /// ```
     /// </summary>
-    [GrafanaResourceType("grafana:index/incidentRole:IncidentRole")]
-    public partial class IncidentRole : global::Pulumi.CustomResource
+    [GrafanaResourceType("grafana:incident/role:Role")]
+    public partial class Role : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether the role is archived. Archived roles cannot be assigned on new incidents, but remain on historical ones. Defaults to `False`.
@@ -88,19 +88,19 @@ namespace Pulumiverse.Grafana
 
 
         /// <summary>
-        /// Create a IncidentRole resource with the given unique name, arguments, and options.
+        /// Create a Role resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public IncidentRole(string name, IncidentRoleArgs? args = null, CustomResourceOptions? options = null)
-            : base("grafana:index/incidentRole:IncidentRole", name, args ?? new IncidentRoleArgs(), MakeResourceOptions(options, ""))
+        public Role(string name, RoleArgs? args = null, CustomResourceOptions? options = null)
+            : base("grafana:incident/role:Role", name, args ?? new RoleArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private IncidentRole(string name, Input<string> id, IncidentRoleState? state = null, CustomResourceOptions? options = null)
-            : base("grafana:index/incidentRole:IncidentRole", name, state, MakeResourceOptions(options, id))
+        private Role(string name, Input<string> id, RoleState? state = null, CustomResourceOptions? options = null)
+            : base("grafana:incident/role:Role", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -117,7 +117,7 @@ namespace Pulumiverse.Grafana
             return merged;
         }
         /// <summary>
-        /// Get an existing IncidentRole resource's state with the given name, ID, and optional extra
+        /// Get an existing Role resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -125,13 +125,13 @@ namespace Pulumiverse.Grafana
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static IncidentRole Get(string name, Input<string> id, IncidentRoleState? state = null, CustomResourceOptions? options = null)
+        public static Role Get(string name, Input<string> id, RoleState? state = null, CustomResourceOptions? options = null)
         {
-            return new IncidentRole(name, id, state, options);
+            return new Role(name, id, state, options);
         }
     }
 
-    public sealed class IncidentRoleArgs : global::Pulumi.ResourceArgs
+    public sealed class RoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether the role is archived. Archived roles cannot be assigned on new incidents, but remain on historical ones. Defaults to `False`.
@@ -163,13 +163,13 @@ namespace Pulumiverse.Grafana
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        public IncidentRoleArgs()
+        public RoleArgs()
         {
         }
-        public static new IncidentRoleArgs Empty => new IncidentRoleArgs();
+        public static new RoleArgs Empty => new RoleArgs();
     }
 
-    public sealed class IncidentRoleState : global::Pulumi.ResourceArgs
+    public sealed class RoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether the role is archived. Archived roles cannot be assigned on new incidents, but remain on historical ones. Defaults to `False`.
@@ -201,9 +201,9 @@ namespace Pulumiverse.Grafana
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        public IncidentRoleState()
+        public RoleState()
         {
         }
-        public static new IncidentRoleState Empty => new IncidentRoleState();
+        public static new RoleState Empty => new RoleState();
     }
 }

@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Manages a Grafana Incident role that can be assigned to people during an incident.
@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const commander = new grafana.IncidentRole("commander", {
+ * const commander = new grafana.incident.Role("commander", {
  *     name: "Commander",
  *     description: "Coordinates the response and owns the incident.",
  *     important: true,
@@ -40,9 +40,9 @@ import * as utilities from "./utilities";
  * terraform import grafana_incident_role.name "{{ id }}"
  * ```
  */
-export class IncidentRole extends pulumi.CustomResource {
+export class Role extends pulumi.CustomResource {
     /**
-     * Get an existing IncidentRole resource's state with the given name, ID, and optional extra
+     * Get an existing Role resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -50,22 +50,22 @@ export class IncidentRole extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IncidentRoleState, opts?: pulumi.CustomResourceOptions): IncidentRole {
-        return new IncidentRole(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RoleState, opts?: pulumi.CustomResourceOptions): Role {
+        return new Role(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/incidentRole:IncidentRole';
+    public static readonly __pulumiType = 'grafana:incident/role:Role';
 
     /**
-     * Returns true if the given object is an instance of IncidentRole.  This is designed to work even
+     * Returns true if the given object is an instance of Role.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is IncidentRole {
+    public static isInstance(obj: any): obj is Role {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === IncidentRole.__pulumiType;
+        return obj['__pulumiType'] === Role.__pulumiType;
     }
 
     /**
@@ -90,25 +90,25 @@ export class IncidentRole extends pulumi.CustomResource {
     declare public readonly name: pulumi.Output<string>;
 
     /**
-     * Create a IncidentRole resource with the given unique name, arguments, and options.
+     * Create a Role resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: IncidentRoleArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: IncidentRoleArgs | IncidentRoleState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args?: RoleArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: RoleArgs | RoleState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as IncidentRoleState | undefined;
+            const state = argsOrState as RoleState | undefined;
             resourceInputs["archived"] = state?.archived;
             resourceInputs["description"] = state?.description;
             resourceInputs["important"] = state?.important;
             resourceInputs["mandatory"] = state?.mandatory;
             resourceInputs["name"] = state?.name;
         } else {
-            const args = argsOrState as IncidentRoleArgs | undefined;
+            const args = argsOrState as RoleArgs | undefined;
             resourceInputs["archived"] = args?.archived;
             resourceInputs["description"] = args?.description;
             resourceInputs["important"] = args?.important;
@@ -116,14 +116,14 @@ export class IncidentRole extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(IncidentRole.__pulumiType, name, resourceInputs, opts);
+        super(Role.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering IncidentRole resources.
+ * Input properties used for looking up and filtering Role resources.
  */
-export interface IncidentRoleState {
+export interface RoleState {
     /**
      * Whether the role is archived. Archived roles cannot be assigned on new incidents, but remain on historical ones. Defaults to `false`.
      */
@@ -147,9 +147,9 @@ export interface IncidentRoleState {
 }
 
 /**
- * The set of arguments for constructing a IncidentRole resource.
+ * The set of arguments for constructing a Role resource.
  */
-export interface IncidentRoleArgs {
+export interface RoleArgs {
     /**
      * Whether the role is archived. Archived roles cannot be assigned on new incidents, but remain on historical ones. Defaults to `false`.
      */

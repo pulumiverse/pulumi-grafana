@@ -73,29 +73,35 @@ namespace Pulumiverse.Grafana.Oss
         ///     // Grafana will then connect any library panels found in dashboard JSON
         ///     var withLibraryPanel = new Grafana.Oss.Dashboard("with_library_panel", new()
         ///     {
-        ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         ConfigJson = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
         ///         {
         ///             ["id"] = 12345,
         ///             ["panels"] = new[]
         ///             {
-        ///                 Std.Index.Merge.Invoke(new()
+        ///                 Output.Tuple(Std.Jsondecode.Invoke(new()
         ///                 {
-        ///                     Input = new[]
+        ///                     Input = dashboard.ModelJson,
+        ///                 }), dashboard.Name, dashboard.Uid).Apply(values =&gt;
+        ///                 {
+        ///                     var invoke = values.Item1;
+        ///                     var name = values.Item2;
+        ///                     var uid = values.Item3;
+        ///                     return Std.Merge.Invoke(new()
         ///                     {
-        ///                         Std.Index.Jsondecode.Invoke(new()
+        ///                         Input = new[]
         ///                         {
-        ///                             Input = dashboard.ModelJson,
-        ///                         }).Result,
-        ///                         
-        ///                         {
-        ///                             { "libraryPanel", 
+        ///                             invoke.Result,
+        ///                             
         ///                             {
-        ///                                 { "name", dashboard.Name },
-        ///                                 { "uid", dashboard.Uid },
-        ///                             } },
+        ///                                 { "libraryPanel", 
+        ///                                 {
+        ///                                     { "name", name },
+        ///                                     { "uid", uid },
+        ///                                 } },
+        ///                             },
         ///                         },
-        ///                     },
-        ///                 }).Result,
+        ///                     });
+        ///                 }).Apply(invoke =&gt; invoke.Result),
         ///             },
         ///             ["title"] = "Production Overview",
         ///             ["tags"] = new[]
@@ -106,7 +112,7 @@ namespace Pulumiverse.Grafana.Oss
         ///             ["schemaVersion"] = 16,
         ///             ["version"] = 0,
         ///             ["refresh"] = "25s",
-        ///         }),
+        ///         })),
         ///     });
         /// 
         ///     // dashboard_ids list attribute should contain dashboard id 12345
@@ -182,29 +188,35 @@ namespace Pulumiverse.Grafana.Oss
         ///     // Grafana will then connect any library panels found in dashboard JSON
         ///     var withLibraryPanel = new Grafana.Oss.Dashboard("with_library_panel", new()
         ///     {
-        ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         ConfigJson = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
         ///         {
         ///             ["id"] = 12345,
         ///             ["panels"] = new[]
         ///             {
-        ///                 Std.Index.Merge.Invoke(new()
+        ///                 Output.Tuple(Std.Jsondecode.Invoke(new()
         ///                 {
-        ///                     Input = new[]
+        ///                     Input = dashboard.ModelJson,
+        ///                 }), dashboard.Name, dashboard.Uid).Apply(values =&gt;
+        ///                 {
+        ///                     var invoke = values.Item1;
+        ///                     var name = values.Item2;
+        ///                     var uid = values.Item3;
+        ///                     return Std.Merge.Invoke(new()
         ///                     {
-        ///                         Std.Index.Jsondecode.Invoke(new()
+        ///                         Input = new[]
         ///                         {
-        ///                             Input = dashboard.ModelJson,
-        ///                         }).Result,
-        ///                         
-        ///                         {
-        ///                             { "libraryPanel", 
+        ///                             invoke.Result,
+        ///                             
         ///                             {
-        ///                                 { "name", dashboard.Name },
-        ///                                 { "uid", dashboard.Uid },
-        ///                             } },
+        ///                                 { "libraryPanel", 
+        ///                                 {
+        ///                                     { "name", name },
+        ///                                     { "uid", uid },
+        ///                                 } },
+        ///                             },
         ///                         },
-        ///                     },
-        ///                 }).Result,
+        ///                     });
+        ///                 }).Apply(invoke =&gt; invoke.Result),
         ///             },
         ///             ["title"] = "Production Overview",
         ///             ["tags"] = new[]
@@ -215,7 +227,7 @@ namespace Pulumiverse.Grafana.Oss
         ///             ["schemaVersion"] = 16,
         ///             ["version"] = 0,
         ///             ["refresh"] = "25s",
-        ///         }),
+        ///         })),
         ///     });
         /// 
         ///     // dashboard_ids list attribute should contain dashboard id 12345
@@ -291,29 +303,35 @@ namespace Pulumiverse.Grafana.Oss
         ///     // Grafana will then connect any library panels found in dashboard JSON
         ///     var withLibraryPanel = new Grafana.Oss.Dashboard("with_library_panel", new()
         ///     {
-        ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         ConfigJson = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
         ///         {
         ///             ["id"] = 12345,
         ///             ["panels"] = new[]
         ///             {
-        ///                 Std.Index.Merge.Invoke(new()
+        ///                 Output.Tuple(Std.Jsondecode.Invoke(new()
         ///                 {
-        ///                     Input = new[]
+        ///                     Input = dashboard.ModelJson,
+        ///                 }), dashboard.Name, dashboard.Uid).Apply(values =&gt;
+        ///                 {
+        ///                     var invoke = values.Item1;
+        ///                     var name = values.Item2;
+        ///                     var uid = values.Item3;
+        ///                     return Std.Merge.Invoke(new()
         ///                     {
-        ///                         Std.Index.Jsondecode.Invoke(new()
+        ///                         Input = new[]
         ///                         {
-        ///                             Input = dashboard.ModelJson,
-        ///                         }).Result,
-        ///                         
-        ///                         {
-        ///                             { "libraryPanel", 
+        ///                             invoke.Result,
+        ///                             
         ///                             {
-        ///                                 { "name", dashboard.Name },
-        ///                                 { "uid", dashboard.Uid },
-        ///                             } },
+        ///                                 { "libraryPanel", 
+        ///                                 {
+        ///                                     { "name", name },
+        ///                                     { "uid", uid },
+        ///                                 } },
+        ///                             },
         ///                         },
-        ///                     },
-        ///                 }).Result,
+        ///                     });
+        ///                 }).Apply(invoke =&gt; invoke.Result),
         ///             },
         ///             ["title"] = "Production Overview",
         ///             ["tags"] = new[]
@@ -324,7 +342,7 @@ namespace Pulumiverse.Grafana.Oss
         ///             ["schemaVersion"] = 16,
         ///             ["version"] = 0,
         ///             ["refresh"] = "25s",
-        ///         }),
+        ///         })),
         ///     });
         /// 
         ///     // dashboard_ids list attribute should contain dashboard id 12345

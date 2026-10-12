@@ -187,6 +187,11 @@ def get_role(name: Optional[_builtins.str] = None,
     import pulumiverse_grafana as grafana
 
     test = grafana.enterprise.Role("test",
+        name="test-role",
+        description="test-role description",
+        uid="test-ds-role-uid",
+        global_=True,
+        hidden=False,
         permissions=[
             {
                 "action": "org.users:add",
@@ -200,12 +205,7 @@ def get_role(name: Optional[_builtins.str] = None,
                 "action": "org.users:read",
                 "scope": "users:*",
             },
-        ],
-        name="test-role",
-        description="test-role description",
-        uid="test-ds-role-uid",
-        global_=True,
-        hidden=False)
+        ])
     from_name = grafana.enterprise.get_role_output(name=test.name)
     ```
 
@@ -245,6 +245,11 @@ def get_role_output(name: Optional[pulumi.Input[_builtins.str]] = None,
     import pulumiverse_grafana as grafana
 
     test = grafana.enterprise.Role("test",
+        name="test-role",
+        description="test-role description",
+        uid="test-ds-role-uid",
+        global_=True,
+        hidden=False,
         permissions=[
             {
                 "action": "org.users:add",
@@ -258,12 +263,7 @@ def get_role_output(name: Optional[pulumi.Input[_builtins.str]] = None,
                 "action": "org.users:read",
                 "scope": "users:*",
             },
-        ],
-        name="test-role",
-        description="test-role description",
-        uid="test-ds-role-uid",
-        global_=True,
-        hidden=False)
+        ])
     from_name = grafana.enterprise.get_role_output(name=test.name)
     ```
 

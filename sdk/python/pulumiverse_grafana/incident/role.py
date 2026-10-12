@@ -12,12 +12,12 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
-__all__ = ['IncidentRoleArgs', 'IncidentRole']
+__all__ = ['RoleArgs', 'Role']
 
 @pulumi.input_type
-class IncidentRoleArgs:
+class RoleArgs:
     def __init__(__self__, *,
                  archived: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -25,7 +25,7 @@ class IncidentRoleArgs:
                  mandatory: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        The set of arguments for constructing a IncidentRole resource.
+        The set of arguments for constructing a Role resource.
 
         :param pulumi.Input[_builtins.bool] archived: Whether the role is archived. Archived roles cannot be assigned on new incidents, but remain on historical ones. Defaults to `false`.
         :param pulumi.Input[_builtins.str] description: A description of what the role is responsible for.
@@ -106,7 +106,7 @@ class IncidentRoleArgs:
 
 
 @pulumi.input_type
-class _IncidentRoleState:
+class _RoleState:
     def __init__(__self__, *,
                  archived: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -114,7 +114,7 @@ class _IncidentRoleState:
                  mandatory: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering IncidentRole resources.
+        Input properties used for looking up and filtering Role resources.
 
         :param pulumi.Input[_builtins.bool] archived: Whether the role is archived. Archived roles cannot be assigned on new incidents, but remain on historical ones. Defaults to `false`.
         :param pulumi.Input[_builtins.str] description: A description of what the role is responsible for.
@@ -194,8 +194,8 @@ class _IncidentRoleState:
         pulumi.set(self, "name", value)
 
 
-@pulumi.type_token("grafana:index/incidentRole:IncidentRole")
-class IncidentRole(pulumi.CustomResource):
+@pulumi.type_token("grafana:incident/role:Role")
+class Role(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -228,7 +228,7 @@ class IncidentRole(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        commander = grafana.IncidentRole("commander",
+        commander = grafana.incident.Role("commander",
             name="Commander",
             description="Coordinates the response and owns the incident.",
             important=True,
@@ -254,7 +254,7 @@ class IncidentRole(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[IncidentRoleArgs] = None,
+                 args: Optional[RoleArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages a Grafana Incident role that can be assigned to people during an incident.
@@ -278,7 +278,7 @@ class IncidentRole(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        commander = grafana.IncidentRole("commander",
+        commander = grafana.incident.Role("commander",
             name="Commander",
             description="Coordinates the response and owns the incident.",
             important=True,
@@ -293,12 +293,12 @@ class IncidentRole(pulumi.CustomResource):
 
 
         :param str resource_name: The name of the resource.
-        :param IncidentRoleArgs args: The arguments to use to populate this resource's properties.
+        :param RoleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(IncidentRoleArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(RoleArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -319,15 +319,15 @@ class IncidentRole(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = IncidentRoleArgs.__new__(IncidentRoleArgs)
+            __props__ = RoleArgs.__new__(RoleArgs)
 
             __props__.__dict__["archived"] = archived
             __props__.__dict__["description"] = description
             __props__.__dict__["important"] = important
             __props__.__dict__["mandatory"] = mandatory
             __props__.__dict__["name"] = name
-        super(IncidentRole, __self__).__init__(
-            'grafana:index/incidentRole:IncidentRole',
+        super(Role, __self__).__init__(
+            'grafana:incident/role:Role',
             resource_name,
             __props__,
             opts)
@@ -340,9 +340,9 @@ class IncidentRole(pulumi.CustomResource):
             description: Optional[pulumi.Input[_builtins.str]] = None,
             important: Optional[pulumi.Input[_builtins.bool]] = None,
             mandatory: Optional[pulumi.Input[_builtins.bool]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None) -> 'IncidentRole':
+            name: Optional[pulumi.Input[_builtins.str]] = None) -> 'Role':
         """
-        Get an existing IncidentRole resource's state with the given name, id, and optional extra
+        Get an existing Role resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -356,14 +356,14 @@ class IncidentRole(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _IncidentRoleState.__new__(_IncidentRoleState)
+        __props__ = _RoleState.__new__(_RoleState)
 
         __props__.__dict__["archived"] = archived
         __props__.__dict__["description"] = description
         __props__.__dict__["important"] = important
         __props__.__dict__["mandatory"] = mandatory
         __props__.__dict__["name"] = name
-        return IncidentRole(resource_name, opts=opts, __props__=__props__)
+        return Role(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter
