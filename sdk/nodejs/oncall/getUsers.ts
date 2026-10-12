@@ -7,7 +7,25 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
+ * Lists every user in Grafana OnCall. Each plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `grafana.onCall.getUser`.
+ *
+ * Each user's `username` is their Grafana login, which can differ from their email address. To refer to users by email, build a map from `email` to `id`, as shown in the example.
+ *
  * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ * import * as std from "@pulumi/std";
+ *
+ * const all = grafana.onCall.getUsers({});
+ * const oncallUserIdsByEmail = all.then(all => .reduce((__obj, user) => ({ ...__obj, [std.index.lower({
+ *     input: user.email,
+ * }).result]: user.id })));
+ * export const alfaOncallUserId = oncallUserIdsByEmail["alfa@example.com"];
+ * ```
  */
 export function getUsers(opts?: pulumi.InvokeOptions): Promise<GetUsersResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -23,10 +41,31 @@ export interface GetUsersResult {
      * The ID of this resource.
      */
     readonly id: string;
+    /**
+     * Every OnCall user, with their ID, username (the Grafana login), email, and role.
+     */
     readonly users: outputs.onCall.GetUsersUser[];
 }
 /**
+ * Lists every user in Grafana OnCall. Each plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `grafana.onCall.getUser`.
+ *
+ * Each user's `username` is their Grafana login, which can differ from their email address. To refer to users by email, build a map from `email` to `id`, as shown in the example.
+ *
  * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ * import * as std from "@pulumi/std";
+ *
+ * const all = grafana.onCall.getUsers({});
+ * const oncallUserIdsByEmail = all.then(all => .reduce((__obj, user) => ({ ...__obj, [std.index.lower({
+ *     input: user.email,
+ * }).result]: user.id })));
+ * export const alfaOncallUserId = oncallUserIdsByEmail["alfa@example.com"];
+ * ```
  */
 export function getUsersOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetUsersResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

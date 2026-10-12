@@ -46,6 +46,9 @@ class GetUsersResult:
     @_builtins.property
     @pulumi.getter
     def users(self) -> Sequence['outputs.GetUsersUserResult']:
+        """
+        Every OnCall user, with their ID, username (the Grafana login), email, and role.
+        """
         return pulumi.get(self, "users")
 
 
@@ -61,7 +64,23 @@ class AwaitableGetUsersResult(GetUsersResult):
 
 def get_users(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUsersResult:
     """
+    Lists every user in Grafana OnCall. Each plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `on_call_get_user`.
+
+    Each user's `username` is their Grafana login, which can differ from their email address. To refer to users by email, build a map from `email` to `id`, as shown in the example.
+
     * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+    import pulumi_std as std
+
+    all = grafana.onCall.get_users()
+    oncall_user_ids_by_email = {std.index.lower(input=user.email)["result"]: user.id for user in all.users}
+    pulumi.export("alfaOncallUserId", oncall_user_ids_by_email["alfa@example.com"])
+    ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -72,7 +91,23 @@ def get_users(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUsersR
         users=pulumi.get(__ret__, 'users'))
 def get_users_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUsersResult]:
     """
+    Lists every user in Grafana OnCall. Each plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `on_call_get_user`.
+
+    Each user's `username` is their Grafana login, which can differ from their email address. To refer to users by email, build a map from `email` to `id`, as shown in the example.
+
     * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+    import pulumi_std as std
+
+    all = grafana.onCall.get_users()
+    oncall_user_ids_by_email = {std.index.lower(input=user.email)["result"]: user.id for user in all.users}
+    pulumi.export("alfaOncallUserId", oncall_user_ids_by_email["alfa@example.com"])
+    ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

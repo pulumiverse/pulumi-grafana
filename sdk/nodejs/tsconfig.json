@@ -133,6 +133,7 @@
         "frontendobservability/app.ts",
         "frontendobservability/getApp.ts",
         "frontendobservability/index.ts",
+        "incidentRole.ts",
         "index.ts",
         "k6/getLoadTest.ts",
         "k6/getLoadTests.ts",
