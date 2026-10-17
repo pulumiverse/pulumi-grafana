@@ -80,14 +80,14 @@ namespace Pulumiverse.Grafana.K6
         /// 
         ///     var testSchedule1 = new Grafana.K6.Schedule("test_schedule_1", new()
         ///     {
-        ///         LoadTestId = schedulesLoadTest.Id,
-        ///         Starts = "2029-12-25T10:00:00Z",
         ///         RecurrenceRule = new Grafana.K6.Inputs.ScheduleRecurrenceRuleArgs
         ///         {
         ///             Frequency = "MONTHLY",
         ///             Interval = 15,
         ///             Count = 100,
         ///         },
+        ///         LoadTestId = schedulesLoadTest.Id,
+        ///         Starts = "2029-12-25T10:00:00Z",
         ///     }, new CustomResourceOptions
         ///     {
         ///         DependsOn =
@@ -98,14 +98,14 @@ namespace Pulumiverse.Grafana.K6
         /// 
         ///     var testSchedule2 = new Grafana.K6.Schedule("test_schedule_2", new()
         ///     {
-        ///         LoadTestId = schedulesLoadTest2.Id,
-        ///         Starts = "2023-12-26T14:00:00Z",
         ///         RecurrenceRule = new Grafana.K6.Inputs.ScheduleRecurrenceRuleArgs
         ///         {
         ///             Frequency = "WEEKLY",
         ///             Interval = 2,
         ///             Until = "2047-01-31T23:59:59Z",
         ///         },
+        ///         LoadTestId = schedulesLoadTest2.Id,
+        ///         Starts = "2023-12-26T14:00:00Z",
         ///     }, new CustomResourceOptions
         ///     {
         ///         DependsOn =
@@ -116,13 +116,13 @@ namespace Pulumiverse.Grafana.K6
         /// 
         ///     var testSchedule3 = new Grafana.K6.Schedule("test_schedule_3", new()
         ///     {
-        ///         LoadTestId = schedulesLoadTest3.Id,
-        ///         Starts = "2023-12-26T14:00:00Z",
         ///         Cron = new Grafana.K6.Inputs.ScheduleCronArgs
         ///         {
         ///             Schedule = "0 10 1 12 6",
         ///             Timezone = "UTC",
         ///         },
+        ///         LoadTestId = schedulesLoadTest3.Id,
+        ///         Starts = "2023-12-26T14:00:00Z",
         ///     }, new CustomResourceOptions
         ///     {
         ///         DependsOn =
@@ -207,14 +207,14 @@ namespace Pulumiverse.Grafana.K6
         /// 
         ///     var testSchedule1 = new Grafana.K6.Schedule("test_schedule_1", new()
         ///     {
-        ///         LoadTestId = schedulesLoadTest.Id,
-        ///         Starts = "2029-12-25T10:00:00Z",
         ///         RecurrenceRule = new Grafana.K6.Inputs.ScheduleRecurrenceRuleArgs
         ///         {
         ///             Frequency = "MONTHLY",
         ///             Interval = 15,
         ///             Count = 100,
         ///         },
+        ///         LoadTestId = schedulesLoadTest.Id,
+        ///         Starts = "2029-12-25T10:00:00Z",
         ///     }, new CustomResourceOptions
         ///     {
         ///         DependsOn =
@@ -225,14 +225,14 @@ namespace Pulumiverse.Grafana.K6
         /// 
         ///     var testSchedule2 = new Grafana.K6.Schedule("test_schedule_2", new()
         ///     {
-        ///         LoadTestId = schedulesLoadTest2.Id,
-        ///         Starts = "2023-12-26T14:00:00Z",
         ///         RecurrenceRule = new Grafana.K6.Inputs.ScheduleRecurrenceRuleArgs
         ///         {
         ///             Frequency = "WEEKLY",
         ///             Interval = 2,
         ///             Until = "2047-01-31T23:59:59Z",
         ///         },
+        ///         LoadTestId = schedulesLoadTest2.Id,
+        ///         Starts = "2023-12-26T14:00:00Z",
         ///     }, new CustomResourceOptions
         ///     {
         ///         DependsOn =
@@ -243,13 +243,13 @@ namespace Pulumiverse.Grafana.K6
         /// 
         ///     var testSchedule3 = new Grafana.K6.Schedule("test_schedule_3", new()
         ///     {
-        ///         LoadTestId = schedulesLoadTest3.Id,
-        ///         Starts = "2023-12-26T14:00:00Z",
         ///         Cron = new Grafana.K6.Inputs.ScheduleCronArgs
         ///         {
         ///             Schedule = "0 10 1 12 6",
         ///             Timezone = "UTC",
         ///         },
+        ///         LoadTestId = schedulesLoadTest3.Id,
+        ///         Starts = "2023-12-26T14:00:00Z",
         ///     }, new CustomResourceOptions
         ///     {
         ///         DependsOn =
@@ -334,14 +334,14 @@ namespace Pulumiverse.Grafana.K6
         /// 
         ///     var testSchedule1 = new Grafana.K6.Schedule("test_schedule_1", new()
         ///     {
-        ///         LoadTestId = schedulesLoadTest.Id,
-        ///         Starts = "2029-12-25T10:00:00Z",
         ///         RecurrenceRule = new Grafana.K6.Inputs.ScheduleRecurrenceRuleArgs
         ///         {
         ///             Frequency = "MONTHLY",
         ///             Interval = 15,
         ///             Count = 100,
         ///         },
+        ///         LoadTestId = schedulesLoadTest.Id,
+        ///         Starts = "2029-12-25T10:00:00Z",
         ///     }, new CustomResourceOptions
         ///     {
         ///         DependsOn =
@@ -352,14 +352,14 @@ namespace Pulumiverse.Grafana.K6
         /// 
         ///     var testSchedule2 = new Grafana.K6.Schedule("test_schedule_2", new()
         ///     {
-        ///         LoadTestId = schedulesLoadTest2.Id,
-        ///         Starts = "2023-12-26T14:00:00Z",
         ///         RecurrenceRule = new Grafana.K6.Inputs.ScheduleRecurrenceRuleArgs
         ///         {
         ///             Frequency = "WEEKLY",
         ///             Interval = 2,
         ///             Until = "2047-01-31T23:59:59Z",
         ///         },
+        ///         LoadTestId = schedulesLoadTest2.Id,
+        ///         Starts = "2023-12-26T14:00:00Z",
         ///     }, new CustomResourceOptions
         ///     {
         ///         DependsOn =
@@ -370,13 +370,13 @@ namespace Pulumiverse.Grafana.K6
         /// 
         ///     var testSchedule3 = new Grafana.K6.Schedule("test_schedule_3", new()
         ///     {
-        ///         LoadTestId = schedulesLoadTest3.Id,
-        ///         Starts = "2023-12-26T14:00:00Z",
         ///         Cron = new Grafana.K6.Inputs.ScheduleCronArgs
         ///         {
         ///             Schedule = "0 10 1 12 6",
         ///             Timezone = "UTC",
         ///         },
+        ///         LoadTestId = schedulesLoadTest3.Id,
+        ///         Starts = "2023-12-26T14:00:00Z",
         ///     }, new CustomResourceOptions
         ///     {
         ///         DependsOn =

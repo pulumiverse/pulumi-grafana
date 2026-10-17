@@ -27,14 +27,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// {
     ///     var main = new Grafana.SyntheticMonitoring.Check("main", new()
     ///     {
-    ///         Job = "Check Alert Test",
-    ///         Target = "https://grafana.com",
-    ///         Enabled = true,
-    ///         Probes = new[]
-    ///         {
-    ///             1,
-    ///         },
-    ///         Labels = null,
     ///         Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs
     ///         {
     ///             Http = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsHttpArgs
@@ -43,6 +35,14 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///                 Method = "GET",
     ///             },
     ///         },
+    ///         Job = "Check Alert Test",
+    ///         Target = "https://grafana.com",
+    ///         Enabled = true,
+    ///         Probes = new[]
+    ///         {
+    ///             1,
+    ///         },
+    ///         Labels = null,
     ///     });
     /// 
     ///     var mainCheckAlerts = new Grafana.SyntheticMonitoring.CheckAlerts("main", new()

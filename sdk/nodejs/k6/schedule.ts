@@ -27,24 +27,22 @@ import * as utilities from "../utilities";
  *     dependsOn: [scheduleProject],
  * });
  * const cronMonthly = new grafana.k6.Schedule("cron_monthly", {
- *     loadTestId: scheduledTest.id,
- *     starts: "2024-12-25T10:00:00Z",
  *     cron: {
  *         schedule: "0 10 1 * *",
  *         timezone: "UTC",
  *     },
- * });
- * const daily = new grafana.k6.Schedule("daily", {
  *     loadTestId: scheduledTest.id,
  *     starts: "2024-12-25T10:00:00Z",
+ * });
+ * const daily = new grafana.k6.Schedule("daily", {
  *     recurrenceRule: {
  *         frequency: "DAILY",
  *         interval: 1,
  *     },
+ *     loadTestId: scheduledTest.id,
+ *     starts: "2024-12-25T10:00:00Z",
  * });
  * const weekly = new grafana.k6.Schedule("weekly", {
- *     loadTestId: scheduledTest.id,
- *     starts: "2024-12-25T09:00:00Z",
  *     recurrenceRule: {
  *         frequency: "WEEKLY",
  *         interval: 1,
@@ -54,16 +52,18 @@ import * as utilities from "../utilities";
  *             "FR",
  *         ],
  *     },
+ *     loadTestId: scheduledTest.id,
+ *     starts: "2024-12-25T09:00:00Z",
  * });
  * // Example with YEARLY frequency and count
  * const yearly = new grafana.k6.Schedule("yearly", {
- *     loadTestId: scheduledTest.id,
- *     starts: "2024-01-01T12:00:00Z",
  *     recurrenceRule: {
  *         frequency: "YEARLY",
  *         interval: 1,
  *         count: 5,
  *     },
+ *     loadTestId: scheduledTest.id,
+ *     starts: "2024-01-01T12:00:00Z",
  * });
  * // One-time schedule without recurrence
  * const oneTime = new grafana.k6.Schedule("one_time", {

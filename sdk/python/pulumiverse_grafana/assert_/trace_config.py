@@ -248,10 +248,6 @@ class TraceConfig(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         production = grafana.assert_.TraceConfig("production",
-            name="production",
-            priority=1000,
-            default_config=False,
-            data_source_uid="grafanacloud-traces",
             matches=[
                 {
                     "property": "asserts_entity_type",
@@ -275,6 +271,10 @@ class TraceConfig(pulumi.CustomResource):
                     ],
                 },
             ],
+            name="production",
+            priority=1000,
+            default_config=False,
+            data_source_uid="grafanacloud-traces",
             entity_property_to_trace_label_mapping={
                 "cluster": "resource.k8s.cluster.name",
                 "namespace": "resource.k8s.namespace",
@@ -283,10 +283,6 @@ class TraceConfig(pulumi.CustomResource):
                 "otel_namespace": "resource.service.namespace",
             })
         development = grafana.assert_.TraceConfig("development",
-            name="development",
-            priority=2000,
-            default_config=False,
-            data_source_uid="grafanacloud-traces",
             matches=[
                 {
                     "property": "asserts_entity_type",
@@ -312,6 +308,10 @@ class TraceConfig(pulumi.CustomResource):
                     "values": ["my sample api"],
                 },
             ],
+            name="development",
+            priority=2000,
+            default_config=False,
+            data_source_uid="grafanacloud-traces",
             entity_property_to_trace_label_mapping={
                 "cluster": "resource.k8s.cluster.name",
                 "namespace": "resource.k8s.namespace",
@@ -321,13 +321,13 @@ class TraceConfig(pulumi.CustomResource):
                 "pod": "span.k8s.pod.name",
             })
         minimal = grafana.assert_.TraceConfig("minimal",
-            name="minimal",
-            priority=3000,
-            data_source_uid="tempo-minimal",
             matches=[{
                 "property": "asserts_entity_type",
                 "op": "IS NOT NULL",
             }],
+            name="minimal",
+            priority=3000,
+            data_source_uid="tempo-minimal",
             entity_property_to_trace_label_mapping={
                 "cluster": "resource.k8s.cluster.name",
                 "otel_service": "resource.service.name",
@@ -367,10 +367,6 @@ class TraceConfig(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         production = grafana.assert_.TraceConfig("production",
-            name="production",
-            priority=1000,
-            default_config=False,
-            data_source_uid="grafanacloud-traces",
             matches=[
                 {
                     "property": "asserts_entity_type",
@@ -394,6 +390,10 @@ class TraceConfig(pulumi.CustomResource):
                     ],
                 },
             ],
+            name="production",
+            priority=1000,
+            default_config=False,
+            data_source_uid="grafanacloud-traces",
             entity_property_to_trace_label_mapping={
                 "cluster": "resource.k8s.cluster.name",
                 "namespace": "resource.k8s.namespace",
@@ -402,10 +402,6 @@ class TraceConfig(pulumi.CustomResource):
                 "otel_namespace": "resource.service.namespace",
             })
         development = grafana.assert_.TraceConfig("development",
-            name="development",
-            priority=2000,
-            default_config=False,
-            data_source_uid="grafanacloud-traces",
             matches=[
                 {
                     "property": "asserts_entity_type",
@@ -431,6 +427,10 @@ class TraceConfig(pulumi.CustomResource):
                     "values": ["my sample api"],
                 },
             ],
+            name="development",
+            priority=2000,
+            default_config=False,
+            data_source_uid="grafanacloud-traces",
             entity_property_to_trace_label_mapping={
                 "cluster": "resource.k8s.cluster.name",
                 "namespace": "resource.k8s.namespace",
@@ -440,13 +440,13 @@ class TraceConfig(pulumi.CustomResource):
                 "pod": "span.k8s.pod.name",
             })
         minimal = grafana.assert_.TraceConfig("minimal",
-            name="minimal",
-            priority=3000,
-            data_source_uid="tempo-minimal",
             matches=[{
                 "property": "asserts_entity_type",
                 "op": "IS NOT NULL",
             }],
+            name="minimal",
+            priority=3000,
+            data_source_uid="tempo-minimal",
             entity_property_to_trace_label_mapping={
                 "cluster": "resource.k8s.cluster.name",
                 "otel_service": "resource.service.name",

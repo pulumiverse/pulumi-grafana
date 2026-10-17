@@ -28,10 +28,6 @@ namespace Pulumiverse.Grafana.Enterprise
     /// {
     ///     var superUser = new Grafana.Enterprise.Role("super_user", new()
     ///     {
-    ///         Name = "Super User",
-    ///         Description = "My Super User description",
-    ///         Uid = "superuseruid",
-    ///         Global = true,
     ///         Permissions = new[]
     ///         {
     ///             new Grafana.Enterprise.Inputs.RolePermissionArgs
@@ -50,6 +46,10 @@ namespace Pulumiverse.Grafana.Enterprise
     ///                 Scope = "users:*",
     ///             },
     ///         },
+    ///         Name = "Super User",
+    ///         Description = "My Super User description",
+    ///         Uid = "superuseruid",
+    ///         Global = true,
     ///     });
     /// 
     /// });

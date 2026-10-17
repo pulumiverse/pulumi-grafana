@@ -285,12 +285,12 @@ class McpServer(pulumi.CustomResource):
         config = pulumi.Config()
         mcp_token = config.require("mcpToken")
         example = grafana.assistant.McpServer("example",
-            name="Example MCP server",
-            scope="tenant",
-            applications=["assistant"],
             configuration={
                 "url": "https://example.com/mcp/",
             },
+            name="Example MCP server",
+            scope="tenant",
+            applications=["assistant"],
             custom_headers={
                 "Authorization": f"Bearer {mcp_token}",
             })
@@ -331,12 +331,12 @@ class McpServer(pulumi.CustomResource):
         config = pulumi.Config()
         mcp_token = config.require("mcpToken")
         example = grafana.assistant.McpServer("example",
-            name="Example MCP server",
-            scope="tenant",
-            applications=["assistant"],
             configuration={
                 "url": "https://example.com/mcp/",
             },
+            name="Example MCP server",
+            scope="tenant",
+            applications=["assistant"],
             custom_headers={
                 "Authorization": f"Bearer {mcp_token}",
             })

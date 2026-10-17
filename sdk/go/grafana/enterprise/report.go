@@ -40,17 +40,17 @@ import (
 //				return err
 //			}
 //			_, err = enterprise.NewReport(ctx, "test", &enterprise.ReportArgs{
-//				Name: pulumi.String("my report"),
-//				Recipients: pulumi.StringArray{
-//					pulumi.String("some@email.com"),
+//				Schedule: &enterprise.ReportScheduleArgs{
+//					Frequency: pulumi.String("hourly"),
 //				},
 //				Dashboards: enterprise.ReportDashboardArray{
 //					&enterprise.ReportDashboardArgs{
 //						Uid: test.Uid,
 //					},
 //				},
-//				Schedule: &enterprise.ReportScheduleArgs{
-//					Frequency: pulumi.String("hourly"),
+//				Name: pulumi.String("my report"),
+//				Recipients: pulumi.StringArray{
+//					pulumi.String("some@email.com"),
 //				},
 //			})
 //			if err != nil {

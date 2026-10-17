@@ -28,13 +28,13 @@ namespace Pulumiverse.Grafana.Oss
         /// {
         ///     var test = new Grafana.Oss.Team("test", new()
         ///     {
-        ///         Name = "test-team",
-        ///         Email = "test-team-email@test.com",
         ///         Preferences = new Grafana.Oss.Inputs.TeamPreferencesArgs
         ///         {
         ///             Theme = "dark",
         ///             Timezone = "utc",
         ///         },
+        ///         Name = "test-team",
+        ///         Email = "test-team-email@test.com",
         ///     });
         /// 
         ///     var fromName = Grafana.Oss.GetTeam.Invoke(new()
@@ -64,13 +64,13 @@ namespace Pulumiverse.Grafana.Oss
         /// {
         ///     var test = new Grafana.Oss.Team("test", new()
         ///     {
-        ///         Name = "test-team",
-        ///         Email = "test-team-email@test.com",
         ///         Preferences = new Grafana.Oss.Inputs.TeamPreferencesArgs
         ///         {
         ///             Theme = "dark",
         ///             Timezone = "utc",
         ///         },
+        ///         Name = "test-team",
+        ///         Email = "test-team-email@test.com",
         ///     });
         /// 
         ///     var fromName = Grafana.Oss.GetTeam.Invoke(new()
@@ -100,13 +100,13 @@ namespace Pulumiverse.Grafana.Oss
         /// {
         ///     var test = new Grafana.Oss.Team("test", new()
         ///     {
-        ///         Name = "test-team",
-        ///         Email = "test-team-email@test.com",
         ///         Preferences = new Grafana.Oss.Inputs.TeamPreferencesArgs
         ///         {
         ///             Theme = "dark",
         ///             Timezone = "utc",
         ///         },
+        ///         Name = "test-team",
+        ///         Email = "test-team-email@test.com",
         ///     });
         /// 
         ///     var fromName = Grafana.Oss.GetTeam.Invoke(new()

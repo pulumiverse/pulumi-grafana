@@ -159,10 +159,10 @@ class RecordingRule(pulumi.CustomResource):
                 "folder_uid": recordingrule_folder.uid,
             },
             spec={
-                "title": "Example Recording Rule",
                 "trigger": {
                     "interval": "1m",
                 },
+                "title": "Example Recording Rule",
                 "paused": True,
                 "expressions": {
                     "A": json.dumps({
@@ -223,10 +223,10 @@ class RecordingRule(pulumi.CustomResource):
                 "folder_uid": recordingrule_folder.uid,
             },
             spec={
-                "title": "Example Recording Rule",
                 "trigger": {
                     "interval": "1m",
                 },
+                "title": "Example Recording Rule",
                 "paused": True,
                 "expressions": {
                     "A": json.dumps({

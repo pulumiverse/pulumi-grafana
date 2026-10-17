@@ -18,17 +18,17 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const main = new grafana.syntheticmonitoring.Check("main", {
- *     job: "Check Alert Test",
- *     target: "https://grafana.com",
- *     enabled: true,
- *     probes: [1],
- *     labels: {},
  *     settings: {
  *         http: {
  *             ipVersion: "V4",
  *             method: "GET",
  *         },
  *     },
+ *     job: "Check Alert Test",
+ *     target: "https://grafana.com",
+ *     enabled: true,
+ *     probes: [1],
+ *     labels: {},
  * });
  * const mainCheckAlerts = new grafana.syntheticmonitoring.CheckAlerts("main", {
  *     checkId: main.id,

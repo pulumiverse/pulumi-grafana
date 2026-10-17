@@ -47,34 +47,34 @@ import * as utilities from "../utilities";
  *     dependsOn: [schedulesProject],
  * });
  * const testSchedule1 = new grafana.k6.Schedule("test_schedule_1", {
- *     loadTestId: schedulesLoadTest.id,
- *     starts: "2029-12-25T10:00:00Z",
  *     recurrenceRule: {
  *         frequency: "MONTHLY",
  *         interval: 15,
  *         count: 100,
  *     },
+ *     loadTestId: schedulesLoadTest.id,
+ *     starts: "2029-12-25T10:00:00Z",
  * }, {
  *     dependsOn: [schedulesLoadTest],
  * });
  * const testSchedule2 = new grafana.k6.Schedule("test_schedule_2", {
- *     loadTestId: schedulesLoadTest2.id,
- *     starts: "2023-12-26T14:00:00Z",
  *     recurrenceRule: {
  *         frequency: "WEEKLY",
  *         interval: 2,
  *         until: "2047-01-31T23:59:59Z",
  *     },
+ *     loadTestId: schedulesLoadTest2.id,
+ *     starts: "2023-12-26T14:00:00Z",
  * }, {
  *     dependsOn: [schedulesLoadTest2],
  * });
  * const testSchedule3 = new grafana.k6.Schedule("test_schedule_3", {
- *     loadTestId: schedulesLoadTest3.id,
- *     starts: "2023-12-26T14:00:00Z",
  *     cron: {
  *         schedule: "0 10 1 12 6",
  *         timezone: "UTC",
  *     },
+ *     loadTestId: schedulesLoadTest3.id,
+ *     starts: "2023-12-26T14:00:00Z",
  * }, {
  *     dependsOn: [schedulesLoadTest3],
  * });
@@ -141,34 +141,34 @@ export interface GetSchedulesResult {
  *     dependsOn: [schedulesProject],
  * });
  * const testSchedule1 = new grafana.k6.Schedule("test_schedule_1", {
- *     loadTestId: schedulesLoadTest.id,
- *     starts: "2029-12-25T10:00:00Z",
  *     recurrenceRule: {
  *         frequency: "MONTHLY",
  *         interval: 15,
  *         count: 100,
  *     },
+ *     loadTestId: schedulesLoadTest.id,
+ *     starts: "2029-12-25T10:00:00Z",
  * }, {
  *     dependsOn: [schedulesLoadTest],
  * });
  * const testSchedule2 = new grafana.k6.Schedule("test_schedule_2", {
- *     loadTestId: schedulesLoadTest2.id,
- *     starts: "2023-12-26T14:00:00Z",
  *     recurrenceRule: {
  *         frequency: "WEEKLY",
  *         interval: 2,
  *         until: "2047-01-31T23:59:59Z",
  *     },
+ *     loadTestId: schedulesLoadTest2.id,
+ *     starts: "2023-12-26T14:00:00Z",
  * }, {
  *     dependsOn: [schedulesLoadTest2],
  * });
  * const testSchedule3 = new grafana.k6.Schedule("test_schedule_3", {
- *     loadTestId: schedulesLoadTest3.id,
- *     starts: "2023-12-26T14:00:00Z",
  *     cron: {
  *         schedule: "0 10 1 12 6",
  *         timezone: "UTC",
  *     },
+ *     loadTestId: schedulesLoadTest3.id,
+ *     starts: "2023-12-26T14:00:00Z",
  * }, {
  *     dependsOn: [schedulesLoadTest3],
  * });

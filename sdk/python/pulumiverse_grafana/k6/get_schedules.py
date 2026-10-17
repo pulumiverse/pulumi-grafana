@@ -99,30 +99,30 @@ def get_schedules(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSc
     \"\"\",
         opts = pulumi.ResourceOptions(depends_on=[schedules_project]))
     test_schedule1 = grafana.k6.Schedule("test_schedule_1",
-        load_test_id=schedules_load_test.id,
-        starts="2029-12-25T10:00:00Z",
         recurrence_rule={
             "frequency": "MONTHLY",
             "interval": 15,
             "count": 100,
         },
+        load_test_id=schedules_load_test.id,
+        starts="2029-12-25T10:00:00Z",
         opts = pulumi.ResourceOptions(depends_on=[schedules_load_test]))
     test_schedule2 = grafana.k6.Schedule("test_schedule_2",
-        load_test_id=schedules_load_test2.id,
-        starts="2023-12-26T14:00:00Z",
         recurrence_rule={
             "frequency": "WEEKLY",
             "interval": 2,
             "until": "2047-01-31T23:59:59Z",
         },
+        load_test_id=schedules_load_test2.id,
+        starts="2023-12-26T14:00:00Z",
         opts = pulumi.ResourceOptions(depends_on=[schedules_load_test2]))
     test_schedule3 = grafana.k6.Schedule("test_schedule_3",
-        load_test_id=schedules_load_test3.id,
-        starts="2023-12-26T14:00:00Z",
         cron={
             "schedule": "0 10 1 12 6",
             "timezone": "UTC",
         },
+        load_test_id=schedules_load_test3.id,
+        starts="2023-12-26T14:00:00Z",
         opts = pulumi.ResourceOptions(depends_on=[schedules_load_test3]))
     from_load_test_id = grafana.k6.get_schedules()
     ```
@@ -171,30 +171,30 @@ def get_schedules_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.Invok
     \"\"\",
         opts = pulumi.ResourceOptions(depends_on=[schedules_project]))
     test_schedule1 = grafana.k6.Schedule("test_schedule_1",
-        load_test_id=schedules_load_test.id,
-        starts="2029-12-25T10:00:00Z",
         recurrence_rule={
             "frequency": "MONTHLY",
             "interval": 15,
             "count": 100,
         },
+        load_test_id=schedules_load_test.id,
+        starts="2029-12-25T10:00:00Z",
         opts = pulumi.ResourceOptions(depends_on=[schedules_load_test]))
     test_schedule2 = grafana.k6.Schedule("test_schedule_2",
-        load_test_id=schedules_load_test2.id,
-        starts="2023-12-26T14:00:00Z",
         recurrence_rule={
             "frequency": "WEEKLY",
             "interval": 2,
             "until": "2047-01-31T23:59:59Z",
         },
+        load_test_id=schedules_load_test2.id,
+        starts="2023-12-26T14:00:00Z",
         opts = pulumi.ResourceOptions(depends_on=[schedules_load_test2]))
     test_schedule3 = grafana.k6.Schedule("test_schedule_3",
-        load_test_id=schedules_load_test3.id,
-        starts="2023-12-26T14:00:00Z",
         cron={
             "schedule": "0 10 1 12 6",
             "timezone": "UTC",
         },
+        load_test_id=schedules_load_test3.id,
+        starts="2023-12-26T14:00:00Z",
         opts = pulumi.ResourceOptions(depends_on=[schedules_load_test3]))
     from_load_test_id = grafana.k6.get_schedules()
     ```

@@ -204,6 +204,38 @@ def get_azure_credential(auto_discovery_configurations: Optional[Sequence[Union[
     import pulumiverse_grafana as grafana
 
     test_azure_credential = grafana.cloudprovider.AzureCredential("test",
+        auto_discovery_configurations=[{
+            "resource_type_configurations": [
+                {
+                    "metric_configuration": [{
+                        "name": "TotalCoresQuotaUsed",
+                    }],
+                    "resource_type_name": "Microsoft.App/containerApps",
+                },
+                {
+                    "metric_configuration": [{
+                        "name": "Availability",
+                        "dimensions": [
+                            "GeoType",
+                            "ApiName",
+                        ],
+                        "aggregations": ["Average"],
+                    }],
+                    "resource_type_name": "Microsoft.Storage/storageAccounts/tableServices",
+                },
+            ],
+            "subscription_id": "my-subscription_id",
+        }],
+        resource_discovery_tag_filters=[
+            {
+                "key": "key-1",
+                "value": "value-1",
+            },
+            {
+                "key": "key-2",
+                "value": "value-2",
+            },
+        ],
         stack_id="1",
         name="test-name",
         client_id="my-client-id",
@@ -216,39 +248,7 @@ def get_azure_credential(auto_discovery_configurations: Optional[Sequence[Union[
         static_labels={
             "label1": "value1",
             "label2": "value2",
-        },
-        resource_discovery_tag_filters=[
-            {
-                "key": "key-1",
-                "value": "value-1",
-            },
-            {
-                "key": "key-2",
-                "value": "value-2",
-            },
-        ],
-        auto_discovery_configurations=[{
-            "subscription_id": "my-subscription_id",
-            "resource_type_configurations": [
-                {
-                    "resource_type_name": "Microsoft.App/containerApps",
-                    "metric_configuration": [{
-                        "name": "TotalCoresQuotaUsed",
-                    }],
-                },
-                {
-                    "resource_type_name": "Microsoft.Storage/storageAccounts/tableServices",
-                    "metric_configuration": [{
-                        "name": "Availability",
-                        "dimensions": [
-                            "GeoType",
-                            "ApiName",
-                        ],
-                        "aggregations": ["Average"],
-                    }],
-                },
-            ],
-        }])
+        })
     test = grafana.cloudProvider.get_azure_credential_output(stack_id=test_azure_credential.stack_id,
         resource_id=test_azure_credential.resource_id)
     ```
@@ -301,6 +301,38 @@ def get_azure_credential_output(auto_discovery_configurations: Optional[pulumi.I
     import pulumiverse_grafana as grafana
 
     test_azure_credential = grafana.cloudprovider.AzureCredential("test",
+        auto_discovery_configurations=[{
+            "resource_type_configurations": [
+                {
+                    "metric_configuration": [{
+                        "name": "TotalCoresQuotaUsed",
+                    }],
+                    "resource_type_name": "Microsoft.App/containerApps",
+                },
+                {
+                    "metric_configuration": [{
+                        "name": "Availability",
+                        "dimensions": [
+                            "GeoType",
+                            "ApiName",
+                        ],
+                        "aggregations": ["Average"],
+                    }],
+                    "resource_type_name": "Microsoft.Storage/storageAccounts/tableServices",
+                },
+            ],
+            "subscription_id": "my-subscription_id",
+        }],
+        resource_discovery_tag_filters=[
+            {
+                "key": "key-1",
+                "value": "value-1",
+            },
+            {
+                "key": "key-2",
+                "value": "value-2",
+            },
+        ],
         stack_id="1",
         name="test-name",
         client_id="my-client-id",
@@ -313,39 +345,7 @@ def get_azure_credential_output(auto_discovery_configurations: Optional[pulumi.I
         static_labels={
             "label1": "value1",
             "label2": "value2",
-        },
-        resource_discovery_tag_filters=[
-            {
-                "key": "key-1",
-                "value": "value-1",
-            },
-            {
-                "key": "key-2",
-                "value": "value-2",
-            },
-        ],
-        auto_discovery_configurations=[{
-            "subscription_id": "my-subscription_id",
-            "resource_type_configurations": [
-                {
-                    "resource_type_name": "Microsoft.App/containerApps",
-                    "metric_configuration": [{
-                        "name": "TotalCoresQuotaUsed",
-                    }],
-                },
-                {
-                    "resource_type_name": "Microsoft.Storage/storageAccounts/tableServices",
-                    "metric_configuration": [{
-                        "name": "Availability",
-                        "dimensions": [
-                            "GeoType",
-                            "ApiName",
-                        ],
-                        "aggregations": ["Average"],
-                    }],
-                },
-            ],
-        }])
+        })
     test = grafana.cloudProvider.get_azure_credential_output(stack_id=test_azure_credential.stack_id,
         resource_id=test_azure_credential.resource_id)
     ```
