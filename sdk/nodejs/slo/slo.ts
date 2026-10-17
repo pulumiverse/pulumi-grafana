@@ -22,8 +22,43 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const ratio = new grafana.slo.SLO("ratio", {
- *     name: "Terraform Testing - Ratio Query",
- *     description: "Terraform Description - Ratio Query",
+ *     destinationDatasource: {
+ *         uid: "grafanacloud-prom",
+ *     },
+ *     alerting: {
+ *         fastburn: {
+ *             annotations: [
+ *                 {
+ *                     key: "name",
+ *                     value: "SLO Burn Rate Very High",
+ *                 },
+ *                 {
+ *                     key: "description",
+ *                     value: "Error budget is burning too fast",
+ *                 },
+ *             ],
+ *         },
+ *         slowburn: {
+ *             annotations: [
+ *                 {
+ *                     key: "name",
+ *                     value: "SLO Burn Rate High",
+ *                 },
+ *                 {
+ *                     key: "description",
+ *                     value: "Error budget is burning too fast",
+ *                 },
+ *             ],
+ *         },
+ *     },
+ *     labels: [{
+ *         key: "slo",
+ *         value: "terraform",
+ *     }],
+ *     objectives: [{
+ *         value: 0.995,
+ *         window: "30d",
+ *     }],
  *     queries: [{
  *         ratio: {
  *             successMetric: "kubelet_http_requests_total{status!~\"5..\"}",
@@ -35,43 +70,8 @@ import * as utilities from "../utilities";
  *         },
  *         type: "ratio",
  *     }],
- *     objectives: [{
- *         value: 0.995,
- *         window: "30d",
- *     }],
- *     destinationDatasource: {
- *         uid: "grafanacloud-prom",
- *     },
- *     labels: [{
- *         key: "slo",
- *         value: "terraform",
- *     }],
- *     alerting: {
- *         fastburn: {
- *             annotations: [
- *                 {
- *                     key: "name",
- *                     value: "SLO Burn Rate Very High",
- *                 },
- *                 {
- *                     key: "description",
- *                     value: "Error budget is burning too fast",
- *                 },
- *             ],
- *         },
- *         slowburn: {
- *             annotations: [
- *                 {
- *                     key: "name",
- *                     value: "SLO Burn Rate High",
- *                 },
- *                 {
- *                     key: "description",
- *                     value: "Error budget is burning too fast",
- *                 },
- *             ],
- *         },
- *     },
+ *     name: "Terraform Testing - Ratio Query",
+ *     description: "Terraform Description - Ratio Query",
  * });
  * ```
  *
@@ -82,25 +82,9 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.slo.SLO("test", {
- *     name: "Terraform Testing",
- *     description: "Terraform Description",
- *     queries: [{
- *         freeform: {
- *             query: "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
- *         },
- *         type: "freeform",
- *     }],
- *     objectives: [{
- *         value: 0.995,
- *         window: "30d",
- *     }],
  *     destinationDatasource: {
  *         uid: "grafanacloud-prom",
  *     },
- *     labels: [{
- *         key: "slo",
- *         value: "terraform",
- *     }],
  *     alerting: {
  *         fastburn: {
  *             annotations: [
@@ -133,6 +117,22 @@ import * as utilities from "../utilities";
  *             }],
  *         },
  *     },
+ *     labels: [{
+ *         key: "slo",
+ *         value: "terraform",
+ *     }],
+ *     objectives: [{
+ *         value: 0.995,
+ *         window: "30d",
+ *     }],
+ *     queries: [{
+ *         freeform: {
+ *             query: "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+ *         },
+ *         type: "freeform",
+ *     }],
+ *     name: "Terraform Testing",
+ *     description: "Terraform Description",
  * });
  * ```
  *
@@ -150,19 +150,6 @@ import * as utilities from "../utilities";
  *     url: "https://prometheus.example.com/",
  * });
  * const sourceDatasource = new grafana.slo.SLO("source_datasource", {
- *     name: "Terraform Testing - Separate Source Datasource",
- *     description: "Terraform Description - Separate Source Datasource",
- *     queries: [{
- *         freeform: {
- *             query: "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
- *             sourceDatasourceUid: sourcePrometheus.uid,
- *         },
- *         type: "freeform",
- *     }],
- *     objectives: [{
- *         value: 0.995,
- *         window: "30d",
- *     }],
  *     destinationDatasource: {
  *         uid: "grafanacloud-prom",
  *     },
@@ -170,6 +157,19 @@ import * as utilities from "../utilities";
  *         key: "slo",
  *         value: "terraform",
  *     }],
+ *     objectives: [{
+ *         value: 0.995,
+ *         window: "30d",
+ *     }],
+ *     queries: [{
+ *         freeform: {
+ *             query: "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+ *             sourceDatasourceUid: sourcePrometheus.uid,
+ *         },
+ *         type: "freeform",
+ *     }],
+ *     name: "Terraform Testing - Separate Source Datasource",
+ *     description: "Terraform Description - Separate Source Datasource",
  * });
  * ```
  *
@@ -182,8 +182,43 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.slo.SLO("test", {
- *     name: "Terraform Testing",
- *     description: "Terraform Description",
+ *     destinationDatasource: {
+ *         uid: "grafanacloud-prom",
+ *     },
+ *     alerting: {
+ *         fastburn: {
+ *             annotations: [
+ *                 {
+ *                     key: "name",
+ *                     value: "SLO Burn Rate Very High",
+ *                 },
+ *                 {
+ *                     key: "description",
+ *                     value: "Error budget is burning too fast",
+ *                 },
+ *             ],
+ *         },
+ *         slowburn: {
+ *             annotations: [
+ *                 {
+ *                     key: "name",
+ *                     value: "SLO Burn Rate High",
+ *                 },
+ *                 {
+ *                     key: "description",
+ *                     value: "Error budget is burning too fast",
+ *                 },
+ *             ],
+ *         },
+ *     },
+ *     labels: [{
+ *         key: "slo",
+ *         value: "terraform",
+ *     }],
+ *     objectives: [{
+ *         value: 0.995,
+ *         window: "30d",
+ *     }],
  *     queries: [{
  *         grafanaQueries: {
  *             grafanaQueries: JSON.stringify([
@@ -216,43 +251,8 @@ import * as utilities from "../utilities";
  *         },
  *         type: "grafana_queries",
  *     }],
- *     destinationDatasource: {
- *         uid: "grafanacloud-prom",
- *     },
- *     objectives: [{
- *         value: 0.995,
- *         window: "30d",
- *     }],
- *     labels: [{
- *         key: "slo",
- *         value: "terraform",
- *     }],
- *     alerting: {
- *         fastburn: {
- *             annotations: [
- *                 {
- *                     key: "name",
- *                     value: "SLO Burn Rate Very High",
- *                 },
- *                 {
- *                     key: "description",
- *                     value: "Error budget is burning too fast",
- *                 },
- *             ],
- *         },
- *         slowburn: {
- *             annotations: [
- *                 {
- *                     key: "name",
- *                     value: "SLO Burn Rate High",
- *                 },
- *                 {
- *                     key: "description",
- *                     value: "Error budget is burning too fast",
- *                 },
- *             ],
- *         },
- *     },
+ *     name: "Terraform Testing",
+ *     description: "Terraform Description",
  * });
  * ```
  *
@@ -267,18 +267,6 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const searchExpression = new grafana.slo.SLO("search_expression", {
- *     name: "Terraform Testing - Entity Search Expression",
- *     description: "Terraform Description - Entity Search Expression",
- *     queries: [{
- *         freeform: {
- *             query: "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
- *         },
- *         type: "freeform",
- *     }],
- *     objectives: [{
- *         value: 0.995,
- *         window: "30d",
- *     }],
  *     destinationDatasource: {
  *         uid: "grafanacloud-prom",
  *     },
@@ -286,6 +274,18 @@ import * as utilities from "../utilities";
  *         key: "slo",
  *         value: "terraform",
  *     }],
+ *     objectives: [{
+ *         value: 0.995,
+ *         window: "30d",
+ *     }],
+ *     queries: [{
+ *         freeform: {
+ *             query: "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+ *         },
+ *         type: "freeform",
+ *     }],
+ *     name: "Terraform Testing - Entity Search Expression",
+ *     description: "Terraform Description - Entity Search Expression",
  *     searchExpression: "shipping connected services",
  * });
  * ```

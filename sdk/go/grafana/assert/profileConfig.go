@@ -29,10 +29,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := assert.NewProfileConfig(ctx, "production", &assert.ProfileConfigArgs{
-//				Name:          pulumi.String("production"),
-//				Priority:      pulumi.Int(1000),
-//				DefaultConfig: pulumi.Bool(false),
-//				DataSourceUid: pulumi.String("grafanacloud-profiles"),
 //				Matches: assert.ProfileConfigMatchArray{
 //					&assert.ProfileConfigMatchArgs{
 //						Property: pulumi.String("asserts_entity_type"),
@@ -58,6 +54,10 @@ import (
 //						},
 //					},
 //				},
+//				Name:          pulumi.String("production"),
+//				Priority:      pulumi.Int(1000),
+//				DefaultConfig: pulumi.Bool(false),
+//				DataSourceUid: pulumi.String("grafanacloud-profiles"),
 //				EntityPropertyToProfileLabelMapping: pulumi.StringMap{
 //					"cluster":        pulumi.String("k8s_cluster_name"),
 //					"namespace":      pulumi.String("k8s_namespace_name"),
@@ -70,10 +70,6 @@ import (
 //				return err
 //			}
 //			_, err = assert.NewProfileConfig(ctx, "development", &assert.ProfileConfigArgs{
-//				Name:          pulumi.String("development"),
-//				Priority:      pulumi.Int(2000),
-//				DefaultConfig: pulumi.Bool(false),
-//				DataSourceUid: pulumi.String("grafanacloud-profiles"),
 //				Matches: assert.ProfileConfigMatchArray{
 //					&assert.ProfileConfigMatchArgs{
 //						Property: pulumi.String("asserts_entity_type"),
@@ -105,6 +101,10 @@ import (
 //						},
 //					},
 //				},
+//				Name:          pulumi.String("development"),
+//				Priority:      pulumi.Int(2000),
+//				DefaultConfig: pulumi.Bool(false),
+//				DataSourceUid: pulumi.String("grafanacloud-profiles"),
 //				EntityPropertyToProfileLabelMapping: pulumi.StringMap{
 //					"cluster":        pulumi.String("k8s_cluster_name"),
 //					"namespace":      pulumi.String("k8s_namespace_name"),
@@ -118,15 +118,15 @@ import (
 //				return err
 //			}
 //			_, err = assert.NewProfileConfig(ctx, "minimal", &assert.ProfileConfigArgs{
-//				Name:          pulumi.String("minimal"),
-//				Priority:      pulumi.Int(3000),
-//				DataSourceUid: pulumi.String("pyroscope-minimal"),
 //				Matches: assert.ProfileConfigMatchArray{
 //					&assert.ProfileConfigMatchArgs{
 //						Property: pulumi.String("asserts_entity_type"),
 //						Op:       pulumi.String("IS NOT NULL"),
 //					},
 //				},
+//				Name:          pulumi.String("minimal"),
+//				Priority:      pulumi.Int(3000),
+//				DataSourceUid: pulumi.String("pyroscope-minimal"),
 //				EntityPropertyToProfileLabelMapping: pulumi.StringMap{
 //					"cluster":        pulumi.String("k8s_cluster_name"),
 //					"otel_service":   pulumi.String("service_name"),

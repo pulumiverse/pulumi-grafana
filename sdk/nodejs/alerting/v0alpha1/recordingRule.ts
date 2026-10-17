@@ -22,10 +22,10 @@ import * as utilities from "../../utilities";
  *         folderUid: recordingruleFolder.uid,
  *     },
  *     spec: {
- *         title: "Example Recording Rule",
  *         trigger: {
  *             interval: "1m",
  *         },
+ *         title: "Example Recording Rule",
  *         paused: true,
  *         expressions: {
  *             A: JSON.stringify({

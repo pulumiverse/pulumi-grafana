@@ -25,11 +25,6 @@ namespace Pulumiverse.Grafana.Assert
     /// {
     ///     var production = new Grafana.Assert.LogConfig("production", new()
     ///     {
-    ///         Name = "production",
-    ///         Priority = 1000,
-    ///         DefaultConfig = false,
-    ///         DataSourceUid = "grafanacloud-logs",
-    ///         ErrorLabel = "error",
     ///         Matches = new[]
     ///         {
     ///             new Grafana.Assert.Inputs.LogConfigMatchArgs
@@ -62,6 +57,11 @@ namespace Pulumiverse.Grafana.Assert
     ///                 },
     ///             },
     ///         },
+    ///         Name = "production",
+    ///         Priority = 1000,
+    ///         DefaultConfig = false,
+    ///         DataSourceUid = "grafanacloud-logs",
+    ///         ErrorLabel = "error",
     ///         EntityPropertyToLogLabelMapping = 
     ///         {
     ///             { "otel_namespace", "service_namespace" },
@@ -75,11 +75,6 @@ namespace Pulumiverse.Grafana.Assert
     /// 
     ///     var development = new Grafana.Assert.LogConfig("development", new()
     ///     {
-    ///         Name = "development",
-    ///         Priority = 2000,
-    ///         DefaultConfig = true,
-    ///         DataSourceUid = "elasticsearch-dev",
-    ///         ErrorLabel = "error",
     ///         Matches = new[]
     ///         {
     ///             new Grafana.Assert.Inputs.LogConfigMatchArgs
@@ -120,6 +115,11 @@ namespace Pulumiverse.Grafana.Assert
     ///                 },
     ///             },
     ///         },
+    ///         Name = "development",
+    ///         Priority = 2000,
+    ///         DefaultConfig = true,
+    ///         DataSourceUid = "elasticsearch-dev",
+    ///         ErrorLabel = "error",
     ///         EntityPropertyToLogLabelMapping = 
     ///         {
     ///             { "otel_namespace", "service_namespace" },
@@ -134,10 +134,6 @@ namespace Pulumiverse.Grafana.Assert
     /// 
     ///     var minimal = new Grafana.Assert.LogConfig("minimal", new()
     ///     {
-    ///         Name = "minimal",
-    ///         Priority = 3000,
-    ///         DefaultConfig = false,
-    ///         DataSourceUid = "loki-minimal",
     ///         Matches = new[]
     ///         {
     ///             new Grafana.Assert.Inputs.LogConfigMatchArgs
@@ -147,6 +143,10 @@ namespace Pulumiverse.Grafana.Assert
     ///                 Values = new() { },
     ///             },
     ///         },
+    ///         Name = "minimal",
+    ///         Priority = 3000,
+    ///         DefaultConfig = false,
+    ///         DataSourceUid = "loki-minimal",
     ///     });
     /// 
     /// });

@@ -33,16 +33,16 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			testRole, err := enterprise.NewRole(ctx, "test_role", &enterprise.RoleArgs{
-//				Name:    pulumi.String("Test Role"),
-//				Uid:     pulumi.String("testrole"),
-//				Version: pulumi.Int(1),
-//				Global:  pulumi.Bool(true),
 //				Permissions: enterprise.RolePermissionArray{
 //					&enterprise.RolePermissionArgs{
 //						Action: pulumi.String("org.users:add"),
 //						Scope:  pulumi.String("users:*"),
 //					},
 //				},
+//				Name:    pulumi.String("Test Role"),
+//				Uid:     pulumi.String("testrole"),
+//				Version: pulumi.Int(1),
+//				Global:  pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
