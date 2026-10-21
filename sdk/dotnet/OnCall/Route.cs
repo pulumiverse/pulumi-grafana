@@ -35,17 +35,13 @@ namespace Pulumiverse.Grafana.OnCall
     /// 
     ///     var exampleIntegration = new Grafana.OnCall.Integration("example_integration", new()
     ///     {
+    ///         DefaultRoute = null,
     ///         Name = "Grafana Integration",
     ///         Type = "grafana",
-    ///         DefaultRoute = null,
     ///     });
     /// 
     ///     var exampleRoute = new Grafana.OnCall.Route("example_route", new()
     ///     {
-    ///         IntegrationId = exampleIntegration.Id,
-    ///         EscalationChainId = @default.Id,
-    ///         RoutingRegex = "us-(east|west)",
-    ///         Position = 0,
     ///         Slack = new Grafana.OnCall.Inputs.RouteSlackArgs
     ///         {
     ///             ChannelId = exampleSlackChannel.Apply(getSlackChannelResult =&gt; getSlackChannelResult.SlackId),
@@ -61,6 +57,10 @@ namespace Pulumiverse.Grafana.OnCall
     ///             Id = "ONCALLMSTEAMSID",
     ///             Enabled = false,
     ///         },
+    ///         IntegrationId = exampleIntegration.Id,
+    ///         EscalationChainId = @default.Id,
+    ///         RoutingRegex = "us-(east|west)",
+    ///         Position = 0,
     ///     });
     /// 
     /// });

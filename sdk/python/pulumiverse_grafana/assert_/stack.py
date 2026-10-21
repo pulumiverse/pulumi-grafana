@@ -228,17 +228,17 @@ class Stack(pulumi.CustomResource):
         # 3. Enables the stack with the configured datasets
         # Step 1: Create a Cloud Access Policy with required scopes
         asserts = grafana.cloud.AccessPolicy("asserts",
+            realms=[{
+                "type": "stack",
+                "identifier": stack_id,
+            }],
             name="asserts-stack-policy",
             display_name="Asserts Stack Policy",
             scopes=[
                 "stacks:read",
                 "metrics:read",
                 "metrics:write",
-            ],
-            realms=[{
-                "type": "stack",
-                "identifier": stack_id,
-            }])
+            ])
         # Step 2: Create a token from the Cloud Access Policy
         asserts_access_policy_token = grafana.cloud.AccessPolicyToken("asserts",
             name="asserts-stack-token",
@@ -265,11 +265,8 @@ class Stack(pulumi.CustomResource):
         # Alternative: Configure the Asserts Stack with manual dataset configuration.
         # Use this when your metrics use non-standard labels (e.g., a custom environment label).
         custom = grafana.assert_.Stack("custom",
-            cloud_access_policy_token=asserts_access_policy_token.token,
-            grafana_token=asserts_stack_service_account_token.key,
             datasets=[
                 {
-                    "type": "kubernetes",
                     "filter_groups": [{
                         "env_label": "deployment_environment",
                         "site_label": "cluster",
@@ -282,12 +279,10 @@ class Stack(pulumi.CustomResource):
                             "eu-west-1",
                         ],
                     }],
+                    "type": "kubernetes",
                 },
                 {
-                    "type": "prometheus",
                     "filter_groups": [{
-                        "env_label": "environment",
-                        "env_name": "prod",
                         "filters": [{
                             "name": "region",
                             "operator": "=~",
@@ -296,9 +291,14 @@ class Stack(pulumi.CustomResource):
                                 "eu-.*",
                             ],
                         }],
+                        "env_label": "environment",
+                        "env_name": "prod",
                     }],
+                    "type": "prometheus",
                 },
-            ])
+            ],
+            cloud_access_policy_token=asserts_access_policy_token.token,
+            grafana_token=asserts_stack_service_account_token.key)
         pulumi.export("stackEnabled", main.enabled)
         pulumi.export("stackStatus", main.status)
         pulumi.export("stackVersion", main.version)
@@ -362,17 +362,17 @@ class Stack(pulumi.CustomResource):
         # 3. Enables the stack with the configured datasets
         # Step 1: Create a Cloud Access Policy with required scopes
         asserts = grafana.cloud.AccessPolicy("asserts",
+            realms=[{
+                "type": "stack",
+                "identifier": stack_id,
+            }],
             name="asserts-stack-policy",
             display_name="Asserts Stack Policy",
             scopes=[
                 "stacks:read",
                 "metrics:read",
                 "metrics:write",
-            ],
-            realms=[{
-                "type": "stack",
-                "identifier": stack_id,
-            }])
+            ])
         # Step 2: Create a token from the Cloud Access Policy
         asserts_access_policy_token = grafana.cloud.AccessPolicyToken("asserts",
             name="asserts-stack-token",
@@ -399,11 +399,8 @@ class Stack(pulumi.CustomResource):
         # Alternative: Configure the Asserts Stack with manual dataset configuration.
         # Use this when your metrics use non-standard labels (e.g., a custom environment label).
         custom = grafana.assert_.Stack("custom",
-            cloud_access_policy_token=asserts_access_policy_token.token,
-            grafana_token=asserts_stack_service_account_token.key,
             datasets=[
                 {
-                    "type": "kubernetes",
                     "filter_groups": [{
                         "env_label": "deployment_environment",
                         "site_label": "cluster",
@@ -416,12 +413,10 @@ class Stack(pulumi.CustomResource):
                             "eu-west-1",
                         ],
                     }],
+                    "type": "kubernetes",
                 },
                 {
-                    "type": "prometheus",
                     "filter_groups": [{
-                        "env_label": "environment",
-                        "env_name": "prod",
                         "filters": [{
                             "name": "region",
                             "operator": "=~",
@@ -430,9 +425,14 @@ class Stack(pulumi.CustomResource):
                                 "eu-.*",
                             ],
                         }],
+                        "env_label": "environment",
+                        "env_name": "prod",
                     }],
+                    "type": "prometheus",
                 },
-            ])
+            ],
+            cloud_access_policy_token=asserts_access_policy_token.token,
+            grafana_token=asserts_stack_service_account_token.key)
         pulumi.export("stackEnabled", main.enabled)
         pulumi.export("stackStatus", main.status)
         pulumi.export("stackVersion", main.version)

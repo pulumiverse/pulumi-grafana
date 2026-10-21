@@ -36,14 +36,6 @@ namespace Pulumiverse.Grafana.Apps.V1
     ///         },
     ///         Spec = new Grafana.Apps.V1.Inputs.QuerySpecArgs
     ///         {
-    ///             Title = "Requests per second",
-    ///             Description = "Prometheus rate of HTTP requests",
-    ///             IsVisible = true,
-    ///             Tags = new[]
-    ///             {
-    ///                 "http",
-    ///                 "prometheus",
-    ///             },
     ///             Targets = new[]
     ///             {
     ///                 new Grafana.Apps.V1.Inputs.QuerySpecTargetArgs
@@ -59,6 +51,14 @@ namespace Pulumiverse.Grafana.Apps.V1
     ///                         },
     ///                     }),
     ///                 },
+    ///             },
+    ///             Title = "Requests per second",
+    ///             Description = "Prometheus rate of HTTP requests",
+    ///             IsVisible = true,
+    ///             Tags = new[]
+    ///             {
+    ///                 "http",
+    ///                 "prometheus",
     ///             },
     ///         },
     ///     });

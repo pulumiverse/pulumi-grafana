@@ -189,12 +189,12 @@ def get_team(name: Optional[_builtins.str] = None,
     import pulumiverse_grafana as grafana
 
     test = grafana.oss.Team("test",
-        name="test-team",
-        email="test-team-email@test.com",
         preferences={
             "theme": "dark",
             "timezone": "utc",
-        })
+        },
+        name="test-team",
+        email="test-team-email@test.com")
     from_name = grafana.oss.get_team_output(name=test.name)
     ```
 
@@ -244,12 +244,12 @@ def get_team_output(name: Optional[pulumi.Input[_builtins.str]] = None,
     import pulumiverse_grafana as grafana
 
     test = grafana.oss.Team("test",
-        name="test-team",
-        email="test-team-email@test.com",
         preferences={
             "theme": "dark",
             "timezone": "utc",
-        })
+        },
+        name="test-team",
+        email="test-team-email@test.com")
     from_name = grafana.oss.get_team_output(name=test.name)
     ```
 

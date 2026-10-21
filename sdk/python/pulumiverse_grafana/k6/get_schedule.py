@@ -159,13 +159,13 @@ def get_schedule(cron: Optional[Union['GetScheduleCronArgs', 'GetScheduleCronArg
     \"\"\",
         opts = pulumi.ResourceOptions(depends_on=[schedule_project]))
     test_schedule = grafana.k6.Schedule("test_schedule",
-        load_test_id=schedule_load_test.id,
-        starts="2024-12-25T10:00:00Z",
         recurrence_rule={
             "frequency": "MONTHLY",
             "interval": 12,
             "count": 100,
         },
+        load_test_id=schedule_load_test.id,
+        starts="2024-12-25T10:00:00Z",
         opts = pulumi.ResourceOptions(depends_on=[schedule_load_test]))
     from_load_test = grafana.k6.get_schedule_output(load_test_id=schedule_load_test.id)
     pulumi.export("completeScheduleInfo", {
@@ -225,13 +225,13 @@ def get_schedule_output(cron: Optional[pulumi.Input[Optional[Union['GetScheduleC
     \"\"\",
         opts = pulumi.ResourceOptions(depends_on=[schedule_project]))
     test_schedule = grafana.k6.Schedule("test_schedule",
-        load_test_id=schedule_load_test.id,
-        starts="2024-12-25T10:00:00Z",
         recurrence_rule={
             "frequency": "MONTHLY",
             "interval": 12,
             "count": 100,
         },
+        load_test_id=schedule_load_test.id,
+        starts="2024-12-25T10:00:00Z",
         opts = pulumi.ResourceOptions(depends_on=[schedule_load_test]))
     from_load_test = grafana.k6.get_schedule_output(load_test_id=schedule_load_test.id)
     pulumi.export("completeScheduleInfo", {

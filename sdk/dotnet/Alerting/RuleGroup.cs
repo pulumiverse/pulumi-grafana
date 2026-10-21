@@ -36,41 +36,21 @@ namespace Pulumiverse.Grafana.Alerting
     /// 
     ///     var myAlertRule = new Grafana.Alerting.RuleGroup("my_alert_rule", new()
     ///     {
-    ///         Name = "My Rule Group",
-    ///         FolderUid = ruleFolder.Uid,
-    ///         IntervalSeconds = 240,
-    ///         OrgId = "1",
     ///         Rules = new[]
     ///         {
     ///             new Grafana.Alerting.Inputs.RuleGroupRuleArgs
     ///             {
-    ///                 Name = "My Alert Rule 1",
-    ///                 For = "2m",
-    ///                 Condition = "B",
-    ///                 NoDataState = "NoData",
-    ///                 ExecErrState = "Alerting",
-    ///                 Annotations = 
-    ///                 {
-    ///                     { "a", "b" },
-    ///                     { "c", "d" },
-    ///                 },
-    ///                 Labels = 
-    ///                 {
-    ///                     { "e", "f" },
-    ///                     { "g", "h" },
-    ///                 },
-    ///                 IsPaused = false,
     ///                 Datas = new[]
     ///                 {
     ///                     new Grafana.Alerting.Inputs.RuleGroupRuleDataArgs
     ///                     {
-    ///                         RefId = "A",
-    ///                         QueryType = "",
     ///                         RelativeTimeRange = new Grafana.Alerting.Inputs.RuleGroupRuleDataRelativeTimeRangeArgs
     ///                         {
     ///                             From = 600,
     ///                             To = 0,
     ///                         },
+    ///                         RefId = "A",
+    ///                         QueryType = "",
     ///                         DatasourceUid = "PD8C576611E62080A",
     ///                         Model = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///                         {
@@ -82,13 +62,13 @@ namespace Pulumiverse.Grafana.Alerting
     ///                     },
     ///                     new Grafana.Alerting.Inputs.RuleGroupRuleDataArgs
     ///                     {
-    ///                         RefId = "B",
-    ///                         QueryType = "",
     ///                         RelativeTimeRange = new Grafana.Alerting.Inputs.RuleGroupRuleDataRelativeTimeRangeArgs
     ///                         {
     ///                             From = 0,
     ///                             To = 0,
     ///                         },
+    ///                         RefId = "B",
+    ///                         QueryType = "",
     ///                         DatasourceUid = "-100",
     ///                         Model = @"{
     ///     \""conditions\"": [
@@ -127,8 +107,28 @@ namespace Pulumiverse.Grafana.Alerting
     /// ",
     ///                     },
     ///                 },
+    ///                 Name = "My Alert Rule 1",
+    ///                 For = "2m",
+    ///                 Condition = "B",
+    ///                 NoDataState = "NoData",
+    ///                 ExecErrState = "Alerting",
+    ///                 Annotations = 
+    ///                 {
+    ///                     { "a", "b" },
+    ///                     { "c", "d" },
+    ///                 },
+    ///                 Labels = 
+    ///                 {
+    ///                     { "e", "f" },
+    ///                     { "g", "h" },
+    ///                 },
+    ///                 IsPaused = false,
     ///             },
     ///         },
+    ///         Name = "My Rule Group",
+    ///         FolderUid = ruleFolder.Uid,
+    ///         IntervalSeconds = 240,
+    ///         OrgId = "1",
     ///     });
     /// 
     /// });
