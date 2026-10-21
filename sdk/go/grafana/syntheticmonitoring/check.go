@@ -41,6 +41,9 @@ import (
 //				return err
 //			}
 //			_, err = syntheticmonitoring.NewCheck(ctx, "dns", &syntheticmonitoring.CheckArgs{
+//				Settings: &syntheticmonitoring.CheckSettingsArgs{
+//					Dns: &syntheticmonitoring.CheckSettingsDnsArgs{},
+//				},
 //				Job:     pulumi.String("DNS Defaults"),
 //				Target:  pulumi.String("grafana.com"),
 //				Enabled: pulumi.Bool(false),
@@ -49,9 +52,6 @@ import (
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
-//				},
-//				Settings: &syntheticmonitoring.CheckSettingsArgs{
-//					Dns: &syntheticmonitoring.CheckSettingsDnsArgs{},
 //				},
 //			})
 //			if err != nil {
@@ -82,27 +82,8 @@ import (
 //				return err
 //			}
 //			_, err = syntheticmonitoring.NewCheck(ctx, "dns", &syntheticmonitoring.CheckArgs{
-//				Job:     pulumi.String("DNS Updated"),
-//				Target:  pulumi.String("grafana.net"),
-//				Enabled: pulumi.Bool(false),
-//				Probes: pulumi.IntArray{
-//					pulumi.Int(pulumi.Int(main.Probes.Frankfurt)),
-//					pulumi.Int(pulumi.Int(main.Probes.London)),
-//				},
-//				Labels: pulumi.StringMap{
-//					"foo": pulumi.String("baz"),
-//				},
 //				Settings: &syntheticmonitoring.CheckSettingsArgs{
 //					Dns: &syntheticmonitoring.CheckSettingsDnsArgs{
-//						IpVersion:  pulumi.String("Any"),
-//						Server:     pulumi.String("8.8.4.4"),
-//						Port:       pulumi.Int(8600),
-//						RecordType: pulumi.String("CNAME"),
-//						Protocol:   pulumi.String("TCP"),
-//						ValidRCodes: pulumi.StringArray{
-//							pulumi.String("NOERROR"),
-//							pulumi.String("NOTAUTH"),
-//						},
 //						ValidateAnswerRrs: &syntheticmonitoring.CheckSettingsDnsValidateAnswerRrsArgs{
 //							FailIfMatchesRegexps: pulumi.StringArray{
 //								pulumi.String(".+-bad-stuff*"),
@@ -129,7 +110,26 @@ import (
 //								},
 //							},
 //						},
+//						IpVersion:  pulumi.String("Any"),
+//						Server:     pulumi.String("8.8.4.4"),
+//						Port:       pulumi.Int(8600),
+//						RecordType: pulumi.String("CNAME"),
+//						Protocol:   pulumi.String("TCP"),
+//						ValidRCodes: pulumi.StringArray{
+//							pulumi.String("NOERROR"),
+//							pulumi.String("NOTAUTH"),
+//						},
 //					},
+//				},
+//				Job:     pulumi.String("DNS Updated"),
+//				Target:  pulumi.String("grafana.net"),
+//				Enabled: pulumi.Bool(false),
+//				Probes: pulumi.IntArray{
+//					pulumi.Int(pulumi.Int(main.Probes.Frankfurt)),
+//					pulumi.Int(pulumi.Int(main.Probes.London)),
+//				},
+//				Labels: pulumi.StringMap{
+//					"foo": pulumi.String("baz"),
 //				},
 //			})
 //			if err != nil {
@@ -160,6 +160,9 @@ import (
 //				return err
 //			}
 //			_, err = syntheticmonitoring.NewCheck(ctx, "http", &syntheticmonitoring.CheckArgs{
+//				Settings: &syntheticmonitoring.CheckSettingsArgs{
+//					Http: &syntheticmonitoring.CheckSettingsHttpArgs{},
+//				},
 //				Job:     pulumi.String("HTTP Defaults"),
 //				Target:  pulumi.String("https://grafana.com"),
 //				Enabled: pulumi.Bool(false),
@@ -168,9 +171,6 @@ import (
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
-//				},
-//				Settings: &syntheticmonitoring.CheckSettingsArgs{
-//					Http: &syntheticmonitoring.CheckSettingsHttpArgs{},
 //				},
 //			})
 //			if err != nil {
@@ -201,29 +201,8 @@ import (
 //				return err
 //			}
 //			_, err = syntheticmonitoring.NewCheck(ctx, "http", &syntheticmonitoring.CheckArgs{
-//				Job:       pulumi.String("HTTP Defaults"),
-//				Target:    pulumi.String("https://grafana.org"),
-//				Enabled:   pulumi.Bool(false),
-//				FolderUid: pulumi.String("test-folder-uid"),
-//				Probes: pulumi.IntArray{
-//					pulumi.Int(pulumi.Int(main.Probes.Mumbai)),
-//					pulumi.Int(pulumi.Int(main.Probes.Mumbai)),
-//				},
-//				Labels: pulumi.StringMap{
-//					"foo": pulumi.String("bar"),
-//				},
 //				Settings: &syntheticmonitoring.CheckSettingsArgs{
 //					Http: &syntheticmonitoring.CheckSettingsHttpArgs{
-//						IpVersion:                  pulumi.String("V6"),
-//						Method:                     pulumi.String("TRACE"),
-//						Body:                       pulumi.String("and spirit"),
-//						NoFollowRedirects:          pulumi.Bool(true),
-//						BearerToken:                pulumi.String("asdfjkl;"),
-//						ProxyUrl:                   pulumi.String("https://almost-there"),
-//						FailIfSsl:                  pulumi.Bool(true),
-//						FailIfNotSsl:               pulumi.Bool(true),
-//						Compression:                pulumi.String("deflate"),
-//						CacheBustingQueryParamName: pulumi.String("pineapple"),
 //						TlsConfig: &syntheticmonitoring.CheckSettingsHttpTlsConfigArgs{
 //							ServerName: pulumi.String("grafana.org"),
 //							ClientCert: pulumi.String(`-----BEGIN CERTIFICATE-----
@@ -257,12 +236,34 @@ import (
 // `),
 //
 //						},
-//						Headers: pulumi.StringArray{
-//							pulumi.String("Content-Type: multipart/form-data; boundary=something"),
-//						},
 //						BasicAuth: &syntheticmonitoring.CheckSettingsHttpBasicAuthArgs{
 //							Username: pulumi.String("open"),
 //							Password: pulumi.String("sesame"),
+//						},
+//						FailIfHeaderMatchesRegexps: syntheticmonitoring.CheckSettingsHttpFailIfHeaderMatchesRegexpArray{
+//							&syntheticmonitoring.CheckSettingsHttpFailIfHeaderMatchesRegexpArgs{
+//								Header:       pulumi.String("Content-Type"),
+//								Regexp:       pulumi.String("application/soap*"),
+//								AllowMissing: pulumi.Bool(true),
+//							},
+//							&syntheticmonitoring.CheckSettingsHttpFailIfHeaderMatchesRegexpArgs{
+//								Header:       pulumi.String("Content-Type"),
+//								Regexp:       pulumi.String("application/json"),
+//								AllowMissing: pulumi.Bool(true),
+//							},
+//						},
+//						IpVersion:                  pulumi.String("V6"),
+//						Method:                     pulumi.String("TRACE"),
+//						Body:                       pulumi.String("and spirit"),
+//						NoFollowRedirects:          pulumi.Bool(true),
+//						BearerToken:                pulumi.String("asdfjkl;"),
+//						ProxyUrl:                   pulumi.String("https://almost-there"),
+//						FailIfSsl:                  pulumi.Bool(true),
+//						FailIfNotSsl:               pulumi.Bool(true),
+//						Compression:                pulumi.String("deflate"),
+//						CacheBustingQueryParamName: pulumi.String("pineapple"),
+//						Headers: pulumi.StringArray{
+//							pulumi.String("Content-Type: multipart/form-data; boundary=something"),
 //						},
 //						ValidStatusCodes: pulumi.IntArray{
 //							pulumi.Int(200),
@@ -279,19 +280,18 @@ import (
 //						FailIfBodyNotMatchesRegexps: pulumi.StringArray{
 //							pulumi.String(".*good stuff.*"),
 //						},
-//						FailIfHeaderMatchesRegexps: syntheticmonitoring.CheckSettingsHttpFailIfHeaderMatchesRegexpArray{
-//							&syntheticmonitoring.CheckSettingsHttpFailIfHeaderMatchesRegexpArgs{
-//								Header:       pulumi.String("Content-Type"),
-//								Regexp:       pulumi.String("application/soap*"),
-//								AllowMissing: pulumi.Bool(true),
-//							},
-//							&syntheticmonitoring.CheckSettingsHttpFailIfHeaderMatchesRegexpArgs{
-//								Header:       pulumi.String("Content-Type"),
-//								Regexp:       pulumi.String("application/json"),
-//								AllowMissing: pulumi.Bool(true),
-//							},
-//						},
 //					},
+//				},
+//				Job:       pulumi.String("HTTP Defaults"),
+//				Target:    pulumi.String("https://grafana.org"),
+//				Enabled:   pulumi.Bool(false),
+//				FolderUid: pulumi.String("test-folder-uid"),
+//				Probes: pulumi.IntArray{
+//					pulumi.Int(pulumi.Int(main.Probes.Mumbai)),
+//					pulumi.Int(pulumi.Int(main.Probes.Mumbai)),
+//				},
+//				Labels: pulumi.StringMap{
+//					"foo": pulumi.String("bar"),
 //				},
 //			})
 //			if err != nil {
@@ -322,6 +322,9 @@ import (
 //				return err
 //			}
 //			_, err = syntheticmonitoring.NewCheck(ctx, "ping", &syntheticmonitoring.CheckArgs{
+//				Settings: &syntheticmonitoring.CheckSettingsArgs{
+//					Ping: &syntheticmonitoring.CheckSettingsPingArgs{},
+//				},
 //				Job:     pulumi.String("Ping Defaults"),
 //				Target:  pulumi.String("grafana.com"),
 //				Enabled: pulumi.Bool(false),
@@ -330,9 +333,6 @@ import (
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
-//				},
-//				Settings: &syntheticmonitoring.CheckSettingsArgs{
-//					Ping: &syntheticmonitoring.CheckSettingsPingArgs{},
 //				},
 //			})
 //			if err != nil {
@@ -363,6 +363,13 @@ import (
 //				return err
 //			}
 //			_, err = syntheticmonitoring.NewCheck(ctx, "ping", &syntheticmonitoring.CheckArgs{
+//				Settings: &syntheticmonitoring.CheckSettingsArgs{
+//					Ping: &syntheticmonitoring.CheckSettingsPingArgs{
+//						IpVersion:    pulumi.String("Any"),
+//						PayloadSize:  pulumi.Int(20),
+//						DontFragment: pulumi.Bool(true),
+//					},
+//				},
 //				Job:     pulumi.String("Ping Updated"),
 //				Target:  pulumi.String("grafana.net"),
 //				Enabled: pulumi.Bool(false),
@@ -372,13 +379,6 @@ import (
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("baz"),
-//				},
-//				Settings: &syntheticmonitoring.CheckSettingsArgs{
-//					Ping: &syntheticmonitoring.CheckSettingsPingArgs{
-//						IpVersion:    pulumi.String("Any"),
-//						PayloadSize:  pulumi.Int(20),
-//						DontFragment: pulumi.Bool(true),
-//					},
 //				},
 //			})
 //			if err != nil {
@@ -409,6 +409,9 @@ import (
 //				return err
 //			}
 //			_, err = syntheticmonitoring.NewCheck(ctx, "tcp", &syntheticmonitoring.CheckArgs{
+//				Settings: &syntheticmonitoring.CheckSettingsArgs{
+//					Tcp: &syntheticmonitoring.CheckSettingsTcpArgs{},
+//				},
 //				Job:     pulumi.String("TCP Defaults"),
 //				Target:  pulumi.String("grafana.com:80"),
 //				Enabled: pulumi.Bool(false),
@@ -417,9 +420,6 @@ import (
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
-//				},
-//				Settings: &syntheticmonitoring.CheckSettingsArgs{
-//					Tcp: &syntheticmonitoring.CheckSettingsTcpArgs{},
 //				},
 //			})
 //			if err != nil {
@@ -450,31 +450,8 @@ import (
 //				return err
 //			}
 //			_, err = syntheticmonitoring.NewCheck(ctx, "tcp", &syntheticmonitoring.CheckArgs{
-//				Job:     pulumi.String("TCP Defaults"),
-//				Target:  pulumi.String("grafana.com:443"),
-//				Enabled: pulumi.Bool(false),
-//				Probes: pulumi.IntArray{
-//					pulumi.Int(pulumi.Int(main.Probes.Frankfurt)),
-//					pulumi.Int(pulumi.Int(main.Probes.London)),
-//				},
-//				Labels: pulumi.StringMap{
-//					"foo": pulumi.String("baz"),
-//				},
 //				Settings: &syntheticmonitoring.CheckSettingsArgs{
 //					Tcp: &syntheticmonitoring.CheckSettingsTcpArgs{
-//						IpVersion: pulumi.String("V6"),
-//						Tls:       pulumi.Bool(true),
-//						QueryResponses: syntheticmonitoring.CheckSettingsTcpQueryResponseArray{
-//							&syntheticmonitoring.CheckSettingsTcpQueryResponseArgs{
-//								Send:   pulumi.String("howdy"),
-//								Expect: pulumi.String("hi"),
-//							},
-//							&syntheticmonitoring.CheckSettingsTcpQueryResponseArgs{
-//								Send:     pulumi.String("like this"),
-//								Expect:   pulumi.String("like that"),
-//								StartTls: pulumi.Bool(true),
-//							},
-//						},
 //						TlsConfig: &syntheticmonitoring.CheckSettingsTcpTlsConfigArgs{
 //							ServerName: pulumi.String("grafana.com"),
 //							CaCert: pulumi.String(`-----BEGIN CERTIFICATE-----
@@ -508,7 +485,30 @@ import (
 // `),
 //
 //						},
+//						QueryResponses: syntheticmonitoring.CheckSettingsTcpQueryResponseArray{
+//							&syntheticmonitoring.CheckSettingsTcpQueryResponseArgs{
+//								Send:   pulumi.String("howdy"),
+//								Expect: pulumi.String("hi"),
+//							},
+//							&syntheticmonitoring.CheckSettingsTcpQueryResponseArgs{
+//								Send:     pulumi.String("like this"),
+//								Expect:   pulumi.String("like that"),
+//								StartTls: pulumi.Bool(true),
+//							},
+//						},
+//						IpVersion: pulumi.String("V6"),
+//						Tls:       pulumi.Bool(true),
 //					},
+//				},
+//				Job:     pulumi.String("TCP Defaults"),
+//				Target:  pulumi.String("grafana.com:443"),
+//				Enabled: pulumi.Bool(false),
+//				Probes: pulumi.IntArray{
+//					pulumi.Int(pulumi.Int(main.Probes.Frankfurt)),
+//					pulumi.Int(pulumi.Int(main.Probes.London)),
+//				},
+//				Labels: pulumi.StringMap{
+//					"foo": pulumi.String("baz"),
 //				},
 //			})
 //			if err != nil {
@@ -539,6 +539,9 @@ import (
 //				return err
 //			}
 //			_, err = syntheticmonitoring.NewCheck(ctx, "traceroute", &syntheticmonitoring.CheckArgs{
+//				Settings: &syntheticmonitoring.CheckSettingsArgs{
+//					Traceroute: &syntheticmonitoring.CheckSettingsTracerouteArgs{},
+//				},
 //				Job:       pulumi.String("Traceroute defaults"),
 //				Target:    pulumi.String("grafana.com"),
 //				Enabled:   pulumi.Bool(false),
@@ -549,9 +552,6 @@ import (
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
-//				},
-//				Settings: &syntheticmonitoring.CheckSettingsArgs{
-//					Traceroute: &syntheticmonitoring.CheckSettingsTracerouteArgs{},
 //				},
 //			})
 //			if err != nil {
@@ -582,6 +582,13 @@ import (
 //				return err
 //			}
 //			_, err = syntheticmonitoring.NewCheck(ctx, "traceroute", &syntheticmonitoring.CheckArgs{
+//				Settings: &syntheticmonitoring.CheckSettingsArgs{
+//					Traceroute: &syntheticmonitoring.CheckSettingsTracerouteArgs{
+//						MaxHops:        pulumi.Int(25),
+//						MaxUnknownHops: pulumi.Int(10),
+//						PtrLookup:      pulumi.Bool(false),
+//					},
+//				},
 //				Job:       pulumi.String("Traceroute complex"),
 //				Target:    pulumi.String("grafana.net"),
 //				Enabled:   pulumi.Bool(false),
@@ -593,13 +600,6 @@ import (
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("baz"),
-//				},
-//				Settings: &syntheticmonitoring.CheckSettingsArgs{
-//					Traceroute: &syntheticmonitoring.CheckSettingsTracerouteArgs{
-//						MaxHops:        pulumi.Int(25),
-//						MaxUnknownHops: pulumi.Int(10),
-//						PtrLookup:      pulumi.Bool(false),
-//					},
 //				},
 //			})
 //			if err != nil {

@@ -50,17 +50,17 @@ import (
 //					Uid: pulumi.String("example-saved-query"),
 //				},
 //				Spec: &v1.QuerySpecArgs{
+//					Targets: v1.QuerySpecTargetArray{
+//						&v1.QuerySpecTargetArgs{
+//							PropertiesJson: pulumi.String(pulumi.String(json0)),
+//						},
+//					},
 //					Title:       pulumi.String("Requests per second"),
 //					Description: pulumi.String("Prometheus rate of HTTP requests"),
 //					IsVisible:   pulumi.Bool(true),
 //					Tags: pulumi.StringArray{
 //						pulumi.String("http"),
 //						pulumi.String("prometheus"),
-//					},
-//					Targets: v1.QuerySpecTargetArray{
-//						&v1.QuerySpecTargetArgs{
-//							PropertiesJson: pulumi.String(pulumi.String(json0)),
-//						},
 //					},
 //				},
 //			})

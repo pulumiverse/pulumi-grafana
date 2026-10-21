@@ -37,6 +37,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := machinelearning.NewOutlierDetector(ctx, "my_dbscan_outlier_detector", &machinelearning.OutlierDetectorArgs{
+//				Algorithm: &machinelearning.OutlierDetectorAlgorithmArgs{
+//					Config: &machinelearning.OutlierDetectorAlgorithmConfigArgs{
+//						Epsilon: pulumi.Float64(1),
+//					},
+//					Name:        pulumi.String("dbscan"),
+//					Sensitivity: pulumi.Float64(0.5),
+//				},
 //				Name:           pulumi.String("My DBSCAN outlier detector"),
 //				Description:    pulumi.String("My DBSCAN Outlier Detector"),
 //				Metric:         pulumi.String("tf_test_dbscan_job"),
@@ -46,13 +53,6 @@ import (
 //					"expr": pulumi.String("grafanacloud_grafana_instance_active_user_count"),
 //				},
 //				Interval: pulumi.Int(300),
-//				Algorithm: &machinelearning.OutlierDetectorAlgorithmArgs{
-//					Name:        pulumi.String("dbscan"),
-//					Sensitivity: pulumi.Float64(0.5),
-//					Config: &machinelearning.OutlierDetectorAlgorithmConfigArgs{
-//						Epsilon: pulumi.Float64(1),
-//					},
-//				},
 //			})
 //			if err != nil {
 //				return err
@@ -80,6 +80,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := machinelearning.NewOutlierDetector(ctx, "my_mad_outlier_detector", &machinelearning.OutlierDetectorArgs{
+//				Algorithm: &machinelearning.OutlierDetectorAlgorithmArgs{
+//					Name:        pulumi.String("mad"),
+//					Sensitivity: pulumi.Float64(0.7),
+//				},
 //				Name:           pulumi.String("My MAD outlier detector"),
 //				Description:    pulumi.String("My MAD Outlier Detector"),
 //				Metric:         pulumi.String("tf_test_mad_job"),
@@ -89,10 +93,6 @@ import (
 //					"expr": pulumi.String("grafanacloud_grafana_instance_active_user_count"),
 //				},
 //				Interval: pulumi.Int(300),
-//				Algorithm: &machinelearning.OutlierDetectorAlgorithmArgs{
-//					Name:        pulumi.String("mad"),
-//					Sensitivity: pulumi.Float64(0.7),
-//				},
 //			})
 //			if err != nil {
 //				return err

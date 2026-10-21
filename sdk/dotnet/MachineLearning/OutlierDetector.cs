@@ -33,6 +33,15 @@ namespace Pulumiverse.Grafana.MachineLearning
     /// {
     ///     var myDbscanOutlierDetector = new Grafana.MachineLearning.OutlierDetector("my_dbscan_outlier_detector", new()
     ///     {
+    ///         Algorithm = new Grafana.MachineLearning.Inputs.OutlierDetectorAlgorithmArgs
+    ///         {
+    ///             Config = new Grafana.MachineLearning.Inputs.OutlierDetectorAlgorithmConfigArgs
+    ///             {
+    ///                 Epsilon = 1,
+    ///             },
+    ///             Name = "dbscan",
+    ///             Sensitivity = 0.5,
+    ///         },
     ///         Name = "My DBSCAN outlier detector",
     ///         Description = "My DBSCAN Outlier Detector",
     ///         Metric = "tf_test_dbscan_job",
@@ -43,15 +52,6 @@ namespace Pulumiverse.Grafana.MachineLearning
     ///             { "expr", "grafanacloud_grafana_instance_active_user_count" },
     ///         },
     ///         Interval = 300,
-    ///         Algorithm = new Grafana.MachineLearning.Inputs.OutlierDetectorAlgorithmArgs
-    ///         {
-    ///             Name = "dbscan",
-    ///             Sensitivity = 0.5,
-    ///             Config = new Grafana.MachineLearning.Inputs.OutlierDetectorAlgorithmConfigArgs
-    ///             {
-    ///                 Epsilon = 1,
-    ///             },
-    ///         },
     ///     });
     /// 
     /// });
@@ -71,6 +71,11 @@ namespace Pulumiverse.Grafana.MachineLearning
     /// {
     ///     var myMadOutlierDetector = new Grafana.MachineLearning.OutlierDetector("my_mad_outlier_detector", new()
     ///     {
+    ///         Algorithm = new Grafana.MachineLearning.Inputs.OutlierDetectorAlgorithmArgs
+    ///         {
+    ///             Name = "mad",
+    ///             Sensitivity = 0.7,
+    ///         },
     ///         Name = "My MAD outlier detector",
     ///         Description = "My MAD Outlier Detector",
     ///         Metric = "tf_test_mad_job",
@@ -81,11 +86,6 @@ namespace Pulumiverse.Grafana.MachineLearning
     ///             { "expr", "grafanacloud_grafana_instance_active_user_count" },
     ///         },
     ///         Interval = 300,
-    ///         Algorithm = new Grafana.MachineLearning.Inputs.OutlierDetectorAlgorithmArgs
-    ///         {
-    ///             Name = "mad",
-    ///             Sensitivity = 0.7,
-    ///         },
     ///     });
     /// 
     /// });

@@ -45,8 +45,12 @@ import * as utilities from "../../utilities";
  *         uid: "checkout-service",
  *     },
  *     spec: {
- *         title: "Checkout Service",
- *         description: "Handles checkout and payment orchestration.",
+ *         ownerRef: {
+ *             name: checkout.teamUid,
+ *         },
+ *         dependsOnRefs: [{
+ *             name: payments.metadata.apply(metadata => metadata?.uid),
+ *         }],
  *         identifiers: [
  *             {
  *                 key: "service_name",
@@ -57,17 +61,13 @@ import * as utilities from "../../utilities";
  *                 value: "checkout-prod",
  *             },
  *         ],
- *         ownerRef: {
- *             name: checkout.teamUid,
- *         },
- *         dependsOnRefs: [{
- *             name: payments.metadata.apply(metadata => metadata?.uid),
- *         }],
  *         links: [{
  *             url: "https://github.com/example/checkout",
  *             title: "Source code",
  *             type: "repository",
  *         }],
+ *         title: "Checkout Service",
+ *         description: "Handles checkout and payment orchestration.",
  *     },
  * });
  * ```

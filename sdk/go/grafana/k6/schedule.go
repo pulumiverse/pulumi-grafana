@@ -45,30 +45,28 @@ import (
 //				return err
 //			}
 //			_, err = k6.NewSchedule(ctx, "cron_monthly", &k6.ScheduleArgs{
-//				LoadTestId: scheduledTest.ID(),
-//				Starts:     pulumi.String("2024-12-25T10:00:00Z"),
 //				Cron: &k6.ScheduleCronArgs{
 //					Schedule: pulumi.String("0 10 1 * *"),
 //					Timezone: pulumi.String("UTC"),
 //				},
+//				LoadTestId: scheduledTest.ID(),
+//				Starts:     pulumi.String("2024-12-25T10:00:00Z"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = k6.NewSchedule(ctx, "daily", &k6.ScheduleArgs{
-//				LoadTestId: scheduledTest.ID(),
-//				Starts:     pulumi.String("2024-12-25T10:00:00Z"),
 //				RecurrenceRule: &k6.ScheduleRecurrenceRuleArgs{
 //					Frequency: pulumi.String("DAILY"),
 //					Interval:  pulumi.Int(1),
 //				},
+//				LoadTestId: scheduledTest.ID(),
+//				Starts:     pulumi.String("2024-12-25T10:00:00Z"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = k6.NewSchedule(ctx, "weekly", &k6.ScheduleArgs{
-//				LoadTestId: scheduledTest.ID(),
-//				Starts:     pulumi.String("2024-12-25T09:00:00Z"),
 //				RecurrenceRule: &k6.ScheduleRecurrenceRuleArgs{
 //					Frequency: pulumi.String("WEEKLY"),
 //					Interval:  pulumi.Int(1),
@@ -78,19 +76,21 @@ import (
 //						pulumi.String("FR"),
 //					},
 //				},
+//				LoadTestId: scheduledTest.ID(),
+//				Starts:     pulumi.String("2024-12-25T09:00:00Z"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Example with YEARLY frequency and count
 //			_, err = k6.NewSchedule(ctx, "yearly", &k6.ScheduleArgs{
-//				LoadTestId: scheduledTest.ID(),
-//				Starts:     pulumi.String("2024-01-01T12:00:00Z"),
 //				RecurrenceRule: &k6.ScheduleRecurrenceRuleArgs{
 //					Frequency: pulumi.String("YEARLY"),
 //					Interval:  pulumi.Int(1),
 //					Count:     pulumi.Int(5),
 //				},
+//				LoadTestId: scheduledTest.ID(),
+//				Starts:     pulumi.String("2024-01-01T12:00:00Z"),
 //			})
 //			if err != nil {
 //				return err
