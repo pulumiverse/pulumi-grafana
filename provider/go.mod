@@ -5,7 +5,7 @@ go 1.26.5
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20260318212141-5525259d096b
 
 require (
-	github.com/grafana/terraform-provider-grafana/v4 v4.50.0
+	github.com/grafana/terraform-provider-grafana/v4 v4.52.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.125.0
 	github.com/pulumi/pulumi/sdk/v3 v3.226.0
 )
@@ -78,7 +78,7 @@ require (
 	github.com/fatih/color v1.19.0 // indirect
 	github.com/felixge/httpsnoop v1.1.0 // indirect
 	github.com/fxamacker/cbor/v2 v2.9.0 // indirect
-	github.com/getkin/kin-openapi v0.144.0 // indirect
+	github.com/getkin/kin-openapi v0.149.0 // indirect
 	github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376 // indirect
 	github.com/go-git/go-billy/v5 v5.6.2 // indirect
 	github.com/go-git/go-git/v5 v5.16.5 // indirect
@@ -123,7 +123,7 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.3.11 // indirect
 	github.com/googleapis/gax-go/v2 v2.17.0 // indirect
-	github.com/grafana/amixr-api-go-client v0.0.31 // indirect
+	github.com/grafana/amixr-api-go-client v0.0.33 // indirect
 	github.com/grafana/authlib v0.0.0-20260621220415-f6aaf60e82b2 // indirect
 	github.com/grafana/authlib/claims v0.0.0-20250120084028-e3328c576437 // indirect
 	github.com/grafana/authlib/types v0.0.0-20260930204439-665ccbf27cbe // indirect
@@ -143,7 +143,7 @@ require (
 	github.com/grafana/grafana/apps/provisioning v0.0.0-20260611010225-797a1ed3cfdb // indirect
 	github.com/grafana/grafana/apps/secret v0.0.0-20260224124528-75b1e0cf0f79 // indirect
 	github.com/grafana/grafana/pkg/apimachinery v0.0.0-20260225160729-8b7042cc192e // indirect
-	github.com/grafana/incident-go v0.0.0-20261007120105-21a0e7878e02 // indirect
+	github.com/grafana/incident-go v0.0.0-20261022125241-fd8886fee1f3 // indirect
 	github.com/grafana/k6-cloud-openapi-client-go v0.0.3-0.20260625132134-c48eae4f9a18 // indirect
 	github.com/grafana/machine-learning-go-client v0.8.2 // indirect
 	github.com/grafana/otel-profiling-go v0.5.1 // indirect
@@ -261,7 +261,7 @@ require (
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/sabhiram/go-gitignore v0.0.0-20210923224102-525f6e181f06 // indirect
 	github.com/santhosh-tekuri/jsonschema/v5 v5.3.1 // indirect
-	github.com/santhosh-tekuri/jsonschema/v6 v6.0.2 // indirect
+	github.com/santhosh-tekuri/jsonschema/v6 v6.0.3 // indirect
 	github.com/segmentio/asm v1.1.3 // indirect
 	github.com/segmentio/encoding v0.3.5 // indirect
 	github.com/sergi/go-diff v1.4.0 // indirect
