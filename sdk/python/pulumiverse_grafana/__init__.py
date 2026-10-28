@@ -749,6 +749,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "incident/severity",
+  "fqn": "pulumiverse_grafana.incident",
+  "classes": {
+   "grafana:incident/severity:Severity": "Severity"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "k6/installation",
   "fqn": "pulumiverse_grafana.k6",
   "classes": {
@@ -881,6 +889,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.oncall",
   "classes": {
    "grafana:onCall/schedule:Schedule": "Schedule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "onCall/teamAccessManagement",
+  "fqn": "pulumiverse_grafana.oncall",
+  "classes": {
+   "grafana:onCall/teamAccessManagement:TeamAccessManagement": "TeamAccessManagement"
   }
  },
  {

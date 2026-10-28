@@ -110,7 +110,7 @@
             },
             "caCert": {
                 "type": "string",
-                "description": "Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.",
+                "description": "Certificate CA bundle (file path or literal value) to use to verify the certificates of Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.",
                 "defaultInfo": {
                     "environment": [
                         "GRAFANA_CA_CERT"
@@ -280,7 +280,7 @@
             },
             "tlsCert": {
                 "type": "string",
-                "description": "Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.",
+                "description": "Client TLS certificate (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.",
                 "defaultInfo": {
                     "environment": [
                         "GRAFANA_TLS_CERT"
@@ -289,7 +289,7 @@
             },
             "tlsKey": {
                 "type": "string",
-                "description": "Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.",
+                "description": "Client TLS key (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.",
                 "defaultInfo": {
                     "environment": [
                         "GRAFANA_TLS_KEY"
@@ -337,6 +337,10 @@
                 "folderUid": {
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
+                },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -1137,6 +1141,10 @@
                 "folderUid": {
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
+                },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -3445,6 +3453,10 @@
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
+                },
                 "uid": {
                     "type": "string",
                     "description": "The unique identifier of the resource.\n"
@@ -3759,6 +3771,10 @@
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
+                },
                 "uid": {
                     "type": "string",
                     "description": "The unique identifier of the resource.\n"
@@ -4013,6 +4029,10 @@
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
+                },
                 "uid": {
                     "type": "string",
                     "description": "The unique identifier of the resource.\n"
@@ -4128,6 +4148,10 @@
                 "folderUid": {
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
+                },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -4247,6 +4271,10 @@
                 "folderUid": {
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
+                },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -5048,6 +5076,10 @@
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
+                },
                 "uid": {
                     "type": "string",
                     "description": "The unique identifier of the resource.\n"
@@ -5170,6 +5202,10 @@
                 "folderUid": {
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
+                },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -5726,6 +5762,10 @@
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
+                },
                 "uid": {
                     "type": "string",
                     "description": "The unique identifier of the resource.\n"
@@ -5823,6 +5863,10 @@
                 "folderUid": {
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
+                },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -5949,6 +5993,10 @@
                 "folderUid": {
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
+                },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -6322,6 +6370,10 @@
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
+                },
                 "uid": {
                     "type": "string",
                     "description": "The unique identifier of the resource.\n"
@@ -6419,6 +6471,10 @@
                 "folderUid": {
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
+                },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -6568,6 +6624,10 @@
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
+                },
                 "uid": {
                     "type": "string",
                     "description": "The unique identifier of the resource.\n"
@@ -6654,6 +6714,10 @@
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
+                },
                 "uid": {
                     "type": "string",
                     "description": "The unique identifier of the resource.\n"
@@ -6739,6 +6803,10 @@
                 "folderUid": {
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
+                },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -7356,6 +7424,10 @@
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
+                },
                 "uid": {
                     "type": "string",
                     "description": "The unique identifier of the resource.\n"
@@ -7426,6 +7498,10 @@
                 "folderUid": {
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
+                },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -7562,6 +7638,10 @@
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
+                },
                 "uid": {
                     "type": "string",
                     "description": "The unique identifier of the resource.\n"
@@ -7632,6 +7712,10 @@
                 "folderUid": {
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
+                },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -7704,6 +7788,10 @@
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
+                },
                 "uid": {
                     "type": "string",
                     "description": "The unique identifier of the resource.\n"
@@ -7774,6 +7862,10 @@
                 "folderUid": {
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
+                },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -8923,6 +9015,10 @@
                     "type": "string",
                     "description": "The UID of the folder to save the resource in.\n"
                 },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
+                },
                 "uid": {
                     "type": "string",
                     "description": "The unique identifier of the resource.\n"
@@ -8968,6 +9064,10 @@
                 "folderUid": {
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
+                },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -9070,6 +9170,10 @@
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
+                },
                 "uid": {
                     "type": "string",
                     "description": "The unique identifier of the resource.\n"
@@ -9166,6 +9270,10 @@
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
+                },
                 "uid": {
                     "type": "string",
                     "description": "The unique identifier of the resource.\n"
@@ -9251,6 +9359,10 @@
                 "folderUid": {
                     "type": "string",
                     "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
+                },
+                "orgId": {
+                    "type": "integer",
+                    "description": "The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's \u003cspan pulumi-lang-nodejs=\"`orgId`\" pulumi-lang-dotnet=\"`OrgId`\" pulumi-lang-go=\"`orgId`\" pulumi-lang-python=\"`org_id`\" pulumi-lang-yaml=\"`orgId`\" pulumi-lang-java=\"`orgId`\"\u003e`orgId`\u003c/span\u003e for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e instead). Changing this value forces the resource to be recreated in the new organization.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -12527,7 +12639,7 @@
             },
             "caCert": {
                 "type": "string",
-                "description": "Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable."
+                "description": "Certificate CA bundle (file path or literal value) to use to verify the certificates of Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_CA_CERT` environment variable."
             },
             "cloudAccessPolicyToken": {
                 "type": "string",
@@ -12642,11 +12754,11 @@
             },
             "tlsCert": {
                 "type": "string",
-                "description": "Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable."
+                "description": "Client TLS certificate (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable."
             },
             "tlsKey": {
                 "type": "string",
-                "description": "Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.",
+                "description": "Client TLS key (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.",
                 "secret": true
             },
             "url": {
@@ -12667,7 +12779,7 @@
             },
             "caCert": {
                 "type": "string",
-                "description": "Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.",
+                "description": "Certificate CA bundle (file path or literal value) to use to verify the certificates of Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.",
                 "defaultInfo": {
                     "environment": [
                         "GRAFANA_CA_CERT"
@@ -12837,7 +12949,7 @@
             },
             "tlsCert": {
                 "type": "string",
-                "description": "Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.",
+                "description": "Client TLS certificate (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.",
                 "defaultInfo": {
                     "environment": [
                         "GRAFANA_TLS_CERT"
@@ -12846,7 +12958,7 @@
             },
             "tlsKey": {
                 "type": "string",
-                "description": "Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.",
+                "description": "Client TLS key (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.",
                 "defaultInfo": {
                     "environment": [
                         "GRAFANA_TLS_KEY"
@@ -21812,6 +21924,112 @@
                 "type": "object"
             }
         },
+        "grafana:incident/severity:Severity": {
+            "description": "Manages a Grafana Incident severity, which expresses the impact of an incident.\n\nThe Incident API enforces a few rules that affect Terraform:\n\n* Severities can be created at levels \u003cspan pulumi-lang-nodejs=\"`1`\" pulumi-lang-dotnet=\"`1`\" pulumi-lang-go=\"`1`\" pulumi-lang-python=\"`1`\" pulumi-lang-yaml=\"`1`\" pulumi-lang-java=\"`1`\"\u003e`1`\u003c/span\u003e to \u003cspan pulumi-lang-nodejs=\"`5`\" pulumi-lang-dotnet=\"`5`\" pulumi-lang-go=\"`5`\" pulumi-lang-python=\"`5`\" pulumi-lang-yaml=\"`5`\" pulumi-lang-java=\"`5`\"\u003e`5`\u003c/span\u003e, and labels and levels must be unique within the organization, **including archived severities**. Besides Pending, an organization can therefore hold at most 5 severities, archived or not. A new organization starts with Pending, Critical, Major and Minor, which leaves two levels free. When a new severity's level or label is already taken, the error names the severity that holds it.\n* An archived severity keeps its label and level, so neither can be reused until it is deleted. Archiving a severity does not free its level for another one.\n* The level cannot be changed after the severity is created, so changing \u003cspan pulumi-lang-nodejs=\"`level`\" pulumi-lang-dotnet=\"`Level`\" pulumi-lang-go=\"`level`\" pulumi-lang-python=\"`level`\" pulumi-lang-yaml=\"`level`\" pulumi-lang-java=\"`level`\"\u003e`level`\u003c/span\u003e replaces the severity. The plan is refused when another severity, archived or not, already holds the new level or label, since the replacement would otherwise delete the severity and then fail to create it. \u003cspan pulumi-lang-nodejs=\"`createBeforeDestroy`\" pulumi-lang-dotnet=\"`CreateBeforeDestroy`\" pulumi-lang-go=\"`createBeforeDestroy`\" pulumi-lang-python=\"`create_before_destroy`\" pulumi-lang-yaml=\"`createBeforeDestroy`\" pulumi-lang-java=\"`createBeforeDestroy`\"\u003e`createBeforeDestroy`\u003c/span\u003e cannot be used, because the new severity would conflict with the old one's level or label.\n* A severity that any incident uses, open or closed, cannot be deleted, and that includes the delete a replacement makes. Set `archived = true` to retire it instead, which keeps the incident history intact. To stop managing it without deleting it, use a \u003cspan pulumi-lang-nodejs=\"`removed`\" pulumi-lang-dotnet=\"`Removed`\" pulumi-lang-go=\"`removed`\" pulumi-lang-python=\"`removed`\" pulumi-lang-yaml=\"`removed`\" pulumi-lang-java=\"`removed`\"\u003e`removed`\u003c/span\u003e block with `lifecycle { destroy = false }`.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst informational = new grafana.incident.Severity(\"informational\", {\n    label: \"Informational\",\n    level: 4,\n    description: \"No customer impact, tracked for awareness.\",\n    icon: \"angle-double-down\",\n    darkColor: \"rgba(110, 159, 255, 1)\",\n    lightColor: \"rgba(31, 98, 224, 1)\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ninformational = grafana.incident.Severity(\"informational\",\n    label=\"Informational\",\n    level=4,\n    description=\"No customer impact, tracked for awareness.\",\n    icon=\"angle-double-down\",\n    dark_color=\"rgba(110, 159, 255, 1)\",\n    light_color=\"rgba(31, 98, 224, 1)\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var informational = new Grafana.Incident.Severity(\"informational\", new()\n    {\n        Label = \"Informational\",\n        Level = 4,\n        Description = \"No customer impact, tracked for awareness.\",\n        Icon = \"angle-double-down\",\n        DarkColor = \"rgba(110, 159, 255, 1)\",\n        LightColor = \"rgba(31, 98, 224, 1)\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/incident\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := incident.NewSeverity(ctx, \"informational\", \u0026incident.SeverityArgs{\n\t\t\tLabel:       pulumi.String(\"Informational\"),\n\t\t\tLevel:       pulumi.Int(4),\n\t\t\tDescription: pulumi.String(\"No customer impact, tracked for awareness.\"),\n\t\t\tIcon:        pulumi.String(\"angle-double-down\"),\n\t\t\tDarkColor:   pulumi.String(\"rgba(110, 159, 255, 1)\"),\n\t\t\tLightColor:  pulumi.String(\"rgba(31, 98, 224, 1)\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.incident.Severity;\nimport com.pulumi.grafana.incident.SeverityArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var informational = new Severity(\"informational\", SeverityArgs.builder()\n            .label(\"Informational\")\n            .level(4)\n            .description(\"No customer impact, tracked for awareness.\")\n            .icon(\"angle-double-down\")\n            .darkColor(\"rgba(110, 159, 255, 1)\")\n            .lightColor(\"rgba(31, 98, 224, 1)\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  informational:\n    type: grafana:incident:Severity\n    properties:\n      label: Informational\n      level: 4\n      description: No customer impact, tracked for awareness.\n      icon: angle-double-down\n      darkColor: rgba(110, 159, 255, 1)\n      lightColor: rgba(31, 98, 224, 1)\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_incident_severity.name \"{{ id }}\"\n```\n\n",
+            "properties": {
+                "archived": {
+                    "type": "boolean",
+                    "description": "Whether the severity is archived. Archived severities cannot be assigned to new incidents, but remain on historical ones. The Pending severity cannot be archived. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
+                },
+                "darkColor": {
+                    "type": "string",
+                    "description": "The color of the severity in dark mode, as a CSS color such as `#FF5286` or `rgb(255, 82, 134)`.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of when the severity applies.\n"
+                },
+                "icon": {
+                    "type": "string",
+                    "description": "The name of the icon shown for the severity in the UI and in Slack. One of `angle-double-down`, `angle-double-up`, \u003cspan pulumi-lang-nodejs=\"`bolt`\" pulumi-lang-dotnet=\"`Bolt`\" pulumi-lang-go=\"`bolt`\" pulumi-lang-python=\"`bolt`\" pulumi-lang-yaml=\"`bolt`\" pulumi-lang-java=\"`bolt`\"\u003e`bolt`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`bug`\" pulumi-lang-dotnet=\"`Bug`\" pulumi-lang-go=\"`bug`\" pulumi-lang-python=\"`bug`\" pulumi-lang-yaml=\"`bug`\" pulumi-lang-java=\"`bug`\"\u003e`bug`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`exclamation`\" pulumi-lang-dotnet=\"`Exclamation`\" pulumi-lang-go=\"`exclamation`\" pulumi-lang-python=\"`exclamation`\" pulumi-lang-yaml=\"`exclamation`\" pulumi-lang-java=\"`exclamation`\"\u003e`exclamation`\u003c/span\u003e, `exclamation-triangle`, \u003cspan pulumi-lang-nodejs=\"`fire`\" pulumi-lang-dotnet=\"`Fire`\" pulumi-lang-go=\"`fire`\" pulumi-lang-python=\"`fire`\" pulumi-lang-yaml=\"`fire`\" pulumi-lang-java=\"`fire`\"\u003e`fire`\u003c/span\u003e, `question-circle` or \u003cspan pulumi-lang-nodejs=\"`shield`\" pulumi-lang-dotnet=\"`Shield`\" pulumi-lang-go=\"`shield`\" pulumi-lang-python=\"`shield`\" pulumi-lang-yaml=\"`shield`\" pulumi-lang-java=\"`shield`\"\u003e`shield`\u003c/span\u003e.\n"
+                },
+                "label": {
+                    "type": "string",
+                    "description": "The display label of the severity, for example `Critical`. Incidents reference the severity by this label. It must be unique within the organization, including archived severities.\n"
+                },
+                "level": {
+                    "type": "integer",
+                    "description": "The level of the severity, from \u003cspan pulumi-lang-nodejs=\"`1`\" pulumi-lang-dotnet=\"`1`\" pulumi-lang-go=\"`1`\" pulumi-lang-python=\"`1`\" pulumi-lang-yaml=\"`1`\" pulumi-lang-java=\"`1`\"\u003e`1`\u003c/span\u003e to \u003cspan pulumi-lang-nodejs=\"`5`\" pulumi-lang-dotnet=\"`5`\" pulumi-lang-go=\"`5`\" pulumi-lang-python=\"`5`\" pulumi-lang-yaml=\"`5`\" pulumi-lang-java=\"`5`\"\u003e`5`\u003c/span\u003e; lower is more severe. It must be unique within the organization, including archived severities. Level `-1` belongs to the system-managed Pending severity, which can be imported but not created. Changing it forces a new severity to be created.\n"
+                },
+                "lightColor": {
+                    "type": "string",
+                    "description": "The color of the severity in light mode, as a CSS color such as `#FF5286` or `rgb(255, 82, 134)`.\n"
+                }
+            },
+            "required": [
+                "archived",
+                "label",
+                "level"
+            ],
+            "inputProperties": {
+                "archived": {
+                    "type": "boolean",
+                    "description": "Whether the severity is archived. Archived severities cannot be assigned to new incidents, but remain on historical ones. The Pending severity cannot be archived. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
+                },
+                "darkColor": {
+                    "type": "string",
+                    "description": "The color of the severity in dark mode, as a CSS color such as `#FF5286` or `rgb(255, 82, 134)`.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of when the severity applies.\n"
+                },
+                "icon": {
+                    "type": "string",
+                    "description": "The name of the icon shown for the severity in the UI and in Slack. One of `angle-double-down`, `angle-double-up`, \u003cspan pulumi-lang-nodejs=\"`bolt`\" pulumi-lang-dotnet=\"`Bolt`\" pulumi-lang-go=\"`bolt`\" pulumi-lang-python=\"`bolt`\" pulumi-lang-yaml=\"`bolt`\" pulumi-lang-java=\"`bolt`\"\u003e`bolt`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`bug`\" pulumi-lang-dotnet=\"`Bug`\" pulumi-lang-go=\"`bug`\" pulumi-lang-python=\"`bug`\" pulumi-lang-yaml=\"`bug`\" pulumi-lang-java=\"`bug`\"\u003e`bug`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`exclamation`\" pulumi-lang-dotnet=\"`Exclamation`\" pulumi-lang-go=\"`exclamation`\" pulumi-lang-python=\"`exclamation`\" pulumi-lang-yaml=\"`exclamation`\" pulumi-lang-java=\"`exclamation`\"\u003e`exclamation`\u003c/span\u003e, `exclamation-triangle`, \u003cspan pulumi-lang-nodejs=\"`fire`\" pulumi-lang-dotnet=\"`Fire`\" pulumi-lang-go=\"`fire`\" pulumi-lang-python=\"`fire`\" pulumi-lang-yaml=\"`fire`\" pulumi-lang-java=\"`fire`\"\u003e`fire`\u003c/span\u003e, `question-circle` or \u003cspan pulumi-lang-nodejs=\"`shield`\" pulumi-lang-dotnet=\"`Shield`\" pulumi-lang-go=\"`shield`\" pulumi-lang-python=\"`shield`\" pulumi-lang-yaml=\"`shield`\" pulumi-lang-java=\"`shield`\"\u003e`shield`\u003c/span\u003e.\n"
+                },
+                "label": {
+                    "type": "string",
+                    "description": "The display label of the severity, for example `Critical`. Incidents reference the severity by this label. It must be unique within the organization, including archived severities.\n"
+                },
+                "level": {
+                    "type": "integer",
+                    "description": "The level of the severity, from \u003cspan pulumi-lang-nodejs=\"`1`\" pulumi-lang-dotnet=\"`1`\" pulumi-lang-go=\"`1`\" pulumi-lang-python=\"`1`\" pulumi-lang-yaml=\"`1`\" pulumi-lang-java=\"`1`\"\u003e`1`\u003c/span\u003e to \u003cspan pulumi-lang-nodejs=\"`5`\" pulumi-lang-dotnet=\"`5`\" pulumi-lang-go=\"`5`\" pulumi-lang-python=\"`5`\" pulumi-lang-yaml=\"`5`\" pulumi-lang-java=\"`5`\"\u003e`5`\u003c/span\u003e; lower is more severe. It must be unique within the organization, including archived severities. Level `-1` belongs to the system-managed Pending severity, which can be imported but not created. Changing it forces a new severity to be created.\n"
+                },
+                "lightColor": {
+                    "type": "string",
+                    "description": "The color of the severity in light mode, as a CSS color such as `#FF5286` or `rgb(255, 82, 134)`.\n"
+                }
+            },
+            "requiredInputs": [
+                "label",
+                "level"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Severity resources.\n",
+                "properties": {
+                    "archived": {
+                        "type": "boolean",
+                        "description": "Whether the severity is archived. Archived severities cannot be assigned to new incidents, but remain on historical ones. The Pending severity cannot be archived. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
+                    },
+                    "darkColor": {
+                        "type": "string",
+                        "description": "The color of the severity in dark mode, as a CSS color such as `#FF5286` or `rgb(255, 82, 134)`.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "A description of when the severity applies.\n"
+                    },
+                    "icon": {
+                        "type": "string",
+                        "description": "The name of the icon shown for the severity in the UI and in Slack. One of `angle-double-down`, `angle-double-up`, \u003cspan pulumi-lang-nodejs=\"`bolt`\" pulumi-lang-dotnet=\"`Bolt`\" pulumi-lang-go=\"`bolt`\" pulumi-lang-python=\"`bolt`\" pulumi-lang-yaml=\"`bolt`\" pulumi-lang-java=\"`bolt`\"\u003e`bolt`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`bug`\" pulumi-lang-dotnet=\"`Bug`\" pulumi-lang-go=\"`bug`\" pulumi-lang-python=\"`bug`\" pulumi-lang-yaml=\"`bug`\" pulumi-lang-java=\"`bug`\"\u003e`bug`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`exclamation`\" pulumi-lang-dotnet=\"`Exclamation`\" pulumi-lang-go=\"`exclamation`\" pulumi-lang-python=\"`exclamation`\" pulumi-lang-yaml=\"`exclamation`\" pulumi-lang-java=\"`exclamation`\"\u003e`exclamation`\u003c/span\u003e, `exclamation-triangle`, \u003cspan pulumi-lang-nodejs=\"`fire`\" pulumi-lang-dotnet=\"`Fire`\" pulumi-lang-go=\"`fire`\" pulumi-lang-python=\"`fire`\" pulumi-lang-yaml=\"`fire`\" pulumi-lang-java=\"`fire`\"\u003e`fire`\u003c/span\u003e, `question-circle` or \u003cspan pulumi-lang-nodejs=\"`shield`\" pulumi-lang-dotnet=\"`Shield`\" pulumi-lang-go=\"`shield`\" pulumi-lang-python=\"`shield`\" pulumi-lang-yaml=\"`shield`\" pulumi-lang-java=\"`shield`\"\u003e`shield`\u003c/span\u003e.\n"
+                    },
+                    "label": {
+                        "type": "string",
+                        "description": "The display label of the severity, for example `Critical`. Incidents reference the severity by this label. It must be unique within the organization, including archived severities.\n"
+                    },
+                    "level": {
+                        "type": "integer",
+                        "description": "The level of the severity, from \u003cspan pulumi-lang-nodejs=\"`1`\" pulumi-lang-dotnet=\"`1`\" pulumi-lang-go=\"`1`\" pulumi-lang-python=\"`1`\" pulumi-lang-yaml=\"`1`\" pulumi-lang-java=\"`1`\"\u003e`1`\u003c/span\u003e to \u003cspan pulumi-lang-nodejs=\"`5`\" pulumi-lang-dotnet=\"`5`\" pulumi-lang-go=\"`5`\" pulumi-lang-python=\"`5`\" pulumi-lang-yaml=\"`5`\" pulumi-lang-java=\"`5`\"\u003e`5`\u003c/span\u003e; lower is more severe. It must be unique within the organization, including archived severities. Level `-1` belongs to the system-managed Pending severity, which can be imported but not created. Changing it forces a new severity to be created.\n"
+                    },
+                    "lightColor": {
+                        "type": "string",
+                        "description": "The color of the severity in light mode, as a CSS color such as `#FF5286` or `rgb(255, 82, 134)`.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:k6/installation:Installation": {
             "description": "Sets up the k6 App on a Grafana Cloud instance and generates a token.\nOnce a Grafana Cloud stack is created, a user can either use this resource or go into the UI to install k6.\nThis resource cannot be imported but it can be used on an existing k6 App installation without issues.\n\n**Note that this resource must be used on a provider configured with Grafana Cloud credentials.**\n\n* [Official documentation](https://grafana.com/docs/grafana-cloud/testing/k6/)\n\nThe provider's \u003cspan pulumi-lang-nodejs=\"`cloudAccessPolicyToken`\" pulumi-lang-dotnet=\"`CloudAccessPolicyToken`\" pulumi-lang-go=\"`cloudAccessPolicyToken`\" pulumi-lang-python=\"`cloud_access_policy_token`\" pulumi-lang-yaml=\"`cloudAccessPolicyToken`\" pulumi-lang-java=\"`cloudAccessPolicyToken`\"\u003e`cloudAccessPolicyToken`\u003c/span\u003e needs the following scopes to manage the resources in the example below:\n\n* stacks:read\n* stacks:write\n* stacks:delete\n* stack-service-accounts:write\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst config = new pulumi.Config();\n// Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\nconst cloudAccessPolicyToken = config.requireObject\u003cany\u003e(\"cloudAccessPolicyToken\");\nconst stackSlug = config.requireObject\u003cany\u003e(\"stackSlug\");\nconst cloudRegion = config.get(\"cloudRegion\") || \"us\";\nconst k6Stack = new grafana.cloud.Stack(\"k6_stack\", {\n    name: stackSlug,\n    slug: stackSlug,\n    regionSlug: cloudRegion,\n});\n// Step 2: Create a Service Account and a token to install the k6 App\nconst k6Sa = new grafana.cloud.StackServiceAccount(\"k6_sa\", {\n    stackSlug: stackSlug,\n    name: `${stackSlug}-k6-app`,\n    role: \"Admin\",\n    isDisabled: false,\n});\nconst k6SaToken = new grafana.cloud.StackServiceAccountToken(\"k6_sa_token\", {\n    stackSlug: stackSlug,\n    name: `${stackSlug}-k6-app-token`,\n    serviceAccountId: k6Sa.id,\n});\n// Step 3: Install the k6 App on the stack\nconst k6Installation = new grafana.k6.Installation(\"k6_installation\", {\n    stackId: k6Stack.id,\n    grafanaSaToken: k6SaToken.key,\n    grafanaUser: \"admin\",\n});\nconst myK6Project = new grafana.k6.Project(\"my_k6_project\", {name: \"k6 Project created with TF\"});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nconfig = pulumi.Config()\n# Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\ncloud_access_policy_token = config.require_object(\"cloudAccessPolicyToken\")\nstack_slug = config.require_object(\"stackSlug\")\ncloud_region = config.get(\"cloudRegion\")\nif cloud_region is None:\n    cloud_region = \"us\"\nk6_stack = grafana.cloud.Stack(\"k6_stack\",\n    name=stack_slug,\n    slug=stack_slug,\n    region_slug=cloud_region)\n# Step 2: Create a Service Account and a token to install the k6 App\nk6_sa = grafana.cloud.StackServiceAccount(\"k6_sa\",\n    stack_slug=stack_slug,\n    name=f\"{stack_slug}-k6-app\",\n    role=\"Admin\",\n    is_disabled=False)\nk6_sa_token = grafana.cloud.StackServiceAccountToken(\"k6_sa_token\",\n    stack_slug=stack_slug,\n    name=f\"{stack_slug}-k6-app-token\",\n    service_account_id=k6_sa.id)\n# Step 3: Install the k6 App on the stack\nk6_installation = grafana.k6.Installation(\"k6_installation\",\n    stack_id=k6_stack.id,\n    grafana_sa_token=k6_sa_token.key,\n    grafana_user=\"admin\")\nmy_k6_project = grafana.k6.Project(\"my_k6_project\", name=\"k6 Project created with TF\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    // Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\n    var cloudAccessPolicyToken = config.RequireObject\u003cdynamic\u003e(\"cloudAccessPolicyToken\");\n    var stackSlug = config.RequireObject\u003cdynamic\u003e(\"stackSlug\");\n    var cloudRegion = config.Get(\"cloudRegion\") ?? \"us\";\n    var k6Stack = new Grafana.Cloud.Stack(\"k6_stack\", new()\n    {\n        Name = stackSlug,\n        Slug = stackSlug,\n        RegionSlug = cloudRegion,\n    });\n\n    // Step 2: Create a Service Account and a token to install the k6 App\n    var k6Sa = new Grafana.Cloud.StackServiceAccount(\"k6_sa\", new()\n    {\n        StackSlug = stackSlug,\n        Name = $\"{stackSlug}-k6-app\",\n        Role = \"Admin\",\n        IsDisabled = false,\n    });\n\n    var k6SaToken = new Grafana.Cloud.StackServiceAccountToken(\"k6_sa_token\", new()\n    {\n        StackSlug = stackSlug,\n        Name = $\"{stackSlug}-k6-app-token\",\n        ServiceAccountId = k6Sa.Id,\n    });\n\n    // Step 3: Install the k6 App on the stack\n    var k6Installation = new Grafana.K6.Installation(\"k6_installation\", new()\n    {\n        StackId = k6Stack.Id,\n        GrafanaSaToken = k6SaToken.Key,\n        GrafanaUser = \"admin\",\n    });\n\n    var myK6Project = new Grafana.K6.Project(\"my_k6_project\", new()\n    {\n        Name = \"k6 Project created with TF\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\t// Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\n\t\tcloudAccessPolicyToken := cfg.RequireObject(\"cloudAccessPolicyToken\")\n\t\tstackSlug := cfg.RequireObject(\"stackSlug\")\n\t\tcloudRegion := \"us\"\n\t\tif param := cfg.Get(\"cloudRegion\"); param != \"\" {\n\t\t\tcloudRegion = param\n\t\t}\n\t\tk6Stack, err := cloud.NewStack(ctx, \"k6_stack\", \u0026cloud.StackArgs{\n\t\t\tName:       pulumi.Any(stackSlug),\n\t\t\tSlug:       pulumi.Any(stackSlug),\n\t\t\tRegionSlug: pulumi.String(pulumi.String(cloudRegion)),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Step 2: Create a Service Account and a token to install the k6 App\n\t\tk6Sa, err := cloud.NewStackServiceAccount(ctx, \"k6_sa\", \u0026cloud.StackServiceAccountArgs{\n\t\t\tStackSlug:  pulumi.Any(stackSlug),\n\t\t\tName:       pulumi.Sprintf(\"%v-k6-app\", stackSlug),\n\t\t\tRole:       pulumi.String(\"Admin\"),\n\t\t\tIsDisabled: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tk6SaToken, err := cloud.NewStackServiceAccountToken(ctx, \"k6_sa_token\", \u0026cloud.StackServiceAccountTokenArgs{\n\t\t\tStackSlug:        pulumi.Any(stackSlug),\n\t\t\tName:             pulumi.Sprintf(\"%v-k6-app-token\", stackSlug),\n\t\t\tServiceAccountId: k6Sa.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Step 3: Install the k6 App on the stack\n\t\t_, err = k6.NewInstallation(ctx, \"k6_installation\", \u0026k6.InstallationArgs{\n\t\t\tStackId:        k6Stack.ID(),\n\t\t\tGrafanaSaToken: k6SaToken.Key,\n\t\t\tGrafanaUser:    pulumi.String(\"admin\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k6.NewProject(ctx, \"my_k6_project\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"k6 Project created with TF\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.Stack;\nimport com.pulumi.grafana.cloud.StackArgs;\nimport com.pulumi.grafana.cloud.StackServiceAccount;\nimport com.pulumi.grafana.cloud.StackServiceAccountArgs;\nimport com.pulumi.grafana.cloud.StackServiceAccountToken;\nimport com.pulumi.grafana.cloud.StackServiceAccountTokenArgs;\nimport com.pulumi.grafana.k6.Installation;\nimport com.pulumi.grafana.k6.InstallationArgs;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var cloudAccessPolicyToken = config.require(\"cloudAccessPolicyToken\");\n        final var stackSlug = config.require(\"stackSlug\");\n        final var cloudRegion = config.get(\"cloudRegion\").orElse(\"us\");\n        var k6Stack = new Stack(\"k6Stack\", StackArgs.builder()\n            .name(stackSlug)\n            .slug(stackSlug)\n            .regionSlug(cloudRegion)\n            .build());\n\n        // Step 2: Create a Service Account and a token to install the k6 App\n        var k6Sa = new StackServiceAccount(\"k6Sa\", StackServiceAccountArgs.builder()\n            .stackSlug(stackSlug)\n            .name(String.format(\"%s-k6-app\", stackSlug))\n            .role(\"Admin\")\n            .isDisabled(false)\n            .build());\n\n        var k6SaToken = new StackServiceAccountToken(\"k6SaToken\", StackServiceAccountTokenArgs.builder()\n            .stackSlug(stackSlug)\n            .name(String.format(\"%s-k6-app-token\", stackSlug))\n            .serviceAccountId(k6Sa.id())\n            .build());\n\n        // Step 3: Install the k6 App on the stack\n        var k6Installation = new Installation(\"k6Installation\", InstallationArgs.builder()\n            .stackId(k6Stack.id())\n            .grafanaSaToken(k6SaToken.key())\n            .grafanaUser(\"admin\")\n            .build());\n\n        var myK6Project = new Project(\"myK6Project\", ProjectArgs.builder()\n            .name(\"k6 Project created with TF\")\n            .build());\n\n    }\n}\n```\n```yaml\nconfiguration:\n  cloudAccessPolicyToken:\n    type: dynamic\n  stackSlug:\n    type: dynamic\n  cloudRegion:\n    type: string\n    default: us\nresources:\n  k6Stack:\n    type: grafana:cloud:Stack\n    name: k6_stack\n    properties:\n      name: ${stackSlug}\n      slug: ${stackSlug}\n      regionSlug: ${cloudRegion}\n  # Step 2: Create a Service Account and a token to install the k6 App\n  k6Sa:\n    type: grafana:cloud:StackServiceAccount\n    name: k6_sa\n    properties:\n      stackSlug: ${stackSlug}\n      name: ${stackSlug}-k6-app\n      role: Admin\n      isDisabled: false\n  k6SaToken:\n    type: grafana:cloud:StackServiceAccountToken\n    name: k6_sa_token\n    properties:\n      stackSlug: ${stackSlug}\n      name: ${stackSlug}-k6-app-token\n      serviceAccountId: ${k6Sa.id}\n  # Step 3: Install the k6 App on the stack\n  k6Installation:\n    type: grafana:k6:Installation\n    name: k6_installation\n    properties:\n      stackId: ${k6Stack.id}\n      grafanaSaToken: ${k6SaToken.key}\n      grafanaUser: admin\n  myK6Project:\n    type: grafana:k6:Project\n    name: my_k6_project\n    properties:\n      name: k6 Project created with TF\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
@@ -24090,6 +24308,51 @@
                 "type": "object"
             }
         },
+        "grafana:onCall/teamAccessManagement:TeamAccessManagement": {
+            "description": "Manages the Team Access Management setting of a Grafana OnCall team.\n\nDestroying this resource resets the team's setting to the OnCall default (resources visible to all users).\n\n* [Official documentation](https://grafana.com/docs/oncall/latest/set-up/manage-access/teams/)\n* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/teams/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst exampleTeam = new grafana.oss.Team(\"example\", {name: \"Example team\"});\nconst example = grafana.onCall.getTeamOutput({\n    name: exampleTeam.name,\n});\n// Restrict the team's OnCall resources to team members and admins\nconst exampleTeamAccessManagement = new grafana.oncall.TeamAccessManagement(\"example\", {\n    teamId: example.apply(example =\u003e example.id),\n    isSharingResourcesToAll: false,\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\nexample_team = grafana.oss.Team(\"example\", name=\"Example team\")\nexample = grafana.onCall.get_team_output(name=example_team.name)\n# Restrict the team's OnCall resources to team members and admins\nexample_team_access_management = grafana.oncall.TeamAccessManagement(\"example\",\n    team_id=example.id,\n    is_sharing_resources_to_all=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleTeam = new Grafana.Oss.Team(\"example\", new()\n    {\n        Name = \"Example team\",\n    });\n\n    var example = Grafana.OnCall.GetTeam.Invoke(new()\n    {\n        Name = exampleTeam.Name,\n    });\n\n    // Restrict the team's OnCall resources to team members and admins\n    var exampleTeamAccessManagement = new Grafana.OnCall.TeamAccessManagement(\"example\", new()\n    {\n        TeamId = example.Apply(getTeamResult =\u003e getTeamResult.Id),\n        IsSharingResourcesToAll = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oncall\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleTeam, err := oss.NewTeam(ctx, \"example\", \u0026oss.TeamArgs{\n\t\t\tName: pulumi.String(\"Example team\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample := oncall.GetTeamOutput(ctx, oncall.GetTeamOutputArgs{\n\t\t\tName: exampleTeam.Name,\n\t\t}, nil)\n\t\t// Restrict the team's OnCall resources to team members and admins\n\t\t_, err = oncall.NewTeamAccessManagement(ctx, \"example\", \u0026oncall.TeamAccessManagementArgs{\n\t\t\tTeamId: pulumi.String(example.ApplyT(func(example oncall.GetTeamResult) (*string, error) {\n\t\t\t\treturn \u0026example.Id, nil\n\t\t\t}).(pulumi.StringPtrOutput)),\n\t\t\tIsSharingResourcesToAll: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.Team;\nimport com.pulumi.grafana.oss.TeamArgs;\nimport com.pulumi.grafana.onCall.OnCallFunctions;\nimport com.pulumi.grafana.onCall.inputs.GetTeamArgs;\nimport com.pulumi.grafana.onCall.TeamAccessManagement;\nimport com.pulumi.grafana.onCall.TeamAccessManagementArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleTeam = new Team(\"exampleTeam\", TeamArgs.builder()\n            .name(\"Example team\")\n            .build());\n\n        final var example = OnCallFunctions.getTeam(GetTeamArgs.builder()\n            .name(exampleTeam.name())\n            .build());\n\n        // Restrict the team's OnCall resources to team members and admins\n        var exampleTeamAccessManagement = new TeamAccessManagement(\"exampleTeamAccessManagement\", TeamAccessManagementArgs.builder()\n            .teamId(example.applyValue(_example -\u003e _example.id()))\n            .isSharingResourcesToAll(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleTeam:\n    type: grafana:oss:Team\n    name: example\n    properties:\n      name: Example team\n  # Restrict the team's OnCall resources to team members and admins\n  exampleTeamAccessManagement:\n    type: grafana:onCall:TeamAccessManagement\n    name: example\n    properties:\n      teamId: ${example.id}\n      isSharingResourcesToAll: false\nvariables:\n  example:\n    fn::invoke:\n      function: grafana:onCall:getTeam\n      arguments:\n        name: ${exampleTeam.name}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_oncall_team_access_management.name \"{{ id }}\"\n```\n\n",
+            "properties": {
+                "isSharingResourcesToAll": {
+                    "type": "boolean",
+                    "description": "Whether the team's resources are visible to all users (\u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e), or only to team members and admins (\u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e).\n"
+                },
+                "teamId": {
+                    "type": "string",
+                    "description": "The ID of the OnCall team, for example from the \u003cspan pulumi-lang-nodejs=\"`grafana.onCall.getTeam`\" pulumi-lang-dotnet=\"`grafana.onCall.getTeam`\" pulumi-lang-go=\"`onCall.getTeam`\" pulumi-lang-python=\"`on_call_get_team`\" pulumi-lang-yaml=\"`grafana.onCall.getTeam`\" pulumi-lang-java=\"`grafana.onCall.getTeam`\"\u003e`grafana.onCall.getTeam`\u003c/span\u003e data source.\n"
+                }
+            },
+            "required": [
+                "isSharingResourcesToAll",
+                "teamId"
+            ],
+            "inputProperties": {
+                "isSharingResourcesToAll": {
+                    "type": "boolean",
+                    "description": "Whether the team's resources are visible to all users (\u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e), or only to team members and admins (\u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e).\n"
+                },
+                "teamId": {
+                    "type": "string",
+                    "description": "The ID of the OnCall team, for example from the \u003cspan pulumi-lang-nodejs=\"`grafana.onCall.getTeam`\" pulumi-lang-dotnet=\"`grafana.onCall.getTeam`\" pulumi-lang-go=\"`onCall.getTeam`\" pulumi-lang-python=\"`on_call_get_team`\" pulumi-lang-yaml=\"`grafana.onCall.getTeam`\" pulumi-lang-java=\"`grafana.onCall.getTeam`\"\u003e`grafana.onCall.getTeam`\u003c/span\u003e data source.\n"
+                }
+            },
+            "requiredInputs": [
+                "isSharingResourcesToAll",
+                "teamId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering TeamAccessManagement resources.\n",
+                "properties": {
+                    "isSharingResourcesToAll": {
+                        "type": "boolean",
+                        "description": "Whether the team's resources are visible to all users (\u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e), or only to team members and admins (\u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e).\n"
+                    },
+                    "teamId": {
+                        "type": "string",
+                        "description": "The ID of the OnCall team, for example from the \u003cspan pulumi-lang-nodejs=\"`grafana.onCall.getTeam`\" pulumi-lang-dotnet=\"`grafana.onCall.getTeam`\" pulumi-lang-go=\"`onCall.getTeam`\" pulumi-lang-python=\"`on_call_get_team`\" pulumi-lang-yaml=\"`grafana.onCall.getTeam`\" pulumi-lang-java=\"`grafana.onCall.getTeam`\"\u003e`grafana.onCall.getTeam`\u003c/span\u003e data source.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:onCall/userNotificationRule:UserNotificationRule": {
             "description": "* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/personal_notification_rules/)\n\n**Note**: you must be running Grafana OnCall \u003e= v1.8.0 to use this resource.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst myUser = grafana.onCall.getUser({\n    username: \"my_username\",\n});\nconst myUserStep1 = new grafana.oncall.UserNotificationRule(\"my_user_step_1\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 0,\n    type: \"notify_by_mobile_app\",\n});\nconst myUserStep2 = new grafana.oncall.UserNotificationRule(\"my_user_step_2\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 1,\n    duration: 600,\n    type: \"wait\",\n});\nconst myUserStep3 = new grafana.oncall.UserNotificationRule(\"my_user_step_3\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 2,\n    type: \"notify_by_phone_call\",\n});\nconst myUserStep4 = new grafana.oncall.UserNotificationRule(\"my_user_step_4\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 3,\n    duration: 300,\n    type: \"wait\",\n});\nconst myUserStep5 = new grafana.oncall.UserNotificationRule(\"my_user_step_5\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 4,\n    type: \"notify_by_slack\",\n});\nconst myUserImportantStep1 = new grafana.oncall.UserNotificationRule(\"my_user_important_step_1\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    important: true,\n    position: 0,\n    type: \"notify_by_mobile_app_critical\",\n});\nconst myUserImportantStep2 = new grafana.oncall.UserNotificationRule(\"my_user_important_step_2\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    important: true,\n    position: 1,\n    duration: 300,\n    type: \"wait\",\n});\nconst myUserImportantStep3 = new grafana.oncall.UserNotificationRule(\"my_user_important_step_3\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    important: true,\n    position: 2,\n    type: \"notify_by_mobile_app_critical\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\nmy_user = grafana.onCall.get_user(username=\"my_username\")\nmy_user_step1 = grafana.oncall.UserNotificationRule(\"my_user_step_1\",\n    user_id=my_user.id,\n    position=0,\n    type=\"notify_by_mobile_app\")\nmy_user_step2 = grafana.oncall.UserNotificationRule(\"my_user_step_2\",\n    user_id=my_user.id,\n    position=1,\n    duration=600,\n    type=\"wait\")\nmy_user_step3 = grafana.oncall.UserNotificationRule(\"my_user_step_3\",\n    user_id=my_user.id,\n    position=2,\n    type=\"notify_by_phone_call\")\nmy_user_step4 = grafana.oncall.UserNotificationRule(\"my_user_step_4\",\n    user_id=my_user.id,\n    position=3,\n    duration=300,\n    type=\"wait\")\nmy_user_step5 = grafana.oncall.UserNotificationRule(\"my_user_step_5\",\n    user_id=my_user.id,\n    position=4,\n    type=\"notify_by_slack\")\nmy_user_important_step1 = grafana.oncall.UserNotificationRule(\"my_user_important_step_1\",\n    user_id=my_user.id,\n    important=True,\n    position=0,\n    type=\"notify_by_mobile_app_critical\")\nmy_user_important_step2 = grafana.oncall.UserNotificationRule(\"my_user_important_step_2\",\n    user_id=my_user.id,\n    important=True,\n    position=1,\n    duration=300,\n    type=\"wait\")\nmy_user_important_step3 = grafana.oncall.UserNotificationRule(\"my_user_important_step_3\",\n    user_id=my_user.id,\n    important=True,\n    position=2,\n    type=\"notify_by_mobile_app_critical\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myUser = Grafana.OnCall.GetUser.Invoke(new()\n    {\n        Username = \"my_username\",\n    });\n\n    var myUserStep1 = new Grafana.OnCall.UserNotificationRule(\"my_user_step_1\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 0,\n        Type = \"notify_by_mobile_app\",\n    });\n\n    var myUserStep2 = new Grafana.OnCall.UserNotificationRule(\"my_user_step_2\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 1,\n        Duration = 600,\n        Type = \"wait\",\n    });\n\n    var myUserStep3 = new Grafana.OnCall.UserNotificationRule(\"my_user_step_3\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 2,\n        Type = \"notify_by_phone_call\",\n    });\n\n    var myUserStep4 = new Grafana.OnCall.UserNotificationRule(\"my_user_step_4\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 3,\n        Duration = 300,\n        Type = \"wait\",\n    });\n\n    var myUserStep5 = new Grafana.OnCall.UserNotificationRule(\"my_user_step_5\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 4,\n        Type = \"notify_by_slack\",\n    });\n\n    var myUserImportantStep1 = new Grafana.OnCall.UserNotificationRule(\"my_user_important_step_1\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Important = true,\n        Position = 0,\n        Type = \"notify_by_mobile_app_critical\",\n    });\n\n    var myUserImportantStep2 = new Grafana.OnCall.UserNotificationRule(\"my_user_important_step_2\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Important = true,\n        Position = 1,\n        Duration = 300,\n        Type = \"wait\",\n    });\n\n    var myUserImportantStep3 = new Grafana.OnCall.UserNotificationRule(\"my_user_important_step_3\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Important = true,\n        Position = 2,\n        Type = \"notify_by_mobile_app_critical\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oncall\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyUser, err := oncall.GetUser(ctx, \u0026oncall.GetUserArgs{\n\t\t\tUsername: \"my_username\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oncall.NewUserNotificationRule(ctx, \"my_user_step_1\", \u0026oncall.UserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(pulumi.String(myUser.Id)),\n\t\t\tPosition: pulumi.Int(0),\n\t\t\tType:     pulumi.String(\"notify_by_mobile_app\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oncall.NewUserNotificationRule(ctx, \"my_user_step_2\", \u0026oncall.UserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(pulumi.String(myUser.Id)),\n\t\t\tPosition: pulumi.Int(1),\n\t\t\tDuration: pulumi.Int(600),\n\t\t\tType:     pulumi.String(\"wait\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oncall.NewUserNotificationRule(ctx, \"my_user_step_3\", \u0026oncall.UserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(pulumi.String(myUser.Id)),\n\t\t\tPosition: pulumi.Int(2),\n\t\t\tType:     pulumi.String(\"notify_by_phone_call\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oncall.NewUserNotificationRule(ctx, \"my_user_step_4\", \u0026oncall.UserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(pulumi.String(myUser.Id)),\n\t\t\tPosition: pulumi.Int(3),\n\t\t\tDuration: pulumi.Int(300),\n\t\t\tType:     pulumi.String(\"wait\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oncall.NewUserNotificationRule(ctx, \"my_user_step_5\", \u0026oncall.UserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(pulumi.String(myUser.Id)),\n\t\t\tPosition: pulumi.Int(4),\n\t\t\tType:     pulumi.String(\"notify_by_slack\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oncall.NewUserNotificationRule(ctx, \"my_user_important_step_1\", \u0026oncall.UserNotificationRuleArgs{\n\t\t\tUserId:    pulumi.String(pulumi.String(myUser.Id)),\n\t\t\tImportant: pulumi.Bool(true),\n\t\t\tPosition:  pulumi.Int(0),\n\t\t\tType:      pulumi.String(\"notify_by_mobile_app_critical\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oncall.NewUserNotificationRule(ctx, \"my_user_important_step_2\", \u0026oncall.UserNotificationRuleArgs{\n\t\t\tUserId:    pulumi.String(pulumi.String(myUser.Id)),\n\t\t\tImportant: pulumi.Bool(true),\n\t\t\tPosition:  pulumi.Int(1),\n\t\t\tDuration:  pulumi.Int(300),\n\t\t\tType:      pulumi.String(\"wait\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oncall.NewUserNotificationRule(ctx, \"my_user_important_step_3\", \u0026oncall.UserNotificationRuleArgs{\n\t\t\tUserId:    pulumi.String(pulumi.String(myUser.Id)),\n\t\t\tImportant: pulumi.Bool(true),\n\t\t\tPosition:  pulumi.Int(2),\n\t\t\tType:      pulumi.String(\"notify_by_mobile_app_critical\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.onCall.OnCallFunctions;\nimport com.pulumi.grafana.onCall.inputs.GetUserArgs;\nimport com.pulumi.grafana.onCall.UserNotificationRule;\nimport com.pulumi.grafana.onCall.UserNotificationRuleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myUser = OnCallFunctions.getUser(GetUserArgs.builder()\n            .username(\"my_username\")\n            .build());\n\n        var myUserStep1 = new UserNotificationRule(\"myUserStep1\", UserNotificationRuleArgs.builder()\n            .userId(myUser.id())\n            .position(0)\n            .type(\"notify_by_mobile_app\")\n            .build());\n\n        var myUserStep2 = new UserNotificationRule(\"myUserStep2\", UserNotificationRuleArgs.builder()\n            .userId(myUser.id())\n            .position(1)\n            .duration(600)\n            .type(\"wait\")\n            .build());\n\n        var myUserStep3 = new UserNotificationRule(\"myUserStep3\", UserNotificationRuleArgs.builder()\n            .userId(myUser.id())\n            .position(2)\n            .type(\"notify_by_phone_call\")\n            .build());\n\n        var myUserStep4 = new UserNotificationRule(\"myUserStep4\", UserNotificationRuleArgs.builder()\n            .userId(myUser.id())\n            .position(3)\n            .duration(300)\n            .type(\"wait\")\n            .build());\n\n        var myUserStep5 = new UserNotificationRule(\"myUserStep5\", UserNotificationRuleArgs.builder()\n            .userId(myUser.id())\n            .position(4)\n            .type(\"notify_by_slack\")\n            .build());\n\n        var myUserImportantStep1 = new UserNotificationRule(\"myUserImportantStep1\", UserNotificationRuleArgs.builder()\n            .userId(myUser.id())\n            .important(true)\n            .position(0)\n            .type(\"notify_by_mobile_app_critical\")\n            .build());\n\n        var myUserImportantStep2 = new UserNotificationRule(\"myUserImportantStep2\", UserNotificationRuleArgs.builder()\n            .userId(myUser.id())\n            .important(true)\n            .position(1)\n            .duration(300)\n            .type(\"wait\")\n            .build());\n\n        var myUserImportantStep3 = new UserNotificationRule(\"myUserImportantStep3\", UserNotificationRuleArgs.builder()\n            .userId(myUser.id())\n            .important(true)\n            .position(2)\n            .type(\"notify_by_mobile_app_critical\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myUserStep1:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_step_1\n    properties:\n      userId: ${myUser.id}\n      position: 0\n      type: notify_by_mobile_app\n  myUserStep2:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_step_2\n    properties:\n      userId: ${myUser.id}\n      position: 1\n      duration: 600 # 10 minutes\n      type: wait\n  myUserStep3:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_step_3\n    properties:\n      userId: ${myUser.id}\n      position: 2\n      type: notify_by_phone_call\n  myUserStep4:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_step_4\n    properties:\n      userId: ${myUser.id}\n      position: 3\n      duration: 300 # 5 minutes\n      type: wait\n  myUserStep5:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_step_5\n    properties:\n      userId: ${myUser.id}\n      position: 4\n      type: notify_by_slack\n  myUserImportantStep1:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_important_step_1\n    properties:\n      userId: ${myUser.id}\n      important: true\n      position: 0\n      type: notify_by_mobile_app_critical\n  myUserImportantStep2:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_important_step_2\n    properties:\n      userId: ${myUser.id}\n      important: true\n      position: 1\n      duration: 300 # 5 minutes\n      type: wait\n  myUserImportantStep3:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_important_step_3\n    properties:\n      userId: ${myUser.id}\n      important: true\n      position: 2\n      type: notify_by_mobile_app_critical\nvariables:\n  myUser:\n    fn::invoke:\n      function: grafana:onCall:getUser\n      arguments:\n        username: my_username\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_oncall_user_notification_rule.name \"{{ id }}\"\n```\n\n",
             "properties": {
@@ -24103,7 +24366,7 @@
                 },
                 "position": {
                     "type": "integer",
-                    "description": "Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.\n"
+                    "description": "Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.\n"
                 },
                 "type": {
                     "type": "string",
@@ -24116,6 +24379,7 @@
             },
             "required": [
                 "important",
+                "position",
                 "type",
                 "userId"
             ],
@@ -24130,7 +24394,7 @@
                 },
                 "position": {
                     "type": "integer",
-                    "description": "Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.\n"
+                    "description": "Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.\n"
                 },
                 "type": {
                     "type": "string",
@@ -24158,7 +24422,7 @@
                     },
                     "position": {
                         "type": "integer",
-                        "description": "Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.\n"
+                        "description": "Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.\n"
                     },
                     "type": {
                         "type": "string",
@@ -29186,25 +29450,34 @@
             }
         },
         "grafana:onCall/getIntegration:getIntegration": {
-            "description": "* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/integrations/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst exampleIntegration = grafana.onCall.getIntegration({\n    id: \"CEXAMPLEID123\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\n\nexample_integration = grafana.onCall.get_integration(id=\"CEXAMPLEID123\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleIntegration = Grafana.OnCall.GetIntegration.Invoke(new()\n    {\n        Id = \"CEXAMPLEID123\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oncall\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := oncall.GetIntegration(ctx, \u0026oncall.GetIntegrationArgs{\n\t\t\tId: \"CEXAMPLEID123\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.onCall.OnCallFunctions;\nimport com.pulumi.grafana.onCall.inputs.GetIntegrationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleIntegration = OnCallFunctions.getIntegration(GetIntegrationArgs.builder()\n            .id(\"CEXAMPLEID123\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  exampleIntegration:\n    fn::invoke:\n      function: grafana:onCall:getIntegration\n      arguments:\n        id: CEXAMPLEID123\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Looks up an integration by ID, or by any combination of \u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\"\u003e`name`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`teamId`\" pulumi-lang-dotnet=\"`TeamId`\" pulumi-lang-go=\"`teamId`\" pulumi-lang-python=\"`team_id`\" pulumi-lang-yaml=\"`teamId`\" pulumi-lang-java=\"`teamId`\"\u003e`teamId`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`type`\" pulumi-lang-dotnet=\"`Type`\" pulumi-lang-go=\"`type`\" pulumi-lang-python=\"`type`\" pulumi-lang-yaml=\"`type`\" pulumi-lang-java=\"`type`\"\u003e`type`\u003c/span\u003e. Exactly one integration must match.\n\nTo look up the direct paging integration of a team, set \u003cspan pulumi-lang-nodejs=\"`teamId`\" pulumi-lang-dotnet=\"`TeamId`\" pulumi-lang-go=\"`teamId`\" pulumi-lang-python=\"`team_id`\" pulumi-lang-yaml=\"`teamId`\" pulumi-lang-java=\"`teamId`\"\u003e`teamId`\u003c/span\u003e and `type = \u003cspan pulumi-lang-nodejs=\"\"directPaging\"\" pulumi-lang-dotnet=\"\"DirectPaging\"\" pulumi-lang-go=\"\"directPaging\"\" pulumi-lang-python=\"\"direct_paging\"\" pulumi-lang-yaml=\"\"directPaging\"\" pulumi-lang-java=\"\"directPaging\"\"\u003e\"directPaging\"\u003c/span\u003e`. A team has at most one.\n\n* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/integrations/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst exampleIntegration = grafana.onCall.getIntegration({\n    id: \"CEXAMPLEID123\",\n});\nconst myTeam = grafana.onCall.getTeam({\n    name: \"my_team\",\n});\n// The direct paging integration of a team, without its ID.\nconst myTeamDirectPaging = myTeam.then(myTeam =\u003e grafana.onCall.getIntegration({\n    teamId: myTeam.id,\n    type: \"direct_paging\",\n}));\nconst byName = grafana.onCall.getIntegration({\n    name: \"My integration\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\n\nexample_integration = grafana.onCall.get_integration(id=\"CEXAMPLEID123\")\nmy_team = grafana.onCall.get_team(name=\"my_team\")\n# The direct paging integration of a team, without its ID.\nmy_team_direct_paging = grafana.onCall.get_integration(team_id=my_team.id,\n    type=\"direct_paging\")\nby_name = grafana.onCall.get_integration(name=\"My integration\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleIntegration = Grafana.OnCall.GetIntegration.Invoke(new()\n    {\n        Id = \"CEXAMPLEID123\",\n    });\n\n    var myTeam = Grafana.OnCall.GetTeam.Invoke(new()\n    {\n        Name = \"my_team\",\n    });\n\n    // The direct paging integration of a team, without its ID.\n    var myTeamDirectPaging = Grafana.OnCall.GetIntegration.Invoke(new()\n    {\n        TeamId = myTeam.Apply(getTeamResult =\u003e getTeamResult.Id),\n        Type = \"direct_paging\",\n    });\n\n    var byName = Grafana.OnCall.GetIntegration.Invoke(new()\n    {\n        Name = \"My integration\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oncall\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := oncall.GetIntegration(ctx, \u0026oncall.GetIntegrationArgs{\n\t\t\tId: pulumi.StringRef(\"CEXAMPLEID123\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmyTeam, err := oncall.GetTeam(ctx, \u0026oncall.GetTeamArgs{\n\t\t\tName: \"my_team\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// The direct paging integration of a team, without its ID.\n\t\t_, err = oncall.GetIntegration(ctx, \u0026oncall.GetIntegrationArgs{\n\t\t\tTeamId: pulumi.StringRef(myTeam.Id),\n\t\t\tType:   pulumi.StringRef(\"direct_paging\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oncall.GetIntegration(ctx, \u0026oncall.GetIntegrationArgs{\n\t\t\tName: pulumi.StringRef(\"My integration\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.onCall.OnCallFunctions;\nimport com.pulumi.grafana.onCall.inputs.GetIntegrationArgs;\nimport com.pulumi.grafana.onCall.inputs.GetTeamArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleIntegration = OnCallFunctions.getIntegration(GetIntegrationArgs.builder()\n            .id(\"CEXAMPLEID123\")\n            .build());\n\n        final var myTeam = OnCallFunctions.getTeam(GetTeamArgs.builder()\n            .name(\"my_team\")\n            .build());\n\n        // The direct paging integration of a team, without its ID.\n        final var myTeamDirectPaging = OnCallFunctions.getIntegration(GetIntegrationArgs.builder()\n            .teamId(myTeam.id())\n            .type(\"direct_paging\")\n            .build());\n\n        final var byName = OnCallFunctions.getIntegration(GetIntegrationArgs.builder()\n            .name(\"My integration\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  exampleIntegration:\n    fn::invoke:\n      function: grafana:onCall:getIntegration\n      arguments:\n        id: CEXAMPLEID123\n  myTeam:\n    fn::invoke:\n      function: grafana:onCall:getTeam\n      arguments:\n        name: my_team\n  # The direct paging integration of a team, without its ID.\n  myTeamDirectPaging:\n    fn::invoke:\n      function: grafana:onCall:getIntegration\n      arguments:\n        teamId: ${myTeam.id}\n        type: direct_paging\n  byName:\n    fn::invoke:\n      function: grafana:onCall:getIntegration\n      arguments:\n        name: My integration\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getIntegration.\n",
                 "properties": {
                     "id": {
                         "type": "string",
-                        "description": "The integration ID.\n"
+                        "description": "The integration ID. Conflicts with \u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\"\u003e`name`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`teamId`\" pulumi-lang-dotnet=\"`TeamId`\" pulumi-lang-go=\"`teamId`\" pulumi-lang-python=\"`team_id`\" pulumi-lang-yaml=\"`teamId`\" pulumi-lang-java=\"`teamId`\"\u003e`teamId`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`type`\" pulumi-lang-dotnet=\"`Type`\" pulumi-lang-go=\"`type`\" pulumi-lang-python=\"`type`\" pulumi-lang-yaml=\"`type`\" pulumi-lang-java=\"`type`\"\u003e`type`\u003c/span\u003e.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The integration name. When set, only the integration with this exact name matches.\n"
+                    },
+                    "teamId": {
+                        "type": "string",
+                        "description": "The ID of the OnCall team the integration belongs to (using the \u003cspan pulumi-lang-nodejs=\"`grafana.onCall.getTeam`\" pulumi-lang-dotnet=\"`grafana.onCall.getTeam`\" pulumi-lang-go=\"`onCall.getTeam`\" pulumi-lang-python=\"`on_call_get_team`\" pulumi-lang-yaml=\"`grafana.onCall.getTeam`\" pulumi-lang-java=\"`grafana.onCall.getTeam`\"\u003e`grafana.onCall.getTeam`\u003c/span\u003e datasource). When set, only integrations of this team match. Set it to `\"null\"` to match only integrations that do not belong to a team.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of integration, for example \u003cspan pulumi-lang-nodejs=\"`directPaging`\" pulumi-lang-dotnet=\"`DirectPaging`\" pulumi-lang-go=\"`directPaging`\" pulumi-lang-python=\"`direct_paging`\" pulumi-lang-yaml=\"`directPaging`\" pulumi-lang-java=\"`directPaging`\"\u003e`directPaging`\u003c/span\u003e. When set, only integrations of this type match. A \u003cspan pulumi-lang-nodejs=\"`directPaging`\" pulumi-lang-dotnet=\"`DirectPaging`\" pulumi-lang-go=\"`directPaging`\" pulumi-lang-python=\"`direct_paging`\" pulumi-lang-yaml=\"`directPaging`\" pulumi-lang-java=\"`directPaging`\"\u003e`directPaging`\u003c/span\u003e lookup waits up to a minute for the integration to be created, since a team's direct paging integration can appear shortly after the team.\n"
                     }
                 },
-                "type": "object",
-                "required": [
-                    "id"
-                ]
+                "type": "object"
             },
             "outputs": {
                 "description": "A collection of values returned by getIntegration.\n",
                 "properties": {
                     "id": {
-                        "description": "The integration ID.\n",
+                        "description": "The integration ID. Conflicts with \u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\"\u003e`name`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`teamId`\" pulumi-lang-dotnet=\"`TeamId`\" pulumi-lang-go=\"`teamId`\" pulumi-lang-python=\"`team_id`\" pulumi-lang-yaml=\"`teamId`\" pulumi-lang-java=\"`teamId`\"\u003e`teamId`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`type`\" pulumi-lang-dotnet=\"`Type`\" pulumi-lang-go=\"`type`\" pulumi-lang-python=\"`type`\" pulumi-lang-yaml=\"`type`\" pulumi-lang-java=\"`type`\"\u003e`type`\u003c/span\u003e.\n",
                         "type": "string"
                     },
                     "inboundEmail": {
@@ -29216,7 +29489,15 @@
                         "type": "string"
                     },
                     "name": {
-                        "description": "The integration name.\n",
+                        "description": "The integration name. When set, only the integration with this exact name matches.\n",
+                        "type": "string"
+                    },
+                    "teamId": {
+                        "description": "The ID of the OnCall team the integration belongs to (using the \u003cspan pulumi-lang-nodejs=\"`grafana.onCall.getTeam`\" pulumi-lang-dotnet=\"`grafana.onCall.getTeam`\" pulumi-lang-go=\"`onCall.getTeam`\" pulumi-lang-python=\"`on_call_get_team`\" pulumi-lang-yaml=\"`grafana.onCall.getTeam`\" pulumi-lang-java=\"`grafana.onCall.getTeam`\"\u003e`grafana.onCall.getTeam`\u003c/span\u003e datasource). When set, only integrations of this team match. Set it to `\"null\"` to match only integrations that do not belong to a team.\n",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "The type of integration, for example \u003cspan pulumi-lang-nodejs=\"`directPaging`\" pulumi-lang-dotnet=\"`DirectPaging`\" pulumi-lang-go=\"`directPaging`\" pulumi-lang-python=\"`direct_paging`\" pulumi-lang-yaml=\"`directPaging`\" pulumi-lang-java=\"`directPaging`\"\u003e`directPaging`\u003c/span\u003e. When set, only integrations of this type match. A \u003cspan pulumi-lang-nodejs=\"`directPaging`\" pulumi-lang-dotnet=\"`DirectPaging`\" pulumi-lang-go=\"`directPaging`\" pulumi-lang-python=\"`direct_paging`\" pulumi-lang-yaml=\"`directPaging`\" pulumi-lang-java=\"`directPaging`\"\u003e`directPaging`\u003c/span\u003e lookup waits up to a minute for the integration to be created, since a team's direct paging integration can appear shortly after the team.\n",
                         "type": "string"
                     }
                 },
@@ -29224,7 +29505,9 @@
                     "id",
                     "inboundEmail",
                     "link",
-                    "name"
+                    "name",
+                    "teamId",
+                    "type"
                 ],
                 "type": "object"
             }
@@ -29413,6 +29696,10 @@
                         "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
+                    "isSharingResourcesToAll": {
+                        "description": "Whether the team's resources are visible to all users (true), or only to team members and admins (false).\n",
+                        "type": "boolean"
+                    },
                     "name": {
                         "description": "The team name.\n",
                         "type": "string"
@@ -29421,6 +29708,7 @@
                 "required": [
                     "avatarUrl",
                     "email",
+                    "isSharingResourcesToAll",
                     "name",
                     "id"
                 ],

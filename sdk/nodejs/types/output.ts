@@ -30,6 +30,10 @@ export namespace alerting {
          */
         folderUid?: string;
         /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: number;
+        /**
          * The unique identifier of the resource.
          */
         uid: string;
@@ -569,6 +573,10 @@ export namespace alerting {
          * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: string;
+        /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: number;
         /**
          * The unique identifier of the resource.
          */
@@ -2186,6 +2194,10 @@ export namespace alerting {
          */
         folderUid?: string;
         /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: number;
+        /**
          * The unique identifier of the resource.
          */
         uid: string;
@@ -2406,6 +2418,10 @@ export namespace alerting {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -2597,6 +2613,10 @@ export namespace alerting {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -2673,6 +2693,10 @@ export namespace alerting {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -2743,6 +2767,10 @@ export namespace alerting {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier of the resource.
              */
@@ -3284,6 +3312,10 @@ export namespace alerting {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -3348,6 +3380,10 @@ export namespace alerting {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
              */
@@ -3716,6 +3752,10 @@ export namespace apps {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -3773,6 +3813,10 @@ export namespace apps {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier of the resource.
              */
@@ -3858,6 +3902,10 @@ export namespace apps {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier of the resource.
              */
@@ -4165,6 +4213,10 @@ export namespace apps {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -4222,6 +4274,10 @@ export namespace apps {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier of the resource.
              */
@@ -4325,6 +4381,10 @@ export namespace apps {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -4385,6 +4445,10 @@ export namespace apps {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -4444,6 +4508,10 @@ export namespace apps {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier of the resource.
              */
@@ -4866,6 +4934,10 @@ export namespace cloud {
          */
         folderUid?: string;
         /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: number;
+        /**
          * The unique identifier of the resource.
          */
         uid: string;
@@ -4910,6 +4982,10 @@ export namespace cloud {
          * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: string;
+        /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: number;
         /**
          * The unique identifier of the resource.
          */
@@ -4957,6 +5033,10 @@ export namespace cloud {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -5001,6 +5081,10 @@ export namespace cloud {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier of the resource.
              */
@@ -5047,6 +5131,10 @@ export namespace cloud {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -5091,6 +5179,10 @@ export namespace cloud {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier of the resource.
              */
@@ -5721,6 +5813,10 @@ export namespace enterprise {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -5747,6 +5843,10 @@ export namespace enterprise {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier of the resource.
              */
@@ -5819,6 +5919,10 @@ export namespace enterprise {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -5885,6 +5989,10 @@ export namespace experimental {
          */
         folderUid?: string;
         /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: number;
+        /**
          * The unique identifier of the resource.
          */
         uid: string;
@@ -5941,6 +6049,10 @@ export namespace experimental {
          * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: string;
+        /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: number;
         /**
          * The unique identifier of the resource.
          */

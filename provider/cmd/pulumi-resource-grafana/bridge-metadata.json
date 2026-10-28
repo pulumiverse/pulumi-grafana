@@ -1206,6 +1206,10 @@
                 "current": "grafana:incident/role:Role",
                 "majorVersion": 2
             },
+            "grafana_incident_severity": {
+                "current": "grafana:incident/severity:Severity",
+                "majorVersion": 2
+            },
             "grafana_k6_installation": {
                 "current": "grafana:k6/installation:Installation",
                 "majorVersion": 2
@@ -1561,6 +1565,10 @@
                         "maxItemsOne": true
                     }
                 }
+            },
+            "grafana_oncall_team_access_management": {
+                "current": "grafana:onCall/teamAccessManagement:TeamAccessManagement",
+                "majorVersion": 2
             },
             "grafana_oncall_user_notification_rule": {
                 "current": "grafana:onCall/userNotificationRule:UserNotificationRule",
@@ -2910,6 +2918,7 @@
             "grafana:fleetManagement/pipeline:Pipeline": 1,
             "grafana:frontendObservability/app:App": 1,
             "grafana:incident/role:Role": 1,
+            "grafana:incident/severity:Severity": 1,
             "grafana:k6/installation:Installation": 0,
             "grafana:k6/loadTest:LoadTest": 1,
             "grafana:k6/project:Project": 1,
@@ -2927,6 +2936,7 @@
             "grafana:onCall/outgoingWebhook:OutgoingWebhook": 0,
             "grafana:onCall/route:Route": 0,
             "grafana:onCall/schedule:Schedule": 0,
+            "grafana:onCall/teamAccessManagement:TeamAccessManagement": 1,
             "grafana:onCall/userNotificationRule:UserNotificationRule": 1,
             "grafana:oss/annotation:Annotation": 1,
             "grafana:oss/dashboard:Dashboard": 0,

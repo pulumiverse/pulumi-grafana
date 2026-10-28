@@ -52,7 +52,7 @@ class ProviderArgs:
         The set of arguments for constructing a Provider resource.
 
         :param pulumi.Input[_builtins.str] auth: API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
-        :param pulumi.Input[_builtins.str] ca_cert: Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
+        :param pulumi.Input[_builtins.str] ca_cert: Certificate CA bundle (file path or literal value) to use to verify the certificates of Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
         :param pulumi.Input[_builtins.str] cloud_access_policy_token: Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment variable.
         :param pulumi.Input[_builtins.str] cloud_api_url: Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
         :param pulumi.Input[_builtins.str] cloud_provider_access_token: A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN` environment variable.
@@ -77,8 +77,8 @@ class ProviderArgs:
         :param pulumi.Input[_builtins.str] sm_url: Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The correct value for each service region is cited in the [Synthetic Monitoring documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#probe-api-server-url). Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the `cloud.Stack` resource. Also note that when a Terraform configuration contains multiple provider instances managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for each provider ensures all providers interact with the same SM API.
         :param pulumi.Input[_builtins.int] stack_id: The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID` environment variable.
         :param pulumi.Input[_builtins.bool] store_dashboard_sha256: Set to true if you want to save only the sha256sum instead of complete dashboard model JSON in the tfstate.
-        :param pulumi.Input[_builtins.str] tls_cert: Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
-        :param pulumi.Input[_builtins.str] tls_key: Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
+        :param pulumi.Input[_builtins.str] tls_cert: Client TLS certificate (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
+        :param pulumi.Input[_builtins.str] tls_key: Client TLS key (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
         :param pulumi.Input[_builtins.str] url: The root URL of a Grafana server. May alternatively be set via the `GRAFANA_URL` environment variable.
         """
         if auth is None:
@@ -186,7 +186,7 @@ class ProviderArgs:
     @pulumi.getter(name="caCert")
     def ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
+        Certificate CA bundle (file path or literal value) to use to verify the certificates of Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
         """
         return pulumi.get(self, "ca_cert")
 
@@ -486,7 +486,7 @@ class ProviderArgs:
     @pulumi.getter(name="tlsCert")
     def tls_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
+        Client TLS certificate (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
         """
         return pulumi.get(self, "tls_cert")
 
@@ -498,7 +498,7 @@ class ProviderArgs:
     @pulumi.getter(name="tlsKey")
     def tls_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
+        Client TLS key (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
         """
         return pulumi.get(self, "tls_key")
 
@@ -565,7 +565,7 @@ class Provider(pulumi.ProviderResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] auth: API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
-        :param pulumi.Input[_builtins.str] ca_cert: Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
+        :param pulumi.Input[_builtins.str] ca_cert: Certificate CA bundle (file path or literal value) to use to verify the certificates of Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
         :param pulumi.Input[_builtins.str] cloud_access_policy_token: Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment variable.
         :param pulumi.Input[_builtins.str] cloud_api_url: Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
         :param pulumi.Input[_builtins.str] cloud_provider_access_token: A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN` environment variable.
@@ -590,8 +590,8 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[_builtins.str] sm_url: Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The correct value for each service region is cited in the [Synthetic Monitoring documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#probe-api-server-url). Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the `cloud.Stack` resource. Also note that when a Terraform configuration contains multiple provider instances managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for each provider ensures all providers interact with the same SM API.
         :param pulumi.Input[_builtins.int] stack_id: The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID` environment variable.
         :param pulumi.Input[_builtins.bool] store_dashboard_sha256: Set to true if you want to save only the sha256sum instead of complete dashboard model JSON in the tfstate.
-        :param pulumi.Input[_builtins.str] tls_cert: Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
-        :param pulumi.Input[_builtins.str] tls_key: Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
+        :param pulumi.Input[_builtins.str] tls_cert: Client TLS certificate (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
+        :param pulumi.Input[_builtins.str] tls_key: Client TLS key (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
         :param pulumi.Input[_builtins.str] url: The root URL of a Grafana server. May alternatively be set via the `GRAFANA_URL` environment variable.
         """
         ...
@@ -739,7 +739,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="caCert")
     def ca_cert(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
+        Certificate CA bundle (file path or literal value) to use to verify the certificates of Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
         """
         return pulumi.get(self, "ca_cert")
 
@@ -875,7 +875,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="tlsCert")
     def tls_cert(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
+        Client TLS certificate (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
         """
         return pulumi.get(self, "tls_cert")
 
@@ -883,7 +883,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="tlsKey")
     def tls_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
+        Client TLS key (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
         """
         return pulumi.get(self, "tls_key")
 

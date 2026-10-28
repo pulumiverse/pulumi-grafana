@@ -30,7 +30,7 @@ class _ExportableConfig(types.ModuleType):
     @_builtins.property
     def ca_cert(self) -> Optional[str]:
         """
-        Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
+        Certificate CA bundle (file path or literal value) to use to verify the certificates of Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
         """
         return __config__.get('caCert') or _utilities.get_env('GRAFANA_CA_CERT')
 
@@ -205,14 +205,14 @@ class _ExportableConfig(types.ModuleType):
     @_builtins.property
     def tls_cert(self) -> Optional[str]:
         """
-        Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
+        Client TLS certificate (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
         """
         return __config__.get('tlsCert') or _utilities.get_env('GRAFANA_TLS_CERT')
 
     @_builtins.property
     def tls_key(self) -> Optional[str]:
         """
-        Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
+        Client TLS key (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
         """
         return __config__.get('tlsKey') or _utilities.get_env('GRAFANA_TLS_KEY')
 

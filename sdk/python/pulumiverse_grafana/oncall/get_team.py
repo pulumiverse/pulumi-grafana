@@ -26,7 +26,7 @@ class GetTeamResult:
     """
     A collection of values returned by getTeam.
     """
-    def __init__(__self__, avatar_url=None, email=None, id=None, name=None):
+    def __init__(__self__, avatar_url=None, email=None, id=None, is_sharing_resources_to_all=None, name=None):
         if avatar_url and not isinstance(avatar_url, str):
             raise TypeError("Expected argument 'avatar_url' to be a str")
         pulumi.set(__self__, "avatar_url", avatar_url)
@@ -36,6 +36,9 @@ class GetTeamResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if is_sharing_resources_to_all and not isinstance(is_sharing_resources_to_all, bool):
+            raise TypeError("Expected argument 'is_sharing_resources_to_all' to be a bool")
+        pulumi.set(__self__, "is_sharing_resources_to_all", is_sharing_resources_to_all)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -59,6 +62,14 @@ class GetTeamResult:
         return pulumi.get(self, "id")
 
     @_builtins.property
+    @pulumi.getter(name="isSharingResourcesToAll")
+    def is_sharing_resources_to_all(self) -> _builtins.bool:
+        """
+        Whether the team's resources are visible to all users (true), or only to team members and admins (false).
+        """
+        return pulumi.get(self, "is_sharing_resources_to_all")
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
@@ -76,6 +87,7 @@ class AwaitableGetTeamResult(GetTeamResult):
             avatar_url=self.avatar_url,
             email=self.email,
             id=self.id,
+            is_sharing_resources_to_all=self.is_sharing_resources_to_all,
             name=self.name)
 
 
@@ -104,6 +116,7 @@ def get_team(name: Optional[_builtins.str] = None,
         avatar_url=pulumi.get(__ret__, 'avatar_url'),
         email=pulumi.get(__ret__, 'email'),
         id=pulumi.get(__ret__, 'id'),
+        is_sharing_resources_to_all=pulumi.get(__ret__, 'is_sharing_resources_to_all'),
         name=pulumi.get(__ret__, 'name'))
 def get_team_output(name: Optional[pulumi.Input[_builtins.str]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTeamResult]:
@@ -129,4 +142,5 @@ def get_team_output(name: Optional[pulumi.Input[_builtins.str]] = None,
         avatar_url=pulumi.get(__response__, 'avatar_url'),
         email=pulumi.get(__response__, 'email'),
         id=pulumi.get(__response__, 'id'),
+        is_sharing_resources_to_all=pulumi.get(__response__, 'is_sharing_resources_to_all'),
         name=pulumi.get(__response__, 'name')))

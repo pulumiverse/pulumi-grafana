@@ -31,7 +31,7 @@ class UserNotificationRuleArgs:
         :param pulumi.Input[_builtins.str] user_id: User ID
         :param pulumi.Input[_builtins.int] duration: A time in seconds to wait (when `type=wait`). Can be 60, 300, 900, 1800, 3600
         :param pulumi.Input[_builtins.bool] important: Boolean value which indicates if a rule is “important”
-        :param pulumi.Input[_builtins.int] position: Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
+        :param pulumi.Input[_builtins.int] position: Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.
         """
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "user_id", user_id)
@@ -94,7 +94,7 @@ class UserNotificationRuleArgs:
     @pulumi.getter
     def position(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
+        Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.
         """
         return pulumi.get(self, "position")
 
@@ -116,7 +116,7 @@ class _UserNotificationRuleState:
 
         :param pulumi.Input[_builtins.int] duration: A time in seconds to wait (when `type=wait`). Can be 60, 300, 900, 1800, 3600
         :param pulumi.Input[_builtins.bool] important: Boolean value which indicates if a rule is “important”
-        :param pulumi.Input[_builtins.int] position: Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
+        :param pulumi.Input[_builtins.int] position: Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.
         :param pulumi.Input[_builtins.str] type: The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `notify_by_msteams` is only available for Grafana Cloud customers.
         :param pulumi.Input[_builtins.str] user_id: User ID
         """
@@ -159,7 +159,7 @@ class _UserNotificationRuleState:
     @pulumi.getter
     def position(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
+        Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.
         """
         return pulumi.get(self, "position")
 
@@ -268,7 +268,7 @@ class UserNotificationRule(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] duration: A time in seconds to wait (when `type=wait`). Can be 60, 300, 900, 1800, 3600
         :param pulumi.Input[_builtins.bool] important: Boolean value which indicates if a rule is “important”
-        :param pulumi.Input[_builtins.int] position: Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
+        :param pulumi.Input[_builtins.int] position: Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.
         :param pulumi.Input[_builtins.str] type: The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `notify_by_msteams` is only available for Grafana Cloud customers.
         :param pulumi.Input[_builtins.str] user_id: User ID
         """
@@ -400,7 +400,7 @@ class UserNotificationRule(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] duration: A time in seconds to wait (when `type=wait`). Can be 60, 300, 900, 1800, 3600
         :param pulumi.Input[_builtins.bool] important: Boolean value which indicates if a rule is “important”
-        :param pulumi.Input[_builtins.int] position: Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
+        :param pulumi.Input[_builtins.int] position: Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.
         :param pulumi.Input[_builtins.str] type: The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `notify_by_msteams` is only available for Grafana Cloud customers.
         :param pulumi.Input[_builtins.str] user_id: User ID
         """
@@ -433,9 +433,9 @@ class UserNotificationRule(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def position(self) -> pulumi.Output[Optional[_builtins.int]]:
+    def position(self) -> pulumi.Output[_builtins.int]:
         """
-        Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
+        Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.
         """
         return pulumi.get(self, "position")
 

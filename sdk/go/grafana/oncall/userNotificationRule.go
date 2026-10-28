@@ -124,8 +124,8 @@ type UserNotificationRule struct {
 	Duration pulumi.IntPtrOutput `pulumi:"duration"`
 	// Boolean value which indicates if a rule is “important”
 	Important pulumi.BoolOutput `pulumi:"important"`
-	// Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
-	Position pulumi.IntPtrOutput `pulumi:"position"`
+	// Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.
+	Position pulumi.IntOutput `pulumi:"position"`
 	// The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `notifyByMsteams` is only available for Grafana Cloud customers.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// User ID
@@ -172,7 +172,7 @@ type userNotificationRuleState struct {
 	Duration *int `pulumi:"duration"`
 	// Boolean value which indicates if a rule is “important”
 	Important *bool `pulumi:"important"`
-	// Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
+	// Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.
 	Position *int `pulumi:"position"`
 	// The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `notifyByMsteams` is only available for Grafana Cloud customers.
 	Type *string `pulumi:"type"`
@@ -185,7 +185,7 @@ type UserNotificationRuleState struct {
 	Duration pulumi.IntPtrInput
 	// Boolean value which indicates if a rule is “important”
 	Important pulumi.BoolPtrInput
-	// Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
+	// Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.
 	Position pulumi.IntPtrInput
 	// The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `notifyByMsteams` is only available for Grafana Cloud customers.
 	Type pulumi.StringPtrInput
@@ -202,7 +202,7 @@ type userNotificationRuleArgs struct {
 	Duration *int `pulumi:"duration"`
 	// Boolean value which indicates if a rule is “important”
 	Important *bool `pulumi:"important"`
-	// Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
+	// Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.
 	Position *int `pulumi:"position"`
 	// The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `notifyByMsteams` is only available for Grafana Cloud customers.
 	Type string `pulumi:"type"`
@@ -216,7 +216,7 @@ type UserNotificationRuleArgs struct {
 	Duration pulumi.IntPtrInput
 	// Boolean value which indicates if a rule is “important”
 	Important pulumi.BoolPtrInput
-	// Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
+	// Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.
 	Position pulumi.IntPtrInput
 	// The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `notifyByMsteams` is only available for Grafana Cloud customers.
 	Type pulumi.StringInput
@@ -321,9 +321,9 @@ func (o UserNotificationRuleOutput) Important() pulumi.BoolOutput {
 	return o.ApplyT(func(v *UserNotificationRule) pulumi.BoolOutput { return v.Important }).(pulumi.BoolOutput)
 }
 
-// Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
-func (o UserNotificationRuleOutput) Position() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *UserNotificationRule) pulumi.IntPtrOutput { return v.Position }).(pulumi.IntPtrOutput)
+// Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.
+func (o UserNotificationRuleOutput) Position() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserNotificationRule) pulumi.IntOutput { return v.Position }).(pulumi.IntOutput)
 }
 
 // The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `notifyByMsteams` is only available for Grafana Cloud customers.

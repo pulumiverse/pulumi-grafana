@@ -21,7 +21,7 @@ API token, basic auth in the `username:password` format or `anonymous` (string l
 
 caCert: Optional[str]
 """
-Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
+Certificate CA bundle (file path or literal value) to use to verify the certificates of Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
 """
 
 cloudAccessPolicyToken: Optional[str]
@@ -146,12 +146,12 @@ Set to true if you want to save only the sha256sum instead of complete dashboard
 
 tlsCert: Optional[str]
 """
-Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
+Client TLS certificate (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
 """
 
 tlsKey: Optional[str]
 """
-Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
+Client TLS key (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
 """
 
 url: Optional[str]
