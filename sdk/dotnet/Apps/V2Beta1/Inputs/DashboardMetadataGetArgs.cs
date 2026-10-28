@@ -32,6 +32,12 @@ namespace Pulumiverse.Grafana.Apps.V2Beta1.Inputs
         public Input<string>? FolderUid { get; set; }
 
         /// <summary>
+        /// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `OrgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `StackId` instead). Changing this value forces the resource to be recreated in the new organization.
+        /// </summary>
+        [Input("orgId")]
+        public Input<int>? OrgId { get; set; }
+
+        /// <summary>
         /// The unique identifier of the resource.
         /// </summary>
         [Input("uid", required: true)]

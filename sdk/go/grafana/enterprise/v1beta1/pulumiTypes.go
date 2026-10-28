@@ -18,6 +18,8 @@ type SecretKeeperActivationMetadata struct {
 	Annotations map[string]string `pulumi:"annotations"`
 	// The UID of the folder to save the resource in.
 	FolderUid *string `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId *int `pulumi:"orgId"`
 	// The unique identifier of the resource.
 	Uid string `pulumi:"uid"`
 	// The full URL of the resource.
@@ -44,6 +46,8 @@ type SecretKeeperActivationMetadataArgs struct {
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
 	// The UID of the folder to save the resource in.
 	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId pulumi.IntPtrInput `pulumi:"orgId"`
 	// The unique identifier of the resource.
 	Uid pulumi.StringInput `pulumi:"uid"`
 	// The full URL of the resource.
@@ -141,6 +145,11 @@ func (o SecretKeeperActivationMetadataOutput) FolderUid() pulumi.StringPtrOutput
 	return o.ApplyT(func(v SecretKeeperActivationMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
 }
 
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o SecretKeeperActivationMetadataOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretKeeperActivationMetadata) *int { return v.OrgId }).(pulumi.IntPtrOutput)
+}
+
 // The unique identifier of the resource.
 func (o SecretKeeperActivationMetadataOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretKeeperActivationMetadata) string { return v.Uid }).(pulumi.StringOutput)
@@ -205,6 +214,16 @@ func (o SecretKeeperActivationMetadataPtrOutput) FolderUid() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o SecretKeeperActivationMetadataPtrOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretKeeperActivationMetadata) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OrgId
+	}).(pulumi.IntPtrOutput)
+}
+
 // The unique identifier of the resource.
 func (o SecretKeeperActivationMetadataPtrOutput) Uid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretKeeperActivationMetadata) *string {
@@ -250,6 +269,8 @@ type SecretKeeperMetadata struct {
 	Annotations map[string]string `pulumi:"annotations"`
 	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid *string `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId *int `pulumi:"orgId"`
 	// The unique identifier of the resource.
 	Uid string `pulumi:"uid"`
 	// The full URL of the resource.
@@ -276,6 +297,8 @@ type SecretKeeperMetadataArgs struct {
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
 	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId pulumi.IntPtrInput `pulumi:"orgId"`
 	// The unique identifier of the resource.
 	Uid pulumi.StringInput `pulumi:"uid"`
 	// The full URL of the resource.
@@ -373,6 +396,11 @@ func (o SecretKeeperMetadataOutput) FolderUid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretKeeperMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
 }
 
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o SecretKeeperMetadataOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretKeeperMetadata) *int { return v.OrgId }).(pulumi.IntPtrOutput)
+}
+
 // The unique identifier of the resource.
 func (o SecretKeeperMetadataOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretKeeperMetadata) string { return v.Uid }).(pulumi.StringOutput)
@@ -435,6 +463,16 @@ func (o SecretKeeperMetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
 		}
 		return v.FolderUid
 	}).(pulumi.StringPtrOutput)
+}
+
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o SecretKeeperMetadataPtrOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretKeeperMetadata) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OrgId
+	}).(pulumi.IntPtrOutput)
 }
 
 // The unique identifier of the resource.
@@ -1106,6 +1144,8 @@ type SecretSecureValueMetadata struct {
 	Annotations map[string]string `pulumi:"annotations"`
 	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid *string `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId *int `pulumi:"orgId"`
 	// The unique identifier of the resource.
 	Uid string `pulumi:"uid"`
 	// The full URL of the resource.
@@ -1132,6 +1172,8 @@ type SecretSecureValueMetadataArgs struct {
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
 	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId pulumi.IntPtrInput `pulumi:"orgId"`
 	// The unique identifier of the resource.
 	Uid pulumi.StringInput `pulumi:"uid"`
 	// The full URL of the resource.
@@ -1229,6 +1271,11 @@ func (o SecretSecureValueMetadataOutput) FolderUid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretSecureValueMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
 }
 
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o SecretSecureValueMetadataOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretSecureValueMetadata) *int { return v.OrgId }).(pulumi.IntPtrOutput)
+}
+
 // The unique identifier of the resource.
 func (o SecretSecureValueMetadataOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretSecureValueMetadata) string { return v.Uid }).(pulumi.StringOutput)
@@ -1291,6 +1338,16 @@ func (o SecretSecureValueMetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
 		}
 		return v.FolderUid
 	}).(pulumi.StringPtrOutput)
+}
+
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o SecretSecureValueMetadataPtrOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretSecureValueMetadata) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OrgId
+	}).(pulumi.IntPtrOutput)
 }
 
 // The unique identifier of the resource.
