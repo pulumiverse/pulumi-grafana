@@ -10,6 +10,11 @@ export type Role = import("./role").Role;
 export const Role: typeof import("./role").Role = null as any;
 utilities.lazyLoad(exports, ["Role"], () => require("./role"));
 
+export { SeverityArgs, SeverityState } from "./severity";
+export type Severity = import("./severity").Severity;
+export const Severity: typeof import("./severity").Severity = null as any;
+utilities.lazyLoad(exports, ["Severity"], () => require("./severity"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -17,9 +22,12 @@ const _module = {
         switch (type) {
             case "grafana:incident/role:Role":
                 return new Role(name, <any>undefined, { urn })
+            case "grafana:incident/severity:Severity":
+                return new Severity(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
 pulumi.runtime.registerResourceModule("grafana", "incident/role", _module)
+pulumi.runtime.registerResourceModule("grafana", "incident/severity", _module)

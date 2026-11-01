@@ -43,6 +43,28 @@ namespace Pulumiverse.Grafana.Assistant
     ///         },
     ///     });
     /// 
+    ///     var githubAppPrivateKey = config.Require("githubAppPrivateKey");
+    ///     // Authenticate a GitHub MCP server with a GitHub App installation instead of a personal access token.
+    ///     var github = new Grafana.Assistant.McpServer("github", new()
+    ///     {
+    ///         Configuration = new Grafana.Assistant.Inputs.McpServerConfigurationArgs
+    ///         {
+    ///             Url = "https://api.githubcopilot.com/mcp/",
+    ///         },
+    ///         GithubApp = new Grafana.Assistant.Inputs.McpServerGithubAppArgs
+    ///         {
+    ///             AppId = 123456,
+    ///             InstallationId = 12345678,
+    ///             PrivateKey = githubAppPrivateKey,
+    ///         },
+    ///         Name = "GitHub",
+    ///         Scope = "tenant",
+    ///         Applications = new[]
+    ///         {
+    ///             "assistant",
+    ///         },
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -51,6 +73,8 @@ namespace Pulumiverse.Grafana.Assistant
     /// ```sh
     /// terraform import grafana_assistant_mcp_server.name "{{ id }}"
     /// ```
+    /// 
+    /// After importing a server that uses `GithubApp`, the first plan shows an update to `github_app.private_key_hash`, because the write-only private key isn't stored in state. Applying it resends the key, which the Assistant treats as a credential change: it rebuilds the MCP client and clears the server's cached tool list.
     /// </summary>
     [GrafanaResourceType("grafana:assistant/mcpServer:McpServer")]
     public partial class McpServer : global::Pulumi.CustomResource
@@ -84,6 +108,12 @@ namespace Pulumiverse.Grafana.Assistant
         /// </summary>
         [Output("enabled")]
         public Output<bool> Enabled { get; private set; } = null!;
+
+        /// <summary>
+        /// GitHub App installation credentials, used instead of a personal access token for `Tenant` scoped GitHub MCP servers (`https://api.githubcopilot.com/mcp` or `https://&lt;HOSTNAME&gt;.ghe.com/mcp`). The Assistant mints short-lived installation tokens from these credentials and uses them in place of any `Authorization` custom header. All three attributes are required when the block is set. Removing the block clears the credentials.
+        /// </summary>
+        [Output("githubApp")]
+        public Output<Outputs.McpServerGithubApp?> GithubApp { get; private set; } = null!;
 
         /// <summary>
         /// The MCP server integration name.
@@ -195,6 +225,12 @@ namespace Pulumiverse.Grafana.Assistant
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
+        /// GitHub App installation credentials, used instead of a personal access token for `Tenant` scoped GitHub MCP servers (`https://api.githubcopilot.com/mcp` or `https://&lt;HOSTNAME&gt;.ghe.com/mcp`). The Assistant mints short-lived installation tokens from these credentials and uses them in place of any `Authorization` custom header. All three attributes are required when the block is set. Removing the block clears the credentials.
+        /// </summary>
+        [Input("githubApp")]
+        public Input<Inputs.McpServerGithubAppArgs>? GithubApp { get; set; }
+
+        /// <summary>
         /// The MCP server integration name.
         /// </summary>
         [Input("name")]
@@ -259,6 +295,12 @@ namespace Pulumiverse.Grafana.Assistant
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
+
+        /// <summary>
+        /// GitHub App installation credentials, used instead of a personal access token for `Tenant` scoped GitHub MCP servers (`https://api.githubcopilot.com/mcp` or `https://&lt;HOSTNAME&gt;.ghe.com/mcp`). The Assistant mints short-lived installation tokens from these credentials and uses them in place of any `Authorization` custom header. All three attributes are required when the block is set. Removing the block clears the credentials.
+        /// </summary>
+        [Input("githubApp")]
+        public Input<Inputs.McpServerGithubAppGetArgs>? GithubApp { get; set; }
 
         /// <summary>
         /// The MCP server integration name.

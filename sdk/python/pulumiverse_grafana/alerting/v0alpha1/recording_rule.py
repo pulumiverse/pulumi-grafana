@@ -145,6 +145,8 @@ class RecordingRule(pulumi.CustomResource):
         """
         Manages Grafana Recording Rules.
 
+        > **Deprecated:** This resource uses the `v0alpha1` API. Use `AppsRulesRecordingruleV1beta1` instead.
+
         ## Example Usage
 
         ```python
@@ -208,6 +210,8 @@ class RecordingRule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages Grafana Recording Rules.
+
+        > **Deprecated:** This resource uses the `v0alpha1` API. Use `AppsRulesRecordingruleV1beta1` instead.
 
         ## Example Usage
 

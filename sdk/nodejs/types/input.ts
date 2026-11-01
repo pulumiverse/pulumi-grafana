@@ -5,6 +5,341 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AppsRulesAlertruleV1beta1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+     */
+    folderUid?: pulumi.Input<string>;
+    /**
+     * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+     */
+    orgId?: pulumi.Input<number>;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: pulumi.Input<string>;
+    /**
+     * The full URL of the resource.
+     */
+    url?: pulumi.Input<string>;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid?: pulumi.Input<string>;
+    /**
+     * The version of the resource.
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface AppsRulesAlertruleV1beta1Options {
+    /**
+     * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+     */
+    managerIdentity?: pulumi.Input<string>;
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: pulumi.Input<boolean>;
+}
+
+export interface AppsRulesAlertruleV1beta1Spec {
+    /**
+     * Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts.
+     */
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
+     */
+    execErrState: pulumi.Input<string>;
+    /**
+     * The stages of the rule, keyed by reference ID. Each expression is an object with `model` (the query or expression model as a JSON string, for example from `jsonencode`), `datasourceUid` (the datasource to run against; `__expr__` for server-side expressions), `queryType`, `relativeTimeRange` (an object with `from` and `to` durations) and `source`. Exactly one expression must set `source = true`. Every field must be set; use `null` for unused fields.
+     */
+    expressions: pulumi.Input<{[key: string]: pulumi.Input<inputs.AppsRulesAlertruleV1beta1SpecExpressions>}>;
+    /**
+     * The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
+     */
+    for?: pulumi.Input<string>;
+    /**
+     * The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
+     */
+    keepFiringFor?: pulumi.Input<string>;
+    /**
+     * Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The number of missing series evaluations that must occur before the rule is considered to be resolved.
+     */
+    missingSeriesEvalsToResolve?: pulumi.Input<number>;
+    /**
+     * Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
+     */
+    noDataState: pulumi.Input<string>;
+    /**
+     * Notification settings for the rule. If specified, it overrides the notification policies. Specify exactly one of simplified*routing or named*routing*tree.
+     */
+    notificationSettings?: pulumi.Input<inputs.AppsRulesAlertruleV1beta1SpecNotificationSettings>;
+    /**
+     * Reference to the dashboard panel this alert rule is associated with, as an object with `dashboardUid` (string) and `panelId` (number).
+     */
+    panelRef?: pulumi.Input<inputs.AppsRulesAlertruleV1beta1SpecPanelRef>;
+    /**
+     * Sets whether the rule should be paused or not.
+     */
+    paused?: pulumi.Input<boolean>;
+    /**
+     * The title of the alert rule.
+     */
+    title: pulumi.Input<string>;
+    /**
+     * The trigger configuration for the alert rule.
+     */
+    trigger?: pulumi.Input<inputs.AppsRulesAlertruleV1beta1SpecTrigger>;
+}
+
+export interface AppsRulesAlertruleV1beta1SpecExpressions {
+    datasourceUid: pulumi.Input<string>;
+    model: pulumi.Input<string>;
+    queryType: pulumi.Input<string>;
+    relativeTimeRange: pulumi.Input<inputs.AppsRulesAlertruleV1beta1SpecExpressionsRelativeTimeRange>;
+    source: pulumi.Input<boolean>;
+}
+
+export interface AppsRulesAlertruleV1beta1SpecExpressionsRelativeTimeRange {
+    from: pulumi.Input<string>;
+    to: pulumi.Input<string>;
+}
+
+export interface AppsRulesAlertruleV1beta1SpecNotificationSettings {
+    /**
+     * Route notifications to a specific routing tree.
+     */
+    namedRoutingTree?: pulumi.Input<inputs.AppsRulesAlertruleV1beta1SpecNotificationSettingsNamedRoutingTree>;
+    /**
+     * Simplified routing to a contact point with optional grouping and timing overrides.
+     */
+    simplifiedRouting?: pulumi.Input<inputs.AppsRulesAlertruleV1beta1SpecNotificationSettingsSimplifiedRouting>;
+}
+
+export interface AppsRulesAlertruleV1beta1SpecNotificationSettingsNamedRoutingTree {
+    /**
+     * The name of the routing tree to use.
+     */
+    routingTree?: pulumi.Input<string>;
+}
+
+export interface AppsRulesAlertruleV1beta1SpecNotificationSettingsSimplifiedRouting {
+    /**
+     * A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+     */
+    activeTimings?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The contact point to route notifications that match this rule to.
+     */
+    contactPoint?: pulumi.Input<string>;
+    /**
+     * A list of alert labels to group alerts into notifications by.
+     */
+    groupBies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Minimum time interval between two notifications for the same group.
+     */
+    groupInterval?: pulumi.Input<string>;
+    /**
+     * Time to wait to buffer alerts of the same group before sending a notification.
+     */
+    groupWait?: pulumi.Input<string>;
+    /**
+     * A list of mute timing names to apply to alerts that match this policy.
+     */
+    muteTimings?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Minimum time interval for re-sending a notification if an alert is still firing.
+     */
+    repeatInterval?: pulumi.Input<string>;
+}
+
+export interface AppsRulesAlertruleV1beta1SpecPanelRef {
+    dashboardUid: pulumi.Input<string>;
+    panelId: pulumi.Input<number>;
+}
+
+export interface AppsRulesAlertruleV1beta1SpecTrigger {
+    /**
+     * The interval at which the alert rule should be evaluated.
+     */
+    interval: pulumi.Input<string>;
+}
+
+export interface AppsRulesRecordingruleV1beta1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+     */
+    folderUid?: pulumi.Input<string>;
+    /**
+     * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+     */
+    orgId?: pulumi.Input<number>;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: pulumi.Input<string>;
+    /**
+     * The full URL of the resource.
+     */
+    url?: pulumi.Input<string>;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid?: pulumi.Input<string>;
+    /**
+     * The version of the resource.
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface AppsRulesRecordingruleV1beta1Options {
+    /**
+     * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+     */
+    managerIdentity?: pulumi.Input<string>;
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: pulumi.Input<boolean>;
+}
+
+export interface AppsRulesRecordingruleV1beta1Spec {
+    /**
+     * The stages of the rule, keyed by reference ID. Each expression is an object with `model` (the query or expression model as a JSON string, for example from `jsonencode`), `datasourceUid` (the datasource to run against; `__expr__` for server-side expressions), `queryType`, `relativeTimeRange` (an object with `from` and `to` durations) and `source`. Exactly one expression must set `source = true`. Every field must be set; use `null` for unused fields.
+     */
+    expressions: pulumi.Input<{[key: string]: pulumi.Input<inputs.AppsRulesRecordingruleV1beta1SpecExpressions>}>;
+    /**
+     * Key-value pairs to attach to the recorded metric.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The name of the metric to write to.
+     */
+    metric: pulumi.Input<string>;
+    /**
+     * Sets whether the recording rule should be paused or not.
+     */
+    paused?: pulumi.Input<boolean>;
+    /**
+     * The UID of the datasource to write the metric to.
+     */
+    targetDatasourceUid: pulumi.Input<string>;
+    /**
+     * The title of the recording rule.
+     */
+    title: pulumi.Input<string>;
+    /**
+     * The trigger configuration for the recording rule.
+     */
+    trigger?: pulumi.Input<inputs.AppsRulesRecordingruleV1beta1SpecTrigger>;
+}
+
+export interface AppsRulesRecordingruleV1beta1SpecExpressions {
+    datasourceUid: pulumi.Input<string>;
+    model: pulumi.Input<string>;
+    queryType: pulumi.Input<string>;
+    relativeTimeRange: pulumi.Input<inputs.AppsRulesRecordingruleV1beta1SpecExpressionsRelativeTimeRange>;
+    source: pulumi.Input<boolean>;
+}
+
+export interface AppsRulesRecordingruleV1beta1SpecExpressionsRelativeTimeRange {
+    from: pulumi.Input<string>;
+    to: pulumi.Input<string>;
+}
+
+export interface AppsRulesRecordingruleV1beta1SpecTrigger {
+    /**
+     * The interval at which the recording rule should be evaluated.
+     */
+    interval: pulumi.Input<string>;
+}
+
+export interface AppsRulesRulesequenceV1beta1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+     */
+    folderUid?: pulumi.Input<string>;
+    /**
+     * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+     */
+    orgId?: pulumi.Input<number>;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: pulumi.Input<string>;
+    /**
+     * The full URL of the resource.
+     */
+    url?: pulumi.Input<string>;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid?: pulumi.Input<string>;
+    /**
+     * The version of the resource.
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface AppsRulesRulesequenceV1beta1Options {
+    /**
+     * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+     */
+    managerIdentity?: pulumi.Input<string>;
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: pulumi.Input<boolean>;
+}
+
+export interface AppsRulesRulesequenceV1beta1Spec {
+    /**
+     * The alert rules that belong to this sequence, evaluated in the order listed. Each entry references an alert rule by its `name` (the rule's UID).
+     */
+    alertRules?: pulumi.Input<pulumi.Input<inputs.AppsRulesRulesequenceV1beta1SpecAlertRule>[]>;
+    /**
+     * The recording rules that belong to this sequence, evaluated in the order listed. At least one recording rule is required. Each entry references a recording rule by its `name` (the rule's UID).
+     */
+    recordingRules: pulumi.Input<pulumi.Input<inputs.AppsRulesRulesequenceV1beta1SpecRecordingRule>[]>;
+    /**
+     * The trigger configuration shared by every rule in the sequence.
+     */
+    trigger?: pulumi.Input<inputs.AppsRulesRulesequenceV1beta1SpecTrigger>;
+}
+
+export interface AppsRulesRulesequenceV1beta1SpecAlertRule {
+    name: pulumi.Input<string>;
+}
+
+export interface AppsRulesRulesequenceV1beta1SpecRecordingRule {
+    name: pulumi.Input<string>;
+}
+
+export interface AppsRulesRulesequenceV1beta1SpecTrigger {
+    /**
+     * The interval at which the rules in the sequence should be evaluated.
+     */
+    interval: pulumi.Input<string>;
+}
 export namespace agento11y {
     export interface HookRuleRedact {
         /**
@@ -28,6 +363,10 @@ export namespace alerting {
          * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: pulumi.Input<string>;
+        /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: pulumi.Input<number>;
         /**
          * The unique identifier of the resource.
          */
@@ -568,6 +907,10 @@ export namespace alerting {
          * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: pulumi.Input<string>;
+        /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: pulumi.Input<number>;
         /**
          * The unique identifier of the resource.
          */
@@ -2185,6 +2528,10 @@ export namespace alerting {
          */
         folderUid?: pulumi.Input<string>;
         /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: pulumi.Input<number>;
+        /**
          * The unique identifier of the resource.
          */
         uid: pulumi.Input<string>;
@@ -2404,6 +2751,10 @@ export namespace alerting {
              */
             folderUid?: pulumi.Input<string>;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
+            /**
              * The unique identifier of the resource.
              */
             uid: pulumi.Input<string>;
@@ -2595,6 +2946,10 @@ export namespace alerting {
              */
             folderUid?: pulumi.Input<string>;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
+            /**
              * The unique identifier of the resource.
              */
             uid: pulumi.Input<string>;
@@ -2671,6 +3026,10 @@ export namespace alerting {
              */
             folderUid?: pulumi.Input<string>;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
+            /**
              * The unique identifier of the resource.
              */
             uid: pulumi.Input<string>;
@@ -2740,6 +3099,10 @@ export namespace alerting {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
             /**
              * The unique identifier of the resource.
              */
@@ -3281,6 +3644,10 @@ export namespace alerting {
              */
             folderUid?: pulumi.Input<string>;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
+            /**
              * The unique identifier of the resource.
              */
             uid: pulumi.Input<string>;
@@ -3345,6 +3712,10 @@ export namespace alerting {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
             /**
              * The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
              */
@@ -3712,6 +4083,10 @@ export namespace apps {
              */
             folderUid?: pulumi.Input<string>;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
+            /**
              * The unique identifier of the resource.
              */
             uid: pulumi.Input<string>;
@@ -3769,6 +4144,10 @@ export namespace apps {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
             /**
              * The unique identifier of the resource.
              */
@@ -3854,6 +4233,10 @@ export namespace apps {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
             /**
              * The unique identifier of the resource.
              */
@@ -4160,6 +4543,10 @@ export namespace apps {
              */
             folderUid?: pulumi.Input<string>;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
+            /**
              * The unique identifier of the resource.
              */
             uid: pulumi.Input<string>;
@@ -4217,6 +4604,10 @@ export namespace apps {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
             /**
              * The unique identifier of the resource.
              */
@@ -4319,6 +4710,10 @@ export namespace apps {
              */
             folderUid?: pulumi.Input<string>;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
+            /**
              * The unique identifier of the resource.
              */
             uid: pulumi.Input<string>;
@@ -4378,6 +4773,10 @@ export namespace apps {
              */
             folderUid?: pulumi.Input<string>;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
+            /**
              * The unique identifier of the resource.
              */
             uid: pulumi.Input<string>;
@@ -4436,6 +4835,10 @@ export namespace apps {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
             /**
              * The unique identifier of the resource.
              */
@@ -4790,6 +5193,26 @@ export namespace assistant {
         url?: pulumi.Input<string>;
     }
 
+    export interface McpServerGithubApp {
+        /**
+         * The GitHub App ID.
+         */
+        appId?: pulumi.Input<number>;
+        /**
+         * The ID of the GitHub App installation on your organization.
+         */
+        installationId?: pulumi.Input<number>;
+        /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The GitHub App private key in PEM format. Terraform sends it to the API but never stores it in state.
+         */
+        privateKey?: pulumi.Input<string>;
+        /**
+         * SHA-256 hash of the private key Terraform last sent, used to detect key changes in configuration. A key changed outside Terraform is not detected, because the API never returns the key.
+         */
+        privateKeyHash?: pulumi.Input<string>;
+    }
+
     export interface SkillAllowedTool {
         /**
          * Integration UUID.
@@ -4839,6 +5262,10 @@ export namespace cloud {
          */
         folderUid?: pulumi.Input<string>;
         /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: pulumi.Input<number>;
+        /**
          * The unique identifier of the resource.
          */
         uid: pulumi.Input<string>;
@@ -4883,6 +5310,10 @@ export namespace cloud {
          * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: pulumi.Input<string>;
+        /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: pulumi.Input<number>;
         /**
          * The unique identifier of the resource.
          */
@@ -4929,6 +5360,10 @@ export namespace cloud {
              */
             folderUid?: pulumi.Input<string>;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
+            /**
              * The unique identifier of the resource.
              */
             uid: pulumi.Input<string>;
@@ -4973,6 +5408,10 @@ export namespace cloud {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
             /**
              * The unique identifier of the resource.
              */
@@ -5019,6 +5458,10 @@ export namespace cloud {
              */
             folderUid?: pulumi.Input<string>;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
+            /**
              * The unique identifier of the resource.
              */
             uid: pulumi.Input<string>;
@@ -5063,6 +5506,10 @@ export namespace cloud {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
             /**
              * The unique identifier of the resource.
              */
@@ -5931,6 +6378,10 @@ export namespace enterprise {
              */
             folderUid?: pulumi.Input<string>;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
+            /**
              * The unique identifier of the resource.
              */
             uid: pulumi.Input<string>;
@@ -5957,6 +6408,10 @@ export namespace enterprise {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
             /**
              * The unique identifier of the resource.
              */
@@ -6029,6 +6484,10 @@ export namespace enterprise {
              */
             folderUid?: pulumi.Input<string>;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: pulumi.Input<number>;
+            /**
              * The unique identifier of the resource.
              */
             uid: pulumi.Input<string>;
@@ -6094,6 +6553,10 @@ export namespace experimental {
          */
         folderUid?: pulumi.Input<string>;
         /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: pulumi.Input<number>;
+        /**
          * The unique identifier of the resource.
          */
         uid: pulumi.Input<string>;
@@ -6150,6 +6613,10 @@ export namespace experimental {
          * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: pulumi.Input<string>;
+        /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: pulumi.Input<number>;
         /**
          * The unique identifier of the resource.
          */

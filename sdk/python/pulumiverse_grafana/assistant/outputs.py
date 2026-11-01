@@ -16,6 +16,7 @@ from .. import _utilities
 
 __all__ = [
     'McpServerConfiguration',
+    'McpServerGithubApp',
     'SkillAllowedTool',
 ]
 
@@ -93,6 +94,86 @@ class McpServerConfiguration(dict):
         MCP server URL.
         """
         return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class McpServerGithubApp(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "appId":
+            suggest = "app_id"
+        elif key == "installationId":
+            suggest = "installation_id"
+        elif key == "privateKey":
+            suggest = "private_key"
+        elif key == "privateKeyHash":
+            suggest = "private_key_hash"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in McpServerGithubApp. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        McpServerGithubApp.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        McpServerGithubApp.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 app_id: Optional[_builtins.int] = None,
+                 installation_id: Optional[_builtins.int] = None,
+                 private_key: Optional[_builtins.str] = None,
+                 private_key_hash: Optional[_builtins.str] = None):
+        """
+        :param _builtins.int app_id: The GitHub App ID.
+        :param _builtins.int installation_id: The ID of the GitHub App installation on your organization.
+        :param _builtins.str private_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The GitHub App private key in PEM format. Terraform sends it to the API but never stores it in state.
+        :param _builtins.str private_key_hash: SHA-256 hash of the private key Terraform last sent, used to detect key changes in configuration. A key changed outside Terraform is not detected, because the API never returns the key.
+        """
+        if app_id is not None:
+            pulumi.set(__self__, "app_id", app_id)
+        if installation_id is not None:
+            pulumi.set(__self__, "installation_id", installation_id)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_hash is not None:
+            pulumi.set(__self__, "private_key_hash", private_key_hash)
+
+    @_builtins.property
+    @pulumi.getter(name="appId")
+    def app_id(self) -> Optional[_builtins.int]:
+        """
+        The GitHub App ID.
+        """
+        return pulumi.get(self, "app_id")
+
+    @_builtins.property
+    @pulumi.getter(name="installationId")
+    def installation_id(self) -> Optional[_builtins.int]:
+        """
+        The ID of the GitHub App installation on your organization.
+        """
+        return pulumi.get(self, "installation_id")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The GitHub App private key in PEM format. Terraform sends it to the API but never stores it in state.
+        """
+        return pulumi.get(self, "private_key")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyHash")
+    def private_key_hash(self) -> Optional[_builtins.str]:
+        """
+        SHA-256 hash of the private key Terraform last sent, used to detect key changes in configuration. A key changed outside Terraform is not detected, because the API never returns the key.
+        """
+        return pulumi.get(self, "private_key_hash")
 
 
 @pulumi.output_type

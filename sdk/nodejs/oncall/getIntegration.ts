@@ -5,6 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * Looks up an integration by ID, or by any combination of `name`, `teamId` and `type`. Exactly one integration must match.
+ *
+ * To look up the direct paging integration of a team, set `teamId` and `type = "directPaging"`. A team has at most one.
+ *
  * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/integrations/)
  *
  * ## Example Usage
@@ -16,12 +20,27 @@ import * as utilities from "../utilities";
  * const exampleIntegration = grafana.onCall.getIntegration({
  *     id: "CEXAMPLEID123",
  * });
+ * const myTeam = grafana.onCall.getTeam({
+ *     name: "my_team",
+ * });
+ * // The direct paging integration of a team, without its ID.
+ * const myTeamDirectPaging = myTeam.then(myTeam => grafana.onCall.getIntegration({
+ *     teamId: myTeam.id,
+ *     type: "direct_paging",
+ * }));
+ * const byName = grafana.onCall.getIntegration({
+ *     name: "My integration",
+ * });
  * ```
  */
-export function getIntegration(args: GetIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetIntegrationResult> {
+export function getIntegration(args?: GetIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetIntegrationResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:onCall/getIntegration:getIntegration", {
         "id": args.id,
+        "name": args.name,
+        "teamId": args.teamId,
+        "type": args.type,
     }, opts);
 }
 
@@ -30,9 +49,21 @@ export function getIntegration(args: GetIntegrationArgs, opts?: pulumi.InvokeOpt
  */
 export interface GetIntegrationArgs {
     /**
-     * The integration ID.
+     * The integration ID. Conflicts with `name`, `teamId` and `type`.
      */
-    id: string;
+    id?: string;
+    /**
+     * The integration name. When set, only the integration with this exact name matches.
+     */
+    name?: string;
+    /**
+     * The ID of the OnCall team the integration belongs to (using the `grafana.onCall.getTeam` datasource). When set, only integrations of this team match. Set it to `"null"` to match only integrations that do not belong to a team.
+     */
+    teamId?: string;
+    /**
+     * The type of integration, for example `directPaging`. When set, only integrations of this type match. A `directPaging` lookup waits up to a minute for the integration to be created, since a team's direct paging integration can appear shortly after the team.
+     */
+    type?: string;
 }
 
 /**
@@ -40,7 +71,7 @@ export interface GetIntegrationArgs {
  */
 export interface GetIntegrationResult {
     /**
-     * The integration ID.
+     * The integration ID. Conflicts with `name`, `teamId` and `type`.
      */
     readonly id: string;
     /**
@@ -52,11 +83,23 @@ export interface GetIntegrationResult {
      */
     readonly link: string;
     /**
-     * The integration name.
+     * The integration name. When set, only the integration with this exact name matches.
      */
     readonly name: string;
+    /**
+     * The ID of the OnCall team the integration belongs to (using the `grafana.onCall.getTeam` datasource). When set, only integrations of this team match. Set it to `"null"` to match only integrations that do not belong to a team.
+     */
+    readonly teamId: string;
+    /**
+     * The type of integration, for example `directPaging`. When set, only integrations of this type match. A `directPaging` lookup waits up to a minute for the integration to be created, since a team's direct paging integration can appear shortly after the team.
+     */
+    readonly type: string;
 }
 /**
+ * Looks up an integration by ID, or by any combination of `name`, `teamId` and `type`. Exactly one integration must match.
+ *
+ * To look up the direct paging integration of a team, set `teamId` and `type = "directPaging"`. A team has at most one.
+ *
  * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/integrations/)
  *
  * ## Example Usage
@@ -68,12 +111,27 @@ export interface GetIntegrationResult {
  * const exampleIntegration = grafana.onCall.getIntegration({
  *     id: "CEXAMPLEID123",
  * });
+ * const myTeam = grafana.onCall.getTeam({
+ *     name: "my_team",
+ * });
+ * // The direct paging integration of a team, without its ID.
+ * const myTeamDirectPaging = myTeam.then(myTeam => grafana.onCall.getIntegration({
+ *     teamId: myTeam.id,
+ *     type: "direct_paging",
+ * }));
+ * const byName = grafana.onCall.getIntegration({
+ *     name: "My integration",
+ * });
  * ```
  */
-export function getIntegrationOutput(args: GetIntegrationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIntegrationResult> {
+export function getIntegrationOutput(args?: GetIntegrationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIntegrationResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:onCall/getIntegration:getIntegration", {
         "id": args.id,
+        "name": args.name,
+        "teamId": args.teamId,
+        "type": args.type,
     }, opts);
 }
 
@@ -82,7 +140,19 @@ export function getIntegrationOutput(args: GetIntegrationOutputArgs, opts?: pulu
  */
 export interface GetIntegrationOutputArgs {
     /**
-     * The integration ID.
+     * The integration ID. Conflicts with `name`, `teamId` and `type`.
      */
-    id: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    /**
+     * The integration name. When set, only the integration with this exact name matches.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The ID of the OnCall team the integration belongs to (using the `grafana.onCall.getTeam` datasource). When set, only integrations of this team match. Set it to `"null"` to match only integrations that do not belong to a team.
+     */
+    teamId?: pulumi.Input<string>;
+    /**
+     * The type of integration, for example `directPaging`. When set, only integrations of this type match. A `directPaging` lookup waits up to a minute for the integration to be created, since a team's direct paging integration can appear shortly after the team.
+     */
+    type?: pulumi.Input<string>;
 }
