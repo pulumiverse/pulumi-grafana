@@ -65,6 +65,8 @@ type GetTeamResult struct {
 	Email     string `pulumi:"email"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
+	// Whether the team's resources are visible to all users (true), or only to team members and admins (false).
+	IsSharingResourcesToAll bool `pulumi:"isSharingResourcesToAll"`
 	// The team name.
 	Name string `pulumi:"name"`
 }
@@ -114,6 +116,11 @@ func (o GetTeamResultOutput) Email() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o GetTeamResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTeamResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether the team's resources are visible to all users (true), or only to team members and admins (false).
+func (o GetTeamResultOutput) IsSharingResourcesToAll() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetTeamResult) bool { return v.IsSharingResourcesToAll }).(pulumi.BoolOutput)
 }
 
 // The team name.

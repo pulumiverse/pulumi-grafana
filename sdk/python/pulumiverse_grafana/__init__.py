@@ -6,7 +6,12 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .apps_rules_alertrule_v1beta1 import *
+from .apps_rules_recordingrule_v1beta1 import *
+from .apps_rules_rulesequence_v1beta1 import *
 from .provider import *
+from ._inputs import *
+from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -749,6 +754,38 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "incident/severity",
+  "fqn": "pulumiverse_grafana.incident",
+  "classes": {
+   "grafana:incident/severity:Severity": "Severity"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/appsRulesAlertruleV1beta1",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/appsRulesAlertruleV1beta1:AppsRulesAlertruleV1beta1": "AppsRulesAlertruleV1beta1"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/appsRulesRecordingruleV1beta1",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/appsRulesRecordingruleV1beta1:AppsRulesRecordingruleV1beta1": "AppsRulesRecordingruleV1beta1"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/appsRulesRulesequenceV1beta1",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/appsRulesRulesequenceV1beta1:AppsRulesRulesequenceV1beta1": "AppsRulesRulesequenceV1beta1"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "k6/installation",
   "fqn": "pulumiverse_grafana.k6",
   "classes": {
@@ -881,6 +918,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.oncall",
   "classes": {
    "grafana:onCall/schedule:Schedule": "Schedule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "onCall/teamAccessManagement",
+  "fqn": "pulumiverse_grafana.oncall",
+  "classes": {
+   "grafana:onCall/teamAccessManagement:TeamAccessManagement": "TeamAccessManagement"
   }
  },
  {

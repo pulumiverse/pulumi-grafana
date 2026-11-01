@@ -5,6 +5,21 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AppsRulesAlertruleV1beta1Args, AppsRulesAlertruleV1beta1State } from "./appsRulesAlertruleV1beta1";
+export type AppsRulesAlertruleV1beta1 = import("./appsRulesAlertruleV1beta1").AppsRulesAlertruleV1beta1;
+export const AppsRulesAlertruleV1beta1: typeof import("./appsRulesAlertruleV1beta1").AppsRulesAlertruleV1beta1 = null as any;
+utilities.lazyLoad(exports, ["AppsRulesAlertruleV1beta1"], () => require("./appsRulesAlertruleV1beta1"));
+
+export { AppsRulesRecordingruleV1beta1Args, AppsRulesRecordingruleV1beta1State } from "./appsRulesRecordingruleV1beta1";
+export type AppsRulesRecordingruleV1beta1 = import("./appsRulesRecordingruleV1beta1").AppsRulesRecordingruleV1beta1;
+export const AppsRulesRecordingruleV1beta1: typeof import("./appsRulesRecordingruleV1beta1").AppsRulesRecordingruleV1beta1 = null as any;
+utilities.lazyLoad(exports, ["AppsRulesRecordingruleV1beta1"], () => require("./appsRulesRecordingruleV1beta1"));
+
+export { AppsRulesRulesequenceV1beta1Args, AppsRulesRulesequenceV1beta1State } from "./appsRulesRulesequenceV1beta1";
+export type AppsRulesRulesequenceV1beta1 = import("./appsRulesRulesequenceV1beta1").AppsRulesRulesequenceV1beta1;
+export const AppsRulesRulesequenceV1beta1: typeof import("./appsRulesRulesequenceV1beta1").AppsRulesRulesequenceV1beta1 = null as any;
+utilities.lazyLoad(exports, ["AppsRulesRulesequenceV1beta1"], () => require("./appsRulesRulesequenceV1beta1"));
+
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -55,6 +70,25 @@ export {
     syntheticmonitoring,
     types,
 };
+
+const _module = {
+    version: utilities.getVersion(),
+    construct: (name: string, type: string, urn: string): pulumi.Resource => {
+        switch (type) {
+            case "grafana:index/appsRulesAlertruleV1beta1:AppsRulesAlertruleV1beta1":
+                return new AppsRulesAlertruleV1beta1(name, <any>undefined, { urn })
+            case "grafana:index/appsRulesRecordingruleV1beta1:AppsRulesRecordingruleV1beta1":
+                return new AppsRulesRecordingruleV1beta1(name, <any>undefined, { urn })
+            case "grafana:index/appsRulesRulesequenceV1beta1:AppsRulesRulesequenceV1beta1":
+                return new AppsRulesRulesequenceV1beta1(name, <any>undefined, { urn })
+            default:
+                throw new Error(`unknown resource type ${type}`);
+        }
+    },
+};
+pulumi.runtime.registerResourceModule("grafana", "index/appsRulesAlertruleV1beta1", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/appsRulesRecordingruleV1beta1", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/appsRulesRulesequenceV1beta1", _module)
 pulumi.runtime.registerResourcePackage("grafana", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

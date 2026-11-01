@@ -207,6 +207,204 @@ func (o McpServerConfigurationPtrOutput) Url() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type McpServerGithubApp struct {
+	// The GitHub App ID.
+	AppId *int `pulumi:"appId"`
+	// The ID of the GitHub App installation on your organization.
+	InstallationId *int `pulumi:"installationId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The GitHub App private key in PEM format. Terraform sends it to the API but never stores it in state.
+	PrivateKey *string `pulumi:"privateKey"`
+	// SHA-256 hash of the private key Terraform last sent, used to detect key changes in configuration. A key changed outside Terraform is not detected, because the API never returns the key.
+	PrivateKeyHash *string `pulumi:"privateKeyHash"`
+}
+
+// McpServerGithubAppInput is an input type that accepts McpServerGithubAppArgs and McpServerGithubAppOutput values.
+// You can construct a concrete instance of `McpServerGithubAppInput` via:
+//
+//	McpServerGithubAppArgs{...}
+type McpServerGithubAppInput interface {
+	pulumi.Input
+
+	ToMcpServerGithubAppOutput() McpServerGithubAppOutput
+	ToMcpServerGithubAppOutputWithContext(context.Context) McpServerGithubAppOutput
+}
+
+type McpServerGithubAppArgs struct {
+	// The GitHub App ID.
+	AppId pulumi.IntPtrInput `pulumi:"appId"`
+	// The ID of the GitHub App installation on your organization.
+	InstallationId pulumi.IntPtrInput `pulumi:"installationId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The GitHub App private key in PEM format. Terraform sends it to the API but never stores it in state.
+	PrivateKey pulumi.StringPtrInput `pulumi:"privateKey"`
+	// SHA-256 hash of the private key Terraform last sent, used to detect key changes in configuration. A key changed outside Terraform is not detected, because the API never returns the key.
+	PrivateKeyHash pulumi.StringPtrInput `pulumi:"privateKeyHash"`
+}
+
+func (McpServerGithubAppArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*McpServerGithubApp)(nil)).Elem()
+}
+
+func (i McpServerGithubAppArgs) ToMcpServerGithubAppOutput() McpServerGithubAppOutput {
+	return i.ToMcpServerGithubAppOutputWithContext(context.Background())
+}
+
+func (i McpServerGithubAppArgs) ToMcpServerGithubAppOutputWithContext(ctx context.Context) McpServerGithubAppOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(McpServerGithubAppOutput)
+}
+
+func (i McpServerGithubAppArgs) ToMcpServerGithubAppPtrOutput() McpServerGithubAppPtrOutput {
+	return i.ToMcpServerGithubAppPtrOutputWithContext(context.Background())
+}
+
+func (i McpServerGithubAppArgs) ToMcpServerGithubAppPtrOutputWithContext(ctx context.Context) McpServerGithubAppPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(McpServerGithubAppOutput).ToMcpServerGithubAppPtrOutputWithContext(ctx)
+}
+
+// McpServerGithubAppPtrInput is an input type that accepts McpServerGithubAppArgs, McpServerGithubAppPtr and McpServerGithubAppPtrOutput values.
+// You can construct a concrete instance of `McpServerGithubAppPtrInput` via:
+//
+//	        McpServerGithubAppArgs{...}
+//
+//	or:
+//
+//	        nil
+type McpServerGithubAppPtrInput interface {
+	pulumi.Input
+
+	ToMcpServerGithubAppPtrOutput() McpServerGithubAppPtrOutput
+	ToMcpServerGithubAppPtrOutputWithContext(context.Context) McpServerGithubAppPtrOutput
+}
+
+type mcpServerGithubAppPtrType McpServerGithubAppArgs
+
+func McpServerGithubAppPtr(v *McpServerGithubAppArgs) McpServerGithubAppPtrInput {
+	return (*mcpServerGithubAppPtrType)(v)
+}
+
+func (*mcpServerGithubAppPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**McpServerGithubApp)(nil)).Elem()
+}
+
+func (i *mcpServerGithubAppPtrType) ToMcpServerGithubAppPtrOutput() McpServerGithubAppPtrOutput {
+	return i.ToMcpServerGithubAppPtrOutputWithContext(context.Background())
+}
+
+func (i *mcpServerGithubAppPtrType) ToMcpServerGithubAppPtrOutputWithContext(ctx context.Context) McpServerGithubAppPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(McpServerGithubAppPtrOutput)
+}
+
+type McpServerGithubAppOutput struct{ *pulumi.OutputState }
+
+func (McpServerGithubAppOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*McpServerGithubApp)(nil)).Elem()
+}
+
+func (o McpServerGithubAppOutput) ToMcpServerGithubAppOutput() McpServerGithubAppOutput {
+	return o
+}
+
+func (o McpServerGithubAppOutput) ToMcpServerGithubAppOutputWithContext(ctx context.Context) McpServerGithubAppOutput {
+	return o
+}
+
+func (o McpServerGithubAppOutput) ToMcpServerGithubAppPtrOutput() McpServerGithubAppPtrOutput {
+	return o.ToMcpServerGithubAppPtrOutputWithContext(context.Background())
+}
+
+func (o McpServerGithubAppOutput) ToMcpServerGithubAppPtrOutputWithContext(ctx context.Context) McpServerGithubAppPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v McpServerGithubApp) *McpServerGithubApp {
+		return &v
+	}).(McpServerGithubAppPtrOutput)
+}
+
+// The GitHub App ID.
+func (o McpServerGithubAppOutput) AppId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v McpServerGithubApp) *int { return v.AppId }).(pulumi.IntPtrOutput)
+}
+
+// The ID of the GitHub App installation on your organization.
+func (o McpServerGithubAppOutput) InstallationId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v McpServerGithubApp) *int { return v.InstallationId }).(pulumi.IntPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The GitHub App private key in PEM format. Terraform sends it to the API but never stores it in state.
+func (o McpServerGithubAppOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v McpServerGithubApp) *string { return v.PrivateKey }).(pulumi.StringPtrOutput)
+}
+
+// SHA-256 hash of the private key Terraform last sent, used to detect key changes in configuration. A key changed outside Terraform is not detected, because the API never returns the key.
+func (o McpServerGithubAppOutput) PrivateKeyHash() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v McpServerGithubApp) *string { return v.PrivateKeyHash }).(pulumi.StringPtrOutput)
+}
+
+type McpServerGithubAppPtrOutput struct{ *pulumi.OutputState }
+
+func (McpServerGithubAppPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**McpServerGithubApp)(nil)).Elem()
+}
+
+func (o McpServerGithubAppPtrOutput) ToMcpServerGithubAppPtrOutput() McpServerGithubAppPtrOutput {
+	return o
+}
+
+func (o McpServerGithubAppPtrOutput) ToMcpServerGithubAppPtrOutputWithContext(ctx context.Context) McpServerGithubAppPtrOutput {
+	return o
+}
+
+func (o McpServerGithubAppPtrOutput) Elem() McpServerGithubAppOutput {
+	return o.ApplyT(func(v *McpServerGithubApp) McpServerGithubApp {
+		if v != nil {
+			return *v
+		}
+		var ret McpServerGithubApp
+		return ret
+	}).(McpServerGithubAppOutput)
+}
+
+// The GitHub App ID.
+func (o McpServerGithubAppPtrOutput) AppId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *McpServerGithubApp) *int {
+		if v == nil {
+			return nil
+		}
+		return v.AppId
+	}).(pulumi.IntPtrOutput)
+}
+
+// The ID of the GitHub App installation on your organization.
+func (o McpServerGithubAppPtrOutput) InstallationId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *McpServerGithubApp) *int {
+		if v == nil {
+			return nil
+		}
+		return v.InstallationId
+	}).(pulumi.IntPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The GitHub App private key in PEM format. Terraform sends it to the API but never stores it in state.
+func (o McpServerGithubAppPtrOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *McpServerGithubApp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// SHA-256 hash of the private key Terraform last sent, used to detect key changes in configuration. A key changed outside Terraform is not detected, because the API never returns the key.
+func (o McpServerGithubAppPtrOutput) PrivateKeyHash() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *McpServerGithubApp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyHash
+	}).(pulumi.StringPtrOutput)
+}
+
 type SkillAllowedTool struct {
 	// Integration UUID.
 	IntegrationId string `pulumi:"integrationId"`
@@ -316,10 +514,14 @@ func (o SkillAllowedToolArrayOutput) Index(i pulumi.IntInput) SkillAllowedToolOu
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*McpServerConfigurationInput)(nil)).Elem(), McpServerConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*McpServerConfigurationPtrInput)(nil)).Elem(), McpServerConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*McpServerGithubAppInput)(nil)).Elem(), McpServerGithubAppArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*McpServerGithubAppPtrInput)(nil)).Elem(), McpServerGithubAppArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SkillAllowedToolInput)(nil)).Elem(), SkillAllowedToolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SkillAllowedToolArrayInput)(nil)).Elem(), SkillAllowedToolArray{})
 	pulumi.RegisterOutputType(McpServerConfigurationOutput{})
 	pulumi.RegisterOutputType(McpServerConfigurationPtrOutput{})
+	pulumi.RegisterOutputType(McpServerGithubAppOutput{})
+	pulumi.RegisterOutputType(McpServerGithubAppPtrOutput{})
 	pulumi.RegisterOutputType(SkillAllowedToolOutput{})
 	pulumi.RegisterOutputType(SkillAllowedToolArrayOutput{})
 }

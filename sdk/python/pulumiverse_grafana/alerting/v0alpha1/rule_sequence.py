@@ -145,6 +145,8 @@ class RuleSequence(pulumi.CustomResource):
         """
         Manages Grafana Rule Sequences.
 
+        > **Deprecated:** This resource uses the `v0alpha1` API. Use `AppsRulesRulesequenceV1beta1` instead.
+
         A rule sequence groups existing alert rules and recording rules so they are evaluated in order, at a shared interval, within a single folder. All referenced rules must live in the same folder as the sequence (set `metadata.folder_uid`).
 
         This resource is currently in alpha and is subject to change.
@@ -262,6 +264,8 @@ class RuleSequence(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages Grafana Rule Sequences.
+
+        > **Deprecated:** This resource uses the `v0alpha1` API. Use `AppsRulesRulesequenceV1beta1` instead.
 
         A rule sequence groups existing alert rules and recording rules so they are evaluated in order, at a shared interval, within a single folder. All referenced rules must live in the same folder as the sequence (set `metadata.folder_uid`).
 

@@ -109,9 +109,9 @@ export class UserNotificationRule extends pulumi.CustomResource {
      */
     declare public readonly important: pulumi.Output<boolean>;
     /**
-     * Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
+     * Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.
      */
-    declare public readonly position: pulumi.Output<number | undefined>;
+    declare public readonly position: pulumi.Output<number>;
     /**
      * The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `notifyByMsteams` is only available for Grafana Cloud customers.
      */
@@ -171,7 +171,7 @@ export interface UserNotificationRuleState {
      */
     important?: pulumi.Input<boolean>;
     /**
-     * Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
+     * Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.
      */
     position?: pulumi.Input<number>;
     /**
@@ -197,7 +197,7 @@ export interface UserNotificationRuleArgs {
      */
     important?: pulumi.Input<boolean>;
     /**
-     * Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
+     * Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.
      */
     position?: pulumi.Input<number>;
     /**

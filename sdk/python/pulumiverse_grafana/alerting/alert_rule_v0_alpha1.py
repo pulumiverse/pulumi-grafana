@@ -150,6 +150,8 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
         """
         Manages Grafana Alert Rules.
 
+        > **Deprecated:** This resource uses the `v0alpha1` API. Use `AppsRulesAlertruleV1beta1` instead.
+
         This resource is currently in alpha and is subject to change. Grafana 12.4+ users must enable the `kubernetesAlertingRules` [feature toggle](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/feature-toggles/).
 
         ## Example Usage
@@ -266,6 +268,8 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages Grafana Alert Rules.
+
+        > **Deprecated:** This resource uses the `v0alpha1` API. Use `AppsRulesAlertruleV1beta1` instead.
 
         This resource is currently in alpha and is subject to change. Grafana 12.4+ users must enable the `kubernetesAlertingRules` [feature toggle](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/feature-toggles/).
 

@@ -47,6 +47,10 @@ export interface GetTeamResult {
      */
     readonly id: string;
     /**
+     * Whether the team's resources are visible to all users (true), or only to team members and admins (false).
+     */
+    readonly isSharingResourcesToAll: boolean;
+    /**
      * The team name.
      */
     readonly name: string;
