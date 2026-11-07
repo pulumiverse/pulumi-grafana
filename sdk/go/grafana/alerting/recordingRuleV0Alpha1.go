@@ -13,6 +13,8 @@ import (
 
 // Manages Grafana Recording Rules.
 //
+// > **Deprecated:** This resource uses the `v0alpha1` API. Use `AppsRulesRecordingruleV1beta1` instead.
+//
 // ## Example Usage
 //
 // ```go

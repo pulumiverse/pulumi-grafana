@@ -48,6 +48,10 @@ class PlaylistMetadataArgsDict(TypedDict):
     """
     The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
     """
+    org_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `org_id` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stack_id` instead). Changing this value forces the resource to be recreated in the new organization.
+    """
     url: NotRequired[pulumi.Input[_builtins.str]]
     """
     The full URL of the resource.
@@ -67,6 +71,7 @@ class PlaylistMetadataArgs:
                  uid: pulumi.Input[_builtins.str],
                  annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
+                 org_id: Optional[pulumi.Input[_builtins.int]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  uuid: Optional[pulumi.Input[_builtins.str]] = None,
                  version: Optional[pulumi.Input[_builtins.str]] = None):
@@ -74,6 +79,7 @@ class PlaylistMetadataArgs:
         :param pulumi.Input[_builtins.str] uid: The unique identifier of the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Annotations of the resource.
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+        :param pulumi.Input[_builtins.int] org_id: The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `org_id` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stack_id` instead). Changing this value forces the resource to be recreated in the new organization.
         :param pulumi.Input[_builtins.str] url: The full URL of the resource.
         :param pulumi.Input[_builtins.str] uuid: The globally unique identifier of a resource, used by the API for tracking.
         :param pulumi.Input[_builtins.str] version: The version of the resource.
@@ -83,6 +89,8 @@ class PlaylistMetadataArgs:
             pulumi.set(__self__, "annotations", annotations)
         if folder_uid is not None:
             pulumi.set(__self__, "folder_uid", folder_uid)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if url is not None:
             pulumi.set(__self__, "url", url)
         if uuid is not None:
@@ -125,6 +133,18 @@ class PlaylistMetadataArgs:
     @folder_uid.setter
     def folder_uid(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "folder_uid", value)
+
+    @_builtins.property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `org_id` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stack_id` instead). Changing this value forces the resource to be recreated in the new organization.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "org_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -323,6 +343,10 @@ class QueryMetadataArgsDict(TypedDict):
     """
     The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
     """
+    org_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `org_id` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stack_id` instead). Changing this value forces the resource to be recreated in the new organization.
+    """
     url: NotRequired[pulumi.Input[_builtins.str]]
     """
     The full URL of the resource.
@@ -342,6 +366,7 @@ class QueryMetadataArgs:
                  uid: pulumi.Input[_builtins.str],
                  annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
+                 org_id: Optional[pulumi.Input[_builtins.int]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  uuid: Optional[pulumi.Input[_builtins.str]] = None,
                  version: Optional[pulumi.Input[_builtins.str]] = None):
@@ -349,6 +374,7 @@ class QueryMetadataArgs:
         :param pulumi.Input[_builtins.str] uid: The unique identifier of the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Annotations of the resource.
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+        :param pulumi.Input[_builtins.int] org_id: The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `org_id` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stack_id` instead). Changing this value forces the resource to be recreated in the new organization.
         :param pulumi.Input[_builtins.str] url: The full URL of the resource.
         :param pulumi.Input[_builtins.str] uuid: The globally unique identifier of a resource, used by the API for tracking.
         :param pulumi.Input[_builtins.str] version: The version of the resource.
@@ -358,6 +384,8 @@ class QueryMetadataArgs:
             pulumi.set(__self__, "annotations", annotations)
         if folder_uid is not None:
             pulumi.set(__self__, "folder_uid", folder_uid)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if url is not None:
             pulumi.set(__self__, "url", url)
         if uuid is not None:
@@ -400,6 +428,18 @@ class QueryMetadataArgs:
     @folder_uid.setter
     def folder_uid(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "folder_uid", value)
+
+    @_builtins.property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `org_id` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stack_id` instead). Changing this value forces the resource to be recreated in the new organization.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "org_id", value)
 
     @_builtins.property
     @pulumi.getter

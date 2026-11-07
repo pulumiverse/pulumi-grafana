@@ -90,6 +90,11 @@ export type Schedule = import("./schedule").Schedule;
 export const Schedule: typeof import("./schedule").Schedule = null as any;
 utilities.lazyLoad(exports, ["Schedule"], () => require("./schedule"));
 
+export { TeamAccessManagementArgs, TeamAccessManagementState } from "./teamAccessManagement";
+export type TeamAccessManagement = import("./teamAccessManagement").TeamAccessManagement;
+export const TeamAccessManagement: typeof import("./teamAccessManagement").TeamAccessManagement = null as any;
+utilities.lazyLoad(exports, ["TeamAccessManagement"], () => require("./teamAccessManagement"));
+
 export { UserNotificationRuleArgs, UserNotificationRuleState } from "./userNotificationRule";
 export type UserNotificationRule = import("./userNotificationRule").UserNotificationRule;
 export const UserNotificationRule: typeof import("./userNotificationRule").UserNotificationRule = null as any;
@@ -114,6 +119,8 @@ const _module = {
                 return new Route(name, <any>undefined, { urn })
             case "grafana:onCall/schedule:Schedule":
                 return new Schedule(name, <any>undefined, { urn })
+            case "grafana:onCall/teamAccessManagement:TeamAccessManagement":
+                return new TeamAccessManagement(name, <any>undefined, { urn })
             case "grafana:onCall/userNotificationRule:UserNotificationRule":
                 return new UserNotificationRule(name, <any>undefined, { urn })
             default:
@@ -128,4 +135,5 @@ pulumi.runtime.registerResourceModule("grafana", "onCall/onCallShift", _module)
 pulumi.runtime.registerResourceModule("grafana", "onCall/outgoingWebhook", _module)
 pulumi.runtime.registerResourceModule("grafana", "onCall/route", _module)
 pulumi.runtime.registerResourceModule("grafana", "onCall/schedule", _module)
+pulumi.runtime.registerResourceModule("grafana", "onCall/teamAccessManagement", _module)
 pulumi.runtime.registerResourceModule("grafana", "onCall/userNotificationRule", _module)

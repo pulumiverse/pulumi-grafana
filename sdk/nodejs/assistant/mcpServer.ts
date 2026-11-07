@@ -28,6 +28,21 @@ import * as utilities from "../utilities";
  *         Authorization: `Bearer ${mcpToken}`,
  *     },
  * });
+ * const githubAppPrivateKey = config.require("githubAppPrivateKey");
+ * // Authenticate a GitHub MCP server with a GitHub App installation instead of a personal access token.
+ * const github = new grafana.assistant.McpServer("github", {
+ *     configuration: {
+ *         url: "https://api.githubcopilot.com/mcp/",
+ *     },
+ *     githubApp: {
+ *         appId: 123456,
+ *         installationId: 12345678,
+ *         privateKey: githubAppPrivateKey,
+ *     },
+ *     name: "GitHub",
+ *     scope: "tenant",
+ *     applications: ["assistant"],
+ * });
  * ```
  *
  * ## Import
@@ -35,6 +50,8 @@ import * as utilities from "../utilities";
  * ```sh
  * terraform import grafana_assistant_mcp_server.name "{{ id }}"
  * ```
+ *
+ * After importing a server that uses `githubApp`, the first plan shows an update to `github_app.private_key_hash`, because the write-only private key isn't stored in state. Applying it resends the key, which the Assistant treats as a credential change: it rebuilds the MCP client and clears the server's cached tool list.
  */
 export class McpServer extends pulumi.CustomResource {
     /**
@@ -85,6 +102,10 @@ export class McpServer extends pulumi.CustomResource {
      */
     declare public readonly enabled: pulumi.Output<boolean>;
     /**
+     * GitHub App installation credentials, used instead of a personal access token for `tenant` scoped GitHub MCP servers (`https://api.githubcopilot.com/mcp` or `https://<HOSTNAME>.ghe.com/mcp`). The Assistant mints short-lived installation tokens from these credentials and uses them in place of any `Authorization` custom header. All three attributes are required when the block is set. Removing the block clears the credentials.
+     */
+    declare public readonly githubApp: pulumi.Output<outputs.assistant.McpServerGithubApp | undefined>;
+    /**
      * The MCP server integration name.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -111,6 +132,7 @@ export class McpServer extends pulumi.CustomResource {
             resourceInputs["customHeaders"] = state?.customHeaders;
             resourceInputs["description"] = state?.description;
             resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["githubApp"] = state?.githubApp;
             resourceInputs["name"] = state?.name;
             resourceInputs["scope"] = state?.scope;
         } else {
@@ -123,6 +145,7 @@ export class McpServer extends pulumi.CustomResource {
             resourceInputs["customHeaders"] = args?.customHeaders ? pulumi.secret(args.customHeaders) : undefined;
             resourceInputs["description"] = args?.description;
             resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["githubApp"] = args?.githubApp;
             resourceInputs["name"] = args?.name;
             resourceInputs["scope"] = args?.scope;
         }
@@ -158,6 +181,10 @@ export interface McpServerState {
      */
     enabled?: pulumi.Input<boolean>;
     /**
+     * GitHub App installation credentials, used instead of a personal access token for `tenant` scoped GitHub MCP servers (`https://api.githubcopilot.com/mcp` or `https://<HOSTNAME>.ghe.com/mcp`). The Assistant mints short-lived installation tokens from these credentials and uses them in place of any `Authorization` custom header. All three attributes are required when the block is set. Removing the block clears the credentials.
+     */
+    githubApp?: pulumi.Input<inputs.assistant.McpServerGithubApp>;
+    /**
      * The MCP server integration name.
      */
     name?: pulumi.Input<string>;
@@ -191,6 +218,10 @@ export interface McpServerArgs {
      * Whether the resource is enabled.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * GitHub App installation credentials, used instead of a personal access token for `tenant` scoped GitHub MCP servers (`https://api.githubcopilot.com/mcp` or `https://<HOSTNAME>.ghe.com/mcp`). The Assistant mints short-lived installation tokens from these credentials and uses them in place of any `Authorization` custom header. All three attributes are required when the block is set. Removing the block clears the credentials.
+     */
+    githubApp?: pulumi.Input<inputs.assistant.McpServerGithubApp>;
     /**
      * The MCP server integration name.
      */

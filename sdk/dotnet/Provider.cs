@@ -26,7 +26,7 @@ namespace Pulumiverse.Grafana
         public Output<string?> Auth { get; private set; } = null!;
 
         /// <summary>
-        /// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
+        /// Certificate CA bundle (file path or literal value) to use to verify the certificates of Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
         /// </summary>
         [Output("caCert")]
         public Output<string?> CaCert { get; private set; } = null!;
@@ -128,13 +128,13 @@ namespace Pulumiverse.Grafana
         public Output<string?> SmUrl { get; private set; } = null!;
 
         /// <summary>
-        /// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
+        /// Client TLS certificate (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
         /// </summary>
         [Output("tlsCert")]
         public Output<string?> TlsCert { get; private set; } = null!;
 
         /// <summary>
-        /// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
+        /// Client TLS key (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
         /// </summary>
         [Output("tlsKey")]
         public Output<string?> TlsKey { get; private set; } = null!;
@@ -210,7 +210,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
+        /// Certificate CA bundle (file path or literal value) to use to verify the certificates of Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
         /// </summary>
         [Input("caCert")]
         public Input<string>? CaCert { get; set; }
@@ -456,7 +456,7 @@ namespace Pulumiverse.Grafana
         public Input<bool>? StoreDashboardSha256 { get; set; }
 
         /// <summary>
-        /// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
+        /// Client TLS certificate (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
         /// </summary>
         [Input("tlsCert")]
         public Input<string>? TlsCert { get; set; }
@@ -465,7 +465,7 @@ namespace Pulumiverse.Grafana
         private Input<string>? _tlsKey;
 
         /// <summary>
-        /// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
+        /// Client TLS key (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
         /// </summary>
         public Input<string>? TlsKey
         {

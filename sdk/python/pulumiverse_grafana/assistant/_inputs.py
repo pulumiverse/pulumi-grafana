@@ -17,6 +17,8 @@ from .. import _utilities
 __all__ = [
     'McpServerConfigurationArgs',
     'McpServerConfigurationArgsDict',
+    'McpServerGithubAppArgs',
+    'McpServerGithubAppArgsDict',
     'SkillAllowedToolArgs',
     'SkillAllowedToolArgsDict',
 ]
@@ -108,6 +110,98 @@ class McpServerConfigurationArgs:
     @url.setter
     def url(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "url", value)
+
+
+class McpServerGithubAppArgsDict(TypedDict):
+    app_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The GitHub App ID.
+    """
+    installation_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The ID of the GitHub App installation on your organization.
+    """
+    private_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    The GitHub App private key in PEM format. Terraform sends it to the API but never stores it in state.
+    """
+    private_key_hash: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    SHA-256 hash of the private key Terraform last sent, used to detect key changes in configuration. A key changed outside Terraform is not detected, because the API never returns the key.
+    """
+
+@pulumi.input_type
+class McpServerGithubAppArgs:
+    def __init__(__self__, *,
+                 app_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 installation_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_hash: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.int] app_id: The GitHub App ID.
+        :param pulumi.Input[_builtins.int] installation_id: The ID of the GitHub App installation on your organization.
+        :param pulumi.Input[_builtins.str] private_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The GitHub App private key in PEM format. Terraform sends it to the API but never stores it in state.
+        :param pulumi.Input[_builtins.str] private_key_hash: SHA-256 hash of the private key Terraform last sent, used to detect key changes in configuration. A key changed outside Terraform is not detected, because the API never returns the key.
+        """
+        if app_id is not None:
+            pulumi.set(__self__, "app_id", app_id)
+        if installation_id is not None:
+            pulumi.set(__self__, "installation_id", installation_id)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_hash is not None:
+            pulumi.set(__self__, "private_key_hash", private_key_hash)
+
+    @_builtins.property
+    @pulumi.getter(name="appId")
+    def app_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The GitHub App ID.
+        """
+        return pulumi.get(self, "app_id")
+
+    @app_id.setter
+    def app_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "app_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="installationId")
+    def installation_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The ID of the GitHub App installation on your organization.
+        """
+        return pulumi.get(self, "installation_id")
+
+    @installation_id.setter
+    def installation_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "installation_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The GitHub App private key in PEM format. Terraform sends it to the API but never stores it in state.
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyHash")
+    def private_key_hash(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        SHA-256 hash of the private key Terraform last sent, used to detect key changes in configuration. A key changed outside Terraform is not detected, because the API never returns the key.
+        """
+        return pulumi.get(self, "private_key_hash")
+
+    @private_key_hash.setter
+    def private_key_hash(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key_hash", value)
 
 
 class SkillAllowedToolArgsDict(TypedDict):

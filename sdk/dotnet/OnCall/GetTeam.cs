@@ -134,6 +134,10 @@ namespace Pulumiverse.Grafana.OnCall
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// Whether the team's resources are visible to all users (true), or only to team members and admins (false).
+        /// </summary>
+        public readonly bool IsSharingResourcesToAll;
+        /// <summary>
         /// The team name.
         /// </summary>
         public readonly string Name;
@@ -146,11 +150,14 @@ namespace Pulumiverse.Grafana.OnCall
 
             string id,
 
+            bool isSharingResourcesToAll,
+
             string name)
         {
             AvatarUrl = avatarUrl;
             Email = email;
             Id = id;
+            IsSharingResourcesToAll = isSharingResourcesToAll;
             Name = name;
         }
     }

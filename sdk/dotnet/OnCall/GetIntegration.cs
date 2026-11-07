@@ -13,6 +13,10 @@ namespace Pulumiverse.Grafana.OnCall
     public static class GetIntegration
     {
         /// <summary>
+        /// Looks up an integration by ID, or by any combination of `Name`, `TeamId` and `Type`. Exactly one integration must match.
+        /// 
+        /// To look up the direct paging integration of a team, set `TeamId` and `type = "DirectPaging"`. A team has at most one.
+        /// 
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/integrations/)
         /// 
         /// ## Example Usage
@@ -30,13 +34,34 @@ namespace Pulumiverse.Grafana.OnCall
         ///         Id = "CEXAMPLEID123",
         ///     });
         /// 
+        ///     var myTeam = Grafana.OnCall.GetTeam.Invoke(new()
+        ///     {
+        ///         Name = "my_team",
+        ///     });
+        /// 
+        ///     // The direct paging integration of a team, without its ID.
+        ///     var myTeamDirectPaging = Grafana.OnCall.GetIntegration.Invoke(new()
+        ///     {
+        ///         TeamId = myTeam.Apply(getTeamResult =&gt; getTeamResult.Id),
+        ///         Type = "direct_paging",
+        ///     });
+        /// 
+        ///     var byName = Grafana.OnCall.GetIntegration.Invoke(new()
+        ///     {
+        ///         Name = "My integration",
+        ///     });
+        /// 
         /// });
         /// ```
         /// </summary>
-        public static Task<GetIntegrationResult> InvokeAsync(GetIntegrationArgs args, InvokeOptions? options = null)
+        public static Task<GetIntegrationResult> InvokeAsync(GetIntegrationArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetIntegrationResult>("grafana:onCall/getIntegration:getIntegration", args ?? new GetIntegrationArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Looks up an integration by ID, or by any combination of `Name`, `TeamId` and `Type`. Exactly one integration must match.
+        /// 
+        /// To look up the direct paging integration of a team, set `TeamId` and `type = "DirectPaging"`. A team has at most one.
+        /// 
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/integrations/)
         /// 
         /// ## Example Usage
@@ -54,13 +79,34 @@ namespace Pulumiverse.Grafana.OnCall
         ///         Id = "CEXAMPLEID123",
         ///     });
         /// 
+        ///     var myTeam = Grafana.OnCall.GetTeam.Invoke(new()
+        ///     {
+        ///         Name = "my_team",
+        ///     });
+        /// 
+        ///     // The direct paging integration of a team, without its ID.
+        ///     var myTeamDirectPaging = Grafana.OnCall.GetIntegration.Invoke(new()
+        ///     {
+        ///         TeamId = myTeam.Apply(getTeamResult =&gt; getTeamResult.Id),
+        ///         Type = "direct_paging",
+        ///     });
+        /// 
+        ///     var byName = Grafana.OnCall.GetIntegration.Invoke(new()
+        ///     {
+        ///         Name = "My integration",
+        ///     });
+        /// 
         /// });
         /// ```
         /// </summary>
-        public static Output<GetIntegrationResult> Invoke(GetIntegrationInvokeArgs args, InvokeOptions? options = null)
+        public static Output<GetIntegrationResult> Invoke(GetIntegrationInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIntegrationResult>("grafana:onCall/getIntegration:getIntegration", args ?? new GetIntegrationInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Looks up an integration by ID, or by any combination of `Name`, `TeamId` and `Type`. Exactly one integration must match.
+        /// 
+        /// To look up the direct paging integration of a team, set `TeamId` and `type = "DirectPaging"`. A team has at most one.
+        /// 
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/integrations/)
         /// 
         /// ## Example Usage
@@ -76,6 +122,23 @@ namespace Pulumiverse.Grafana.OnCall
         ///     var exampleIntegration = Grafana.OnCall.GetIntegration.Invoke(new()
         ///     {
         ///         Id = "CEXAMPLEID123",
+        ///     });
+        /// 
+        ///     var myTeam = Grafana.OnCall.GetTeam.Invoke(new()
+        ///     {
+        ///         Name = "my_team",
+        ///     });
+        /// 
+        ///     // The direct paging integration of a team, without its ID.
+        ///     var myTeamDirectPaging = Grafana.OnCall.GetIntegration.Invoke(new()
+        ///     {
+        ///         TeamId = myTeam.Apply(getTeamResult =&gt; getTeamResult.Id),
+        ///         Type = "direct_paging",
+        ///     });
+        /// 
+        ///     var byName = Grafana.OnCall.GetIntegration.Invoke(new()
+        ///     {
+        ///         Name = "My integration",
         ///     });
         /// 
         /// });
@@ -89,10 +152,28 @@ namespace Pulumiverse.Grafana.OnCall
     public sealed class GetIntegrationArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The integration ID.
+        /// The integration ID. Conflicts with `Name`, `TeamId` and `Type`.
         /// </summary>
-        [Input("id", required: true)]
-        public string Id { get; set; } = null!;
+        [Input("id")]
+        public string? Id { get; set; }
+
+        /// <summary>
+        /// The integration name. When set, only the integration with this exact name matches.
+        /// </summary>
+        [Input("name")]
+        public string? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the OnCall team the integration belongs to (using the `grafana.onCall.getTeam` datasource). When set, only integrations of this team match. Set it to `"null"` to match only integrations that do not belong to a team.
+        /// </summary>
+        [Input("teamId")]
+        public string? TeamId { get; set; }
+
+        /// <summary>
+        /// The type of integration, for example `DirectPaging`. When set, only integrations of this type match. A `DirectPaging` lookup waits up to a minute for the integration to be created, since a team's direct paging integration can appear shortly after the team.
+        /// </summary>
+        [Input("type")]
+        public string? Type { get; set; }
 
         public GetIntegrationArgs()
         {
@@ -103,10 +184,28 @@ namespace Pulumiverse.Grafana.OnCall
     public sealed class GetIntegrationInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The integration ID.
+        /// The integration ID. Conflicts with `Name`, `TeamId` and `Type`.
         /// </summary>
-        [Input("id", required: true)]
-        public Input<string> Id { get; set; } = null!;
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// The integration name. When set, only the integration with this exact name matches.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the OnCall team the integration belongs to (using the `grafana.onCall.getTeam` datasource). When set, only integrations of this team match. Set it to `"null"` to match only integrations that do not belong to a team.
+        /// </summary>
+        [Input("teamId")]
+        public Input<string>? TeamId { get; set; }
+
+        /// <summary>
+        /// The type of integration, for example `DirectPaging`. When set, only integrations of this type match. A `DirectPaging` lookup waits up to a minute for the integration to be created, since a team's direct paging integration can appear shortly after the team.
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
 
         public GetIntegrationInvokeArgs()
         {
@@ -119,7 +218,7 @@ namespace Pulumiverse.Grafana.OnCall
     public sealed class GetIntegrationResult
     {
         /// <summary>
-        /// The integration ID.
+        /// The integration ID. Conflicts with `Name`, `TeamId` and `Type`.
         /// </summary>
         public readonly string Id;
         /// <summary>
@@ -131,9 +230,17 @@ namespace Pulumiverse.Grafana.OnCall
         /// </summary>
         public readonly string Link;
         /// <summary>
-        /// The integration name.
+        /// The integration name. When set, only the integration with this exact name matches.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The ID of the OnCall team the integration belongs to (using the `grafana.onCall.getTeam` datasource). When set, only integrations of this team match. Set it to `"null"` to match only integrations that do not belong to a team.
+        /// </summary>
+        public readonly string TeamId;
+        /// <summary>
+        /// The type of integration, for example `DirectPaging`. When set, only integrations of this type match. A `DirectPaging` lookup waits up to a minute for the integration to be created, since a team's direct paging integration can appear shortly after the team.
+        /// </summary>
+        public readonly string Type;
 
         [OutputConstructor]
         private GetIntegrationResult(
@@ -143,12 +250,18 @@ namespace Pulumiverse.Grafana.OnCall
 
             string link,
 
-            string name)
+            string name,
+
+            string teamId,
+
+            string type)
         {
             Id = id;
             InboundEmail = inboundEmail;
             Link = link;
             Name = name;
+            TeamId = teamId;
+            Type = type;
         }
     }
 }
