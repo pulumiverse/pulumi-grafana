@@ -35,6 +35,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Route{}
 	case "grafana:onCall/schedule:Schedule":
 		r = &Schedule{}
+	case "grafana:onCall/teamAccessManagement:TeamAccessManagement":
+		r = &TeamAccessManagement{}
 	case "grafana:onCall/userNotificationRule:UserNotificationRule":
 		r = &UserNotificationRule{}
 	default:
@@ -83,6 +85,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"onCall/schedule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"onCall/teamAccessManagement",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

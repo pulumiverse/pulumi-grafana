@@ -11,6 +11,30 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
+type module struct {
+	version semver.Version
+}
+
+func (m *module) Version() semver.Version {
+	return m.version
+}
+
+func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
+	switch typ {
+	case "grafana:index/appsRulesAlertruleV1beta1:AppsRulesAlertruleV1beta1":
+		r = &AppsRulesAlertruleV1beta1{}
+	case "grafana:index/appsRulesRecordingruleV1beta1:AppsRulesRecordingruleV1beta1":
+		r = &AppsRulesRecordingruleV1beta1{}
+	case "grafana:index/appsRulesRulesequenceV1beta1:AppsRulesRulesequenceV1beta1":
+		r = &AppsRulesRulesequenceV1beta1{}
+	default:
+		return nil, fmt.Errorf("unknown resource type: %s", typ)
+	}
+
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	return
+}
+
 type pkg struct {
 	version semver.Version
 }
@@ -34,6 +58,21 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/appsRulesAlertruleV1beta1",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/appsRulesRecordingruleV1beta1",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/appsRulesRulesequenceV1beta1",
+		&module{version},
+	)
 	pulumi.RegisterResourcePackage(
 		"grafana",
 		&pkg{version},

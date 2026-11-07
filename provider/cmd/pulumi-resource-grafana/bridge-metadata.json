@@ -447,6 +447,33 @@
                     }
                 }
             },
+            "grafana_apps_rules_alertrule_v1beta1": {
+                "current": "grafana:index/appsRulesAlertruleV1beta1:AppsRulesAlertruleV1beta1",
+                "majorVersion": 2,
+                "fields": {
+                    "spec": {
+                        "fields": {
+                            "notification_settings": {
+                                "fields": {
+                                    "simplified_routing": {
+                                        "fields": {
+                                            "active_timings": {
+                                                "maxItemsOne": false
+                                            },
+                                            "group_by": {
+                                                "maxItemsOne": false
+                                            },
+                                            "mute_timings": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "grafana_apps_rules_recordingrule_v0alpha1": {
                 "current": "grafana:alerting/v0alpha1/recordingRule:RecordingRule",
                 "past": [
@@ -458,6 +485,10 @@
                 ],
                 "majorVersion": 2
             },
+            "grafana_apps_rules_recordingrule_v1beta1": {
+                "current": "grafana:index/appsRulesRecordingruleV1beta1:AppsRulesRecordingruleV1beta1",
+                "majorVersion": 2
+            },
             "grafana_apps_rules_rulesequence_v0alpha1": {
                 "current": "grafana:alerting/v0alpha1/ruleSequence:RuleSequence",
                 "majorVersion": 2,
@@ -465,6 +496,22 @@
                     "spec": {
                         "fields": {
                             "alerting_rules": {
+                                "maxItemsOne": false
+                            },
+                            "recording_rules": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
+            "grafana_apps_rules_rulesequence_v1beta1": {
+                "current": "grafana:index/appsRulesRulesequenceV1beta1:AppsRulesRulesequenceV1beta1",
+                "majorVersion": 2,
+                "fields": {
+                    "spec": {
+                        "fields": {
+                            "alert_rules": {
                                 "maxItemsOne": false
                             },
                             "recording_rules": {
@@ -1206,6 +1253,10 @@
                 "current": "grafana:incident/role:Role",
                 "majorVersion": 2
             },
+            "grafana_incident_severity": {
+                "current": "grafana:incident/severity:Severity",
+                "majorVersion": 2
+            },
             "grafana_k6_installation": {
                 "current": "grafana:k6/installation:Installation",
                 "majorVersion": 2
@@ -1561,6 +1612,10 @@
                         "maxItemsOne": true
                     }
                 }
+            },
+            "grafana_oncall_team_access_management": {
+                "current": "grafana:onCall/teamAccessManagement:TeamAccessManagement",
+                "majorVersion": 2
             },
             "grafana_oncall_user_notification_rule": {
                 "current": "grafana:onCall/userNotificationRule:UserNotificationRule",
@@ -2910,6 +2965,10 @@
             "grafana:fleetManagement/pipeline:Pipeline": 1,
             "grafana:frontendObservability/app:App": 1,
             "grafana:incident/role:Role": 1,
+            "grafana:incident/severity:Severity": 1,
+            "grafana:index/appsRulesAlertruleV1beta1:AppsRulesAlertruleV1beta1": 1,
+            "grafana:index/appsRulesRecordingruleV1beta1:AppsRulesRecordingruleV1beta1": 1,
+            "grafana:index/appsRulesRulesequenceV1beta1:AppsRulesRulesequenceV1beta1": 1,
             "grafana:k6/installation:Installation": 0,
             "grafana:k6/loadTest:LoadTest": 1,
             "grafana:k6/project:Project": 1,
@@ -2927,6 +2986,7 @@
             "grafana:onCall/outgoingWebhook:OutgoingWebhook": 0,
             "grafana:onCall/route:Route": 0,
             "grafana:onCall/schedule:Schedule": 0,
+            "grafana:onCall/teamAccessManagement:TeamAccessManagement": 1,
             "grafana:onCall/userNotificationRule:UserNotificationRule": 1,
             "grafana:oss/annotation:Annotation": 1,
             "grafana:oss/dashboard:Dashboard": 0,

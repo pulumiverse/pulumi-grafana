@@ -47,6 +47,26 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			githubAppPrivateKey := cfg.Require("githubAppPrivateKey")
+//			// Authenticate a GitHub MCP server with a GitHub App installation instead of a personal access token.
+//			_, err = assistant.NewMcpServer(ctx, "github", &assistant.McpServerArgs{
+//				Configuration: &assistant.McpServerConfigurationArgs{
+//					Url: pulumi.String("https://api.githubcopilot.com/mcp/"),
+//				},
+//				GithubApp: &assistant.McpServerGithubAppArgs{
+//					AppId:          pulumi.Int(123456),
+//					InstallationId: pulumi.Int(12345678),
+//					PrivateKey:     pulumi.String(pulumi.String(githubAppPrivateKey)),
+//				},
+//				Name:  pulumi.String("GitHub"),
+//				Scope: pulumi.String("tenant"),
+//				Applications: pulumi.StringArray{
+//					pulumi.String("assistant"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
@@ -58,6 +78,8 @@ import (
 // ```sh
 // terraform import grafana_assistant_mcp_server.name "{{ id }}"
 // ```
+//
+// After importing a server that uses `githubApp`, the first plan shows an update to `github_app.private_key_hash`, because the write-only private key isn't stored in state. Applying it resends the key, which the Assistant treats as a credential change: it rebuilds the MCP client and clears the server's cached tool list.
 type McpServer struct {
 	pulumi.CustomResourceState
 
@@ -71,6 +93,8 @@ type McpServer struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Whether the resource is enabled.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
+	// GitHub App installation credentials, used instead of a personal access token for `tenant` scoped GitHub MCP servers (`https://api.githubcopilot.com/mcp` or `https://<HOSTNAME>.ghe.com/mcp`). The Assistant mints short-lived installation tokens from these credentials and uses them in place of any `Authorization` custom header. All three attributes are required when the block is set. Removing the block clears the credentials.
+	GithubApp McpServerGithubAppPtrOutput `pulumi:"githubApp"`
 	// The MCP server integration name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Whether the resource is visible to the whole tenant (`tenant`) or only the creating user (`user`).
@@ -127,6 +151,8 @@ type mcpServerState struct {
 	Description *string `pulumi:"description"`
 	// Whether the resource is enabled.
 	Enabled *bool `pulumi:"enabled"`
+	// GitHub App installation credentials, used instead of a personal access token for `tenant` scoped GitHub MCP servers (`https://api.githubcopilot.com/mcp` or `https://<HOSTNAME>.ghe.com/mcp`). The Assistant mints short-lived installation tokens from these credentials and uses them in place of any `Authorization` custom header. All three attributes are required when the block is set. Removing the block clears the credentials.
+	GithubApp *McpServerGithubApp `pulumi:"githubApp"`
 	// The MCP server integration name.
 	Name *string `pulumi:"name"`
 	// Whether the resource is visible to the whole tenant (`tenant`) or only the creating user (`user`).
@@ -144,6 +170,8 @@ type McpServerState struct {
 	Description pulumi.StringPtrInput
 	// Whether the resource is enabled.
 	Enabled pulumi.BoolPtrInput
+	// GitHub App installation credentials, used instead of a personal access token for `tenant` scoped GitHub MCP servers (`https://api.githubcopilot.com/mcp` or `https://<HOSTNAME>.ghe.com/mcp`). The Assistant mints short-lived installation tokens from these credentials and uses them in place of any `Authorization` custom header. All three attributes are required when the block is set. Removing the block clears the credentials.
+	GithubApp McpServerGithubAppPtrInput
 	// The MCP server integration name.
 	Name pulumi.StringPtrInput
 	// Whether the resource is visible to the whole tenant (`tenant`) or only the creating user (`user`).
@@ -165,6 +193,8 @@ type mcpServerArgs struct {
 	Description *string `pulumi:"description"`
 	// Whether the resource is enabled.
 	Enabled *bool `pulumi:"enabled"`
+	// GitHub App installation credentials, used instead of a personal access token for `tenant` scoped GitHub MCP servers (`https://api.githubcopilot.com/mcp` or `https://<HOSTNAME>.ghe.com/mcp`). The Assistant mints short-lived installation tokens from these credentials and uses them in place of any `Authorization` custom header. All three attributes are required when the block is set. Removing the block clears the credentials.
+	GithubApp *McpServerGithubApp `pulumi:"githubApp"`
 	// The MCP server integration name.
 	Name *string `pulumi:"name"`
 	// Whether the resource is visible to the whole tenant (`tenant`) or only the creating user (`user`).
@@ -183,6 +213,8 @@ type McpServerArgs struct {
 	Description pulumi.StringPtrInput
 	// Whether the resource is enabled.
 	Enabled pulumi.BoolPtrInput
+	// GitHub App installation credentials, used instead of a personal access token for `tenant` scoped GitHub MCP servers (`https://api.githubcopilot.com/mcp` or `https://<HOSTNAME>.ghe.com/mcp`). The Assistant mints short-lived installation tokens from these credentials and uses them in place of any `Authorization` custom header. All three attributes are required when the block is set. Removing the block clears the credentials.
+	GithubApp McpServerGithubAppPtrInput
 	// The MCP server integration name.
 	Name pulumi.StringPtrInput
 	// Whether the resource is visible to the whole tenant (`tenant`) or only the creating user (`user`).
@@ -299,6 +331,11 @@ func (o McpServerOutput) Description() pulumi.StringPtrOutput {
 // Whether the resource is enabled.
 func (o McpServerOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *McpServer) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// GitHub App installation credentials, used instead of a personal access token for `tenant` scoped GitHub MCP servers (`https://api.githubcopilot.com/mcp` or `https://<HOSTNAME>.ghe.com/mcp`). The Assistant mints short-lived installation tokens from these credentials and uses them in place of any `Authorization` custom header. All three attributes are required when the block is set. Removing the block clears the credentials.
+func (o McpServerOutput) GithubApp() McpServerGithubAppPtrOutput {
+	return o.ApplyT(func(v *McpServer) McpServerGithubAppPtrOutput { return v.GithubApp }).(McpServerGithubAppPtrOutput)
 }
 
 // The MCP server integration name.

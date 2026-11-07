@@ -20,7 +20,7 @@ type Provider struct {
 
 	// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
 	Auth pulumi.StringPtrOutput `pulumi:"auth"`
-	// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
+	// Certificate CA bundle (file path or literal value) to use to verify the certificates of Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
 	CaCert pulumi.StringPtrOutput `pulumi:"caCert"`
 	// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment variable.
 	CloudAccessPolicyToken pulumi.StringPtrOutput `pulumi:"cloudAccessPolicyToken"`
@@ -54,9 +54,9 @@ type Provider struct {
 	SmAccessToken pulumi.StringPtrOutput `pulumi:"smAccessToken"`
 	// Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The correct value for each service region is cited in the [Synthetic Monitoring documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#probe-api-server-url). Note the `smUrl` value is optional, but it must correspond with the value specified as the `regionSlug` in the `cloud.Stack` resource. Also note that when a Terraform configuration contains multiple provider instances managing SM resources associated with the same Grafana stack, specifying an explicit `smUrl` set to the same value for each provider ensures all providers interact with the same SM API.
 	SmUrl pulumi.StringPtrOutput `pulumi:"smUrl"`
-	// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
+	// Client TLS certificate (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
 	TlsCert pulumi.StringPtrOutput `pulumi:"tlsCert"`
-	// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
+	// Client TLS key (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
 	TlsKey pulumi.StringPtrOutput `pulumi:"tlsKey"`
 	// The root URL of a Grafana server. May alternatively be set via the `GRAFANA_URL` environment variable.
 	Url pulumi.StringPtrOutput `pulumi:"url"`
@@ -202,7 +202,7 @@ func NewProvider(ctx *pulumi.Context,
 type providerArgs struct {
 	// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
 	Auth *string `pulumi:"auth"`
-	// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
+	// Certificate CA bundle (file path or literal value) to use to verify the certificates of Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
 	CaCert *string `pulumi:"caCert"`
 	// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment variable.
 	CloudAccessPolicyToken *string `pulumi:"cloudAccessPolicyToken"`
@@ -252,9 +252,9 @@ type providerArgs struct {
 	StackId *int `pulumi:"stackId"`
 	// Set to true if you want to save only the sha256sum instead of complete dashboard model JSON in the tfstate.
 	StoreDashboardSha256 *bool `pulumi:"storeDashboardSha256"`
-	// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
+	// Client TLS certificate (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
 	TlsCert *string `pulumi:"tlsCert"`
-	// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
+	// Client TLS key (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
 	TlsKey *string `pulumi:"tlsKey"`
 	// The root URL of a Grafana server. May alternatively be set via the `GRAFANA_URL` environment variable.
 	Url *string `pulumi:"url"`
@@ -264,7 +264,7 @@ type providerArgs struct {
 type ProviderArgs struct {
 	// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
 	Auth pulumi.StringPtrInput
-	// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
+	// Certificate CA bundle (file path or literal value) to use to verify the certificates of Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
 	CaCert pulumi.StringPtrInput
 	// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment variable.
 	CloudAccessPolicyToken pulumi.StringPtrInput
@@ -314,9 +314,9 @@ type ProviderArgs struct {
 	StackId pulumi.IntPtrInput
 	// Set to true if you want to save only the sha256sum instead of complete dashboard model JSON in the tfstate.
 	StoreDashboardSha256 pulumi.BoolPtrInput
-	// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
+	// Client TLS certificate (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
 	TlsCert pulumi.StringPtrInput
-	// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
+	// Client TLS key (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
 	TlsKey pulumi.StringPtrInput
 	// The root URL of a Grafana server. May alternatively be set via the `GRAFANA_URL` environment variable.
 	Url pulumi.StringPtrInput
@@ -387,7 +387,7 @@ func (o ProviderOutput) Auth() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Auth }).(pulumi.StringPtrOutput)
 }
 
-// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
+// Certificate CA bundle (file path or literal value) to use to verify the certificates of Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
 func (o ProviderOutput) CaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CaCert }).(pulumi.StringPtrOutput)
 }
@@ -472,12 +472,12 @@ func (o ProviderOutput) SmUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.SmUrl }).(pulumi.StringPtrOutput)
 }
 
-// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
+// Client TLS certificate (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
 func (o ProviderOutput) TlsCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.TlsCert }).(pulumi.StringPtrOutput)
 }
 
-// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
+// Client TLS key (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
 func (o ProviderOutput) TlsKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.TlsKey }).(pulumi.StringPtrOutput)
 }

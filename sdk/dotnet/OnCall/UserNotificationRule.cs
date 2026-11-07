@@ -117,10 +117,10 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<bool> Important { get; private set; } = null!;
 
         /// <summary>
-        /// Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
+        /// Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.
         /// </summary>
         [Output("position")]
-        public Output<int?> Position { get; private set; } = null!;
+        public Output<int> Position { get; private set; } = null!;
 
         /// <summary>
         /// The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `NotifyByMsteams` is only available for Grafana Cloud customers.
@@ -194,7 +194,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<bool>? Important { get; set; }
 
         /// <summary>
-        /// Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
+        /// Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.
         /// </summary>
         [Input("position")]
         public Input<int>? Position { get; set; }
@@ -232,7 +232,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<bool>? Important { get; set; }
 
         /// <summary>
-        /// Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
+        /// Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list. When not set, the rule is added at the end of the list.
         /// </summary>
         [Input("position")]
         public Input<int>? Position { get; set; }

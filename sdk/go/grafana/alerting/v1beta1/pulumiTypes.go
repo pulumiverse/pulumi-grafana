@@ -18,6 +18,8 @@ type AlertEnrichmentMetadata struct {
 	Annotations map[string]string `pulumi:"annotations"`
 	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid *string `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId *int `pulumi:"orgId"`
 	// The unique identifier of the resource.
 	Uid string `pulumi:"uid"`
 	// The full URL of the resource.
@@ -44,6 +46,8 @@ type AlertEnrichmentMetadataArgs struct {
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
 	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId pulumi.IntPtrInput `pulumi:"orgId"`
 	// The unique identifier of the resource.
 	Uid pulumi.StringInput `pulumi:"uid"`
 	// The full URL of the resource.
@@ -141,6 +145,11 @@ func (o AlertEnrichmentMetadataOutput) FolderUid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertEnrichmentMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
 }
 
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o AlertEnrichmentMetadataOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentMetadata) *int { return v.OrgId }).(pulumi.IntPtrOutput)
+}
+
 // The unique identifier of the resource.
 func (o AlertEnrichmentMetadataOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertEnrichmentMetadata) string { return v.Uid }).(pulumi.StringOutput)
@@ -203,6 +212,16 @@ func (o AlertEnrichmentMetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
 		}
 		return v.FolderUid
 	}).(pulumi.StringPtrOutput)
+}
+
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o AlertEnrichmentMetadataPtrOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentMetadata) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OrgId
+	}).(pulumi.IntPtrOutput)
 }
 
 // The unique identifier of the resource.
@@ -6598,6 +6617,8 @@ type NotificationsInhibitionRuleMetadata struct {
 	Annotations map[string]string `pulumi:"annotations"`
 	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid *string `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId *int `pulumi:"orgId"`
 	// The unique identifier of the resource.
 	Uid string `pulumi:"uid"`
 	// The full URL of the resource.
@@ -6624,6 +6645,8 @@ type NotificationsInhibitionRuleMetadataArgs struct {
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
 	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId pulumi.IntPtrInput `pulumi:"orgId"`
 	// The unique identifier of the resource.
 	Uid pulumi.StringInput `pulumi:"uid"`
 	// The full URL of the resource.
@@ -6721,6 +6744,11 @@ func (o NotificationsInhibitionRuleMetadataOutput) FolderUid() pulumi.StringPtrO
 	return o.ApplyT(func(v NotificationsInhibitionRuleMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
 }
 
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o NotificationsInhibitionRuleMetadataOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NotificationsInhibitionRuleMetadata) *int { return v.OrgId }).(pulumi.IntPtrOutput)
+}
+
 // The unique identifier of the resource.
 func (o NotificationsInhibitionRuleMetadataOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v NotificationsInhibitionRuleMetadata) string { return v.Uid }).(pulumi.StringOutput)
@@ -6783,6 +6811,16 @@ func (o NotificationsInhibitionRuleMetadataPtrOutput) FolderUid() pulumi.StringP
 		}
 		return v.FolderUid
 	}).(pulumi.StringPtrOutput)
+}
+
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o NotificationsInhibitionRuleMetadataPtrOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NotificationsInhibitionRuleMetadata) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OrgId
+	}).(pulumi.IntPtrOutput)
 }
 
 // The unique identifier of the resource.
@@ -7377,6 +7415,8 @@ type NotificationsRoutingTreeMetadata struct {
 	Annotations map[string]string `pulumi:"annotations"`
 	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid *string `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId *int `pulumi:"orgId"`
 	// The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
 	Uid string `pulumi:"uid"`
 	// The full URL of the resource.
@@ -7403,6 +7443,8 @@ type NotificationsRoutingTreeMetadataArgs struct {
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
 	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId pulumi.IntPtrInput `pulumi:"orgId"`
 	// The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
 	Uid pulumi.StringInput `pulumi:"uid"`
 	// The full URL of the resource.
@@ -7500,6 +7542,11 @@ func (o NotificationsRoutingTreeMetadataOutput) FolderUid() pulumi.StringPtrOutp
 	return o.ApplyT(func(v NotificationsRoutingTreeMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
 }
 
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o NotificationsRoutingTreeMetadataOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeMetadata) *int { return v.OrgId }).(pulumi.IntPtrOutput)
+}
+
 // The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
 func (o NotificationsRoutingTreeMetadataOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v NotificationsRoutingTreeMetadata) string { return v.Uid }).(pulumi.StringOutput)
@@ -7562,6 +7609,16 @@ func (o NotificationsRoutingTreeMetadataPtrOutput) FolderUid() pulumi.StringPtrO
 		}
 		return v.FolderUid
 	}).(pulumi.StringPtrOutput)
+}
+
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o NotificationsRoutingTreeMetadataPtrOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeMetadata) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OrgId
+	}).(pulumi.IntPtrOutput)
 }
 
 // The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
