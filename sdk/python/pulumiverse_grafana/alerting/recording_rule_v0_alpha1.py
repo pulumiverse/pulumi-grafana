@@ -150,7 +150,7 @@ class RecordingRuleV0Alpha1(pulumi.CustomResource):
         """
         Manages Grafana Recording Rules.
 
-        > **Deprecated:** This resource uses the `v0alpha1` API. Use `AppsRulesRecordingruleV1beta1` instead.
+        > **Deprecated:** This resource uses the `v0alpha1` API. Use `alerting/v1beta1.RecordingRule` instead.
 
         ## Example Usage
 
@@ -166,10 +166,10 @@ class RecordingRuleV0Alpha1(pulumi.CustomResource):
                 "folder_uid": recordingrule_folder.uid,
             },
             spec={
+                "title": "Example Recording Rule",
                 "trigger": {
                     "interval": "1m",
                 },
-                "title": "Example Recording Rule",
                 "paused": True,
                 "expressions": {
                     "A": json.dumps({
@@ -216,7 +216,7 @@ class RecordingRuleV0Alpha1(pulumi.CustomResource):
         """
         Manages Grafana Recording Rules.
 
-        > **Deprecated:** This resource uses the `v0alpha1` API. Use `AppsRulesRecordingruleV1beta1` instead.
+        > **Deprecated:** This resource uses the `v0alpha1` API. Use `alerting/v1beta1.RecordingRule` instead.
 
         ## Example Usage
 
@@ -232,10 +232,10 @@ class RecordingRuleV0Alpha1(pulumi.CustomResource):
                 "folder_uid": recordingrule_folder.uid,
             },
             spec={
+                "title": "Example Recording Rule",
                 "trigger": {
                     "interval": "1m",
                 },
-                "title": "Example Recording Rule",
                 "paused": True,
                 "expressions": {
                     "A": json.dumps({

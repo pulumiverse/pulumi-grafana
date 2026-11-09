@@ -39,19 +39,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := assistant.NewAutomation(ctx, "daily_incident_report", &assistant.AutomationArgs{
-//				Notifications: &assistant.AutomationNotificationsArgs{
-//					Slack: &assistant.AutomationNotificationsSlackArgs{
-//						Target: &assistant.AutomationNotificationsSlackTargetArgs{
-//							Type:      pulumi.String("channel"),
-//							ChannelId: pulumi.String("C0123456789"),
-//						},
-//						Enabled: pulumi.Bool(true),
-//						NotifyOns: pulumi.StringArray{
-//							pulumi.String("completed"),
-//							pulumi.String("failed"),
-//						},
-//					},
-//				},
 //				Name:        pulumi.String("Daily ecommerce incident report"),
 //				Description: pulumi.String("Every morning, summarize the alerts that fired for the ecommerce app."),
 //				Prompt: pulumi.String(`Produce a daily report on the incidents for the main alerts that fired in
@@ -72,6 +59,19 @@ import (
 //				},
 //				ScheduleCron:     pulumi.String("0 9 * * *"),
 //				ScheduleTimezone: pulumi.String("Europe/Paris"),
+//				Notifications: &assistant.AutomationNotificationsArgs{
+//					Slack: &assistant.AutomationNotificationsSlackArgs{
+//						Enabled: pulumi.Bool(true),
+//						NotifyOns: pulumi.StringArray{
+//							pulumi.String("completed"),
+//							pulumi.String("failed"),
+//						},
+//						Target: &assistant.AutomationNotificationsSlackTargetArgs{
+//							Type:      pulumi.String("channel"),
+//							ChannelId: pulumi.String("C0123456789"),
+//						},
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err

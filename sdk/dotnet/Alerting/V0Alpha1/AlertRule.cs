@@ -13,7 +13,7 @@ namespace Pulumiverse.Grafana.Alerting.V0Alpha1
     /// <summary>
     /// Manages Grafana Alert Rules.
     /// 
-    /// &gt; **Deprecated:** This resource uses the `V0alpha1` API. Use `grafana.AppsRulesAlertruleV1beta1` instead.
+    /// &gt; **Deprecated:** This resource uses the `V0alpha1` API. Use `grafana.alerting/v1beta1.AlertRule` instead.
     /// 
     /// This resource is currently in alpha and is subject to change. Grafana 12.4+ users must enable the `kubernetesAlertingRules` [feature toggle](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/feature-toggles/).
     /// 
@@ -42,18 +42,11 @@ namespace Pulumiverse.Grafana.Alerting.V0Alpha1
     ///         },
     ///         Spec = new Grafana.Alerting.V0Alpha1.Inputs.AlertRuleSpecArgs
     ///         {
+    ///             Title = "Example Alert Rule",
     ///             Trigger = new Grafana.Alerting.V0Alpha1.Inputs.AlertRuleSpecTriggerArgs
     ///             {
     ///                 Interval = "1m",
     ///             },
-    ///             NotificationSettings = new Grafana.Alerting.V0Alpha1.Inputs.AlertRuleSpecNotificationSettingsArgs
-    ///             {
-    ///                 SimplifiedRouting = new Grafana.Alerting.V0Alpha1.Inputs.AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs
-    ///                 {
-    ///                     ContactPoint = "grafana-default-email",
-    ///                 },
-    ///             },
-    ///             Title = "Example Alert Rule",
     ///             Paused = true,
     ///             Expressions = 
     ///             {
@@ -149,6 +142,13 @@ namespace Pulumiverse.Grafana.Alerting.V0Alpha1
     ///             NoDataState = "KeepLast",
     ///             ExecErrState = "KeepLast",
     ///             MissingSeriesEvalsToResolve = 5,
+    ///             NotificationSettings = new Grafana.Alerting.V0Alpha1.Inputs.AlertRuleSpecNotificationSettingsArgs
+    ///             {
+    ///                 SimplifiedRouting = new Grafana.Alerting.V0Alpha1.Inputs.AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs
+    ///                 {
+    ///                     ContactPoint = "grafana-default-email",
+    ///                 },
+    ///             },
     ///             PanelRef = 
     ///             {
     ///                 { "dashboard_uid", "dashboard123" },
@@ -160,6 +160,7 @@ namespace Pulumiverse.Grafana.Alerting.V0Alpha1
     /// });
     /// ```
     /// </summary>
+    [Obsolete(@"This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.AlertRule instead")]
     [GrafanaResourceType("grafana:alerting/v0alpha1/alertRule:AlertRule")]
     public partial class AlertRule : global::Pulumi.CustomResource
     {

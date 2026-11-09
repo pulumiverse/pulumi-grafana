@@ -30,6 +30,11 @@ namespace Pulumiverse.Grafana.Enterprise
         /// {
         ///     var test = new Grafana.Enterprise.Role("test", new()
         ///     {
+        ///         Name = "test-role",
+        ///         Description = "test-role description",
+        ///         Uid = "test-ds-role-uid",
+        ///         Global = true,
+        ///         Hidden = false,
         ///         Permissions = new[]
         ///         {
         ///             new Grafana.Enterprise.Inputs.RolePermissionArgs
@@ -48,11 +53,6 @@ namespace Pulumiverse.Grafana.Enterprise
         ///                 Scope = "users:*",
         ///             },
         ///         },
-        ///         Name = "test-role",
-        ///         Description = "test-role description",
-        ///         Uid = "test-ds-role-uid",
-        ///         Global = true,
-        ///         Hidden = false,
         ///     });
         /// 
         ///     var fromName = Grafana.Enterprise.GetRole.Invoke(new()
@@ -84,6 +84,11 @@ namespace Pulumiverse.Grafana.Enterprise
         /// {
         ///     var test = new Grafana.Enterprise.Role("test", new()
         ///     {
+        ///         Name = "test-role",
+        ///         Description = "test-role description",
+        ///         Uid = "test-ds-role-uid",
+        ///         Global = true,
+        ///         Hidden = false,
         ///         Permissions = new[]
         ///         {
         ///             new Grafana.Enterprise.Inputs.RolePermissionArgs
@@ -102,11 +107,6 @@ namespace Pulumiverse.Grafana.Enterprise
         ///                 Scope = "users:*",
         ///             },
         ///         },
-        ///         Name = "test-role",
-        ///         Description = "test-role description",
-        ///         Uid = "test-ds-role-uid",
-        ///         Global = true,
-        ///         Hidden = false,
         ///     });
         /// 
         ///     var fromName = Grafana.Enterprise.GetRole.Invoke(new()
@@ -138,6 +138,11 @@ namespace Pulumiverse.Grafana.Enterprise
         /// {
         ///     var test = new Grafana.Enterprise.Role("test", new()
         ///     {
+        ///         Name = "test-role",
+        ///         Description = "test-role description",
+        ///         Uid = "test-ds-role-uid",
+        ///         Global = true,
+        ///         Hidden = false,
         ///         Permissions = new[]
         ///         {
         ///             new Grafana.Enterprise.Inputs.RolePermissionArgs
@@ -156,11 +161,6 @@ namespace Pulumiverse.Grafana.Enterprise
         ///                 Scope = "users:*",
         ///             },
         ///         },
-        ///         Name = "test-role",
-        ///         Description = "test-role description",
-        ///         Uid = "test-ds-role-uid",
-        ///         Global = true,
-        ///         Hidden = false,
         ///     });
         /// 
         ///     var fromName = Grafana.Enterprise.GetRole.Invoke(new()

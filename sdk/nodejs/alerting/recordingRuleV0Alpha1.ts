@@ -9,7 +9,7 @@ import * as utilities from "../utilities";
 /**
  * Manages Grafana Recording Rules.
  *
- * > **Deprecated:** This resource uses the `v0alpha1` API. Use `grafana.AppsRulesRecordingruleV1beta1` instead.
+ * > **Deprecated:** This resource uses the `v0alpha1` API. Use `grafana.alerting/v1beta1.RecordingRule` instead.
  *
  * ## Example Usage
  *
@@ -24,10 +24,10 @@ import * as utilities from "../utilities";
  *         folderUid: recordingruleFolder.uid,
  *     },
  *     spec: {
+ *         title: "Example Recording Rule",
  *         trigger: {
  *             interval: "1m",
  *         },
- *         title: "Example Recording Rule",
  *         paused: true,
  *         expressions: {
  *             A: JSON.stringify({

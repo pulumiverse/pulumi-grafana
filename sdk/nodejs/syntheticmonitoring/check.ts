@@ -25,15 +25,15 @@ import * as utilities from "../utilities";
  *
  * const main = grafana.syntheticMonitoring.getProbes({});
  * const dns = new grafana.syntheticmonitoring.Check("dns", {
- *     settings: {
- *         dns: {},
- *     },
  *     job: "DNS Defaults",
  *     target: "grafana.com",
  *     enabled: false,
  *     probes: [main.then(main => main.probes?.ohio)],
  *     labels: {
  *         foo: "bar",
+ *     },
+ *     settings: {
+ *         dns: {},
  *     },
  * });
  * ```
@@ -46,8 +46,27 @@ import * as utilities from "../utilities";
  *
  * const main = grafana.syntheticMonitoring.getProbes({});
  * const dns = new grafana.syntheticmonitoring.Check("dns", {
+ *     job: "DNS Updated",
+ *     target: "grafana.net",
+ *     enabled: false,
+ *     probes: [
+ *         main.then(main => main.probes?.frankfurt),
+ *         main.then(main => main.probes?.london),
+ *     ],
+ *     labels: {
+ *         foo: "baz",
+ *     },
  *     settings: {
  *         dns: {
+ *             ipVersion: "Any",
+ *             server: "8.8.4.4",
+ *             port: 8600,
+ *             recordType: "CNAME",
+ *             protocol: "TCP",
+ *             validRCodes: [
+ *                 "NOERROR",
+ *                 "NOTAUTH",
+ *             ],
  *             validateAnswerRrs: {
  *                 failIfMatchesRegexps: [".+-bad-stuff*"],
  *                 failIfNotMatchesRegexps: [".+-good-stuff*"],
@@ -60,26 +79,7 @@ import * as utilities from "../utilities";
  *                 failIfMatchesRegexps: [".+-bad-stuff*"],
  *                 failIfNotMatchesRegexps: [".+-good-stuff*"],
  *             }],
- *             ipVersion: "Any",
- *             server: "8.8.4.4",
- *             port: 8600,
- *             recordType: "CNAME",
- *             protocol: "TCP",
- *             validRCodes: [
- *                 "NOERROR",
- *                 "NOTAUTH",
- *             ],
  *         },
- *     },
- *     job: "DNS Updated",
- *     target: "grafana.net",
- *     enabled: false,
- *     probes: [
- *         main.then(main => main.probes?.frankfurt),
- *         main.then(main => main.probes?.london),
- *     ],
- *     labels: {
- *         foo: "baz",
  *     },
  * });
  * ```
@@ -92,15 +92,15 @@ import * as utilities from "../utilities";
  *
  * const main = grafana.syntheticMonitoring.getProbes({});
  * const http = new grafana.syntheticmonitoring.Check("http", {
- *     settings: {
- *         http: {},
- *     },
  *     job: "HTTP Defaults",
  *     target: "https://grafana.com",
  *     enabled: false,
  *     probes: [main.then(main => main.probes?.ohio)],
  *     labels: {
  *         foo: "bar",
+ *     },
+ *     settings: {
+ *         http: {},
  *     },
  * });
  * ```
@@ -113,8 +113,29 @@ import * as utilities from "../utilities";
  *
  * const main = grafana.syntheticMonitoring.getProbes({});
  * const http = new grafana.syntheticmonitoring.Check("http", {
+ *     job: "HTTP Defaults",
+ *     target: "https://grafana.org",
+ *     enabled: false,
+ *     folderUid: "test-folder-uid",
+ *     probes: [
+ *         main.then(main => main.probes?.mumbai),
+ *         main.then(main => main.probes?.mumbai),
+ *     ],
+ *     labels: {
+ *         foo: "bar",
+ *     },
  *     settings: {
  *         http: {
+ *             ipVersion: "V6",
+ *             method: "TRACE",
+ *             body: "and spirit",
+ *             noFollowRedirects: true,
+ *             bearerToken: "asdfjkl;",
+ *             proxyUrl: "https://almost-there",
+ *             failIfSsl: true,
+ *             failIfNotSsl: true,
+ *             compression: "deflate",
+ *             cacheBustingQueryParamName: "pineapple",
  *             tlsConfig: {
  *                 serverName: "grafana.org",
  *                 clientCert: `-----BEGIN CERTIFICATE-----
@@ -146,10 +167,22 @@ import * as utilities from "../utilities";
  * -----END CERTIFICATE-----
  * `,
  *             },
+ *             headers: ["Content-Type: multipart/form-data; boundary=something"],
  *             basicAuth: {
  *                 username: "open",
  *                 password: "sesame",
  *             },
+ *             validStatusCodes: [
+ *                 200,
+ *                 201,
+ *             ],
+ *             validHttpVersions: [
+ *                 "HTTP/1.0",
+ *                 "HTTP/1.1",
+ *                 "HTTP/2.0",
+ *             ],
+ *             failIfBodyMatchesRegexps: [".*bad stuff.*"],
+ *             failIfBodyNotMatchesRegexps: [".*good stuff.*"],
  *             failIfHeaderMatchesRegexps: [
  *                 {
  *                     header: "Content-Type",
@@ -162,40 +195,7 @@ import * as utilities from "../utilities";
  *                     allowMissing: true,
  *                 },
  *             ],
- *             ipVersion: "V6",
- *             method: "TRACE",
- *             body: "and spirit",
- *             noFollowRedirects: true,
- *             bearerToken: "asdfjkl;",
- *             proxyUrl: "https://almost-there",
- *             failIfSsl: true,
- *             failIfNotSsl: true,
- *             compression: "deflate",
- *             cacheBustingQueryParamName: "pineapple",
- *             headers: ["Content-Type: multipart/form-data; boundary=something"],
- *             validStatusCodes: [
- *                 200,
- *                 201,
- *             ],
- *             validHttpVersions: [
- *                 "HTTP/1.0",
- *                 "HTTP/1.1",
- *                 "HTTP/2.0",
- *             ],
- *             failIfBodyMatchesRegexps: [".*bad stuff.*"],
- *             failIfBodyNotMatchesRegexps: [".*good stuff.*"],
  *         },
- *     },
- *     job: "HTTP Defaults",
- *     target: "https://grafana.org",
- *     enabled: false,
- *     folderUid: "test-folder-uid",
- *     probes: [
- *         main.then(main => main.probes?.mumbai),
- *         main.then(main => main.probes?.mumbai),
- *     ],
- *     labels: {
- *         foo: "bar",
  *     },
  * });
  * ```
@@ -208,15 +208,15 @@ import * as utilities from "../utilities";
  *
  * const main = grafana.syntheticMonitoring.getProbes({});
  * const ping = new grafana.syntheticmonitoring.Check("ping", {
- *     settings: {
- *         ping: {},
- *     },
  *     job: "Ping Defaults",
  *     target: "grafana.com",
  *     enabled: false,
  *     probes: [main.then(main => main.probes?.ohio)],
  *     labels: {
  *         foo: "bar",
+ *     },
+ *     settings: {
+ *         ping: {},
  *     },
  * });
  * ```
@@ -229,13 +229,6 @@ import * as utilities from "../utilities";
  *
  * const main = grafana.syntheticMonitoring.getProbes({});
  * const ping = new grafana.syntheticmonitoring.Check("ping", {
- *     settings: {
- *         ping: {
- *             ipVersion: "Any",
- *             payloadSize: 20,
- *             dontFragment: true,
- *         },
- *     },
  *     job: "Ping Updated",
  *     target: "grafana.net",
  *     enabled: false,
@@ -245,6 +238,13 @@ import * as utilities from "../utilities";
  *     ],
  *     labels: {
  *         foo: "baz",
+ *     },
+ *     settings: {
+ *         ping: {
+ *             ipVersion: "Any",
+ *             payloadSize: 20,
+ *             dontFragment: true,
+ *         },
  *     },
  * });
  * ```
@@ -257,15 +257,15 @@ import * as utilities from "../utilities";
  *
  * const main = grafana.syntheticMonitoring.getProbes({});
  * const tcp = new grafana.syntheticmonitoring.Check("tcp", {
- *     settings: {
- *         tcp: {},
- *     },
  *     job: "TCP Defaults",
  *     target: "grafana.com:80",
  *     enabled: false,
  *     probes: [main.then(main => main.probes?.ohio)],
  *     labels: {
  *         foo: "bar",
+ *     },
+ *     settings: {
+ *         tcp: {},
  *     },
  * });
  * ```
@@ -278,8 +278,31 @@ import * as utilities from "../utilities";
  *
  * const main = grafana.syntheticMonitoring.getProbes({});
  * const tcp = new grafana.syntheticmonitoring.Check("tcp", {
+ *     job: "TCP Defaults",
+ *     target: "grafana.com:443",
+ *     enabled: false,
+ *     probes: [
+ *         main.then(main => main.probes?.frankfurt),
+ *         main.then(main => main.probes?.london),
+ *     ],
+ *     labels: {
+ *         foo: "baz",
+ *     },
  *     settings: {
  *         tcp: {
+ *             ipVersion: "V6",
+ *             tls: true,
+ *             queryResponses: [
+ *                 {
+ *                     send: "howdy",
+ *                     expect: "hi",
+ *                 },
+ *                 {
+ *                     send: "like this",
+ *                     expect: "like that",
+ *                     startTls: true,
+ *                 },
+ *             ],
  *             tlsConfig: {
  *                 serverName: "grafana.com",
  *                 caCert: `-----BEGIN CERTIFICATE-----
@@ -311,30 +334,7 @@ import * as utilities from "../utilities";
  * -----END CERTIFICATE-----
  * `,
  *             },
- *             queryResponses: [
- *                 {
- *                     send: "howdy",
- *                     expect: "hi",
- *                 },
- *                 {
- *                     send: "like this",
- *                     expect: "like that",
- *                     startTls: true,
- *                 },
- *             ],
- *             ipVersion: "V6",
- *             tls: true,
  *         },
- *     },
- *     job: "TCP Defaults",
- *     target: "grafana.com:443",
- *     enabled: false,
- *     probes: [
- *         main.then(main => main.probes?.frankfurt),
- *         main.then(main => main.probes?.london),
- *     ],
- *     labels: {
- *         foo: "baz",
  *     },
  * });
  * ```
@@ -347,9 +347,6 @@ import * as utilities from "../utilities";
  *
  * const main = grafana.syntheticMonitoring.getProbes({});
  * const traceroute = new grafana.syntheticmonitoring.Check("traceroute", {
- *     settings: {
- *         traceroute: {},
- *     },
  *     job: "Traceroute defaults",
  *     target: "grafana.com",
  *     enabled: false,
@@ -358,6 +355,9 @@ import * as utilities from "../utilities";
  *     probes: [main.then(main => main.probes?.ohio)],
  *     labels: {
  *         foo: "bar",
+ *     },
+ *     settings: {
+ *         traceroute: {},
  *     },
  * });
  * ```
@@ -370,13 +370,6 @@ import * as utilities from "../utilities";
  *
  * const main = grafana.syntheticMonitoring.getProbes({});
  * const traceroute = new grafana.syntheticmonitoring.Check("traceroute", {
- *     settings: {
- *         traceroute: {
- *             maxHops: 25,
- *             maxUnknownHops: 10,
- *             ptrLookup: false,
- *         },
- *     },
  *     job: "Traceroute complex",
  *     target: "grafana.net",
  *     enabled: false,
@@ -388,6 +381,13 @@ import * as utilities from "../utilities";
  *     ],
  *     labels: {
  *         foo: "baz",
+ *     },
+ *     settings: {
+ *         traceroute: {
+ *             maxHops: 25,
+ *             maxUnknownHops: 10,
+ *             ptrLookup: false,
+ *         },
  *     },
  * });
  * ```

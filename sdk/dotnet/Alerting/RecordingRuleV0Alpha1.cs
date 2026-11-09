@@ -13,7 +13,7 @@ namespace Pulumiverse.Grafana.Alerting
     /// <summary>
     /// Manages Grafana Recording Rules.
     /// 
-    /// &gt; **Deprecated:** This resource uses the `V0alpha1` API. Use `grafana.AppsRulesRecordingruleV1beta1` instead.
+    /// &gt; **Deprecated:** This resource uses the `V0alpha1` API. Use `grafana.alerting/v1beta1.RecordingRule` instead.
     /// 
     /// ## Example Usage
     /// 
@@ -40,11 +40,11 @@ namespace Pulumiverse.Grafana.Alerting
     ///         },
     ///         Spec = new Grafana.Alerting.V0Alpha1.Inputs.RecordingRuleSpecArgs
     ///         {
+    ///             Title = "Example Recording Rule",
     ///             Trigger = new Grafana.Alerting.V0Alpha1.Inputs.RecordingRuleSpecTriggerArgs
     ///             {
     ///                 Interval = "1m",
     ///             },
-    ///             Title = "Example Recording Rule",
     ///             Paused = true,
     ///             Expressions = 
     ///             {

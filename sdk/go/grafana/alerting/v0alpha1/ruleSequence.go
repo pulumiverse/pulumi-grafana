@@ -13,7 +13,7 @@ import (
 
 // Manages Grafana Rule Sequences.
 //
-// > **Deprecated:** This resource uses the `v0alpha1` API. Use `AppsRulesRulesequenceV1beta1` instead.
+// > **Deprecated:** This resource uses the `v0alpha1` API. Use `alerting/v1beta1.RuleSequence` instead.
 //
 // A rule sequence groups existing alert rules and recording rules so they are evaluated in order, at a shared interval, within a single folder. All referenced rules must live in the same folder as the sequence (set `metadata.folder_uid`).
 //
@@ -71,10 +71,10 @@ import (
 // FolderUid: rulesequenceFolder.Uid,
 // },
 // Spec: &alertingv0alpha1.RecordingRuleSpecArgs{
+// Title: pulumi.String("Example Sequence Recording Rule"),
 // Trigger: &alertingv0alpha1.RecordingRuleSpecTriggerArgs{
 // Interval: pulumi.String("1m"),
 // },
-// Title: pulumi.String("Example Sequence Recording Rule"),
 // Expressions: pulumi.StringMap{
 // "A": pulumi.String(pulumi.String(json0)),
 // },
@@ -118,10 +118,10 @@ import (
 // FolderUid: rulesequenceFolder.Uid,
 // },
 // Spec: &alertingv0alpha1.AlertRuleSpecArgs{
+// Title: pulumi.String("Example Sequence Alert Rule"),
 // Trigger: &alertingv0alpha1.AlertRuleSpecTriggerArgs{
 // Interval: pulumi.String("1m"),
 // },
-// Title: pulumi.String("Example Sequence Alert Rule"),
 // Expressions: pulumi.StringMap{
 // "A": pulumi.String(pulumi.String(json1)),
 // },
@@ -164,6 +164,8 @@ import (
 // })
 // }
 // ```
+//
+// Deprecated: This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RuleSequence instead
 type RuleSequence struct {
 	pulumi.CustomResourceState
 

@@ -36,6 +36,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			aContactPoint, err := alerting.NewContactPoint(ctx, "a_contact_point", &alerting.ContactPointArgs{
+//				Name: pulumi.String("A Contact Point"),
 //				Emails: alerting.ContactPointEmailArray{
 //					&alerting.ContactPointEmailArgs{
 //						Addresses: pulumi.StringArray{
@@ -45,12 +46,12 @@ import (
 //						Message: pulumi.String("{{ len .Alerts.Firing }} firing."),
 //					},
 //				},
-//				Name: pulumi.String("A Contact Point"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			aMuteTiming, err := alerting.NewMuteTiming(ctx, "a_mute_timing", &alerting.MuteTimingArgs{
+//				Name: pulumi.String("Some Mute Timing"),
 //				Intervals: alerting.MuteTimingIntervalArray{
 //					&alerting.MuteTimingIntervalArgs{
 //						Weekdays: pulumi.StringArray{
@@ -58,12 +59,12 @@ import (
 //						},
 //					},
 //				},
-//				Name: pulumi.String("Some Mute Timing"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			workingHours, err := alerting.NewMuteTiming(ctx, "working_hours", &alerting.MuteTimingArgs{
+//				Name: pulumi.String("Working Hours"),
 //				Intervals: alerting.MuteTimingIntervalArray{
 //					&alerting.MuteTimingIntervalArgs{
 //						Times: alerting.MuteTimingIntervalTimeArray{
@@ -74,12 +75,18 @@ import (
 //						},
 //					},
 //				},
-//				Name: pulumi.String("Working Hours"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = alerting.NewNotificationPolicy(ctx, "my_notification_policy", &alerting.NotificationPolicyArgs{
+//				GroupBies: pulumi.StringArray{
+//					pulumi.String("..."),
+//				},
+//				ContactPoint:   aContactPoint.Name,
+//				GroupWait:      pulumi.String("45s"),
+//				GroupInterval:  pulumi.String("6m"),
+//				RepeatInterval: pulumi.String("3h"),
 //				Policies: alerting.NotificationPolicyPolicyArray{
 //					&alerting.NotificationPolicyPolicyArgs{
 //						Matchers: alerting.NotificationPolicyPolicyMatcherArray{
@@ -99,6 +106,17 @@ import (
 //								Value: pulumi.String("host.*|host-b.*"),
 //							},
 //						},
+//						ContactPoint: aContactPoint.Name,
+//						Continue:     pulumi.Bool(true),
+//						MuteTimings: pulumi.StringArray{
+//							aMuteTiming.Name,
+//						},
+//						ActiveTimings: pulumi.StringArray{
+//							workingHours.Name,
+//						},
+//						GroupWait:      pulumi.String("45s"),
+//						GroupInterval:  pulumi.String("6m"),
+//						RepeatInterval: pulumi.String("3h"),
 //						Policies: alerting.NotificationPolicyPolicyPolicyArray{
 //							&alerting.NotificationPolicyPolicyPolicyArgs{
 //								Matchers: alerting.NotificationPolicyPolicyPolicyMatcherArray{
@@ -114,17 +132,6 @@ import (
 //								},
 //							},
 //						},
-//						ContactPoint: aContactPoint.Name,
-//						Continue:     pulumi.Bool(true),
-//						MuteTimings: pulumi.StringArray{
-//							aMuteTiming.Name,
-//						},
-//						ActiveTimings: pulumi.StringArray{
-//							workingHours.Name,
-//						},
-//						GroupWait:      pulumi.String("45s"),
-//						GroupInterval:  pulumi.String("6m"),
-//						RepeatInterval: pulumi.String("3h"),
 //					},
 //					&alerting.NotificationPolicyPolicyArgs{
 //						Matchers: alerting.NotificationPolicyPolicyMatcherArray{
@@ -140,13 +147,6 @@ import (
 //						},
 //					},
 //				},
-//				GroupBies: pulumi.StringArray{
-//					pulumi.String("..."),
-//				},
-//				ContactPoint:   aContactPoint.Name,
-//				GroupWait:      pulumi.String("45s"),
-//				GroupInterval:  pulumi.String("6m"),
-//				RepeatInterval: pulumi.String("3h"),
 //			})
 //			if err != nil {
 //				return err

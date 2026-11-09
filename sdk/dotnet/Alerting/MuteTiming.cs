@@ -30,6 +30,7 @@ namespace Pulumiverse.Grafana.Alerting
     /// {
     ///     var myMuteTiming = new Grafana.Alerting.MuteTiming("my_mute_timing", new()
     ///     {
+    ///         Name = "My Mute Timing",
     ///         Intervals = new[]
     ///         {
     ///             new Grafana.Alerting.Inputs.MuteTimingIntervalArgs
@@ -65,7 +66,6 @@ namespace Pulumiverse.Grafana.Alerting
     ///                 Location = "America/New_York",
     ///             },
     ///         },
-    ///         Name = "My Mute Timing",
     ///     });
     /// 
     /// });

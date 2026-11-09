@@ -317,10 +317,14 @@ class Route(pulumi.CustomResource):
         example_slack_channel = grafana.onCall.get_slack_channel(name="example_slack_channel")
         default = grafana.oncall.EscalationChain("default", name="default")
         example_integration = grafana.oncall.Integration("example_integration",
-            default_route={},
             name="Grafana Integration",
-            type="grafana")
+            type="grafana",
+            default_route={})
         example_route = grafana.oncall.Route("example_route",
+            integration_id=example_integration.id,
+            escalation_chain_id=default.id,
+            routing_regex="us-(east|west)",
+            position=0,
             slack={
                 "channel_id": example_slack_channel.slack_id,
                 "enabled": True,
@@ -332,11 +336,7 @@ class Route(pulumi.CustomResource):
             msteams={
                 "id": "ONCALLMSTEAMSID",
                 "enabled": False,
-            },
-            integration_id=example_integration.id,
-            escalation_chain_id=default.id,
-            routing_regex="us-(east|west)",
-            position=0)
+            })
         ```
 
         ## Import
@@ -376,10 +376,14 @@ class Route(pulumi.CustomResource):
         example_slack_channel = grafana.onCall.get_slack_channel(name="example_slack_channel")
         default = grafana.oncall.EscalationChain("default", name="default")
         example_integration = grafana.oncall.Integration("example_integration",
-            default_route={},
             name="Grafana Integration",
-            type="grafana")
+            type="grafana",
+            default_route={})
         example_route = grafana.oncall.Route("example_route",
+            integration_id=example_integration.id,
+            escalation_chain_id=default.id,
+            routing_regex="us-(east|west)",
+            position=0,
             slack={
                 "channel_id": example_slack_channel.slack_id,
                 "enabled": True,
@@ -391,11 +395,7 @@ class Route(pulumi.CustomResource):
             msteams={
                 "id": "ONCALLMSTEAMSID",
                 "enabled": False,
-            },
-            integration_id=example_integration.id,
-            escalation_chain_id=default.id,
-            routing_regex="us-(east|west)",
-            position=0)
+            })
         ```
 
         ## Import

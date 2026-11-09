@@ -24,6 +24,13 @@ import * as utilities from "../../utilities";
  *         uid: "example-saved-query",
  *     },
  *     spec: {
+ *         title: "Requests per second",
+ *         description: "Prometheus rate of HTTP requests",
+ *         isVisible: true,
+ *         tags: [
+ *             "http",
+ *             "prometheus",
+ *         ],
  *         targets: [{
  *             propertiesJson: JSON.stringify({
  *                 refId: "A",
@@ -34,13 +41,6 @@ import * as utilities from "../../utilities";
  *                 },
  *             }),
  *         }],
- *         title: "Requests per second",
- *         description: "Prometheus rate of HTTP requests",
- *         isVisible: true,
- *         tags: [
- *             "http",
- *             "prometheus",
- *         ],
  *     },
  * });
  * ```

@@ -458,14 +458,14 @@ class Report(pulumi.CustomResource):
         \"\"\",
             message="inital commit.")
         test_report = grafana.enterprise.Report("test",
-            schedule={
-                "frequency": "hourly",
-            },
+            name="my report",
+            recipients=["some@email.com"],
             dashboards=[{
                 "uid": test.uid,
             }],
-            name="my report",
-            recipients=["some@email.com"])
+            schedule={
+                "frequency": "hourly",
+            })
         ```
 
         ## Import
@@ -517,14 +517,14 @@ class Report(pulumi.CustomResource):
         \"\"\",
             message="inital commit.")
         test_report = grafana.enterprise.Report("test",
-            schedule={
-                "frequency": "hourly",
-            },
+            name="my report",
+            recipients=["some@email.com"],
             dashboards=[{
                 "uid": test.uid,
             }],
-            name="my report",
-            recipients=["some@email.com"])
+            schedule={
+                "frequency": "hourly",
+            })
         ```
 
         ## Import

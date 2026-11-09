@@ -33,6 +33,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Configure SSO for GitHub using OAuth2
 //			_, err := oss.NewSsoSettings(ctx, "github_sso_settings", &oss.SsoSettingsArgs{
+//				ProviderName: pulumi.String("github"),
 //				Oauth2Settings: &oss.SsoSettingsOauth2SettingsArgs{
 //					Name:                 pulumi.String("Github"),
 //					ClientId:             pulumi.String("<your GitHub app client id>"),
@@ -44,13 +45,13 @@ import (
 //					AllowedOrganizations: pulumi.String("[\"My Organization\", \"Octocats\"]"),
 //					AllowedDomains:       pulumi.String("mycompany.com mycompany.org"),
 //				},
-//				ProviderName: pulumi.String("github"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Configure SSO using generic OAuth2
 //			_, err = oss.NewSsoSettings(ctx, "generic_sso_settings", &oss.SsoSettingsArgs{
+//				ProviderName: pulumi.String("generic_oauth"),
 //				Oauth2Settings: &oss.SsoSettingsOauth2SettingsArgs{
 //					Name:            pulumi.String("Auth0"),
 //					AuthUrl:         pulumi.String("https://<domain>/authorize"),
@@ -64,13 +65,13 @@ import (
 //					UsePkce:         pulumi.Bool(true),
 //					UseRefreshToken: pulumi.Bool(true),
 //				},
-//				ProviderName: pulumi.String("generic_oauth"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Configure SSO using SAML
 //			_, err = oss.NewSsoSettings(ctx, "saml_sso_settings", &oss.SsoSettingsArgs{
+//				ProviderName: pulumi.String("saml"),
 //				SamlSettings: &oss.SsoSettingsSamlSettingsArgs{
 //					AllowSignUp:             pulumi.Bool(true),
 //					CertificatePath:         pulumi.String("/certs/saml.crt"),
@@ -81,17 +82,33 @@ import (
 //					AssertionAttributeEmail: pulumi.String("email"),
 //					NameIdFormat:            pulumi.String("urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"),
 //				},
-//				ProviderName: pulumi.String("saml"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Configure SSO using LDAP
 //			_, err = oss.NewSsoSettings(ctx, "ldap_sso_settings", &oss.SsoSettingsArgs{
+//				ProviderName: pulumi.String("ldap"),
 //				LdapSettings: &oss.SsoSettingsLdapSettingsArgs{
+//					Enabled: pulumi.Bool(true),
 //					Config: &oss.SsoSettingsLdapSettingsConfigArgs{
 //						Servers: oss.SsoSettingsLdapSettingsConfigServerArray{
 //							&oss.SsoSettingsLdapSettingsConfigServerArgs{
+//								Host:         pulumi.String("127.0.0.1"),
+//								Port:         pulumi.Int(389),
+//								SearchFilter: pulumi.String("(cn=%s)"),
+//								BindDn:       pulumi.String("cn=admin,dc=grafana,dc=org"),
+//								BindPassword: pulumi.String("grafana"),
+//								SearchBaseDns: pulumi.StringArray{
+//									pulumi.String("dc=grafana,dc=org"),
+//								},
+//								Attributes: pulumi.StringMap{
+//									"name":      pulumi.String("givenName"),
+//									"surname":   pulumi.String("sn"),
+//									"username":  pulumi.String("cn"),
+//									"member_of": pulumi.String("memberOf"),
+//									"email":     pulumi.String("email"),
+//								},
 //								GroupMappings: oss.SsoSettingsLdapSettingsConfigServerGroupMappingArray{
 //									&oss.SsoSettingsLdapSettingsConfigServerGroupMappingArgs{
 //										GroupDn:      pulumi.String("cn=superadmins,dc=grafana,dc=org"),
@@ -108,27 +125,10 @@ import (
 //										OrgRole: pulumi.String("Viewer"),
 //									},
 //								},
-//								Host:         pulumi.String("127.0.0.1"),
-//								Port:         pulumi.Int(389),
-//								SearchFilter: pulumi.String("(cn=%s)"),
-//								BindDn:       pulumi.String("cn=admin,dc=grafana,dc=org"),
-//								BindPassword: pulumi.String("grafana"),
-//								SearchBaseDns: pulumi.StringArray{
-//									pulumi.String("dc=grafana,dc=org"),
-//								},
-//								Attributes: pulumi.StringMap{
-//									"name":      pulumi.String("givenName"),
-//									"surname":   pulumi.String("sn"),
-//									"username":  pulumi.String("cn"),
-//									"member_of": pulumi.String("memberOf"),
-//									"email":     pulumi.String("email"),
-//								},
 //							},
 //						},
 //					},
-//					Enabled: pulumi.Bool(true),
 //				},
-//				ProviderName: pulumi.String("ldap"),
 //			})
 //			if err != nil {
 //				return err

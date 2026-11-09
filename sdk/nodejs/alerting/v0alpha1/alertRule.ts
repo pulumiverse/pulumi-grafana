@@ -9,7 +9,7 @@ import * as utilities from "../../utilities";
 /**
  * Manages Grafana Alert Rules.
  *
- * > **Deprecated:** This resource uses the `v0alpha1` API. Use `grafana.AppsRulesAlertruleV1beta1` instead.
+ * > **Deprecated:** This resource uses the `v0alpha1` API. Use `grafana.alerting/v1beta1.AlertRule` instead.
  *
  * This resource is currently in alpha and is subject to change. Grafana 12.4+ users must enable the `kubernetesAlertingRules` [feature toggle](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/feature-toggles/).
  *
@@ -26,15 +26,10 @@ import * as utilities from "../../utilities";
  *         folderUid: alertruleFolder.uid,
  *     },
  *     spec: {
+ *         title: "Example Alert Rule",
  *         trigger: {
  *             interval: "1m",
  *         },
- *         notificationSettings: {
- *             simplifiedRouting: {
- *                 contactPoint: "grafana-default-email",
- *             },
- *         },
- *         title: "Example Alert Rule",
  *         paused: true,
  *         expressions: {
  *             A: JSON.stringify({
@@ -104,6 +99,11 @@ import * as utilities from "../../utilities";
  *         noDataState: "KeepLast",
  *         execErrState: "KeepLast",
  *         missingSeriesEvalsToResolve: 5,
+ *         notificationSettings: {
+ *             simplifiedRouting: {
+ *                 contactPoint: "grafana-default-email",
+ *             },
+ *         },
  *         panelRef: {
  *             dashboard_uid: "dashboard123",
  *             panel_id: "5",
@@ -111,6 +111,8 @@ import * as utilities from "../../utilities";
  *     },
  * });
  * ```
+ *
+ * @deprecated This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.AlertRule instead
  */
 export class AlertRule extends pulumi.CustomResource {
     /**
@@ -123,6 +125,7 @@ export class AlertRule extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AlertRuleState, opts?: pulumi.CustomResourceOptions): AlertRule {
+        pulumi.log.warn("AlertRule is deprecated: This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.AlertRule instead")
         return new AlertRule(name, <any>state, { ...opts, id: id });
     }
 
@@ -160,8 +163,11 @@ export class AlertRule extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.AlertRule instead */
     constructor(name: string, args?: AlertRuleArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.AlertRule instead */
     constructor(name: string, argsOrState?: AlertRuleArgs | AlertRuleState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("AlertRule is deprecated: This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.AlertRule instead")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

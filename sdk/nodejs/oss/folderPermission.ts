@@ -25,6 +25,7 @@ import * as utilities from "../utilities";
  * });
  * const collection = new grafana.oss.Folder("collection", {title: "Folder Title"});
  * const collectionPermission = new grafana.oss.FolderPermission("collectionPermission", {
+ *     folderUid: collection.uid,
  *     permissions: [
  *         {
  *             role: "Editor",
@@ -39,7 +40,6 @@ import * as utilities from "../utilities";
  *             permission: "Admin",
  *         },
  *     ],
- *     folderUid: collection.uid,
  * });
  * ```
  *

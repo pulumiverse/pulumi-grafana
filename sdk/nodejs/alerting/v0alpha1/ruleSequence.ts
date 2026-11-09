@@ -9,7 +9,7 @@ import * as utilities from "../../utilities";
 /**
  * Manages Grafana Rule Sequences.
  *
- * > **Deprecated:** This resource uses the `v0alpha1` API. Use `grafana.AppsRulesRulesequenceV1beta1` instead.
+ * > **Deprecated:** This resource uses the `v0alpha1` API. Use `grafana.alerting/v1beta1.RuleSequence` instead.
  *
  * A rule sequence groups existing alert rules and recording rules so they are evaluated in order, at a shared interval, within a single folder. All referenced rules must live in the same folder as the sequence (set `metadata.folder_uid`).
  *
@@ -28,10 +28,10 @@ import * as utilities from "../../utilities";
  *         folderUid: rulesequenceFolder.uid,
  *     },
  *     spec: {
+ *         title: "Example Sequence Recording Rule",
  *         trigger: {
  *             interval: "1m",
  *         },
- *         title: "Example Sequence Recording Rule",
  *         expressions: {
  *             A: JSON.stringify({
  *                 model: {
@@ -63,10 +63,10 @@ import * as utilities from "../../utilities";
  *         folderUid: rulesequenceFolder.uid,
  *     },
  *     spec: {
+ *         title: "Example Sequence Alert Rule",
  *         trigger: {
  *             interval: "1m",
  *         },
- *         title: "Example Sequence Alert Rule",
  *         expressions: {
  *             A: JSON.stringify({
  *                 model: {
@@ -114,6 +114,8 @@ import * as utilities from "../../utilities";
  *     },
  * });
  * ```
+ *
+ * @deprecated This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RuleSequence instead
  */
 export class RuleSequence extends pulumi.CustomResource {
     /**
@@ -126,6 +128,7 @@ export class RuleSequence extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RuleSequenceState, opts?: pulumi.CustomResourceOptions): RuleSequence {
+        pulumi.log.warn("RuleSequence is deprecated: This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RuleSequence instead")
         return new RuleSequence(name, <any>state, { ...opts, id: id });
     }
 
@@ -163,8 +166,11 @@ export class RuleSequence extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RuleSequence instead */
     constructor(name: string, args?: RuleSequenceArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RuleSequence instead */
     constructor(name: string, argsOrState?: RuleSequenceArgs | RuleSequenceState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("RuleSequence is deprecated: This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RuleSequence instead")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

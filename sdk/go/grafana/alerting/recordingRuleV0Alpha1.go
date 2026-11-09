@@ -13,7 +13,7 @@ import (
 
 // Manages Grafana Recording Rules.
 //
-// > **Deprecated:** This resource uses the `v0alpha1` API. Use `AppsRulesRecordingruleV1beta1` instead.
+// > **Deprecated:** This resource uses the `v0alpha1` API. Use `alerting/v1beta1.RecordingRule` instead.
 //
 // ## Example Usage
 //
@@ -68,10 +68,10 @@ import (
 //					FolderUid: recordingruleFolder.Uid,
 //				},
 //				Spec: &alertingv0alpha1.RecordingRuleSpecArgs{
+//					Title: pulumi.String("Example Recording Rule"),
 //					Trigger: &alertingv0alpha1.RecordingRuleSpecTriggerArgs{
 //						Interval: pulumi.String("1m"),
 //					},
-//					Title:  pulumi.String("Example Recording Rule"),
 //					Paused: pulumi.Bool(true),
 //					Expressions: pulumi.StringMap{
 //						"A": pulumi.String(pulumi.String(json0)),

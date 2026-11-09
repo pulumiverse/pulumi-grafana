@@ -132,8 +132,13 @@ class _RecordingRuleState:
         pulumi.set(self, "spec", value)
 
 
+warnings.warn("""This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RecordingRule instead""", DeprecationWarning)
+
+
 @pulumi.type_token("grafana:alerting/v0alpha1/recordingRule:RecordingRule")
 class RecordingRule(pulumi.CustomResource):
+    warnings.warn("""This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RecordingRule instead""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -145,7 +150,7 @@ class RecordingRule(pulumi.CustomResource):
         """
         Manages Grafana Recording Rules.
 
-        > **Deprecated:** This resource uses the `v0alpha1` API. Use `AppsRulesRecordingruleV1beta1` instead.
+        > **Deprecated:** This resource uses the `v0alpha1` API. Use `alerting/v1beta1.RecordingRule` instead.
 
         ## Example Usage
 
@@ -161,10 +166,10 @@ class RecordingRule(pulumi.CustomResource):
                 "folder_uid": recordingrule_folder.uid,
             },
             spec={
+                "title": "Example Recording Rule",
                 "trigger": {
                     "interval": "1m",
                 },
-                "title": "Example Recording Rule",
                 "paused": True,
                 "expressions": {
                     "A": json.dumps({
@@ -211,7 +216,7 @@ class RecordingRule(pulumi.CustomResource):
         """
         Manages Grafana Recording Rules.
 
-        > **Deprecated:** This resource uses the `v0alpha1` API. Use `AppsRulesRecordingruleV1beta1` instead.
+        > **Deprecated:** This resource uses the `v0alpha1` API. Use `alerting/v1beta1.RecordingRule` instead.
 
         ## Example Usage
 
@@ -227,10 +232,10 @@ class RecordingRule(pulumi.CustomResource):
                 "folder_uid": recordingrule_folder.uid,
             },
             spec={
+                "title": "Example Recording Rule",
                 "trigger": {
                     "interval": "1m",
                 },
-                "title": "Example Recording Rule",
                 "paused": True,
                 "expressions": {
                     "A": json.dumps({
@@ -281,6 +286,7 @@ class RecordingRule(pulumi.CustomResource):
                  options: Optional[pulumi.Input[Union['RecordingRuleOptionsArgs', 'RecordingRuleOptionsArgsDict']]] = None,
                  spec: Optional[pulumi.Input[Union['RecordingRuleSpecArgs', 'RecordingRuleSpecArgsDict']]] = None,
                  __props__=None):
+        pulumi.log.warn("""RecordingRule is deprecated: This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RecordingRule instead""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

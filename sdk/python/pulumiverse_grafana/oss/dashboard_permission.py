@@ -163,6 +163,7 @@ class DashboardPermission(pulumi.CustomResource):
             "uid": "my-dashboard-uid",
         }))
         collection_permission = grafana.oss.DashboardPermission("collectionPermission",
+            dashboard_uid=metrics.uid,
             permissions=[
                 {
                     "role": "Editor",
@@ -176,8 +177,7 @@ class DashboardPermission(pulumi.CustomResource):
                     "user_id": user.id,
                     "permission": "Admin",
                 },
-            ],
-            dashboard_uid=metrics.uid)
+            ])
         ```
 
         ## Import
@@ -222,6 +222,7 @@ class DashboardPermission(pulumi.CustomResource):
             "uid": "my-dashboard-uid",
         }))
         collection_permission = grafana.oss.DashboardPermission("collectionPermission",
+            dashboard_uid=metrics.uid,
             permissions=[
                 {
                     "role": "Editor",
@@ -235,8 +236,7 @@ class DashboardPermission(pulumi.CustomResource):
                     "user_id": user.id,
                     "permission": "Admin",
                 },
-            ],
-            dashboard_uid=metrics.uid)
+            ])
         ```
 
         ## Import

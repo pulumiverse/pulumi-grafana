@@ -118,8 +118,22 @@ class CustomModelRules(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.assert_.CustomModelRules("test",
+            name="test-anything",
             rules={
                 "entities": [{
+                    "type": "Service",
+                    "name": "workload | service | job",
+                    "scope": {
+                        "namespace": "namespace",
+                        "env": "asserts_env",
+                        "site": "asserts_site",
+                    },
+                    "lookup": {
+                        "workload": "workload | deployment | statefulset | daemonset | replicaset",
+                        "service": "service",
+                        "job": "job",
+                        "proxy_job": "job",
+                    },
                     "defined_bies": [
                         {
                             "query": "up{job!=''}",
@@ -137,22 +151,8 @@ class CustomModelRules(pulumi.CustomResource):
                             "disabled": True,
                         },
                     ],
-                    "type": "Service",
-                    "name": "workload | service | job",
-                    "scope": {
-                        "namespace": "namespace",
-                        "env": "asserts_env",
-                        "site": "asserts_site",
-                    },
-                    "lookup": {
-                        "workload": "workload | deployment | statefulset | daemonset | replicaset",
-                        "service": "service",
-                        "job": "job",
-                        "proxy_job": "job",
-                    },
                 }],
-            },
-            name="test-anything")
+            })
         ```
 
         ## Import
@@ -183,8 +183,22 @@ class CustomModelRules(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.assert_.CustomModelRules("test",
+            name="test-anything",
             rules={
                 "entities": [{
+                    "type": "Service",
+                    "name": "workload | service | job",
+                    "scope": {
+                        "namespace": "namespace",
+                        "env": "asserts_env",
+                        "site": "asserts_site",
+                    },
+                    "lookup": {
+                        "workload": "workload | deployment | statefulset | daemonset | replicaset",
+                        "service": "service",
+                        "job": "job",
+                        "proxy_job": "job",
+                    },
                     "defined_bies": [
                         {
                             "query": "up{job!=''}",
@@ -202,22 +216,8 @@ class CustomModelRules(pulumi.CustomResource):
                             "disabled": True,
                         },
                     ],
-                    "type": "Service",
-                    "name": "workload | service | job",
-                    "scope": {
-                        "namespace": "namespace",
-                        "env": "asserts_env",
-                        "site": "asserts_site",
-                    },
-                    "lookup": {
-                        "workload": "workload | deployment | statefulset | daemonset | replicaset",
-                        "service": "service",
-                        "job": "job",
-                        "proxy_job": "job",
-                    },
                 }],
-            },
-            name="test-anything")
+            })
         ```
 
         ## Import

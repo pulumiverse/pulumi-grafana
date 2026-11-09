@@ -448,7 +448,7 @@
                 }
             },
             "grafana_apps_rules_alertrule_v1beta1": {
-                "current": "grafana:index/appsRulesAlertruleV1beta1:AppsRulesAlertruleV1beta1",
+                "current": "grafana:alerting/v1beta1/alertRule:AlertRule",
                 "majorVersion": 2,
                 "fields": {
                     "spec": {
@@ -486,7 +486,7 @@
                 "majorVersion": 2
             },
             "grafana_apps_rules_recordingrule_v1beta1": {
-                "current": "grafana:index/appsRulesRecordingruleV1beta1:AppsRulesRecordingruleV1beta1",
+                "current": "grafana:alerting/v1beta1/recordingRule:RecordingRule",
                 "majorVersion": 2
             },
             "grafana_apps_rules_rulesequence_v0alpha1": {
@@ -506,7 +506,7 @@
                 }
             },
             "grafana_apps_rules_rulesequence_v1beta1": {
-                "current": "grafana:index/appsRulesRulesequenceV1beta1:AppsRulesRulesequenceV1beta1",
+                "current": "grafana:alerting/v1beta1/ruleSequence:RuleSequence",
                 "majorVersion": 2,
                 "fields": {
                     "spec": {
@@ -2925,8 +2925,11 @@
             "grafana:alerting/v0alpha1/recordingRule:RecordingRule": 1,
             "grafana:alerting/v0alpha1/ruleSequence:RuleSequence": 1,
             "grafana:alerting/v1beta1/alertEnrichment:AlertEnrichment": 1,
+            "grafana:alerting/v1beta1/alertRule:AlertRule": 1,
             "grafana:alerting/v1beta1/notificationsInhibitionRule:NotificationsInhibitionRule": 1,
             "grafana:alerting/v1beta1/notificationsRoutingTree:NotificationsRoutingTree": 1,
+            "grafana:alerting/v1beta1/recordingRule:RecordingRule": 1,
+            "grafana:alerting/v1beta1/ruleSequence:RuleSequence": 1,
             "grafana:apps/genericResource:GenericResource": 1,
             "grafana:apps/v0alpha1/playlist:Playlist": 1,
             "grafana:apps/v0alpha1/provisioningConnection:ProvisioningConnection": 1,
@@ -2994,9 +2997,6 @@
             "grafana:frontendObservability/app:App": 1,
             "grafana:incident/role:Role": 1,
             "grafana:incident/severity:Severity": 1,
-            "grafana:index/appsRulesAlertruleV1beta1:AppsRulesAlertruleV1beta1": 1,
-            "grafana:index/appsRulesRecordingruleV1beta1:AppsRulesRecordingruleV1beta1": 1,
-            "grafana:index/appsRulesRulesequenceV1beta1:AppsRulesRulesequenceV1beta1": 1,
             "grafana:k6/installation:Installation": 0,
             "grafana:k6/loadTest:LoadTest": 1,
             "grafana:k6/project:Project": 1,
