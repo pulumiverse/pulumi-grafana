@@ -9,6 +9,8 @@ import * as utilities from "../../utilities";
 /**
  * Manages Grafana Recording Rules.
  *
+ * > **Deprecated:** This resource uses the `v0alpha1` API. Use `grafana.AppsRulesRecordingruleV1beta1` instead.
+ *
  * ## Example Usage
  *
  * ```typescript

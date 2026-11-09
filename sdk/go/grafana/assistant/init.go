@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "grafana:assistant/automation:Automation":
+		r = &Automation{}
 	case "grafana:assistant/mcpServer:McpServer":
 		r = &McpServer{}
 	case "grafana:assistant/quickstart:Quickstart":
@@ -44,6 +46,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"assistant/automation",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"assistant/mcpServer",

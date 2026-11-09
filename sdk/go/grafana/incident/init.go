@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "grafana:incident/role:Role":
 		r = &Role{}
+	case "grafana:incident/severity:Severity":
+		r = &Severity{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -39,6 +41,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"incident/role",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"incident/severity",
 		&module{version},
 	)
 }

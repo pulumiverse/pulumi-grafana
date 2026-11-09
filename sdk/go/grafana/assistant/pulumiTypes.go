@@ -13,6 +13,806 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AutomationNotifications struct {
+	// Email delivery. Email notifications must be enabled for the stack.
+	Email *AutomationNotificationsEmail `pulumi:"email"`
+	// Slack delivery. Requires the Slack workspace to already be connected to the stack, which is a one-time manual step in Assistant settings.
+	Slack *AutomationNotificationsSlack `pulumi:"slack"`
+}
+
+// AutomationNotificationsInput is an input type that accepts AutomationNotificationsArgs and AutomationNotificationsOutput values.
+// You can construct a concrete instance of `AutomationNotificationsInput` via:
+//
+//	AutomationNotificationsArgs{...}
+type AutomationNotificationsInput interface {
+	pulumi.Input
+
+	ToAutomationNotificationsOutput() AutomationNotificationsOutput
+	ToAutomationNotificationsOutputWithContext(context.Context) AutomationNotificationsOutput
+}
+
+type AutomationNotificationsArgs struct {
+	// Email delivery. Email notifications must be enabled for the stack.
+	Email AutomationNotificationsEmailPtrInput `pulumi:"email"`
+	// Slack delivery. Requires the Slack workspace to already be connected to the stack, which is a one-time manual step in Assistant settings.
+	Slack AutomationNotificationsSlackPtrInput `pulumi:"slack"`
+}
+
+func (AutomationNotificationsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutomationNotifications)(nil)).Elem()
+}
+
+func (i AutomationNotificationsArgs) ToAutomationNotificationsOutput() AutomationNotificationsOutput {
+	return i.ToAutomationNotificationsOutputWithContext(context.Background())
+}
+
+func (i AutomationNotificationsArgs) ToAutomationNotificationsOutputWithContext(ctx context.Context) AutomationNotificationsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutomationNotificationsOutput)
+}
+
+func (i AutomationNotificationsArgs) ToAutomationNotificationsPtrOutput() AutomationNotificationsPtrOutput {
+	return i.ToAutomationNotificationsPtrOutputWithContext(context.Background())
+}
+
+func (i AutomationNotificationsArgs) ToAutomationNotificationsPtrOutputWithContext(ctx context.Context) AutomationNotificationsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutomationNotificationsOutput).ToAutomationNotificationsPtrOutputWithContext(ctx)
+}
+
+// AutomationNotificationsPtrInput is an input type that accepts AutomationNotificationsArgs, AutomationNotificationsPtr and AutomationNotificationsPtrOutput values.
+// You can construct a concrete instance of `AutomationNotificationsPtrInput` via:
+//
+//	        AutomationNotificationsArgs{...}
+//
+//	or:
+//
+//	        nil
+type AutomationNotificationsPtrInput interface {
+	pulumi.Input
+
+	ToAutomationNotificationsPtrOutput() AutomationNotificationsPtrOutput
+	ToAutomationNotificationsPtrOutputWithContext(context.Context) AutomationNotificationsPtrOutput
+}
+
+type automationNotificationsPtrType AutomationNotificationsArgs
+
+func AutomationNotificationsPtr(v *AutomationNotificationsArgs) AutomationNotificationsPtrInput {
+	return (*automationNotificationsPtrType)(v)
+}
+
+func (*automationNotificationsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutomationNotifications)(nil)).Elem()
+}
+
+func (i *automationNotificationsPtrType) ToAutomationNotificationsPtrOutput() AutomationNotificationsPtrOutput {
+	return i.ToAutomationNotificationsPtrOutputWithContext(context.Background())
+}
+
+func (i *automationNotificationsPtrType) ToAutomationNotificationsPtrOutputWithContext(ctx context.Context) AutomationNotificationsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutomationNotificationsPtrOutput)
+}
+
+type AutomationNotificationsOutput struct{ *pulumi.OutputState }
+
+func (AutomationNotificationsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutomationNotifications)(nil)).Elem()
+}
+
+func (o AutomationNotificationsOutput) ToAutomationNotificationsOutput() AutomationNotificationsOutput {
+	return o
+}
+
+func (o AutomationNotificationsOutput) ToAutomationNotificationsOutputWithContext(ctx context.Context) AutomationNotificationsOutput {
+	return o
+}
+
+func (o AutomationNotificationsOutput) ToAutomationNotificationsPtrOutput() AutomationNotificationsPtrOutput {
+	return o.ToAutomationNotificationsPtrOutputWithContext(context.Background())
+}
+
+func (o AutomationNotificationsOutput) ToAutomationNotificationsPtrOutputWithContext(ctx context.Context) AutomationNotificationsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AutomationNotifications) *AutomationNotifications {
+		return &v
+	}).(AutomationNotificationsPtrOutput)
+}
+
+// Email delivery. Email notifications must be enabled for the stack.
+func (o AutomationNotificationsOutput) Email() AutomationNotificationsEmailPtrOutput {
+	return o.ApplyT(func(v AutomationNotifications) *AutomationNotificationsEmail { return v.Email }).(AutomationNotificationsEmailPtrOutput)
+}
+
+// Slack delivery. Requires the Slack workspace to already be connected to the stack, which is a one-time manual step in Assistant settings.
+func (o AutomationNotificationsOutput) Slack() AutomationNotificationsSlackPtrOutput {
+	return o.ApplyT(func(v AutomationNotifications) *AutomationNotificationsSlack { return v.Slack }).(AutomationNotificationsSlackPtrOutput)
+}
+
+type AutomationNotificationsPtrOutput struct{ *pulumi.OutputState }
+
+func (AutomationNotificationsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutomationNotifications)(nil)).Elem()
+}
+
+func (o AutomationNotificationsPtrOutput) ToAutomationNotificationsPtrOutput() AutomationNotificationsPtrOutput {
+	return o
+}
+
+func (o AutomationNotificationsPtrOutput) ToAutomationNotificationsPtrOutputWithContext(ctx context.Context) AutomationNotificationsPtrOutput {
+	return o
+}
+
+func (o AutomationNotificationsPtrOutput) Elem() AutomationNotificationsOutput {
+	return o.ApplyT(func(v *AutomationNotifications) AutomationNotifications {
+		if v != nil {
+			return *v
+		}
+		var ret AutomationNotifications
+		return ret
+	}).(AutomationNotificationsOutput)
+}
+
+// Email delivery. Email notifications must be enabled for the stack.
+func (o AutomationNotificationsPtrOutput) Email() AutomationNotificationsEmailPtrOutput {
+	return o.ApplyT(func(v *AutomationNotifications) *AutomationNotificationsEmail {
+		if v == nil {
+			return nil
+		}
+		return v.Email
+	}).(AutomationNotificationsEmailPtrOutput)
+}
+
+// Slack delivery. Requires the Slack workspace to already be connected to the stack, which is a one-time manual step in Assistant settings.
+func (o AutomationNotificationsPtrOutput) Slack() AutomationNotificationsSlackPtrOutput {
+	return o.ApplyT(func(v *AutomationNotifications) *AutomationNotificationsSlack {
+		if v == nil {
+			return nil
+		}
+		return v.Slack
+	}).(AutomationNotificationsSlackPtrOutput)
+}
+
+type AutomationNotificationsEmail struct {
+	// Recipient email addresses, up to 25.
+	Addresses []string `pulumi:"addresses"`
+	// Whether email notifications are sent.
+	Enabled *bool `pulumi:"enabled"`
+	// Run outcomes that trigger a notification. Defaults to ["completed", "failed"]. Any of `completed`, `failed`, `needsApproval`. Notifications still require enabled = true.
+	NotifyOns []string `pulumi:"notifyOns"`
+}
+
+// AutomationNotificationsEmailInput is an input type that accepts AutomationNotificationsEmailArgs and AutomationNotificationsEmailOutput values.
+// You can construct a concrete instance of `AutomationNotificationsEmailInput` via:
+//
+//	AutomationNotificationsEmailArgs{...}
+type AutomationNotificationsEmailInput interface {
+	pulumi.Input
+
+	ToAutomationNotificationsEmailOutput() AutomationNotificationsEmailOutput
+	ToAutomationNotificationsEmailOutputWithContext(context.Context) AutomationNotificationsEmailOutput
+}
+
+type AutomationNotificationsEmailArgs struct {
+	// Recipient email addresses, up to 25.
+	Addresses pulumi.StringArrayInput `pulumi:"addresses"`
+	// Whether email notifications are sent.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// Run outcomes that trigger a notification. Defaults to ["completed", "failed"]. Any of `completed`, `failed`, `needsApproval`. Notifications still require enabled = true.
+	NotifyOns pulumi.StringArrayInput `pulumi:"notifyOns"`
+}
+
+func (AutomationNotificationsEmailArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutomationNotificationsEmail)(nil)).Elem()
+}
+
+func (i AutomationNotificationsEmailArgs) ToAutomationNotificationsEmailOutput() AutomationNotificationsEmailOutput {
+	return i.ToAutomationNotificationsEmailOutputWithContext(context.Background())
+}
+
+func (i AutomationNotificationsEmailArgs) ToAutomationNotificationsEmailOutputWithContext(ctx context.Context) AutomationNotificationsEmailOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutomationNotificationsEmailOutput)
+}
+
+func (i AutomationNotificationsEmailArgs) ToAutomationNotificationsEmailPtrOutput() AutomationNotificationsEmailPtrOutput {
+	return i.ToAutomationNotificationsEmailPtrOutputWithContext(context.Background())
+}
+
+func (i AutomationNotificationsEmailArgs) ToAutomationNotificationsEmailPtrOutputWithContext(ctx context.Context) AutomationNotificationsEmailPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutomationNotificationsEmailOutput).ToAutomationNotificationsEmailPtrOutputWithContext(ctx)
+}
+
+// AutomationNotificationsEmailPtrInput is an input type that accepts AutomationNotificationsEmailArgs, AutomationNotificationsEmailPtr and AutomationNotificationsEmailPtrOutput values.
+// You can construct a concrete instance of `AutomationNotificationsEmailPtrInput` via:
+//
+//	        AutomationNotificationsEmailArgs{...}
+//
+//	or:
+//
+//	        nil
+type AutomationNotificationsEmailPtrInput interface {
+	pulumi.Input
+
+	ToAutomationNotificationsEmailPtrOutput() AutomationNotificationsEmailPtrOutput
+	ToAutomationNotificationsEmailPtrOutputWithContext(context.Context) AutomationNotificationsEmailPtrOutput
+}
+
+type automationNotificationsEmailPtrType AutomationNotificationsEmailArgs
+
+func AutomationNotificationsEmailPtr(v *AutomationNotificationsEmailArgs) AutomationNotificationsEmailPtrInput {
+	return (*automationNotificationsEmailPtrType)(v)
+}
+
+func (*automationNotificationsEmailPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutomationNotificationsEmail)(nil)).Elem()
+}
+
+func (i *automationNotificationsEmailPtrType) ToAutomationNotificationsEmailPtrOutput() AutomationNotificationsEmailPtrOutput {
+	return i.ToAutomationNotificationsEmailPtrOutputWithContext(context.Background())
+}
+
+func (i *automationNotificationsEmailPtrType) ToAutomationNotificationsEmailPtrOutputWithContext(ctx context.Context) AutomationNotificationsEmailPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutomationNotificationsEmailPtrOutput)
+}
+
+type AutomationNotificationsEmailOutput struct{ *pulumi.OutputState }
+
+func (AutomationNotificationsEmailOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutomationNotificationsEmail)(nil)).Elem()
+}
+
+func (o AutomationNotificationsEmailOutput) ToAutomationNotificationsEmailOutput() AutomationNotificationsEmailOutput {
+	return o
+}
+
+func (o AutomationNotificationsEmailOutput) ToAutomationNotificationsEmailOutputWithContext(ctx context.Context) AutomationNotificationsEmailOutput {
+	return o
+}
+
+func (o AutomationNotificationsEmailOutput) ToAutomationNotificationsEmailPtrOutput() AutomationNotificationsEmailPtrOutput {
+	return o.ToAutomationNotificationsEmailPtrOutputWithContext(context.Background())
+}
+
+func (o AutomationNotificationsEmailOutput) ToAutomationNotificationsEmailPtrOutputWithContext(ctx context.Context) AutomationNotificationsEmailPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AutomationNotificationsEmail) *AutomationNotificationsEmail {
+		return &v
+	}).(AutomationNotificationsEmailPtrOutput)
+}
+
+// Recipient email addresses, up to 25.
+func (o AutomationNotificationsEmailOutput) Addresses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AutomationNotificationsEmail) []string { return v.Addresses }).(pulumi.StringArrayOutput)
+}
+
+// Whether email notifications are sent.
+func (o AutomationNotificationsEmailOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AutomationNotificationsEmail) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Run outcomes that trigger a notification. Defaults to ["completed", "failed"]. Any of `completed`, `failed`, `needsApproval`. Notifications still require enabled = true.
+func (o AutomationNotificationsEmailOutput) NotifyOns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AutomationNotificationsEmail) []string { return v.NotifyOns }).(pulumi.StringArrayOutput)
+}
+
+type AutomationNotificationsEmailPtrOutput struct{ *pulumi.OutputState }
+
+func (AutomationNotificationsEmailPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutomationNotificationsEmail)(nil)).Elem()
+}
+
+func (o AutomationNotificationsEmailPtrOutput) ToAutomationNotificationsEmailPtrOutput() AutomationNotificationsEmailPtrOutput {
+	return o
+}
+
+func (o AutomationNotificationsEmailPtrOutput) ToAutomationNotificationsEmailPtrOutputWithContext(ctx context.Context) AutomationNotificationsEmailPtrOutput {
+	return o
+}
+
+func (o AutomationNotificationsEmailPtrOutput) Elem() AutomationNotificationsEmailOutput {
+	return o.ApplyT(func(v *AutomationNotificationsEmail) AutomationNotificationsEmail {
+		if v != nil {
+			return *v
+		}
+		var ret AutomationNotificationsEmail
+		return ret
+	}).(AutomationNotificationsEmailOutput)
+}
+
+// Recipient email addresses, up to 25.
+func (o AutomationNotificationsEmailPtrOutput) Addresses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AutomationNotificationsEmail) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Addresses
+	}).(pulumi.StringArrayOutput)
+}
+
+// Whether email notifications are sent.
+func (o AutomationNotificationsEmailPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AutomationNotificationsEmail) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Run outcomes that trigger a notification. Defaults to ["completed", "failed"]. Any of `completed`, `failed`, `needsApproval`. Notifications still require enabled = true.
+func (o AutomationNotificationsEmailPtrOutput) NotifyOns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AutomationNotificationsEmail) []string {
+		if v == nil {
+			return nil
+		}
+		return v.NotifyOns
+	}).(pulumi.StringArrayOutput)
+}
+
+type AutomationNotificationsSlack struct {
+	// Whether Slack notifications are sent.
+	Enabled *bool `pulumi:"enabled"`
+	// Run outcomes that trigger a notification. Defaults to ["completed", "failed"]. Any of `completed`, `failed`, `needsApproval`. Notifications still require enabled = true.
+	NotifyOns []string `pulumi:"notifyOns"`
+	// Where the notification is posted.
+	Target *AutomationNotificationsSlackTarget `pulumi:"target"`
+}
+
+// AutomationNotificationsSlackInput is an input type that accepts AutomationNotificationsSlackArgs and AutomationNotificationsSlackOutput values.
+// You can construct a concrete instance of `AutomationNotificationsSlackInput` via:
+//
+//	AutomationNotificationsSlackArgs{...}
+type AutomationNotificationsSlackInput interface {
+	pulumi.Input
+
+	ToAutomationNotificationsSlackOutput() AutomationNotificationsSlackOutput
+	ToAutomationNotificationsSlackOutputWithContext(context.Context) AutomationNotificationsSlackOutput
+}
+
+type AutomationNotificationsSlackArgs struct {
+	// Whether Slack notifications are sent.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// Run outcomes that trigger a notification. Defaults to ["completed", "failed"]. Any of `completed`, `failed`, `needsApproval`. Notifications still require enabled = true.
+	NotifyOns pulumi.StringArrayInput `pulumi:"notifyOns"`
+	// Where the notification is posted.
+	Target AutomationNotificationsSlackTargetPtrInput `pulumi:"target"`
+}
+
+func (AutomationNotificationsSlackArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutomationNotificationsSlack)(nil)).Elem()
+}
+
+func (i AutomationNotificationsSlackArgs) ToAutomationNotificationsSlackOutput() AutomationNotificationsSlackOutput {
+	return i.ToAutomationNotificationsSlackOutputWithContext(context.Background())
+}
+
+func (i AutomationNotificationsSlackArgs) ToAutomationNotificationsSlackOutputWithContext(ctx context.Context) AutomationNotificationsSlackOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutomationNotificationsSlackOutput)
+}
+
+func (i AutomationNotificationsSlackArgs) ToAutomationNotificationsSlackPtrOutput() AutomationNotificationsSlackPtrOutput {
+	return i.ToAutomationNotificationsSlackPtrOutputWithContext(context.Background())
+}
+
+func (i AutomationNotificationsSlackArgs) ToAutomationNotificationsSlackPtrOutputWithContext(ctx context.Context) AutomationNotificationsSlackPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutomationNotificationsSlackOutput).ToAutomationNotificationsSlackPtrOutputWithContext(ctx)
+}
+
+// AutomationNotificationsSlackPtrInput is an input type that accepts AutomationNotificationsSlackArgs, AutomationNotificationsSlackPtr and AutomationNotificationsSlackPtrOutput values.
+// You can construct a concrete instance of `AutomationNotificationsSlackPtrInput` via:
+//
+//	        AutomationNotificationsSlackArgs{...}
+//
+//	or:
+//
+//	        nil
+type AutomationNotificationsSlackPtrInput interface {
+	pulumi.Input
+
+	ToAutomationNotificationsSlackPtrOutput() AutomationNotificationsSlackPtrOutput
+	ToAutomationNotificationsSlackPtrOutputWithContext(context.Context) AutomationNotificationsSlackPtrOutput
+}
+
+type automationNotificationsSlackPtrType AutomationNotificationsSlackArgs
+
+func AutomationNotificationsSlackPtr(v *AutomationNotificationsSlackArgs) AutomationNotificationsSlackPtrInput {
+	return (*automationNotificationsSlackPtrType)(v)
+}
+
+func (*automationNotificationsSlackPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutomationNotificationsSlack)(nil)).Elem()
+}
+
+func (i *automationNotificationsSlackPtrType) ToAutomationNotificationsSlackPtrOutput() AutomationNotificationsSlackPtrOutput {
+	return i.ToAutomationNotificationsSlackPtrOutputWithContext(context.Background())
+}
+
+func (i *automationNotificationsSlackPtrType) ToAutomationNotificationsSlackPtrOutputWithContext(ctx context.Context) AutomationNotificationsSlackPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutomationNotificationsSlackPtrOutput)
+}
+
+type AutomationNotificationsSlackOutput struct{ *pulumi.OutputState }
+
+func (AutomationNotificationsSlackOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutomationNotificationsSlack)(nil)).Elem()
+}
+
+func (o AutomationNotificationsSlackOutput) ToAutomationNotificationsSlackOutput() AutomationNotificationsSlackOutput {
+	return o
+}
+
+func (o AutomationNotificationsSlackOutput) ToAutomationNotificationsSlackOutputWithContext(ctx context.Context) AutomationNotificationsSlackOutput {
+	return o
+}
+
+func (o AutomationNotificationsSlackOutput) ToAutomationNotificationsSlackPtrOutput() AutomationNotificationsSlackPtrOutput {
+	return o.ToAutomationNotificationsSlackPtrOutputWithContext(context.Background())
+}
+
+func (o AutomationNotificationsSlackOutput) ToAutomationNotificationsSlackPtrOutputWithContext(ctx context.Context) AutomationNotificationsSlackPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AutomationNotificationsSlack) *AutomationNotificationsSlack {
+		return &v
+	}).(AutomationNotificationsSlackPtrOutput)
+}
+
+// Whether Slack notifications are sent.
+func (o AutomationNotificationsSlackOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AutomationNotificationsSlack) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Run outcomes that trigger a notification. Defaults to ["completed", "failed"]. Any of `completed`, `failed`, `needsApproval`. Notifications still require enabled = true.
+func (o AutomationNotificationsSlackOutput) NotifyOns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AutomationNotificationsSlack) []string { return v.NotifyOns }).(pulumi.StringArrayOutput)
+}
+
+// Where the notification is posted.
+func (o AutomationNotificationsSlackOutput) Target() AutomationNotificationsSlackTargetPtrOutput {
+	return o.ApplyT(func(v AutomationNotificationsSlack) *AutomationNotificationsSlackTarget { return v.Target }).(AutomationNotificationsSlackTargetPtrOutput)
+}
+
+type AutomationNotificationsSlackPtrOutput struct{ *pulumi.OutputState }
+
+func (AutomationNotificationsSlackPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutomationNotificationsSlack)(nil)).Elem()
+}
+
+func (o AutomationNotificationsSlackPtrOutput) ToAutomationNotificationsSlackPtrOutput() AutomationNotificationsSlackPtrOutput {
+	return o
+}
+
+func (o AutomationNotificationsSlackPtrOutput) ToAutomationNotificationsSlackPtrOutputWithContext(ctx context.Context) AutomationNotificationsSlackPtrOutput {
+	return o
+}
+
+func (o AutomationNotificationsSlackPtrOutput) Elem() AutomationNotificationsSlackOutput {
+	return o.ApplyT(func(v *AutomationNotificationsSlack) AutomationNotificationsSlack {
+		if v != nil {
+			return *v
+		}
+		var ret AutomationNotificationsSlack
+		return ret
+	}).(AutomationNotificationsSlackOutput)
+}
+
+// Whether Slack notifications are sent.
+func (o AutomationNotificationsSlackPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AutomationNotificationsSlack) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Run outcomes that trigger a notification. Defaults to ["completed", "failed"]. Any of `completed`, `failed`, `needsApproval`. Notifications still require enabled = true.
+func (o AutomationNotificationsSlackPtrOutput) NotifyOns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AutomationNotificationsSlack) []string {
+		if v == nil {
+			return nil
+		}
+		return v.NotifyOns
+	}).(pulumi.StringArrayOutput)
+}
+
+// Where the notification is posted.
+func (o AutomationNotificationsSlackPtrOutput) Target() AutomationNotificationsSlackTargetPtrOutput {
+	return o.ApplyT(func(v *AutomationNotificationsSlack) *AutomationNotificationsSlackTarget {
+		if v == nil {
+			return nil
+		}
+		return v.Target
+	}).(AutomationNotificationsSlackTargetPtrOutput)
+}
+
+type AutomationNotificationsSlackTarget struct {
+	// Slack channel ID. Required for a `channel` target.
+	ChannelId *string `pulumi:"channelId"`
+	// Slack workspace (team) ID. Omit to let Assistant resolve it; automatically resolved IDs are not managed unless configured.
+	TeamId *string `pulumi:"teamId"`
+	// Target type. One of `channel` or `dm`. Required when a `target` block is present.
+	Type *string `pulumi:"type"`
+	// Slack user ID for a `dm` target. Omit to use the creator’s verified Slack mapping.
+	UserId *string `pulumi:"userId"`
+}
+
+// AutomationNotificationsSlackTargetInput is an input type that accepts AutomationNotificationsSlackTargetArgs and AutomationNotificationsSlackTargetOutput values.
+// You can construct a concrete instance of `AutomationNotificationsSlackTargetInput` via:
+//
+//	AutomationNotificationsSlackTargetArgs{...}
+type AutomationNotificationsSlackTargetInput interface {
+	pulumi.Input
+
+	ToAutomationNotificationsSlackTargetOutput() AutomationNotificationsSlackTargetOutput
+	ToAutomationNotificationsSlackTargetOutputWithContext(context.Context) AutomationNotificationsSlackTargetOutput
+}
+
+type AutomationNotificationsSlackTargetArgs struct {
+	// Slack channel ID. Required for a `channel` target.
+	ChannelId pulumi.StringPtrInput `pulumi:"channelId"`
+	// Slack workspace (team) ID. Omit to let Assistant resolve it; automatically resolved IDs are not managed unless configured.
+	TeamId pulumi.StringPtrInput `pulumi:"teamId"`
+	// Target type. One of `channel` or `dm`. Required when a `target` block is present.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+	// Slack user ID for a `dm` target. Omit to use the creator’s verified Slack mapping.
+	UserId pulumi.StringPtrInput `pulumi:"userId"`
+}
+
+func (AutomationNotificationsSlackTargetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutomationNotificationsSlackTarget)(nil)).Elem()
+}
+
+func (i AutomationNotificationsSlackTargetArgs) ToAutomationNotificationsSlackTargetOutput() AutomationNotificationsSlackTargetOutput {
+	return i.ToAutomationNotificationsSlackTargetOutputWithContext(context.Background())
+}
+
+func (i AutomationNotificationsSlackTargetArgs) ToAutomationNotificationsSlackTargetOutputWithContext(ctx context.Context) AutomationNotificationsSlackTargetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutomationNotificationsSlackTargetOutput)
+}
+
+func (i AutomationNotificationsSlackTargetArgs) ToAutomationNotificationsSlackTargetPtrOutput() AutomationNotificationsSlackTargetPtrOutput {
+	return i.ToAutomationNotificationsSlackTargetPtrOutputWithContext(context.Background())
+}
+
+func (i AutomationNotificationsSlackTargetArgs) ToAutomationNotificationsSlackTargetPtrOutputWithContext(ctx context.Context) AutomationNotificationsSlackTargetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutomationNotificationsSlackTargetOutput).ToAutomationNotificationsSlackTargetPtrOutputWithContext(ctx)
+}
+
+// AutomationNotificationsSlackTargetPtrInput is an input type that accepts AutomationNotificationsSlackTargetArgs, AutomationNotificationsSlackTargetPtr and AutomationNotificationsSlackTargetPtrOutput values.
+// You can construct a concrete instance of `AutomationNotificationsSlackTargetPtrInput` via:
+//
+//	        AutomationNotificationsSlackTargetArgs{...}
+//
+//	or:
+//
+//	        nil
+type AutomationNotificationsSlackTargetPtrInput interface {
+	pulumi.Input
+
+	ToAutomationNotificationsSlackTargetPtrOutput() AutomationNotificationsSlackTargetPtrOutput
+	ToAutomationNotificationsSlackTargetPtrOutputWithContext(context.Context) AutomationNotificationsSlackTargetPtrOutput
+}
+
+type automationNotificationsSlackTargetPtrType AutomationNotificationsSlackTargetArgs
+
+func AutomationNotificationsSlackTargetPtr(v *AutomationNotificationsSlackTargetArgs) AutomationNotificationsSlackTargetPtrInput {
+	return (*automationNotificationsSlackTargetPtrType)(v)
+}
+
+func (*automationNotificationsSlackTargetPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutomationNotificationsSlackTarget)(nil)).Elem()
+}
+
+func (i *automationNotificationsSlackTargetPtrType) ToAutomationNotificationsSlackTargetPtrOutput() AutomationNotificationsSlackTargetPtrOutput {
+	return i.ToAutomationNotificationsSlackTargetPtrOutputWithContext(context.Background())
+}
+
+func (i *automationNotificationsSlackTargetPtrType) ToAutomationNotificationsSlackTargetPtrOutputWithContext(ctx context.Context) AutomationNotificationsSlackTargetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutomationNotificationsSlackTargetPtrOutput)
+}
+
+type AutomationNotificationsSlackTargetOutput struct{ *pulumi.OutputState }
+
+func (AutomationNotificationsSlackTargetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutomationNotificationsSlackTarget)(nil)).Elem()
+}
+
+func (o AutomationNotificationsSlackTargetOutput) ToAutomationNotificationsSlackTargetOutput() AutomationNotificationsSlackTargetOutput {
+	return o
+}
+
+func (o AutomationNotificationsSlackTargetOutput) ToAutomationNotificationsSlackTargetOutputWithContext(ctx context.Context) AutomationNotificationsSlackTargetOutput {
+	return o
+}
+
+func (o AutomationNotificationsSlackTargetOutput) ToAutomationNotificationsSlackTargetPtrOutput() AutomationNotificationsSlackTargetPtrOutput {
+	return o.ToAutomationNotificationsSlackTargetPtrOutputWithContext(context.Background())
+}
+
+func (o AutomationNotificationsSlackTargetOutput) ToAutomationNotificationsSlackTargetPtrOutputWithContext(ctx context.Context) AutomationNotificationsSlackTargetPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AutomationNotificationsSlackTarget) *AutomationNotificationsSlackTarget {
+		return &v
+	}).(AutomationNotificationsSlackTargetPtrOutput)
+}
+
+// Slack channel ID. Required for a `channel` target.
+func (o AutomationNotificationsSlackTargetOutput) ChannelId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AutomationNotificationsSlackTarget) *string { return v.ChannelId }).(pulumi.StringPtrOutput)
+}
+
+// Slack workspace (team) ID. Omit to let Assistant resolve it; automatically resolved IDs are not managed unless configured.
+func (o AutomationNotificationsSlackTargetOutput) TeamId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AutomationNotificationsSlackTarget) *string { return v.TeamId }).(pulumi.StringPtrOutput)
+}
+
+// Target type. One of `channel` or `dm`. Required when a `target` block is present.
+func (o AutomationNotificationsSlackTargetOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AutomationNotificationsSlackTarget) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+// Slack user ID for a `dm` target. Omit to use the creator’s verified Slack mapping.
+func (o AutomationNotificationsSlackTargetOutput) UserId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AutomationNotificationsSlackTarget) *string { return v.UserId }).(pulumi.StringPtrOutput)
+}
+
+type AutomationNotificationsSlackTargetPtrOutput struct{ *pulumi.OutputState }
+
+func (AutomationNotificationsSlackTargetPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutomationNotificationsSlackTarget)(nil)).Elem()
+}
+
+func (o AutomationNotificationsSlackTargetPtrOutput) ToAutomationNotificationsSlackTargetPtrOutput() AutomationNotificationsSlackTargetPtrOutput {
+	return o
+}
+
+func (o AutomationNotificationsSlackTargetPtrOutput) ToAutomationNotificationsSlackTargetPtrOutputWithContext(ctx context.Context) AutomationNotificationsSlackTargetPtrOutput {
+	return o
+}
+
+func (o AutomationNotificationsSlackTargetPtrOutput) Elem() AutomationNotificationsSlackTargetOutput {
+	return o.ApplyT(func(v *AutomationNotificationsSlackTarget) AutomationNotificationsSlackTarget {
+		if v != nil {
+			return *v
+		}
+		var ret AutomationNotificationsSlackTarget
+		return ret
+	}).(AutomationNotificationsSlackTargetOutput)
+}
+
+// Slack channel ID. Required for a `channel` target.
+func (o AutomationNotificationsSlackTargetPtrOutput) ChannelId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AutomationNotificationsSlackTarget) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ChannelId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Slack workspace (team) ID. Omit to let Assistant resolve it; automatically resolved IDs are not managed unless configured.
+func (o AutomationNotificationsSlackTargetPtrOutput) TeamId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AutomationNotificationsSlackTarget) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TeamId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Target type. One of `channel` or `dm`. Required when a `target` block is present.
+func (o AutomationNotificationsSlackTargetPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AutomationNotificationsSlackTarget) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+// Slack user ID for a `dm` target. Omit to use the creator’s verified Slack mapping.
+func (o AutomationNotificationsSlackTargetPtrOutput) UserId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AutomationNotificationsSlackTarget) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UserId
+	}).(pulumi.StringPtrOutput)
+}
+
+type AutomationTriggers struct {
+	Config string `pulumi:"config"`
+	Type   string `pulumi:"type"`
+}
+
+// AutomationTriggersInput is an input type that accepts AutomationTriggersArgs and AutomationTriggersOutput values.
+// You can construct a concrete instance of `AutomationTriggersInput` via:
+//
+//	AutomationTriggersArgs{...}
+type AutomationTriggersInput interface {
+	pulumi.Input
+
+	ToAutomationTriggersOutput() AutomationTriggersOutput
+	ToAutomationTriggersOutputWithContext(context.Context) AutomationTriggersOutput
+}
+
+type AutomationTriggersArgs struct {
+	Config pulumi.StringInput `pulumi:"config"`
+	Type   pulumi.StringInput `pulumi:"type"`
+}
+
+func (AutomationTriggersArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutomationTriggers)(nil)).Elem()
+}
+
+func (i AutomationTriggersArgs) ToAutomationTriggersOutput() AutomationTriggersOutput {
+	return i.ToAutomationTriggersOutputWithContext(context.Background())
+}
+
+func (i AutomationTriggersArgs) ToAutomationTriggersOutputWithContext(ctx context.Context) AutomationTriggersOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutomationTriggersOutput)
+}
+
+// AutomationTriggersMapInput is an input type that accepts AutomationTriggersMap and AutomationTriggersMapOutput values.
+// You can construct a concrete instance of `AutomationTriggersMapInput` via:
+//
+//	AutomationTriggersMap{ "key": AutomationTriggersArgs{...} }
+type AutomationTriggersMapInput interface {
+	pulumi.Input
+
+	ToAutomationTriggersMapOutput() AutomationTriggersMapOutput
+	ToAutomationTriggersMapOutputWithContext(context.Context) AutomationTriggersMapOutput
+}
+
+type AutomationTriggersMap map[string]AutomationTriggersInput
+
+func (AutomationTriggersMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]AutomationTriggers)(nil)).Elem()
+}
+
+func (i AutomationTriggersMap) ToAutomationTriggersMapOutput() AutomationTriggersMapOutput {
+	return i.ToAutomationTriggersMapOutputWithContext(context.Background())
+}
+
+func (i AutomationTriggersMap) ToAutomationTriggersMapOutputWithContext(ctx context.Context) AutomationTriggersMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutomationTriggersMapOutput)
+}
+
+type AutomationTriggersOutput struct{ *pulumi.OutputState }
+
+func (AutomationTriggersOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutomationTriggers)(nil)).Elem()
+}
+
+func (o AutomationTriggersOutput) ToAutomationTriggersOutput() AutomationTriggersOutput {
+	return o
+}
+
+func (o AutomationTriggersOutput) ToAutomationTriggersOutputWithContext(ctx context.Context) AutomationTriggersOutput {
+	return o
+}
+
+func (o AutomationTriggersOutput) Config() pulumi.StringOutput {
+	return o.ApplyT(func(v AutomationTriggers) string { return v.Config }).(pulumi.StringOutput)
+}
+
+func (o AutomationTriggersOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v AutomationTriggers) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type AutomationTriggersMapOutput struct{ *pulumi.OutputState }
+
+func (AutomationTriggersMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]AutomationTriggers)(nil)).Elem()
+}
+
+func (o AutomationTriggersMapOutput) ToAutomationTriggersMapOutput() AutomationTriggersMapOutput {
+	return o
+}
+
+func (o AutomationTriggersMapOutput) ToAutomationTriggersMapOutputWithContext(ctx context.Context) AutomationTriggersMapOutput {
+	return o
+}
+
+func (o AutomationTriggersMapOutput) MapIndex(k pulumi.StringInput) AutomationTriggersOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AutomationTriggers {
+		return vs[0].(map[string]AutomationTriggers)[vs[1].(string)]
+	}).(AutomationTriggersOutput)
+}
+
 type McpServerConfiguration struct {
 	// Built-in provider ID (e.g. cursor). When set, tools are provided locally.
 	BuiltinId *string `pulumi:"builtinId"`
@@ -207,6 +1007,204 @@ func (o McpServerConfigurationPtrOutput) Url() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type McpServerGithubApp struct {
+	// The GitHub App ID.
+	AppId *int `pulumi:"appId"`
+	// The ID of the GitHub App installation on your organization.
+	InstallationId *int `pulumi:"installationId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The GitHub App private key in PEM format. Terraform sends it to the API but never stores it in state.
+	PrivateKey *string `pulumi:"privateKey"`
+	// SHA-256 hash of the private key Terraform last sent, used to detect key changes in configuration. A key changed outside Terraform is not detected, because the API never returns the key.
+	PrivateKeyHash *string `pulumi:"privateKeyHash"`
+}
+
+// McpServerGithubAppInput is an input type that accepts McpServerGithubAppArgs and McpServerGithubAppOutput values.
+// You can construct a concrete instance of `McpServerGithubAppInput` via:
+//
+//	McpServerGithubAppArgs{...}
+type McpServerGithubAppInput interface {
+	pulumi.Input
+
+	ToMcpServerGithubAppOutput() McpServerGithubAppOutput
+	ToMcpServerGithubAppOutputWithContext(context.Context) McpServerGithubAppOutput
+}
+
+type McpServerGithubAppArgs struct {
+	// The GitHub App ID.
+	AppId pulumi.IntPtrInput `pulumi:"appId"`
+	// The ID of the GitHub App installation on your organization.
+	InstallationId pulumi.IntPtrInput `pulumi:"installationId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The GitHub App private key in PEM format. Terraform sends it to the API but never stores it in state.
+	PrivateKey pulumi.StringPtrInput `pulumi:"privateKey"`
+	// SHA-256 hash of the private key Terraform last sent, used to detect key changes in configuration. A key changed outside Terraform is not detected, because the API never returns the key.
+	PrivateKeyHash pulumi.StringPtrInput `pulumi:"privateKeyHash"`
+}
+
+func (McpServerGithubAppArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*McpServerGithubApp)(nil)).Elem()
+}
+
+func (i McpServerGithubAppArgs) ToMcpServerGithubAppOutput() McpServerGithubAppOutput {
+	return i.ToMcpServerGithubAppOutputWithContext(context.Background())
+}
+
+func (i McpServerGithubAppArgs) ToMcpServerGithubAppOutputWithContext(ctx context.Context) McpServerGithubAppOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(McpServerGithubAppOutput)
+}
+
+func (i McpServerGithubAppArgs) ToMcpServerGithubAppPtrOutput() McpServerGithubAppPtrOutput {
+	return i.ToMcpServerGithubAppPtrOutputWithContext(context.Background())
+}
+
+func (i McpServerGithubAppArgs) ToMcpServerGithubAppPtrOutputWithContext(ctx context.Context) McpServerGithubAppPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(McpServerGithubAppOutput).ToMcpServerGithubAppPtrOutputWithContext(ctx)
+}
+
+// McpServerGithubAppPtrInput is an input type that accepts McpServerGithubAppArgs, McpServerGithubAppPtr and McpServerGithubAppPtrOutput values.
+// You can construct a concrete instance of `McpServerGithubAppPtrInput` via:
+//
+//	        McpServerGithubAppArgs{...}
+//
+//	or:
+//
+//	        nil
+type McpServerGithubAppPtrInput interface {
+	pulumi.Input
+
+	ToMcpServerGithubAppPtrOutput() McpServerGithubAppPtrOutput
+	ToMcpServerGithubAppPtrOutputWithContext(context.Context) McpServerGithubAppPtrOutput
+}
+
+type mcpServerGithubAppPtrType McpServerGithubAppArgs
+
+func McpServerGithubAppPtr(v *McpServerGithubAppArgs) McpServerGithubAppPtrInput {
+	return (*mcpServerGithubAppPtrType)(v)
+}
+
+func (*mcpServerGithubAppPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**McpServerGithubApp)(nil)).Elem()
+}
+
+func (i *mcpServerGithubAppPtrType) ToMcpServerGithubAppPtrOutput() McpServerGithubAppPtrOutput {
+	return i.ToMcpServerGithubAppPtrOutputWithContext(context.Background())
+}
+
+func (i *mcpServerGithubAppPtrType) ToMcpServerGithubAppPtrOutputWithContext(ctx context.Context) McpServerGithubAppPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(McpServerGithubAppPtrOutput)
+}
+
+type McpServerGithubAppOutput struct{ *pulumi.OutputState }
+
+func (McpServerGithubAppOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*McpServerGithubApp)(nil)).Elem()
+}
+
+func (o McpServerGithubAppOutput) ToMcpServerGithubAppOutput() McpServerGithubAppOutput {
+	return o
+}
+
+func (o McpServerGithubAppOutput) ToMcpServerGithubAppOutputWithContext(ctx context.Context) McpServerGithubAppOutput {
+	return o
+}
+
+func (o McpServerGithubAppOutput) ToMcpServerGithubAppPtrOutput() McpServerGithubAppPtrOutput {
+	return o.ToMcpServerGithubAppPtrOutputWithContext(context.Background())
+}
+
+func (o McpServerGithubAppOutput) ToMcpServerGithubAppPtrOutputWithContext(ctx context.Context) McpServerGithubAppPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v McpServerGithubApp) *McpServerGithubApp {
+		return &v
+	}).(McpServerGithubAppPtrOutput)
+}
+
+// The GitHub App ID.
+func (o McpServerGithubAppOutput) AppId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v McpServerGithubApp) *int { return v.AppId }).(pulumi.IntPtrOutput)
+}
+
+// The ID of the GitHub App installation on your organization.
+func (o McpServerGithubAppOutput) InstallationId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v McpServerGithubApp) *int { return v.InstallationId }).(pulumi.IntPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The GitHub App private key in PEM format. Terraform sends it to the API but never stores it in state.
+func (o McpServerGithubAppOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v McpServerGithubApp) *string { return v.PrivateKey }).(pulumi.StringPtrOutput)
+}
+
+// SHA-256 hash of the private key Terraform last sent, used to detect key changes in configuration. A key changed outside Terraform is not detected, because the API never returns the key.
+func (o McpServerGithubAppOutput) PrivateKeyHash() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v McpServerGithubApp) *string { return v.PrivateKeyHash }).(pulumi.StringPtrOutput)
+}
+
+type McpServerGithubAppPtrOutput struct{ *pulumi.OutputState }
+
+func (McpServerGithubAppPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**McpServerGithubApp)(nil)).Elem()
+}
+
+func (o McpServerGithubAppPtrOutput) ToMcpServerGithubAppPtrOutput() McpServerGithubAppPtrOutput {
+	return o
+}
+
+func (o McpServerGithubAppPtrOutput) ToMcpServerGithubAppPtrOutputWithContext(ctx context.Context) McpServerGithubAppPtrOutput {
+	return o
+}
+
+func (o McpServerGithubAppPtrOutput) Elem() McpServerGithubAppOutput {
+	return o.ApplyT(func(v *McpServerGithubApp) McpServerGithubApp {
+		if v != nil {
+			return *v
+		}
+		var ret McpServerGithubApp
+		return ret
+	}).(McpServerGithubAppOutput)
+}
+
+// The GitHub App ID.
+func (o McpServerGithubAppPtrOutput) AppId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *McpServerGithubApp) *int {
+		if v == nil {
+			return nil
+		}
+		return v.AppId
+	}).(pulumi.IntPtrOutput)
+}
+
+// The ID of the GitHub App installation on your organization.
+func (o McpServerGithubAppPtrOutput) InstallationId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *McpServerGithubApp) *int {
+		if v == nil {
+			return nil
+		}
+		return v.InstallationId
+	}).(pulumi.IntPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The GitHub App private key in PEM format. Terraform sends it to the API but never stores it in state.
+func (o McpServerGithubAppPtrOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *McpServerGithubApp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// SHA-256 hash of the private key Terraform last sent, used to detect key changes in configuration. A key changed outside Terraform is not detected, because the API never returns the key.
+func (o McpServerGithubAppPtrOutput) PrivateKeyHash() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *McpServerGithubApp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyHash
+	}).(pulumi.StringPtrOutput)
+}
+
 type SkillAllowedTool struct {
 	// Integration UUID.
 	IntegrationId string `pulumi:"integrationId"`
@@ -314,12 +1312,36 @@ func (o SkillAllowedToolArrayOutput) Index(i pulumi.IntInput) SkillAllowedToolOu
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AutomationNotificationsInput)(nil)).Elem(), AutomationNotificationsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutomationNotificationsPtrInput)(nil)).Elem(), AutomationNotificationsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutomationNotificationsEmailInput)(nil)).Elem(), AutomationNotificationsEmailArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutomationNotificationsEmailPtrInput)(nil)).Elem(), AutomationNotificationsEmailArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutomationNotificationsSlackInput)(nil)).Elem(), AutomationNotificationsSlackArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutomationNotificationsSlackPtrInput)(nil)).Elem(), AutomationNotificationsSlackArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutomationNotificationsSlackTargetInput)(nil)).Elem(), AutomationNotificationsSlackTargetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutomationNotificationsSlackTargetPtrInput)(nil)).Elem(), AutomationNotificationsSlackTargetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutomationTriggersInput)(nil)).Elem(), AutomationTriggersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutomationTriggersMapInput)(nil)).Elem(), AutomationTriggersMap{})
 	pulumi.RegisterInputType(reflect.TypeOf((*McpServerConfigurationInput)(nil)).Elem(), McpServerConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*McpServerConfigurationPtrInput)(nil)).Elem(), McpServerConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*McpServerGithubAppInput)(nil)).Elem(), McpServerGithubAppArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*McpServerGithubAppPtrInput)(nil)).Elem(), McpServerGithubAppArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SkillAllowedToolInput)(nil)).Elem(), SkillAllowedToolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SkillAllowedToolArrayInput)(nil)).Elem(), SkillAllowedToolArray{})
+	pulumi.RegisterOutputType(AutomationNotificationsOutput{})
+	pulumi.RegisterOutputType(AutomationNotificationsPtrOutput{})
+	pulumi.RegisterOutputType(AutomationNotificationsEmailOutput{})
+	pulumi.RegisterOutputType(AutomationNotificationsEmailPtrOutput{})
+	pulumi.RegisterOutputType(AutomationNotificationsSlackOutput{})
+	pulumi.RegisterOutputType(AutomationNotificationsSlackPtrOutput{})
+	pulumi.RegisterOutputType(AutomationNotificationsSlackTargetOutput{})
+	pulumi.RegisterOutputType(AutomationNotificationsSlackTargetPtrOutput{})
+	pulumi.RegisterOutputType(AutomationTriggersOutput{})
+	pulumi.RegisterOutputType(AutomationTriggersMapOutput{})
 	pulumi.RegisterOutputType(McpServerConfigurationOutput{})
 	pulumi.RegisterOutputType(McpServerConfigurationPtrOutput{})
+	pulumi.RegisterOutputType(McpServerGithubAppOutput{})
+	pulumi.RegisterOutputType(McpServerGithubAppPtrOutput{})
 	pulumi.RegisterOutputType(SkillAllowedToolOutput{})
 	pulumi.RegisterOutputType(SkillAllowedToolArrayOutput{})
 }

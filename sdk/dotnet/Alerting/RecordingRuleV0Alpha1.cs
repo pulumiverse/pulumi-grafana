@@ -13,6 +13,8 @@ namespace Pulumiverse.Grafana.Alerting
     /// <summary>
     /// Manages Grafana Recording Rules.
     /// 
+    /// &gt; **Deprecated:** This resource uses the `V0alpha1` API. Use `grafana.AppsRulesRecordingruleV1beta1` instead.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp

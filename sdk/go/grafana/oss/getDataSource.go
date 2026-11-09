@@ -111,7 +111,7 @@ type LookupDataSourceResult struct {
 	// The data source type. Must be one of the supported data source keywords.
 	Type string `pulumi:"type"`
 	Uid  string `pulumi:"uid"`
-	// The URL for the data source. The type of URL required varies depending on the chosen data source type.
+	// The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
 	Url string `pulumi:"url"`
 	// (Required by some data source types) The username to use to authenticate to the data source.
 	Username string `pulumi:"username"`
@@ -211,7 +211,7 @@ func (o LookupDataSourceResultOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDataSourceResult) string { return v.Uid }).(pulumi.StringOutput)
 }
 
-// The URL for the data source. The type of URL required varies depending on the chosen data source type.
+// The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
 func (o LookupDataSourceResultOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDataSourceResult) string { return v.Url }).(pulumi.StringOutput)
 }

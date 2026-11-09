@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { AutomationArgs, AutomationState } from "./automation";
+export type Automation = import("./automation").Automation;
+export const Automation: typeof import("./automation").Automation = null as any;
+utilities.lazyLoad(exports, ["Automation"], () => require("./automation"));
+
 export { McpServerArgs, McpServerState } from "./mcpServer";
 export type McpServer = import("./mcpServer").McpServer;
 export const McpServer: typeof import("./mcpServer").McpServer = null as any;
@@ -35,6 +40,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "grafana:assistant/automation:Automation":
+                return new Automation(name, <any>undefined, { urn })
             case "grafana:assistant/mcpServer:McpServer":
                 return new McpServer(name, <any>undefined, { urn })
             case "grafana:assistant/quickstart:Quickstart":
@@ -50,6 +57,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("grafana", "assistant/automation", _module)
 pulumi.runtime.registerResourceModule("grafana", "assistant/mcpServer", _module)
 pulumi.runtime.registerResourceModule("grafana", "assistant/quickstart", _module)
 pulumi.runtime.registerResourceModule("grafana", "assistant/rule", _module)

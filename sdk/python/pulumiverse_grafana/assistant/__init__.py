@@ -6,6 +6,7 @@ import builtins as _builtins
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .automation import *
 from .mcp_server import *
 from .quickstart import *
 from .rule import *

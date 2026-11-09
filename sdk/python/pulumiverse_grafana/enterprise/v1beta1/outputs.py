@@ -34,6 +34,8 @@ class SecretKeeperActivationMetadata(dict):
         suggest = None
         if key == "folderUid":
             suggest = "folder_uid"
+        elif key == "orgId":
+            suggest = "org_id"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in SecretKeeperActivationMetadata. Access the value via the '{suggest}' property getter instead.")
@@ -50,6 +52,7 @@ class SecretKeeperActivationMetadata(dict):
                  uid: _builtins.str,
                  annotations: Optional[Mapping[str, _builtins.str]] = None,
                  folder_uid: Optional[_builtins.str] = None,
+                 org_id: Optional[_builtins.int] = None,
                  url: Optional[_builtins.str] = None,
                  uuid: Optional[_builtins.str] = None,
                  version: Optional[_builtins.str] = None):
@@ -57,6 +60,7 @@ class SecretKeeperActivationMetadata(dict):
         :param _builtins.str uid: The unique identifier of the resource.
         :param Mapping[str, _builtins.str] annotations: Annotations of the resource.
         :param _builtins.str folder_uid: The UID of the folder to save the resource in.
+        :param _builtins.int org_id: The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `org_id` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stack_id` instead). Changing this value forces the resource to be recreated in the new organization.
         :param _builtins.str url: The full URL of the resource.
         :param _builtins.str uuid: The globally unique identifier of a resource, used by the API for tracking.
         :param _builtins.str version: The version of the resource.
@@ -66,6 +70,8 @@ class SecretKeeperActivationMetadata(dict):
             pulumi.set(__self__, "annotations", annotations)
         if folder_uid is not None:
             pulumi.set(__self__, "folder_uid", folder_uid)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if url is not None:
             pulumi.set(__self__, "url", url)
         if uuid is not None:
@@ -96,6 +102,14 @@ class SecretKeeperActivationMetadata(dict):
         The UID of the folder to save the resource in.
         """
         return pulumi.get(self, "folder_uid")
+
+    @_builtins.property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[_builtins.int]:
+        """
+        The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `org_id` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stack_id` instead). Changing this value forces the resource to be recreated in the new organization.
+        """
+        return pulumi.get(self, "org_id")
 
     @_builtins.property
     @pulumi.getter
@@ -129,6 +143,8 @@ class SecretKeeperMetadata(dict):
         suggest = None
         if key == "folderUid":
             suggest = "folder_uid"
+        elif key == "orgId":
+            suggest = "org_id"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in SecretKeeperMetadata. Access the value via the '{suggest}' property getter instead.")
@@ -145,6 +161,7 @@ class SecretKeeperMetadata(dict):
                  uid: _builtins.str,
                  annotations: Optional[Mapping[str, _builtins.str]] = None,
                  folder_uid: Optional[_builtins.str] = None,
+                 org_id: Optional[_builtins.int] = None,
                  url: Optional[_builtins.str] = None,
                  uuid: Optional[_builtins.str] = None,
                  version: Optional[_builtins.str] = None):
@@ -152,6 +169,7 @@ class SecretKeeperMetadata(dict):
         :param _builtins.str uid: The unique identifier of the resource.
         :param Mapping[str, _builtins.str] annotations: Annotations of the resource.
         :param _builtins.str folder_uid: The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+        :param _builtins.int org_id: The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `org_id` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stack_id` instead). Changing this value forces the resource to be recreated in the new organization.
         :param _builtins.str url: The full URL of the resource.
         :param _builtins.str uuid: The globally unique identifier of a resource, used by the API for tracking.
         :param _builtins.str version: The version of the resource.
@@ -161,6 +179,8 @@ class SecretKeeperMetadata(dict):
             pulumi.set(__self__, "annotations", annotations)
         if folder_uid is not None:
             pulumi.set(__self__, "folder_uid", folder_uid)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if url is not None:
             pulumi.set(__self__, "url", url)
         if uuid is not None:
@@ -191,6 +211,14 @@ class SecretKeeperMetadata(dict):
         The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
         """
         return pulumi.get(self, "folder_uid")
+
+    @_builtins.property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[_builtins.int]:
+        """
+        The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `org_id` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stack_id` instead). Changing this value forces the resource to be recreated in the new organization.
+        """
+        return pulumi.get(self, "org_id")
 
     @_builtins.property
     @pulumi.getter
@@ -400,6 +428,8 @@ class SecretSecureValueMetadata(dict):
         suggest = None
         if key == "folderUid":
             suggest = "folder_uid"
+        elif key == "orgId":
+            suggest = "org_id"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in SecretSecureValueMetadata. Access the value via the '{suggest}' property getter instead.")
@@ -416,6 +446,7 @@ class SecretSecureValueMetadata(dict):
                  uid: _builtins.str,
                  annotations: Optional[Mapping[str, _builtins.str]] = None,
                  folder_uid: Optional[_builtins.str] = None,
+                 org_id: Optional[_builtins.int] = None,
                  url: Optional[_builtins.str] = None,
                  uuid: Optional[_builtins.str] = None,
                  version: Optional[_builtins.str] = None):
@@ -423,6 +454,7 @@ class SecretSecureValueMetadata(dict):
         :param _builtins.str uid: The unique identifier of the resource.
         :param Mapping[str, _builtins.str] annotations: Annotations of the resource.
         :param _builtins.str folder_uid: The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+        :param _builtins.int org_id: The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `org_id` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stack_id` instead). Changing this value forces the resource to be recreated in the new organization.
         :param _builtins.str url: The full URL of the resource.
         :param _builtins.str uuid: The globally unique identifier of a resource, used by the API for tracking.
         :param _builtins.str version: The version of the resource.
@@ -432,6 +464,8 @@ class SecretSecureValueMetadata(dict):
             pulumi.set(__self__, "annotations", annotations)
         if folder_uid is not None:
             pulumi.set(__self__, "folder_uid", folder_uid)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
         if url is not None:
             pulumi.set(__self__, "url", url)
         if uuid is not None:
@@ -462,6 +496,14 @@ class SecretSecureValueMetadata(dict):
         The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
         """
         return pulumi.get(self, "folder_uid")
+
+    @_builtins.property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[_builtins.int]:
+        """
+        The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `org_id` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stack_id` instead). Changing this value forces the resource to be recreated in the new organization.
+        """
+        return pulumi.get(self, "org_id")
 
     @_builtins.property
     @pulumi.getter

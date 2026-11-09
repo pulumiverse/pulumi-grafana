@@ -32,6 +32,12 @@ namespace Pulumiverse.Grafana.Alerting.V1Beta1.Inputs
         public Input<string>? FolderUid { get; set; }
 
         /// <summary>
+        /// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `OrgId` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `StackId` instead). Changing this value forces the resource to be recreated in the new organization.
+        /// </summary>
+        [Input("orgId")]
+        public Input<int>? OrgId { get; set; }
+
+        /// <summary>
         /// The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `Default`.
         /// </summary>
         [Input("uid", required: true)]

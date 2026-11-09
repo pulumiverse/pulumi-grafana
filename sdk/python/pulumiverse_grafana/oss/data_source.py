@@ -50,7 +50,7 @@ class DataSourceArgs:
         :param pulumi.Input[_builtins.str] private_data_source_connect_network_id: (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
         :param pulumi.Input[_builtins.str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[_builtins.str] uid: Unique identifier. If unset, this will be automatically generated.
-        :param pulumi.Input[_builtins.str] url: The URL for the data source. The type of URL required varies depending on the chosen data source type.
+        :param pulumi.Input[_builtins.str] url: The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
         :param pulumi.Input[_builtins.str] username: (Required by some data source types) The username to use to authenticate to the data source. Defaults to ``.
         """
         pulumi.set(__self__, "type", type)
@@ -243,7 +243,7 @@ class DataSourceArgs:
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The URL for the data source. The type of URL required varies depending on the chosen data source type.
+        The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
         """
         return pulumi.get(self, "url")
 
@@ -298,7 +298,7 @@ class _DataSourceState:
         :param pulumi.Input[_builtins.str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[_builtins.str] type: The data source type. Must be one of the supported data source keywords.
         :param pulumi.Input[_builtins.str] uid: Unique identifier. If unset, this will be automatically generated.
-        :param pulumi.Input[_builtins.str] url: The URL for the data source. The type of URL required varies depending on the chosen data source type.
+        :param pulumi.Input[_builtins.str] url: The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
         :param pulumi.Input[_builtins.str] username: (Required by some data source types) The username to use to authenticate to the data source. Defaults to ``.
         """
         if access_mode is not None:
@@ -492,7 +492,7 @@ class _DataSourceState:
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The URL for the data source. The type of URL required varies depending on the chosen data source type.
+        The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
         """
         return pulumi.get(self, "url")
 
@@ -541,6 +541,10 @@ class DataSource(pulumi.CustomResource):
 
         The required arguments for this resource vary depending on the type of data
         source selected (via the 'type' argument).
+
+        This resource should generally not be used for Grafana Cloud provisioned data sources since the configuration in these
+        data sources is bound to work inside the Grafana Cloud platform only.  Use the cloud.Stack
+        resource fields instead.
 
         ## Example Usage
 
@@ -647,7 +651,7 @@ class DataSource(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[_builtins.str] type: The data source type. Must be one of the supported data source keywords.
         :param pulumi.Input[_builtins.str] uid: Unique identifier. If unset, this will be automatically generated.
-        :param pulumi.Input[_builtins.str] url: The URL for the data source. The type of URL required varies depending on the chosen data source type.
+        :param pulumi.Input[_builtins.str] url: The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
         :param pulumi.Input[_builtins.str] username: (Required by some data source types) The username to use to authenticate to the data source. Defaults to ``.
         """
         ...
@@ -662,6 +666,10 @@ class DataSource(pulumi.CustomResource):
 
         The required arguments for this resource vary depending on the type of data
         source selected (via the 'type' argument).
+
+        This resource should generally not be used for Grafana Cloud provisioned data sources since the configuration in these
+        data sources is bound to work inside the Grafana Cloud platform only.  Use the cloud.Stack
+        resource fields instead.
 
         ## Example Usage
 
@@ -858,7 +866,7 @@ class DataSource(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[_builtins.str] type: The data source type. Must be one of the supported data source keywords.
         :param pulumi.Input[_builtins.str] uid: Unique identifier. If unset, this will be automatically generated.
-        :param pulumi.Input[_builtins.str] url: The URL for the data source. The type of URL required varies depending on the chosen data source type.
+        :param pulumi.Input[_builtins.str] url: The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
         :param pulumi.Input[_builtins.str] username: (Required by some data source types) The username to use to authenticate to the data source. Defaults to ``.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -990,7 +998,7 @@ class DataSource(pulumi.CustomResource):
     @pulumi.getter
     def url(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The URL for the data source. The type of URL required varies depending on the chosen data source type.
+        The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
         """
         return pulumi.get(self, "url")
 

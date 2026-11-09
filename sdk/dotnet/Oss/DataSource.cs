@@ -17,6 +17,10 @@ namespace Pulumiverse.Grafana.Oss
     /// The required arguments for this resource vary depending on the type of data
     /// source selected (via the 'type' argument).
     /// 
+    /// This resource should generally not be used for Grafana Cloud provisioned data sources since the configuration in these
+    /// data sources is bound to work inside the Grafana Cloud platform only.  Use the grafana.cloud.Stack
+    /// resource fields instead.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -220,7 +224,7 @@ namespace Pulumiverse.Grafana.Oss
         public Output<string> Uid { get; private set; } = null!;
 
         /// <summary>
-        /// The URL for the data source. The type of URL required varies depending on the chosen data source type.
+        /// The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
         /// </summary>
         [Output("url")]
         public Output<string?> Url { get; private set; } = null!;
@@ -386,7 +390,7 @@ namespace Pulumiverse.Grafana.Oss
         public Input<string>? Uid { get; set; }
 
         /// <summary>
-        /// The URL for the data source. The type of URL required varies depending on the chosen data source type.
+        /// The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
@@ -504,7 +508,7 @@ namespace Pulumiverse.Grafana.Oss
         public Input<string>? Uid { get; set; }
 
         /// <summary>
-        /// The URL for the data source. The type of URL required varies depending on the chosen data source type.
+        /// The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }

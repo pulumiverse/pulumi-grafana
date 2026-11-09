@@ -27,6 +27,7 @@ class McpServerArgs:
                  custom_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 github_app: Optional[pulumi.Input['McpServerGithubAppArgs']] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a McpServer resource.
@@ -37,6 +38,7 @@ class McpServerArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_headers: Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.
         :param pulumi.Input[_builtins.str] description: Optional description.
         :param pulumi.Input[_builtins.bool] enabled: Whether the resource is enabled.
+        :param pulumi.Input['McpServerGithubAppArgs'] github_app: GitHub App installation credentials, used instead of a personal access token for `tenant` scoped GitHub MCP servers (`https://api.githubcopilot.com/mcp` or `https://<HOSTNAME>.ghe.com/mcp`). The Assistant mints short-lived installation tokens from these credentials and uses them in place of any `Authorization` custom header. All three attributes are required when the block is set. Removing the block clears the credentials.
         :param pulumi.Input[_builtins.str] name: The MCP server integration name.
         """
         pulumi.set(__self__, "scope", scope)
@@ -50,6 +52,8 @@ class McpServerArgs:
             pulumi.set(__self__, "description", description)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if github_app is not None:
+            pulumi.set(__self__, "github_app", github_app)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -126,6 +130,18 @@ class McpServerArgs:
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
+    @pulumi.getter(name="githubApp")
+    def github_app(self) -> Optional[pulumi.Input['McpServerGithubAppArgs']]:
+        """
+        GitHub App installation credentials, used instead of a personal access token for `tenant` scoped GitHub MCP servers (`https://api.githubcopilot.com/mcp` or `https://<HOSTNAME>.ghe.com/mcp`). The Assistant mints short-lived installation tokens from these credentials and uses them in place of any `Authorization` custom header. All three attributes are required when the block is set. Removing the block clears the credentials.
+        """
+        return pulumi.get(self, "github_app")
+
+    @github_app.setter
+    def github_app(self, value: Optional[pulumi.Input['McpServerGithubAppArgs']]):
+        pulumi.set(self, "github_app", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -146,6 +162,7 @@ class _McpServerState:
                  custom_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 github_app: Optional[pulumi.Input['McpServerGithubAppArgs']] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  scope: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -156,6 +173,7 @@ class _McpServerState:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_headers: Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.
         :param pulumi.Input[_builtins.str] description: Optional description.
         :param pulumi.Input[_builtins.bool] enabled: Whether the resource is enabled.
+        :param pulumi.Input['McpServerGithubAppArgs'] github_app: GitHub App installation credentials, used instead of a personal access token for `tenant` scoped GitHub MCP servers (`https://api.githubcopilot.com/mcp` or `https://<HOSTNAME>.ghe.com/mcp`). The Assistant mints short-lived installation tokens from these credentials and uses them in place of any `Authorization` custom header. All three attributes are required when the block is set. Removing the block clears the credentials.
         :param pulumi.Input[_builtins.str] name: The MCP server integration name.
         :param pulumi.Input[_builtins.str] scope: Whether the resource is visible to the whole tenant (`tenant`) or only the creating user (`user`).
         """
@@ -169,6 +187,8 @@ class _McpServerState:
             pulumi.set(__self__, "description", description)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if github_app is not None:
+            pulumi.set(__self__, "github_app", github_app)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if scope is not None:
@@ -235,6 +255,18 @@ class _McpServerState:
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
+    @pulumi.getter(name="githubApp")
+    def github_app(self) -> Optional[pulumi.Input['McpServerGithubAppArgs']]:
+        """
+        GitHub App installation credentials, used instead of a personal access token for `tenant` scoped GitHub MCP servers (`https://api.githubcopilot.com/mcp` or `https://<HOSTNAME>.ghe.com/mcp`). The Assistant mints short-lived installation tokens from these credentials and uses them in place of any `Authorization` custom header. All three attributes are required when the block is set. Removing the block clears the credentials.
+        """
+        return pulumi.get(self, "github_app")
+
+    @github_app.setter
+    def github_app(self, value: Optional[pulumi.Input['McpServerGithubAppArgs']]):
+        pulumi.set(self, "github_app", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -270,6 +302,7 @@ class McpServer(pulumi.CustomResource):
                  custom_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 github_app: Optional[pulumi.Input[Union['McpServerGithubAppArgs', 'McpServerGithubAppArgsDict']]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  scope: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -294,6 +327,20 @@ class McpServer(pulumi.CustomResource):
             custom_headers={
                 "Authorization": f"Bearer {mcp_token}",
             })
+        github_app_private_key = config.require("githubAppPrivateKey")
+        # Authenticate a GitHub MCP server with a GitHub App installation instead of a personal access token.
+        github = grafana.assistant.McpServer("github",
+            configuration={
+                "url": "https://api.githubcopilot.com/mcp/",
+            },
+            github_app={
+                "app_id": 123456,
+                "installation_id": 12345678,
+                "private_key": github_app_private_key,
+            },
+            name="GitHub",
+            scope="tenant",
+            applications=["assistant"])
         ```
 
         ## Import
@@ -301,6 +348,8 @@ class McpServer(pulumi.CustomResource):
         ```sh
         terraform import grafana_assistant_mcp_server.name "{{ id }}"
         ```
+
+        After importing a server that uses `github_app`, the first plan shows an update to `github_app.private_key_hash`, because the write-only private key isn't stored in state. Applying it resends the key, which the Assistant treats as a credential change: it rebuilds the MCP client and clears the server's cached tool list.
 
 
         :param str resource_name: The name of the resource.
@@ -310,6 +359,7 @@ class McpServer(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_headers: Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.
         :param pulumi.Input[_builtins.str] description: Optional description.
         :param pulumi.Input[_builtins.bool] enabled: Whether the resource is enabled.
+        :param pulumi.Input[Union['McpServerGithubAppArgs', 'McpServerGithubAppArgsDict']] github_app: GitHub App installation credentials, used instead of a personal access token for `tenant` scoped GitHub MCP servers (`https://api.githubcopilot.com/mcp` or `https://<HOSTNAME>.ghe.com/mcp`). The Assistant mints short-lived installation tokens from these credentials and uses them in place of any `Authorization` custom header. All three attributes are required when the block is set. Removing the block clears the credentials.
         :param pulumi.Input[_builtins.str] name: The MCP server integration name.
         :param pulumi.Input[_builtins.str] scope: Whether the resource is visible to the whole tenant (`tenant`) or only the creating user (`user`).
         """
@@ -340,6 +390,20 @@ class McpServer(pulumi.CustomResource):
             custom_headers={
                 "Authorization": f"Bearer {mcp_token}",
             })
+        github_app_private_key = config.require("githubAppPrivateKey")
+        # Authenticate a GitHub MCP server with a GitHub App installation instead of a personal access token.
+        github = grafana.assistant.McpServer("github",
+            configuration={
+                "url": "https://api.githubcopilot.com/mcp/",
+            },
+            github_app={
+                "app_id": 123456,
+                "installation_id": 12345678,
+                "private_key": github_app_private_key,
+            },
+            name="GitHub",
+            scope="tenant",
+            applications=["assistant"])
         ```
 
         ## Import
@@ -347,6 +411,8 @@ class McpServer(pulumi.CustomResource):
         ```sh
         terraform import grafana_assistant_mcp_server.name "{{ id }}"
         ```
+
+        After importing a server that uses `github_app`, the first plan shows an update to `github_app.private_key_hash`, because the write-only private key isn't stored in state. Applying it resends the key, which the Assistant treats as a credential change: it rebuilds the MCP client and clears the server's cached tool list.
 
 
         :param str resource_name: The name of the resource.
@@ -369,6 +435,7 @@ class McpServer(pulumi.CustomResource):
                  custom_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 github_app: Optional[pulumi.Input[Union['McpServerGithubAppArgs', 'McpServerGithubAppArgsDict']]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  scope: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -385,6 +452,7 @@ class McpServer(pulumi.CustomResource):
             __props__.__dict__["custom_headers"] = None if custom_headers is None else pulumi.Output.secret(custom_headers)
             __props__.__dict__["description"] = description
             __props__.__dict__["enabled"] = enabled
+            __props__.__dict__["github_app"] = github_app
             __props__.__dict__["name"] = name
             if scope is None and not opts.urn:
                 raise TypeError("Missing required property 'scope'")
@@ -406,6 +474,7 @@ class McpServer(pulumi.CustomResource):
             custom_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+            github_app: Optional[pulumi.Input[Union['McpServerGithubAppArgs', 'McpServerGithubAppArgsDict']]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             scope: Optional[pulumi.Input[_builtins.str]] = None) -> 'McpServer':
         """
@@ -420,6 +489,7 @@ class McpServer(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_headers: Custom HTTP headers sent to the MCP server. Values are write-only and not returned by the API.
         :param pulumi.Input[_builtins.str] description: Optional description.
         :param pulumi.Input[_builtins.bool] enabled: Whether the resource is enabled.
+        :param pulumi.Input[Union['McpServerGithubAppArgs', 'McpServerGithubAppArgsDict']] github_app: GitHub App installation credentials, used instead of a personal access token for `tenant` scoped GitHub MCP servers (`https://api.githubcopilot.com/mcp` or `https://<HOSTNAME>.ghe.com/mcp`). The Assistant mints short-lived installation tokens from these credentials and uses them in place of any `Authorization` custom header. All three attributes are required when the block is set. Removing the block clears the credentials.
         :param pulumi.Input[_builtins.str] name: The MCP server integration name.
         :param pulumi.Input[_builtins.str] scope: Whether the resource is visible to the whole tenant (`tenant`) or only the creating user (`user`).
         """
@@ -432,6 +502,7 @@ class McpServer(pulumi.CustomResource):
         __props__.__dict__["custom_headers"] = custom_headers
         __props__.__dict__["description"] = description
         __props__.__dict__["enabled"] = enabled
+        __props__.__dict__["github_app"] = github_app
         __props__.__dict__["name"] = name
         __props__.__dict__["scope"] = scope
         return McpServer(resource_name, opts=opts, __props__=__props__)
@@ -475,6 +546,14 @@ class McpServer(pulumi.CustomResource):
         Whether the resource is enabled.
         """
         return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="githubApp")
+    def github_app(self) -> pulumi.Output[Optional['outputs.McpServerGithubApp']]:
+        """
+        GitHub App installation credentials, used instead of a personal access token for `tenant` scoped GitHub MCP servers (`https://api.githubcopilot.com/mcp` or `https://<HOSTNAME>.ghe.com/mcp`). The Assistant mints short-lived installation tokens from these credentials and uses them in place of any `Authorization` custom header. All three attributes are required when the block is set. Removing the block clears the credentials.
+        """
+        return pulumi.get(self, "github_app")
 
     @_builtins.property
     @pulumi.getter
