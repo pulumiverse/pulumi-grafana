@@ -213,6 +213,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "alerting/v1beta1/alertRule",
+  "fqn": "pulumiverse_grafana.alerting.v1beta1",
+  "classes": {
+   "grafana:alerting/v1beta1/alertRule:AlertRule": "AlertRule"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "alerting/v1beta1/notificationsInhibitionRule",
   "fqn": "pulumiverse_grafana.alerting.v1beta1",
   "classes": {
@@ -225,6 +233,22 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.alerting.v1beta1",
   "classes": {
    "grafana:alerting/v1beta1/notificationsRoutingTree:NotificationsRoutingTree": "NotificationsRoutingTree"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "alerting/v1beta1/recordingRule",
+  "fqn": "pulumiverse_grafana.alerting.v1beta1",
+  "classes": {
+   "grafana:alerting/v1beta1/recordingRule:RecordingRule": "RecordingRule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "alerting/v1beta1/ruleSequence",
+  "fqn": "pulumiverse_grafana.alerting.v1beta1",
+  "classes": {
+   "grafana:alerting/v1beta1/ruleSequence:RuleSequence": "RuleSequence"
   }
  },
  {
@@ -369,6 +393,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.assert_",
   "classes": {
    "grafana:assert/traceConfig:TraceConfig": "TraceConfig"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "assistant/automation",
+  "fqn": "pulumiverse_grafana.assistant",
+  "classes": {
+   "grafana:assistant/automation:Automation": "Automation"
   }
  },
  {
@@ -749,6 +781,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "incident/severity",
+  "fqn": "pulumiverse_grafana.incident",
+  "classes": {
+   "grafana:incident/severity:Severity": "Severity"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "k6/installation",
   "fqn": "pulumiverse_grafana.k6",
   "classes": {
@@ -881,6 +921,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.oncall",
   "classes": {
    "grafana:onCall/schedule:Schedule": "Schedule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "onCall/teamAccessManagement",
+  "fqn": "pulumiverse_grafana.oncall",
+  "classes": {
+   "grafana:onCall/teamAccessManagement:TeamAccessManagement": "TeamAccessManagement"
   }
  },
  {

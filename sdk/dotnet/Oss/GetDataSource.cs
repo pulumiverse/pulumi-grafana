@@ -251,7 +251,7 @@ namespace Pulumiverse.Grafana.Oss
         public readonly string Type;
         public readonly string Uid;
         /// <summary>
-        /// The URL for the data source. The type of URL required varies depending on the chosen data source type.
+        /// The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
         /// </summary>
         public readonly string Url;
         /// <summary>

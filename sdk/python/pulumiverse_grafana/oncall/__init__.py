@@ -23,6 +23,7 @@ from .on_call_shift import *
 from .outgoing_webhook import *
 from .route import *
 from .schedule import *
+from .team_access_management import *
 from .user_notification_rule import *
 from ._inputs import *
 from . import outputs

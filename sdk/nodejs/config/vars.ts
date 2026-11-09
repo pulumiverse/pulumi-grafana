@@ -19,7 +19,7 @@ Object.defineProperty(exports, "auth", {
 });
 
 /**
- * Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
+ * Certificate CA bundle (file path or literal value) to use to verify the certificates of Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
  */
 export declare const caCert: string | undefined;
 Object.defineProperty(exports, "caCert", {
@@ -294,7 +294,7 @@ Object.defineProperty(exports, "storeDashboardSha256", {
 });
 
 /**
- * Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
+ * Client TLS certificate (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
  */
 export declare const tlsCert: string | undefined;
 Object.defineProperty(exports, "tlsCert", {
@@ -305,7 +305,7 @@ Object.defineProperty(exports, "tlsCert", {
 });
 
 /**
- * Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
+ * Client TLS key (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
  */
 export declare const tlsKey: string | undefined;
 Object.defineProperty(exports, "tlsKey", {

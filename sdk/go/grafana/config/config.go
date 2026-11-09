@@ -24,7 +24,7 @@ func GetAuth(ctx *pulumi.Context) string {
 	return value
 }
 
-// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
+// Certificate CA bundle (file path or literal value) to use to verify the certificates of Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
 func GetCaCert(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "grafana:caCert")
 	if err == nil {
@@ -237,7 +237,7 @@ func GetStoreDashboardSha256(ctx *pulumi.Context) bool {
 	return value
 }
 
-// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
+// Client TLS certificate (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
 func GetTlsCert(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "grafana:tlsCert")
 	if err == nil {
@@ -250,7 +250,7 @@ func GetTlsCert(ctx *pulumi.Context) string {
 	return value
 }
 
-// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
+// Client TLS key (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
 func GetTlsKey(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "grafana:tlsKey")
 	if err == nil {

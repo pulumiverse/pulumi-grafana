@@ -23,10 +23,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "grafana:alerting/v1beta1/alertEnrichment:AlertEnrichment":
 		r = &AlertEnrichment{}
+	case "grafana:alerting/v1beta1/alertRule:AlertRule":
+		r = &AlertRule{}
 	case "grafana:alerting/v1beta1/notificationsInhibitionRule:NotificationsInhibitionRule":
 		r = &NotificationsInhibitionRule{}
 	case "grafana:alerting/v1beta1/notificationsRoutingTree:NotificationsRoutingTree":
 		r = &NotificationsRoutingTree{}
+	case "grafana:alerting/v1beta1/recordingRule:RecordingRule":
+		r = &RecordingRule{}
+	case "grafana:alerting/v1beta1/ruleSequence:RuleSequence":
+		r = &RuleSequence{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -47,12 +53,27 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"grafana",
+		"alerting/v1beta1/alertRule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
 		"alerting/v1beta1/notificationsInhibitionRule",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"alerting/v1beta1/notificationsRoutingTree",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"alerting/v1beta1/recordingRule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"alerting/v1beta1/ruleSequence",
 		&module{version},
 	)
 }

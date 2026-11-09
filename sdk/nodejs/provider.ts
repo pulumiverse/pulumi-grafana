@@ -30,7 +30,7 @@ export class Provider extends pulumi.ProviderResource {
      */
     declare public readonly auth: pulumi.Output<string | undefined>;
     /**
-     * Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
+     * Certificate CA bundle (file path or literal value) to use to verify the certificates of Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
      */
     declare public readonly caCert: pulumi.Output<string | undefined>;
     /**
@@ -98,11 +98,11 @@ export class Provider extends pulumi.ProviderResource {
      */
     declare public readonly smUrl: pulumi.Output<string | undefined>;
     /**
-     * Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
+     * Client TLS certificate (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
      */
     declare public readonly tlsCert: pulumi.Output<string | undefined>;
     /**
-     * Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
+     * Client TLS key (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
      */
     declare public readonly tlsKey: pulumi.Output<string | undefined>;
     /**
@@ -176,7 +176,7 @@ export interface ProviderArgs {
      */
     auth?: pulumi.Input<string>;
     /**
-     * Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
+     * Certificate CA bundle (file path or literal value) to use to verify the certificates of Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
      */
     caCert?: pulumi.Input<string>;
     /**
@@ -276,11 +276,11 @@ export interface ProviderArgs {
      */
     storeDashboardSha256?: pulumi.Input<boolean>;
     /**
-     * Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
+     * Client TLS certificate (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
      */
     tlsCert?: pulumi.Input<string>;
     /**
-     * Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
+     * Client TLS key (file path or literal value) to use to authenticate to Grafana and Grafana IRM. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
      */
     tlsKey?: pulumi.Input<string>;
     /**

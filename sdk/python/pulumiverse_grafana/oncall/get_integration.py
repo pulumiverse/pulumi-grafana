@@ -26,7 +26,7 @@ class GetIntegrationResult:
     """
     A collection of values returned by getIntegration.
     """
-    def __init__(__self__, id=None, inbound_email=None, link=None, name=None):
+    def __init__(__self__, id=None, inbound_email=None, link=None, name=None, team_id=None, type=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -39,12 +39,18 @@ class GetIntegrationResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if team_id and not isinstance(team_id, str):
+            raise TypeError("Expected argument 'team_id' to be a str")
+        pulumi.set(__self__, "team_id", team_id)
+        if type and not isinstance(type, str):
+            raise TypeError("Expected argument 'type' to be a str")
+        pulumi.set(__self__, "type", type)
 
     @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The integration ID.
+        The integration ID. Conflicts with `name`, `team_id` and `type`.
         """
         return pulumi.get(self, "id")
 
@@ -68,9 +74,25 @@ class GetIntegrationResult:
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        The integration name.
+        The integration name. When set, only the integration with this exact name matches.
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="teamId")
+    def team_id(self) -> _builtins.str:
+        """
+        The ID of the OnCall team the integration belongs to (using the `on_call_get_team` datasource). When set, only integrations of this team match. Set it to `"null"` to match only integrations that do not belong to a team.
+        """
+        return pulumi.get(self, "team_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of integration, for example `direct_paging`. When set, only integrations of this type match. A `direct_paging` lookup waits up to a minute for the integration to be created, since a team's direct paging integration can appear shortly after the team.
+        """
+        return pulumi.get(self, "type")
 
 
 class AwaitableGetIntegrationResult(GetIntegrationResult):
@@ -82,12 +104,21 @@ class AwaitableGetIntegrationResult(GetIntegrationResult):
             id=self.id,
             inbound_email=self.inbound_email,
             link=self.link,
-            name=self.name)
+            name=self.name,
+            team_id=self.team_id,
+            type=self.type)
 
 
 def get_integration(id: Optional[_builtins.str] = None,
+                    name: Optional[_builtins.str] = None,
+                    team_id: Optional[_builtins.str] = None,
+                    type: Optional[_builtins.str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIntegrationResult:
     """
+    Looks up an integration by ID, or by any combination of `name`, `team_id` and `type`. Exactly one integration must match.
+
+    To look up the direct paging integration of a team, set `team_id` and `type = "direct_paging"`. A team has at most one.
+
     * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/integrations/)
 
     ## Example Usage
@@ -97,13 +128,24 @@ def get_integration(id: Optional[_builtins.str] = None,
     import pulumi_grafana as grafana
 
     example_integration = grafana.onCall.get_integration(id="CEXAMPLEID123")
+    my_team = grafana.onCall.get_team(name="my_team")
+    # The direct paging integration of a team, without its ID.
+    my_team_direct_paging = grafana.onCall.get_integration(team_id=my_team.id,
+        type="direct_paging")
+    by_name = grafana.onCall.get_integration(name="My integration")
     ```
 
 
-    :param _builtins.str id: The integration ID.
+    :param _builtins.str id: The integration ID. Conflicts with `name`, `team_id` and `type`.
+    :param _builtins.str name: The integration name. When set, only the integration with this exact name matches.
+    :param _builtins.str team_id: The ID of the OnCall team the integration belongs to (using the `on_call_get_team` datasource). When set, only integrations of this team match. Set it to `"null"` to match only integrations that do not belong to a team.
+    :param _builtins.str type: The type of integration, for example `direct_paging`. When set, only integrations of this type match. A `direct_paging` lookup waits up to a minute for the integration to be created, since a team's direct paging integration can appear shortly after the team.
     """
     __args__ = dict()
     __args__['id'] = id
+    __args__['name'] = name
+    __args__['teamId'] = team_id
+    __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('grafana:onCall/getIntegration:getIntegration', __args__, opts=opts, typ=GetIntegrationResult).value
 
@@ -111,10 +153,19 @@ def get_integration(id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         inbound_email=pulumi.get(__ret__, 'inbound_email'),
         link=pulumi.get(__ret__, 'link'),
-        name=pulumi.get(__ret__, 'name'))
-def get_integration_output(id: Optional[pulumi.Input[_builtins.str]] = None,
+        name=pulumi.get(__ret__, 'name'),
+        team_id=pulumi.get(__ret__, 'team_id'),
+        type=pulumi.get(__ret__, 'type'))
+def get_integration_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                           name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                           team_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                           type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIntegrationResult]:
     """
+    Looks up an integration by ID, or by any combination of `name`, `team_id` and `type`. Exactly one integration must match.
+
+    To look up the direct paging integration of a team, set `team_id` and `type = "direct_paging"`. A team has at most one.
+
     * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/integrations/)
 
     ## Example Usage
@@ -124,17 +175,30 @@ def get_integration_output(id: Optional[pulumi.Input[_builtins.str]] = None,
     import pulumi_grafana as grafana
 
     example_integration = grafana.onCall.get_integration(id="CEXAMPLEID123")
+    my_team = grafana.onCall.get_team(name="my_team")
+    # The direct paging integration of a team, without its ID.
+    my_team_direct_paging = grafana.onCall.get_integration(team_id=my_team.id,
+        type="direct_paging")
+    by_name = grafana.onCall.get_integration(name="My integration")
     ```
 
 
-    :param _builtins.str id: The integration ID.
+    :param _builtins.str id: The integration ID. Conflicts with `name`, `team_id` and `type`.
+    :param _builtins.str name: The integration name. When set, only the integration with this exact name matches.
+    :param _builtins.str team_id: The ID of the OnCall team the integration belongs to (using the `on_call_get_team` datasource). When set, only integrations of this team match. Set it to `"null"` to match only integrations that do not belong to a team.
+    :param _builtins.str type: The type of integration, for example `direct_paging`. When set, only integrations of this type match. A `direct_paging` lookup waits up to a minute for the integration to be created, since a team's direct paging integration can appear shortly after the team.
     """
     __args__ = dict()
     __args__['id'] = id
+    __args__['name'] = name
+    __args__['teamId'] = team_id
+    __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:onCall/getIntegration:getIntegration', __args__, opts=opts, typ=GetIntegrationResult)
     return __ret__.apply(lambda __response__: GetIntegrationResult(
         id=pulumi.get(__response__, 'id'),
         inbound_email=pulumi.get(__response__, 'inbound_email'),
         link=pulumi.get(__response__, 'link'),
-        name=pulumi.get(__response__, 'name')))
+        name=pulumi.get(__response__, 'name'),
+        team_id=pulumi.get(__response__, 'team_id'),
+        type=pulumi.get(__response__, 'type')))

@@ -13,6 +13,8 @@ namespace Pulumiverse.Grafana.Alerting.V0Alpha1
     /// <summary>
     /// Manages Grafana Rule Sequences.
     /// 
+    /// &gt; **Deprecated:** This resource uses the `V0alpha1` API. Use `grafana.alerting/v1beta1.RuleSequence` instead.
+    /// 
     /// A rule sequence groups existing alert rules and recording rules so they are evaluated in order, at a shared interval, within a single folder. All referenced rules must live in the same folder as the sequence (set `metadata.folder_uid`).
     /// 
     /// This resource is currently in alpha and is subject to change.
@@ -42,11 +44,11 @@ namespace Pulumiverse.Grafana.Alerting.V0Alpha1
     ///         },
     ///         Spec = new Grafana.Alerting.V0Alpha1.Inputs.RecordingRuleSpecArgs
     ///         {
+    ///             Title = "Example Sequence Recording Rule",
     ///             Trigger = new Grafana.Alerting.V0Alpha1.Inputs.RecordingRuleSpecTriggerArgs
     ///             {
     ///                 Interval = "1m",
     ///             },
-    ///             Title = "Example Sequence Recording Rule",
     ///             Expressions = 
     ///             {
     ///                 { "A", JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
@@ -86,11 +88,11 @@ namespace Pulumiverse.Grafana.Alerting.V0Alpha1
     ///         },
     ///         Spec = new Grafana.Alerting.V0Alpha1.Inputs.AlertRuleSpecArgs
     ///         {
+    ///             Title = "Example Sequence Alert Rule",
     ///             Trigger = new Grafana.Alerting.V0Alpha1.Inputs.AlertRuleSpecTriggerArgs
     ///             {
     ///                 Interval = "1m",
     ///             },
-    ///             Title = "Example Sequence Alert Rule",
     ///             Expressions = 
     ///             {
     ///                 { "A", JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
@@ -159,6 +161,7 @@ namespace Pulumiverse.Grafana.Alerting.V0Alpha1
     /// });
     /// ```
     /// </summary>
+    [Obsolete(@"This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RuleSequence instead")]
     [GrafanaResourceType("grafana:alerting/v0alpha1/ruleSequence:RuleSequence")]
     public partial class RuleSequence : global::Pulumi.CustomResource
     {

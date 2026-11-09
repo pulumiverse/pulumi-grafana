@@ -18,6 +18,10 @@ import (
 // The required arguments for this resource vary depending on the type of data
 // source selected (via the 'type' argument).
 //
+// This resource should generally not be used for Grafana Cloud provisioned data sources since the configuration in these
+// data sources is bound to work inside the Grafana Cloud platform only.  Use the cloud.Stack
+// resource fields instead.
+//
 // ## Example Usage
 //
 // ```go
@@ -214,7 +218,7 @@ type DataSource struct {
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Unique identifier. If unset, this will be automatically generated.
 	Uid pulumi.StringOutput `pulumi:"uid"`
-	// The URL for the data source. The type of URL required varies depending on the chosen data source type.
+	// The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
 	Url pulumi.StringPtrOutput `pulumi:"url"`
 	// (Required by some data source types) The username to use to authenticate to the data source. Defaults to ``.
 	Username pulumi.StringPtrOutput `pulumi:"username"`
@@ -296,7 +300,7 @@ type dataSourceState struct {
 	Type *string `pulumi:"type"`
 	// Unique identifier. If unset, this will be automatically generated.
 	Uid *string `pulumi:"uid"`
-	// The URL for the data source. The type of URL required varies depending on the chosen data source type.
+	// The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
 	Url *string `pulumi:"url"`
 	// (Required by some data source types) The username to use to authenticate to the data source. Defaults to ``.
 	Username *string `pulumi:"username"`
@@ -329,7 +333,7 @@ type DataSourceState struct {
 	Type pulumi.StringPtrInput
 	// Unique identifier. If unset, this will be automatically generated.
 	Uid pulumi.StringPtrInput
-	// The URL for the data source. The type of URL required varies depending on the chosen data source type.
+	// The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
 	Url pulumi.StringPtrInput
 	// (Required by some data source types) The username to use to authenticate to the data source. Defaults to ``.
 	Username pulumi.StringPtrInput
@@ -366,7 +370,7 @@ type dataSourceArgs struct {
 	Type string `pulumi:"type"`
 	// Unique identifier. If unset, this will be automatically generated.
 	Uid *string `pulumi:"uid"`
-	// The URL for the data source. The type of URL required varies depending on the chosen data source type.
+	// The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
 	Url *string `pulumi:"url"`
 	// (Required by some data source types) The username to use to authenticate to the data source. Defaults to ``.
 	Username *string `pulumi:"username"`
@@ -400,7 +404,7 @@ type DataSourceArgs struct {
 	Type pulumi.StringInput
 	// Unique identifier. If unset, this will be automatically generated.
 	Uid pulumi.StringPtrInput
-	// The URL for the data source. The type of URL required varies depending on the chosen data source type.
+	// The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
 	Url pulumi.StringPtrInput
 	// (Required by some data source types) The username to use to authenticate to the data source. Defaults to ``.
 	Username pulumi.StringPtrInput
@@ -558,7 +562,7 @@ func (o DataSourceOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v *DataSource) pulumi.StringOutput { return v.Uid }).(pulumi.StringOutput)
 }
 
-// The URL for the data source. The type of URL required varies depending on the chosen data source type.
+// The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
 func (o DataSourceOutput) Url() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DataSource) pulumi.StringPtrOutput { return v.Url }).(pulumi.StringPtrOutput)
 }

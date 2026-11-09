@@ -240,20 +240,22 @@ class Schedule(pulumi.CustomResource):
         \"\"\",
             opts = pulumi.ResourceOptions(depends_on=[schedule_project]))
         cron_monthly = grafana.k6.Schedule("cron_monthly",
+            load_test_id=scheduled_test.id,
+            starts="2024-12-25T10:00:00Z",
             cron={
                 "schedule": "0 10 1 * *",
                 "timezone": "UTC",
-            },
-            load_test_id=scheduled_test.id,
-            starts="2024-12-25T10:00:00Z")
+            })
         daily = grafana.k6.Schedule("daily",
+            load_test_id=scheduled_test.id,
+            starts="2024-12-25T10:00:00Z",
             recurrence_rule={
                 "frequency": "DAILY",
                 "interval": 1,
-            },
-            load_test_id=scheduled_test.id,
-            starts="2024-12-25T10:00:00Z")
+            })
         weekly = grafana.k6.Schedule("weekly",
+            load_test_id=scheduled_test.id,
+            starts="2024-12-25T09:00:00Z",
             recurrence_rule={
                 "frequency": "WEEKLY",
                 "interval": 1,
@@ -262,18 +264,16 @@ class Schedule(pulumi.CustomResource):
                     "WE",
                     "FR",
                 ],
-            },
-            load_test_id=scheduled_test.id,
-            starts="2024-12-25T09:00:00Z")
+            })
         # Example with YEARLY frequency and count
         yearly = grafana.k6.Schedule("yearly",
+            load_test_id=scheduled_test.id,
+            starts="2024-01-01T12:00:00Z",
             recurrence_rule={
                 "frequency": "YEARLY",
                 "interval": 1,
                 "count": 5,
-            },
-            load_test_id=scheduled_test.id,
-            starts="2024-01-01T12:00:00Z")
+            })
         # One-time schedule without recurrence
         one_time = grafana.k6.Schedule("one_time",
             load_test_id=scheduled_test.id,
@@ -319,20 +319,22 @@ class Schedule(pulumi.CustomResource):
         \"\"\",
             opts = pulumi.ResourceOptions(depends_on=[schedule_project]))
         cron_monthly = grafana.k6.Schedule("cron_monthly",
+            load_test_id=scheduled_test.id,
+            starts="2024-12-25T10:00:00Z",
             cron={
                 "schedule": "0 10 1 * *",
                 "timezone": "UTC",
-            },
-            load_test_id=scheduled_test.id,
-            starts="2024-12-25T10:00:00Z")
+            })
         daily = grafana.k6.Schedule("daily",
+            load_test_id=scheduled_test.id,
+            starts="2024-12-25T10:00:00Z",
             recurrence_rule={
                 "frequency": "DAILY",
                 "interval": 1,
-            },
-            load_test_id=scheduled_test.id,
-            starts="2024-12-25T10:00:00Z")
+            })
         weekly = grafana.k6.Schedule("weekly",
+            load_test_id=scheduled_test.id,
+            starts="2024-12-25T09:00:00Z",
             recurrence_rule={
                 "frequency": "WEEKLY",
                 "interval": 1,
@@ -341,18 +343,16 @@ class Schedule(pulumi.CustomResource):
                     "WE",
                     "FR",
                 ],
-            },
-            load_test_id=scheduled_test.id,
-            starts="2024-12-25T09:00:00Z")
+            })
         # Example with YEARLY frequency and count
         yearly = grafana.k6.Schedule("yearly",
+            load_test_id=scheduled_test.id,
+            starts="2024-01-01T12:00:00Z",
             recurrence_rule={
                 "frequency": "YEARLY",
                 "interval": 1,
                 "count": 5,
-            },
-            load_test_id=scheduled_test.id,
-            starts="2024-01-01T12:00:00Z")
+            })
         # One-time schedule without recurrence
         one_time = grafana.k6.Schedule("one_time",
             load_test_id=scheduled_test.id,

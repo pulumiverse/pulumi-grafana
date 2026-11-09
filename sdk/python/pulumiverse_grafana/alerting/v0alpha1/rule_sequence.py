@@ -132,8 +132,13 @@ class _RuleSequenceState:
         pulumi.set(self, "spec", value)
 
 
+warnings.warn("""This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RuleSequence instead""", DeprecationWarning)
+
+
 @pulumi.type_token("grafana:alerting/v0alpha1/ruleSequence:RuleSequence")
 class RuleSequence(pulumi.CustomResource):
+    warnings.warn("""This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RuleSequence instead""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -144,6 +149,8 @@ class RuleSequence(pulumi.CustomResource):
                  __props__=None):
         """
         Manages Grafana Rule Sequences.
+
+        > **Deprecated:** This resource uses the `v0alpha1` API. Use `alerting/v1beta1.RuleSequence` instead.
 
         A rule sequence groups existing alert rules and recording rules so they are evaluated in order, at a shared interval, within a single folder. All referenced rules must live in the same folder as the sequence (set `metadata.folder_uid`).
 
@@ -163,10 +170,10 @@ class RuleSequence(pulumi.CustomResource):
                 "folder_uid": rulesequence_folder.uid,
             },
             spec={
+                "title": "Example Sequence Recording Rule",
                 "trigger": {
                     "interval": "1m",
                 },
-                "title": "Example Sequence Recording Rule",
                 "expressions": {
                     "A": json.dumps({
                         "model": {
@@ -197,10 +204,10 @@ class RuleSequence(pulumi.CustomResource):
                 "folder_uid": rulesequence_folder.uid,
             },
             spec={
+                "title": "Example Sequence Alert Rule",
                 "trigger": {
                     "interval": "1m",
                 },
-                "title": "Example Sequence Alert Rule",
                 "expressions": {
                     "A": json.dumps({
                         "model": {
@@ -263,6 +270,8 @@ class RuleSequence(pulumi.CustomResource):
         """
         Manages Grafana Rule Sequences.
 
+        > **Deprecated:** This resource uses the `v0alpha1` API. Use `alerting/v1beta1.RuleSequence` instead.
+
         A rule sequence groups existing alert rules and recording rules so they are evaluated in order, at a shared interval, within a single folder. All referenced rules must live in the same folder as the sequence (set `metadata.folder_uid`).
 
         This resource is currently in alpha and is subject to change.
@@ -281,10 +290,10 @@ class RuleSequence(pulumi.CustomResource):
                 "folder_uid": rulesequence_folder.uid,
             },
             spec={
+                "title": "Example Sequence Recording Rule",
                 "trigger": {
                     "interval": "1m",
                 },
-                "title": "Example Sequence Recording Rule",
                 "expressions": {
                     "A": json.dumps({
                         "model": {
@@ -315,10 +324,10 @@ class RuleSequence(pulumi.CustomResource):
                 "folder_uid": rulesequence_folder.uid,
             },
             spec={
+                "title": "Example Sequence Alert Rule",
                 "trigger": {
                     "interval": "1m",
                 },
-                "title": "Example Sequence Alert Rule",
                 "expressions": {
                     "A": json.dumps({
                         "model": {
@@ -385,6 +394,7 @@ class RuleSequence(pulumi.CustomResource):
                  options: Optional[pulumi.Input[Union['RuleSequenceOptionsArgs', 'RuleSequenceOptionsArgsDict']]] = None,
                  spec: Optional[pulumi.Input[Union['RuleSequenceSpecArgs', 'RuleSequenceSpecArgsDict']]] = None,
                  __props__=None):
+        pulumi.log.warn("""RuleSequence is deprecated: This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RuleSequence instead""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

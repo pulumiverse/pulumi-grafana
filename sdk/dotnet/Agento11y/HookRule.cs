@@ -27,14 +27,6 @@ namespace Pulumiverse.Grafana.Agento11y
     /// {
     ///     var example = new Grafana.Agento11y.HookRule("example", new()
     ///     {
-    ///         Redacts = new[]
-    ///         {
-    ///             new Grafana.Agento11y.Inputs.HookRuleRedactArgs
-    ///             {
-    ///                 Id = "emails",
-    ///                 Regex = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+",
-    ///             },
-    ///         },
     ///         RuleId = "block_destructive_tools",
     ///         Phase = "preflight",
     ///         ActionOnFail = "deny",
@@ -42,6 +34,14 @@ namespace Pulumiverse.Grafana.Agento11y
     ///         {
     ///             "delete_*",
     ///             "drop_*",
+    ///         },
+    ///         Redacts = new[]
+    ///         {
+    ///             new Grafana.Agento11y.Inputs.HookRuleRedactArgs
+    ///             {
+    ///                 Id = "emails",
+    ///                 Regex = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+",
+    ///             },
     ///         },
     ///     });
     /// 

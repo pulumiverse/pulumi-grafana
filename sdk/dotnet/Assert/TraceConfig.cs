@@ -25,6 +25,10 @@ namespace Pulumiverse.Grafana.Assert
     /// {
     ///     var production = new Grafana.Assert.TraceConfig("production", new()
     ///     {
+    ///         Name = "production",
+    ///         Priority = 1000,
+    ///         DefaultConfig = false,
+    ///         DataSourceUid = "grafanacloud-traces",
     ///         Matches = new[]
     ///         {
     ///             new Grafana.Assert.Inputs.TraceConfigMatchArgs
@@ -57,10 +61,6 @@ namespace Pulumiverse.Grafana.Assert
     ///                 },
     ///             },
     ///         },
-    ///         Name = "production",
-    ///         Priority = 1000,
-    ///         DefaultConfig = false,
-    ///         DataSourceUid = "grafanacloud-traces",
     ///         EntityPropertyToTraceLabelMapping = 
     ///         {
     ///             { "cluster", "resource.k8s.cluster.name" },
@@ -73,6 +73,10 @@ namespace Pulumiverse.Grafana.Assert
     /// 
     ///     var development = new Grafana.Assert.TraceConfig("development", new()
     ///     {
+    ///         Name = "development",
+    ///         Priority = 2000,
+    ///         DefaultConfig = false,
+    ///         DataSourceUid = "grafanacloud-traces",
     ///         Matches = new[]
     ///         {
     ///             new Grafana.Assert.Inputs.TraceConfigMatchArgs
@@ -113,10 +117,6 @@ namespace Pulumiverse.Grafana.Assert
     ///                 },
     ///             },
     ///         },
-    ///         Name = "development",
-    ///         Priority = 2000,
-    ///         DefaultConfig = false,
-    ///         DataSourceUid = "grafanacloud-traces",
     ///         EntityPropertyToTraceLabelMapping = 
     ///         {
     ///             { "cluster", "resource.k8s.cluster.name" },
@@ -130,6 +130,9 @@ namespace Pulumiverse.Grafana.Assert
     /// 
     ///     var minimal = new Grafana.Assert.TraceConfig("minimal", new()
     ///     {
+    ///         Name = "minimal",
+    ///         Priority = 3000,
+    ///         DataSourceUid = "tempo-minimal",
     ///         Matches = new[]
     ///         {
     ///             new Grafana.Assert.Inputs.TraceConfigMatchArgs
@@ -138,9 +141,6 @@ namespace Pulumiverse.Grafana.Assert
     ///                 Op = "IS NOT NULL",
     ///             },
     ///         },
-    ///         Name = "minimal",
-    ///         Priority = 3000,
-    ///         DataSourceUid = "tempo-minimal",
     ///         EntityPropertyToTraceLabelMapping = 
     ///         {
     ///             { "cluster", "resource.k8s.cluster.name" },

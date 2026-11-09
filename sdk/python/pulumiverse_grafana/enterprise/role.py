@@ -435,6 +435,10 @@ class Role(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         super_user = grafana.enterprise.Role("super_user",
+            name="Super User",
+            description="My Super User description",
+            uid="superuseruid",
+            global_=True,
             permissions=[
                 {
                     "action": "org.users:add",
@@ -448,11 +452,7 @@ class Role(pulumi.CustomResource):
                     "action": "org.users:read",
                     "scope": "users:*",
                 },
-            ],
-            name="Super User",
-            description="My Super User description",
-            uid="superuseruid",
-            global_=True)
+            ])
         ```
 
         ## Import
@@ -496,6 +496,10 @@ class Role(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         super_user = grafana.enterprise.Role("super_user",
+            name="Super User",
+            description="My Super User description",
+            uid="superuseruid",
+            global_=True,
             permissions=[
                 {
                     "action": "org.users:add",
@@ -509,11 +513,7 @@ class Role(pulumi.CustomResource):
                     "action": "org.users:read",
                     "scope": "users:*",
                 },
-            ],
-            name="Super User",
-            description="My Super User description",
-            uid="superuseruid",
-            global_=True)
+            ])
         ```
 
         ## Import

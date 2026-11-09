@@ -9,6 +9,8 @@ import * as utilities from "../utilities";
 /**
  * Manages Grafana Alert Rules.
  *
+ * > **Deprecated:** This resource uses the `v0alpha1` API. Use `grafana.alerting/v1beta1.AlertRule` instead.
+ *
  * This resource is currently in alpha and is subject to change. Grafana 12.4+ users must enable the `kubernetesAlertingRules` [feature toggle](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/feature-toggles/).
  *
  * ## Example Usage
@@ -24,15 +26,10 @@ import * as utilities from "../utilities";
  *         folderUid: alertruleFolder.uid,
  *     },
  *     spec: {
+ *         title: "Example Alert Rule",
  *         trigger: {
  *             interval: "1m",
  *         },
- *         notificationSettings: {
- *             simplifiedRouting: {
- *                 contactPoint: "grafana-default-email",
- *             },
- *         },
- *         title: "Example Alert Rule",
  *         paused: true,
  *         expressions: {
  *             A: JSON.stringify({
@@ -102,6 +99,11 @@ import * as utilities from "../utilities";
  *         noDataState: "KeepLast",
  *         execErrState: "KeepLast",
  *         missingSeriesEvalsToResolve: 5,
+ *         notificationSettings: {
+ *             simplifiedRouting: {
+ *                 contactPoint: "grafana-default-email",
+ *             },
+ *         },
  *         panelRef: {
  *             dashboard_uid: "dashboard123",
  *             panel_id: "5",

@@ -11,6 +11,10 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
+// Looks up an integration by ID, or by any combination of `name`, `teamId` and `type`. Exactly one integration must match.
+//
+// To look up the direct paging integration of a team, set `teamId` and `type = "directPaging"`. A team has at most one.
+//
 // * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/integrations/)
 //
 // ## Example Usage
@@ -28,7 +32,27 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := oncall.GetIntegration(ctx, &oncall.GetIntegrationArgs{
-//				Id: "CEXAMPLEID123",
+//				Id: pulumi.StringRef("CEXAMPLEID123"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			myTeam, err := oncall.GetTeam(ctx, &oncall.GetTeamArgs{
+//				Name: "my_team",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// The direct paging integration of a team, without its ID.
+//			_, err = oncall.GetIntegration(ctx, &oncall.GetIntegrationArgs{
+//				TeamId: pulumi.StringRef(myTeam.Id),
+//				Type:   pulumi.StringRef("direct_paging"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = oncall.GetIntegration(ctx, &oncall.GetIntegrationArgs{
+//				Name: pulumi.StringRef("My integration"),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -50,20 +74,30 @@ func LookupIntegration(ctx *pulumi.Context, args *LookupIntegrationArgs, opts ..
 
 // A collection of arguments for invoking getIntegration.
 type LookupIntegrationArgs struct {
-	// The integration ID.
-	Id string `pulumi:"id"`
+	// The integration ID. Conflicts with `name`, `teamId` and `type`.
+	Id *string `pulumi:"id"`
+	// The integration name. When set, only the integration with this exact name matches.
+	Name *string `pulumi:"name"`
+	// The ID of the OnCall team the integration belongs to (using the `onCall.getTeam` datasource). When set, only integrations of this team match. Set it to `"null"` to match only integrations that do not belong to a team.
+	TeamId *string `pulumi:"teamId"`
+	// The type of integration, for example `directPaging`. When set, only integrations of this type match. A `directPaging` lookup waits up to a minute for the integration to be created, since a team's direct paging integration can appear shortly after the team.
+	Type *string `pulumi:"type"`
 }
 
 // A collection of values returned by getIntegration.
 type LookupIntegrationResult struct {
-	// The integration ID.
+	// The integration ID. Conflicts with `name`, `teamId` and `type`.
 	Id string `pulumi:"id"`
 	// The inbound email for the integration. Only available for integration type `inboundEmail`.
 	InboundEmail string `pulumi:"inboundEmail"`
 	// The link for the integration.
 	Link string `pulumi:"link"`
-	// The integration name.
+	// The integration name. When set, only the integration with this exact name matches.
 	Name string `pulumi:"name"`
+	// The ID of the OnCall team the integration belongs to (using the `onCall.getTeam` datasource). When set, only integrations of this team match. Set it to `"null"` to match only integrations that do not belong to a team.
+	TeamId string `pulumi:"teamId"`
+	// The type of integration, for example `directPaging`. When set, only integrations of this type match. A `directPaging` lookup waits up to a minute for the integration to be created, since a team's direct paging integration can appear shortly after the team.
+	Type string `pulumi:"type"`
 }
 
 func LookupIntegrationOutput(ctx *pulumi.Context, args LookupIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupIntegrationResultOutput {
@@ -77,8 +111,14 @@ func LookupIntegrationOutput(ctx *pulumi.Context, args LookupIntegrationOutputAr
 
 // A collection of arguments for invoking getIntegration.
 type LookupIntegrationOutputArgs struct {
-	// The integration ID.
-	Id pulumi.StringInput `pulumi:"id"`
+	// The integration ID. Conflicts with `name`, `teamId` and `type`.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The integration name. When set, only the integration with this exact name matches.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the OnCall team the integration belongs to (using the `onCall.getTeam` datasource). When set, only integrations of this team match. Set it to `"null"` to match only integrations that do not belong to a team.
+	TeamId pulumi.StringPtrInput `pulumi:"teamId"`
+	// The type of integration, for example `directPaging`. When set, only integrations of this type match. A `directPaging` lookup waits up to a minute for the integration to be created, since a team's direct paging integration can appear shortly after the team.
+	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
 func (LookupIntegrationOutputArgs) ElementType() reflect.Type {
@@ -100,7 +140,7 @@ func (o LookupIntegrationResultOutput) ToLookupIntegrationResultOutputWithContex
 	return o
 }
 
-// The integration ID.
+// The integration ID. Conflicts with `name`, `teamId` and `type`.
 func (o LookupIntegrationResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIntegrationResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -115,9 +155,19 @@ func (o LookupIntegrationResultOutput) Link() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIntegrationResult) string { return v.Link }).(pulumi.StringOutput)
 }
 
-// The integration name.
+// The integration name. When set, only the integration with this exact name matches.
 func (o LookupIntegrationResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIntegrationResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the OnCall team the integration belongs to (using the `onCall.getTeam` datasource). When set, only integrations of this team match. Set it to `"null"` to match only integrations that do not belong to a team.
+func (o LookupIntegrationResultOutput) TeamId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIntegrationResult) string { return v.TeamId }).(pulumi.StringOutput)
+}
+
+// The type of integration, for example `directPaging`. When set, only integrations of this type match. A `directPaging` lookup waits up to a minute for the integration to be created, since a team's direct paging integration can appear shortly after the team.
+func (o LookupIntegrationResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIntegrationResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
 func init() {

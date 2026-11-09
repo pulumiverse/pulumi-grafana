@@ -190,6 +190,7 @@ class MuteTiming(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         my_mute_timing = grafana.alerting.MuteTiming("my_mute_timing",
+            name="My Mute Timing",
             intervals=[{
                 "times": [{
                     "start": "04:56",
@@ -212,8 +213,7 @@ class MuteTiming(pulumi.CustomResource):
                     "2025:2026",
                 ],
                 "location": "America/New_York",
-            }],
-            name="My Mute Timing")
+            }])
         ```
 
         ## Import
@@ -252,6 +252,7 @@ class MuteTiming(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         my_mute_timing = grafana.alerting.MuteTiming("my_mute_timing",
+            name="My Mute Timing",
             intervals=[{
                 "times": [{
                     "start": "04:56",
@@ -274,8 +275,7 @@ class MuteTiming(pulumi.CustomResource):
                     "2025:2026",
                 ],
                 "location": "America/New_York",
-            }],
-            name="My Mute Timing")
+            }])
         ```
 
         ## Import

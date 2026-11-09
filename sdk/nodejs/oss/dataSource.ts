@@ -11,6 +11,10 @@ import * as utilities from "../utilities";
  * The required arguments for this resource vary depending on the type of data
  * source selected (via the 'type' argument).
  *
+ * This resource should generally not be used for Grafana Cloud provisioned data sources since the configuration in these
+ * data sources is bound to work inside the Grafana Cloud platform only.  Use the grafana.cloud.Stack
+ * resource fields instead.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -186,7 +190,7 @@ export class DataSource extends pulumi.CustomResource {
      */
     declare public readonly uid: pulumi.Output<string>;
     /**
-     * The URL for the data source. The type of URL required varies depending on the chosen data source type.
+     * The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
      */
     declare public readonly url: pulumi.Output<string | undefined>;
     /**
@@ -309,7 +313,7 @@ export interface DataSourceState {
      */
     uid?: pulumi.Input<string>;
     /**
-     * The URL for the data source. The type of URL required varies depending on the chosen data source type.
+     * The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
      */
     url?: pulumi.Input<string>;
     /**
@@ -375,7 +379,7 @@ export interface DataSourceArgs {
      */
     uid?: pulumi.Input<string>;
     /**
-     * The URL for the data source. The type of URL required varies depending on the chosen data source type.
+     * The URL for the data source. The type of URL required varies depending on the chosen data source type. The URL might not be publicly accessible for Grafana Cloud provisioned data sources, so use the grafana*cloud*stack resource in this case.
      */
     url?: pulumi.Input<string>;
     /**

@@ -80,9 +80,25 @@ def get_slos(slos: Optional[Sequence[Union['GetSlosSloArgs', 'GetSlosSloArgsDict
     import pulumiverse_grafana as grafana
 
     test = grafana.slo.SLO("test",
+        name="Terraform Testing",
+        description="Terraform Description",
+        queries=[{
+            "freeform": {
+                "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+            },
+            "type": "freeform",
+        }],
+        objectives=[{
+            "value": 0.995,
+            "window": "30d",
+        }],
         destination_datasource={
             "uid": "grafanacloud-prom",
         },
+        labels=[{
+            "key": "custom",
+            "value": "value",
+        }],
         alerting={
             "fastburn": {
                 "annotations": [{
@@ -104,23 +120,7 @@ def get_slos(slos: Optional[Sequence[Union['GetSlosSloArgs', 'GetSlosSloArgsDict
                     "value": "slo",
                 }],
             },
-        },
-        labels=[{
-            "key": "custom",
-            "value": "value",
-        }],
-        objectives=[{
-            "value": 0.995,
-            "window": "30d",
-        }],
-        queries=[{
-            "freeform": {
-                "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
-            },
-            "type": "freeform",
-        }],
-        name="Terraform Testing",
-        description="Terraform Description")
+        })
     slos = grafana.slo.get_slos()
     ```
 
@@ -152,9 +152,25 @@ def get_slos_output(slos: Optional[pulumi.Input[Optional[Sequence[Union['GetSlos
     import pulumiverse_grafana as grafana
 
     test = grafana.slo.SLO("test",
+        name="Terraform Testing",
+        description="Terraform Description",
+        queries=[{
+            "freeform": {
+                "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+            },
+            "type": "freeform",
+        }],
+        objectives=[{
+            "value": 0.995,
+            "window": "30d",
+        }],
         destination_datasource={
             "uid": "grafanacloud-prom",
         },
+        labels=[{
+            "key": "custom",
+            "value": "value",
+        }],
         alerting={
             "fastburn": {
                 "annotations": [{
@@ -176,23 +192,7 @@ def get_slos_output(slos: Optional[pulumi.Input[Optional[Sequence[Union['GetSlos
                     "value": "slo",
                 }],
             },
-        },
-        labels=[{
-            "key": "custom",
-            "value": "value",
-        }],
-        objectives=[{
-            "value": 0.995,
-            "window": "30d",
-        }],
-        queries=[{
-            "freeform": {
-                "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
-            },
-            "type": "freeform",
-        }],
-        name="Terraform Testing",
-        description="Terraform Description")
+        })
     slos = grafana.slo.get_slos()
     ```
 

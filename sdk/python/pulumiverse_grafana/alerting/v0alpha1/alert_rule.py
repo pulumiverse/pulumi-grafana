@@ -132,8 +132,13 @@ class _AlertRuleState:
         pulumi.set(self, "spec", value)
 
 
+warnings.warn("""This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.AlertRule instead""", DeprecationWarning)
+
+
 @pulumi.type_token("grafana:alerting/v0alpha1/alertRule:AlertRule")
 class AlertRule(pulumi.CustomResource):
+    warnings.warn("""This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.AlertRule instead""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -144,6 +149,8 @@ class AlertRule(pulumi.CustomResource):
                  __props__=None):
         """
         Manages Grafana Alert Rules.
+
+        > **Deprecated:** This resource uses the `v0alpha1` API. Use `alerting/v1beta1.AlertRule` instead.
 
         This resource is currently in alpha and is subject to change. Grafana 12.4+ users must enable the `kubernetesAlertingRules` [feature toggle](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/feature-toggles/).
 
@@ -161,15 +168,10 @@ class AlertRule(pulumi.CustomResource):
                 "folder_uid": alertrule_folder.uid,
             },
             spec={
+                "title": "Example Alert Rule",
                 "trigger": {
                     "interval": "1m",
                 },
-                "notification_settings": {
-                    "simplified_routing": {
-                        "contact_point": "grafana-default-email",
-                    },
-                },
-                "title": "Example Alert Rule",
                 "paused": True,
                 "expressions": {
                     "A": json.dumps({
@@ -239,6 +241,11 @@ class AlertRule(pulumi.CustomResource):
                 "no_data_state": "KeepLast",
                 "exec_err_state": "KeepLast",
                 "missing_series_evals_to_resolve": 5,
+                "notification_settings": {
+                    "simplified_routing": {
+                        "contact_point": "grafana-default-email",
+                    },
+                },
                 "panel_ref": {
                     "dashboard_uid": "dashboard123",
                     "panel_id": "5",
@@ -262,6 +269,8 @@ class AlertRule(pulumi.CustomResource):
         """
         Manages Grafana Alert Rules.
 
+        > **Deprecated:** This resource uses the `v0alpha1` API. Use `alerting/v1beta1.AlertRule` instead.
+
         This resource is currently in alpha and is subject to change. Grafana 12.4+ users must enable the `kubernetesAlertingRules` [feature toggle](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/feature-toggles/).
 
         ## Example Usage
@@ -278,15 +287,10 @@ class AlertRule(pulumi.CustomResource):
                 "folder_uid": alertrule_folder.uid,
             },
             spec={
+                "title": "Example Alert Rule",
                 "trigger": {
                     "interval": "1m",
                 },
-                "notification_settings": {
-                    "simplified_routing": {
-                        "contact_point": "grafana-default-email",
-                    },
-                },
-                "title": "Example Alert Rule",
                 "paused": True,
                 "expressions": {
                     "A": json.dumps({
@@ -356,6 +360,11 @@ class AlertRule(pulumi.CustomResource):
                 "no_data_state": "KeepLast",
                 "exec_err_state": "KeepLast",
                 "missing_series_evals_to_resolve": 5,
+                "notification_settings": {
+                    "simplified_routing": {
+                        "contact_point": "grafana-default-email",
+                    },
+                },
                 "panel_ref": {
                     "dashboard_uid": "dashboard123",
                     "panel_id": "5",
@@ -383,6 +392,7 @@ class AlertRule(pulumi.CustomResource):
                  options: Optional[pulumi.Input[Union['AlertRuleOptionsArgs', 'AlertRuleOptionsArgsDict']]] = None,
                  spec: Optional[pulumi.Input[Union['AlertRuleSpecArgs', 'AlertRuleSpecArgsDict']]] = None,
                  __props__=None):
+        pulumi.log.warn("""AlertRule is deprecated: This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.AlertRule instead""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

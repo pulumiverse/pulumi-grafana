@@ -13,6 +13,8 @@ namespace Pulumiverse.Grafana.Alerting.V0Alpha1
     /// <summary>
     /// Manages Grafana Recording Rules.
     /// 
+    /// &gt; **Deprecated:** This resource uses the `V0alpha1` API. Use `grafana.alerting/v1beta1.RecordingRule` instead.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -38,11 +40,11 @@ namespace Pulumiverse.Grafana.Alerting.V0Alpha1
     ///         },
     ///         Spec = new Grafana.Alerting.V0Alpha1.Inputs.RecordingRuleSpecArgs
     ///         {
+    ///             Title = "Example Recording Rule",
     ///             Trigger = new Grafana.Alerting.V0Alpha1.Inputs.RecordingRuleSpecTriggerArgs
     ///             {
     ///                 Interval = "1m",
     ///             },
-    ///             Title = "Example Recording Rule",
     ///             Paused = true,
     ///             Expressions = 
     ///             {
@@ -81,6 +83,7 @@ namespace Pulumiverse.Grafana.Alerting.V0Alpha1
     /// });
     /// ```
     /// </summary>
+    [Obsolete(@"This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RecordingRule instead")]
     [GrafanaResourceType("grafana:alerting/v0alpha1/recordingRule:RecordingRule")]
     public partial class RecordingRule : global::Pulumi.CustomResource
     {

@@ -164,6 +164,33 @@ class AlertEnrichment(pulumi.CustomResource):
                 "uid": "test_enrichment",
             },
             spec={
+                "title": "Comprehensive alert enrichment",
+                "description": "Demonstrates many enrichment steps and configurations",
+                "alert_rule_uids": [
+                    "alert-rule-1",
+                    "alert-rule-2",
+                ],
+                "receivers": [
+                    "webhook",
+                    "slack-critical",
+                ],
+                "label_matchers": [
+                    {
+                        "type": "=",
+                        "name": "severity",
+                        "value": "critical",
+                    },
+                    {
+                        "type": "=~",
+                        "name": "team",
+                        "value": "alerting|alerting-team",
+                    },
+                ],
+                "annotation_matchers": [{
+                    "type": "!=",
+                    "name": "runbook_url",
+                    "value": "",
+                }],
                 "steps": [
                     {
                         "assign": {
@@ -181,17 +208,18 @@ class AlertEnrichment(pulumi.CustomResource):
                     },
                     {
                         "data_source": {
+                            "timeout": "30s",
                             "logs_query": {
                                 "data_source_type": "loki",
                                 "data_source_uid": "loki-uid-123",
                                 "expr": "{job=\\"my-app\\"} |= \\"error\\"",
                                 "max_lines": 5,
                             },
-                            "timeout": "30s",
                         },
                     },
                     {
                         "data_source": {
+                            "timeout": "30s",
                             "raw_query": {
                                 "ref_id": "A",
                                 "request": json.dumps({
@@ -205,7 +233,6 @@ class AlertEnrichment(pulumi.CustomResource):
                                     "maxDataPoints": 43200,
                                 }),
                             },
-                            "timeout": "30s",
                         },
                     },
                     {
@@ -256,33 +283,6 @@ class AlertEnrichment(pulumi.CustomResource):
                         },
                     },
                 ],
-                "title": "Comprehensive alert enrichment",
-                "description": "Demonstrates many enrichment steps and configurations",
-                "alert_rule_uids": [
-                    "alert-rule-1",
-                    "alert-rule-2",
-                ],
-                "receivers": [
-                    "webhook",
-                    "slack-critical",
-                ],
-                "label_matchers": [
-                    {
-                        "type": "=",
-                        "name": "severity",
-                        "value": "critical",
-                    },
-                    {
-                        "type": "=~",
-                        "name": "team",
-                        "value": "alerting|alerting-team",
-                    },
-                ],
-                "annotation_matchers": [{
-                    "type": "!=",
-                    "name": "runbook_url",
-                    "value": "",
-                }],
             })
         ```
 
@@ -316,6 +316,33 @@ class AlertEnrichment(pulumi.CustomResource):
                 "uid": "test_enrichment",
             },
             spec={
+                "title": "Comprehensive alert enrichment",
+                "description": "Demonstrates many enrichment steps and configurations",
+                "alert_rule_uids": [
+                    "alert-rule-1",
+                    "alert-rule-2",
+                ],
+                "receivers": [
+                    "webhook",
+                    "slack-critical",
+                ],
+                "label_matchers": [
+                    {
+                        "type": "=",
+                        "name": "severity",
+                        "value": "critical",
+                    },
+                    {
+                        "type": "=~",
+                        "name": "team",
+                        "value": "alerting|alerting-team",
+                    },
+                ],
+                "annotation_matchers": [{
+                    "type": "!=",
+                    "name": "runbook_url",
+                    "value": "",
+                }],
                 "steps": [
                     {
                         "assign": {
@@ -333,17 +360,18 @@ class AlertEnrichment(pulumi.CustomResource):
                     },
                     {
                         "data_source": {
+                            "timeout": "30s",
                             "logs_query": {
                                 "data_source_type": "loki",
                                 "data_source_uid": "loki-uid-123",
                                 "expr": "{job=\\"my-app\\"} |= \\"error\\"",
                                 "max_lines": 5,
                             },
-                            "timeout": "30s",
                         },
                     },
                     {
                         "data_source": {
+                            "timeout": "30s",
                             "raw_query": {
                                 "ref_id": "A",
                                 "request": json.dumps({
@@ -357,7 +385,6 @@ class AlertEnrichment(pulumi.CustomResource):
                                     "maxDataPoints": 43200,
                                 }),
                             },
-                            "timeout": "30s",
                         },
                     },
                     {
@@ -408,33 +435,6 @@ class AlertEnrichment(pulumi.CustomResource):
                         },
                     },
                 ],
-                "title": "Comprehensive alert enrichment",
-                "description": "Demonstrates many enrichment steps and configurations",
-                "alert_rule_uids": [
-                    "alert-rule-1",
-                    "alert-rule-2",
-                ],
-                "receivers": [
-                    "webhook",
-                    "slack-critical",
-                ],
-                "label_matchers": [
-                    {
-                        "type": "=",
-                        "name": "severity",
-                        "value": "critical",
-                    },
-                    {
-                        "type": "=~",
-                        "name": "team",
-                        "value": "alerting|alerting-team",
-                    },
-                ],
-                "annotation_matchers": [{
-                    "type": "!=",
-                    "name": "runbook_url",
-                    "value": "",
-                }],
             })
         ```
 

@@ -28,6 +28,8 @@ namespace Pulumiverse.Grafana.Oss
     /// {
     ///     var test = new Grafana.Oss.Playlist("test", new()
     ///     {
+    ///         Name = "My Playlist!",
+    ///         Interval = "5m",
     ///         Items = new[]
     ///         {
     ///             new Grafana.Oss.Inputs.PlaylistItemArgs
@@ -43,8 +45,6 @@ namespace Pulumiverse.Grafana.Oss
     ///                 Value = "cIBgcSjkk",
     ///             },
     ///         },
-    ///         Name = "My Playlist!",
-    ///         Interval = "5m",
     ///     });
     /// 
     /// });

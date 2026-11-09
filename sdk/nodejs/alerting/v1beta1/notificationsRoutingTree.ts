@@ -26,6 +26,7 @@ import * as utilities from "../../utilities";
  *         uid: "my-routing-tree",
  *     },
  *     spec: {
+ *         disableProvenance: false,
  *         defaults: {
  *             receiver: "empty",
  *             groupBies: [
@@ -37,15 +38,6 @@ import * as utilities from "../../utilities";
  *             repeatInterval: "4h",
  *         },
  *         routes: [{
- *             routes: [{
- *                 receiver: "empty",
- *                 "continue": true,
- *                 matchers: [{
- *                     type: "=~",
- *                     label: "team",
- *                     value: "backend|platform",
- *                 }],
- *             }],
  *             receiver: "empty",
  *             "continue": false,
  *             matchers: [{
@@ -55,8 +47,16 @@ import * as utilities from "../../utilities";
  *             }],
  *             muteTimeIntervals: [],
  *             groupBies: ["alertname"],
+ *             routes: [{
+ *                 receiver: "empty",
+ *                 "continue": true,
+ *                 matchers: [{
+ *                     type: "=~",
+ *                     label: "team",
+ *                     value: "backend|platform",
+ *                 }],
+ *             }],
  *         }],
- *         disableProvenance: false,
  *     },
  * });
  * ```

@@ -30,6 +30,10 @@ export namespace alerting {
          */
         folderUid?: string;
         /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: number;
+        /**
          * The unique identifier of the resource.
          */
         uid: string;
@@ -569,6 +573,10 @@ export namespace alerting {
          * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: string;
+        /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: number;
         /**
          * The unique identifier of the resource.
          */
@@ -2186,6 +2194,10 @@ export namespace alerting {
          */
         folderUid?: string;
         /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: number;
+        /**
          * The unique identifier of the resource.
          */
         uid: string;
@@ -2406,6 +2418,10 @@ export namespace alerting {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -2597,6 +2613,10 @@ export namespace alerting {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -2673,6 +2693,10 @@ export namespace alerting {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -2743,6 +2767,10 @@ export namespace alerting {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier of the resource.
              */
@@ -3274,6 +3302,177 @@ export namespace alerting {
             timeout?: string;
         }
 
+        export interface AlertRuleMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+             */
+            folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface AlertRuleOptions {
+            /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface AlertRuleSpec {
+            /**
+             * Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts.
+             */
+            annotations?: {[key: string]: string};
+            /**
+             * Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
+             */
+            execErrState: string;
+            /**
+             * The stages of the rule, keyed by reference ID. Each expression is an object with `model` (the query or expression model as a JSON string, for example from `jsonencode`), `datasourceUid` (the datasource to run against; `__expr__` for server-side expressions), `queryType`, `relativeTimeRange` (an object with `from` and `to` durations) and `source`. Exactly one expression must set `source = true`. Every field must be set; use `null` for unused fields.
+             */
+            expressions: {[key: string]: outputs.alerting.v1beta1.AlertRuleSpecExpressions};
+            /**
+             * The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
+             */
+            for?: string;
+            /**
+             * The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
+             */
+            keepFiringFor?: string;
+            /**
+             * Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
+             */
+            labels?: {[key: string]: string};
+            /**
+             * The number of missing series evaluations that must occur before the rule is considered to be resolved.
+             */
+            missingSeriesEvalsToResolve?: number;
+            /**
+             * Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
+             */
+            noDataState: string;
+            /**
+             * Notification settings for the rule. If specified, it overrides the notification policies. Specify exactly one of simplified*routing or named*routing*tree.
+             */
+            notificationSettings?: outputs.alerting.v1beta1.AlertRuleSpecNotificationSettings;
+            /**
+             * Reference to the dashboard panel this alert rule is associated with, as an object with `dashboardUid` (string) and `panelId` (number).
+             */
+            panelRef?: outputs.alerting.v1beta1.AlertRuleSpecPanelRef;
+            /**
+             * Sets whether the rule should be paused or not.
+             */
+            paused?: boolean;
+            /**
+             * The title of the alert rule.
+             */
+            title: string;
+            /**
+             * The trigger configuration for the alert rule.
+             */
+            trigger?: outputs.alerting.v1beta1.AlertRuleSpecTrigger;
+        }
+
+        export interface AlertRuleSpecExpressions {
+            datasourceUid: string;
+            model: string;
+            queryType: string;
+            relativeTimeRange: outputs.alerting.v1beta1.AlertRuleSpecExpressionsRelativeTimeRange;
+            source: boolean;
+        }
+
+        export interface AlertRuleSpecExpressionsRelativeTimeRange {
+            from: string;
+            to: string;
+        }
+
+        export interface AlertRuleSpecNotificationSettings {
+            /**
+             * Route notifications to a specific routing tree.
+             */
+            namedRoutingTree?: outputs.alerting.v1beta1.AlertRuleSpecNotificationSettingsNamedRoutingTree;
+            /**
+             * Simplified routing to a contact point with optional grouping and timing overrides.
+             */
+            simplifiedRouting?: outputs.alerting.v1beta1.AlertRuleSpecNotificationSettingsSimplifiedRouting;
+        }
+
+        export interface AlertRuleSpecNotificationSettingsNamedRoutingTree {
+            /**
+             * The name of the routing tree to use.
+             */
+            routingTree?: string;
+        }
+
+        export interface AlertRuleSpecNotificationSettingsSimplifiedRouting {
+            /**
+             * A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+             */
+            activeTimings?: string[];
+            /**
+             * The contact point to route notifications that match this rule to.
+             */
+            contactPoint?: string;
+            /**
+             * A list of alert labels to group alerts into notifications by.
+             */
+            groupBies?: string[];
+            /**
+             * Minimum time interval between two notifications for the same group.
+             */
+            groupInterval?: string;
+            /**
+             * Time to wait to buffer alerts of the same group before sending a notification.
+             */
+            groupWait?: string;
+            /**
+             * A list of mute timing names to apply to alerts that match this policy.
+             */
+            muteTimings?: string[];
+            /**
+             * Minimum time interval for re-sending a notification if an alert is still firing.
+             */
+            repeatInterval?: string;
+        }
+
+        export interface AlertRuleSpecPanelRef {
+            dashboardUid: string;
+            panelId: number;
+        }
+
+        export interface AlertRuleSpecTrigger {
+            /**
+             * The interval at which the alert rule should be evaluated.
+             */
+            interval: string;
+        }
+
         export interface NotificationsInhibitionRuleMetadata {
             /**
              * Annotations of the resource.
@@ -3283,6 +3482,10 @@ export namespace alerting {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier of the resource.
              */
@@ -3348,6 +3551,10 @@ export namespace alerting {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
              */
@@ -3701,6 +3908,171 @@ export namespace alerting {
             value: string;
         }
 
+        export interface RecordingRuleMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+             */
+            folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface RecordingRuleOptions {
+            /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface RecordingRuleSpec {
+            /**
+             * The stages of the rule, keyed by reference ID. Each expression is an object with `model` (the query or expression model as a JSON string, for example from `jsonencode`), `datasourceUid` (the datasource to run against; `__expr__` for server-side expressions), `queryType`, `relativeTimeRange` (an object with `from` and `to` durations) and `source`. Exactly one expression must set `source = true`. Every field must be set; use `null` for unused fields.
+             */
+            expressions: {[key: string]: outputs.alerting.v1beta1.RecordingRuleSpecExpressions};
+            /**
+             * Key-value pairs to attach to the recorded metric.
+             */
+            labels?: {[key: string]: string};
+            /**
+             * The name of the metric to write to.
+             */
+            metric: string;
+            /**
+             * Sets whether the recording rule should be paused or not.
+             */
+            paused?: boolean;
+            /**
+             * The UID of the datasource to write the metric to.
+             */
+            targetDatasourceUid: string;
+            /**
+             * The title of the recording rule.
+             */
+            title: string;
+            /**
+             * The trigger configuration for the recording rule.
+             */
+            trigger?: outputs.alerting.v1beta1.RecordingRuleSpecTrigger;
+        }
+
+        export interface RecordingRuleSpecExpressions {
+            datasourceUid: string;
+            model: string;
+            queryType: string;
+            relativeTimeRange: outputs.alerting.v1beta1.RecordingRuleSpecExpressionsRelativeTimeRange;
+            source: boolean;
+        }
+
+        export interface RecordingRuleSpecExpressionsRelativeTimeRange {
+            from: string;
+            to: string;
+        }
+
+        export interface RecordingRuleSpecTrigger {
+            /**
+             * The interval at which the recording rule should be evaluated.
+             */
+            interval: string;
+        }
+
+        export interface RuleSequenceMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+             */
+            folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface RuleSequenceOptions {
+            /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface RuleSequenceSpec {
+            /**
+             * The alert rules that belong to this sequence, evaluated in the order listed. Each entry references an alert rule by its `name` (the rule's UID).
+             */
+            alertRules?: outputs.alerting.v1beta1.RuleSequenceSpecAlertRule[];
+            /**
+             * The recording rules that belong to this sequence, evaluated in the order listed. At least one recording rule is required. Each entry references a recording rule by its `name` (the rule's UID).
+             */
+            recordingRules: outputs.alerting.v1beta1.RuleSequenceSpecRecordingRule[];
+            /**
+             * The trigger configuration shared by every rule in the sequence.
+             */
+            trigger?: outputs.alerting.v1beta1.RuleSequenceSpecTrigger;
+        }
+
+        export interface RuleSequenceSpecAlertRule {
+            name: string;
+        }
+
+        export interface RuleSequenceSpecRecordingRule {
+            name: string;
+        }
+
+        export interface RuleSequenceSpecTrigger {
+            /**
+             * The interval at which the rules in the sequence should be evaluated.
+             */
+            interval: string;
+        }
+
     }
 }
 
@@ -3715,6 +4087,10 @@ export namespace apps {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier of the resource.
              */
@@ -3773,6 +4149,10 @@ export namespace apps {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier of the resource.
              */
@@ -3858,6 +4238,10 @@ export namespace apps {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier of the resource.
              */
@@ -4165,6 +4549,10 @@ export namespace apps {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -4222,6 +4610,10 @@ export namespace apps {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier of the resource.
              */
@@ -4325,6 +4717,10 @@ export namespace apps {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -4385,6 +4781,10 @@ export namespace apps {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -4444,6 +4844,10 @@ export namespace apps {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier of the resource.
              */
@@ -4781,6 +5185,71 @@ export namespace assert {
 }
 
 export namespace assistant {
+    export interface AutomationNotifications {
+        /**
+         * Email delivery. Email notifications must be enabled for the stack.
+         */
+        email?: outputs.assistant.AutomationNotificationsEmail;
+        /**
+         * Slack delivery. Requires the Slack workspace to already be connected to the stack, which is a one-time manual step in Assistant settings.
+         */
+        slack?: outputs.assistant.AutomationNotificationsSlack;
+    }
+
+    export interface AutomationNotificationsEmail {
+        /**
+         * Recipient email addresses, up to 25.
+         */
+        addresses?: string[];
+        /**
+         * Whether email notifications are sent.
+         */
+        enabled: boolean;
+        /**
+         * Run outcomes that trigger a notification. Defaults to ["completed", "failed"]. Any of `completed`, `failed`, `needsApproval`. Notifications still require enabled = true.
+         */
+        notifyOns: string[];
+    }
+
+    export interface AutomationNotificationsSlack {
+        /**
+         * Whether Slack notifications are sent.
+         */
+        enabled: boolean;
+        /**
+         * Run outcomes that trigger a notification. Defaults to ["completed", "failed"]. Any of `completed`, `failed`, `needsApproval`. Notifications still require enabled = true.
+         */
+        notifyOns: string[];
+        /**
+         * Where the notification is posted.
+         */
+        target?: outputs.assistant.AutomationNotificationsSlackTarget;
+    }
+
+    export interface AutomationNotificationsSlackTarget {
+        /**
+         * Slack channel ID. Required for a `channel` target.
+         */
+        channelId?: string;
+        /**
+         * Slack workspace (team) ID. Omit to let Assistant resolve it; automatically resolved IDs are not managed unless configured.
+         */
+        teamId?: string;
+        /**
+         * Target type. One of `channel` or `dm`. Required when a `target` block is present.
+         */
+        type?: string;
+        /**
+         * Slack user ID for a `dm` target. Omit to use the creator’s verified Slack mapping.
+         */
+        userId?: string;
+    }
+
+    export interface AutomationTriggers {
+        config: string;
+        type: string;
+    }
+
     export interface McpServerConfiguration {
         /**
          * Built-in provider ID (e.g. cursor). When set, tools are provided locally.
@@ -4798,6 +5267,26 @@ export namespace assistant {
          * MCP server URL.
          */
         url?: string;
+    }
+
+    export interface McpServerGithubApp {
+        /**
+         * The GitHub App ID.
+         */
+        appId?: number;
+        /**
+         * The ID of the GitHub App installation on your organization.
+         */
+        installationId?: number;
+        /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The GitHub App private key in PEM format. Terraform sends it to the API but never stores it in state.
+         */
+        privateKey?: string;
+        /**
+         * SHA-256 hash of the private key Terraform last sent, used to detect key changes in configuration. A key changed outside Terraform is not detected, because the API never returns the key.
+         */
+        privateKeyHash: string;
     }
 
     export interface SkillAllowedTool {
@@ -4866,6 +5355,10 @@ export namespace cloud {
          */
         folderUid?: string;
         /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: number;
+        /**
          * The unique identifier of the resource.
          */
         uid: string;
@@ -4910,6 +5403,10 @@ export namespace cloud {
          * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: string;
+        /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: number;
         /**
          * The unique identifier of the resource.
          */
@@ -4957,6 +5454,10 @@ export namespace cloud {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -5001,6 +5502,10 @@ export namespace cloud {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier of the resource.
              */
@@ -5047,6 +5552,10 @@ export namespace cloud {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -5091,6 +5600,10 @@ export namespace cloud {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier of the resource.
              */
@@ -5721,6 +6234,10 @@ export namespace enterprise {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -5747,6 +6264,10 @@ export namespace enterprise {
              * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
             /**
              * The unique identifier of the resource.
              */
@@ -5819,6 +6340,10 @@ export namespace enterprise {
              */
             folderUid?: string;
             /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
              * The unique identifier of the resource.
              */
             uid: string;
@@ -5885,6 +6410,10 @@ export namespace experimental {
          */
         folderUid?: string;
         /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: number;
+        /**
          * The unique identifier of the resource.
          */
         uid: string;
@@ -5941,6 +6470,10 @@ export namespace experimental {
          * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: string;
+        /**
+         * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+         */
+        orgId?: number;
         /**
          * The unique identifier of the resource.
          */

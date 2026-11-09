@@ -86,6 +86,11 @@ func grafanaVersionedResource(mod string, version string, res string) tokens.Typ
 	return grafanaResource(mod+"/"+version, res)
 }
 
+func grafanaVersionedResourceAlias(mod string, version string, res string) *string {
+	alias := grafanaVersionedResource(mod, version, res).String()
+	return &alias
+}
+
 func grafanaResourceAlias(mod string, res string) *string {
 	alias := grafanaResource(mod, res).String()
 	return &alias
@@ -252,6 +257,15 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(alertingMod, "AlertRuleV0Alpha1"),
 					},
 				},
+				DeprecationMessage: "This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.AlertRule instead",
+			},
+			"grafana_apps_rules_alertrule_v1beta1": {
+				Tok: grafanaVersionedResource(alertingMod, "v1beta1", "AlertRule"),
+				Aliases: []tfbridge.AliasInfo{
+					{
+						Type: grafanaVersionedResourceAlias(alertingMod, "v0alpha1", "AlertRule"),
+					},
+				},
 			},
 			"grafana_apps_rules_recordingrule_v0alpha1": {
 				Tok: grafanaVersionedResource(alertingMod, "v0alpha1", "RecordingRule"),
@@ -260,9 +274,27 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(alertingMod, "RecordingRuleV0Alpha1"),
 					},
 				},
+				DeprecationMessage: "This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RecordingRule instead",
+			},
+			"grafana_apps_rules_recordingrule_v1beta1": {
+				Tok: grafanaVersionedResource(alertingMod, "v1beta1", "RecordingRule"),
+				Aliases: []tfbridge.AliasInfo{
+					{
+						Type: grafanaVersionedResourceAlias(alertingMod, "v0alpha1", "RecordingRule"),
+					},
+				},
 			},
 			"grafana_apps_rules_rulesequence_v0alpha1": {
-				Tok: grafanaVersionedResource(alertingMod, "v0alpha1", "RuleSequence"),
+				Tok:                grafanaVersionedResource(alertingMod, "v0alpha1", "RuleSequence"),
+				DeprecationMessage: "This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RuleSequence instead",
+			},
+			"grafana_apps_rules_rulesequence_v1beta1": {
+				Tok: grafanaVersionedResource(alertingMod, "v1beta1", "RuleSequence"),
+				Aliases: []tfbridge.AliasInfo{
+					{
+						Type: grafanaVersionedResourceAlias(alertingMod, "v0alpha1", "RuleSequence"),
+					},
+				},
 			},
 			"grafana_contact_point": {
 				Tok: grafanaResource(alertingMod, "ContactPoint"),

@@ -9,6 +9,8 @@ import * as utilities from "../../utilities";
 /**
  * Manages Grafana Recording Rules.
  *
+ * > **Deprecated:** This resource uses the `v0alpha1` API. Use `grafana.alerting/v1beta1.RecordingRule` instead.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -22,10 +24,10 @@ import * as utilities from "../../utilities";
  *         folderUid: recordingruleFolder.uid,
  *     },
  *     spec: {
+ *         title: "Example Recording Rule",
  *         trigger: {
  *             interval: "1m",
  *         },
- *         title: "Example Recording Rule",
  *         paused: true,
  *         expressions: {
  *             A: JSON.stringify({
@@ -56,6 +58,8 @@ import * as utilities from "../../utilities";
  *     },
  * });
  * ```
+ *
+ * @deprecated This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RecordingRule instead
  */
 export class RecordingRule extends pulumi.CustomResource {
     /**
@@ -68,6 +72,7 @@ export class RecordingRule extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RecordingRuleState, opts?: pulumi.CustomResourceOptions): RecordingRule {
+        pulumi.log.warn("RecordingRule is deprecated: This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RecordingRule instead")
         return new RecordingRule(name, <any>state, { ...opts, id: id });
     }
 
@@ -105,8 +110,11 @@ export class RecordingRule extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RecordingRule instead */
     constructor(name: string, args?: RecordingRuleArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RecordingRule instead */
     constructor(name: string, argsOrState?: RecordingRuleArgs | RecordingRuleState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("RecordingRule is deprecated: This resource uses the v0alpha1 API. Use grafana.alerting.v1beta1.RecordingRule instead")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

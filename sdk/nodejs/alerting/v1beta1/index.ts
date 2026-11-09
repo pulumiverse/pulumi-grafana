@@ -10,6 +10,11 @@ export type AlertEnrichment = import("./alertEnrichment").AlertEnrichment;
 export const AlertEnrichment: typeof import("./alertEnrichment").AlertEnrichment = null as any;
 utilities.lazyLoad(exports, ["AlertEnrichment"], () => require("./alertEnrichment"));
 
+export { AlertRuleArgs, AlertRuleState } from "./alertRule";
+export type AlertRule = import("./alertRule").AlertRule;
+export const AlertRule: typeof import("./alertRule").AlertRule = null as any;
+utilities.lazyLoad(exports, ["AlertRule"], () => require("./alertRule"));
+
 export { NotificationsInhibitionRuleArgs, NotificationsInhibitionRuleState } from "./notificationsInhibitionRule";
 export type NotificationsInhibitionRule = import("./notificationsInhibitionRule").NotificationsInhibitionRule;
 export const NotificationsInhibitionRule: typeof import("./notificationsInhibitionRule").NotificationsInhibitionRule = null as any;
@@ -20,6 +25,16 @@ export type NotificationsRoutingTree = import("./notificationsRoutingTree").Noti
 export const NotificationsRoutingTree: typeof import("./notificationsRoutingTree").NotificationsRoutingTree = null as any;
 utilities.lazyLoad(exports, ["NotificationsRoutingTree"], () => require("./notificationsRoutingTree"));
 
+export { RecordingRuleArgs, RecordingRuleState } from "./recordingRule";
+export type RecordingRule = import("./recordingRule").RecordingRule;
+export const RecordingRule: typeof import("./recordingRule").RecordingRule = null as any;
+utilities.lazyLoad(exports, ["RecordingRule"], () => require("./recordingRule"));
+
+export { RuleSequenceArgs, RuleSequenceState } from "./ruleSequence";
+export type RuleSequence = import("./ruleSequence").RuleSequence;
+export const RuleSequence: typeof import("./ruleSequence").RuleSequence = null as any;
+utilities.lazyLoad(exports, ["RuleSequence"], () => require("./ruleSequence"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -27,15 +42,24 @@ const _module = {
         switch (type) {
             case "grafana:alerting/v1beta1/alertEnrichment:AlertEnrichment":
                 return new AlertEnrichment(name, <any>undefined, { urn })
+            case "grafana:alerting/v1beta1/alertRule:AlertRule":
+                return new AlertRule(name, <any>undefined, { urn })
             case "grafana:alerting/v1beta1/notificationsInhibitionRule:NotificationsInhibitionRule":
                 return new NotificationsInhibitionRule(name, <any>undefined, { urn })
             case "grafana:alerting/v1beta1/notificationsRoutingTree:NotificationsRoutingTree":
                 return new NotificationsRoutingTree(name, <any>undefined, { urn })
+            case "grafana:alerting/v1beta1/recordingRule:RecordingRule":
+                return new RecordingRule(name, <any>undefined, { urn })
+            case "grafana:alerting/v1beta1/ruleSequence:RuleSequence":
+                return new RuleSequence(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
 pulumi.runtime.registerResourceModule("grafana", "alerting/v1beta1/alertEnrichment", _module)
+pulumi.runtime.registerResourceModule("grafana", "alerting/v1beta1/alertRule", _module)
 pulumi.runtime.registerResourceModule("grafana", "alerting/v1beta1/notificationsInhibitionRule", _module)
 pulumi.runtime.registerResourceModule("grafana", "alerting/v1beta1/notificationsRoutingTree", _module)
+pulumi.runtime.registerResourceModule("grafana", "alerting/v1beta1/recordingRule", _module)
+pulumi.runtime.registerResourceModule("grafana", "alerting/v1beta1/ruleSequence", _module)

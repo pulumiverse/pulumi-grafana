@@ -322,28 +322,33 @@ class NotificationPolicy(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         a_contact_point = grafana.alerting.ContactPoint("a_contact_point",
+            name="A Contact Point",
             emails=[{
                 "addresses": [
                     "one@company.org",
                     "two@company.org",
                 ],
                 "message": "{{ len .Alerts.Firing }} firing.",
-            }],
-            name="A Contact Point")
+            }])
         a_mute_timing = grafana.alerting.MuteTiming("a_mute_timing",
+            name="Some Mute Timing",
             intervals=[{
                 "weekdays": ["monday"],
-            }],
-            name="Some Mute Timing")
+            }])
         working_hours = grafana.alerting.MuteTiming("working_hours",
+            name="Working Hours",
             intervals=[{
                 "times": [{
                     "start": "09:00",
                     "end": "18:00",
                 }],
-            }],
-            name="Working Hours")
+            }])
         my_notification_policy = grafana.alerting.NotificationPolicy("my_notification_policy",
+            group_bies=["..."],
+            contact_point=a_contact_point.name,
+            group_wait="45s",
+            group_interval="6m",
+            repeat_interval="3h",
             policies=[
                 {
                     "matchers": [
@@ -363,6 +368,13 @@ class NotificationPolicy(pulumi.CustomResource):
                             "value": "host.*|host-b.*",
                         },
                     ],
+                    "contact_point": a_contact_point.name,
+                    "continue_": True,
+                    "mute_timings": [a_mute_timing.name],
+                    "active_timings": [working_hours.name],
+                    "group_wait": "45s",
+                    "group_interval": "6m",
+                    "repeat_interval": "3h",
                     "policies": [{
                         "matchers": [{
                             "label": "sublabel",
@@ -372,13 +384,6 @@ class NotificationPolicy(pulumi.CustomResource):
                         "contact_point": a_contact_point.name,
                         "group_bies": ["..."],
                     }],
-                    "contact_point": a_contact_point.name,
-                    "continue_": True,
-                    "mute_timings": [a_mute_timing.name],
-                    "active_timings": [working_hours.name],
-                    "group_wait": "45s",
-                    "group_interval": "6m",
-                    "repeat_interval": "3h",
                 },
                 {
                     "matchers": [{
@@ -389,12 +394,7 @@ class NotificationPolicy(pulumi.CustomResource):
                     "contact_point": a_contact_point.name,
                     "group_bies": ["..."],
                 },
-            ],
-            group_bies=["..."],
-            contact_point=a_contact_point.name,
-            group_wait="45s",
-            group_interval="6m",
-            repeat_interval="3h")
+            ])
         ```
 
         ## Import
@@ -439,28 +439,33 @@ class NotificationPolicy(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         a_contact_point = grafana.alerting.ContactPoint("a_contact_point",
+            name="A Contact Point",
             emails=[{
                 "addresses": [
                     "one@company.org",
                     "two@company.org",
                 ],
                 "message": "{{ len .Alerts.Firing }} firing.",
-            }],
-            name="A Contact Point")
+            }])
         a_mute_timing = grafana.alerting.MuteTiming("a_mute_timing",
+            name="Some Mute Timing",
             intervals=[{
                 "weekdays": ["monday"],
-            }],
-            name="Some Mute Timing")
+            }])
         working_hours = grafana.alerting.MuteTiming("working_hours",
+            name="Working Hours",
             intervals=[{
                 "times": [{
                     "start": "09:00",
                     "end": "18:00",
                 }],
-            }],
-            name="Working Hours")
+            }])
         my_notification_policy = grafana.alerting.NotificationPolicy("my_notification_policy",
+            group_bies=["..."],
+            contact_point=a_contact_point.name,
+            group_wait="45s",
+            group_interval="6m",
+            repeat_interval="3h",
             policies=[
                 {
                     "matchers": [
@@ -480,6 +485,13 @@ class NotificationPolicy(pulumi.CustomResource):
                             "value": "host.*|host-b.*",
                         },
                     ],
+                    "contact_point": a_contact_point.name,
+                    "continue_": True,
+                    "mute_timings": [a_mute_timing.name],
+                    "active_timings": [working_hours.name],
+                    "group_wait": "45s",
+                    "group_interval": "6m",
+                    "repeat_interval": "3h",
                     "policies": [{
                         "matchers": [{
                             "label": "sublabel",
@@ -489,13 +501,6 @@ class NotificationPolicy(pulumi.CustomResource):
                         "contact_point": a_contact_point.name,
                         "group_bies": ["..."],
                     }],
-                    "contact_point": a_contact_point.name,
-                    "continue_": True,
-                    "mute_timings": [a_mute_timing.name],
-                    "active_timings": [working_hours.name],
-                    "group_wait": "45s",
-                    "group_interval": "6m",
-                    "repeat_interval": "3h",
                 },
                 {
                     "matchers": [{
@@ -506,12 +511,7 @@ class NotificationPolicy(pulumi.CustomResource):
                     "contact_point": a_contact_point.name,
                     "group_bies": ["..."],
                 },
-            ],
-            group_bies=["..."],
-            contact_point=a_contact_point.name,
-            group_wait="45s",
-            group_interval="6m",
-            repeat_interval="3h")
+            ])
         ```
 
         ## Import

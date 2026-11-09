@@ -18,6 +18,8 @@ type AlertEnrichmentMetadata struct {
 	Annotations map[string]string `pulumi:"annotations"`
 	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid *string `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId *int `pulumi:"orgId"`
 	// The unique identifier of the resource.
 	Uid string `pulumi:"uid"`
 	// The full URL of the resource.
@@ -44,6 +46,8 @@ type AlertEnrichmentMetadataArgs struct {
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
 	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId pulumi.IntPtrInput `pulumi:"orgId"`
 	// The unique identifier of the resource.
 	Uid pulumi.StringInput `pulumi:"uid"`
 	// The full URL of the resource.
@@ -141,6 +145,11 @@ func (o AlertEnrichmentMetadataOutput) FolderUid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertEnrichmentMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
 }
 
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o AlertEnrichmentMetadataOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentMetadata) *int { return v.OrgId }).(pulumi.IntPtrOutput)
+}
+
 // The unique identifier of the resource.
 func (o AlertEnrichmentMetadataOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertEnrichmentMetadata) string { return v.Uid }).(pulumi.StringOutput)
@@ -203,6 +212,16 @@ func (o AlertEnrichmentMetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
 		}
 		return v.FolderUid
 	}).(pulumi.StringPtrOutput)
+}
+
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o AlertEnrichmentMetadataPtrOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentMetadata) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OrgId
+	}).(pulumi.IntPtrOutput)
 }
 
 // The unique identifier of the resource.
@@ -6593,11 +6612,1791 @@ func (o AlertEnrichmentSpecStepSiftPtrOutput) Timeout() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type AlertRuleMetadata struct {
+	// Annotations of the resource.
+	Annotations map[string]string `pulumi:"annotations"`
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+	FolderUid *string `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId *int `pulumi:"orgId"`
+	// The unique identifier of the resource.
+	Uid string `pulumi:"uid"`
+	// The full URL of the resource.
+	Url *string `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid *string `pulumi:"uuid"`
+	// The version of the resource.
+	Version *string `pulumi:"version"`
+}
+
+// AlertRuleMetadataInput is an input type that accepts AlertRuleMetadataArgs and AlertRuleMetadataOutput values.
+// You can construct a concrete instance of `AlertRuleMetadataInput` via:
+//
+//	AlertRuleMetadataArgs{...}
+type AlertRuleMetadataInput interface {
+	pulumi.Input
+
+	ToAlertRuleMetadataOutput() AlertRuleMetadataOutput
+	ToAlertRuleMetadataOutputWithContext(context.Context) AlertRuleMetadataOutput
+}
+
+type AlertRuleMetadataArgs struct {
+	// Annotations of the resource.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId pulumi.IntPtrInput `pulumi:"orgId"`
+	// The unique identifier of the resource.
+	Uid pulumi.StringInput `pulumi:"uid"`
+	// The full URL of the resource.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
+	// The version of the resource.
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (AlertRuleMetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleMetadata)(nil)).Elem()
+}
+
+func (i AlertRuleMetadataArgs) ToAlertRuleMetadataOutput() AlertRuleMetadataOutput {
+	return i.ToAlertRuleMetadataOutputWithContext(context.Background())
+}
+
+func (i AlertRuleMetadataArgs) ToAlertRuleMetadataOutputWithContext(ctx context.Context) AlertRuleMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleMetadataOutput)
+}
+
+func (i AlertRuleMetadataArgs) ToAlertRuleMetadataPtrOutput() AlertRuleMetadataPtrOutput {
+	return i.ToAlertRuleMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i AlertRuleMetadataArgs) ToAlertRuleMetadataPtrOutputWithContext(ctx context.Context) AlertRuleMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleMetadataOutput).ToAlertRuleMetadataPtrOutputWithContext(ctx)
+}
+
+// AlertRuleMetadataPtrInput is an input type that accepts AlertRuleMetadataArgs, AlertRuleMetadataPtr and AlertRuleMetadataPtrOutput values.
+// You can construct a concrete instance of `AlertRuleMetadataPtrInput` via:
+//
+//	        AlertRuleMetadataArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertRuleMetadataPtrInput interface {
+	pulumi.Input
+
+	ToAlertRuleMetadataPtrOutput() AlertRuleMetadataPtrOutput
+	ToAlertRuleMetadataPtrOutputWithContext(context.Context) AlertRuleMetadataPtrOutput
+}
+
+type alertRuleMetadataPtrType AlertRuleMetadataArgs
+
+func AlertRuleMetadataPtr(v *AlertRuleMetadataArgs) AlertRuleMetadataPtrInput {
+	return (*alertRuleMetadataPtrType)(v)
+}
+
+func (*alertRuleMetadataPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleMetadata)(nil)).Elem()
+}
+
+func (i *alertRuleMetadataPtrType) ToAlertRuleMetadataPtrOutput() AlertRuleMetadataPtrOutput {
+	return i.ToAlertRuleMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i *alertRuleMetadataPtrType) ToAlertRuleMetadataPtrOutputWithContext(ctx context.Context) AlertRuleMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleMetadataPtrOutput)
+}
+
+type AlertRuleMetadataOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleMetadata)(nil)).Elem()
+}
+
+func (o AlertRuleMetadataOutput) ToAlertRuleMetadataOutput() AlertRuleMetadataOutput {
+	return o
+}
+
+func (o AlertRuleMetadataOutput) ToAlertRuleMetadataOutputWithContext(ctx context.Context) AlertRuleMetadataOutput {
+	return o
+}
+
+func (o AlertRuleMetadataOutput) ToAlertRuleMetadataPtrOutput() AlertRuleMetadataPtrOutput {
+	return o.ToAlertRuleMetadataPtrOutputWithContext(context.Background())
+}
+
+func (o AlertRuleMetadataOutput) ToAlertRuleMetadataPtrOutputWithContext(ctx context.Context) AlertRuleMetadataPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertRuleMetadata) *AlertRuleMetadata {
+		return &v
+	}).(AlertRuleMetadataPtrOutput)
+}
+
+// Annotations of the resource.
+func (o AlertRuleMetadataOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AlertRuleMetadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+func (o AlertRuleMetadataOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
+}
+
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o AlertRuleMetadataOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AlertRuleMetadata) *int { return v.OrgId }).(pulumi.IntPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o AlertRuleMetadataOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRuleMetadata) string { return v.Uid }).(pulumi.StringOutput)
+}
+
+// The full URL of the resource.
+func (o AlertRuleMetadataOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleMetadata) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o AlertRuleMetadataOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleMetadata) *string { return v.Uuid }).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o AlertRuleMetadataOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleMetadata) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type AlertRuleMetadataPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleMetadataPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleMetadata)(nil)).Elem()
+}
+
+func (o AlertRuleMetadataPtrOutput) ToAlertRuleMetadataPtrOutput() AlertRuleMetadataPtrOutput {
+	return o
+}
+
+func (o AlertRuleMetadataPtrOutput) ToAlertRuleMetadataPtrOutputWithContext(ctx context.Context) AlertRuleMetadataPtrOutput {
+	return o
+}
+
+func (o AlertRuleMetadataPtrOutput) Elem() AlertRuleMetadataOutput {
+	return o.ApplyT(func(v *AlertRuleMetadata) AlertRuleMetadata {
+		if v != nil {
+			return *v
+		}
+		var ret AlertRuleMetadata
+		return ret
+	}).(AlertRuleMetadataOutput)
+}
+
+// Annotations of the resource.
+func (o AlertRuleMetadataPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AlertRuleMetadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+func (o AlertRuleMetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FolderUid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o AlertRuleMetadataPtrOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AlertRuleMetadata) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OrgId
+	}).(pulumi.IntPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o AlertRuleMetadataPtrOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The full URL of the resource.
+func (o AlertRuleMetadataPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o AlertRuleMetadataPtrOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Uuid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o AlertRuleMetadataPtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Version
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertRuleOptions struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity *string `pulumi:"managerIdentity"`
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite *bool `pulumi:"overwrite"`
+}
+
+// AlertRuleOptionsInput is an input type that accepts AlertRuleOptionsArgs and AlertRuleOptionsOutput values.
+// You can construct a concrete instance of `AlertRuleOptionsInput` via:
+//
+//	AlertRuleOptionsArgs{...}
+type AlertRuleOptionsInput interface {
+	pulumi.Input
+
+	ToAlertRuleOptionsOutput() AlertRuleOptionsOutput
+	ToAlertRuleOptionsOutputWithContext(context.Context) AlertRuleOptionsOutput
+}
+
+type AlertRuleOptionsArgs struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity pulumi.StringPtrInput `pulumi:"managerIdentity"`
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
+}
+
+func (AlertRuleOptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleOptions)(nil)).Elem()
+}
+
+func (i AlertRuleOptionsArgs) ToAlertRuleOptionsOutput() AlertRuleOptionsOutput {
+	return i.ToAlertRuleOptionsOutputWithContext(context.Background())
+}
+
+func (i AlertRuleOptionsArgs) ToAlertRuleOptionsOutputWithContext(ctx context.Context) AlertRuleOptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleOptionsOutput)
+}
+
+func (i AlertRuleOptionsArgs) ToAlertRuleOptionsPtrOutput() AlertRuleOptionsPtrOutput {
+	return i.ToAlertRuleOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i AlertRuleOptionsArgs) ToAlertRuleOptionsPtrOutputWithContext(ctx context.Context) AlertRuleOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleOptionsOutput).ToAlertRuleOptionsPtrOutputWithContext(ctx)
+}
+
+// AlertRuleOptionsPtrInput is an input type that accepts AlertRuleOptionsArgs, AlertRuleOptionsPtr and AlertRuleOptionsPtrOutput values.
+// You can construct a concrete instance of `AlertRuleOptionsPtrInput` via:
+//
+//	        AlertRuleOptionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertRuleOptionsPtrInput interface {
+	pulumi.Input
+
+	ToAlertRuleOptionsPtrOutput() AlertRuleOptionsPtrOutput
+	ToAlertRuleOptionsPtrOutputWithContext(context.Context) AlertRuleOptionsPtrOutput
+}
+
+type alertRuleOptionsPtrType AlertRuleOptionsArgs
+
+func AlertRuleOptionsPtr(v *AlertRuleOptionsArgs) AlertRuleOptionsPtrInput {
+	return (*alertRuleOptionsPtrType)(v)
+}
+
+func (*alertRuleOptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleOptions)(nil)).Elem()
+}
+
+func (i *alertRuleOptionsPtrType) ToAlertRuleOptionsPtrOutput() AlertRuleOptionsPtrOutput {
+	return i.ToAlertRuleOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *alertRuleOptionsPtrType) ToAlertRuleOptionsPtrOutputWithContext(ctx context.Context) AlertRuleOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleOptionsPtrOutput)
+}
+
+type AlertRuleOptionsOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleOptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleOptions)(nil)).Elem()
+}
+
+func (o AlertRuleOptionsOutput) ToAlertRuleOptionsOutput() AlertRuleOptionsOutput {
+	return o
+}
+
+func (o AlertRuleOptionsOutput) ToAlertRuleOptionsOutputWithContext(ctx context.Context) AlertRuleOptionsOutput {
+	return o
+}
+
+func (o AlertRuleOptionsOutput) ToAlertRuleOptionsPtrOutput() AlertRuleOptionsPtrOutput {
+	return o.ToAlertRuleOptionsPtrOutputWithContext(context.Background())
+}
+
+func (o AlertRuleOptionsOutput) ToAlertRuleOptionsPtrOutputWithContext(ctx context.Context) AlertRuleOptionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertRuleOptions) *AlertRuleOptions {
+		return &v
+	}).(AlertRuleOptionsPtrOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o AlertRuleOptionsOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleOptions) *string { return v.ManagerIdentity }).(pulumi.StringPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o AlertRuleOptionsOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AlertRuleOptions) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
+}
+
+type AlertRuleOptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleOptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleOptions)(nil)).Elem()
+}
+
+func (o AlertRuleOptionsPtrOutput) ToAlertRuleOptionsPtrOutput() AlertRuleOptionsPtrOutput {
+	return o
+}
+
+func (o AlertRuleOptionsPtrOutput) ToAlertRuleOptionsPtrOutputWithContext(ctx context.Context) AlertRuleOptionsPtrOutput {
+	return o
+}
+
+func (o AlertRuleOptionsPtrOutput) Elem() AlertRuleOptionsOutput {
+	return o.ApplyT(func(v *AlertRuleOptions) AlertRuleOptions {
+		if v != nil {
+			return *v
+		}
+		var ret AlertRuleOptions
+		return ret
+	}).(AlertRuleOptionsOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o AlertRuleOptionsPtrOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleOptions) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ManagerIdentity
+	}).(pulumi.StringPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o AlertRuleOptionsPtrOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AlertRuleOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Overwrite
+	}).(pulumi.BoolPtrOutput)
+}
+
+type AlertRuleSpec struct {
+	// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts.
+	Annotations map[string]string `pulumi:"annotations"`
+	// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
+	ExecErrState string `pulumi:"execErrState"`
+	// The stages of the rule, keyed by reference ID. Each expression is an object with `model` (the query or expression model as a JSON string, for example from `jsonencode`), `datasourceUid` (the datasource to run against; `__expr__` for server-side expressions), `queryType`, `relativeTimeRange` (an object with `from` and `to` durations) and `source`. Exactly one expression must set `source = true`. Every field must be set; use `null` for unused fields.
+	Expressions map[string]AlertRuleSpecExpressions `pulumi:"expressions"`
+	// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
+	For *string `pulumi:"for"`
+	// The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
+	KeepFiringFor *string `pulumi:"keepFiringFor"`
+	// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
+	Labels map[string]string `pulumi:"labels"`
+	// The number of missing series evaluations that must occur before the rule is considered to be resolved.
+	MissingSeriesEvalsToResolve *int `pulumi:"missingSeriesEvalsToResolve"`
+	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
+	NoDataState string `pulumi:"noDataState"`
+	// Notification settings for the rule. If specified, it overrides the notification policies. Specify exactly one of simplified*routing or named*routing*tree.
+	NotificationSettings *AlertRuleSpecNotificationSettings `pulumi:"notificationSettings"`
+	// Reference to the dashboard panel this alert rule is associated with, as an object with `dashboardUid` (string) and `panelId` (number).
+	PanelRef *AlertRuleSpecPanelRef `pulumi:"panelRef"`
+	// Sets whether the rule should be paused or not.
+	Paused *bool `pulumi:"paused"`
+	// The title of the alert rule.
+	Title string `pulumi:"title"`
+	// The trigger configuration for the alert rule.
+	Trigger *AlertRuleSpecTrigger `pulumi:"trigger"`
+}
+
+// AlertRuleSpecInput is an input type that accepts AlertRuleSpecArgs and AlertRuleSpecOutput values.
+// You can construct a concrete instance of `AlertRuleSpecInput` via:
+//
+//	AlertRuleSpecArgs{...}
+type AlertRuleSpecInput interface {
+	pulumi.Input
+
+	ToAlertRuleSpecOutput() AlertRuleSpecOutput
+	ToAlertRuleSpecOutputWithContext(context.Context) AlertRuleSpecOutput
+}
+
+type AlertRuleSpecArgs struct {
+	// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
+	ExecErrState pulumi.StringInput `pulumi:"execErrState"`
+	// The stages of the rule, keyed by reference ID. Each expression is an object with `model` (the query or expression model as a JSON string, for example from `jsonencode`), `datasourceUid` (the datasource to run against; `__expr__` for server-side expressions), `queryType`, `relativeTimeRange` (an object with `from` and `to` durations) and `source`. Exactly one expression must set `source = true`. Every field must be set; use `null` for unused fields.
+	Expressions AlertRuleSpecExpressionsMapInput `pulumi:"expressions"`
+	// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
+	For pulumi.StringPtrInput `pulumi:"for"`
+	// The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
+	KeepFiringFor pulumi.StringPtrInput `pulumi:"keepFiringFor"`
+	// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
+	Labels pulumi.StringMapInput `pulumi:"labels"`
+	// The number of missing series evaluations that must occur before the rule is considered to be resolved.
+	MissingSeriesEvalsToResolve pulumi.IntPtrInput `pulumi:"missingSeriesEvalsToResolve"`
+	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
+	NoDataState pulumi.StringInput `pulumi:"noDataState"`
+	// Notification settings for the rule. If specified, it overrides the notification policies. Specify exactly one of simplified*routing or named*routing*tree.
+	NotificationSettings AlertRuleSpecNotificationSettingsPtrInput `pulumi:"notificationSettings"`
+	// Reference to the dashboard panel this alert rule is associated with, as an object with `dashboardUid` (string) and `panelId` (number).
+	PanelRef AlertRuleSpecPanelRefPtrInput `pulumi:"panelRef"`
+	// Sets whether the rule should be paused or not.
+	Paused pulumi.BoolPtrInput `pulumi:"paused"`
+	// The title of the alert rule.
+	Title pulumi.StringInput `pulumi:"title"`
+	// The trigger configuration for the alert rule.
+	Trigger AlertRuleSpecTriggerPtrInput `pulumi:"trigger"`
+}
+
+func (AlertRuleSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleSpec)(nil)).Elem()
+}
+
+func (i AlertRuleSpecArgs) ToAlertRuleSpecOutput() AlertRuleSpecOutput {
+	return i.ToAlertRuleSpecOutputWithContext(context.Background())
+}
+
+func (i AlertRuleSpecArgs) ToAlertRuleSpecOutputWithContext(ctx context.Context) AlertRuleSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecOutput)
+}
+
+func (i AlertRuleSpecArgs) ToAlertRuleSpecPtrOutput() AlertRuleSpecPtrOutput {
+	return i.ToAlertRuleSpecPtrOutputWithContext(context.Background())
+}
+
+func (i AlertRuleSpecArgs) ToAlertRuleSpecPtrOutputWithContext(ctx context.Context) AlertRuleSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecOutput).ToAlertRuleSpecPtrOutputWithContext(ctx)
+}
+
+// AlertRuleSpecPtrInput is an input type that accepts AlertRuleSpecArgs, AlertRuleSpecPtr and AlertRuleSpecPtrOutput values.
+// You can construct a concrete instance of `AlertRuleSpecPtrInput` via:
+//
+//	        AlertRuleSpecArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertRuleSpecPtrInput interface {
+	pulumi.Input
+
+	ToAlertRuleSpecPtrOutput() AlertRuleSpecPtrOutput
+	ToAlertRuleSpecPtrOutputWithContext(context.Context) AlertRuleSpecPtrOutput
+}
+
+type alertRuleSpecPtrType AlertRuleSpecArgs
+
+func AlertRuleSpecPtr(v *AlertRuleSpecArgs) AlertRuleSpecPtrInput {
+	return (*alertRuleSpecPtrType)(v)
+}
+
+func (*alertRuleSpecPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleSpec)(nil)).Elem()
+}
+
+func (i *alertRuleSpecPtrType) ToAlertRuleSpecPtrOutput() AlertRuleSpecPtrOutput {
+	return i.ToAlertRuleSpecPtrOutputWithContext(context.Background())
+}
+
+func (i *alertRuleSpecPtrType) ToAlertRuleSpecPtrOutputWithContext(ctx context.Context) AlertRuleSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecPtrOutput)
+}
+
+type AlertRuleSpecOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleSpec)(nil)).Elem()
+}
+
+func (o AlertRuleSpecOutput) ToAlertRuleSpecOutput() AlertRuleSpecOutput {
+	return o
+}
+
+func (o AlertRuleSpecOutput) ToAlertRuleSpecOutputWithContext(ctx context.Context) AlertRuleSpecOutput {
+	return o
+}
+
+func (o AlertRuleSpecOutput) ToAlertRuleSpecPtrOutput() AlertRuleSpecPtrOutput {
+	return o.ToAlertRuleSpecPtrOutputWithContext(context.Background())
+}
+
+func (o AlertRuleSpecOutput) ToAlertRuleSpecPtrOutputWithContext(ctx context.Context) AlertRuleSpecPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertRuleSpec) *AlertRuleSpec {
+		return &v
+	}).(AlertRuleSpecPtrOutput)
+}
+
+// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts.
+func (o AlertRuleSpecOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AlertRuleSpec) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
+func (o AlertRuleSpecOutput) ExecErrState() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRuleSpec) string { return v.ExecErrState }).(pulumi.StringOutput)
+}
+
+// The stages of the rule, keyed by reference ID. Each expression is an object with `model` (the query or expression model as a JSON string, for example from `jsonencode`), `datasourceUid` (the datasource to run against; `__expr__` for server-side expressions), `queryType`, `relativeTimeRange` (an object with `from` and `to` durations) and `source`. Exactly one expression must set `source = true`. Every field must be set; use `null` for unused fields.
+func (o AlertRuleSpecOutput) Expressions() AlertRuleSpecExpressionsMapOutput {
+	return o.ApplyT(func(v AlertRuleSpec) map[string]AlertRuleSpecExpressions { return v.Expressions }).(AlertRuleSpecExpressionsMapOutput)
+}
+
+// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
+func (o AlertRuleSpecOutput) For() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleSpec) *string { return v.For }).(pulumi.StringPtrOutput)
+}
+
+// The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
+func (o AlertRuleSpecOutput) KeepFiringFor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleSpec) *string { return v.KeepFiringFor }).(pulumi.StringPtrOutput)
+}
+
+// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
+func (o AlertRuleSpecOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AlertRuleSpec) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+// The number of missing series evaluations that must occur before the rule is considered to be resolved.
+func (o AlertRuleSpecOutput) MissingSeriesEvalsToResolve() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AlertRuleSpec) *int { return v.MissingSeriesEvalsToResolve }).(pulumi.IntPtrOutput)
+}
+
+// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
+func (o AlertRuleSpecOutput) NoDataState() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRuleSpec) string { return v.NoDataState }).(pulumi.StringOutput)
+}
+
+// Notification settings for the rule. If specified, it overrides the notification policies. Specify exactly one of simplified*routing or named*routing*tree.
+func (o AlertRuleSpecOutput) NotificationSettings() AlertRuleSpecNotificationSettingsPtrOutput {
+	return o.ApplyT(func(v AlertRuleSpec) *AlertRuleSpecNotificationSettings { return v.NotificationSettings }).(AlertRuleSpecNotificationSettingsPtrOutput)
+}
+
+// Reference to the dashboard panel this alert rule is associated with, as an object with `dashboardUid` (string) and `panelId` (number).
+func (o AlertRuleSpecOutput) PanelRef() AlertRuleSpecPanelRefPtrOutput {
+	return o.ApplyT(func(v AlertRuleSpec) *AlertRuleSpecPanelRef { return v.PanelRef }).(AlertRuleSpecPanelRefPtrOutput)
+}
+
+// Sets whether the rule should be paused or not.
+func (o AlertRuleSpecOutput) Paused() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AlertRuleSpec) *bool { return v.Paused }).(pulumi.BoolPtrOutput)
+}
+
+// The title of the alert rule.
+func (o AlertRuleSpecOutput) Title() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRuleSpec) string { return v.Title }).(pulumi.StringOutput)
+}
+
+// The trigger configuration for the alert rule.
+func (o AlertRuleSpecOutput) Trigger() AlertRuleSpecTriggerPtrOutput {
+	return o.ApplyT(func(v AlertRuleSpec) *AlertRuleSpecTrigger { return v.Trigger }).(AlertRuleSpecTriggerPtrOutput)
+}
+
+type AlertRuleSpecPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleSpecPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleSpec)(nil)).Elem()
+}
+
+func (o AlertRuleSpecPtrOutput) ToAlertRuleSpecPtrOutput() AlertRuleSpecPtrOutput {
+	return o
+}
+
+func (o AlertRuleSpecPtrOutput) ToAlertRuleSpecPtrOutputWithContext(ctx context.Context) AlertRuleSpecPtrOutput {
+	return o
+}
+
+func (o AlertRuleSpecPtrOutput) Elem() AlertRuleSpecOutput {
+	return o.ApplyT(func(v *AlertRuleSpec) AlertRuleSpec {
+		if v != nil {
+			return *v
+		}
+		var ret AlertRuleSpec
+		return ret
+	}).(AlertRuleSpecOutput)
+}
+
+// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts.
+func (o AlertRuleSpecPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AlertRuleSpec) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
+func (o AlertRuleSpecPtrOutput) ExecErrState() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpec) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ExecErrState
+	}).(pulumi.StringPtrOutput)
+}
+
+// The stages of the rule, keyed by reference ID. Each expression is an object with `model` (the query or expression model as a JSON string, for example from `jsonencode`), `datasourceUid` (the datasource to run against; `__expr__` for server-side expressions), `queryType`, `relativeTimeRange` (an object with `from` and `to` durations) and `source`. Exactly one expression must set `source = true`. Every field must be set; use `null` for unused fields.
+func (o AlertRuleSpecPtrOutput) Expressions() AlertRuleSpecExpressionsMapOutput {
+	return o.ApplyT(func(v *AlertRuleSpec) map[string]AlertRuleSpecExpressions {
+		if v == nil {
+			return nil
+		}
+		return v.Expressions
+	}).(AlertRuleSpecExpressionsMapOutput)
+}
+
+// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
+func (o AlertRuleSpecPtrOutput) For() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpec) *string {
+		if v == nil {
+			return nil
+		}
+		return v.For
+	}).(pulumi.StringPtrOutput)
+}
+
+// The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
+func (o AlertRuleSpecPtrOutput) KeepFiringFor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpec) *string {
+		if v == nil {
+			return nil
+		}
+		return v.KeepFiringFor
+	}).(pulumi.StringPtrOutput)
+}
+
+// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
+func (o AlertRuleSpecPtrOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AlertRuleSpec) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Labels
+	}).(pulumi.StringMapOutput)
+}
+
+// The number of missing series evaluations that must occur before the rule is considered to be resolved.
+func (o AlertRuleSpecPtrOutput) MissingSeriesEvalsToResolve() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpec) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MissingSeriesEvalsToResolve
+	}).(pulumi.IntPtrOutput)
+}
+
+// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
+func (o AlertRuleSpecPtrOutput) NoDataState() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpec) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.NoDataState
+	}).(pulumi.StringPtrOutput)
+}
+
+// Notification settings for the rule. If specified, it overrides the notification policies. Specify exactly one of simplified*routing or named*routing*tree.
+func (o AlertRuleSpecPtrOutput) NotificationSettings() AlertRuleSpecNotificationSettingsPtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpec) *AlertRuleSpecNotificationSettings {
+		if v == nil {
+			return nil
+		}
+		return v.NotificationSettings
+	}).(AlertRuleSpecNotificationSettingsPtrOutput)
+}
+
+// Reference to the dashboard panel this alert rule is associated with, as an object with `dashboardUid` (string) and `panelId` (number).
+func (o AlertRuleSpecPtrOutput) PanelRef() AlertRuleSpecPanelRefPtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpec) *AlertRuleSpecPanelRef {
+		if v == nil {
+			return nil
+		}
+		return v.PanelRef
+	}).(AlertRuleSpecPanelRefPtrOutput)
+}
+
+// Sets whether the rule should be paused or not.
+func (o AlertRuleSpecPtrOutput) Paused() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpec) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Paused
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The title of the alert rule.
+func (o AlertRuleSpecPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpec) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
+}
+
+// The trigger configuration for the alert rule.
+func (o AlertRuleSpecPtrOutput) Trigger() AlertRuleSpecTriggerPtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpec) *AlertRuleSpecTrigger {
+		if v == nil {
+			return nil
+		}
+		return v.Trigger
+	}).(AlertRuleSpecTriggerPtrOutput)
+}
+
+type AlertRuleSpecExpressions struct {
+	DatasourceUid     string                                    `pulumi:"datasourceUid"`
+	Model             string                                    `pulumi:"model"`
+	QueryType         string                                    `pulumi:"queryType"`
+	RelativeTimeRange AlertRuleSpecExpressionsRelativeTimeRange `pulumi:"relativeTimeRange"`
+	Source            bool                                      `pulumi:"source"`
+}
+
+// AlertRuleSpecExpressionsInput is an input type that accepts AlertRuleSpecExpressionsArgs and AlertRuleSpecExpressionsOutput values.
+// You can construct a concrete instance of `AlertRuleSpecExpressionsInput` via:
+//
+//	AlertRuleSpecExpressionsArgs{...}
+type AlertRuleSpecExpressionsInput interface {
+	pulumi.Input
+
+	ToAlertRuleSpecExpressionsOutput() AlertRuleSpecExpressionsOutput
+	ToAlertRuleSpecExpressionsOutputWithContext(context.Context) AlertRuleSpecExpressionsOutput
+}
+
+type AlertRuleSpecExpressionsArgs struct {
+	DatasourceUid     pulumi.StringInput                             `pulumi:"datasourceUid"`
+	Model             pulumi.StringInput                             `pulumi:"model"`
+	QueryType         pulumi.StringInput                             `pulumi:"queryType"`
+	RelativeTimeRange AlertRuleSpecExpressionsRelativeTimeRangeInput `pulumi:"relativeTimeRange"`
+	Source            pulumi.BoolInput                               `pulumi:"source"`
+}
+
+func (AlertRuleSpecExpressionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleSpecExpressions)(nil)).Elem()
+}
+
+func (i AlertRuleSpecExpressionsArgs) ToAlertRuleSpecExpressionsOutput() AlertRuleSpecExpressionsOutput {
+	return i.ToAlertRuleSpecExpressionsOutputWithContext(context.Background())
+}
+
+func (i AlertRuleSpecExpressionsArgs) ToAlertRuleSpecExpressionsOutputWithContext(ctx context.Context) AlertRuleSpecExpressionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecExpressionsOutput)
+}
+
+// AlertRuleSpecExpressionsMapInput is an input type that accepts AlertRuleSpecExpressionsMap and AlertRuleSpecExpressionsMapOutput values.
+// You can construct a concrete instance of `AlertRuleSpecExpressionsMapInput` via:
+//
+//	AlertRuleSpecExpressionsMap{ "key": AlertRuleSpecExpressionsArgs{...} }
+type AlertRuleSpecExpressionsMapInput interface {
+	pulumi.Input
+
+	ToAlertRuleSpecExpressionsMapOutput() AlertRuleSpecExpressionsMapOutput
+	ToAlertRuleSpecExpressionsMapOutputWithContext(context.Context) AlertRuleSpecExpressionsMapOutput
+}
+
+type AlertRuleSpecExpressionsMap map[string]AlertRuleSpecExpressionsInput
+
+func (AlertRuleSpecExpressionsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]AlertRuleSpecExpressions)(nil)).Elem()
+}
+
+func (i AlertRuleSpecExpressionsMap) ToAlertRuleSpecExpressionsMapOutput() AlertRuleSpecExpressionsMapOutput {
+	return i.ToAlertRuleSpecExpressionsMapOutputWithContext(context.Background())
+}
+
+func (i AlertRuleSpecExpressionsMap) ToAlertRuleSpecExpressionsMapOutputWithContext(ctx context.Context) AlertRuleSpecExpressionsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecExpressionsMapOutput)
+}
+
+type AlertRuleSpecExpressionsOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleSpecExpressionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleSpecExpressions)(nil)).Elem()
+}
+
+func (o AlertRuleSpecExpressionsOutput) ToAlertRuleSpecExpressionsOutput() AlertRuleSpecExpressionsOutput {
+	return o
+}
+
+func (o AlertRuleSpecExpressionsOutput) ToAlertRuleSpecExpressionsOutputWithContext(ctx context.Context) AlertRuleSpecExpressionsOutput {
+	return o
+}
+
+func (o AlertRuleSpecExpressionsOutput) DatasourceUid() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRuleSpecExpressions) string { return v.DatasourceUid }).(pulumi.StringOutput)
+}
+
+func (o AlertRuleSpecExpressionsOutput) Model() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRuleSpecExpressions) string { return v.Model }).(pulumi.StringOutput)
+}
+
+func (o AlertRuleSpecExpressionsOutput) QueryType() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRuleSpecExpressions) string { return v.QueryType }).(pulumi.StringOutput)
+}
+
+func (o AlertRuleSpecExpressionsOutput) RelativeTimeRange() AlertRuleSpecExpressionsRelativeTimeRangeOutput {
+	return o.ApplyT(func(v AlertRuleSpecExpressions) AlertRuleSpecExpressionsRelativeTimeRange { return v.RelativeTimeRange }).(AlertRuleSpecExpressionsRelativeTimeRangeOutput)
+}
+
+func (o AlertRuleSpecExpressionsOutput) Source() pulumi.BoolOutput {
+	return o.ApplyT(func(v AlertRuleSpecExpressions) bool { return v.Source }).(pulumi.BoolOutput)
+}
+
+type AlertRuleSpecExpressionsMapOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleSpecExpressionsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]AlertRuleSpecExpressions)(nil)).Elem()
+}
+
+func (o AlertRuleSpecExpressionsMapOutput) ToAlertRuleSpecExpressionsMapOutput() AlertRuleSpecExpressionsMapOutput {
+	return o
+}
+
+func (o AlertRuleSpecExpressionsMapOutput) ToAlertRuleSpecExpressionsMapOutputWithContext(ctx context.Context) AlertRuleSpecExpressionsMapOutput {
+	return o
+}
+
+func (o AlertRuleSpecExpressionsMapOutput) MapIndex(k pulumi.StringInput) AlertRuleSpecExpressionsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AlertRuleSpecExpressions {
+		return vs[0].(map[string]AlertRuleSpecExpressions)[vs[1].(string)]
+	}).(AlertRuleSpecExpressionsOutput)
+}
+
+type AlertRuleSpecExpressionsRelativeTimeRange struct {
+	From string `pulumi:"from"`
+	To   string `pulumi:"to"`
+}
+
+// AlertRuleSpecExpressionsRelativeTimeRangeInput is an input type that accepts AlertRuleSpecExpressionsRelativeTimeRangeArgs and AlertRuleSpecExpressionsRelativeTimeRangeOutput values.
+// You can construct a concrete instance of `AlertRuleSpecExpressionsRelativeTimeRangeInput` via:
+//
+//	AlertRuleSpecExpressionsRelativeTimeRangeArgs{...}
+type AlertRuleSpecExpressionsRelativeTimeRangeInput interface {
+	pulumi.Input
+
+	ToAlertRuleSpecExpressionsRelativeTimeRangeOutput() AlertRuleSpecExpressionsRelativeTimeRangeOutput
+	ToAlertRuleSpecExpressionsRelativeTimeRangeOutputWithContext(context.Context) AlertRuleSpecExpressionsRelativeTimeRangeOutput
+}
+
+type AlertRuleSpecExpressionsRelativeTimeRangeArgs struct {
+	From pulumi.StringInput `pulumi:"from"`
+	To   pulumi.StringInput `pulumi:"to"`
+}
+
+func (AlertRuleSpecExpressionsRelativeTimeRangeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleSpecExpressionsRelativeTimeRange)(nil)).Elem()
+}
+
+func (i AlertRuleSpecExpressionsRelativeTimeRangeArgs) ToAlertRuleSpecExpressionsRelativeTimeRangeOutput() AlertRuleSpecExpressionsRelativeTimeRangeOutput {
+	return i.ToAlertRuleSpecExpressionsRelativeTimeRangeOutputWithContext(context.Background())
+}
+
+func (i AlertRuleSpecExpressionsRelativeTimeRangeArgs) ToAlertRuleSpecExpressionsRelativeTimeRangeOutputWithContext(ctx context.Context) AlertRuleSpecExpressionsRelativeTimeRangeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecExpressionsRelativeTimeRangeOutput)
+}
+
+type AlertRuleSpecExpressionsRelativeTimeRangeOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleSpecExpressionsRelativeTimeRangeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleSpecExpressionsRelativeTimeRange)(nil)).Elem()
+}
+
+func (o AlertRuleSpecExpressionsRelativeTimeRangeOutput) ToAlertRuleSpecExpressionsRelativeTimeRangeOutput() AlertRuleSpecExpressionsRelativeTimeRangeOutput {
+	return o
+}
+
+func (o AlertRuleSpecExpressionsRelativeTimeRangeOutput) ToAlertRuleSpecExpressionsRelativeTimeRangeOutputWithContext(ctx context.Context) AlertRuleSpecExpressionsRelativeTimeRangeOutput {
+	return o
+}
+
+func (o AlertRuleSpecExpressionsRelativeTimeRangeOutput) From() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRuleSpecExpressionsRelativeTimeRange) string { return v.From }).(pulumi.StringOutput)
+}
+
+func (o AlertRuleSpecExpressionsRelativeTimeRangeOutput) To() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRuleSpecExpressionsRelativeTimeRange) string { return v.To }).(pulumi.StringOutput)
+}
+
+type AlertRuleSpecNotificationSettings struct {
+	// Route notifications to a specific routing tree.
+	NamedRoutingTree *AlertRuleSpecNotificationSettingsNamedRoutingTree `pulumi:"namedRoutingTree"`
+	// Simplified routing to a contact point with optional grouping and timing overrides.
+	SimplifiedRouting *AlertRuleSpecNotificationSettingsSimplifiedRouting `pulumi:"simplifiedRouting"`
+}
+
+// AlertRuleSpecNotificationSettingsInput is an input type that accepts AlertRuleSpecNotificationSettingsArgs and AlertRuleSpecNotificationSettingsOutput values.
+// You can construct a concrete instance of `AlertRuleSpecNotificationSettingsInput` via:
+//
+//	AlertRuleSpecNotificationSettingsArgs{...}
+type AlertRuleSpecNotificationSettingsInput interface {
+	pulumi.Input
+
+	ToAlertRuleSpecNotificationSettingsOutput() AlertRuleSpecNotificationSettingsOutput
+	ToAlertRuleSpecNotificationSettingsOutputWithContext(context.Context) AlertRuleSpecNotificationSettingsOutput
+}
+
+type AlertRuleSpecNotificationSettingsArgs struct {
+	// Route notifications to a specific routing tree.
+	NamedRoutingTree AlertRuleSpecNotificationSettingsNamedRoutingTreePtrInput `pulumi:"namedRoutingTree"`
+	// Simplified routing to a contact point with optional grouping and timing overrides.
+	SimplifiedRouting AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrInput `pulumi:"simplifiedRouting"`
+}
+
+func (AlertRuleSpecNotificationSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleSpecNotificationSettings)(nil)).Elem()
+}
+
+func (i AlertRuleSpecNotificationSettingsArgs) ToAlertRuleSpecNotificationSettingsOutput() AlertRuleSpecNotificationSettingsOutput {
+	return i.ToAlertRuleSpecNotificationSettingsOutputWithContext(context.Background())
+}
+
+func (i AlertRuleSpecNotificationSettingsArgs) ToAlertRuleSpecNotificationSettingsOutputWithContext(ctx context.Context) AlertRuleSpecNotificationSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecNotificationSettingsOutput)
+}
+
+func (i AlertRuleSpecNotificationSettingsArgs) ToAlertRuleSpecNotificationSettingsPtrOutput() AlertRuleSpecNotificationSettingsPtrOutput {
+	return i.ToAlertRuleSpecNotificationSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i AlertRuleSpecNotificationSettingsArgs) ToAlertRuleSpecNotificationSettingsPtrOutputWithContext(ctx context.Context) AlertRuleSpecNotificationSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecNotificationSettingsOutput).ToAlertRuleSpecNotificationSettingsPtrOutputWithContext(ctx)
+}
+
+// AlertRuleSpecNotificationSettingsPtrInput is an input type that accepts AlertRuleSpecNotificationSettingsArgs, AlertRuleSpecNotificationSettingsPtr and AlertRuleSpecNotificationSettingsPtrOutput values.
+// You can construct a concrete instance of `AlertRuleSpecNotificationSettingsPtrInput` via:
+//
+//	        AlertRuleSpecNotificationSettingsArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertRuleSpecNotificationSettingsPtrInput interface {
+	pulumi.Input
+
+	ToAlertRuleSpecNotificationSettingsPtrOutput() AlertRuleSpecNotificationSettingsPtrOutput
+	ToAlertRuleSpecNotificationSettingsPtrOutputWithContext(context.Context) AlertRuleSpecNotificationSettingsPtrOutput
+}
+
+type alertRuleSpecNotificationSettingsPtrType AlertRuleSpecNotificationSettingsArgs
+
+func AlertRuleSpecNotificationSettingsPtr(v *AlertRuleSpecNotificationSettingsArgs) AlertRuleSpecNotificationSettingsPtrInput {
+	return (*alertRuleSpecNotificationSettingsPtrType)(v)
+}
+
+func (*alertRuleSpecNotificationSettingsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleSpecNotificationSettings)(nil)).Elem()
+}
+
+func (i *alertRuleSpecNotificationSettingsPtrType) ToAlertRuleSpecNotificationSettingsPtrOutput() AlertRuleSpecNotificationSettingsPtrOutput {
+	return i.ToAlertRuleSpecNotificationSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i *alertRuleSpecNotificationSettingsPtrType) ToAlertRuleSpecNotificationSettingsPtrOutputWithContext(ctx context.Context) AlertRuleSpecNotificationSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecNotificationSettingsPtrOutput)
+}
+
+type AlertRuleSpecNotificationSettingsOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleSpecNotificationSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleSpecNotificationSettings)(nil)).Elem()
+}
+
+func (o AlertRuleSpecNotificationSettingsOutput) ToAlertRuleSpecNotificationSettingsOutput() AlertRuleSpecNotificationSettingsOutput {
+	return o
+}
+
+func (o AlertRuleSpecNotificationSettingsOutput) ToAlertRuleSpecNotificationSettingsOutputWithContext(ctx context.Context) AlertRuleSpecNotificationSettingsOutput {
+	return o
+}
+
+func (o AlertRuleSpecNotificationSettingsOutput) ToAlertRuleSpecNotificationSettingsPtrOutput() AlertRuleSpecNotificationSettingsPtrOutput {
+	return o.ToAlertRuleSpecNotificationSettingsPtrOutputWithContext(context.Background())
+}
+
+func (o AlertRuleSpecNotificationSettingsOutput) ToAlertRuleSpecNotificationSettingsPtrOutputWithContext(ctx context.Context) AlertRuleSpecNotificationSettingsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertRuleSpecNotificationSettings) *AlertRuleSpecNotificationSettings {
+		return &v
+	}).(AlertRuleSpecNotificationSettingsPtrOutput)
+}
+
+// Route notifications to a specific routing tree.
+func (o AlertRuleSpecNotificationSettingsOutput) NamedRoutingTree() AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return o.ApplyT(func(v AlertRuleSpecNotificationSettings) *AlertRuleSpecNotificationSettingsNamedRoutingTree {
+		return v.NamedRoutingTree
+	}).(AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput)
+}
+
+// Simplified routing to a contact point with optional grouping and timing overrides.
+func (o AlertRuleSpecNotificationSettingsOutput) SimplifiedRouting() AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return o.ApplyT(func(v AlertRuleSpecNotificationSettings) *AlertRuleSpecNotificationSettingsSimplifiedRouting {
+		return v.SimplifiedRouting
+	}).(AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput)
+}
+
+type AlertRuleSpecNotificationSettingsPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleSpecNotificationSettingsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleSpecNotificationSettings)(nil)).Elem()
+}
+
+func (o AlertRuleSpecNotificationSettingsPtrOutput) ToAlertRuleSpecNotificationSettingsPtrOutput() AlertRuleSpecNotificationSettingsPtrOutput {
+	return o
+}
+
+func (o AlertRuleSpecNotificationSettingsPtrOutput) ToAlertRuleSpecNotificationSettingsPtrOutputWithContext(ctx context.Context) AlertRuleSpecNotificationSettingsPtrOutput {
+	return o
+}
+
+func (o AlertRuleSpecNotificationSettingsPtrOutput) Elem() AlertRuleSpecNotificationSettingsOutput {
+	return o.ApplyT(func(v *AlertRuleSpecNotificationSettings) AlertRuleSpecNotificationSettings {
+		if v != nil {
+			return *v
+		}
+		var ret AlertRuleSpecNotificationSettings
+		return ret
+	}).(AlertRuleSpecNotificationSettingsOutput)
+}
+
+// Route notifications to a specific routing tree.
+func (o AlertRuleSpecNotificationSettingsPtrOutput) NamedRoutingTree() AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpecNotificationSettings) *AlertRuleSpecNotificationSettingsNamedRoutingTree {
+		if v == nil {
+			return nil
+		}
+		return v.NamedRoutingTree
+	}).(AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput)
+}
+
+// Simplified routing to a contact point with optional grouping and timing overrides.
+func (o AlertRuleSpecNotificationSettingsPtrOutput) SimplifiedRouting() AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpecNotificationSettings) *AlertRuleSpecNotificationSettingsSimplifiedRouting {
+		if v == nil {
+			return nil
+		}
+		return v.SimplifiedRouting
+	}).(AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput)
+}
+
+type AlertRuleSpecNotificationSettingsNamedRoutingTree struct {
+	// The name of the routing tree to use.
+	RoutingTree *string `pulumi:"routingTree"`
+}
+
+// AlertRuleSpecNotificationSettingsNamedRoutingTreeInput is an input type that accepts AlertRuleSpecNotificationSettingsNamedRoutingTreeArgs and AlertRuleSpecNotificationSettingsNamedRoutingTreeOutput values.
+// You can construct a concrete instance of `AlertRuleSpecNotificationSettingsNamedRoutingTreeInput` via:
+//
+//	AlertRuleSpecNotificationSettingsNamedRoutingTreeArgs{...}
+type AlertRuleSpecNotificationSettingsNamedRoutingTreeInput interface {
+	pulumi.Input
+
+	ToAlertRuleSpecNotificationSettingsNamedRoutingTreeOutput() AlertRuleSpecNotificationSettingsNamedRoutingTreeOutput
+	ToAlertRuleSpecNotificationSettingsNamedRoutingTreeOutputWithContext(context.Context) AlertRuleSpecNotificationSettingsNamedRoutingTreeOutput
+}
+
+type AlertRuleSpecNotificationSettingsNamedRoutingTreeArgs struct {
+	// The name of the routing tree to use.
+	RoutingTree pulumi.StringPtrInput `pulumi:"routingTree"`
+}
+
+func (AlertRuleSpecNotificationSettingsNamedRoutingTreeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleSpecNotificationSettingsNamedRoutingTree)(nil)).Elem()
+}
+
+func (i AlertRuleSpecNotificationSettingsNamedRoutingTreeArgs) ToAlertRuleSpecNotificationSettingsNamedRoutingTreeOutput() AlertRuleSpecNotificationSettingsNamedRoutingTreeOutput {
+	return i.ToAlertRuleSpecNotificationSettingsNamedRoutingTreeOutputWithContext(context.Background())
+}
+
+func (i AlertRuleSpecNotificationSettingsNamedRoutingTreeArgs) ToAlertRuleSpecNotificationSettingsNamedRoutingTreeOutputWithContext(ctx context.Context) AlertRuleSpecNotificationSettingsNamedRoutingTreeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecNotificationSettingsNamedRoutingTreeOutput)
+}
+
+func (i AlertRuleSpecNotificationSettingsNamedRoutingTreeArgs) ToAlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput() AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return i.ToAlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutputWithContext(context.Background())
+}
+
+func (i AlertRuleSpecNotificationSettingsNamedRoutingTreeArgs) ToAlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutputWithContext(ctx context.Context) AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecNotificationSettingsNamedRoutingTreeOutput).ToAlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutputWithContext(ctx)
+}
+
+// AlertRuleSpecNotificationSettingsNamedRoutingTreePtrInput is an input type that accepts AlertRuleSpecNotificationSettingsNamedRoutingTreeArgs, AlertRuleSpecNotificationSettingsNamedRoutingTreePtr and AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput values.
+// You can construct a concrete instance of `AlertRuleSpecNotificationSettingsNamedRoutingTreePtrInput` via:
+//
+//	        AlertRuleSpecNotificationSettingsNamedRoutingTreeArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertRuleSpecNotificationSettingsNamedRoutingTreePtrInput interface {
+	pulumi.Input
+
+	ToAlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput() AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput
+	ToAlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutputWithContext(context.Context) AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput
+}
+
+type alertRuleSpecNotificationSettingsNamedRoutingTreePtrType AlertRuleSpecNotificationSettingsNamedRoutingTreeArgs
+
+func AlertRuleSpecNotificationSettingsNamedRoutingTreePtr(v *AlertRuleSpecNotificationSettingsNamedRoutingTreeArgs) AlertRuleSpecNotificationSettingsNamedRoutingTreePtrInput {
+	return (*alertRuleSpecNotificationSettingsNamedRoutingTreePtrType)(v)
+}
+
+func (*alertRuleSpecNotificationSettingsNamedRoutingTreePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleSpecNotificationSettingsNamedRoutingTree)(nil)).Elem()
+}
+
+func (i *alertRuleSpecNotificationSettingsNamedRoutingTreePtrType) ToAlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput() AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return i.ToAlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutputWithContext(context.Background())
+}
+
+func (i *alertRuleSpecNotificationSettingsNamedRoutingTreePtrType) ToAlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutputWithContext(ctx context.Context) AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput)
+}
+
+type AlertRuleSpecNotificationSettingsNamedRoutingTreeOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleSpecNotificationSettingsNamedRoutingTreeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleSpecNotificationSettingsNamedRoutingTree)(nil)).Elem()
+}
+
+func (o AlertRuleSpecNotificationSettingsNamedRoutingTreeOutput) ToAlertRuleSpecNotificationSettingsNamedRoutingTreeOutput() AlertRuleSpecNotificationSettingsNamedRoutingTreeOutput {
+	return o
+}
+
+func (o AlertRuleSpecNotificationSettingsNamedRoutingTreeOutput) ToAlertRuleSpecNotificationSettingsNamedRoutingTreeOutputWithContext(ctx context.Context) AlertRuleSpecNotificationSettingsNamedRoutingTreeOutput {
+	return o
+}
+
+func (o AlertRuleSpecNotificationSettingsNamedRoutingTreeOutput) ToAlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput() AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return o.ToAlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutputWithContext(context.Background())
+}
+
+func (o AlertRuleSpecNotificationSettingsNamedRoutingTreeOutput) ToAlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutputWithContext(ctx context.Context) AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertRuleSpecNotificationSettingsNamedRoutingTree) *AlertRuleSpecNotificationSettingsNamedRoutingTree {
+		return &v
+	}).(AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput)
+}
+
+// The name of the routing tree to use.
+func (o AlertRuleSpecNotificationSettingsNamedRoutingTreeOutput) RoutingTree() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleSpecNotificationSettingsNamedRoutingTree) *string { return v.RoutingTree }).(pulumi.StringPtrOutput)
+}
+
+type AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleSpecNotificationSettingsNamedRoutingTree)(nil)).Elem()
+}
+
+func (o AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput) ToAlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput() AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return o
+}
+
+func (o AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput) ToAlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutputWithContext(ctx context.Context) AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return o
+}
+
+func (o AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput) Elem() AlertRuleSpecNotificationSettingsNamedRoutingTreeOutput {
+	return o.ApplyT(func(v *AlertRuleSpecNotificationSettingsNamedRoutingTree) AlertRuleSpecNotificationSettingsNamedRoutingTree {
+		if v != nil {
+			return *v
+		}
+		var ret AlertRuleSpecNotificationSettingsNamedRoutingTree
+		return ret
+	}).(AlertRuleSpecNotificationSettingsNamedRoutingTreeOutput)
+}
+
+// The name of the routing tree to use.
+func (o AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput) RoutingTree() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpecNotificationSettingsNamedRoutingTree) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RoutingTree
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertRuleSpecNotificationSettingsSimplifiedRouting struct {
+	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+	ActiveTimings []string `pulumi:"activeTimings"`
+	// The contact point to route notifications that match this rule to.
+	ContactPoint *string `pulumi:"contactPoint"`
+	// A list of alert labels to group alerts into notifications by.
+	GroupBies []string `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group.
+	GroupInterval *string `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification.
+	GroupWait *string `pulumi:"groupWait"`
+	// A list of mute timing names to apply to alerts that match this policy.
+	MuteTimings []string `pulumi:"muteTimings"`
+	// Minimum time interval for re-sending a notification if an alert is still firing.
+	RepeatInterval *string `pulumi:"repeatInterval"`
+}
+
+// AlertRuleSpecNotificationSettingsSimplifiedRoutingInput is an input type that accepts AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs and AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput values.
+// You can construct a concrete instance of `AlertRuleSpecNotificationSettingsSimplifiedRoutingInput` via:
+//
+//	AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs{...}
+type AlertRuleSpecNotificationSettingsSimplifiedRoutingInput interface {
+	pulumi.Input
+
+	ToAlertRuleSpecNotificationSettingsSimplifiedRoutingOutput() AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput
+	ToAlertRuleSpecNotificationSettingsSimplifiedRoutingOutputWithContext(context.Context) AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput
+}
+
+type AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs struct {
+	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+	ActiveTimings pulumi.StringArrayInput `pulumi:"activeTimings"`
+	// The contact point to route notifications that match this rule to.
+	ContactPoint pulumi.StringPtrInput `pulumi:"contactPoint"`
+	// A list of alert labels to group alerts into notifications by.
+	GroupBies pulumi.StringArrayInput `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group.
+	GroupInterval pulumi.StringPtrInput `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification.
+	GroupWait pulumi.StringPtrInput `pulumi:"groupWait"`
+	// A list of mute timing names to apply to alerts that match this policy.
+	MuteTimings pulumi.StringArrayInput `pulumi:"muteTimings"`
+	// Minimum time interval for re-sending a notification if an alert is still firing.
+	RepeatInterval pulumi.StringPtrInput `pulumi:"repeatInterval"`
+}
+
+func (AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleSpecNotificationSettingsSimplifiedRouting)(nil)).Elem()
+}
+
+func (i AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs) ToAlertRuleSpecNotificationSettingsSimplifiedRoutingOutput() AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput {
+	return i.ToAlertRuleSpecNotificationSettingsSimplifiedRoutingOutputWithContext(context.Background())
+}
+
+func (i AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs) ToAlertRuleSpecNotificationSettingsSimplifiedRoutingOutputWithContext(ctx context.Context) AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput)
+}
+
+func (i AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs) ToAlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput() AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return i.ToAlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutputWithContext(context.Background())
+}
+
+func (i AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs) ToAlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutputWithContext(ctx context.Context) AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput).ToAlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutputWithContext(ctx)
+}
+
+// AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrInput is an input type that accepts AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs, AlertRuleSpecNotificationSettingsSimplifiedRoutingPtr and AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput values.
+// You can construct a concrete instance of `AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrInput` via:
+//
+//	        AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrInput interface {
+	pulumi.Input
+
+	ToAlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput() AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput
+	ToAlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutputWithContext(context.Context) AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput
+}
+
+type alertRuleSpecNotificationSettingsSimplifiedRoutingPtrType AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs
+
+func AlertRuleSpecNotificationSettingsSimplifiedRoutingPtr(v *AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs) AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrInput {
+	return (*alertRuleSpecNotificationSettingsSimplifiedRoutingPtrType)(v)
+}
+
+func (*alertRuleSpecNotificationSettingsSimplifiedRoutingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleSpecNotificationSettingsSimplifiedRouting)(nil)).Elem()
+}
+
+func (i *alertRuleSpecNotificationSettingsSimplifiedRoutingPtrType) ToAlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput() AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return i.ToAlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutputWithContext(context.Background())
+}
+
+func (i *alertRuleSpecNotificationSettingsSimplifiedRoutingPtrType) ToAlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutputWithContext(ctx context.Context) AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput)
+}
+
+type AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleSpecNotificationSettingsSimplifiedRouting)(nil)).Elem()
+}
+
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput) ToAlertRuleSpecNotificationSettingsSimplifiedRoutingOutput() AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput {
+	return o
+}
+
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput) ToAlertRuleSpecNotificationSettingsSimplifiedRoutingOutputWithContext(ctx context.Context) AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput {
+	return o
+}
+
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput) ToAlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput() AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return o.ToAlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutputWithContext(context.Background())
+}
+
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput) ToAlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutputWithContext(ctx context.Context) AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertRuleSpecNotificationSettingsSimplifiedRouting) *AlertRuleSpecNotificationSettingsSimplifiedRouting {
+		return &v
+	}).(AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput)
+}
+
+// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput) ActiveTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertRuleSpecNotificationSettingsSimplifiedRouting) []string { return v.ActiveTimings }).(pulumi.StringArrayOutput)
+}
+
+// The contact point to route notifications that match this rule to.
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput) ContactPoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleSpecNotificationSettingsSimplifiedRouting) *string { return v.ContactPoint }).(pulumi.StringPtrOutput)
+}
+
+// A list of alert labels to group alerts into notifications by.
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput) GroupBies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertRuleSpecNotificationSettingsSimplifiedRouting) []string { return v.GroupBies }).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval between two notifications for the same group.
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput) GroupInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleSpecNotificationSettingsSimplifiedRouting) *string { return v.GroupInterval }).(pulumi.StringPtrOutput)
+}
+
+// Time to wait to buffer alerts of the same group before sending a notification.
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput) GroupWait() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleSpecNotificationSettingsSimplifiedRouting) *string { return v.GroupWait }).(pulumi.StringPtrOutput)
+}
+
+// A list of mute timing names to apply to alerts that match this policy.
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput) MuteTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertRuleSpecNotificationSettingsSimplifiedRouting) []string { return v.MuteTimings }).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval for re-sending a notification if an alert is still firing.
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput) RepeatInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleSpecNotificationSettingsSimplifiedRouting) *string { return v.RepeatInterval }).(pulumi.StringPtrOutput)
+}
+
+type AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleSpecNotificationSettingsSimplifiedRouting)(nil)).Elem()
+}
+
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput) ToAlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput() AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return o
+}
+
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput) ToAlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutputWithContext(ctx context.Context) AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return o
+}
+
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput) Elem() AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput {
+	return o.ApplyT(func(v *AlertRuleSpecNotificationSettingsSimplifiedRouting) AlertRuleSpecNotificationSettingsSimplifiedRouting {
+		if v != nil {
+			return *v
+		}
+		var ret AlertRuleSpecNotificationSettingsSimplifiedRouting
+		return ret
+	}).(AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput)
+}
+
+// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput) ActiveTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AlertRuleSpecNotificationSettingsSimplifiedRouting) []string {
+		if v == nil {
+			return nil
+		}
+		return v.ActiveTimings
+	}).(pulumi.StringArrayOutput)
+}
+
+// The contact point to route notifications that match this rule to.
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput) ContactPoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpecNotificationSettingsSimplifiedRouting) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ContactPoint
+	}).(pulumi.StringPtrOutput)
+}
+
+// A list of alert labels to group alerts into notifications by.
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput) GroupBies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AlertRuleSpecNotificationSettingsSimplifiedRouting) []string {
+		if v == nil {
+			return nil
+		}
+		return v.GroupBies
+	}).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval between two notifications for the same group.
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput) GroupInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpecNotificationSettingsSimplifiedRouting) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GroupInterval
+	}).(pulumi.StringPtrOutput)
+}
+
+// Time to wait to buffer alerts of the same group before sending a notification.
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput) GroupWait() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpecNotificationSettingsSimplifiedRouting) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GroupWait
+	}).(pulumi.StringPtrOutput)
+}
+
+// A list of mute timing names to apply to alerts that match this policy.
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput) MuteTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AlertRuleSpecNotificationSettingsSimplifiedRouting) []string {
+		if v == nil {
+			return nil
+		}
+		return v.MuteTimings
+	}).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval for re-sending a notification if an alert is still firing.
+func (o AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput) RepeatInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpecNotificationSettingsSimplifiedRouting) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RepeatInterval
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertRuleSpecPanelRef struct {
+	DashboardUid string `pulumi:"dashboardUid"`
+	PanelId      int    `pulumi:"panelId"`
+}
+
+// AlertRuleSpecPanelRefInput is an input type that accepts AlertRuleSpecPanelRefArgs and AlertRuleSpecPanelRefOutput values.
+// You can construct a concrete instance of `AlertRuleSpecPanelRefInput` via:
+//
+//	AlertRuleSpecPanelRefArgs{...}
+type AlertRuleSpecPanelRefInput interface {
+	pulumi.Input
+
+	ToAlertRuleSpecPanelRefOutput() AlertRuleSpecPanelRefOutput
+	ToAlertRuleSpecPanelRefOutputWithContext(context.Context) AlertRuleSpecPanelRefOutput
+}
+
+type AlertRuleSpecPanelRefArgs struct {
+	DashboardUid pulumi.StringInput `pulumi:"dashboardUid"`
+	PanelId      pulumi.IntInput    `pulumi:"panelId"`
+}
+
+func (AlertRuleSpecPanelRefArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleSpecPanelRef)(nil)).Elem()
+}
+
+func (i AlertRuleSpecPanelRefArgs) ToAlertRuleSpecPanelRefOutput() AlertRuleSpecPanelRefOutput {
+	return i.ToAlertRuleSpecPanelRefOutputWithContext(context.Background())
+}
+
+func (i AlertRuleSpecPanelRefArgs) ToAlertRuleSpecPanelRefOutputWithContext(ctx context.Context) AlertRuleSpecPanelRefOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecPanelRefOutput)
+}
+
+func (i AlertRuleSpecPanelRefArgs) ToAlertRuleSpecPanelRefPtrOutput() AlertRuleSpecPanelRefPtrOutput {
+	return i.ToAlertRuleSpecPanelRefPtrOutputWithContext(context.Background())
+}
+
+func (i AlertRuleSpecPanelRefArgs) ToAlertRuleSpecPanelRefPtrOutputWithContext(ctx context.Context) AlertRuleSpecPanelRefPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecPanelRefOutput).ToAlertRuleSpecPanelRefPtrOutputWithContext(ctx)
+}
+
+// AlertRuleSpecPanelRefPtrInput is an input type that accepts AlertRuleSpecPanelRefArgs, AlertRuleSpecPanelRefPtr and AlertRuleSpecPanelRefPtrOutput values.
+// You can construct a concrete instance of `AlertRuleSpecPanelRefPtrInput` via:
+//
+//	        AlertRuleSpecPanelRefArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertRuleSpecPanelRefPtrInput interface {
+	pulumi.Input
+
+	ToAlertRuleSpecPanelRefPtrOutput() AlertRuleSpecPanelRefPtrOutput
+	ToAlertRuleSpecPanelRefPtrOutputWithContext(context.Context) AlertRuleSpecPanelRefPtrOutput
+}
+
+type alertRuleSpecPanelRefPtrType AlertRuleSpecPanelRefArgs
+
+func AlertRuleSpecPanelRefPtr(v *AlertRuleSpecPanelRefArgs) AlertRuleSpecPanelRefPtrInput {
+	return (*alertRuleSpecPanelRefPtrType)(v)
+}
+
+func (*alertRuleSpecPanelRefPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleSpecPanelRef)(nil)).Elem()
+}
+
+func (i *alertRuleSpecPanelRefPtrType) ToAlertRuleSpecPanelRefPtrOutput() AlertRuleSpecPanelRefPtrOutput {
+	return i.ToAlertRuleSpecPanelRefPtrOutputWithContext(context.Background())
+}
+
+func (i *alertRuleSpecPanelRefPtrType) ToAlertRuleSpecPanelRefPtrOutputWithContext(ctx context.Context) AlertRuleSpecPanelRefPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecPanelRefPtrOutput)
+}
+
+type AlertRuleSpecPanelRefOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleSpecPanelRefOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleSpecPanelRef)(nil)).Elem()
+}
+
+func (o AlertRuleSpecPanelRefOutput) ToAlertRuleSpecPanelRefOutput() AlertRuleSpecPanelRefOutput {
+	return o
+}
+
+func (o AlertRuleSpecPanelRefOutput) ToAlertRuleSpecPanelRefOutputWithContext(ctx context.Context) AlertRuleSpecPanelRefOutput {
+	return o
+}
+
+func (o AlertRuleSpecPanelRefOutput) ToAlertRuleSpecPanelRefPtrOutput() AlertRuleSpecPanelRefPtrOutput {
+	return o.ToAlertRuleSpecPanelRefPtrOutputWithContext(context.Background())
+}
+
+func (o AlertRuleSpecPanelRefOutput) ToAlertRuleSpecPanelRefPtrOutputWithContext(ctx context.Context) AlertRuleSpecPanelRefPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertRuleSpecPanelRef) *AlertRuleSpecPanelRef {
+		return &v
+	}).(AlertRuleSpecPanelRefPtrOutput)
+}
+
+func (o AlertRuleSpecPanelRefOutput) DashboardUid() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRuleSpecPanelRef) string { return v.DashboardUid }).(pulumi.StringOutput)
+}
+
+func (o AlertRuleSpecPanelRefOutput) PanelId() pulumi.IntOutput {
+	return o.ApplyT(func(v AlertRuleSpecPanelRef) int { return v.PanelId }).(pulumi.IntOutput)
+}
+
+type AlertRuleSpecPanelRefPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleSpecPanelRefPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleSpecPanelRef)(nil)).Elem()
+}
+
+func (o AlertRuleSpecPanelRefPtrOutput) ToAlertRuleSpecPanelRefPtrOutput() AlertRuleSpecPanelRefPtrOutput {
+	return o
+}
+
+func (o AlertRuleSpecPanelRefPtrOutput) ToAlertRuleSpecPanelRefPtrOutputWithContext(ctx context.Context) AlertRuleSpecPanelRefPtrOutput {
+	return o
+}
+
+func (o AlertRuleSpecPanelRefPtrOutput) Elem() AlertRuleSpecPanelRefOutput {
+	return o.ApplyT(func(v *AlertRuleSpecPanelRef) AlertRuleSpecPanelRef {
+		if v != nil {
+			return *v
+		}
+		var ret AlertRuleSpecPanelRef
+		return ret
+	}).(AlertRuleSpecPanelRefOutput)
+}
+
+func (o AlertRuleSpecPanelRefPtrOutput) DashboardUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpecPanelRef) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DashboardUid
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertRuleSpecPanelRefPtrOutput) PanelId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpecPanelRef) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.PanelId
+	}).(pulumi.IntPtrOutput)
+}
+
+type AlertRuleSpecTrigger struct {
+	// The interval at which the alert rule should be evaluated.
+	Interval string `pulumi:"interval"`
+}
+
+// AlertRuleSpecTriggerInput is an input type that accepts AlertRuleSpecTriggerArgs and AlertRuleSpecTriggerOutput values.
+// You can construct a concrete instance of `AlertRuleSpecTriggerInput` via:
+//
+//	AlertRuleSpecTriggerArgs{...}
+type AlertRuleSpecTriggerInput interface {
+	pulumi.Input
+
+	ToAlertRuleSpecTriggerOutput() AlertRuleSpecTriggerOutput
+	ToAlertRuleSpecTriggerOutputWithContext(context.Context) AlertRuleSpecTriggerOutput
+}
+
+type AlertRuleSpecTriggerArgs struct {
+	// The interval at which the alert rule should be evaluated.
+	Interval pulumi.StringInput `pulumi:"interval"`
+}
+
+func (AlertRuleSpecTriggerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleSpecTrigger)(nil)).Elem()
+}
+
+func (i AlertRuleSpecTriggerArgs) ToAlertRuleSpecTriggerOutput() AlertRuleSpecTriggerOutput {
+	return i.ToAlertRuleSpecTriggerOutputWithContext(context.Background())
+}
+
+func (i AlertRuleSpecTriggerArgs) ToAlertRuleSpecTriggerOutputWithContext(ctx context.Context) AlertRuleSpecTriggerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecTriggerOutput)
+}
+
+func (i AlertRuleSpecTriggerArgs) ToAlertRuleSpecTriggerPtrOutput() AlertRuleSpecTriggerPtrOutput {
+	return i.ToAlertRuleSpecTriggerPtrOutputWithContext(context.Background())
+}
+
+func (i AlertRuleSpecTriggerArgs) ToAlertRuleSpecTriggerPtrOutputWithContext(ctx context.Context) AlertRuleSpecTriggerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecTriggerOutput).ToAlertRuleSpecTriggerPtrOutputWithContext(ctx)
+}
+
+// AlertRuleSpecTriggerPtrInput is an input type that accepts AlertRuleSpecTriggerArgs, AlertRuleSpecTriggerPtr and AlertRuleSpecTriggerPtrOutput values.
+// You can construct a concrete instance of `AlertRuleSpecTriggerPtrInput` via:
+//
+//	        AlertRuleSpecTriggerArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertRuleSpecTriggerPtrInput interface {
+	pulumi.Input
+
+	ToAlertRuleSpecTriggerPtrOutput() AlertRuleSpecTriggerPtrOutput
+	ToAlertRuleSpecTriggerPtrOutputWithContext(context.Context) AlertRuleSpecTriggerPtrOutput
+}
+
+type alertRuleSpecTriggerPtrType AlertRuleSpecTriggerArgs
+
+func AlertRuleSpecTriggerPtr(v *AlertRuleSpecTriggerArgs) AlertRuleSpecTriggerPtrInput {
+	return (*alertRuleSpecTriggerPtrType)(v)
+}
+
+func (*alertRuleSpecTriggerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleSpecTrigger)(nil)).Elem()
+}
+
+func (i *alertRuleSpecTriggerPtrType) ToAlertRuleSpecTriggerPtrOutput() AlertRuleSpecTriggerPtrOutput {
+	return i.ToAlertRuleSpecTriggerPtrOutputWithContext(context.Background())
+}
+
+func (i *alertRuleSpecTriggerPtrType) ToAlertRuleSpecTriggerPtrOutputWithContext(ctx context.Context) AlertRuleSpecTriggerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleSpecTriggerPtrOutput)
+}
+
+type AlertRuleSpecTriggerOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleSpecTriggerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleSpecTrigger)(nil)).Elem()
+}
+
+func (o AlertRuleSpecTriggerOutput) ToAlertRuleSpecTriggerOutput() AlertRuleSpecTriggerOutput {
+	return o
+}
+
+func (o AlertRuleSpecTriggerOutput) ToAlertRuleSpecTriggerOutputWithContext(ctx context.Context) AlertRuleSpecTriggerOutput {
+	return o
+}
+
+func (o AlertRuleSpecTriggerOutput) ToAlertRuleSpecTriggerPtrOutput() AlertRuleSpecTriggerPtrOutput {
+	return o.ToAlertRuleSpecTriggerPtrOutputWithContext(context.Background())
+}
+
+func (o AlertRuleSpecTriggerOutput) ToAlertRuleSpecTriggerPtrOutputWithContext(ctx context.Context) AlertRuleSpecTriggerPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertRuleSpecTrigger) *AlertRuleSpecTrigger {
+		return &v
+	}).(AlertRuleSpecTriggerPtrOutput)
+}
+
+// The interval at which the alert rule should be evaluated.
+func (o AlertRuleSpecTriggerOutput) Interval() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRuleSpecTrigger) string { return v.Interval }).(pulumi.StringOutput)
+}
+
+type AlertRuleSpecTriggerPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleSpecTriggerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleSpecTrigger)(nil)).Elem()
+}
+
+func (o AlertRuleSpecTriggerPtrOutput) ToAlertRuleSpecTriggerPtrOutput() AlertRuleSpecTriggerPtrOutput {
+	return o
+}
+
+func (o AlertRuleSpecTriggerPtrOutput) ToAlertRuleSpecTriggerPtrOutputWithContext(ctx context.Context) AlertRuleSpecTriggerPtrOutput {
+	return o
+}
+
+func (o AlertRuleSpecTriggerPtrOutput) Elem() AlertRuleSpecTriggerOutput {
+	return o.ApplyT(func(v *AlertRuleSpecTrigger) AlertRuleSpecTrigger {
+		if v != nil {
+			return *v
+		}
+		var ret AlertRuleSpecTrigger
+		return ret
+	}).(AlertRuleSpecTriggerOutput)
+}
+
+// The interval at which the alert rule should be evaluated.
+func (o AlertRuleSpecTriggerPtrOutput) Interval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleSpecTrigger) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Interval
+	}).(pulumi.StringPtrOutput)
+}
+
 type NotificationsInhibitionRuleMetadata struct {
 	// Annotations of the resource.
 	Annotations map[string]string `pulumi:"annotations"`
 	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid *string `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId *int `pulumi:"orgId"`
 	// The unique identifier of the resource.
 	Uid string `pulumi:"uid"`
 	// The full URL of the resource.
@@ -6624,6 +8423,8 @@ type NotificationsInhibitionRuleMetadataArgs struct {
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
 	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId pulumi.IntPtrInput `pulumi:"orgId"`
 	// The unique identifier of the resource.
 	Uid pulumi.StringInput `pulumi:"uid"`
 	// The full URL of the resource.
@@ -6721,6 +8522,11 @@ func (o NotificationsInhibitionRuleMetadataOutput) FolderUid() pulumi.StringPtrO
 	return o.ApplyT(func(v NotificationsInhibitionRuleMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
 }
 
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o NotificationsInhibitionRuleMetadataOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NotificationsInhibitionRuleMetadata) *int { return v.OrgId }).(pulumi.IntPtrOutput)
+}
+
 // The unique identifier of the resource.
 func (o NotificationsInhibitionRuleMetadataOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v NotificationsInhibitionRuleMetadata) string { return v.Uid }).(pulumi.StringOutput)
@@ -6783,6 +8589,16 @@ func (o NotificationsInhibitionRuleMetadataPtrOutput) FolderUid() pulumi.StringP
 		}
 		return v.FolderUid
 	}).(pulumi.StringPtrOutput)
+}
+
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o NotificationsInhibitionRuleMetadataPtrOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NotificationsInhibitionRuleMetadata) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OrgId
+	}).(pulumi.IntPtrOutput)
 }
 
 // The unique identifier of the resource.
@@ -7377,6 +9193,8 @@ type NotificationsRoutingTreeMetadata struct {
 	Annotations map[string]string `pulumi:"annotations"`
 	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid *string `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId *int `pulumi:"orgId"`
 	// The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
 	Uid string `pulumi:"uid"`
 	// The full URL of the resource.
@@ -7403,6 +9221,8 @@ type NotificationsRoutingTreeMetadataArgs struct {
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
 	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId pulumi.IntPtrInput `pulumi:"orgId"`
 	// The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
 	Uid pulumi.StringInput `pulumi:"uid"`
 	// The full URL of the resource.
@@ -7500,6 +9320,11 @@ func (o NotificationsRoutingTreeMetadataOutput) FolderUid() pulumi.StringPtrOutp
 	return o.ApplyT(func(v NotificationsRoutingTreeMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
 }
 
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o NotificationsRoutingTreeMetadataOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NotificationsRoutingTreeMetadata) *int { return v.OrgId }).(pulumi.IntPtrOutput)
+}
+
 // The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
 func (o NotificationsRoutingTreeMetadataOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v NotificationsRoutingTreeMetadata) string { return v.Uid }).(pulumi.StringOutput)
@@ -7562,6 +9387,16 @@ func (o NotificationsRoutingTreeMetadataPtrOutput) FolderUid() pulumi.StringPtrO
 		}
 		return v.FolderUid
 	}).(pulumi.StringPtrOutput)
+}
+
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o NotificationsRoutingTreeMetadataPtrOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NotificationsRoutingTreeMetadata) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OrgId
+	}).(pulumi.IntPtrOutput)
 }
 
 // The unique identifier (Kubernetes name) of the routing tree. The default routing tree is named `default`.
@@ -9620,6 +11455,1883 @@ func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput)
 	}).(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput)
 }
 
+type RecordingRuleMetadata struct {
+	// Annotations of the resource.
+	Annotations map[string]string `pulumi:"annotations"`
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+	FolderUid *string `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId *int `pulumi:"orgId"`
+	// The unique identifier of the resource.
+	Uid string `pulumi:"uid"`
+	// The full URL of the resource.
+	Url *string `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid *string `pulumi:"uuid"`
+	// The version of the resource.
+	Version *string `pulumi:"version"`
+}
+
+// RecordingRuleMetadataInput is an input type that accepts RecordingRuleMetadataArgs and RecordingRuleMetadataOutput values.
+// You can construct a concrete instance of `RecordingRuleMetadataInput` via:
+//
+//	RecordingRuleMetadataArgs{...}
+type RecordingRuleMetadataInput interface {
+	pulumi.Input
+
+	ToRecordingRuleMetadataOutput() RecordingRuleMetadataOutput
+	ToRecordingRuleMetadataOutputWithContext(context.Context) RecordingRuleMetadataOutput
+}
+
+type RecordingRuleMetadataArgs struct {
+	// Annotations of the resource.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId pulumi.IntPtrInput `pulumi:"orgId"`
+	// The unique identifier of the resource.
+	Uid pulumi.StringInput `pulumi:"uid"`
+	// The full URL of the resource.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
+	// The version of the resource.
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (RecordingRuleMetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleMetadata)(nil)).Elem()
+}
+
+func (i RecordingRuleMetadataArgs) ToRecordingRuleMetadataOutput() RecordingRuleMetadataOutput {
+	return i.ToRecordingRuleMetadataOutputWithContext(context.Background())
+}
+
+func (i RecordingRuleMetadataArgs) ToRecordingRuleMetadataOutputWithContext(ctx context.Context) RecordingRuleMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleMetadataOutput)
+}
+
+func (i RecordingRuleMetadataArgs) ToRecordingRuleMetadataPtrOutput() RecordingRuleMetadataPtrOutput {
+	return i.ToRecordingRuleMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i RecordingRuleMetadataArgs) ToRecordingRuleMetadataPtrOutputWithContext(ctx context.Context) RecordingRuleMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleMetadataOutput).ToRecordingRuleMetadataPtrOutputWithContext(ctx)
+}
+
+// RecordingRuleMetadataPtrInput is an input type that accepts RecordingRuleMetadataArgs, RecordingRuleMetadataPtr and RecordingRuleMetadataPtrOutput values.
+// You can construct a concrete instance of `RecordingRuleMetadataPtrInput` via:
+//
+//	        RecordingRuleMetadataArgs{...}
+//
+//	or:
+//
+//	        nil
+type RecordingRuleMetadataPtrInput interface {
+	pulumi.Input
+
+	ToRecordingRuleMetadataPtrOutput() RecordingRuleMetadataPtrOutput
+	ToRecordingRuleMetadataPtrOutputWithContext(context.Context) RecordingRuleMetadataPtrOutput
+}
+
+type recordingRuleMetadataPtrType RecordingRuleMetadataArgs
+
+func RecordingRuleMetadataPtr(v *RecordingRuleMetadataArgs) RecordingRuleMetadataPtrInput {
+	return (*recordingRuleMetadataPtrType)(v)
+}
+
+func (*recordingRuleMetadataPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecordingRuleMetadata)(nil)).Elem()
+}
+
+func (i *recordingRuleMetadataPtrType) ToRecordingRuleMetadataPtrOutput() RecordingRuleMetadataPtrOutput {
+	return i.ToRecordingRuleMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i *recordingRuleMetadataPtrType) ToRecordingRuleMetadataPtrOutputWithContext(ctx context.Context) RecordingRuleMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleMetadataPtrOutput)
+}
+
+type RecordingRuleMetadataOutput struct{ *pulumi.OutputState }
+
+func (RecordingRuleMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleMetadata)(nil)).Elem()
+}
+
+func (o RecordingRuleMetadataOutput) ToRecordingRuleMetadataOutput() RecordingRuleMetadataOutput {
+	return o
+}
+
+func (o RecordingRuleMetadataOutput) ToRecordingRuleMetadataOutputWithContext(ctx context.Context) RecordingRuleMetadataOutput {
+	return o
+}
+
+func (o RecordingRuleMetadataOutput) ToRecordingRuleMetadataPtrOutput() RecordingRuleMetadataPtrOutput {
+	return o.ToRecordingRuleMetadataPtrOutputWithContext(context.Background())
+}
+
+func (o RecordingRuleMetadataOutput) ToRecordingRuleMetadataPtrOutputWithContext(ctx context.Context) RecordingRuleMetadataPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RecordingRuleMetadata) *RecordingRuleMetadata {
+		return &v
+	}).(RecordingRuleMetadataPtrOutput)
+}
+
+// Annotations of the resource.
+func (o RecordingRuleMetadataOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RecordingRuleMetadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+func (o RecordingRuleMetadataOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RecordingRuleMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
+}
+
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o RecordingRuleMetadataOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RecordingRuleMetadata) *int { return v.OrgId }).(pulumi.IntPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o RecordingRuleMetadataOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v RecordingRuleMetadata) string { return v.Uid }).(pulumi.StringOutput)
+}
+
+// The full URL of the resource.
+func (o RecordingRuleMetadataOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RecordingRuleMetadata) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o RecordingRuleMetadataOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RecordingRuleMetadata) *string { return v.Uuid }).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o RecordingRuleMetadataOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RecordingRuleMetadata) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type RecordingRuleMetadataPtrOutput struct{ *pulumi.OutputState }
+
+func (RecordingRuleMetadataPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecordingRuleMetadata)(nil)).Elem()
+}
+
+func (o RecordingRuleMetadataPtrOutput) ToRecordingRuleMetadataPtrOutput() RecordingRuleMetadataPtrOutput {
+	return o
+}
+
+func (o RecordingRuleMetadataPtrOutput) ToRecordingRuleMetadataPtrOutputWithContext(ctx context.Context) RecordingRuleMetadataPtrOutput {
+	return o
+}
+
+func (o RecordingRuleMetadataPtrOutput) Elem() RecordingRuleMetadataOutput {
+	return o.ApplyT(func(v *RecordingRuleMetadata) RecordingRuleMetadata {
+		if v != nil {
+			return *v
+		}
+		var ret RecordingRuleMetadata
+		return ret
+	}).(RecordingRuleMetadataOutput)
+}
+
+// Annotations of the resource.
+func (o RecordingRuleMetadataPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RecordingRuleMetadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+func (o RecordingRuleMetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FolderUid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o RecordingRuleMetadataPtrOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleMetadata) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OrgId
+	}).(pulumi.IntPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o RecordingRuleMetadataPtrOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The full URL of the resource.
+func (o RecordingRuleMetadataPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o RecordingRuleMetadataPtrOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Uuid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o RecordingRuleMetadataPtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Version
+	}).(pulumi.StringPtrOutput)
+}
+
+type RecordingRuleOptions struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity *string `pulumi:"managerIdentity"`
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite *bool `pulumi:"overwrite"`
+}
+
+// RecordingRuleOptionsInput is an input type that accepts RecordingRuleOptionsArgs and RecordingRuleOptionsOutput values.
+// You can construct a concrete instance of `RecordingRuleOptionsInput` via:
+//
+//	RecordingRuleOptionsArgs{...}
+type RecordingRuleOptionsInput interface {
+	pulumi.Input
+
+	ToRecordingRuleOptionsOutput() RecordingRuleOptionsOutput
+	ToRecordingRuleOptionsOutputWithContext(context.Context) RecordingRuleOptionsOutput
+}
+
+type RecordingRuleOptionsArgs struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity pulumi.StringPtrInput `pulumi:"managerIdentity"`
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
+}
+
+func (RecordingRuleOptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleOptions)(nil)).Elem()
+}
+
+func (i RecordingRuleOptionsArgs) ToRecordingRuleOptionsOutput() RecordingRuleOptionsOutput {
+	return i.ToRecordingRuleOptionsOutputWithContext(context.Background())
+}
+
+func (i RecordingRuleOptionsArgs) ToRecordingRuleOptionsOutputWithContext(ctx context.Context) RecordingRuleOptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleOptionsOutput)
+}
+
+func (i RecordingRuleOptionsArgs) ToRecordingRuleOptionsPtrOutput() RecordingRuleOptionsPtrOutput {
+	return i.ToRecordingRuleOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i RecordingRuleOptionsArgs) ToRecordingRuleOptionsPtrOutputWithContext(ctx context.Context) RecordingRuleOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleOptionsOutput).ToRecordingRuleOptionsPtrOutputWithContext(ctx)
+}
+
+// RecordingRuleOptionsPtrInput is an input type that accepts RecordingRuleOptionsArgs, RecordingRuleOptionsPtr and RecordingRuleOptionsPtrOutput values.
+// You can construct a concrete instance of `RecordingRuleOptionsPtrInput` via:
+//
+//	        RecordingRuleOptionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RecordingRuleOptionsPtrInput interface {
+	pulumi.Input
+
+	ToRecordingRuleOptionsPtrOutput() RecordingRuleOptionsPtrOutput
+	ToRecordingRuleOptionsPtrOutputWithContext(context.Context) RecordingRuleOptionsPtrOutput
+}
+
+type recordingRuleOptionsPtrType RecordingRuleOptionsArgs
+
+func RecordingRuleOptionsPtr(v *RecordingRuleOptionsArgs) RecordingRuleOptionsPtrInput {
+	return (*recordingRuleOptionsPtrType)(v)
+}
+
+func (*recordingRuleOptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecordingRuleOptions)(nil)).Elem()
+}
+
+func (i *recordingRuleOptionsPtrType) ToRecordingRuleOptionsPtrOutput() RecordingRuleOptionsPtrOutput {
+	return i.ToRecordingRuleOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *recordingRuleOptionsPtrType) ToRecordingRuleOptionsPtrOutputWithContext(ctx context.Context) RecordingRuleOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleOptionsPtrOutput)
+}
+
+type RecordingRuleOptionsOutput struct{ *pulumi.OutputState }
+
+func (RecordingRuleOptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleOptions)(nil)).Elem()
+}
+
+func (o RecordingRuleOptionsOutput) ToRecordingRuleOptionsOutput() RecordingRuleOptionsOutput {
+	return o
+}
+
+func (o RecordingRuleOptionsOutput) ToRecordingRuleOptionsOutputWithContext(ctx context.Context) RecordingRuleOptionsOutput {
+	return o
+}
+
+func (o RecordingRuleOptionsOutput) ToRecordingRuleOptionsPtrOutput() RecordingRuleOptionsPtrOutput {
+	return o.ToRecordingRuleOptionsPtrOutputWithContext(context.Background())
+}
+
+func (o RecordingRuleOptionsOutput) ToRecordingRuleOptionsPtrOutputWithContext(ctx context.Context) RecordingRuleOptionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RecordingRuleOptions) *RecordingRuleOptions {
+		return &v
+	}).(RecordingRuleOptionsPtrOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o RecordingRuleOptionsOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RecordingRuleOptions) *string { return v.ManagerIdentity }).(pulumi.StringPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o RecordingRuleOptionsOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v RecordingRuleOptions) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
+}
+
+type RecordingRuleOptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (RecordingRuleOptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecordingRuleOptions)(nil)).Elem()
+}
+
+func (o RecordingRuleOptionsPtrOutput) ToRecordingRuleOptionsPtrOutput() RecordingRuleOptionsPtrOutput {
+	return o
+}
+
+func (o RecordingRuleOptionsPtrOutput) ToRecordingRuleOptionsPtrOutputWithContext(ctx context.Context) RecordingRuleOptionsPtrOutput {
+	return o
+}
+
+func (o RecordingRuleOptionsPtrOutput) Elem() RecordingRuleOptionsOutput {
+	return o.ApplyT(func(v *RecordingRuleOptions) RecordingRuleOptions {
+		if v != nil {
+			return *v
+		}
+		var ret RecordingRuleOptions
+		return ret
+	}).(RecordingRuleOptionsOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o RecordingRuleOptionsPtrOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleOptions) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ManagerIdentity
+	}).(pulumi.StringPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o RecordingRuleOptionsPtrOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Overwrite
+	}).(pulumi.BoolPtrOutput)
+}
+
+type RecordingRuleSpec struct {
+	// The stages of the rule, keyed by reference ID. Each expression is an object with `model` (the query or expression model as a JSON string, for example from `jsonencode`), `datasourceUid` (the datasource to run against; `__expr__` for server-side expressions), `queryType`, `relativeTimeRange` (an object with `from` and `to` durations) and `source`. Exactly one expression must set `source = true`. Every field must be set; use `null` for unused fields.
+	Expressions map[string]RecordingRuleSpecExpressions `pulumi:"expressions"`
+	// Key-value pairs to attach to the recorded metric.
+	Labels map[string]string `pulumi:"labels"`
+	// The name of the metric to write to.
+	Metric string `pulumi:"metric"`
+	// Sets whether the recording rule should be paused or not.
+	Paused *bool `pulumi:"paused"`
+	// The UID of the datasource to write the metric to.
+	TargetDatasourceUid string `pulumi:"targetDatasourceUid"`
+	// The title of the recording rule.
+	Title string `pulumi:"title"`
+	// The trigger configuration for the recording rule.
+	Trigger *RecordingRuleSpecTrigger `pulumi:"trigger"`
+}
+
+// RecordingRuleSpecInput is an input type that accepts RecordingRuleSpecArgs and RecordingRuleSpecOutput values.
+// You can construct a concrete instance of `RecordingRuleSpecInput` via:
+//
+//	RecordingRuleSpecArgs{...}
+type RecordingRuleSpecInput interface {
+	pulumi.Input
+
+	ToRecordingRuleSpecOutput() RecordingRuleSpecOutput
+	ToRecordingRuleSpecOutputWithContext(context.Context) RecordingRuleSpecOutput
+}
+
+type RecordingRuleSpecArgs struct {
+	// The stages of the rule, keyed by reference ID. Each expression is an object with `model` (the query or expression model as a JSON string, for example from `jsonencode`), `datasourceUid` (the datasource to run against; `__expr__` for server-side expressions), `queryType`, `relativeTimeRange` (an object with `from` and `to` durations) and `source`. Exactly one expression must set `source = true`. Every field must be set; use `null` for unused fields.
+	Expressions RecordingRuleSpecExpressionsMapInput `pulumi:"expressions"`
+	// Key-value pairs to attach to the recorded metric.
+	Labels pulumi.StringMapInput `pulumi:"labels"`
+	// The name of the metric to write to.
+	Metric pulumi.StringInput `pulumi:"metric"`
+	// Sets whether the recording rule should be paused or not.
+	Paused pulumi.BoolPtrInput `pulumi:"paused"`
+	// The UID of the datasource to write the metric to.
+	TargetDatasourceUid pulumi.StringInput `pulumi:"targetDatasourceUid"`
+	// The title of the recording rule.
+	Title pulumi.StringInput `pulumi:"title"`
+	// The trigger configuration for the recording rule.
+	Trigger RecordingRuleSpecTriggerPtrInput `pulumi:"trigger"`
+}
+
+func (RecordingRuleSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleSpec)(nil)).Elem()
+}
+
+func (i RecordingRuleSpecArgs) ToRecordingRuleSpecOutput() RecordingRuleSpecOutput {
+	return i.ToRecordingRuleSpecOutputWithContext(context.Background())
+}
+
+func (i RecordingRuleSpecArgs) ToRecordingRuleSpecOutputWithContext(ctx context.Context) RecordingRuleSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleSpecOutput)
+}
+
+func (i RecordingRuleSpecArgs) ToRecordingRuleSpecPtrOutput() RecordingRuleSpecPtrOutput {
+	return i.ToRecordingRuleSpecPtrOutputWithContext(context.Background())
+}
+
+func (i RecordingRuleSpecArgs) ToRecordingRuleSpecPtrOutputWithContext(ctx context.Context) RecordingRuleSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleSpecOutput).ToRecordingRuleSpecPtrOutputWithContext(ctx)
+}
+
+// RecordingRuleSpecPtrInput is an input type that accepts RecordingRuleSpecArgs, RecordingRuleSpecPtr and RecordingRuleSpecPtrOutput values.
+// You can construct a concrete instance of `RecordingRuleSpecPtrInput` via:
+//
+//	        RecordingRuleSpecArgs{...}
+//
+//	or:
+//
+//	        nil
+type RecordingRuleSpecPtrInput interface {
+	pulumi.Input
+
+	ToRecordingRuleSpecPtrOutput() RecordingRuleSpecPtrOutput
+	ToRecordingRuleSpecPtrOutputWithContext(context.Context) RecordingRuleSpecPtrOutput
+}
+
+type recordingRuleSpecPtrType RecordingRuleSpecArgs
+
+func RecordingRuleSpecPtr(v *RecordingRuleSpecArgs) RecordingRuleSpecPtrInput {
+	return (*recordingRuleSpecPtrType)(v)
+}
+
+func (*recordingRuleSpecPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecordingRuleSpec)(nil)).Elem()
+}
+
+func (i *recordingRuleSpecPtrType) ToRecordingRuleSpecPtrOutput() RecordingRuleSpecPtrOutput {
+	return i.ToRecordingRuleSpecPtrOutputWithContext(context.Background())
+}
+
+func (i *recordingRuleSpecPtrType) ToRecordingRuleSpecPtrOutputWithContext(ctx context.Context) RecordingRuleSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleSpecPtrOutput)
+}
+
+type RecordingRuleSpecOutput struct{ *pulumi.OutputState }
+
+func (RecordingRuleSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleSpec)(nil)).Elem()
+}
+
+func (o RecordingRuleSpecOutput) ToRecordingRuleSpecOutput() RecordingRuleSpecOutput {
+	return o
+}
+
+func (o RecordingRuleSpecOutput) ToRecordingRuleSpecOutputWithContext(ctx context.Context) RecordingRuleSpecOutput {
+	return o
+}
+
+func (o RecordingRuleSpecOutput) ToRecordingRuleSpecPtrOutput() RecordingRuleSpecPtrOutput {
+	return o.ToRecordingRuleSpecPtrOutputWithContext(context.Background())
+}
+
+func (o RecordingRuleSpecOutput) ToRecordingRuleSpecPtrOutputWithContext(ctx context.Context) RecordingRuleSpecPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RecordingRuleSpec) *RecordingRuleSpec {
+		return &v
+	}).(RecordingRuleSpecPtrOutput)
+}
+
+// The stages of the rule, keyed by reference ID. Each expression is an object with `model` (the query or expression model as a JSON string, for example from `jsonencode`), `datasourceUid` (the datasource to run against; `__expr__` for server-side expressions), `queryType`, `relativeTimeRange` (an object with `from` and `to` durations) and `source`. Exactly one expression must set `source = true`. Every field must be set; use `null` for unused fields.
+func (o RecordingRuleSpecOutput) Expressions() RecordingRuleSpecExpressionsMapOutput {
+	return o.ApplyT(func(v RecordingRuleSpec) map[string]RecordingRuleSpecExpressions { return v.Expressions }).(RecordingRuleSpecExpressionsMapOutput)
+}
+
+// Key-value pairs to attach to the recorded metric.
+func (o RecordingRuleSpecOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RecordingRuleSpec) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+// The name of the metric to write to.
+func (o RecordingRuleSpecOutput) Metric() pulumi.StringOutput {
+	return o.ApplyT(func(v RecordingRuleSpec) string { return v.Metric }).(pulumi.StringOutput)
+}
+
+// Sets whether the recording rule should be paused or not.
+func (o RecordingRuleSpecOutput) Paused() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v RecordingRuleSpec) *bool { return v.Paused }).(pulumi.BoolPtrOutput)
+}
+
+// The UID of the datasource to write the metric to.
+func (o RecordingRuleSpecOutput) TargetDatasourceUid() pulumi.StringOutput {
+	return o.ApplyT(func(v RecordingRuleSpec) string { return v.TargetDatasourceUid }).(pulumi.StringOutput)
+}
+
+// The title of the recording rule.
+func (o RecordingRuleSpecOutput) Title() pulumi.StringOutput {
+	return o.ApplyT(func(v RecordingRuleSpec) string { return v.Title }).(pulumi.StringOutput)
+}
+
+// The trigger configuration for the recording rule.
+func (o RecordingRuleSpecOutput) Trigger() RecordingRuleSpecTriggerPtrOutput {
+	return o.ApplyT(func(v RecordingRuleSpec) *RecordingRuleSpecTrigger { return v.Trigger }).(RecordingRuleSpecTriggerPtrOutput)
+}
+
+type RecordingRuleSpecPtrOutput struct{ *pulumi.OutputState }
+
+func (RecordingRuleSpecPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecordingRuleSpec)(nil)).Elem()
+}
+
+func (o RecordingRuleSpecPtrOutput) ToRecordingRuleSpecPtrOutput() RecordingRuleSpecPtrOutput {
+	return o
+}
+
+func (o RecordingRuleSpecPtrOutput) ToRecordingRuleSpecPtrOutputWithContext(ctx context.Context) RecordingRuleSpecPtrOutput {
+	return o
+}
+
+func (o RecordingRuleSpecPtrOutput) Elem() RecordingRuleSpecOutput {
+	return o.ApplyT(func(v *RecordingRuleSpec) RecordingRuleSpec {
+		if v != nil {
+			return *v
+		}
+		var ret RecordingRuleSpec
+		return ret
+	}).(RecordingRuleSpecOutput)
+}
+
+// The stages of the rule, keyed by reference ID. Each expression is an object with `model` (the query or expression model as a JSON string, for example from `jsonencode`), `datasourceUid` (the datasource to run against; `__expr__` for server-side expressions), `queryType`, `relativeTimeRange` (an object with `from` and `to` durations) and `source`. Exactly one expression must set `source = true`. Every field must be set; use `null` for unused fields.
+func (o RecordingRuleSpecPtrOutput) Expressions() RecordingRuleSpecExpressionsMapOutput {
+	return o.ApplyT(func(v *RecordingRuleSpec) map[string]RecordingRuleSpecExpressions {
+		if v == nil {
+			return nil
+		}
+		return v.Expressions
+	}).(RecordingRuleSpecExpressionsMapOutput)
+}
+
+// Key-value pairs to attach to the recorded metric.
+func (o RecordingRuleSpecPtrOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RecordingRuleSpec) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Labels
+	}).(pulumi.StringMapOutput)
+}
+
+// The name of the metric to write to.
+func (o RecordingRuleSpecPtrOutput) Metric() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleSpec) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Metric
+	}).(pulumi.StringPtrOutput)
+}
+
+// Sets whether the recording rule should be paused or not.
+func (o RecordingRuleSpecPtrOutput) Paused() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleSpec) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Paused
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The UID of the datasource to write the metric to.
+func (o RecordingRuleSpecPtrOutput) TargetDatasourceUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleSpec) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.TargetDatasourceUid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The title of the recording rule.
+func (o RecordingRuleSpecPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleSpec) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
+}
+
+// The trigger configuration for the recording rule.
+func (o RecordingRuleSpecPtrOutput) Trigger() RecordingRuleSpecTriggerPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleSpec) *RecordingRuleSpecTrigger {
+		if v == nil {
+			return nil
+		}
+		return v.Trigger
+	}).(RecordingRuleSpecTriggerPtrOutput)
+}
+
+type RecordingRuleSpecExpressions struct {
+	DatasourceUid     string                                        `pulumi:"datasourceUid"`
+	Model             string                                        `pulumi:"model"`
+	QueryType         string                                        `pulumi:"queryType"`
+	RelativeTimeRange RecordingRuleSpecExpressionsRelativeTimeRange `pulumi:"relativeTimeRange"`
+	Source            bool                                          `pulumi:"source"`
+}
+
+// RecordingRuleSpecExpressionsInput is an input type that accepts RecordingRuleSpecExpressionsArgs and RecordingRuleSpecExpressionsOutput values.
+// You can construct a concrete instance of `RecordingRuleSpecExpressionsInput` via:
+//
+//	RecordingRuleSpecExpressionsArgs{...}
+type RecordingRuleSpecExpressionsInput interface {
+	pulumi.Input
+
+	ToRecordingRuleSpecExpressionsOutput() RecordingRuleSpecExpressionsOutput
+	ToRecordingRuleSpecExpressionsOutputWithContext(context.Context) RecordingRuleSpecExpressionsOutput
+}
+
+type RecordingRuleSpecExpressionsArgs struct {
+	DatasourceUid     pulumi.StringInput                                 `pulumi:"datasourceUid"`
+	Model             pulumi.StringInput                                 `pulumi:"model"`
+	QueryType         pulumi.StringInput                                 `pulumi:"queryType"`
+	RelativeTimeRange RecordingRuleSpecExpressionsRelativeTimeRangeInput `pulumi:"relativeTimeRange"`
+	Source            pulumi.BoolInput                                   `pulumi:"source"`
+}
+
+func (RecordingRuleSpecExpressionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleSpecExpressions)(nil)).Elem()
+}
+
+func (i RecordingRuleSpecExpressionsArgs) ToRecordingRuleSpecExpressionsOutput() RecordingRuleSpecExpressionsOutput {
+	return i.ToRecordingRuleSpecExpressionsOutputWithContext(context.Background())
+}
+
+func (i RecordingRuleSpecExpressionsArgs) ToRecordingRuleSpecExpressionsOutputWithContext(ctx context.Context) RecordingRuleSpecExpressionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleSpecExpressionsOutput)
+}
+
+// RecordingRuleSpecExpressionsMapInput is an input type that accepts RecordingRuleSpecExpressionsMap and RecordingRuleSpecExpressionsMapOutput values.
+// You can construct a concrete instance of `RecordingRuleSpecExpressionsMapInput` via:
+//
+//	RecordingRuleSpecExpressionsMap{ "key": RecordingRuleSpecExpressionsArgs{...} }
+type RecordingRuleSpecExpressionsMapInput interface {
+	pulumi.Input
+
+	ToRecordingRuleSpecExpressionsMapOutput() RecordingRuleSpecExpressionsMapOutput
+	ToRecordingRuleSpecExpressionsMapOutputWithContext(context.Context) RecordingRuleSpecExpressionsMapOutput
+}
+
+type RecordingRuleSpecExpressionsMap map[string]RecordingRuleSpecExpressionsInput
+
+func (RecordingRuleSpecExpressionsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]RecordingRuleSpecExpressions)(nil)).Elem()
+}
+
+func (i RecordingRuleSpecExpressionsMap) ToRecordingRuleSpecExpressionsMapOutput() RecordingRuleSpecExpressionsMapOutput {
+	return i.ToRecordingRuleSpecExpressionsMapOutputWithContext(context.Background())
+}
+
+func (i RecordingRuleSpecExpressionsMap) ToRecordingRuleSpecExpressionsMapOutputWithContext(ctx context.Context) RecordingRuleSpecExpressionsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleSpecExpressionsMapOutput)
+}
+
+type RecordingRuleSpecExpressionsOutput struct{ *pulumi.OutputState }
+
+func (RecordingRuleSpecExpressionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleSpecExpressions)(nil)).Elem()
+}
+
+func (o RecordingRuleSpecExpressionsOutput) ToRecordingRuleSpecExpressionsOutput() RecordingRuleSpecExpressionsOutput {
+	return o
+}
+
+func (o RecordingRuleSpecExpressionsOutput) ToRecordingRuleSpecExpressionsOutputWithContext(ctx context.Context) RecordingRuleSpecExpressionsOutput {
+	return o
+}
+
+func (o RecordingRuleSpecExpressionsOutput) DatasourceUid() pulumi.StringOutput {
+	return o.ApplyT(func(v RecordingRuleSpecExpressions) string { return v.DatasourceUid }).(pulumi.StringOutput)
+}
+
+func (o RecordingRuleSpecExpressionsOutput) Model() pulumi.StringOutput {
+	return o.ApplyT(func(v RecordingRuleSpecExpressions) string { return v.Model }).(pulumi.StringOutput)
+}
+
+func (o RecordingRuleSpecExpressionsOutput) QueryType() pulumi.StringOutput {
+	return o.ApplyT(func(v RecordingRuleSpecExpressions) string { return v.QueryType }).(pulumi.StringOutput)
+}
+
+func (o RecordingRuleSpecExpressionsOutput) RelativeTimeRange() RecordingRuleSpecExpressionsRelativeTimeRangeOutput {
+	return o.ApplyT(func(v RecordingRuleSpecExpressions) RecordingRuleSpecExpressionsRelativeTimeRange {
+		return v.RelativeTimeRange
+	}).(RecordingRuleSpecExpressionsRelativeTimeRangeOutput)
+}
+
+func (o RecordingRuleSpecExpressionsOutput) Source() pulumi.BoolOutput {
+	return o.ApplyT(func(v RecordingRuleSpecExpressions) bool { return v.Source }).(pulumi.BoolOutput)
+}
+
+type RecordingRuleSpecExpressionsMapOutput struct{ *pulumi.OutputState }
+
+func (RecordingRuleSpecExpressionsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]RecordingRuleSpecExpressions)(nil)).Elem()
+}
+
+func (o RecordingRuleSpecExpressionsMapOutput) ToRecordingRuleSpecExpressionsMapOutput() RecordingRuleSpecExpressionsMapOutput {
+	return o
+}
+
+func (o RecordingRuleSpecExpressionsMapOutput) ToRecordingRuleSpecExpressionsMapOutputWithContext(ctx context.Context) RecordingRuleSpecExpressionsMapOutput {
+	return o
+}
+
+func (o RecordingRuleSpecExpressionsMapOutput) MapIndex(k pulumi.StringInput) RecordingRuleSpecExpressionsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RecordingRuleSpecExpressions {
+		return vs[0].(map[string]RecordingRuleSpecExpressions)[vs[1].(string)]
+	}).(RecordingRuleSpecExpressionsOutput)
+}
+
+type RecordingRuleSpecExpressionsRelativeTimeRange struct {
+	From string `pulumi:"from"`
+	To   string `pulumi:"to"`
+}
+
+// RecordingRuleSpecExpressionsRelativeTimeRangeInput is an input type that accepts RecordingRuleSpecExpressionsRelativeTimeRangeArgs and RecordingRuleSpecExpressionsRelativeTimeRangeOutput values.
+// You can construct a concrete instance of `RecordingRuleSpecExpressionsRelativeTimeRangeInput` via:
+//
+//	RecordingRuleSpecExpressionsRelativeTimeRangeArgs{...}
+type RecordingRuleSpecExpressionsRelativeTimeRangeInput interface {
+	pulumi.Input
+
+	ToRecordingRuleSpecExpressionsRelativeTimeRangeOutput() RecordingRuleSpecExpressionsRelativeTimeRangeOutput
+	ToRecordingRuleSpecExpressionsRelativeTimeRangeOutputWithContext(context.Context) RecordingRuleSpecExpressionsRelativeTimeRangeOutput
+}
+
+type RecordingRuleSpecExpressionsRelativeTimeRangeArgs struct {
+	From pulumi.StringInput `pulumi:"from"`
+	To   pulumi.StringInput `pulumi:"to"`
+}
+
+func (RecordingRuleSpecExpressionsRelativeTimeRangeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleSpecExpressionsRelativeTimeRange)(nil)).Elem()
+}
+
+func (i RecordingRuleSpecExpressionsRelativeTimeRangeArgs) ToRecordingRuleSpecExpressionsRelativeTimeRangeOutput() RecordingRuleSpecExpressionsRelativeTimeRangeOutput {
+	return i.ToRecordingRuleSpecExpressionsRelativeTimeRangeOutputWithContext(context.Background())
+}
+
+func (i RecordingRuleSpecExpressionsRelativeTimeRangeArgs) ToRecordingRuleSpecExpressionsRelativeTimeRangeOutputWithContext(ctx context.Context) RecordingRuleSpecExpressionsRelativeTimeRangeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleSpecExpressionsRelativeTimeRangeOutput)
+}
+
+type RecordingRuleSpecExpressionsRelativeTimeRangeOutput struct{ *pulumi.OutputState }
+
+func (RecordingRuleSpecExpressionsRelativeTimeRangeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleSpecExpressionsRelativeTimeRange)(nil)).Elem()
+}
+
+func (o RecordingRuleSpecExpressionsRelativeTimeRangeOutput) ToRecordingRuleSpecExpressionsRelativeTimeRangeOutput() RecordingRuleSpecExpressionsRelativeTimeRangeOutput {
+	return o
+}
+
+func (o RecordingRuleSpecExpressionsRelativeTimeRangeOutput) ToRecordingRuleSpecExpressionsRelativeTimeRangeOutputWithContext(ctx context.Context) RecordingRuleSpecExpressionsRelativeTimeRangeOutput {
+	return o
+}
+
+func (o RecordingRuleSpecExpressionsRelativeTimeRangeOutput) From() pulumi.StringOutput {
+	return o.ApplyT(func(v RecordingRuleSpecExpressionsRelativeTimeRange) string { return v.From }).(pulumi.StringOutput)
+}
+
+func (o RecordingRuleSpecExpressionsRelativeTimeRangeOutput) To() pulumi.StringOutput {
+	return o.ApplyT(func(v RecordingRuleSpecExpressionsRelativeTimeRange) string { return v.To }).(pulumi.StringOutput)
+}
+
+type RecordingRuleSpecTrigger struct {
+	// The interval at which the recording rule should be evaluated.
+	Interval string `pulumi:"interval"`
+}
+
+// RecordingRuleSpecTriggerInput is an input type that accepts RecordingRuleSpecTriggerArgs and RecordingRuleSpecTriggerOutput values.
+// You can construct a concrete instance of `RecordingRuleSpecTriggerInput` via:
+//
+//	RecordingRuleSpecTriggerArgs{...}
+type RecordingRuleSpecTriggerInput interface {
+	pulumi.Input
+
+	ToRecordingRuleSpecTriggerOutput() RecordingRuleSpecTriggerOutput
+	ToRecordingRuleSpecTriggerOutputWithContext(context.Context) RecordingRuleSpecTriggerOutput
+}
+
+type RecordingRuleSpecTriggerArgs struct {
+	// The interval at which the recording rule should be evaluated.
+	Interval pulumi.StringInput `pulumi:"interval"`
+}
+
+func (RecordingRuleSpecTriggerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleSpecTrigger)(nil)).Elem()
+}
+
+func (i RecordingRuleSpecTriggerArgs) ToRecordingRuleSpecTriggerOutput() RecordingRuleSpecTriggerOutput {
+	return i.ToRecordingRuleSpecTriggerOutputWithContext(context.Background())
+}
+
+func (i RecordingRuleSpecTriggerArgs) ToRecordingRuleSpecTriggerOutputWithContext(ctx context.Context) RecordingRuleSpecTriggerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleSpecTriggerOutput)
+}
+
+func (i RecordingRuleSpecTriggerArgs) ToRecordingRuleSpecTriggerPtrOutput() RecordingRuleSpecTriggerPtrOutput {
+	return i.ToRecordingRuleSpecTriggerPtrOutputWithContext(context.Background())
+}
+
+func (i RecordingRuleSpecTriggerArgs) ToRecordingRuleSpecTriggerPtrOutputWithContext(ctx context.Context) RecordingRuleSpecTriggerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleSpecTriggerOutput).ToRecordingRuleSpecTriggerPtrOutputWithContext(ctx)
+}
+
+// RecordingRuleSpecTriggerPtrInput is an input type that accepts RecordingRuleSpecTriggerArgs, RecordingRuleSpecTriggerPtr and RecordingRuleSpecTriggerPtrOutput values.
+// You can construct a concrete instance of `RecordingRuleSpecTriggerPtrInput` via:
+//
+//	        RecordingRuleSpecTriggerArgs{...}
+//
+//	or:
+//
+//	        nil
+type RecordingRuleSpecTriggerPtrInput interface {
+	pulumi.Input
+
+	ToRecordingRuleSpecTriggerPtrOutput() RecordingRuleSpecTriggerPtrOutput
+	ToRecordingRuleSpecTriggerPtrOutputWithContext(context.Context) RecordingRuleSpecTriggerPtrOutput
+}
+
+type recordingRuleSpecTriggerPtrType RecordingRuleSpecTriggerArgs
+
+func RecordingRuleSpecTriggerPtr(v *RecordingRuleSpecTriggerArgs) RecordingRuleSpecTriggerPtrInput {
+	return (*recordingRuleSpecTriggerPtrType)(v)
+}
+
+func (*recordingRuleSpecTriggerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecordingRuleSpecTrigger)(nil)).Elem()
+}
+
+func (i *recordingRuleSpecTriggerPtrType) ToRecordingRuleSpecTriggerPtrOutput() RecordingRuleSpecTriggerPtrOutput {
+	return i.ToRecordingRuleSpecTriggerPtrOutputWithContext(context.Background())
+}
+
+func (i *recordingRuleSpecTriggerPtrType) ToRecordingRuleSpecTriggerPtrOutputWithContext(ctx context.Context) RecordingRuleSpecTriggerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleSpecTriggerPtrOutput)
+}
+
+type RecordingRuleSpecTriggerOutput struct{ *pulumi.OutputState }
+
+func (RecordingRuleSpecTriggerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleSpecTrigger)(nil)).Elem()
+}
+
+func (o RecordingRuleSpecTriggerOutput) ToRecordingRuleSpecTriggerOutput() RecordingRuleSpecTriggerOutput {
+	return o
+}
+
+func (o RecordingRuleSpecTriggerOutput) ToRecordingRuleSpecTriggerOutputWithContext(ctx context.Context) RecordingRuleSpecTriggerOutput {
+	return o
+}
+
+func (o RecordingRuleSpecTriggerOutput) ToRecordingRuleSpecTriggerPtrOutput() RecordingRuleSpecTriggerPtrOutput {
+	return o.ToRecordingRuleSpecTriggerPtrOutputWithContext(context.Background())
+}
+
+func (o RecordingRuleSpecTriggerOutput) ToRecordingRuleSpecTriggerPtrOutputWithContext(ctx context.Context) RecordingRuleSpecTriggerPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RecordingRuleSpecTrigger) *RecordingRuleSpecTrigger {
+		return &v
+	}).(RecordingRuleSpecTriggerPtrOutput)
+}
+
+// The interval at which the recording rule should be evaluated.
+func (o RecordingRuleSpecTriggerOutput) Interval() pulumi.StringOutput {
+	return o.ApplyT(func(v RecordingRuleSpecTrigger) string { return v.Interval }).(pulumi.StringOutput)
+}
+
+type RecordingRuleSpecTriggerPtrOutput struct{ *pulumi.OutputState }
+
+func (RecordingRuleSpecTriggerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecordingRuleSpecTrigger)(nil)).Elem()
+}
+
+func (o RecordingRuleSpecTriggerPtrOutput) ToRecordingRuleSpecTriggerPtrOutput() RecordingRuleSpecTriggerPtrOutput {
+	return o
+}
+
+func (o RecordingRuleSpecTriggerPtrOutput) ToRecordingRuleSpecTriggerPtrOutputWithContext(ctx context.Context) RecordingRuleSpecTriggerPtrOutput {
+	return o
+}
+
+func (o RecordingRuleSpecTriggerPtrOutput) Elem() RecordingRuleSpecTriggerOutput {
+	return o.ApplyT(func(v *RecordingRuleSpecTrigger) RecordingRuleSpecTrigger {
+		if v != nil {
+			return *v
+		}
+		var ret RecordingRuleSpecTrigger
+		return ret
+	}).(RecordingRuleSpecTriggerOutput)
+}
+
+// The interval at which the recording rule should be evaluated.
+func (o RecordingRuleSpecTriggerPtrOutput) Interval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleSpecTrigger) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Interval
+	}).(pulumi.StringPtrOutput)
+}
+
+type RuleSequenceMetadata struct {
+	// Annotations of the resource.
+	Annotations map[string]string `pulumi:"annotations"`
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+	FolderUid *string `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId *int `pulumi:"orgId"`
+	// The unique identifier of the resource.
+	Uid string `pulumi:"uid"`
+	// The full URL of the resource.
+	Url *string `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid *string `pulumi:"uuid"`
+	// The version of the resource.
+	Version *string `pulumi:"version"`
+}
+
+// RuleSequenceMetadataInput is an input type that accepts RuleSequenceMetadataArgs and RuleSequenceMetadataOutput values.
+// You can construct a concrete instance of `RuleSequenceMetadataInput` via:
+//
+//	RuleSequenceMetadataArgs{...}
+type RuleSequenceMetadataInput interface {
+	pulumi.Input
+
+	ToRuleSequenceMetadataOutput() RuleSequenceMetadataOutput
+	ToRuleSequenceMetadataOutputWithContext(context.Context) RuleSequenceMetadataOutput
+}
+
+type RuleSequenceMetadataArgs struct {
+	// Annotations of the resource.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId pulumi.IntPtrInput `pulumi:"orgId"`
+	// The unique identifier of the resource.
+	Uid pulumi.StringInput `pulumi:"uid"`
+	// The full URL of the resource.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
+	// The version of the resource.
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (RuleSequenceMetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceMetadata)(nil)).Elem()
+}
+
+func (i RuleSequenceMetadataArgs) ToRuleSequenceMetadataOutput() RuleSequenceMetadataOutput {
+	return i.ToRuleSequenceMetadataOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceMetadataArgs) ToRuleSequenceMetadataOutputWithContext(ctx context.Context) RuleSequenceMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceMetadataOutput)
+}
+
+func (i RuleSequenceMetadataArgs) ToRuleSequenceMetadataPtrOutput() RuleSequenceMetadataPtrOutput {
+	return i.ToRuleSequenceMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceMetadataArgs) ToRuleSequenceMetadataPtrOutputWithContext(ctx context.Context) RuleSequenceMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceMetadataOutput).ToRuleSequenceMetadataPtrOutputWithContext(ctx)
+}
+
+// RuleSequenceMetadataPtrInput is an input type that accepts RuleSequenceMetadataArgs, RuleSequenceMetadataPtr and RuleSequenceMetadataPtrOutput values.
+// You can construct a concrete instance of `RuleSequenceMetadataPtrInput` via:
+//
+//	        RuleSequenceMetadataArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleSequenceMetadataPtrInput interface {
+	pulumi.Input
+
+	ToRuleSequenceMetadataPtrOutput() RuleSequenceMetadataPtrOutput
+	ToRuleSequenceMetadataPtrOutputWithContext(context.Context) RuleSequenceMetadataPtrOutput
+}
+
+type ruleSequenceMetadataPtrType RuleSequenceMetadataArgs
+
+func RuleSequenceMetadataPtr(v *RuleSequenceMetadataArgs) RuleSequenceMetadataPtrInput {
+	return (*ruleSequenceMetadataPtrType)(v)
+}
+
+func (*ruleSequenceMetadataPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleSequenceMetadata)(nil)).Elem()
+}
+
+func (i *ruleSequenceMetadataPtrType) ToRuleSequenceMetadataPtrOutput() RuleSequenceMetadataPtrOutput {
+	return i.ToRuleSequenceMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleSequenceMetadataPtrType) ToRuleSequenceMetadataPtrOutputWithContext(ctx context.Context) RuleSequenceMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceMetadataPtrOutput)
+}
+
+type RuleSequenceMetadataOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceMetadata)(nil)).Elem()
+}
+
+func (o RuleSequenceMetadataOutput) ToRuleSequenceMetadataOutput() RuleSequenceMetadataOutput {
+	return o
+}
+
+func (o RuleSequenceMetadataOutput) ToRuleSequenceMetadataOutputWithContext(ctx context.Context) RuleSequenceMetadataOutput {
+	return o
+}
+
+func (o RuleSequenceMetadataOutput) ToRuleSequenceMetadataPtrOutput() RuleSequenceMetadataPtrOutput {
+	return o.ToRuleSequenceMetadataPtrOutputWithContext(context.Background())
+}
+
+func (o RuleSequenceMetadataOutput) ToRuleSequenceMetadataPtrOutputWithContext(ctx context.Context) RuleSequenceMetadataPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleSequenceMetadata) *RuleSequenceMetadata {
+		return &v
+	}).(RuleSequenceMetadataPtrOutput)
+}
+
+// Annotations of the resource.
+func (o RuleSequenceMetadataOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RuleSequenceMetadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+func (o RuleSequenceMetadataOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleSequenceMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
+}
+
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o RuleSequenceMetadataOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RuleSequenceMetadata) *int { return v.OrgId }).(pulumi.IntPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o RuleSequenceMetadataOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleSequenceMetadata) string { return v.Uid }).(pulumi.StringOutput)
+}
+
+// The full URL of the resource.
+func (o RuleSequenceMetadataOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleSequenceMetadata) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o RuleSequenceMetadataOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleSequenceMetadata) *string { return v.Uuid }).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o RuleSequenceMetadataOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleSequenceMetadata) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type RuleSequenceMetadataPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceMetadataPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleSequenceMetadata)(nil)).Elem()
+}
+
+func (o RuleSequenceMetadataPtrOutput) ToRuleSequenceMetadataPtrOutput() RuleSequenceMetadataPtrOutput {
+	return o
+}
+
+func (o RuleSequenceMetadataPtrOutput) ToRuleSequenceMetadataPtrOutputWithContext(ctx context.Context) RuleSequenceMetadataPtrOutput {
+	return o
+}
+
+func (o RuleSequenceMetadataPtrOutput) Elem() RuleSequenceMetadataOutput {
+	return o.ApplyT(func(v *RuleSequenceMetadata) RuleSequenceMetadata {
+		if v != nil {
+			return *v
+		}
+		var ret RuleSequenceMetadata
+		return ret
+	}).(RuleSequenceMetadataOutput)
+}
+
+// Annotations of the resource.
+func (o RuleSequenceMetadataPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RuleSequenceMetadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+func (o RuleSequenceMetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleSequenceMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FolderUid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o RuleSequenceMetadataPtrOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RuleSequenceMetadata) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OrgId
+	}).(pulumi.IntPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o RuleSequenceMetadataPtrOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleSequenceMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The full URL of the resource.
+func (o RuleSequenceMetadataPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleSequenceMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o RuleSequenceMetadataPtrOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleSequenceMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Uuid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o RuleSequenceMetadataPtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleSequenceMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Version
+	}).(pulumi.StringPtrOutput)
+}
+
+type RuleSequenceOptions struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity *string `pulumi:"managerIdentity"`
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite *bool `pulumi:"overwrite"`
+}
+
+// RuleSequenceOptionsInput is an input type that accepts RuleSequenceOptionsArgs and RuleSequenceOptionsOutput values.
+// You can construct a concrete instance of `RuleSequenceOptionsInput` via:
+//
+//	RuleSequenceOptionsArgs{...}
+type RuleSequenceOptionsInput interface {
+	pulumi.Input
+
+	ToRuleSequenceOptionsOutput() RuleSequenceOptionsOutput
+	ToRuleSequenceOptionsOutputWithContext(context.Context) RuleSequenceOptionsOutput
+}
+
+type RuleSequenceOptionsArgs struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity pulumi.StringPtrInput `pulumi:"managerIdentity"`
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
+}
+
+func (RuleSequenceOptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceOptions)(nil)).Elem()
+}
+
+func (i RuleSequenceOptionsArgs) ToRuleSequenceOptionsOutput() RuleSequenceOptionsOutput {
+	return i.ToRuleSequenceOptionsOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceOptionsArgs) ToRuleSequenceOptionsOutputWithContext(ctx context.Context) RuleSequenceOptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceOptionsOutput)
+}
+
+func (i RuleSequenceOptionsArgs) ToRuleSequenceOptionsPtrOutput() RuleSequenceOptionsPtrOutput {
+	return i.ToRuleSequenceOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceOptionsArgs) ToRuleSequenceOptionsPtrOutputWithContext(ctx context.Context) RuleSequenceOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceOptionsOutput).ToRuleSequenceOptionsPtrOutputWithContext(ctx)
+}
+
+// RuleSequenceOptionsPtrInput is an input type that accepts RuleSequenceOptionsArgs, RuleSequenceOptionsPtr and RuleSequenceOptionsPtrOutput values.
+// You can construct a concrete instance of `RuleSequenceOptionsPtrInput` via:
+//
+//	        RuleSequenceOptionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleSequenceOptionsPtrInput interface {
+	pulumi.Input
+
+	ToRuleSequenceOptionsPtrOutput() RuleSequenceOptionsPtrOutput
+	ToRuleSequenceOptionsPtrOutputWithContext(context.Context) RuleSequenceOptionsPtrOutput
+}
+
+type ruleSequenceOptionsPtrType RuleSequenceOptionsArgs
+
+func RuleSequenceOptionsPtr(v *RuleSequenceOptionsArgs) RuleSequenceOptionsPtrInput {
+	return (*ruleSequenceOptionsPtrType)(v)
+}
+
+func (*ruleSequenceOptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleSequenceOptions)(nil)).Elem()
+}
+
+func (i *ruleSequenceOptionsPtrType) ToRuleSequenceOptionsPtrOutput() RuleSequenceOptionsPtrOutput {
+	return i.ToRuleSequenceOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleSequenceOptionsPtrType) ToRuleSequenceOptionsPtrOutputWithContext(ctx context.Context) RuleSequenceOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceOptionsPtrOutput)
+}
+
+type RuleSequenceOptionsOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceOptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceOptions)(nil)).Elem()
+}
+
+func (o RuleSequenceOptionsOutput) ToRuleSequenceOptionsOutput() RuleSequenceOptionsOutput {
+	return o
+}
+
+func (o RuleSequenceOptionsOutput) ToRuleSequenceOptionsOutputWithContext(ctx context.Context) RuleSequenceOptionsOutput {
+	return o
+}
+
+func (o RuleSequenceOptionsOutput) ToRuleSequenceOptionsPtrOutput() RuleSequenceOptionsPtrOutput {
+	return o.ToRuleSequenceOptionsPtrOutputWithContext(context.Background())
+}
+
+func (o RuleSequenceOptionsOutput) ToRuleSequenceOptionsPtrOutputWithContext(ctx context.Context) RuleSequenceOptionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleSequenceOptions) *RuleSequenceOptions {
+		return &v
+	}).(RuleSequenceOptionsPtrOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o RuleSequenceOptionsOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleSequenceOptions) *string { return v.ManagerIdentity }).(pulumi.StringPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o RuleSequenceOptionsOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v RuleSequenceOptions) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
+}
+
+type RuleSequenceOptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceOptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleSequenceOptions)(nil)).Elem()
+}
+
+func (o RuleSequenceOptionsPtrOutput) ToRuleSequenceOptionsPtrOutput() RuleSequenceOptionsPtrOutput {
+	return o
+}
+
+func (o RuleSequenceOptionsPtrOutput) ToRuleSequenceOptionsPtrOutputWithContext(ctx context.Context) RuleSequenceOptionsPtrOutput {
+	return o
+}
+
+func (o RuleSequenceOptionsPtrOutput) Elem() RuleSequenceOptionsOutput {
+	return o.ApplyT(func(v *RuleSequenceOptions) RuleSequenceOptions {
+		if v != nil {
+			return *v
+		}
+		var ret RuleSequenceOptions
+		return ret
+	}).(RuleSequenceOptionsOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o RuleSequenceOptionsPtrOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleSequenceOptions) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ManagerIdentity
+	}).(pulumi.StringPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o RuleSequenceOptionsPtrOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RuleSequenceOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Overwrite
+	}).(pulumi.BoolPtrOutput)
+}
+
+type RuleSequenceSpec struct {
+	// The alert rules that belong to this sequence, evaluated in the order listed. Each entry references an alert rule by its `name` (the rule's UID).
+	AlertRules []RuleSequenceSpecAlertRule `pulumi:"alertRules"`
+	// The recording rules that belong to this sequence, evaluated in the order listed. At least one recording rule is required. Each entry references a recording rule by its `name` (the rule's UID).
+	RecordingRules []RuleSequenceSpecRecordingRule `pulumi:"recordingRules"`
+	// The trigger configuration shared by every rule in the sequence.
+	Trigger *RuleSequenceSpecTrigger `pulumi:"trigger"`
+}
+
+// RuleSequenceSpecInput is an input type that accepts RuleSequenceSpecArgs and RuleSequenceSpecOutput values.
+// You can construct a concrete instance of `RuleSequenceSpecInput` via:
+//
+//	RuleSequenceSpecArgs{...}
+type RuleSequenceSpecInput interface {
+	pulumi.Input
+
+	ToRuleSequenceSpecOutput() RuleSequenceSpecOutput
+	ToRuleSequenceSpecOutputWithContext(context.Context) RuleSequenceSpecOutput
+}
+
+type RuleSequenceSpecArgs struct {
+	// The alert rules that belong to this sequence, evaluated in the order listed. Each entry references an alert rule by its `name` (the rule's UID).
+	AlertRules RuleSequenceSpecAlertRuleArrayInput `pulumi:"alertRules"`
+	// The recording rules that belong to this sequence, evaluated in the order listed. At least one recording rule is required. Each entry references a recording rule by its `name` (the rule's UID).
+	RecordingRules RuleSequenceSpecRecordingRuleArrayInput `pulumi:"recordingRules"`
+	// The trigger configuration shared by every rule in the sequence.
+	Trigger RuleSequenceSpecTriggerPtrInput `pulumi:"trigger"`
+}
+
+func (RuleSequenceSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceSpec)(nil)).Elem()
+}
+
+func (i RuleSequenceSpecArgs) ToRuleSequenceSpecOutput() RuleSequenceSpecOutput {
+	return i.ToRuleSequenceSpecOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceSpecArgs) ToRuleSequenceSpecOutputWithContext(ctx context.Context) RuleSequenceSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecOutput)
+}
+
+func (i RuleSequenceSpecArgs) ToRuleSequenceSpecPtrOutput() RuleSequenceSpecPtrOutput {
+	return i.ToRuleSequenceSpecPtrOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceSpecArgs) ToRuleSequenceSpecPtrOutputWithContext(ctx context.Context) RuleSequenceSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecOutput).ToRuleSequenceSpecPtrOutputWithContext(ctx)
+}
+
+// RuleSequenceSpecPtrInput is an input type that accepts RuleSequenceSpecArgs, RuleSequenceSpecPtr and RuleSequenceSpecPtrOutput values.
+// You can construct a concrete instance of `RuleSequenceSpecPtrInput` via:
+//
+//	        RuleSequenceSpecArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleSequenceSpecPtrInput interface {
+	pulumi.Input
+
+	ToRuleSequenceSpecPtrOutput() RuleSequenceSpecPtrOutput
+	ToRuleSequenceSpecPtrOutputWithContext(context.Context) RuleSequenceSpecPtrOutput
+}
+
+type ruleSequenceSpecPtrType RuleSequenceSpecArgs
+
+func RuleSequenceSpecPtr(v *RuleSequenceSpecArgs) RuleSequenceSpecPtrInput {
+	return (*ruleSequenceSpecPtrType)(v)
+}
+
+func (*ruleSequenceSpecPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleSequenceSpec)(nil)).Elem()
+}
+
+func (i *ruleSequenceSpecPtrType) ToRuleSequenceSpecPtrOutput() RuleSequenceSpecPtrOutput {
+	return i.ToRuleSequenceSpecPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleSequenceSpecPtrType) ToRuleSequenceSpecPtrOutputWithContext(ctx context.Context) RuleSequenceSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecPtrOutput)
+}
+
+type RuleSequenceSpecOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceSpec)(nil)).Elem()
+}
+
+func (o RuleSequenceSpecOutput) ToRuleSequenceSpecOutput() RuleSequenceSpecOutput {
+	return o
+}
+
+func (o RuleSequenceSpecOutput) ToRuleSequenceSpecOutputWithContext(ctx context.Context) RuleSequenceSpecOutput {
+	return o
+}
+
+func (o RuleSequenceSpecOutput) ToRuleSequenceSpecPtrOutput() RuleSequenceSpecPtrOutput {
+	return o.ToRuleSequenceSpecPtrOutputWithContext(context.Background())
+}
+
+func (o RuleSequenceSpecOutput) ToRuleSequenceSpecPtrOutputWithContext(ctx context.Context) RuleSequenceSpecPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleSequenceSpec) *RuleSequenceSpec {
+		return &v
+	}).(RuleSequenceSpecPtrOutput)
+}
+
+// The alert rules that belong to this sequence, evaluated in the order listed. Each entry references an alert rule by its `name` (the rule's UID).
+func (o RuleSequenceSpecOutput) AlertRules() RuleSequenceSpecAlertRuleArrayOutput {
+	return o.ApplyT(func(v RuleSequenceSpec) []RuleSequenceSpecAlertRule { return v.AlertRules }).(RuleSequenceSpecAlertRuleArrayOutput)
+}
+
+// The recording rules that belong to this sequence, evaluated in the order listed. At least one recording rule is required. Each entry references a recording rule by its `name` (the rule's UID).
+func (o RuleSequenceSpecOutput) RecordingRules() RuleSequenceSpecRecordingRuleArrayOutput {
+	return o.ApplyT(func(v RuleSequenceSpec) []RuleSequenceSpecRecordingRule { return v.RecordingRules }).(RuleSequenceSpecRecordingRuleArrayOutput)
+}
+
+// The trigger configuration shared by every rule in the sequence.
+func (o RuleSequenceSpecOutput) Trigger() RuleSequenceSpecTriggerPtrOutput {
+	return o.ApplyT(func(v RuleSequenceSpec) *RuleSequenceSpecTrigger { return v.Trigger }).(RuleSequenceSpecTriggerPtrOutput)
+}
+
+type RuleSequenceSpecPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceSpecPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleSequenceSpec)(nil)).Elem()
+}
+
+func (o RuleSequenceSpecPtrOutput) ToRuleSequenceSpecPtrOutput() RuleSequenceSpecPtrOutput {
+	return o
+}
+
+func (o RuleSequenceSpecPtrOutput) ToRuleSequenceSpecPtrOutputWithContext(ctx context.Context) RuleSequenceSpecPtrOutput {
+	return o
+}
+
+func (o RuleSequenceSpecPtrOutput) Elem() RuleSequenceSpecOutput {
+	return o.ApplyT(func(v *RuleSequenceSpec) RuleSequenceSpec {
+		if v != nil {
+			return *v
+		}
+		var ret RuleSequenceSpec
+		return ret
+	}).(RuleSequenceSpecOutput)
+}
+
+// The alert rules that belong to this sequence, evaluated in the order listed. Each entry references an alert rule by its `name` (the rule's UID).
+func (o RuleSequenceSpecPtrOutput) AlertRules() RuleSequenceSpecAlertRuleArrayOutput {
+	return o.ApplyT(func(v *RuleSequenceSpec) []RuleSequenceSpecAlertRule {
+		if v == nil {
+			return nil
+		}
+		return v.AlertRules
+	}).(RuleSequenceSpecAlertRuleArrayOutput)
+}
+
+// The recording rules that belong to this sequence, evaluated in the order listed. At least one recording rule is required. Each entry references a recording rule by its `name` (the rule's UID).
+func (o RuleSequenceSpecPtrOutput) RecordingRules() RuleSequenceSpecRecordingRuleArrayOutput {
+	return o.ApplyT(func(v *RuleSequenceSpec) []RuleSequenceSpecRecordingRule {
+		if v == nil {
+			return nil
+		}
+		return v.RecordingRules
+	}).(RuleSequenceSpecRecordingRuleArrayOutput)
+}
+
+// The trigger configuration shared by every rule in the sequence.
+func (o RuleSequenceSpecPtrOutput) Trigger() RuleSequenceSpecTriggerPtrOutput {
+	return o.ApplyT(func(v *RuleSequenceSpec) *RuleSequenceSpecTrigger {
+		if v == nil {
+			return nil
+		}
+		return v.Trigger
+	}).(RuleSequenceSpecTriggerPtrOutput)
+}
+
+type RuleSequenceSpecAlertRule struct {
+	Name string `pulumi:"name"`
+}
+
+// RuleSequenceSpecAlertRuleInput is an input type that accepts RuleSequenceSpecAlertRuleArgs and RuleSequenceSpecAlertRuleOutput values.
+// You can construct a concrete instance of `RuleSequenceSpecAlertRuleInput` via:
+//
+//	RuleSequenceSpecAlertRuleArgs{...}
+type RuleSequenceSpecAlertRuleInput interface {
+	pulumi.Input
+
+	ToRuleSequenceSpecAlertRuleOutput() RuleSequenceSpecAlertRuleOutput
+	ToRuleSequenceSpecAlertRuleOutputWithContext(context.Context) RuleSequenceSpecAlertRuleOutput
+}
+
+type RuleSequenceSpecAlertRuleArgs struct {
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (RuleSequenceSpecAlertRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceSpecAlertRule)(nil)).Elem()
+}
+
+func (i RuleSequenceSpecAlertRuleArgs) ToRuleSequenceSpecAlertRuleOutput() RuleSequenceSpecAlertRuleOutput {
+	return i.ToRuleSequenceSpecAlertRuleOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceSpecAlertRuleArgs) ToRuleSequenceSpecAlertRuleOutputWithContext(ctx context.Context) RuleSequenceSpecAlertRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecAlertRuleOutput)
+}
+
+// RuleSequenceSpecAlertRuleArrayInput is an input type that accepts RuleSequenceSpecAlertRuleArray and RuleSequenceSpecAlertRuleArrayOutput values.
+// You can construct a concrete instance of `RuleSequenceSpecAlertRuleArrayInput` via:
+//
+//	RuleSequenceSpecAlertRuleArray{ RuleSequenceSpecAlertRuleArgs{...} }
+type RuleSequenceSpecAlertRuleArrayInput interface {
+	pulumi.Input
+
+	ToRuleSequenceSpecAlertRuleArrayOutput() RuleSequenceSpecAlertRuleArrayOutput
+	ToRuleSequenceSpecAlertRuleArrayOutputWithContext(context.Context) RuleSequenceSpecAlertRuleArrayOutput
+}
+
+type RuleSequenceSpecAlertRuleArray []RuleSequenceSpecAlertRuleInput
+
+func (RuleSequenceSpecAlertRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleSequenceSpecAlertRule)(nil)).Elem()
+}
+
+func (i RuleSequenceSpecAlertRuleArray) ToRuleSequenceSpecAlertRuleArrayOutput() RuleSequenceSpecAlertRuleArrayOutput {
+	return i.ToRuleSequenceSpecAlertRuleArrayOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceSpecAlertRuleArray) ToRuleSequenceSpecAlertRuleArrayOutputWithContext(ctx context.Context) RuleSequenceSpecAlertRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecAlertRuleArrayOutput)
+}
+
+type RuleSequenceSpecAlertRuleOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceSpecAlertRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceSpecAlertRule)(nil)).Elem()
+}
+
+func (o RuleSequenceSpecAlertRuleOutput) ToRuleSequenceSpecAlertRuleOutput() RuleSequenceSpecAlertRuleOutput {
+	return o
+}
+
+func (o RuleSequenceSpecAlertRuleOutput) ToRuleSequenceSpecAlertRuleOutputWithContext(ctx context.Context) RuleSequenceSpecAlertRuleOutput {
+	return o
+}
+
+func (o RuleSequenceSpecAlertRuleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleSequenceSpecAlertRule) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type RuleSequenceSpecAlertRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceSpecAlertRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleSequenceSpecAlertRule)(nil)).Elem()
+}
+
+func (o RuleSequenceSpecAlertRuleArrayOutput) ToRuleSequenceSpecAlertRuleArrayOutput() RuleSequenceSpecAlertRuleArrayOutput {
+	return o
+}
+
+func (o RuleSequenceSpecAlertRuleArrayOutput) ToRuleSequenceSpecAlertRuleArrayOutputWithContext(ctx context.Context) RuleSequenceSpecAlertRuleArrayOutput {
+	return o
+}
+
+func (o RuleSequenceSpecAlertRuleArrayOutput) Index(i pulumi.IntInput) RuleSequenceSpecAlertRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RuleSequenceSpecAlertRule {
+		return vs[0].([]RuleSequenceSpecAlertRule)[vs[1].(int)]
+	}).(RuleSequenceSpecAlertRuleOutput)
+}
+
+type RuleSequenceSpecRecordingRule struct {
+	Name string `pulumi:"name"`
+}
+
+// RuleSequenceSpecRecordingRuleInput is an input type that accepts RuleSequenceSpecRecordingRuleArgs and RuleSequenceSpecRecordingRuleOutput values.
+// You can construct a concrete instance of `RuleSequenceSpecRecordingRuleInput` via:
+//
+//	RuleSequenceSpecRecordingRuleArgs{...}
+type RuleSequenceSpecRecordingRuleInput interface {
+	pulumi.Input
+
+	ToRuleSequenceSpecRecordingRuleOutput() RuleSequenceSpecRecordingRuleOutput
+	ToRuleSequenceSpecRecordingRuleOutputWithContext(context.Context) RuleSequenceSpecRecordingRuleOutput
+}
+
+type RuleSequenceSpecRecordingRuleArgs struct {
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (RuleSequenceSpecRecordingRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceSpecRecordingRule)(nil)).Elem()
+}
+
+func (i RuleSequenceSpecRecordingRuleArgs) ToRuleSequenceSpecRecordingRuleOutput() RuleSequenceSpecRecordingRuleOutput {
+	return i.ToRuleSequenceSpecRecordingRuleOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceSpecRecordingRuleArgs) ToRuleSequenceSpecRecordingRuleOutputWithContext(ctx context.Context) RuleSequenceSpecRecordingRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecRecordingRuleOutput)
+}
+
+// RuleSequenceSpecRecordingRuleArrayInput is an input type that accepts RuleSequenceSpecRecordingRuleArray and RuleSequenceSpecRecordingRuleArrayOutput values.
+// You can construct a concrete instance of `RuleSequenceSpecRecordingRuleArrayInput` via:
+//
+//	RuleSequenceSpecRecordingRuleArray{ RuleSequenceSpecRecordingRuleArgs{...} }
+type RuleSequenceSpecRecordingRuleArrayInput interface {
+	pulumi.Input
+
+	ToRuleSequenceSpecRecordingRuleArrayOutput() RuleSequenceSpecRecordingRuleArrayOutput
+	ToRuleSequenceSpecRecordingRuleArrayOutputWithContext(context.Context) RuleSequenceSpecRecordingRuleArrayOutput
+}
+
+type RuleSequenceSpecRecordingRuleArray []RuleSequenceSpecRecordingRuleInput
+
+func (RuleSequenceSpecRecordingRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleSequenceSpecRecordingRule)(nil)).Elem()
+}
+
+func (i RuleSequenceSpecRecordingRuleArray) ToRuleSequenceSpecRecordingRuleArrayOutput() RuleSequenceSpecRecordingRuleArrayOutput {
+	return i.ToRuleSequenceSpecRecordingRuleArrayOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceSpecRecordingRuleArray) ToRuleSequenceSpecRecordingRuleArrayOutputWithContext(ctx context.Context) RuleSequenceSpecRecordingRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecRecordingRuleArrayOutput)
+}
+
+type RuleSequenceSpecRecordingRuleOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceSpecRecordingRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceSpecRecordingRule)(nil)).Elem()
+}
+
+func (o RuleSequenceSpecRecordingRuleOutput) ToRuleSequenceSpecRecordingRuleOutput() RuleSequenceSpecRecordingRuleOutput {
+	return o
+}
+
+func (o RuleSequenceSpecRecordingRuleOutput) ToRuleSequenceSpecRecordingRuleOutputWithContext(ctx context.Context) RuleSequenceSpecRecordingRuleOutput {
+	return o
+}
+
+func (o RuleSequenceSpecRecordingRuleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleSequenceSpecRecordingRule) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type RuleSequenceSpecRecordingRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceSpecRecordingRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleSequenceSpecRecordingRule)(nil)).Elem()
+}
+
+func (o RuleSequenceSpecRecordingRuleArrayOutput) ToRuleSequenceSpecRecordingRuleArrayOutput() RuleSequenceSpecRecordingRuleArrayOutput {
+	return o
+}
+
+func (o RuleSequenceSpecRecordingRuleArrayOutput) ToRuleSequenceSpecRecordingRuleArrayOutputWithContext(ctx context.Context) RuleSequenceSpecRecordingRuleArrayOutput {
+	return o
+}
+
+func (o RuleSequenceSpecRecordingRuleArrayOutput) Index(i pulumi.IntInput) RuleSequenceSpecRecordingRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RuleSequenceSpecRecordingRule {
+		return vs[0].([]RuleSequenceSpecRecordingRule)[vs[1].(int)]
+	}).(RuleSequenceSpecRecordingRuleOutput)
+}
+
+type RuleSequenceSpecTrigger struct {
+	// The interval at which the rules in the sequence should be evaluated.
+	Interval string `pulumi:"interval"`
+}
+
+// RuleSequenceSpecTriggerInput is an input type that accepts RuleSequenceSpecTriggerArgs and RuleSequenceSpecTriggerOutput values.
+// You can construct a concrete instance of `RuleSequenceSpecTriggerInput` via:
+//
+//	RuleSequenceSpecTriggerArgs{...}
+type RuleSequenceSpecTriggerInput interface {
+	pulumi.Input
+
+	ToRuleSequenceSpecTriggerOutput() RuleSequenceSpecTriggerOutput
+	ToRuleSequenceSpecTriggerOutputWithContext(context.Context) RuleSequenceSpecTriggerOutput
+}
+
+type RuleSequenceSpecTriggerArgs struct {
+	// The interval at which the rules in the sequence should be evaluated.
+	Interval pulumi.StringInput `pulumi:"interval"`
+}
+
+func (RuleSequenceSpecTriggerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceSpecTrigger)(nil)).Elem()
+}
+
+func (i RuleSequenceSpecTriggerArgs) ToRuleSequenceSpecTriggerOutput() RuleSequenceSpecTriggerOutput {
+	return i.ToRuleSequenceSpecTriggerOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceSpecTriggerArgs) ToRuleSequenceSpecTriggerOutputWithContext(ctx context.Context) RuleSequenceSpecTriggerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecTriggerOutput)
+}
+
+func (i RuleSequenceSpecTriggerArgs) ToRuleSequenceSpecTriggerPtrOutput() RuleSequenceSpecTriggerPtrOutput {
+	return i.ToRuleSequenceSpecTriggerPtrOutputWithContext(context.Background())
+}
+
+func (i RuleSequenceSpecTriggerArgs) ToRuleSequenceSpecTriggerPtrOutputWithContext(ctx context.Context) RuleSequenceSpecTriggerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecTriggerOutput).ToRuleSequenceSpecTriggerPtrOutputWithContext(ctx)
+}
+
+// RuleSequenceSpecTriggerPtrInput is an input type that accepts RuleSequenceSpecTriggerArgs, RuleSequenceSpecTriggerPtr and RuleSequenceSpecTriggerPtrOutput values.
+// You can construct a concrete instance of `RuleSequenceSpecTriggerPtrInput` via:
+//
+//	        RuleSequenceSpecTriggerArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleSequenceSpecTriggerPtrInput interface {
+	pulumi.Input
+
+	ToRuleSequenceSpecTriggerPtrOutput() RuleSequenceSpecTriggerPtrOutput
+	ToRuleSequenceSpecTriggerPtrOutputWithContext(context.Context) RuleSequenceSpecTriggerPtrOutput
+}
+
+type ruleSequenceSpecTriggerPtrType RuleSequenceSpecTriggerArgs
+
+func RuleSequenceSpecTriggerPtr(v *RuleSequenceSpecTriggerArgs) RuleSequenceSpecTriggerPtrInput {
+	return (*ruleSequenceSpecTriggerPtrType)(v)
+}
+
+func (*ruleSequenceSpecTriggerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleSequenceSpecTrigger)(nil)).Elem()
+}
+
+func (i *ruleSequenceSpecTriggerPtrType) ToRuleSequenceSpecTriggerPtrOutput() RuleSequenceSpecTriggerPtrOutput {
+	return i.ToRuleSequenceSpecTriggerPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleSequenceSpecTriggerPtrType) ToRuleSequenceSpecTriggerPtrOutputWithContext(ctx context.Context) RuleSequenceSpecTriggerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleSequenceSpecTriggerPtrOutput)
+}
+
+type RuleSequenceSpecTriggerOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceSpecTriggerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleSequenceSpecTrigger)(nil)).Elem()
+}
+
+func (o RuleSequenceSpecTriggerOutput) ToRuleSequenceSpecTriggerOutput() RuleSequenceSpecTriggerOutput {
+	return o
+}
+
+func (o RuleSequenceSpecTriggerOutput) ToRuleSequenceSpecTriggerOutputWithContext(ctx context.Context) RuleSequenceSpecTriggerOutput {
+	return o
+}
+
+func (o RuleSequenceSpecTriggerOutput) ToRuleSequenceSpecTriggerPtrOutput() RuleSequenceSpecTriggerPtrOutput {
+	return o.ToRuleSequenceSpecTriggerPtrOutputWithContext(context.Background())
+}
+
+func (o RuleSequenceSpecTriggerOutput) ToRuleSequenceSpecTriggerPtrOutputWithContext(ctx context.Context) RuleSequenceSpecTriggerPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleSequenceSpecTrigger) *RuleSequenceSpecTrigger {
+		return &v
+	}).(RuleSequenceSpecTriggerPtrOutput)
+}
+
+// The interval at which the rules in the sequence should be evaluated.
+func (o RuleSequenceSpecTriggerOutput) Interval() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleSequenceSpecTrigger) string { return v.Interval }).(pulumi.StringOutput)
+}
+
+type RuleSequenceSpecTriggerPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleSequenceSpecTriggerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleSequenceSpecTrigger)(nil)).Elem()
+}
+
+func (o RuleSequenceSpecTriggerPtrOutput) ToRuleSequenceSpecTriggerPtrOutput() RuleSequenceSpecTriggerPtrOutput {
+	return o
+}
+
+func (o RuleSequenceSpecTriggerPtrOutput) ToRuleSequenceSpecTriggerPtrOutputWithContext(ctx context.Context) RuleSequenceSpecTriggerPtrOutput {
+	return o
+}
+
+func (o RuleSequenceSpecTriggerPtrOutput) Elem() RuleSequenceSpecTriggerOutput {
+	return o.ApplyT(func(v *RuleSequenceSpecTrigger) RuleSequenceSpecTrigger {
+		if v != nil {
+			return *v
+		}
+		var ret RuleSequenceSpecTrigger
+		return ret
+	}).(RuleSequenceSpecTriggerOutput)
+}
+
+// The interval at which the rules in the sequence should be evaluated.
+func (o RuleSequenceSpecTriggerPtrOutput) Interval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleSequenceSpecTrigger) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Interval
+	}).(pulumi.StringPtrOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentMetadataInput)(nil)).Elem(), AlertEnrichmentMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentMetadataPtrInput)(nil)).Elem(), AlertEnrichmentMetadataArgs{})
@@ -9705,6 +13417,25 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepExternalPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepExternalArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepSiftInput)(nil)).Elem(), AlertEnrichmentSpecStepSiftArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepSiftPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepSiftArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleMetadataInput)(nil)).Elem(), AlertRuleMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleMetadataPtrInput)(nil)).Elem(), AlertRuleMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleOptionsInput)(nil)).Elem(), AlertRuleOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleOptionsPtrInput)(nil)).Elem(), AlertRuleOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleSpecInput)(nil)).Elem(), AlertRuleSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleSpecPtrInput)(nil)).Elem(), AlertRuleSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleSpecExpressionsInput)(nil)).Elem(), AlertRuleSpecExpressionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleSpecExpressionsMapInput)(nil)).Elem(), AlertRuleSpecExpressionsMap{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleSpecExpressionsRelativeTimeRangeInput)(nil)).Elem(), AlertRuleSpecExpressionsRelativeTimeRangeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleSpecNotificationSettingsInput)(nil)).Elem(), AlertRuleSpecNotificationSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleSpecNotificationSettingsPtrInput)(nil)).Elem(), AlertRuleSpecNotificationSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleSpecNotificationSettingsNamedRoutingTreeInput)(nil)).Elem(), AlertRuleSpecNotificationSettingsNamedRoutingTreeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleSpecNotificationSettingsNamedRoutingTreePtrInput)(nil)).Elem(), AlertRuleSpecNotificationSettingsNamedRoutingTreeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleSpecNotificationSettingsSimplifiedRoutingInput)(nil)).Elem(), AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrInput)(nil)).Elem(), AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleSpecPanelRefInput)(nil)).Elem(), AlertRuleSpecPanelRefArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleSpecPanelRefPtrInput)(nil)).Elem(), AlertRuleSpecPanelRefArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleSpecTriggerInput)(nil)).Elem(), AlertRuleSpecTriggerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleSpecTriggerPtrInput)(nil)).Elem(), AlertRuleSpecTriggerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsInhibitionRuleMetadataInput)(nil)).Elem(), NotificationsInhibitionRuleMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsInhibitionRuleMetadataPtrInput)(nil)).Elem(), NotificationsInhibitionRuleMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsInhibitionRuleOptionsInput)(nil)).Elem(), NotificationsInhibitionRuleOptionsArgs{})
@@ -9743,6 +13474,29 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleMetadataInput)(nil)).Elem(), RecordingRuleMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleMetadataPtrInput)(nil)).Elem(), RecordingRuleMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleOptionsInput)(nil)).Elem(), RecordingRuleOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleOptionsPtrInput)(nil)).Elem(), RecordingRuleOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleSpecInput)(nil)).Elem(), RecordingRuleSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleSpecPtrInput)(nil)).Elem(), RecordingRuleSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleSpecExpressionsInput)(nil)).Elem(), RecordingRuleSpecExpressionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleSpecExpressionsMapInput)(nil)).Elem(), RecordingRuleSpecExpressionsMap{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleSpecExpressionsRelativeTimeRangeInput)(nil)).Elem(), RecordingRuleSpecExpressionsRelativeTimeRangeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleSpecTriggerInput)(nil)).Elem(), RecordingRuleSpecTriggerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleSpecTriggerPtrInput)(nil)).Elem(), RecordingRuleSpecTriggerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceMetadataInput)(nil)).Elem(), RuleSequenceMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceMetadataPtrInput)(nil)).Elem(), RuleSequenceMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceOptionsInput)(nil)).Elem(), RuleSequenceOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceOptionsPtrInput)(nil)).Elem(), RuleSequenceOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceSpecInput)(nil)).Elem(), RuleSequenceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceSpecPtrInput)(nil)).Elem(), RuleSequenceSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceSpecAlertRuleInput)(nil)).Elem(), RuleSequenceSpecAlertRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceSpecAlertRuleArrayInput)(nil)).Elem(), RuleSequenceSpecAlertRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceSpecRecordingRuleInput)(nil)).Elem(), RuleSequenceSpecRecordingRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceSpecRecordingRuleArrayInput)(nil)).Elem(), RuleSequenceSpecRecordingRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceSpecTriggerInput)(nil)).Elem(), RuleSequenceSpecTriggerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleSequenceSpecTriggerPtrInput)(nil)).Elem(), RuleSequenceSpecTriggerArgs{})
 	pulumi.RegisterOutputType(AlertEnrichmentMetadataOutput{})
 	pulumi.RegisterOutputType(AlertEnrichmentMetadataPtrOutput{})
 	pulumi.RegisterOutputType(AlertEnrichmentOptionsOutput{})
@@ -9827,6 +13581,25 @@ func init() {
 	pulumi.RegisterOutputType(AlertEnrichmentSpecStepExternalPtrOutput{})
 	pulumi.RegisterOutputType(AlertEnrichmentSpecStepSiftOutput{})
 	pulumi.RegisterOutputType(AlertEnrichmentSpecStepSiftPtrOutput{})
+	pulumi.RegisterOutputType(AlertRuleMetadataOutput{})
+	pulumi.RegisterOutputType(AlertRuleMetadataPtrOutput{})
+	pulumi.RegisterOutputType(AlertRuleOptionsOutput{})
+	pulumi.RegisterOutputType(AlertRuleOptionsPtrOutput{})
+	pulumi.RegisterOutputType(AlertRuleSpecOutput{})
+	pulumi.RegisterOutputType(AlertRuleSpecPtrOutput{})
+	pulumi.RegisterOutputType(AlertRuleSpecExpressionsOutput{})
+	pulumi.RegisterOutputType(AlertRuleSpecExpressionsMapOutput{})
+	pulumi.RegisterOutputType(AlertRuleSpecExpressionsRelativeTimeRangeOutput{})
+	pulumi.RegisterOutputType(AlertRuleSpecNotificationSettingsOutput{})
+	pulumi.RegisterOutputType(AlertRuleSpecNotificationSettingsPtrOutput{})
+	pulumi.RegisterOutputType(AlertRuleSpecNotificationSettingsNamedRoutingTreeOutput{})
+	pulumi.RegisterOutputType(AlertRuleSpecNotificationSettingsNamedRoutingTreePtrOutput{})
+	pulumi.RegisterOutputType(AlertRuleSpecNotificationSettingsSimplifiedRoutingOutput{})
+	pulumi.RegisterOutputType(AlertRuleSpecNotificationSettingsSimplifiedRoutingPtrOutput{})
+	pulumi.RegisterOutputType(AlertRuleSpecPanelRefOutput{})
+	pulumi.RegisterOutputType(AlertRuleSpecPanelRefPtrOutput{})
+	pulumi.RegisterOutputType(AlertRuleSpecTriggerOutput{})
+	pulumi.RegisterOutputType(AlertRuleSpecTriggerPtrOutput{})
 	pulumi.RegisterOutputType(NotificationsInhibitionRuleMetadataOutput{})
 	pulumi.RegisterOutputType(NotificationsInhibitionRuleMetadataPtrOutput{})
 	pulumi.RegisterOutputType(NotificationsInhibitionRuleOptionsOutput{})
@@ -9865,4 +13638,27 @@ func init() {
 	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput{})
 	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput{})
 	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput{})
+	pulumi.RegisterOutputType(RecordingRuleMetadataOutput{})
+	pulumi.RegisterOutputType(RecordingRuleMetadataPtrOutput{})
+	pulumi.RegisterOutputType(RecordingRuleOptionsOutput{})
+	pulumi.RegisterOutputType(RecordingRuleOptionsPtrOutput{})
+	pulumi.RegisterOutputType(RecordingRuleSpecOutput{})
+	pulumi.RegisterOutputType(RecordingRuleSpecPtrOutput{})
+	pulumi.RegisterOutputType(RecordingRuleSpecExpressionsOutput{})
+	pulumi.RegisterOutputType(RecordingRuleSpecExpressionsMapOutput{})
+	pulumi.RegisterOutputType(RecordingRuleSpecExpressionsRelativeTimeRangeOutput{})
+	pulumi.RegisterOutputType(RecordingRuleSpecTriggerOutput{})
+	pulumi.RegisterOutputType(RecordingRuleSpecTriggerPtrOutput{})
+	pulumi.RegisterOutputType(RuleSequenceMetadataOutput{})
+	pulumi.RegisterOutputType(RuleSequenceMetadataPtrOutput{})
+	pulumi.RegisterOutputType(RuleSequenceOptionsOutput{})
+	pulumi.RegisterOutputType(RuleSequenceOptionsPtrOutput{})
+	pulumi.RegisterOutputType(RuleSequenceSpecOutput{})
+	pulumi.RegisterOutputType(RuleSequenceSpecPtrOutput{})
+	pulumi.RegisterOutputType(RuleSequenceSpecAlertRuleOutput{})
+	pulumi.RegisterOutputType(RuleSequenceSpecAlertRuleArrayOutput{})
+	pulumi.RegisterOutputType(RuleSequenceSpecRecordingRuleOutput{})
+	pulumi.RegisterOutputType(RuleSequenceSpecRecordingRuleArrayOutput{})
+	pulumi.RegisterOutputType(RuleSequenceSpecTriggerOutput{})
+	pulumi.RegisterOutputType(RuleSequenceSpecTriggerPtrOutput{})
 }

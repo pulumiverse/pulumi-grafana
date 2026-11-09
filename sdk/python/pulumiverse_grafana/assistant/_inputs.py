@@ -15,11 +15,330 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'AutomationNotificationsArgs',
+    'AutomationNotificationsArgsDict',
+    'AutomationNotificationsEmailArgs',
+    'AutomationNotificationsEmailArgsDict',
+    'AutomationNotificationsSlackArgs',
+    'AutomationNotificationsSlackArgsDict',
+    'AutomationNotificationsSlackTargetArgs',
+    'AutomationNotificationsSlackTargetArgsDict',
+    'AutomationTriggersArgs',
+    'AutomationTriggersArgsDict',
     'McpServerConfigurationArgs',
     'McpServerConfigurationArgsDict',
+    'McpServerGithubAppArgs',
+    'McpServerGithubAppArgsDict',
     'SkillAllowedToolArgs',
     'SkillAllowedToolArgsDict',
 ]
+
+class AutomationNotificationsArgsDict(TypedDict):
+    email: NotRequired[pulumi.Input['AutomationNotificationsEmailArgsDict']]
+    """
+    Email delivery. Email notifications must be enabled for the stack.
+    """
+    slack: NotRequired[pulumi.Input['AutomationNotificationsSlackArgsDict']]
+    """
+    Slack delivery. Requires the Slack workspace to already be connected to the stack, which is a one-time manual step in Assistant settings.
+    """
+
+@pulumi.input_type
+class AutomationNotificationsArgs:
+    def __init__(__self__, *,
+                 email: Optional[pulumi.Input['AutomationNotificationsEmailArgs']] = None,
+                 slack: Optional[pulumi.Input['AutomationNotificationsSlackArgs']] = None):
+        """
+        :param pulumi.Input['AutomationNotificationsEmailArgs'] email: Email delivery. Email notifications must be enabled for the stack.
+        :param pulumi.Input['AutomationNotificationsSlackArgs'] slack: Slack delivery. Requires the Slack workspace to already be connected to the stack, which is a one-time manual step in Assistant settings.
+        """
+        if email is not None:
+            pulumi.set(__self__, "email", email)
+        if slack is not None:
+            pulumi.set(__self__, "slack", slack)
+
+    @_builtins.property
+    @pulumi.getter
+    def email(self) -> Optional[pulumi.Input['AutomationNotificationsEmailArgs']]:
+        """
+        Email delivery. Email notifications must be enabled for the stack.
+        """
+        return pulumi.get(self, "email")
+
+    @email.setter
+    def email(self, value: Optional[pulumi.Input['AutomationNotificationsEmailArgs']]):
+        pulumi.set(self, "email", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def slack(self) -> Optional[pulumi.Input['AutomationNotificationsSlackArgs']]:
+        """
+        Slack delivery. Requires the Slack workspace to already be connected to the stack, which is a one-time manual step in Assistant settings.
+        """
+        return pulumi.get(self, "slack")
+
+    @slack.setter
+    def slack(self, value: Optional[pulumi.Input['AutomationNotificationsSlackArgs']]):
+        pulumi.set(self, "slack", value)
+
+
+class AutomationNotificationsEmailArgsDict(TypedDict):
+    addresses: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Recipient email addresses, up to 25.
+    """
+    enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether email notifications are sent.
+    """
+    notify_ons: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Run outcomes that trigger a notification. Defaults to ["completed", "failed"]. Any of `completed`, `failed`, `needs_approval`. Notifications still require enabled = true.
+    """
+
+@pulumi.input_type
+class AutomationNotificationsEmailArgs:
+    def __init__(__self__, *,
+                 addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 notify_ons: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] addresses: Recipient email addresses, up to 25.
+        :param pulumi.Input[_builtins.bool] enabled: Whether email notifications are sent.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] notify_ons: Run outcomes that trigger a notification. Defaults to ["completed", "failed"]. Any of `completed`, `failed`, `needs_approval`. Notifications still require enabled = true.
+        """
+        if addresses is not None:
+            pulumi.set(__self__, "addresses", addresses)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if notify_ons is not None:
+            pulumi.set(__self__, "notify_ons", notify_ons)
+
+    @_builtins.property
+    @pulumi.getter
+    def addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Recipient email addresses, up to 25.
+        """
+        return pulumi.get(self, "addresses")
+
+    @addresses.setter
+    def addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "addresses", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether email notifications are sent.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="notifyOns")
+    def notify_ons(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Run outcomes that trigger a notification. Defaults to ["completed", "failed"]. Any of `completed`, `failed`, `needs_approval`. Notifications still require enabled = true.
+        """
+        return pulumi.get(self, "notify_ons")
+
+    @notify_ons.setter
+    def notify_ons(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "notify_ons", value)
+
+
+class AutomationNotificationsSlackArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether Slack notifications are sent.
+    """
+    notify_ons: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Run outcomes that trigger a notification. Defaults to ["completed", "failed"]. Any of `completed`, `failed`, `needs_approval`. Notifications still require enabled = true.
+    """
+    target: NotRequired[pulumi.Input['AutomationNotificationsSlackTargetArgsDict']]
+    """
+    Where the notification is posted.
+    """
+
+@pulumi.input_type
+class AutomationNotificationsSlackArgs:
+    def __init__(__self__, *,
+                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 notify_ons: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 target: Optional[pulumi.Input['AutomationNotificationsSlackTargetArgs']] = None):
+        """
+        :param pulumi.Input[_builtins.bool] enabled: Whether Slack notifications are sent.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] notify_ons: Run outcomes that trigger a notification. Defaults to ["completed", "failed"]. Any of `completed`, `failed`, `needs_approval`. Notifications still require enabled = true.
+        :param pulumi.Input['AutomationNotificationsSlackTargetArgs'] target: Where the notification is posted.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if notify_ons is not None:
+            pulumi.set(__self__, "notify_ons", notify_ons)
+        if target is not None:
+            pulumi.set(__self__, "target", target)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether Slack notifications are sent.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="notifyOns")
+    def notify_ons(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Run outcomes that trigger a notification. Defaults to ["completed", "failed"]. Any of `completed`, `failed`, `needs_approval`. Notifications still require enabled = true.
+        """
+        return pulumi.get(self, "notify_ons")
+
+    @notify_ons.setter
+    def notify_ons(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "notify_ons", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def target(self) -> Optional[pulumi.Input['AutomationNotificationsSlackTargetArgs']]:
+        """
+        Where the notification is posted.
+        """
+        return pulumi.get(self, "target")
+
+    @target.setter
+    def target(self, value: Optional[pulumi.Input['AutomationNotificationsSlackTargetArgs']]):
+        pulumi.set(self, "target", value)
+
+
+class AutomationNotificationsSlackTargetArgsDict(TypedDict):
+    channel_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Slack channel ID. Required for a `channel` target.
+    """
+    team_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Slack workspace (team) ID. Omit to let Assistant resolve it; automatically resolved IDs are not managed unless configured.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Target type. One of `channel` or `dm`. Required when a `target` block is present.
+    """
+    user_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Slack user ID for a `dm` target. Omit to use the creator’s verified Slack mapping.
+    """
+
+@pulumi.input_type
+class AutomationNotificationsSlackTargetArgs:
+    def __init__(__self__, *,
+                 channel_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 team_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] channel_id: Slack channel ID. Required for a `channel` target.
+        :param pulumi.Input[_builtins.str] team_id: Slack workspace (team) ID. Omit to let Assistant resolve it; automatically resolved IDs are not managed unless configured.
+        :param pulumi.Input[_builtins.str] type: Target type. One of `channel` or `dm`. Required when a `target` block is present.
+        :param pulumi.Input[_builtins.str] user_id: Slack user ID for a `dm` target. Omit to use the creator’s verified Slack mapping.
+        """
+        if channel_id is not None:
+            pulumi.set(__self__, "channel_id", channel_id)
+        if team_id is not None:
+            pulumi.set(__self__, "team_id", team_id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
+
+    @_builtins.property
+    @pulumi.getter(name="channelId")
+    def channel_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Slack channel ID. Required for a `channel` target.
+        """
+        return pulumi.get(self, "channel_id")
+
+    @channel_id.setter
+    def channel_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "channel_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="teamId")
+    def team_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Slack workspace (team) ID. Omit to let Assistant resolve it; automatically resolved IDs are not managed unless configured.
+        """
+        return pulumi.get(self, "team_id")
+
+    @team_id.setter
+    def team_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "team_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Target type. One of `channel` or `dm`. Required when a `target` block is present.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Slack user ID for a `dm` target. Omit to use the creator’s verified Slack mapping.
+        """
+        return pulumi.get(self, "user_id")
+
+    @user_id.setter
+    def user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_id", value)
+
+
+class AutomationTriggersArgsDict(TypedDict):
+    config: pulumi.Input[_builtins.str]
+    type: pulumi.Input[_builtins.str]
+
+@pulumi.input_type
+class AutomationTriggersArgs:
+    def __init__(__self__, *,
+                 config: pulumi.Input[_builtins.str],
+                 type: pulumi.Input[_builtins.str]):
+        pulumi.set(__self__, "config", config)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def config(self) -> pulumi.Input[_builtins.str]:
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "config", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
 
 class McpServerConfigurationArgsDict(TypedDict):
     builtin_id: NotRequired[pulumi.Input[_builtins.str]]
@@ -108,6 +427,98 @@ class McpServerConfigurationArgs:
     @url.setter
     def url(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "url", value)
+
+
+class McpServerGithubAppArgsDict(TypedDict):
+    app_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The GitHub App ID.
+    """
+    installation_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The ID of the GitHub App installation on your organization.
+    """
+    private_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    The GitHub App private key in PEM format. Terraform sends it to the API but never stores it in state.
+    """
+    private_key_hash: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    SHA-256 hash of the private key Terraform last sent, used to detect key changes in configuration. A key changed outside Terraform is not detected, because the API never returns the key.
+    """
+
+@pulumi.input_type
+class McpServerGithubAppArgs:
+    def __init__(__self__, *,
+                 app_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 installation_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_hash: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.int] app_id: The GitHub App ID.
+        :param pulumi.Input[_builtins.int] installation_id: The ID of the GitHub App installation on your organization.
+        :param pulumi.Input[_builtins.str] private_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The GitHub App private key in PEM format. Terraform sends it to the API but never stores it in state.
+        :param pulumi.Input[_builtins.str] private_key_hash: SHA-256 hash of the private key Terraform last sent, used to detect key changes in configuration. A key changed outside Terraform is not detected, because the API never returns the key.
+        """
+        if app_id is not None:
+            pulumi.set(__self__, "app_id", app_id)
+        if installation_id is not None:
+            pulumi.set(__self__, "installation_id", installation_id)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_hash is not None:
+            pulumi.set(__self__, "private_key_hash", private_key_hash)
+
+    @_builtins.property
+    @pulumi.getter(name="appId")
+    def app_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The GitHub App ID.
+        """
+        return pulumi.get(self, "app_id")
+
+    @app_id.setter
+    def app_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "app_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="installationId")
+    def installation_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The ID of the GitHub App installation on your organization.
+        """
+        return pulumi.get(self, "installation_id")
+
+    @installation_id.setter
+    def installation_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "installation_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The GitHub App private key in PEM format. Terraform sends it to the API but never stores it in state.
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyHash")
+    def private_key_hash(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        SHA-256 hash of the private key Terraform last sent, used to detect key changes in configuration. A key changed outside Terraform is not detected, because the API never returns the key.
+        """
+        return pulumi.get(self, "private_key_hash")
+
+    @private_key_hash.setter
+    def private_key_hash(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key_hash", value)
 
 
 class SkillAllowedToolArgsDict(TypedDict):
