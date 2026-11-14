@@ -302,6 +302,38 @@
                     }
                 }
             },
+            "grafana_apps_notifications_timeinterval_v1beta1": {
+                "current": "grafana:index/appsNotificationsTimeintervalV1beta1:AppsNotificationsTimeintervalV1beta1",
+                "majorVersion": 2,
+                "fields": {
+                    "spec": {
+                        "fields": {
+                            "time_intervals": {
+                                "maxItemsOne": false,
+                                "elem": {
+                                    "fields": {
+                                        "days_of_month": {
+                                            "maxItemsOne": false
+                                        },
+                                        "months": {
+                                            "maxItemsOne": false
+                                        },
+                                        "times": {
+                                            "maxItemsOne": false
+                                        },
+                                        "weekdays": {
+                                            "maxItemsOne": false
+                                        },
+                                        "years": {
+                                            "maxItemsOne": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "grafana_apps_playlist_playlist_v0alpha1": {
                 "current": "grafana:apps/v0alpha1/playlist:Playlist",
                 "past": [
@@ -1272,6 +1304,15 @@
                 "majorVersion": 2,
                 "fields": {
                     "allowed_origins": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "grafana_incident_custom_field": {
+                "current": "grafana:incident/customField:CustomField",
+                "majorVersion": 2,
+                "fields": {
+                    "select_option": {
                         "maxItemsOne": false
                     }
                 }
@@ -2654,7 +2695,12 @@
             },
             "grafana_oncall_user": {
                 "current": "grafana:onCall/getUser:getUser",
-                "majorVersion": 2
+                "majorVersion": 2,
+                "fields": {
+                    "teams": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "grafana_oncall_user_group": {
                 "current": "grafana:onCall/getUserGroup:getUserGroup",
@@ -2665,7 +2711,14 @@
                 "majorVersion": 2,
                 "fields": {
                     "users": {
-                        "maxItemsOne": false
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "teams": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -2995,8 +3048,10 @@
             "grafana:fleetManagement/collector:Collector": 1,
             "grafana:fleetManagement/pipeline:Pipeline": 1,
             "grafana:frontendObservability/app:App": 1,
+            "grafana:incident/customField:CustomField": 1,
             "grafana:incident/role:Role": 1,
             "grafana:incident/severity:Severity": 1,
+            "grafana:index/appsNotificationsTimeintervalV1beta1:AppsNotificationsTimeintervalV1beta1": 1,
             "grafana:k6/installation:Installation": 0,
             "grafana:k6/loadTest:LoadTest": 1,
             "grafana:k6/project:Project": 1,
