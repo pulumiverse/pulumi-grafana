@@ -17,11 +17,7 @@ import * as utilities from "../utilities";
  *
  * // Basic recording rule for latency metrics
  * const latencyMetrics = new grafana.assert.PromRuleFile("latency_metrics", {
- *     name: "custom-latency-metrics",
- *     active: true,
  *     groups: [{
- *         name: "latency_recording_rules",
- *         interval: "30s",
  *         rules: [
  *             {
  *                 record: "custom:latency:p95",
@@ -40,15 +36,15 @@ import * as utilities from "../utilities";
  *                 },
  *             },
  *         ],
+ *         name: "latency_recording_rules",
+ *         interval: "30s",
  *     }],
+ *     name: "custom-latency-metrics",
+ *     active: true,
  * });
  * // Alert rules for high latency
  * const latencyAlerts = new grafana.assert.PromRuleFile("latency_alerts", {
- *     name: "custom-latency-alerts",
- *     active: true,
  *     groups: [{
- *         name: "latency_alerting",
- *         interval: "30s",
  *         rules: [
  *             {
  *                 alert: "HighLatency",
@@ -77,16 +73,16 @@ import * as utilities from "../utilities";
  *                 },
  *             },
  *         ],
+ *         name: "latency_alerting",
+ *         interval: "30s",
  *     }],
+ *     name: "custom-latency-alerts",
+ *     active: true,
  * });
  * // Comprehensive monitoring rules with multiple groups
  * const comprehensiveMonitoring = new grafana.assert.PromRuleFile("comprehensive_monitoring", {
- *     name: "custom-comprehensive-monitoring",
- *     active: true,
  *     groups: [
  *         {
- *             name: "latency_monitoring",
- *             interval: "30s",
  *             rules: [
  *                 {
  *                     record: "custom:latency:p99",
@@ -107,10 +103,10 @@ import * as utilities from "../utilities";
  *                     },
  *                 },
  *             ],
+ *             name: "latency_monitoring",
+ *             interval: "30s",
  *         },
  *         {
- *             name: "error_monitoring",
- *             interval: "1m",
  *             rules: [
  *                 {
  *                     record: "custom:error:rate",
@@ -133,10 +129,10 @@ import * as utilities from "../utilities";
  *                     },
  *                 },
  *             ],
+ *             name: "error_monitoring",
+ *             interval: "1m",
  *         },
  *         {
- *             name: "throughput_monitoring",
- *             interval: "1m",
  *             rules: [
  *                 {
  *                     record: "custom:throughput:total",
@@ -159,16 +155,16 @@ import * as utilities from "../utilities";
  *                     },
  *                 },
  *             ],
+ *             name: "throughput_monitoring",
+ *             interval: "1m",
  *         },
  *     ],
+ *     name: "custom-comprehensive-monitoring",
+ *     active: true,
  * });
  * // Rules with conditional enablement
  * const conditionalRules = new grafana.assert.PromRuleFile("conditional_rules", {
- *     name: "custom-conditional-rules",
- *     active: true,
  *     groups: [{
- *         name: "environment_specific_rules",
- *         interval: "30s",
  *         rules: [
  *             {
  *                 alert: "TestAlert",
@@ -194,15 +190,15 @@ import * as utilities from "../utilities";
  *                 },
  *             },
  *         ],
+ *         name: "environment_specific_rules",
+ *         interval: "30s",
  *     }],
+ *     name: "custom-conditional-rules",
+ *     active: true,
  * });
  * // Inactive rules (for staging/testing)
  * const stagingRules = new grafana.assert.PromRuleFile("staging_rules", {
- *     name: "custom-staging-rules",
- *     active: false,
  *     groups: [{
- *         name: "staging_tests",
- *         interval: "1m",
  *         rules: [{
  *             record: "staging:test:metric",
  *             expr: "up",
@@ -210,15 +206,15 @@ import * as utilities from "../utilities";
  *                 environment: "staging",
  *             },
  *         }],
+ *         name: "staging_tests",
+ *         interval: "1m",
  *     }],
+ *     name: "custom-staging-rules",
+ *     active: false,
  * });
  * // SLO-based alerting
  * const sloAlerts = new grafana.assert.PromRuleFile("slo_alerts", {
- *     name: "custom-slo-alerts",
- *     active: true,
  *     groups: [{
- *         name: "slo_monitoring",
- *         interval: "1m",
  *         rules: [
  *             {
  *                 record: "custom:slo:availability",
@@ -242,7 +238,11 @@ import * as utilities from "../utilities";
  *                 },
  *             },
  *         ],
+ *         name: "slo_monitoring",
+ *         interval: "1m",
  *     }],
+ *     name: "custom-slo-alerts",
+ *     active: true,
  * });
  * ```
  *

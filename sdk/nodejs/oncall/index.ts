@@ -60,7 +60,7 @@ export const getUserGroup: typeof import("./getUserGroup").getUserGroup = null a
 export const getUserGroupOutput: typeof import("./getUserGroup").getUserGroupOutput = null as any;
 utilities.lazyLoad(exports, ["getUserGroup","getUserGroupOutput"], () => require("./getUserGroup"));
 
-export { GetUsersResult } from "./getUsers";
+export { GetUsersArgs, GetUsersResult, GetUsersOutputArgs } from "./getUsers";
 export const getUsers: typeof import("./getUsers").getUsers = null as any;
 export const getUsersOutput: typeof import("./getUsers").getUsersOutput = null as any;
 utilities.lazyLoad(exports, ["getUsers","getUsersOutput"], () => require("./getUsers"));

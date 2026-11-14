@@ -18,12 +18,12 @@ import * as utilities from "../utilities";
  * const config = new pulumi.Config();
  * const mcpToken = config.require("mcpToken");
  * const example = new grafana.assistant.McpServer("example", {
- *     name: "Example MCP server",
- *     scope: "tenant",
- *     applications: ["assistant"],
  *     configuration: {
  *         url: "https://example.com/mcp/",
  *     },
+ *     name: "Example MCP server",
+ *     scope: "tenant",
+ *     applications: ["assistant"],
  *     customHeaders: {
  *         Authorization: `Bearer ${mcpToken}`,
  *     },
@@ -31,9 +31,6 @@ import * as utilities from "../utilities";
  * const githubAppPrivateKey = config.require("githubAppPrivateKey");
  * // Authenticate a GitHub MCP server with a GitHub App installation instead of a personal access token.
  * const github = new grafana.assistant.McpServer("github", {
- *     name: "GitHub",
- *     scope: "tenant",
- *     applications: ["assistant"],
  *     configuration: {
  *         url: "https://api.githubcopilot.com/mcp/",
  *     },
@@ -42,6 +39,9 @@ import * as utilities from "../utilities";
  *         installationId: 12345678,
  *         privateKey: githubAppPrivateKey,
  *     },
+ *     name: "GitHub",
+ *     scope: "tenant",
+ *     applications: ["assistant"],
  * });
  * ```
  *

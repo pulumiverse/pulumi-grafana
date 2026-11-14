@@ -13,139 +13,75 @@ namespace Pulumiverse.Grafana.OnCall
     public static class GetUsers
     {
         /// <summary>
-        /// Lists every user in Grafana OnCall. Each plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `grafana.onCall.getUser`.
+        /// Lists Grafana OnCall users. Without `TeamId`, every plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `grafana.onCall.getUser`.
         /// 
         /// Each user's `Username` is their Grafana login, which can differ from their email address. To refer to users by email, build a map from `Email` to `Id`, as shown in the example.
         /// 
+        /// Team membership is synced from Grafana and the sync is not immediate, so a user added to a team moments earlier can be missing from the first plan.
+        /// 
+        /// Users are returned in OnCall's own order, not by name. A rotation built from team membership therefore re-orders when the team changes: keep the order in the configuration and use membership to add and remove people, as shown in the example.
+        /// 
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumiverse.Grafana;
-        /// using Std = Pulumi.Std;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var all = Grafana.OnCall.GetUsers.Invoke();
-        /// 
-        ///     var oncallUserIdsByEmail = Output.Tuple(all, Std.Lower.Invoke(new()
-        ///     {
-        ///         Input = user.Email,
-        ///     })).Apply(values =&gt;
-        ///     {
-        ///         var all = values.Item1;
-        ///         var invoke = values.Item2;
-        ///         return .ToDictionary(item =&gt; {
-        ///             return invoke.Result;
-        ///         }, item =&gt; {
-        ///             var user = item.Value;
-        ///             return user.Id;
-        ///         });
-        ///     });
-        /// 
-        ///     return new Dictionary&lt;string, object?&gt;
-        ///     {
-        ///         ["alfaOncallUserId"] = oncallUserIdsByEmail.Alfa_example_com,
-        ///     };
-        /// });
-        /// ```
         /// </summary>
-        public static Task<GetUsersResult> InvokeAsync(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetUsersResult>("grafana:onCall/getUsers:getUsers", InvokeArgs.Empty, options.WithDefaults());
+        public static Task<GetUsersResult> InvokeAsync(GetUsersArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetUsersResult>("grafana:onCall/getUsers:getUsers", args ?? new GetUsersArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Lists every user in Grafana OnCall. Each plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `grafana.onCall.getUser`.
+        /// Lists Grafana OnCall users. Without `TeamId`, every plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `grafana.onCall.getUser`.
         /// 
         /// Each user's `Username` is their Grafana login, which can differ from their email address. To refer to users by email, build a map from `Email` to `Id`, as shown in the example.
         /// 
+        /// Team membership is synced from Grafana and the sync is not immediate, so a user added to a team moments earlier can be missing from the first plan.
+        /// 
+        /// Users are returned in OnCall's own order, not by name. A rotation built from team membership therefore re-orders when the team changes: keep the order in the configuration and use membership to add and remove people, as shown in the example.
+        /// 
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumiverse.Grafana;
-        /// using Std = Pulumi.Std;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var all = Grafana.OnCall.GetUsers.Invoke();
-        /// 
-        ///     var oncallUserIdsByEmail = Output.Tuple(all, Std.Lower.Invoke(new()
-        ///     {
-        ///         Input = user.Email,
-        ///     })).Apply(values =&gt;
-        ///     {
-        ///         var all = values.Item1;
-        ///         var invoke = values.Item2;
-        ///         return .ToDictionary(item =&gt; {
-        ///             return invoke.Result;
-        ///         }, item =&gt; {
-        ///             var user = item.Value;
-        ///             return user.Id;
-        ///         });
-        ///     });
-        /// 
-        ///     return new Dictionary&lt;string, object?&gt;
-        ///     {
-        ///         ["alfaOncallUserId"] = oncallUserIdsByEmail.Alfa_example_com,
-        ///     };
-        /// });
-        /// ```
         /// </summary>
-        public static Output<GetUsersResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetUsersResult>("grafana:onCall/getUsers:getUsers", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetUsersResult> Invoke(GetUsersInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetUsersResult>("grafana:onCall/getUsers:getUsers", args ?? new GetUsersInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Lists every user in Grafana OnCall. Each plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `grafana.onCall.getUser`.
+        /// Lists Grafana OnCall users. Without `TeamId`, every plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `grafana.onCall.getUser`.
         /// 
         /// Each user's `Username` is their Grafana login, which can differ from their email address. To refer to users by email, build a map from `Email` to `Id`, as shown in the example.
         /// 
+        /// Team membership is synced from Grafana and the sync is not immediate, so a user added to a team moments earlier can be missing from the first plan.
+        /// 
+        /// Users are returned in OnCall's own order, not by name. A rotation built from team membership therefore re-orders when the team changes: keep the order in the configuration and use membership to add and remove people, as shown in the example.
+        /// 
         /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumiverse.Grafana;
-        /// using Std = Pulumi.Std;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var all = Grafana.OnCall.GetUsers.Invoke();
-        /// 
-        ///     var oncallUserIdsByEmail = Output.Tuple(all, Std.Lower.Invoke(new()
-        ///     {
-        ///         Input = user.Email,
-        ///     })).Apply(values =&gt;
-        ///     {
-        ///         var all = values.Item1;
-        ///         var invoke = values.Item2;
-        ///         return .ToDictionary(item =&gt; {
-        ///             return invoke.Result;
-        ///         }, item =&gt; {
-        ///             var user = item.Value;
-        ///             return user.Id;
-        ///         });
-        ///     });
-        /// 
-        ///     return new Dictionary&lt;string, object?&gt;
-        ///     {
-        ///         ["alfaOncallUserId"] = oncallUserIdsByEmail.Alfa_example_com,
-        ///     };
-        /// });
-        /// ```
         /// </summary>
-        public static Output<GetUsersResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<GetUsersResult>("grafana:onCall/getUsers:getUsers", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetUsersResult> Invoke(GetUsersInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetUsersResult>("grafana:onCall/getUsers:getUsers", args ?? new GetUsersInvokeArgs(), options.WithDefaults());
+    }
+
+
+    public sealed class GetUsersArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Return only the members of this team, using the ID from the `grafana.onCall.getTeam` data source. A team ID that does not exist returns no users instead of an error, so reference the data source rather than writing an ID by hand. Unlike `grafana.onCall.Integration`, this attribute does not accept `"null"`: there is no filter for users who belong to no team.
+        /// </summary>
+        [Input("teamId")]
+        public string? TeamId { get; set; }
+
+        public GetUsersArgs()
+        {
+        }
+        public static new GetUsersArgs Empty => new GetUsersArgs();
+    }
+
+    public sealed class GetUsersInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Return only the members of this team, using the ID from the `grafana.onCall.getTeam` data source. A team ID that does not exist returns no users instead of an error, so reference the data source rather than writing an ID by hand. Unlike `grafana.onCall.Integration`, this attribute does not accept `"null"`: there is no filter for users who belong to no team.
+        /// </summary>
+        [Input("teamId")]
+        public Input<string>? TeamId { get; set; }
+
+        public GetUsersInvokeArgs()
+        {
+        }
+        public static new GetUsersInvokeArgs Empty => new GetUsersInvokeArgs();
     }
 
 
@@ -157,7 +93,11 @@ namespace Pulumiverse.Grafana.OnCall
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Every OnCall user, with their ID, username (the Grafana login), email, and role.
+        /// Return only the members of this team, using the ID from the `grafana.onCall.getTeam` data source. A team ID that does not exist returns no users instead of an error, so reference the data source rather than writing an ID by hand. Unlike `grafana.onCall.Integration`, this attribute does not accept `"null"`: there is no filter for users who belong to no team.
+        /// </summary>
+        public readonly string? TeamId;
+        /// <summary>
+        /// Every matching OnCall user, with their ID, username (the Grafana login), email, and role. `Teams` holds the IDs of the teams the user belongs to, which are the IDs the `grafana.onCall.getTeam` data source returns.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetUsersUserResult> Users;
 
@@ -165,9 +105,12 @@ namespace Pulumiverse.Grafana.OnCall
         private GetUsersResult(
             string id,
 
+            string? teamId,
+
             ImmutableArray<Outputs.GetUsersUserResult> users)
         {
             Id = id;
+            TeamId = teamId;
             Users = users;
         }
     }

@@ -27,14 +27,14 @@ import * as utilities from "../utilities";
  *     message: "inital commit.",
  * });
  * const testReport = new grafana.enterprise.Report("test", {
- *     name: "my report",
- *     recipients: ["some@email.com"],
- *     dashboards: [{
- *         uid: test.uid,
- *     }],
  *     schedule: {
  *         frequency: "hourly",
  *     },
+ *     dashboards: [{
+ *         uid: test.uid,
+ *     }],
+ *     name: "my report",
+ *     recipients: ["some@email.com"],
  * });
  * ```
  *

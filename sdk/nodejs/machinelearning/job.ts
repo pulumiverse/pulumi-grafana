@@ -154,12 +154,12 @@ import * as utilities from "../utilities";
  *     }),
  * });
  * const testHoliday = new grafana.machinelearning.Holiday("test_holiday", {
- *     name: "Test Holiday",
  *     customPeriods: [{
  *         name: "First of January",
  *         startTime: "2023-01-01T00:00:00Z",
  *         endTime: "2023-01-02T00:00:00Z",
  *     }],
+ *     name: "Test Holiday",
  * });
  * const testJob = new grafana.machinelearning.Job("test_job", {
  *     name: "Test Job",

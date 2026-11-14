@@ -506,6 +506,19 @@ class Automation(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         daily_incident_report = grafana.assistant.Automation("daily_incident_report",
+            notifications={
+                "slack": {
+                    "target": {
+                        "type": "channel",
+                        "channel_id": "C0123456789",
+                    },
+                    "enabled": True,
+                    "notify_ons": [
+                        "completed",
+                        "failed",
+                    ],
+                },
+            },
             name="Daily ecommerce incident report",
             description="Every morning, summarize the alerts that fired for the ecommerce app.",
             prompt=\"\"\"Produce a daily report on the incidents for the main alerts that fired in
@@ -523,20 +536,7 @@ class Automation(pulumi.CustomResource):
                 "managed_by": "terraform",
             },
             schedule_cron="0 9 * * *",
-            schedule_timezone="Europe/Paris",
-            notifications={
-                "slack": {
-                    "enabled": True,
-                    "notify_ons": [
-                        "completed",
-                        "failed",
-                    ],
-                    "target": {
-                        "type": "channel",
-                        "channel_id": "C0123456789",
-                    },
-                },
-            })
+            schedule_timezone="Europe/Paris")
         # Event-only automation. Replace the watcher UUID with an existing Watcher.
         # The backend must enable Watcher-to-Automation triggers. No events run while disabled.
         on_critical_finding = grafana.assistant.Automation("on_critical_finding",
@@ -608,6 +608,19 @@ class Automation(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         daily_incident_report = grafana.assistant.Automation("daily_incident_report",
+            notifications={
+                "slack": {
+                    "target": {
+                        "type": "channel",
+                        "channel_id": "C0123456789",
+                    },
+                    "enabled": True,
+                    "notify_ons": [
+                        "completed",
+                        "failed",
+                    ],
+                },
+            },
             name="Daily ecommerce incident report",
             description="Every morning, summarize the alerts that fired for the ecommerce app.",
             prompt=\"\"\"Produce a daily report on the incidents for the main alerts that fired in
@@ -625,20 +638,7 @@ class Automation(pulumi.CustomResource):
                 "managed_by": "terraform",
             },
             schedule_cron="0 9 * * *",
-            schedule_timezone="Europe/Paris",
-            notifications={
-                "slack": {
-                    "enabled": True,
-                    "notify_ons": [
-                        "completed",
-                        "failed",
-                    ],
-                    "target": {
-                        "type": "channel",
-                        "channel_id": "C0123456789",
-                    },
-                },
-            })
+            schedule_timezone="Europe/Paris")
         # Event-only automation. Replace the watcher UUID with an existing Watcher.
         # The backend must enable Watcher-to-Automation triggers. No events run while disabled.
         on_critical_finding = grafana.assistant.Automation("on_critical_finding",

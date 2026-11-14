@@ -40,11 +40,18 @@ namespace Pulumiverse.Grafana.Alerting.V1Beta1
     ///         },
     ///         Spec = new Grafana.Alerting.V1Beta1.Inputs.AlertRuleSpecArgs
     ///         {
-    ///             Title = "Example Alert Rule",
     ///             Trigger = new Grafana.Alerting.V1Beta1.Inputs.AlertRuleSpecTriggerArgs
     ///             {
     ///                 Interval = "1m",
     ///             },
+    ///             NotificationSettings = new Grafana.Alerting.V1Beta1.Inputs.AlertRuleSpecNotificationSettingsArgs
+    ///             {
+    ///                 SimplifiedRouting = new Grafana.Alerting.V1Beta1.Inputs.AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs
+    ///                 {
+    ///                     ContactPoint = "grafana-default-email",
+    ///                 },
+    ///             },
+    ///             Title = "Example Alert Rule",
     ///             Paused = true,
     ///             Expressions = 
     ///             {
@@ -141,13 +148,6 @@ namespace Pulumiverse.Grafana.Alerting.V1Beta1
     ///             NoDataState = "KeepLast",
     ///             ExecErrState = "KeepLast",
     ///             MissingSeriesEvalsToResolve = 5,
-    ///             NotificationSettings = new Grafana.Alerting.V1Beta1.Inputs.AlertRuleSpecNotificationSettingsArgs
-    ///             {
-    ///                 SimplifiedRouting = new Grafana.Alerting.V1Beta1.Inputs.AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs
-    ///                 {
-    ///                     ContactPoint = "grafana-default-email",
-    ///                 },
-    ///             },
     ///             PanelRef = new Grafana.Alerting.V1Beta1.Inputs.AlertRuleSpecPanelRefArgs
     ///             {
     ///                 DashboardUid = "dashboard123",

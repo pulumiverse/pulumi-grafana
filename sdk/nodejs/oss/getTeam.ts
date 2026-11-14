@@ -17,12 +17,12 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.oss.Team("test", {
- *     name: "test-team",
- *     email: "test-team-email@test.com",
  *     preferences: {
  *         theme: "dark",
  *         timezone: "utc",
  *     },
+ *     name: "test-team",
+ *     email: "test-team-email@test.com",
  * });
  * const fromName = grafana.oss.getTeamOutput({
  *     name: test.name,
@@ -126,12 +126,12 @@ export interface GetTeamResult {
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.oss.Team("test", {
- *     name: "test-team",
- *     email: "test-team-email@test.com",
  *     preferences: {
  *         theme: "dark",
  *         timezone: "utc",
  *     },
+ *     name: "test-team",
+ *     email: "test-team-email@test.com",
  * });
  * const fromName = grafana.oss.getTeamOutput({
  *     name: test.name,

@@ -29,7 +29,6 @@ namespace Pulumiverse.Grafana.Oss
     ///     // Configure SSO for GitHub using OAuth2
     ///     var githubSsoSettings = new Grafana.Oss.SsoSettings("github_sso_settings", new()
     ///     {
-    ///         ProviderName = "github",
     ///         Oauth2Settings = new Grafana.Oss.Inputs.SsoSettingsOauth2SettingsArgs
     ///         {
     ///             Name = "Github",
@@ -42,12 +41,12 @@ namespace Pulumiverse.Grafana.Oss
     ///             AllowedOrganizations = "[\"My Organization\", \"Octocats\"]",
     ///             AllowedDomains = "mycompany.com mycompany.org",
     ///         },
+    ///         ProviderName = "github",
     ///     });
     /// 
     ///     // Configure SSO using generic OAuth2
     ///     var genericSsoSettings = new Grafana.Oss.SsoSettings("generic_sso_settings", new()
     ///     {
-    ///         ProviderName = "generic_oauth",
     ///         Oauth2Settings = new Grafana.Oss.Inputs.SsoSettingsOauth2SettingsArgs
     ///         {
     ///             Name = "Auth0",
@@ -62,12 +61,12 @@ namespace Pulumiverse.Grafana.Oss
     ///             UsePkce = true,
     ///             UseRefreshToken = true,
     ///         },
+    ///         ProviderName = "generic_oauth",
     ///     });
     /// 
     ///     // Configure SSO using SAML
     ///     var samlSsoSettings = new Grafana.Oss.SsoSettings("saml_sso_settings", new()
     ///     {
-    ///         ProviderName = "saml",
     ///         SamlSettings = new Grafana.Oss.Inputs.SsoSettingsSamlSettingsArgs
     ///         {
     ///             AllowSignUp = true,
@@ -79,38 +78,20 @@ namespace Pulumiverse.Grafana.Oss
     ///             AssertionAttributeEmail = "email",
     ///             NameIdFormat = "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
     ///         },
+    ///         ProviderName = "saml",
     ///     });
     /// 
     ///     // Configure SSO using LDAP
     ///     var ldapSsoSettings = new Grafana.Oss.SsoSettings("ldap_sso_settings", new()
     ///     {
-    ///         ProviderName = "ldap",
     ///         LdapSettings = new Grafana.Oss.Inputs.SsoSettingsLdapSettingsArgs
     ///         {
-    ///             Enabled = true,
     ///             Config = new Grafana.Oss.Inputs.SsoSettingsLdapSettingsConfigArgs
     ///             {
     ///                 Servers = new[]
     ///                 {
     ///                     new Grafana.Oss.Inputs.SsoSettingsLdapSettingsConfigServerArgs
     ///                     {
-    ///                         Host = "127.0.0.1",
-    ///                         Port = 389,
-    ///                         SearchFilter = "(cn=%s)",
-    ///                         BindDn = "cn=admin,dc=grafana,dc=org",
-    ///                         BindPassword = "grafana",
-    ///                         SearchBaseDns = new[]
-    ///                         {
-    ///                             "dc=grafana,dc=org",
-    ///                         },
-    ///                         Attributes = 
-    ///                         {
-    ///                             { "name", "givenName" },
-    ///                             { "surname", "sn" },
-    ///                             { "username", "cn" },
-    ///                             { "member_of", "memberOf" },
-    ///                             { "email", "email" },
-    ///                         },
     ///                         GroupMappings = new[]
     ///                         {
     ///                             new Grafana.Oss.Inputs.SsoSettingsLdapSettingsConfigServerGroupMappingArgs
@@ -131,10 +112,29 @@ namespace Pulumiverse.Grafana.Oss
     ///                                 OrgRole = "Viewer",
     ///                             },
     ///                         },
+    ///                         Host = "127.0.0.1",
+    ///                         Port = 389,
+    ///                         SearchFilter = "(cn=%s)",
+    ///                         BindDn = "cn=admin,dc=grafana,dc=org",
+    ///                         BindPassword = "grafana",
+    ///                         SearchBaseDns = new[]
+    ///                         {
+    ///                             "dc=grafana,dc=org",
+    ///                         },
+    ///                         Attributes = 
+    ///                         {
+    ///                             { "name", "givenName" },
+    ///                             { "surname", "sn" },
+    ///                             { "username", "cn" },
+    ///                             { "member_of", "memberOf" },
+    ///                             { "email", "email" },
+    ///                         },
     ///                     },
     ///                 },
     ///             },
+    ///             Enabled = true,
     ///         },
+    ///         ProviderName = "ldap",
     ///     });
     /// 
     /// });

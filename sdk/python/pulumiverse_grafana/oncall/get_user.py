@@ -26,7 +26,7 @@ class GetUserResult:
     """
     A collection of values returned by getUser.
     """
-    def __init__(__self__, email=None, id=None, role=None, username=None):
+    def __init__(__self__, email=None, id=None, role=None, teams=None, username=None):
         if email and not isinstance(email, str):
             raise TypeError("Expected argument 'email' to be a str")
         pulumi.set(__self__, "email", email)
@@ -36,6 +36,9 @@ class GetUserResult:
         if role and not isinstance(role, str):
             raise TypeError("Expected argument 'role' to be a str")
         pulumi.set(__self__, "role", role)
+        if teams and not isinstance(teams, list):
+            raise TypeError("Expected argument 'teams' to be a list")
+        pulumi.set(__self__, "teams", teams)
         if username and not isinstance(username, str):
             raise TypeError("Expected argument 'username' to be a str")
         pulumi.set(__self__, "username", username)
@@ -66,6 +69,14 @@ class GetUserResult:
 
     @_builtins.property
     @pulumi.getter
+    def teams(self) -> Sequence[_builtins.str]:
+        """
+        The IDs of the teams the user belongs to, which are the IDs the `on_call_get_team` data source returns. Empty when the user belongs to no team.
+        """
+        return pulumi.get(self, "teams")
+
+    @_builtins.property
+    @pulumi.getter
     def username(self) -> _builtins.str:
         """
         The user's Grafana login, which can differ from their email address. Matching is case-insensitive.
@@ -82,6 +93,7 @@ class AwaitableGetUserResult(GetUserResult):
             email=self.email,
             id=self.id,
             role=self.role,
+            teams=self.teams,
             username=self.username)
 
 
@@ -113,6 +125,7 @@ def get_user(username: Optional[_builtins.str] = None,
         email=pulumi.get(__ret__, 'email'),
         id=pulumi.get(__ret__, 'id'),
         role=pulumi.get(__ret__, 'role'),
+        teams=pulumi.get(__ret__, 'teams'),
         username=pulumi.get(__ret__, 'username'))
 def get_user_output(username: Optional[pulumi.Input[_builtins.str]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserResult]:
@@ -141,4 +154,5 @@ def get_user_output(username: Optional[pulumi.Input[_builtins.str]] = None,
         email=pulumi.get(__response__, 'email'),
         id=pulumi.get(__response__, 'id'),
         role=pulumi.get(__response__, 'role'),
+        teams=pulumi.get(__response__, 'teams'),
         username=pulumi.get(__response__, 'username')))

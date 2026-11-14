@@ -31,11 +31,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			test, err := enterprise.NewRole(ctx, "test", &enterprise.RoleArgs{
-//				Name:        pulumi.String("test-role"),
-//				Description: pulumi.String("test-role description"),
-//				Uid:         pulumi.String("test-ds-role-uid"),
-//				Global:      pulumi.Bool(true),
-//				Hidden:      pulumi.Bool(false),
 //				Permissions: enterprise.RolePermissionArray{
 //					&enterprise.RolePermissionArgs{
 //						Action: pulumi.String("org.users:add"),
@@ -50,6 +45,11 @@ import (
 //						Scope:  pulumi.String("users:*"),
 //					},
 //				},
+//				Name:        pulumi.String("test-role"),
+//				Description: pulumi.String("test-role description"),
+//				Uid:         pulumi.String("test-ds-role-uid"),
+//				Global:      pulumi.Bool(true),
+//				Hidden:      pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err

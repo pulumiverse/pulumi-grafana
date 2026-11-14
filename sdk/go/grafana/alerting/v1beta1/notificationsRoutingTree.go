@@ -39,7 +39,6 @@ import (
 //					Uid: pulumi.String("my-routing-tree"),
 //				},
 //				Spec: &alertingv1beta1.NotificationsRoutingTreeSpecArgs{
-//					DisableProvenance: pulumi.Bool(false),
 //					Defaults: &alertingv1beta1.NotificationsRoutingTreeSpecDefaultsArgs{
 //						Receiver: pulumi.String("empty"),
 //						GroupBies: pulumi.StringArray{
@@ -52,19 +51,6 @@ import (
 //					},
 //					Routes: alertingv1beta1.NotificationsRoutingTreeSpecRouteArray{
 //						&alertingv1beta1.NotificationsRoutingTreeSpecRouteArgs{
-//							Receiver: pulumi.String("empty"),
-//							Continue: pulumi.Bool(false),
-//							Matchers: alertingv1beta1.NotificationsRoutingTreeSpecRouteMatcherArray{
-//								&alertingv1beta1.NotificationsRoutingTreeSpecRouteMatcherArgs{
-//									Type:  pulumi.String("="),
-//									Label: pulumi.String("severity"),
-//									Value: pulumi.String("critical"),
-//								},
-//							},
-//							MuteTimeIntervals: pulumi.StringArray{},
-//							GroupBies: pulumi.StringArray{
-//								pulumi.String("alertname"),
-//							},
 //							Routes: alertingv1beta1.NotificationsRoutingTreeSpecRouteRouteArray{
 //								&alertingv1beta1.NotificationsRoutingTreeSpecRouteRouteArgs{
 //									Receiver: pulumi.String("empty"),
@@ -78,8 +64,22 @@ import (
 //									},
 //								},
 //							},
+//							Receiver: pulumi.String("empty"),
+//							Continue: pulumi.Bool(false),
+//							Matchers: alertingv1beta1.NotificationsRoutingTreeSpecRouteMatcherArray{
+//								&alertingv1beta1.NotificationsRoutingTreeSpecRouteMatcherArgs{
+//									Type:  pulumi.String("="),
+//									Label: pulumi.String("severity"),
+//									Value: pulumi.String("critical"),
+//								},
+//							},
+//							MuteTimeIntervals: pulumi.StringArray{},
+//							GroupBies: pulumi.StringArray{
+//								pulumi.String("alertname"),
+//							},
 //						},
 //					},
+//					DisableProvenance: pulumi.Bool(false),
 //				},
 //			})
 //			if err != nil {

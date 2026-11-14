@@ -17,6 +17,7 @@ namespace Pulumiverse.Grafana.OnCall.Outputs
         public readonly string Email;
         public readonly string Id;
         public readonly string Role;
+        public readonly ImmutableArray<string> Teams;
         public readonly string Username;
 
         [OutputConstructor]
@@ -27,11 +28,14 @@ namespace Pulumiverse.Grafana.OnCall.Outputs
 
             string role,
 
+            ImmutableArray<string> teams,
+
             string username)
         {
             Email = email;
             Id = id;
             Role = role;
+            Teams = teams;
             Username = username;
         }
     }

@@ -64,6 +64,15 @@ namespace Pulumiverse.Grafana.MachineLearning
     /// {
     ///     var testAlertOutlierDetector = new Grafana.MachineLearning.OutlierDetector("test_alert_outlier_detector", new()
     ///     {
+    ///         Algorithm = new Grafana.MachineLearning.Inputs.OutlierDetectorAlgorithmArgs
+    ///         {
+    ///             Config = new Grafana.MachineLearning.Inputs.OutlierDetectorAlgorithmConfigArgs
+    ///             {
+    ///                 Epsilon = 1,
+    ///             },
+    ///             Name = "dbscan",
+    ///             Sensitivity = 0.5,
+    ///         },
     ///         Name = "Test Outlier",
     ///         Metric = "tf_test_alert_outlier",
     ///         DatasourceType = "prometheus",
@@ -73,15 +82,6 @@ namespace Pulumiverse.Grafana.MachineLearning
     ///             { "expr", "grafanacloud_grafana_instance_active_user_count" },
     ///         },
     ///         Interval = 300,
-    ///         Algorithm = new Grafana.MachineLearning.Inputs.OutlierDetectorAlgorithmArgs
-    ///         {
-    ///             Name = "dbscan",
-    ///             Sensitivity = 0.5,
-    ///             Config = new Grafana.MachineLearning.Inputs.OutlierDetectorAlgorithmConfigArgs
-    ///             {
-    ///                 Epsilon = 1,
-    ///             },
-    ///         },
     ///     });
     /// 
     ///     var testOutlierAlert = new Grafana.MachineLearning.Alert("test_outlier_alert", new()

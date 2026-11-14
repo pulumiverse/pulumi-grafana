@@ -37,7 +37,6 @@ namespace Pulumiverse.Grafana.Alerting.V1Beta1
     ///         },
     ///         Spec = new Grafana.Alerting.V1Beta1.Inputs.NotificationsRoutingTreeSpecArgs
     ///         {
-    ///             DisableProvenance = false,
     ///             Defaults = new Grafana.Alerting.V1Beta1.Inputs.NotificationsRoutingTreeSpecDefaultsArgs
     ///             {
     ///                 Receiver = "empty",
@@ -54,22 +53,6 @@ namespace Pulumiverse.Grafana.Alerting.V1Beta1
     ///             {
     ///                 new Grafana.Alerting.V1Beta1.Inputs.NotificationsRoutingTreeSpecRouteArgs
     ///                 {
-    ///                     Receiver = "empty",
-    ///                     Continue = false,
-    ///                     Matchers = new[]
-    ///                     {
-    ///                         new Grafana.Alerting.V1Beta1.Inputs.NotificationsRoutingTreeSpecRouteMatcherArgs
-    ///                         {
-    ///                             Type = "=",
-    ///                             Label = "severity",
-    ///                             Value = "critical",
-    ///                         },
-    ///                     },
-    ///                     MuteTimeIntervals = new() { },
-    ///                     GroupBies = new[]
-    ///                     {
-    ///                         "alertname",
-    ///                     },
     ///                     Routes = new[]
     ///                     {
     ///                         new Grafana.Alerting.V1Beta1.Inputs.NotificationsRoutingTreeSpecRouteRouteArgs
@@ -87,8 +70,25 @@ namespace Pulumiverse.Grafana.Alerting.V1Beta1
     ///                             },
     ///                         },
     ///                     },
+    ///                     Receiver = "empty",
+    ///                     Continue = false,
+    ///                     Matchers = new[]
+    ///                     {
+    ///                         new Grafana.Alerting.V1Beta1.Inputs.NotificationsRoutingTreeSpecRouteMatcherArgs
+    ///                         {
+    ///                             Type = "=",
+    ///                             Label = "severity",
+    ///                             Value = "critical",
+    ///                         },
+    ///                     },
+    ///                     MuteTimeIntervals = new() { },
+    ///                     GroupBies = new[]
+    ///                     {
+    ///                         "alertname",
+    ///                     },
     ///                 },
     ///             },
+    ///             DisableProvenance = false,
     ///         },
     ///     });
     /// 

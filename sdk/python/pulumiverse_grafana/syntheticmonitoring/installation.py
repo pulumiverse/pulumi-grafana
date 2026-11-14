@@ -188,6 +188,10 @@ class Installation(pulumi.CustomResource):
             region_slug=cloud_region)
         # Step 2: Install Synthetic Monitoring on the stack
         sm_metrics_publish = grafana.cloud.AccessPolicy("sm_metrics_publish",
+            realms=[{
+                "type": "stack",
+                "identifier": sm_stack.id,
+            }],
             region=cloud_region,
             name="metric-publisher-for-sm",
             scopes=[
@@ -195,11 +199,7 @@ class Installation(pulumi.CustomResource):
                 "stacks:read",
                 "logs:write",
                 "traces:write",
-            ],
-            realms=[{
-                "type": "stack",
-                "identifier": sm_stack.id,
-            }])
+            ])
         sm_metrics_publish_access_policy_token = grafana.cloud.AccessPolicyToken("sm_metrics_publish",
             region=cloud_region,
             access_policy_id=sm_metrics_publish.policy_id,
@@ -257,6 +257,10 @@ class Installation(pulumi.CustomResource):
             region_slug=cloud_region)
         # Step 2: Install Synthetic Monitoring on the stack
         sm_metrics_publish = grafana.cloud.AccessPolicy("sm_metrics_publish",
+            realms=[{
+                "type": "stack",
+                "identifier": sm_stack.id,
+            }],
             region=cloud_region,
             name="metric-publisher-for-sm",
             scopes=[
@@ -264,11 +268,7 @@ class Installation(pulumi.CustomResource):
                 "stacks:read",
                 "logs:write",
                 "traces:write",
-            ],
-            realms=[{
-                "type": "stack",
-                "identifier": sm_stack.id,
-            }])
+            ])
         sm_metrics_publish_access_policy_token = grafana.cloud.AccessPolicyToken("sm_metrics_publish",
             region=cloud_region,
             access_policy_id=sm_metrics_publish.policy_id,

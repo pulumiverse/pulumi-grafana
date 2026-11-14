@@ -54,14 +54,6 @@ namespace Pulumiverse.Grafana.Assert
     ///     // Step 1: Create a Cloud Access Policy with required scopes
     ///     var asserts = new Grafana.Cloud.AccessPolicy("asserts", new()
     ///     {
-    ///         Name = "asserts-stack-policy",
-    ///         DisplayName = "Asserts Stack Policy",
-    ///         Scopes = new[]
-    ///         {
-    ///             "stacks:read",
-    ///             "metrics:read",
-    ///             "metrics:write",
-    ///         },
     ///         Realms = new[]
     ///         {
     ///             new Grafana.Cloud.Inputs.AccessPolicyRealmArgs
@@ -69,6 +61,14 @@ namespace Pulumiverse.Grafana.Assert
     ///                 Type = "stack",
     ///                 Identifier = stackId,
     ///             },
+    ///         },
+    ///         Name = "asserts-stack-policy",
+    ///         DisplayName = "Asserts Stack Policy",
+    ///         Scopes = new[]
+    ///         {
+    ///             "stacks:read",
+    ///             "metrics:read",
+    ///             "metrics:write",
     ///         },
     ///     });
     /// 
@@ -111,13 +111,10 @@ namespace Pulumiverse.Grafana.Assert
     ///     // Use this when your metrics use non-standard labels (e.g., a custom environment label).
     ///     var custom = new Grafana.Assert.Stack("custom", new()
     ///     {
-    ///         CloudAccessPolicyToken = assertsAccessPolicyToken.Token,
-    ///         GrafanaToken = assertsStackServiceAccountToken.Key,
     ///         Datasets = new[]
     ///         {
     ///             new Grafana.Assert.Inputs.StackDatasetArgs
     ///             {
-    ///                 Type = "kubernetes",
     ///                 FilterGroups = new[]
     ///                 {
     ///                     new Grafana.Assert.Inputs.StackDatasetFilterGroupArgs
@@ -136,16 +133,14 @@ namespace Pulumiverse.Grafana.Assert
     ///                         },
     ///                     },
     ///                 },
+    ///                 Type = "kubernetes",
     ///             },
     ///             new Grafana.Assert.Inputs.StackDatasetArgs
     ///             {
-    ///                 Type = "prometheus",
     ///                 FilterGroups = new[]
     ///                 {
     ///                     new Grafana.Assert.Inputs.StackDatasetFilterGroupArgs
     ///                     {
-    ///                         EnvLabel = "environment",
-    ///                         EnvName = "prod",
     ///                         Filters = new[]
     ///                         {
     ///                             new Grafana.Assert.Inputs.StackDatasetFilterGroupFilterArgs
@@ -159,10 +154,15 @@ namespace Pulumiverse.Grafana.Assert
     ///                                 },
     ///                             },
     ///                         },
+    ///                         EnvLabel = "environment",
+    ///                         EnvName = "prod",
     ///                     },
     ///                 },
+    ///                 Type = "prometheus",
     ///             },
     ///         },
+    ///         CloudAccessPolicyToken = assertsAccessPolicyToken.Token,
+    ///         GrafanaToken = assertsStackServiceAccountToken.Key,
     ///     });
     /// 
     ///     return new Dictionary&lt;string, object?&gt;

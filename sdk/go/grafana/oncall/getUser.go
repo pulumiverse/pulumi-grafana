@@ -64,6 +64,8 @@ type GetUserResult struct {
 	Id string `pulumi:"id"`
 	// The role of the user.
 	Role string `pulumi:"role"`
+	// The IDs of the teams the user belongs to, which are the IDs the `onCall.getTeam` data source returns. Empty when the user belongs to no team.
+	Teams []string `pulumi:"teams"`
 	// The user's Grafana login, which can differ from their email address. Matching is case-insensitive.
 	Username string `pulumi:"username"`
 }
@@ -115,6 +117,11 @@ func (o GetUserResultOutput) Id() pulumi.StringOutput {
 // The role of the user.
 func (o GetUserResultOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUserResult) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The IDs of the teams the user belongs to, which are the IDs the `onCall.getTeam` data source returns. Empty when the user belongs to no team.
+func (o GetUserResultOutput) Teams() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetUserResult) []string { return v.Teams }).(pulumi.StringArrayOutput)
 }
 
 // The user's Grafana login, which can differ from their email address. Matching is case-insensitive.

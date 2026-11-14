@@ -31,18 +31,18 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := agento11y.NewHookRule(ctx, "example", &agento11y.HookRuleArgs{
+//				Redacts: agento11y.HookRuleRedactArray{
+//					&agento11y.HookRuleRedactArgs{
+//						Id:    pulumi.String("emails"),
+//						Regex: pulumi.String("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+"),
+//					},
+//				},
 //				RuleId:       pulumi.String("block_destructive_tools"),
 //				Phase:        pulumi.String("preflight"),
 //				ActionOnFail: pulumi.String("deny"),
 //				BlockedTools: pulumi.StringArray{
 //					pulumi.String("delete_*"),
 //					pulumi.String("drop_*"),
-//				},
-//				Redacts: agento11y.HookRuleRedactArray{
-//					&agento11y.HookRuleRedactArgs{
-//						Id:    pulumi.String("emails"),
-//						Regex: pulumi.String("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+"),
-//					},
 //				},
 //			})
 //			if err != nil {

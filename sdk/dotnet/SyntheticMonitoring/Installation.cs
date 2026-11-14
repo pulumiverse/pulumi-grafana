@@ -49,6 +49,14 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///     // Step 2: Install Synthetic Monitoring on the stack
     ///     var smMetricsPublish = new Grafana.Cloud.AccessPolicy("sm_metrics_publish", new()
     ///     {
+    ///         Realms = new[]
+    ///         {
+    ///             new Grafana.Cloud.Inputs.AccessPolicyRealmArgs
+    ///             {
+    ///                 Type = "stack",
+    ///                 Identifier = smStack.Id,
+    ///             },
+    ///         },
     ///         Region = cloudRegion,
     ///         Name = "metric-publisher-for-sm",
     ///         Scopes = new[]
@@ -57,14 +65,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///             "stacks:read",
     ///             "logs:write",
     ///             "traces:write",
-    ///         },
-    ///         Realms = new[]
-    ///         {
-    ///             new Grafana.Cloud.Inputs.AccessPolicyRealmArgs
-    ///             {
-    ///                 Type = "stack",
-    ///                 Identifier = smStack.Id,
-    ///             },
     ///         },
     ///     });
     /// 

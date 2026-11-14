@@ -2947,10 +2947,11 @@ func (o ScheduleSlackPtrOutput) UserGroupId() pulumi.StringPtrOutput {
 }
 
 type GetUsersUser struct {
-	Email    string `pulumi:"email"`
-	Id       string `pulumi:"id"`
-	Role     string `pulumi:"role"`
-	Username string `pulumi:"username"`
+	Email    string   `pulumi:"email"`
+	Id       string   `pulumi:"id"`
+	Role     string   `pulumi:"role"`
+	Teams    []string `pulumi:"teams"`
+	Username string   `pulumi:"username"`
 }
 
 // GetUsersUserInput is an input type that accepts GetUsersUserArgs and GetUsersUserOutput values.
@@ -2965,10 +2966,11 @@ type GetUsersUserInput interface {
 }
 
 type GetUsersUserArgs struct {
-	Email    pulumi.StringInput `pulumi:"email"`
-	Id       pulumi.StringInput `pulumi:"id"`
-	Role     pulumi.StringInput `pulumi:"role"`
-	Username pulumi.StringInput `pulumi:"username"`
+	Email    pulumi.StringInput      `pulumi:"email"`
+	Id       pulumi.StringInput      `pulumi:"id"`
+	Role     pulumi.StringInput      `pulumi:"role"`
+	Teams    pulumi.StringArrayInput `pulumi:"teams"`
+	Username pulumi.StringInput      `pulumi:"username"`
 }
 
 func (GetUsersUserArgs) ElementType() reflect.Type {
@@ -3032,6 +3034,10 @@ func (o GetUsersUserOutput) Id() pulumi.StringOutput {
 
 func (o GetUsersUserOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUsersUser) string { return v.Role }).(pulumi.StringOutput)
+}
+
+func (o GetUsersUserOutput) Teams() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetUsersUser) []string { return v.Teams }).(pulumi.StringArrayOutput)
 }
 
 func (o GetUsersUserOutput) Username() pulumi.StringOutput {

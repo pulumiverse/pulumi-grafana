@@ -25,10 +25,6 @@ namespace Pulumiverse.Grafana.Enterprise
     /// {
     ///     var testRole = new Grafana.Enterprise.Role("test_role", new()
     ///     {
-    ///         Name = "Test Role",
-    ///         Uid = "testrole",
-    ///         Version = 1,
-    ///         Global = true,
     ///         Permissions = new[]
     ///         {
     ///             new Grafana.Enterprise.Inputs.RolePermissionArgs
@@ -37,6 +33,10 @@ namespace Pulumiverse.Grafana.Enterprise
     ///                 Scope = "users:*",
     ///             },
     ///         },
+    ///         Name = "Test Role",
+    ///         Uid = "testrole",
+    ///         Version = 1,
+    ///         Global = true,
     ///     });
     /// 
     ///     var testTeam = new Grafana.Oss.Team("test_team", new()

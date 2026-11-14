@@ -33,43 +33,18 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			testAzureCredential, err := cloudprovider.NewAzureCredential(ctx, "test", &cloudprovider.AzureCredentialArgs{
-//				StackId:      pulumi.String("1"),
-//				Name:         pulumi.String("test-name"),
-//				ClientId:     pulumi.String("my-client-id"),
-//				ClientSecret: pulumi.String("my-client-secret"),
-//				TenantId:     pulumi.String("my-tenant-id"),
-//				ResourceTagsToAddToMetrics: pulumi.StringArray{
-//					pulumi.String("tag1"),
-//					pulumi.String("tag2"),
-//				},
-//				StaticLabels: pulumi.StringMap{
-//					"label1": pulumi.String("value1"),
-//					"label2": pulumi.String("value2"),
-//				},
-//				ResourceDiscoveryTagFilters: cloudprovider.AzureCredentialResourceDiscoveryTagFilterArray{
-//					&cloudprovider.AzureCredentialResourceDiscoveryTagFilterArgs{
-//						Key:   pulumi.String("key-1"),
-//						Value: pulumi.String("value-1"),
-//					},
-//					&cloudprovider.AzureCredentialResourceDiscoveryTagFilterArgs{
-//						Key:   pulumi.String("key-2"),
-//						Value: pulumi.String("value-2"),
-//					},
-//				},
 //				AutoDiscoveryConfigurations: cloudprovider.AzureCredentialAutoDiscoveryConfigurationArray{
 //					&cloudprovider.AzureCredentialAutoDiscoveryConfigurationArgs{
-//						SubscriptionId: pulumi.String("my-subscription_id"),
 //						ResourceTypeConfigurations: cloudprovider.AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArray{
 //							&cloudprovider.AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs{
-//								ResourceTypeName: pulumi.String("Microsoft.App/containerApps"),
 //								MetricConfiguration: []map[string]interface{}{
 //									map[string]interface{}{
 //										"name": "TotalCoresQuotaUsed",
 //									},
 //								},
+//								ResourceTypeName: pulumi.String("Microsoft.App/containerApps"),
 //							},
 //							&cloudprovider.AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs{
-//								ResourceTypeName: pulumi.String("Microsoft.Storage/storageAccounts/tableServices"),
 //								MetricConfiguration: []map[string]interface{}{
 //									map[string]interface{}{
 //										"name": "Availability",
@@ -82,9 +57,34 @@ import (
 //										},
 //									},
 //								},
+//								ResourceTypeName: pulumi.String("Microsoft.Storage/storageAccounts/tableServices"),
 //							},
 //						},
+//						SubscriptionId: pulumi.String("my-subscription_id"),
 //					},
+//				},
+//				ResourceDiscoveryTagFilters: cloudprovider.AzureCredentialResourceDiscoveryTagFilterArray{
+//					&cloudprovider.AzureCredentialResourceDiscoveryTagFilterArgs{
+//						Key:   pulumi.String("key-1"),
+//						Value: pulumi.String("value-1"),
+//					},
+//					&cloudprovider.AzureCredentialResourceDiscoveryTagFilterArgs{
+//						Key:   pulumi.String("key-2"),
+//						Value: pulumi.String("value-2"),
+//					},
+//				},
+//				StackId:      pulumi.String("1"),
+//				Name:         pulumi.String("test-name"),
+//				ClientId:     pulumi.String("my-client-id"),
+//				ClientSecret: pulumi.String("my-client-secret"),
+//				TenantId:     pulumi.String("my-tenant-id"),
+//				ResourceTagsToAddToMetrics: pulumi.StringArray{
+//					pulumi.String("tag1"),
+//					pulumi.String("tag2"),
+//				},
+//				StaticLabels: pulumi.StringMap{
+//					"label1": pulumi.String("value1"),
+//					"label2": pulumi.String("value2"),
 //				},
 //			})
 //			if err != nil {

@@ -49,7 +49,6 @@ namespace Pulumiverse.Grafana.Oss
     /// 
     ///     var collectionPermission = new Grafana.Oss.DashboardPermission("collectionPermission", new()
     ///     {
-    ///         DashboardUid = metrics.Uid,
     ///         Permissions = new[]
     ///         {
     ///             new Grafana.Oss.Inputs.DashboardPermissionPermissionArgs
@@ -68,6 +67,7 @@ namespace Pulumiverse.Grafana.Oss
     ///                 Permission = "Admin",
     ///             },
     ///         },
+    ///         DashboardUid = metrics.Uid,
     ///     });
     /// 
     /// });

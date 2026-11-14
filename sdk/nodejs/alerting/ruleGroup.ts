@@ -22,33 +22,15 @@ import * as utilities from "../utilities";
  *
  * const ruleFolder = new grafana.oss.Folder("rule_folder", {title: "My Alert Rule Folder"});
  * const myAlertRule = new grafana.alerting.RuleGroup("my_alert_rule", {
- *     name: "My Rule Group",
- *     folderUid: ruleFolder.uid,
- *     intervalSeconds: 240,
- *     orgId: "1",
  *     rules: [{
- *         name: "My Alert Rule 1",
- *         "for": "2m",
- *         condition: "B",
- *         noDataState: "NoData",
- *         execErrState: "Alerting",
- *         annotations: {
- *             a: "b",
- *             c: "d",
- *         },
- *         labels: {
- *             e: "f",
- *             g: "h",
- *         },
- *         isPaused: false,
  *         datas: [
  *             {
- *                 refId: "A",
- *                 queryType: "",
  *                 relativeTimeRange: {
  *                     from: 600,
  *                     to: 0,
  *                 },
+ *                 refId: "A",
+ *                 queryType: "",
  *                 datasourceUid: "PD8C576611E62080A",
  *                 model: JSON.stringify({
  *                     hide: false,
@@ -58,12 +40,12 @@ import * as utilities from "../utilities";
  *                 }),
  *             },
  *             {
- *                 refId: "B",
- *                 queryType: "",
  *                 relativeTimeRange: {
  *                     from: 0,
  *                     to: 0,
  *                 },
+ *                 refId: "B",
+ *                 queryType: "",
  *                 datasourceUid: "-100",
  *                 model: `{
  *     \\"conditions\\": [
@@ -102,7 +84,25 @@ import * as utilities from "../utilities";
  * `,
  *             },
  *         ],
+ *         name: "My Alert Rule 1",
+ *         "for": "2m",
+ *         condition: "B",
+ *         noDataState: "NoData",
+ *         execErrState: "Alerting",
+ *         annotations: {
+ *             a: "b",
+ *             c: "d",
+ *         },
+ *         labels: {
+ *             e: "f",
+ *             g: "h",
+ *         },
+ *         isPaused: false,
  *     }],
+ *     name: "My Rule Group",
+ *     folderUid: ruleFolder.uid,
+ *     intervalSeconds: 240,
+ *     orgId: "1",
  * });
  * ```
  *

@@ -137,6 +137,10 @@ namespace Pulumiverse.Grafana.OnCall
         /// </summary>
         public readonly string Role;
         /// <summary>
+        /// The IDs of the teams the user belongs to, which are the IDs the `grafana.onCall.getTeam` data source returns. Empty when the user belongs to no team.
+        /// </summary>
+        public readonly ImmutableArray<string> Teams;
+        /// <summary>
         /// The user's Grafana login, which can differ from their email address. Matching is case-insensitive.
         /// </summary>
         public readonly string Username;
@@ -149,11 +153,14 @@ namespace Pulumiverse.Grafana.OnCall
 
             string role,
 
+            ImmutableArray<string> teams,
+
             string username)
         {
             Email = email;
             Id = id;
             Role = role;
+            Teams = teams;
             Username = username;
         }
     }

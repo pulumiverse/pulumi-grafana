@@ -162,7 +162,6 @@ class NotificationsRoutingTree(pulumi.CustomResource):
                 "uid": "my-routing-tree",
             },
             spec={
-                "disable_provenance": False,
                 "defaults": {
                     "receiver": "empty",
                     "group_bies": [
@@ -174,15 +173,6 @@ class NotificationsRoutingTree(pulumi.CustomResource):
                     "repeat_interval": "4h",
                 },
                 "routes": [{
-                    "receiver": "empty",
-                    "continue_": False,
-                    "matchers": [{
-                        "type": "=",
-                        "label": "severity",
-                        "value": "critical",
-                    }],
-                    "mute_time_intervals": [],
-                    "group_bies": ["alertname"],
                     "routes": [{
                         "receiver": "empty",
                         "continue_": True,
@@ -192,7 +182,17 @@ class NotificationsRoutingTree(pulumi.CustomResource):
                             "value": "backend|platform",
                         }],
                     }],
+                    "receiver": "empty",
+                    "continue_": False,
+                    "matchers": [{
+                        "type": "=",
+                        "label": "severity",
+                        "value": "critical",
+                    }],
+                    "mute_time_intervals": [],
+                    "group_bies": ["alertname"],
                 }],
+                "disable_provenance": False,
             })
         ```
 
@@ -229,7 +229,6 @@ class NotificationsRoutingTree(pulumi.CustomResource):
                 "uid": "my-routing-tree",
             },
             spec={
-                "disable_provenance": False,
                 "defaults": {
                     "receiver": "empty",
                     "group_bies": [
@@ -241,15 +240,6 @@ class NotificationsRoutingTree(pulumi.CustomResource):
                     "repeat_interval": "4h",
                 },
                 "routes": [{
-                    "receiver": "empty",
-                    "continue_": False,
-                    "matchers": [{
-                        "type": "=",
-                        "label": "severity",
-                        "value": "critical",
-                    }],
-                    "mute_time_intervals": [],
-                    "group_bies": ["alertname"],
                     "routes": [{
                         "receiver": "empty",
                         "continue_": True,
@@ -259,7 +249,17 @@ class NotificationsRoutingTree(pulumi.CustomResource):
                             "value": "backend|platform",
                         }],
                     }],
+                    "receiver": "empty",
+                    "continue_": False,
+                    "matchers": [{
+                        "type": "=",
+                        "label": "severity",
+                        "value": "critical",
+                    }],
+                    "mute_time_intervals": [],
+                    "group_bies": ["alertname"],
                 }],
+                "disable_provenance": False,
             })
         ```
 

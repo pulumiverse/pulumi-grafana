@@ -24,6 +24,19 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const dailyIncidentReport = new grafana.assistant.Automation("daily_incident_report", {
+ *     notifications: {
+ *         slack: {
+ *             target: {
+ *                 type: "channel",
+ *                 channelId: "C0123456789",
+ *             },
+ *             enabled: true,
+ *             notifyOns: [
+ *                 "completed",
+ *                 "failed",
+ *             ],
+ *         },
+ *     },
  *     name: "Daily ecommerce incident report",
  *     description: "Every morning, summarize the alerts that fired for the ecommerce app.",
  *     prompt: `Produce a daily report on the incidents for the main alerts that fired in
@@ -42,19 +55,6 @@ import * as utilities from "../utilities";
  *     },
  *     scheduleCron: "0 9 * * *",
  *     scheduleTimezone: "Europe/Paris",
- *     notifications: {
- *         slack: {
- *             enabled: true,
- *             notifyOns: [
- *                 "completed",
- *                 "failed",
- *             ],
- *             target: {
- *                 type: "channel",
- *                 channelId: "C0123456789",
- *             },
- *         },
- *     },
  * });
  * // Event-only automation. Replace the watcher UUID with an existing Watcher.
  * // The backend must enable Watcher-to-Automation triggers. No events run while disabled.
