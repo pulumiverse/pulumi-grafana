@@ -59,10 +59,10 @@ import (
 //					FolderUid: recordingruleFolder.Uid,
 //				},
 //				Spec: &alertingv1beta1.RecordingRuleSpecArgs{
-//					Title: pulumi.String("Example Recording Rule"),
 //					Trigger: &alertingv1beta1.RecordingRuleSpecTriggerArgs{
 //						Interval: pulumi.String("1m"),
 //					},
+//					Title:  pulumi.String("Example Recording Rule"),
 //					Paused: pulumi.Bool(true),
 //					Expressions: alertingv1beta1.RecordingRuleSpecExpressionsMap{
 //						"A": &alertingv1beta1.RecordingRuleSpecExpressionsArgs{

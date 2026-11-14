@@ -171,8 +171,6 @@ class Playlist(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.oss.Playlist("test",
-            name="My Playlist!",
-            interval="5m",
             items=[
                 {
                     "order": 2,
@@ -184,7 +182,9 @@ class Playlist(pulumi.CustomResource):
                     "type": "dashboard_by_uid",
                     "value": "cIBgcSjkk",
                 },
-            ])
+            ],
+            name="My Playlist!",
+            interval="5m")
         ```
 
         ## Import
@@ -219,8 +219,6 @@ class Playlist(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.oss.Playlist("test",
-            name="My Playlist!",
-            interval="5m",
             items=[
                 {
                     "order": 2,
@@ -232,7 +230,9 @@ class Playlist(pulumi.CustomResource):
                     "type": "dashboard_by_uid",
                     "value": "cIBgcSjkk",
                 },
-            ])
+            ],
+            name="My Playlist!",
+            interval="5m")
         ```
 
         ## Import

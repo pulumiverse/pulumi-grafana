@@ -16,22 +16,8 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.assert.CustomModelRules("test", {
- *     name: "test-anything",
  *     rules: {
  *         entities: [{
- *             type: "Service",
- *             name: "workload | service | job",
- *             scope: {
- *                 namespace: "namespace",
- *                 env: "asserts_env",
- *                 site: "asserts_site",
- *             },
- *             lookup: {
- *                 workload: "workload | deployment | statefulset | daemonset | replicaset",
- *                 service: "service",
- *                 job: "job",
- *                 proxy_job: "job",
- *             },
  *             definedBies: [
  *                 {
  *                     query: "up{job!=''}",
@@ -49,8 +35,22 @@ import * as utilities from "../utilities";
  *                     disabled: true,
  *                 },
  *             ],
+ *             type: "Service",
+ *             name: "workload | service | job",
+ *             scope: {
+ *                 namespace: "namespace",
+ *                 env: "asserts_env",
+ *                 site: "asserts_site",
+ *             },
+ *             lookup: {
+ *                 workload: "workload | deployment | statefulset | daemonset | replicaset",
+ *                 service: "service",
+ *                 job: "job",
+ *                 proxy_job: "job",
+ *             },
  *         }],
  *     },
+ *     name: "test-anything",
  * });
  * ```
  *

@@ -16,10 +16,6 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const production = new grafana.assert.TraceConfig("production", {
- *     name: "production",
- *     priority: 1000,
- *     defaultConfig: false,
- *     dataSourceUid: "grafanacloud-traces",
  *     matches: [
  *         {
  *             property: "asserts_entity_type",
@@ -43,6 +39,10 @@ import * as utilities from "../utilities";
  *             ],
  *         },
  *     ],
+ *     name: "production",
+ *     priority: 1000,
+ *     defaultConfig: false,
+ *     dataSourceUid: "grafanacloud-traces",
  *     entityPropertyToTraceLabelMapping: {
  *         cluster: "resource.k8s.cluster.name",
  *         namespace: "resource.k8s.namespace",
@@ -52,10 +52,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * const development = new grafana.assert.TraceConfig("development", {
- *     name: "development",
- *     priority: 2000,
- *     defaultConfig: false,
- *     dataSourceUid: "grafanacloud-traces",
  *     matches: [
  *         {
  *             property: "asserts_entity_type",
@@ -81,6 +77,10 @@ import * as utilities from "../utilities";
  *             values: ["my sample api"],
  *         },
  *     ],
+ *     name: "development",
+ *     priority: 2000,
+ *     defaultConfig: false,
+ *     dataSourceUid: "grafanacloud-traces",
  *     entityPropertyToTraceLabelMapping: {
  *         cluster: "resource.k8s.cluster.name",
  *         namespace: "resource.k8s.namespace",
@@ -91,13 +91,13 @@ import * as utilities from "../utilities";
  *     },
  * });
  * const minimal = new grafana.assert.TraceConfig("minimal", {
- *     name: "minimal",
- *     priority: 3000,
- *     dataSourceUid: "tempo-minimal",
  *     matches: [{
  *         property: "asserts_entity_type",
  *         op: "IS NOT NULL",
  *     }],
+ *     name: "minimal",
+ *     priority: 3000,
+ *     dataSourceUid: "tempo-minimal",
  *     entityPropertyToTraceLabelMapping: {
  *         cluster: "resource.k8s.cluster.name",
  *         otel_service: "resource.service.name",

@@ -14,13 +14,13 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Inputs
     public sealed class CheckSettingsTcpTlsConfigGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// CA certificate in PEM format.
+        /// CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.&lt;name&gt;}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.&lt;name&gt;}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         /// </summary>
         [Input("caCert")]
         public Input<string>? CaCert { get; set; }
 
         /// <summary>
-        /// Client certificate in PEM format.
+        /// Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.&lt;name&gt;}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.&lt;name&gt;}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         /// </summary>
         [Input("clientCert")]
         public Input<string>? ClientCert { get; set; }
@@ -29,7 +29,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Inputs
         private Input<string>? _clientKey;
 
         /// <summary>
-        /// Client key in PEM format.
+        /// Client key in PEM format. In HTTP checks, it can hold a `${secrets.&lt;name&gt;}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.&lt;name&gt;}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         /// </summary>
         public Input<string>? ClientKey
         {

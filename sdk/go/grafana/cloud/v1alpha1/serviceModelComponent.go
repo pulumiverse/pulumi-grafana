@@ -67,18 +67,6 @@ import (
 //					Uid: pulumi.String("checkout-service"),
 //				},
 //				Spec: &cloudv1alpha1.ServiceModelComponentSpecArgs{
-//					Title:       pulumi.String("Checkout Service"),
-//					Description: pulumi.String("Handles checkout and payment orchestration."),
-//					Identifiers: cloudv1alpha1.ServiceModelComponentSpecIdentifierArray{
-//						&cloudv1alpha1.ServiceModelComponentSpecIdentifierArgs{
-//							Key:   pulumi.String("service_name"),
-//							Value: pulumi.String("Checkout_Service"),
-//						},
-//						&cloudv1alpha1.ServiceModelComponentSpecIdentifierArgs{
-//							Key:   pulumi.String("namespace"),
-//							Value: pulumi.String("checkout-prod"),
-//						},
-//					},
 //					OwnerRef: &cloudv1alpha1.ServiceModelComponentSpecOwnerRefArgs{
 //						Name: checkout.TeamUid,
 //					},
@@ -89,6 +77,16 @@ import (
 //							}).(pulumi.StringPtrOutput),
 //						},
 //					},
+//					Identifiers: cloudv1alpha1.ServiceModelComponentSpecIdentifierArray{
+//						&cloudv1alpha1.ServiceModelComponentSpecIdentifierArgs{
+//							Key:   pulumi.String("service_name"),
+//							Value: pulumi.String("Checkout_Service"),
+//						},
+//						&cloudv1alpha1.ServiceModelComponentSpecIdentifierArgs{
+//							Key:   pulumi.String("namespace"),
+//							Value: pulumi.String("checkout-prod"),
+//						},
+//					},
 //					Links: cloudv1alpha1.ServiceModelComponentSpecLinkArray{
 //						&cloudv1alpha1.ServiceModelComponentSpecLinkArgs{
 //							Url:   pulumi.String("https://github.com/example/checkout"),
@@ -96,6 +94,8 @@ import (
 //							Type:  pulumi.String("repository"),
 //						},
 //					},
+//					Title:       pulumi.String("Checkout Service"),
+//					Description: pulumi.String("Handles checkout and payment orchestration."),
 //				},
 //			})
 //			if err != nil {

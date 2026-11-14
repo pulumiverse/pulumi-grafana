@@ -25,28 +25,12 @@ namespace Pulumiverse.Grafana.Assert
     /// {
     ///     var test = new Grafana.Assert.CustomModelRules("test", new()
     ///     {
-    ///         Name = "test-anything",
     ///         Rules = new Grafana.Assert.Inputs.CustomModelRulesRulesArgs
     ///         {
     ///             Entities = new[]
     ///             {
     ///                 new Grafana.Assert.Inputs.CustomModelRulesRulesEntityArgs
     ///                 {
-    ///                     Type = "Service",
-    ///                     Name = "workload | service | job",
-    ///                     Scope = 
-    ///                     {
-    ///                         { "namespace", "namespace" },
-    ///                         { "env", "asserts_env" },
-    ///                         { "site", "asserts_site" },
-    ///                     },
-    ///                     Lookup = 
-    ///                     {
-    ///                         { "workload", "workload | deployment | statefulset | daemonset | replicaset" },
-    ///                         { "service", "service" },
-    ///                         { "job", "job" },
-    ///                         { "proxy_job", "job" },
-    ///                     },
     ///                     DefinedBies = new[]
     ///                     {
     ///                         new Grafana.Assert.Inputs.CustomModelRulesRulesEntityDefinedByArgs
@@ -69,9 +53,25 @@ namespace Pulumiverse.Grafana.Assert
     ///                             Disabled = true,
     ///                         },
     ///                     },
+    ///                     Type = "Service",
+    ///                     Name = "workload | service | job",
+    ///                     Scope = 
+    ///                     {
+    ///                         { "namespace", "namespace" },
+    ///                         { "env", "asserts_env" },
+    ///                         { "site", "asserts_site" },
+    ///                     },
+    ///                     Lookup = 
+    ///                     {
+    ///                         { "workload", "workload | deployment | statefulset | daemonset | replicaset" },
+    ///                         { "service", "service" },
+    ///                         { "job", "job" },
+    ///                         { "proxy_job", "job" },
+    ///                     },
     ///                 },
     ///             },
     ///         },
+    ///         Name = "test-anything",
     ///     });
     /// 
     /// });

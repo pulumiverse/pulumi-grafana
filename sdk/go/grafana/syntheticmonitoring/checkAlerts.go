@@ -31,6 +31,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			main, err := syntheticmonitoring.NewCheck(ctx, "main", &syntheticmonitoring.CheckArgs{
+//				Settings: &syntheticmonitoring.CheckSettingsArgs{
+//					Http: &syntheticmonitoring.CheckSettingsHttpArgs{
+//						IpVersion: pulumi.String("V4"),
+//						Method:    pulumi.String("GET"),
+//					},
+//				},
 //				Job:     pulumi.String("Check Alert Test"),
 //				Target:  pulumi.String("https://grafana.com"),
 //				Enabled: pulumi.Bool(true),
@@ -38,12 +44,6 @@ import (
 //					pulumi.Int(1),
 //				},
 //				Labels: pulumi.StringMap{},
-//				Settings: &syntheticmonitoring.CheckSettingsArgs{
-//					Http: &syntheticmonitoring.CheckSettingsHttpArgs{
-//						IpVersion: pulumi.String("V4"),
-//						Method:    pulumi.String("GET"),
-//					},
-//				},
 //			})
 //			if err != nil {
 //				return err

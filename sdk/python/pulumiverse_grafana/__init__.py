@@ -6,7 +6,10 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .apps_notifications_timeinterval_v1beta1 import *
 from .provider import *
+from ._inputs import *
+from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -773,6 +776,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "incident/customField",
+  "fqn": "pulumiverse_grafana.incident",
+  "classes": {
+   "grafana:incident/customField:CustomField": "CustomField"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "incident/role",
   "fqn": "pulumiverse_grafana.incident",
   "classes": {
@@ -785,6 +796,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.incident",
   "classes": {
    "grafana:incident/severity:Severity": "Severity"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/appsNotificationsTimeintervalV1beta1",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/appsNotificationsTimeintervalV1beta1:AppsNotificationsTimeintervalV1beta1": "AppsNotificationsTimeintervalV1beta1"
   }
  },
  {

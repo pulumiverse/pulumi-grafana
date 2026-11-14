@@ -33,7 +33,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := alerting.NewMuteTiming(ctx, "my_mute_timing", &alerting.MuteTimingArgs{
-//				Name: pulumi.String("My Mute Timing"),
 //				Intervals: alerting.MuteTimingIntervalArray{
 //					&alerting.MuteTimingIntervalArgs{
 //						Times: alerting.MuteTimingIntervalTimeArray{
@@ -61,6 +60,7 @@ import (
 //						Location: pulumi.String("America/New_York"),
 //					},
 //				},
+//				Name: pulumi.String("My Mute Timing"),
 //			})
 //			if err != nil {
 //				return err

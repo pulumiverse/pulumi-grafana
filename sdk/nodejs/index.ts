@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AppsNotificationsTimeintervalV1beta1Args, AppsNotificationsTimeintervalV1beta1State } from "./appsNotificationsTimeintervalV1beta1";
+export type AppsNotificationsTimeintervalV1beta1 = import("./appsNotificationsTimeintervalV1beta1").AppsNotificationsTimeintervalV1beta1;
+export const AppsNotificationsTimeintervalV1beta1: typeof import("./appsNotificationsTimeintervalV1beta1").AppsNotificationsTimeintervalV1beta1 = null as any;
+utilities.lazyLoad(exports, ["AppsNotificationsTimeintervalV1beta1"], () => require("./appsNotificationsTimeintervalV1beta1"));
+
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -55,6 +60,19 @@ export {
     syntheticmonitoring,
     types,
 };
+
+const _module = {
+    version: utilities.getVersion(),
+    construct: (name: string, type: string, urn: string): pulumi.Resource => {
+        switch (type) {
+            case "grafana:index/appsNotificationsTimeintervalV1beta1:AppsNotificationsTimeintervalV1beta1":
+                return new AppsNotificationsTimeintervalV1beta1(name, <any>undefined, { urn })
+            default:
+                throw new Error(`unknown resource type ${type}`);
+        }
+    },
+};
+pulumi.runtime.registerResourceModule("grafana", "index/appsNotificationsTimeintervalV1beta1", _module)
 pulumi.runtime.registerResourcePackage("grafana", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

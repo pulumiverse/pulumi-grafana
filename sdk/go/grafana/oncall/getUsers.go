@@ -11,36 +11,58 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
-// Lists every user in Grafana OnCall. Each plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `onCall.getUser`.
+// Lists Grafana OnCall users. Without `teamId`, every plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `onCall.getUser`.
 //
 // Each user's `username` is their Grafana login, which can differ from their email address. To refer to users by email, build a map from `email` to `id`, as shown in the example.
 //
-// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
+// Team membership is synced from Grafana and the sync is not immediate, so a user added to a team moments earlier can be missing from the first plan.
 //
-// ## Example Usage
-func GetUsers(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetUsersResult, error) {
+// Users are returned in OnCall's own order, not by name. A rotation built from team membership therefore re-orders when the team changes: keep the order in the configuration and use membership to add and remove people, as shown in the example.
+//
+// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
+func GetUsers(ctx *pulumi.Context, args *GetUsersArgs, opts ...pulumi.InvokeOption) (*GetUsersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetUsersResult
-	err := ctx.Invoke("grafana:onCall/getUsers:getUsers", nil, &rv, opts...)
+	err := ctx.Invoke("grafana:onCall/getUsers:getUsers", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
 }
 
+// A collection of arguments for invoking getUsers.
+type GetUsersArgs struct {
+	// Return only the members of this team, using the ID from the `onCall.getTeam` data source. A team ID that does not exist returns no users instead of an error, so reference the data source rather than writing an ID by hand. Unlike `onCall.Integration`, this attribute does not accept `"null"`: there is no filter for users who belong to no team.
+	TeamId *string `pulumi:"teamId"`
+}
+
 // A collection of values returned by getUsers.
 type GetUsersResult struct {
 	// The ID of this resource.
 	Id string `pulumi:"id"`
-	// Every OnCall user, with their ID, username (the Grafana login), email, and role.
+	// Return only the members of this team, using the ID from the `onCall.getTeam` data source. A team ID that does not exist returns no users instead of an error, so reference the data source rather than writing an ID by hand. Unlike `onCall.Integration`, this attribute does not accept `"null"`: there is no filter for users who belong to no team.
+	TeamId *string `pulumi:"teamId"`
+	// Every matching OnCall user, with their ID, username (the Grafana login), email, and role. `teams` holds the IDs of the teams the user belongs to, which are the IDs the `onCall.getTeam` data source returns.
 	Users []GetUsersUser `pulumi:"users"`
 }
 
-func GetUsersOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetUsersResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetUsersResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("grafana:onCall/getUsers:getUsers", nil, GetUsersResultOutput{}, options).(GetUsersResultOutput), nil
-	}).(GetUsersResultOutput)
+func GetUsersOutput(ctx *pulumi.Context, args GetUsersOutputArgs, opts ...pulumi.InvokeOption) GetUsersResultOutput {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetUsersResultOutput, error) {
+			args := v.(GetUsersArgs)
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("grafana:onCall/getUsers:getUsers", args, GetUsersResultOutput{}, options).(GetUsersResultOutput), nil
+		}).(GetUsersResultOutput)
+}
+
+// A collection of arguments for invoking getUsers.
+type GetUsersOutputArgs struct {
+	// Return only the members of this team, using the ID from the `onCall.getTeam` data source. A team ID that does not exist returns no users instead of an error, so reference the data source rather than writing an ID by hand. Unlike `onCall.Integration`, this attribute does not accept `"null"`: there is no filter for users who belong to no team.
+	TeamId pulumi.StringPtrInput `pulumi:"teamId"`
+}
+
+func (GetUsersOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getUsers.
@@ -63,7 +85,12 @@ func (o GetUsersResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUsersResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Every OnCall user, with their ID, username (the Grafana login), email, and role.
+// Return only the members of this team, using the ID from the `onCall.getTeam` data source. A team ID that does not exist returns no users instead of an error, so reference the data source rather than writing an ID by hand. Unlike `onCall.Integration`, this attribute does not accept `"null"`: there is no filter for users who belong to no team.
+func (o GetUsersResultOutput) TeamId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetUsersResult) *string { return v.TeamId }).(pulumi.StringPtrOutput)
+}
+
+// Every matching OnCall user, with their ID, username (the Grafana login), email, and role. `teams` holds the IDs of the teams the user belongs to, which are the IDs the `onCall.getTeam` data source returns.
 func (o GetUsersResultOutput) Users() GetUsersUserArrayOutput {
 	return o.ApplyT(func(v GetUsersResult) []GetUsersUser { return v.Users }).(GetUsersUserArrayOutput)
 }

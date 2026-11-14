@@ -1754,11 +1754,11 @@ func (o CheckSettingsGrpcPtrOutput) TlsConfig() CheckSettingsGrpcTlsConfigPtrOut
 }
 
 type CheckSettingsGrpcTlsConfig struct {
-	// CA certificate in PEM format.
+	// CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	CaCert *string `pulumi:"caCert"`
-	// Client certificate in PEM format.
+	// Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	ClientCert *string `pulumi:"clientCert"`
-	// Client key in PEM format.
+	// Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	ClientKey *string `pulumi:"clientKey"`
 	// Disable target certificate validation. Defaults to `false`.
 	InsecureSkipVerify *bool `pulumi:"insecureSkipVerify"`
@@ -1778,11 +1778,11 @@ type CheckSettingsGrpcTlsConfigInput interface {
 }
 
 type CheckSettingsGrpcTlsConfigArgs struct {
-	// CA certificate in PEM format.
+	// CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	CaCert pulumi.StringPtrInput `pulumi:"caCert"`
-	// Client certificate in PEM format.
+	// Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	ClientCert pulumi.StringPtrInput `pulumi:"clientCert"`
-	// Client key in PEM format.
+	// Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	ClientKey pulumi.StringPtrInput `pulumi:"clientKey"`
 	// Disable target certificate validation. Defaults to `false`.
 	InsecureSkipVerify pulumi.BoolPtrInput `pulumi:"insecureSkipVerify"`
@@ -1867,17 +1867,17 @@ func (o CheckSettingsGrpcTlsConfigOutput) ToCheckSettingsGrpcTlsConfigPtrOutputW
 	}).(CheckSettingsGrpcTlsConfigPtrOutput)
 }
 
-// CA certificate in PEM format.
+// CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsGrpcTlsConfigOutput) CaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CheckSettingsGrpcTlsConfig) *string { return v.CaCert }).(pulumi.StringPtrOutput)
 }
 
-// Client certificate in PEM format.
+// Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsGrpcTlsConfigOutput) ClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CheckSettingsGrpcTlsConfig) *string { return v.ClientCert }).(pulumi.StringPtrOutput)
 }
 
-// Client key in PEM format.
+// Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsGrpcTlsConfigOutput) ClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CheckSettingsGrpcTlsConfig) *string { return v.ClientKey }).(pulumi.StringPtrOutput)
 }
@@ -1916,7 +1916,7 @@ func (o CheckSettingsGrpcTlsConfigPtrOutput) Elem() CheckSettingsGrpcTlsConfigOu
 	}).(CheckSettingsGrpcTlsConfigOutput)
 }
 
-// CA certificate in PEM format.
+// CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsGrpcTlsConfigPtrOutput) CaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CheckSettingsGrpcTlsConfig) *string {
 		if v == nil {
@@ -1926,7 +1926,7 @@ func (o CheckSettingsGrpcTlsConfigPtrOutput) CaCert() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Client certificate in PEM format.
+// Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsGrpcTlsConfigPtrOutput) ClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CheckSettingsGrpcTlsConfig) *string {
 		if v == nil {
@@ -1936,7 +1936,7 @@ func (o CheckSettingsGrpcTlsConfigPtrOutput) ClientCert() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Client key in PEM format.
+// Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsGrpcTlsConfigPtrOutput) ClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CheckSettingsGrpcTlsConfig) *string {
 		if v == nil {
@@ -1969,7 +1969,7 @@ func (o CheckSettingsGrpcTlsConfigPtrOutput) ServerName() pulumi.StringPtrOutput
 type CheckSettingsHttp struct {
 	// Basic auth settings.
 	BasicAuth *CheckSettingsHttpBasicAuth `pulumi:"basicAuth"`
-	// Token for use with bearer authorization header.
+	// Token for use with bearer authorization header. It can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	BearerToken *string `pulumi:"bearerToken"`
 	// The body of the HTTP request used in probe.
 	Body *string `pulumi:"body"`
@@ -2001,7 +2001,9 @@ type CheckSettingsHttp struct {
 	ProxyConnectHeaders []string `pulumi:"proxyConnectHeaders"`
 	// Proxy URL.
 	ProxyUrl *string `pulumi:"proxyUrl"`
-	// Enable secret manager so that `${secrets.<name>}` references in the bearer token, basic auth password, and TLS certificate/key fields are resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so the reference is passed through literally rather than interpolated by Terraform. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check. Defaults to `false`.
+	// The API ignores this value. It turns on secret manager by itself when the bearer token, basic auth password, or TLS certificate/key fields hold `${secrets.<name>}` references. On refresh, the provider keeps the value from state, so changes made outside Terraform don't show a diff. Defaults to `false`.
+	//
+	// Deprecated: `secretManagerEnabled` has no effect: the API turns on secret manager from the `${secrets.<name>}` references in the check settings. Remove `secretManagerEnabled` from your configuration.
 	SecretManagerEnabled *bool `pulumi:"secretManagerEnabled"`
 	// TLS config.
 	TlsConfig *CheckSettingsHttpTlsConfig `pulumi:"tlsConfig"`
@@ -2025,7 +2027,7 @@ type CheckSettingsHttpInput interface {
 type CheckSettingsHttpArgs struct {
 	// Basic auth settings.
 	BasicAuth CheckSettingsHttpBasicAuthPtrInput `pulumi:"basicAuth"`
-	// Token for use with bearer authorization header.
+	// Token for use with bearer authorization header. It can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	BearerToken pulumi.StringPtrInput `pulumi:"bearerToken"`
 	// The body of the HTTP request used in probe.
 	Body pulumi.StringPtrInput `pulumi:"body"`
@@ -2057,7 +2059,9 @@ type CheckSettingsHttpArgs struct {
 	ProxyConnectHeaders pulumi.StringArrayInput `pulumi:"proxyConnectHeaders"`
 	// Proxy URL.
 	ProxyUrl pulumi.StringPtrInput `pulumi:"proxyUrl"`
-	// Enable secret manager so that `${secrets.<name>}` references in the bearer token, basic auth password, and TLS certificate/key fields are resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so the reference is passed through literally rather than interpolated by Terraform. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check. Defaults to `false`.
+	// The API ignores this value. It turns on secret manager by itself when the bearer token, basic auth password, or TLS certificate/key fields hold `${secrets.<name>}` references. On refresh, the provider keeps the value from state, so changes made outside Terraform don't show a diff. Defaults to `false`.
+	//
+	// Deprecated: `secretManagerEnabled` has no effect: the API turns on secret manager from the `${secrets.<name>}` references in the check settings. Remove `secretManagerEnabled` from your configuration.
 	SecretManagerEnabled pulumi.BoolPtrInput `pulumi:"secretManagerEnabled"`
 	// TLS config.
 	TlsConfig CheckSettingsHttpTlsConfigPtrInput `pulumi:"tlsConfig"`
@@ -2149,7 +2153,7 @@ func (o CheckSettingsHttpOutput) BasicAuth() CheckSettingsHttpBasicAuthPtrOutput
 	return o.ApplyT(func(v CheckSettingsHttp) *CheckSettingsHttpBasicAuth { return v.BasicAuth }).(CheckSettingsHttpBasicAuthPtrOutput)
 }
 
-// Token for use with bearer authorization header.
+// Token for use with bearer authorization header. It can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsHttpOutput) BearerToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CheckSettingsHttp) *string { return v.BearerToken }).(pulumi.StringPtrOutput)
 }
@@ -2233,7 +2237,9 @@ func (o CheckSettingsHttpOutput) ProxyUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CheckSettingsHttp) *string { return v.ProxyUrl }).(pulumi.StringPtrOutput)
 }
 
-// Enable secret manager so that `${secrets.<name>}` references in the bearer token, basic auth password, and TLS certificate/key fields are resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so the reference is passed through literally rather than interpolated by Terraform. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check. Defaults to `false`.
+// The API ignores this value. It turns on secret manager by itself when the bearer token, basic auth password, or TLS certificate/key fields hold `${secrets.<name>}` references. On refresh, the provider keeps the value from state, so changes made outside Terraform don't show a diff. Defaults to `false`.
+//
+// Deprecated: `secretManagerEnabled` has no effect: the API turns on secret manager from the `${secrets.<name>}` references in the check settings. Remove `secretManagerEnabled` from your configuration.
 func (o CheckSettingsHttpOutput) SecretManagerEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CheckSettingsHttp) *bool { return v.SecretManagerEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -2287,7 +2293,7 @@ func (o CheckSettingsHttpPtrOutput) BasicAuth() CheckSettingsHttpBasicAuthPtrOut
 	}).(CheckSettingsHttpBasicAuthPtrOutput)
 }
 
-// Token for use with bearer authorization header.
+// Token for use with bearer authorization header. It can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsHttpPtrOutput) BearerToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CheckSettingsHttp) *string {
 		if v == nil {
@@ -2447,7 +2453,9 @@ func (o CheckSettingsHttpPtrOutput) ProxyUrl() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable secret manager so that `${secrets.<name>}` references in the bearer token, basic auth password, and TLS certificate/key fields are resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so the reference is passed through literally rather than interpolated by Terraform. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check. Defaults to `false`.
+// The API ignores this value. It turns on secret manager by itself when the bearer token, basic auth password, or TLS certificate/key fields hold `${secrets.<name>}` references. On refresh, the provider keeps the value from state, so changes made outside Terraform don't show a diff. Defaults to `false`.
+//
+// Deprecated: `secretManagerEnabled` has no effect: the API turns on secret manager from the `${secrets.<name>}` references in the check settings. Remove `secretManagerEnabled` from your configuration.
 func (o CheckSettingsHttpPtrOutput) SecretManagerEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CheckSettingsHttp) *bool {
 		if v == nil {
@@ -2488,7 +2496,7 @@ func (o CheckSettingsHttpPtrOutput) ValidStatusCodes() pulumi.IntArrayOutput {
 }
 
 type CheckSettingsHttpBasicAuth struct {
-	// Basic auth password.
+	// Basic auth password. It can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	Password string `pulumi:"password"`
 	// Basic auth username.
 	Username string `pulumi:"username"`
@@ -2506,7 +2514,7 @@ type CheckSettingsHttpBasicAuthInput interface {
 }
 
 type CheckSettingsHttpBasicAuthArgs struct {
-	// Basic auth password.
+	// Basic auth password. It can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	Password pulumi.StringInput `pulumi:"password"`
 	// Basic auth username.
 	Username pulumi.StringInput `pulumi:"username"`
@@ -2589,7 +2597,7 @@ func (o CheckSettingsHttpBasicAuthOutput) ToCheckSettingsHttpBasicAuthPtrOutputW
 	}).(CheckSettingsHttpBasicAuthPtrOutput)
 }
 
-// Basic auth password.
+// Basic auth password. It can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsHttpBasicAuthOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v CheckSettingsHttpBasicAuth) string { return v.Password }).(pulumi.StringOutput)
 }
@@ -2623,7 +2631,7 @@ func (o CheckSettingsHttpBasicAuthPtrOutput) Elem() CheckSettingsHttpBasicAuthOu
 	}).(CheckSettingsHttpBasicAuthOutput)
 }
 
-// Basic auth password.
+// Basic auth password. It can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsHttpBasicAuthPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CheckSettingsHttpBasicAuth) *string {
 		if v == nil {
@@ -2874,11 +2882,11 @@ func (o CheckSettingsHttpFailIfHeaderNotMatchesRegexpArrayOutput) Index(i pulumi
 }
 
 type CheckSettingsHttpTlsConfig struct {
-	// CA certificate in PEM format.
+	// CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	CaCert *string `pulumi:"caCert"`
-	// Client certificate in PEM format.
+	// Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	ClientCert *string `pulumi:"clientCert"`
-	// Client key in PEM format.
+	// Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	ClientKey *string `pulumi:"clientKey"`
 	// Disable target certificate validation. Defaults to `false`.
 	InsecureSkipVerify *bool `pulumi:"insecureSkipVerify"`
@@ -2898,11 +2906,11 @@ type CheckSettingsHttpTlsConfigInput interface {
 }
 
 type CheckSettingsHttpTlsConfigArgs struct {
-	// CA certificate in PEM format.
+	// CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	CaCert pulumi.StringPtrInput `pulumi:"caCert"`
-	// Client certificate in PEM format.
+	// Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	ClientCert pulumi.StringPtrInput `pulumi:"clientCert"`
-	// Client key in PEM format.
+	// Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	ClientKey pulumi.StringPtrInput `pulumi:"clientKey"`
 	// Disable target certificate validation. Defaults to `false`.
 	InsecureSkipVerify pulumi.BoolPtrInput `pulumi:"insecureSkipVerify"`
@@ -2987,17 +2995,17 @@ func (o CheckSettingsHttpTlsConfigOutput) ToCheckSettingsHttpTlsConfigPtrOutputW
 	}).(CheckSettingsHttpTlsConfigPtrOutput)
 }
 
-// CA certificate in PEM format.
+// CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsHttpTlsConfigOutput) CaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CheckSettingsHttpTlsConfig) *string { return v.CaCert }).(pulumi.StringPtrOutput)
 }
 
-// Client certificate in PEM format.
+// Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsHttpTlsConfigOutput) ClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CheckSettingsHttpTlsConfig) *string { return v.ClientCert }).(pulumi.StringPtrOutput)
 }
 
-// Client key in PEM format.
+// Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsHttpTlsConfigOutput) ClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CheckSettingsHttpTlsConfig) *string { return v.ClientKey }).(pulumi.StringPtrOutput)
 }
@@ -3036,7 +3044,7 @@ func (o CheckSettingsHttpTlsConfigPtrOutput) Elem() CheckSettingsHttpTlsConfigOu
 	}).(CheckSettingsHttpTlsConfigOutput)
 }
 
-// CA certificate in PEM format.
+// CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsHttpTlsConfigPtrOutput) CaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CheckSettingsHttpTlsConfig) *string {
 		if v == nil {
@@ -3046,7 +3054,7 @@ func (o CheckSettingsHttpTlsConfigPtrOutput) CaCert() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Client certificate in PEM format.
+// Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsHttpTlsConfigPtrOutput) ClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CheckSettingsHttpTlsConfig) *string {
 		if v == nil {
@@ -3056,7 +3064,7 @@ func (o CheckSettingsHttpTlsConfigPtrOutput) ClientCert() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Client key in PEM format.
+// Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsHttpTlsConfigPtrOutput) ClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CheckSettingsHttpTlsConfig) *string {
 		if v == nil {
@@ -4791,11 +4799,11 @@ func (o CheckSettingsTcpQueryResponseArrayOutput) Index(i pulumi.IntInput) Check
 }
 
 type CheckSettingsTcpTlsConfig struct {
-	// CA certificate in PEM format.
+	// CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	CaCert *string `pulumi:"caCert"`
-	// Client certificate in PEM format.
+	// Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	ClientCert *string `pulumi:"clientCert"`
-	// Client key in PEM format.
+	// Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	ClientKey *string `pulumi:"clientKey"`
 	// Disable target certificate validation. Defaults to `false`.
 	InsecureSkipVerify *bool `pulumi:"insecureSkipVerify"`
@@ -4815,11 +4823,11 @@ type CheckSettingsTcpTlsConfigInput interface {
 }
 
 type CheckSettingsTcpTlsConfigArgs struct {
-	// CA certificate in PEM format.
+	// CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	CaCert pulumi.StringPtrInput `pulumi:"caCert"`
-	// Client certificate in PEM format.
+	// Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	ClientCert pulumi.StringPtrInput `pulumi:"clientCert"`
-	// Client key in PEM format.
+	// Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 	ClientKey pulumi.StringPtrInput `pulumi:"clientKey"`
 	// Disable target certificate validation. Defaults to `false`.
 	InsecureSkipVerify pulumi.BoolPtrInput `pulumi:"insecureSkipVerify"`
@@ -4904,17 +4912,17 @@ func (o CheckSettingsTcpTlsConfigOutput) ToCheckSettingsTcpTlsConfigPtrOutputWit
 	}).(CheckSettingsTcpTlsConfigPtrOutput)
 }
 
-// CA certificate in PEM format.
+// CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsTcpTlsConfigOutput) CaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CheckSettingsTcpTlsConfig) *string { return v.CaCert }).(pulumi.StringPtrOutput)
 }
 
-// Client certificate in PEM format.
+// Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsTcpTlsConfigOutput) ClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CheckSettingsTcpTlsConfig) *string { return v.ClientCert }).(pulumi.StringPtrOutput)
 }
 
-// Client key in PEM format.
+// Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsTcpTlsConfigOutput) ClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CheckSettingsTcpTlsConfig) *string { return v.ClientKey }).(pulumi.StringPtrOutput)
 }
@@ -4953,7 +4961,7 @@ func (o CheckSettingsTcpTlsConfigPtrOutput) Elem() CheckSettingsTcpTlsConfigOutp
 	}).(CheckSettingsTcpTlsConfigOutput)
 }
 
-// CA certificate in PEM format.
+// CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsTcpTlsConfigPtrOutput) CaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CheckSettingsTcpTlsConfig) *string {
 		if v == nil {
@@ -4963,7 +4971,7 @@ func (o CheckSettingsTcpTlsConfigPtrOutput) CaCert() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Client certificate in PEM format.
+// Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsTcpTlsConfigPtrOutput) ClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CheckSettingsTcpTlsConfig) *string {
 		if v == nil {
@@ -4973,7 +4981,7 @@ func (o CheckSettingsTcpTlsConfigPtrOutput) ClientCert() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Client key in PEM format.
+// Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
 func (o CheckSettingsTcpTlsConfigPtrOutput) ClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CheckSettingsTcpTlsConfig) *string {
 		if v == nil {

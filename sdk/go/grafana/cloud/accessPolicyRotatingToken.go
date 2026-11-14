@@ -44,23 +44,23 @@ import (
 //				return err
 //			}
 //			test, err := cloud.NewAccessPolicy(ctx, "test", &cloud.AccessPolicyArgs{
+//				Realms: cloud.AccessPolicyRealmArray{
+//					&cloud.AccessPolicyRealmArgs{
+//						LabelPolicies: cloud.AccessPolicyRealmLabelPolicyArray{
+//							&cloud.AccessPolicyRealmLabelPolicyArgs{
+//								Selector: pulumi.String("{namespace=\"default\"}"),
+//							},
+//						},
+//						Type:       pulumi.String("org"),
+//						Identifier: pulumi.String(current.Id),
+//					},
+//				},
 //				Region:      pulumi.String("prod-us-east-0"),
 //				Name:        pulumi.String("my-policy"),
 //				DisplayName: pulumi.String("My Policy"),
 //				Scopes: pulumi.StringArray{
 //					pulumi.String("metrics:read"),
 //					pulumi.String("logs:read"),
-//				},
-//				Realms: cloud.AccessPolicyRealmArray{
-//					&cloud.AccessPolicyRealmArgs{
-//						Type:       pulumi.String("org"),
-//						Identifier: pulumi.String(current.Id),
-//						LabelPolicies: cloud.AccessPolicyRealmLabelPolicyArray{
-//							&cloud.AccessPolicyRealmLabelPolicyArgs{
-//								Selector: pulumi.String("{namespace=\"default\"}"),
-//							},
-//						},
-//					},
 //				},
 //			})
 //			if err != nil {

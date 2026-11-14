@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { CustomFieldArgs, CustomFieldState } from "./customField";
+export type CustomField = import("./customField").CustomField;
+export const CustomField: typeof import("./customField").CustomField = null as any;
+utilities.lazyLoad(exports, ["CustomField"], () => require("./customField"));
+
 export { RoleArgs, RoleState } from "./role";
 export type Role = import("./role").Role;
 export const Role: typeof import("./role").Role = null as any;
@@ -20,6 +25,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "grafana:incident/customField:CustomField":
+                return new CustomField(name, <any>undefined, { urn })
             case "grafana:incident/role:Role":
                 return new Role(name, <any>undefined, { urn })
             case "grafana:incident/severity:Severity":
@@ -29,5 +36,6 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("grafana", "incident/customField", _module)
 pulumi.runtime.registerResourceModule("grafana", "incident/role", _module)
 pulumi.runtime.registerResourceModule("grafana", "incident/severity", _module)

@@ -34,42 +34,6 @@ namespace Pulumiverse.Grafana.Alerting.V1Beta1
     ///         },
     ///         Spec = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecArgs
     ///         {
-    ///             Title = "Comprehensive alert enrichment",
-    ///             Description = "Demonstrates many enrichment steps and configurations",
-    ///             AlertRuleUids = new[]
-    ///             {
-    ///                 "alert-rule-1",
-    ///                 "alert-rule-2",
-    ///             },
-    ///             Receivers = new[]
-    ///             {
-    ///                 "webhook",
-    ///                 "slack-critical",
-    ///             },
-    ///             LabelMatchers = new[]
-    ///             {
-    ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecLabelMatcherArgs
-    ///                 {
-    ///                     Type = "=",
-    ///                     Name = "severity",
-    ///                     Value = "critical",
-    ///                 },
-    ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecLabelMatcherArgs
-    ///                 {
-    ///                     Type = "=~",
-    ///                     Name = "team",
-    ///                     Value = "alerting|alerting-team",
-    ///                 },
-    ///             },
-    ///             AnnotationMatchers = new[]
-    ///             {
-    ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecAnnotationMatcherArgs
-    ///                 {
-    ///                     Type = "!=",
-    ///                     Name = "runbook_url",
-    ///                     Value = "",
-    ///                 },
-    ///             },
     ///             Steps = new[]
     ///             {
     ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepArgs
@@ -95,7 +59,6 @@ namespace Pulumiverse.Grafana.Alerting.V1Beta1
     ///                 {
     ///                     DataSource = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepDataSourceArgs
     ///                     {
-    ///                         Timeout = "30s",
     ///                         LogsQuery = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepDataSourceLogsQueryArgs
     ///                         {
     ///                             DataSourceType = "loki",
@@ -103,13 +66,13 @@ namespace Pulumiverse.Grafana.Alerting.V1Beta1
     ///                             Expr = "{job=\"my-app\"} |= \"error\"",
     ///                             MaxLines = 5,
     ///                         },
+    ///                         Timeout = "30s",
     ///                     },
     ///                 },
     ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepArgs
     ///                 {
     ///                     DataSource = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepDataSourceArgs
     ///                     {
-    ///                         Timeout = "30s",
     ///                         RawQuery = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepDataSourceRawQueryArgs
     ///                         {
     ///                             RefId = "A",
@@ -126,6 +89,7 @@ namespace Pulumiverse.Grafana.Alerting.V1Beta1
     ///                                 ["maxDataPoints"] = 43200,
     ///                             }),
     ///                         },
+    ///                         Timeout = "30s",
     ///                     },
     ///                 },
     ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepArgs
@@ -199,6 +163,42 @@ namespace Pulumiverse.Grafana.Alerting.V1Beta1
     ///                             },
     ///                         },
     ///                     },
+    ///                 },
+    ///             },
+    ///             Title = "Comprehensive alert enrichment",
+    ///             Description = "Demonstrates many enrichment steps and configurations",
+    ///             AlertRuleUids = new[]
+    ///             {
+    ///                 "alert-rule-1",
+    ///                 "alert-rule-2",
+    ///             },
+    ///             Receivers = new[]
+    ///             {
+    ///                 "webhook",
+    ///                 "slack-critical",
+    ///             },
+    ///             LabelMatchers = new[]
+    ///             {
+    ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecLabelMatcherArgs
+    ///                 {
+    ///                     Type = "=",
+    ///                     Name = "severity",
+    ///                     Value = "critical",
+    ///                 },
+    ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecLabelMatcherArgs
+    ///                 {
+    ///                     Type = "=~",
+    ///                     Name = "team",
+    ///                     Value = "alerting|alerting-team",
+    ///                 },
+    ///             },
+    ///             AnnotationMatchers = new[]
+    ///             {
+    ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecAnnotationMatcherArgs
+    ///                 {
+    ///                     Type = "!=",
+    ///                     Name = "runbook_url",
+    ///                     Value = "",
     ///                 },
     ///             },
     ///         },

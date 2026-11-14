@@ -878,15 +878,15 @@ class CheckSettingsGrpcArgs:
 class CheckSettingsGrpcTlsConfigArgsDict(TypedDict):
     ca_cert: NotRequired[pulumi.Input[_builtins.str]]
     """
-    CA certificate in PEM format.
+    CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
     """
     client_cert: NotRequired[pulumi.Input[_builtins.str]]
     """
-    Client certificate in PEM format.
+    Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
     """
     client_key: NotRequired[pulumi.Input[_builtins.str]]
     """
-    Client key in PEM format.
+    Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
     """
     insecure_skip_verify: NotRequired[pulumi.Input[_builtins.bool]]
     """
@@ -906,9 +906,9 @@ class CheckSettingsGrpcTlsConfigArgs:
                  insecure_skip_verify: Optional[pulumi.Input[_builtins.bool]] = None,
                  server_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] ca_cert: CA certificate in PEM format.
-        :param pulumi.Input[_builtins.str] client_cert: Client certificate in PEM format.
-        :param pulumi.Input[_builtins.str] client_key: Client key in PEM format.
+        :param pulumi.Input[_builtins.str] ca_cert: CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
+        :param pulumi.Input[_builtins.str] client_cert: Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
+        :param pulumi.Input[_builtins.str] client_key: Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         :param pulumi.Input[_builtins.bool] insecure_skip_verify: Disable target certificate validation. Defaults to `false`.
         :param pulumi.Input[_builtins.str] server_name: Used to verify the hostname for the targets.
         """
@@ -927,7 +927,7 @@ class CheckSettingsGrpcTlsConfigArgs:
     @pulumi.getter(name="caCert")
     def ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        CA certificate in PEM format.
+        CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         """
         return pulumi.get(self, "ca_cert")
 
@@ -939,7 +939,7 @@ class CheckSettingsGrpcTlsConfigArgs:
     @pulumi.getter(name="clientCert")
     def client_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Client certificate in PEM format.
+        Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         """
         return pulumi.get(self, "client_cert")
 
@@ -951,7 +951,7 @@ class CheckSettingsGrpcTlsConfigArgs:
     @pulumi.getter(name="clientKey")
     def client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Client key in PEM format.
+        Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         """
         return pulumi.get(self, "client_key")
 
@@ -991,7 +991,7 @@ class CheckSettingsHttpArgsDict(TypedDict):
     """
     bearer_token: NotRequired[pulumi.Input[_builtins.str]]
     """
-    Token for use with bearer authorization header.
+    Token for use with bearer authorization header. It can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
     """
     body: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -1055,7 +1055,7 @@ class CheckSettingsHttpArgsDict(TypedDict):
     """
     secret_manager_enabled: NotRequired[pulumi.Input[_builtins.bool]]
     """
-    Enable secret manager so that `${secrets.<name>}` references in the bearer token, basic auth password, and TLS certificate/key fields are resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so the reference is passed through literally rather than interpolated by Terraform. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check. Defaults to `false`.
+    The API ignores this value. It turns on secret manager by itself when the bearer token, basic auth password, or TLS certificate/key fields hold `${secrets.<name>}` references. On refresh, the provider keeps the value from state, so changes made outside Terraform don't show a diff. Defaults to `false`.
     """
     tls_config: NotRequired[pulumi.Input['CheckSettingsHttpTlsConfigArgsDict']]
     """
@@ -1096,7 +1096,7 @@ class CheckSettingsHttpArgs:
                  valid_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None):
         """
         :param pulumi.Input['CheckSettingsHttpBasicAuthArgs'] basic_auth: Basic auth settings.
-        :param pulumi.Input[_builtins.str] bearer_token: Token for use with bearer authorization header.
+        :param pulumi.Input[_builtins.str] bearer_token: Token for use with bearer authorization header. It can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         :param pulumi.Input[_builtins.str] body: The body of the HTTP request used in probe.
         :param pulumi.Input[_builtins.str] cache_busting_query_param_name: The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
         :param pulumi.Input[_builtins.str] compression: Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
@@ -1112,7 +1112,7 @@ class CheckSettingsHttpArgs:
         :param pulumi.Input[_builtins.bool] no_follow_redirects: Do not follow redirects. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] proxy_connect_headers: The HTTP headers sent to the proxy URL
         :param pulumi.Input[_builtins.str] proxy_url: Proxy URL.
-        :param pulumi.Input[_builtins.bool] secret_manager_enabled: Enable secret manager so that `${secrets.<name>}` references in the bearer token, basic auth password, and TLS certificate/key fields are resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so the reference is passed through literally rather than interpolated by Terraform. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check. Defaults to `false`.
+        :param pulumi.Input[_builtins.bool] secret_manager_enabled: The API ignores this value. It turns on secret manager by itself when the bearer token, basic auth password, or TLS certificate/key fields hold `${secrets.<name>}` references. On refresh, the provider keeps the value from state, so changes made outside Terraform don't show a diff. Defaults to `false`.
         :param pulumi.Input['CheckSettingsHttpTlsConfigArgs'] tls_config: TLS config.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] valid_http_versions: List of valid HTTP versions. Options include `HTTP/1.0`, `HTTP/1.1`, `HTTP/2.0`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] valid_status_codes: Accepted status codes. If unset, defaults to 2xx.
@@ -1152,6 +1152,9 @@ class CheckSettingsHttpArgs:
         if proxy_url is not None:
             pulumi.set(__self__, "proxy_url", proxy_url)
         if secret_manager_enabled is not None:
+            warnings.warn("""`secret_manager_enabled` has no effect: the API turns on secret manager from the `${secrets.<name>}` references in the check settings. Remove `secret_manager_enabled` from your configuration.""", DeprecationWarning)
+            pulumi.log.warn("""secret_manager_enabled is deprecated: `secret_manager_enabled` has no effect: the API turns on secret manager from the `${secrets.<name>}` references in the check settings. Remove `secret_manager_enabled` from your configuration.""")
+        if secret_manager_enabled is not None:
             pulumi.set(__self__, "secret_manager_enabled", secret_manager_enabled)
         if tls_config is not None:
             pulumi.set(__self__, "tls_config", tls_config)
@@ -1176,7 +1179,7 @@ class CheckSettingsHttpArgs:
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Token for use with bearer authorization header.
+        Token for use with bearer authorization header. It can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         """
         return pulumi.get(self, "bearer_token")
 
@@ -1366,9 +1369,10 @@ class CheckSettingsHttpArgs:
 
     @_builtins.property
     @pulumi.getter(name="secretManagerEnabled")
+    @_utilities.deprecated("""`secret_manager_enabled` has no effect: the API turns on secret manager from the `${secrets.<name>}` references in the check settings. Remove `secret_manager_enabled` from your configuration.""")
     def secret_manager_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Enable secret manager so that `${secrets.<name>}` references in the bearer token, basic auth password, and TLS certificate/key fields are resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so the reference is passed through literally rather than interpolated by Terraform. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check. Defaults to `false`.
+        The API ignores this value. It turns on secret manager by itself when the bearer token, basic auth password, or TLS certificate/key fields hold `${secrets.<name>}` references. On refresh, the provider keeps the value from state, so changes made outside Terraform don't show a diff. Defaults to `false`.
         """
         return pulumi.get(self, "secret_manager_enabled")
 
@@ -1416,7 +1420,7 @@ class CheckSettingsHttpArgs:
 class CheckSettingsHttpBasicAuthArgsDict(TypedDict):
     password: pulumi.Input[_builtins.str]
     """
-    Basic auth password.
+    Basic auth password. It can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
     """
     username: pulumi.Input[_builtins.str]
     """
@@ -1429,7 +1433,7 @@ class CheckSettingsHttpBasicAuthArgs:
                  password: pulumi.Input[_builtins.str],
                  username: pulumi.Input[_builtins.str]):
         """
-        :param pulumi.Input[_builtins.str] password: Basic auth password.
+        :param pulumi.Input[_builtins.str] password: Basic auth password. It can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         :param pulumi.Input[_builtins.str] username: Basic auth username.
         """
         pulumi.set(__self__, "password", password)
@@ -1439,7 +1443,7 @@ class CheckSettingsHttpBasicAuthArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[_builtins.str]:
         """
-        Basic auth password.
+        Basic auth password. It can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         """
         return pulumi.get(self, "password")
 
@@ -1597,15 +1601,15 @@ class CheckSettingsHttpFailIfHeaderNotMatchesRegexpArgs:
 class CheckSettingsHttpTlsConfigArgsDict(TypedDict):
     ca_cert: NotRequired[pulumi.Input[_builtins.str]]
     """
-    CA certificate in PEM format.
+    CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
     """
     client_cert: NotRequired[pulumi.Input[_builtins.str]]
     """
-    Client certificate in PEM format.
+    Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
     """
     client_key: NotRequired[pulumi.Input[_builtins.str]]
     """
-    Client key in PEM format.
+    Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
     """
     insecure_skip_verify: NotRequired[pulumi.Input[_builtins.bool]]
     """
@@ -1625,9 +1629,9 @@ class CheckSettingsHttpTlsConfigArgs:
                  insecure_skip_verify: Optional[pulumi.Input[_builtins.bool]] = None,
                  server_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] ca_cert: CA certificate in PEM format.
-        :param pulumi.Input[_builtins.str] client_cert: Client certificate in PEM format.
-        :param pulumi.Input[_builtins.str] client_key: Client key in PEM format.
+        :param pulumi.Input[_builtins.str] ca_cert: CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
+        :param pulumi.Input[_builtins.str] client_cert: Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
+        :param pulumi.Input[_builtins.str] client_key: Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         :param pulumi.Input[_builtins.bool] insecure_skip_verify: Disable target certificate validation. Defaults to `false`.
         :param pulumi.Input[_builtins.str] server_name: Used to verify the hostname for the targets.
         """
@@ -1646,7 +1650,7 @@ class CheckSettingsHttpTlsConfigArgs:
     @pulumi.getter(name="caCert")
     def ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        CA certificate in PEM format.
+        CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         """
         return pulumi.get(self, "ca_cert")
 
@@ -1658,7 +1662,7 @@ class CheckSettingsHttpTlsConfigArgs:
     @pulumi.getter(name="clientCert")
     def client_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Client certificate in PEM format.
+        Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         """
         return pulumi.get(self, "client_cert")
 
@@ -1670,7 +1674,7 @@ class CheckSettingsHttpTlsConfigArgs:
     @pulumi.getter(name="clientKey")
     def client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Client key in PEM format.
+        Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         """
         return pulumi.get(self, "client_key")
 
@@ -2545,15 +2549,15 @@ class CheckSettingsTcpQueryResponseArgs:
 class CheckSettingsTcpTlsConfigArgsDict(TypedDict):
     ca_cert: NotRequired[pulumi.Input[_builtins.str]]
     """
-    CA certificate in PEM format.
+    CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
     """
     client_cert: NotRequired[pulumi.Input[_builtins.str]]
     """
-    Client certificate in PEM format.
+    Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
     """
     client_key: NotRequired[pulumi.Input[_builtins.str]]
     """
-    Client key in PEM format.
+    Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
     """
     insecure_skip_verify: NotRequired[pulumi.Input[_builtins.bool]]
     """
@@ -2573,9 +2577,9 @@ class CheckSettingsTcpTlsConfigArgs:
                  insecure_skip_verify: Optional[pulumi.Input[_builtins.bool]] = None,
                  server_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] ca_cert: CA certificate in PEM format.
-        :param pulumi.Input[_builtins.str] client_cert: Client certificate in PEM format.
-        :param pulumi.Input[_builtins.str] client_key: Client key in PEM format.
+        :param pulumi.Input[_builtins.str] ca_cert: CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
+        :param pulumi.Input[_builtins.str] client_cert: Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
+        :param pulumi.Input[_builtins.str] client_key: Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         :param pulumi.Input[_builtins.bool] insecure_skip_verify: Disable target certificate validation. Defaults to `false`.
         :param pulumi.Input[_builtins.str] server_name: Used to verify the hostname for the targets.
         """
@@ -2594,7 +2598,7 @@ class CheckSettingsTcpTlsConfigArgs:
     @pulumi.getter(name="caCert")
     def ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        CA certificate in PEM format.
+        CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         """
         return pulumi.get(self, "ca_cert")
 
@@ -2606,7 +2610,7 @@ class CheckSettingsTcpTlsConfigArgs:
     @pulumi.getter(name="clientCert")
     def client_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Client certificate in PEM format.
+        Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         """
         return pulumi.get(self, "client_cert")
 
@@ -2618,7 +2622,7 @@ class CheckSettingsTcpTlsConfigArgs:
     @pulumi.getter(name="clientKey")
     def client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Client key in PEM format.
+        Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         """
         return pulumi.get(self, "client_key")
 

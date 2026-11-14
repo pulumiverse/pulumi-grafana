@@ -44,7 +44,6 @@ namespace Pulumiverse.Grafana.Oss
     /// 
     ///     var collectionPermission = new Grafana.Oss.FolderPermission("collectionPermission", new()
     ///     {
-    ///         FolderUid = collection.Uid,
     ///         Permissions = new[]
     ///         {
     ///             new Grafana.Oss.Inputs.FolderPermissionPermissionArgs
@@ -63,6 +62,7 @@ namespace Pulumiverse.Grafana.Oss
     ///                 Permission = "Admin",
     ///             },
     ///         },
+    ///         FolderUid = collection.Uid,
     ///     });
     /// 
     /// });

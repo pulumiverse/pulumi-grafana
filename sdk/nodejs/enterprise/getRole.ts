@@ -19,11 +19,6 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.enterprise.Role("test", {
- *     name: "test-role",
- *     description: "test-role description",
- *     uid: "test-ds-role-uid",
- *     global: true,
- *     hidden: false,
  *     permissions: [
  *         {
  *             action: "org.users:add",
@@ -38,6 +33,11 @@ import * as utilities from "../utilities";
  *             scope: "users:*",
  *         },
  *     ],
+ *     name: "test-role",
+ *     description: "test-role description",
+ *     uid: "test-ds-role-uid",
+ *     global: true,
+ *     hidden: false,
  * });
  * const fromName = grafana.enterprise.getRoleOutput({
  *     name: test.name,
@@ -125,11 +125,6 @@ export interface GetRoleResult {
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.enterprise.Role("test", {
- *     name: "test-role",
- *     description: "test-role description",
- *     uid: "test-ds-role-uid",
- *     global: true,
- *     hidden: false,
  *     permissions: [
  *         {
  *             action: "org.users:add",
@@ -144,6 +139,11 @@ export interface GetRoleResult {
  *             scope: "users:*",
  *         },
  *     ],
+ *     name: "test-role",
+ *     description: "test-role description",
+ *     uid: "test-ds-role-uid",
+ *     global: true,
+ *     hidden: false,
  * });
  * const fromName = grafana.enterprise.getRoleOutput({
  *     name: test.name,

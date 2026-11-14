@@ -48,14 +48,14 @@ namespace Pulumiverse.Grafana.K6
         /// 
         ///     var testSchedule = new Grafana.K6.Schedule("test_schedule", new()
         ///     {
-        ///         LoadTestId = scheduleLoadTest.Id,
-        ///         Starts = "2024-12-25T10:00:00Z",
         ///         RecurrenceRule = new Grafana.K6.Inputs.ScheduleRecurrenceRuleArgs
         ///         {
         ///             Frequency = "MONTHLY",
         ///             Interval = 12,
         ///             Count = 100,
         ///         },
+        ///         LoadTestId = scheduleLoadTest.Id,
+        ///         Starts = "2024-12-25T10:00:00Z",
         ///     }, new CustomResourceOptions
         ///     {
         ///         DependsOn =
@@ -125,14 +125,14 @@ namespace Pulumiverse.Grafana.K6
         /// 
         ///     var testSchedule = new Grafana.K6.Schedule("test_schedule", new()
         ///     {
-        ///         LoadTestId = scheduleLoadTest.Id,
-        ///         Starts = "2024-12-25T10:00:00Z",
         ///         RecurrenceRule = new Grafana.K6.Inputs.ScheduleRecurrenceRuleArgs
         ///         {
         ///             Frequency = "MONTHLY",
         ///             Interval = 12,
         ///             Count = 100,
         ///         },
+        ///         LoadTestId = scheduleLoadTest.Id,
+        ///         Starts = "2024-12-25T10:00:00Z",
         ///     }, new CustomResourceOptions
         ///     {
         ///         DependsOn =
@@ -202,14 +202,14 @@ namespace Pulumiverse.Grafana.K6
         /// 
         ///     var testSchedule = new Grafana.K6.Schedule("test_schedule", new()
         ///     {
-        ///         LoadTestId = scheduleLoadTest.Id,
-        ///         Starts = "2024-12-25T10:00:00Z",
         ///         RecurrenceRule = new Grafana.K6.Inputs.ScheduleRecurrenceRuleArgs
         ///         {
         ///             Frequency = "MONTHLY",
         ///             Interval = 12,
         ///             Count = 100,
         ///         },
+        ///         LoadTestId = scheduleLoadTest.Id,
+        ///         Starts = "2024-12-25T10:00:00Z",
         ///     }, new CustomResourceOptions
         ///     {
         ///         DependsOn =

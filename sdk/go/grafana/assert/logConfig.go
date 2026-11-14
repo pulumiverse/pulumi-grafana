@@ -29,11 +29,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := assert.NewLogConfig(ctx, "production", &assert.LogConfigArgs{
-//				Name:          pulumi.String("production"),
-//				Priority:      pulumi.Int(1000),
-//				DefaultConfig: pulumi.Bool(false),
-//				DataSourceUid: pulumi.String("grafanacloud-logs"),
-//				ErrorLabel:    pulumi.String("error"),
 //				Matches: assert.LogConfigMatchArray{
 //					&assert.LogConfigMatchArgs{
 //						Property: pulumi.String("asserts_entity_type"),
@@ -59,6 +54,11 @@ import (
 //						},
 //					},
 //				},
+//				Name:          pulumi.String("production"),
+//				Priority:      pulumi.Int(1000),
+//				DefaultConfig: pulumi.Bool(false),
+//				DataSourceUid: pulumi.String("grafanacloud-logs"),
+//				ErrorLabel:    pulumi.String("error"),
 //				EntityPropertyToLogLabelMapping: pulumi.StringMap{
 //					"otel_namespace": pulumi.String("service_namespace"),
 //					"otel_service":   pulumi.String("service_name"),
@@ -72,11 +72,6 @@ import (
 //				return err
 //			}
 //			_, err = assert.NewLogConfig(ctx, "development", &assert.LogConfigArgs{
-//				Name:          pulumi.String("development"),
-//				Priority:      pulumi.Int(2000),
-//				DefaultConfig: pulumi.Bool(true),
-//				DataSourceUid: pulumi.String("elasticsearch-dev"),
-//				ErrorLabel:    pulumi.String("error"),
 //				Matches: assert.LogConfigMatchArray{
 //					&assert.LogConfigMatchArgs{
 //						Property: pulumi.String("asserts_entity_type"),
@@ -108,6 +103,11 @@ import (
 //						},
 //					},
 //				},
+//				Name:          pulumi.String("development"),
+//				Priority:      pulumi.Int(2000),
+//				DefaultConfig: pulumi.Bool(true),
+//				DataSourceUid: pulumi.String("elasticsearch-dev"),
+//				ErrorLabel:    pulumi.String("error"),
 //				EntityPropertyToLogLabelMapping: pulumi.StringMap{
 //					"otel_namespace": pulumi.String("service_namespace"),
 //					"otel_service":   pulumi.String("service_name"),
@@ -122,10 +122,6 @@ import (
 //				return err
 //			}
 //			_, err = assert.NewLogConfig(ctx, "minimal", &assert.LogConfigArgs{
-//				Name:          pulumi.String("minimal"),
-//				Priority:      pulumi.Int(3000),
-//				DefaultConfig: pulumi.Bool(false),
-//				DataSourceUid: pulumi.String("loki-minimal"),
 //				Matches: assert.LogConfigMatchArray{
 //					&assert.LogConfigMatchArgs{
 //						Property: pulumi.String("asserts_entity_type"),
@@ -133,6 +129,10 @@ import (
 //						Values:   pulumi.StringArray{},
 //					},
 //				},
+//				Name:          pulumi.String("minimal"),
+//				Priority:      pulumi.Int(3000),
+//				DefaultConfig: pulumi.Bool(false),
+//				DataSourceUid: pulumi.String("loki-minimal"),
 //			})
 //			if err != nil {
 //				return err
