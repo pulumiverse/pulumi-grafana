@@ -237,13 +237,6 @@ class ProvisioningRepository(pulumi.CustomResource):
                 "uid": "my-github-folder-repo",
             },
             spec={
-                "title": "My GitHub Folder Repository",
-                "description": "Folder-scoped GitHub repository authenticated directly with a token",
-                "type": "github",
-                "workflows": [
-                    "write",
-                    "branch",
-                ],
                 "sync": {
                     "enabled": True,
                     "target": "folder",
@@ -257,6 +250,13 @@ class ProvisioningRepository(pulumi.CustomResource):
                 "webhook": {
                     "base_url": "https://grafana.example.com",
                 },
+                "title": "My GitHub Folder Repository",
+                "description": "Folder-scoped GitHub repository authenticated directly with a token",
+                "type": "github",
+                "workflows": [
+                    "write",
+                    "branch",
+                ],
             },
             secure={
                 "token": {
@@ -277,13 +277,6 @@ class ProvisioningRepository(pulumi.CustomResource):
                 "uid": "my-bitbucket-folder-repo",
             },
             spec={
-                "title": "My Bitbucket Folder Repository",
-                "description": "Folder-scoped Bitbucket repository authenticated directly with an Atlassian API token",
-                "type": "bitbucket",
-                "workflows": [
-                    "write",
-                    "branch",
-                ],
                 "sync": {
                     "enabled": True,
                     "target": "folder",
@@ -295,6 +288,13 @@ class ProvisioningRepository(pulumi.CustomResource):
                     "path": "grafanatftest",
                     "token_user": "x-bitbucket-api-token-auth",
                 },
+                "title": "My Bitbucket Folder Repository",
+                "description": "Folder-scoped Bitbucket repository authenticated directly with an Atlassian API token",
+                "type": "bitbucket",
+                "workflows": [
+                    "write",
+                    "branch",
+                ],
             },
             secure={
                 "token": {
@@ -315,13 +315,6 @@ class ProvisioningRepository(pulumi.CustomResource):
                 "uid": "my-gitlab-folder-repo",
             },
             spec={
-                "title": "My GitLab Folder Repository",
-                "description": "Folder-scoped GitLab repository authenticated directly with a token",
-                "type": "gitlab",
-                "workflows": [
-                    "write",
-                    "branch",
-                ],
                 "sync": {
                     "enabled": True,
                     "target": "folder",
@@ -332,6 +325,13 @@ class ProvisioningRepository(pulumi.CustomResource):
                     "branch": "main",
                     "path": "grafanatftest",
                 },
+                "title": "My GitLab Folder Repository",
+                "description": "Folder-scoped GitLab repository authenticated directly with a token",
+                "type": "gitlab",
+                "workflows": [
+                    "write",
+                    "branch",
+                ],
             },
             secure={
                 "token": {
@@ -352,10 +352,6 @@ class ProvisioningRepository(pulumi.CustomResource):
                 "uid": "my-pure-git-folder-repo",
             },
             spec={
-                "title": "My Pure Git Folder Repository",
-                "description": "Folder-scoped generic Git repository authenticated with a token",
-                "type": "git",
-                "workflows": ["write"],
                 "sync": {
                     "enabled": True,
                     "target": "folder",
@@ -367,6 +363,10 @@ class ProvisioningRepository(pulumi.CustomResource):
                     "path": "grafanatftest",
                     "token_user": "git",
                 },
+                "title": "My Pure Git Folder Repository",
+                "description": "Folder-scoped generic Git repository authenticated with a token",
+                "type": "git",
+                "workflows": ["write"],
             },
             secure={
                 "token": {
@@ -387,10 +387,6 @@ class ProvisioningRepository(pulumi.CustomResource):
                 "uid": "my-local-folder-repo",
             },
             spec={
-                "title": "My Local Folder Repository",
-                "description": "Folder-scoped local filesystem repository",
-                "type": "local",
-                "workflows": ["write"],
                 "sync": {
                     "enabled": True,
                     "target": "folder",
@@ -399,6 +395,10 @@ class ProvisioningRepository(pulumi.CustomResource):
                 "local": {
                     "path": "/usr/share/grafana/conf/provisioning/my-local-repo",
                 },
+                "title": "My Local Folder Repository",
+                "description": "Folder-scoped local filesystem repository",
+                "type": "local",
+                "workflows": ["write"],
             })
         ```
 
@@ -446,13 +446,6 @@ class ProvisioningRepository(pulumi.CustomResource):
                 "uid": "my-github-folder-repo",
             },
             spec={
-                "title": "My GitHub Folder Repository",
-                "description": "Folder-scoped GitHub repository authenticated directly with a token",
-                "type": "github",
-                "workflows": [
-                    "write",
-                    "branch",
-                ],
                 "sync": {
                     "enabled": True,
                     "target": "folder",
@@ -466,6 +459,13 @@ class ProvisioningRepository(pulumi.CustomResource):
                 "webhook": {
                     "base_url": "https://grafana.example.com",
                 },
+                "title": "My GitHub Folder Repository",
+                "description": "Folder-scoped GitHub repository authenticated directly with a token",
+                "type": "github",
+                "workflows": [
+                    "write",
+                    "branch",
+                ],
             },
             secure={
                 "token": {
@@ -486,13 +486,6 @@ class ProvisioningRepository(pulumi.CustomResource):
                 "uid": "my-bitbucket-folder-repo",
             },
             spec={
-                "title": "My Bitbucket Folder Repository",
-                "description": "Folder-scoped Bitbucket repository authenticated directly with an Atlassian API token",
-                "type": "bitbucket",
-                "workflows": [
-                    "write",
-                    "branch",
-                ],
                 "sync": {
                     "enabled": True,
                     "target": "folder",
@@ -504,6 +497,13 @@ class ProvisioningRepository(pulumi.CustomResource):
                     "path": "grafanatftest",
                     "token_user": "x-bitbucket-api-token-auth",
                 },
+                "title": "My Bitbucket Folder Repository",
+                "description": "Folder-scoped Bitbucket repository authenticated directly with an Atlassian API token",
+                "type": "bitbucket",
+                "workflows": [
+                    "write",
+                    "branch",
+                ],
             },
             secure={
                 "token": {
@@ -524,13 +524,6 @@ class ProvisioningRepository(pulumi.CustomResource):
                 "uid": "my-gitlab-folder-repo",
             },
             spec={
-                "title": "My GitLab Folder Repository",
-                "description": "Folder-scoped GitLab repository authenticated directly with a token",
-                "type": "gitlab",
-                "workflows": [
-                    "write",
-                    "branch",
-                ],
                 "sync": {
                     "enabled": True,
                     "target": "folder",
@@ -541,6 +534,13 @@ class ProvisioningRepository(pulumi.CustomResource):
                     "branch": "main",
                     "path": "grafanatftest",
                 },
+                "title": "My GitLab Folder Repository",
+                "description": "Folder-scoped GitLab repository authenticated directly with a token",
+                "type": "gitlab",
+                "workflows": [
+                    "write",
+                    "branch",
+                ],
             },
             secure={
                 "token": {
@@ -561,10 +561,6 @@ class ProvisioningRepository(pulumi.CustomResource):
                 "uid": "my-pure-git-folder-repo",
             },
             spec={
-                "title": "My Pure Git Folder Repository",
-                "description": "Folder-scoped generic Git repository authenticated with a token",
-                "type": "git",
-                "workflows": ["write"],
                 "sync": {
                     "enabled": True,
                     "target": "folder",
@@ -576,6 +572,10 @@ class ProvisioningRepository(pulumi.CustomResource):
                     "path": "grafanatftest",
                     "token_user": "git",
                 },
+                "title": "My Pure Git Folder Repository",
+                "description": "Folder-scoped generic Git repository authenticated with a token",
+                "type": "git",
+                "workflows": ["write"],
             },
             secure={
                 "token": {
@@ -596,10 +596,6 @@ class ProvisioningRepository(pulumi.CustomResource):
                 "uid": "my-local-folder-repo",
             },
             spec={
-                "title": "My Local Folder Repository",
-                "description": "Folder-scoped local filesystem repository",
-                "type": "local",
-                "workflows": ["write"],
                 "sync": {
                     "enabled": True,
                     "target": "folder",
@@ -608,6 +604,10 @@ class ProvisioningRepository(pulumi.CustomResource):
                 "local": {
                     "path": "/usr/share/grafana/conf/provisioning/my-local-repo",
                 },
+                "title": "My Local Folder Repository",
+                "description": "Folder-scoped local filesystem repository",
+                "type": "local",
+                "workflows": ["write"],
             })
         ```
 

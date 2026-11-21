@@ -347,11 +347,6 @@ class LogConfig(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         production = grafana.assert_.LogConfig("production",
-            name="production",
-            priority=1000,
-            default_config=False,
-            data_source_uid="grafanacloud-logs",
-            error_label="error",
             matches=[
                 {
                     "property": "asserts_entity_type",
@@ -375,6 +370,11 @@ class LogConfig(pulumi.CustomResource):
                     ],
                 },
             ],
+            name="production",
+            priority=1000,
+            default_config=False,
+            data_source_uid="grafanacloud-logs",
+            error_label="error",
             entity_property_to_log_label_mapping={
                 "otel_namespace": "service_namespace",
                 "otel_service": "service_name",
@@ -384,11 +384,6 @@ class LogConfig(pulumi.CustomResource):
             filter_by_span_id=True,
             filter_by_trace_id=True)
         development = grafana.assert_.LogConfig("development",
-            name="development",
-            priority=2000,
-            default_config=True,
-            data_source_uid="elasticsearch-dev",
-            error_label="error",
             matches=[
                 {
                     "property": "asserts_entity_type",
@@ -414,6 +409,11 @@ class LogConfig(pulumi.CustomResource):
                     "values": ["api"],
                 },
             ],
+            name="development",
+            priority=2000,
+            default_config=True,
+            data_source_uid="elasticsearch-dev",
+            error_label="error",
             entity_property_to_log_label_mapping={
                 "otel_namespace": "service_namespace",
                 "otel_service": "service_name",
@@ -424,15 +424,15 @@ class LogConfig(pulumi.CustomResource):
             filter_by_span_id=True,
             filter_by_trace_id=True)
         minimal = grafana.assert_.LogConfig("minimal",
-            name="minimal",
-            priority=3000,
-            default_config=False,
-            data_source_uid="loki-minimal",
             matches=[{
                 "property": "asserts_entity_type",
                 "op": "IS NOT NULL",
                 "values": [],
-            }])
+            }],
+            name="minimal",
+            priority=3000,
+            default_config=False,
+            data_source_uid="loki-minimal")
         ```
 
         ## Import
@@ -470,11 +470,6 @@ class LogConfig(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         production = grafana.assert_.LogConfig("production",
-            name="production",
-            priority=1000,
-            default_config=False,
-            data_source_uid="grafanacloud-logs",
-            error_label="error",
             matches=[
                 {
                     "property": "asserts_entity_type",
@@ -498,6 +493,11 @@ class LogConfig(pulumi.CustomResource):
                     ],
                 },
             ],
+            name="production",
+            priority=1000,
+            default_config=False,
+            data_source_uid="grafanacloud-logs",
+            error_label="error",
             entity_property_to_log_label_mapping={
                 "otel_namespace": "service_namespace",
                 "otel_service": "service_name",
@@ -507,11 +507,6 @@ class LogConfig(pulumi.CustomResource):
             filter_by_span_id=True,
             filter_by_trace_id=True)
         development = grafana.assert_.LogConfig("development",
-            name="development",
-            priority=2000,
-            default_config=True,
-            data_source_uid="elasticsearch-dev",
-            error_label="error",
             matches=[
                 {
                     "property": "asserts_entity_type",
@@ -537,6 +532,11 @@ class LogConfig(pulumi.CustomResource):
                     "values": ["api"],
                 },
             ],
+            name="development",
+            priority=2000,
+            default_config=True,
+            data_source_uid="elasticsearch-dev",
+            error_label="error",
             entity_property_to_log_label_mapping={
                 "otel_namespace": "service_namespace",
                 "otel_service": "service_name",
@@ -547,15 +547,15 @@ class LogConfig(pulumi.CustomResource):
             filter_by_span_id=True,
             filter_by_trace_id=True)
         minimal = grafana.assert_.LogConfig("minimal",
-            name="minimal",
-            priority=3000,
-            default_config=False,
-            data_source_uid="loki-minimal",
             matches=[{
                 "property": "asserts_entity_type",
                 "op": "IS NOT NULL",
                 "values": [],
-            }])
+            }],
+            name="minimal",
+            priority=3000,
+            default_config=False,
+            data_source_uid="loki-minimal")
         ```
 
         ## Import

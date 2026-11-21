@@ -52,14 +52,6 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1
     ///         },
     ///         Spec = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningRepositorySpecArgs
     ///         {
-    ///             Title = "My GitHub Folder Repository",
-    ///             Description = "Folder-scoped GitHub repository authenticated directly with a token",
-    ///             Type = "github",
-    ///             Workflows = new[]
-    ///             {
-    ///                 "write",
-    ///                 "branch",
-    ///             },
     ///             Sync = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningRepositorySpecSyncArgs
     ///             {
     ///                 Enabled = true,
@@ -75,6 +67,14 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1
     ///             Webhook = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningRepositorySpecWebhookArgs
     ///             {
     ///                 BaseUrl = "https://grafana.example.com",
+    ///             },
+    ///             Title = "My GitHub Folder Repository",
+    ///             Description = "Folder-scoped GitHub repository authenticated directly with a token",
+    ///             Type = "github",
+    ///             Workflows = new[]
+    ///             {
+    ///                 "write",
+    ///                 "branch",
     ///             },
     ///         },
     ///         Secure = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningRepositorySecureArgs
@@ -108,14 +108,6 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1
     ///         },
     ///         Spec = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningRepositorySpecArgs
     ///         {
-    ///             Title = "My Bitbucket Folder Repository",
-    ///             Description = "Folder-scoped Bitbucket repository authenticated directly with an Atlassian API token",
-    ///             Type = "bitbucket",
-    ///             Workflows = new[]
-    ///             {
-    ///                 "write",
-    ///                 "branch",
-    ///             },
     ///             Sync = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningRepositorySpecSyncArgs
     ///             {
     ///                 Enabled = true,
@@ -128,6 +120,14 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1
     ///                 Branch = "main",
     ///                 Path = "grafanatftest",
     ///                 TokenUser = "x-bitbucket-api-token-auth",
+    ///             },
+    ///             Title = "My Bitbucket Folder Repository",
+    ///             Description = "Folder-scoped Bitbucket repository authenticated directly with an Atlassian API token",
+    ///             Type = "bitbucket",
+    ///             Workflows = new[]
+    ///             {
+    ///                 "write",
+    ///                 "branch",
     ///             },
     ///         },
     ///         Secure = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningRepositorySecureArgs
@@ -161,14 +161,6 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1
     ///         },
     ///         Spec = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningRepositorySpecArgs
     ///         {
-    ///             Title = "My GitLab Folder Repository",
-    ///             Description = "Folder-scoped GitLab repository authenticated directly with a token",
-    ///             Type = "gitlab",
-    ///             Workflows = new[]
-    ///             {
-    ///                 "write",
-    ///                 "branch",
-    ///             },
     ///             Sync = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningRepositorySpecSyncArgs
     ///             {
     ///                 Enabled = true,
@@ -180,6 +172,14 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1
     ///                 Url = "https://gitlab.com/example/grafana-dashboards",
     ///                 Branch = "main",
     ///                 Path = "grafanatftest",
+    ///             },
+    ///             Title = "My GitLab Folder Repository",
+    ///             Description = "Folder-scoped GitLab repository authenticated directly with a token",
+    ///             Type = "gitlab",
+    ///             Workflows = new[]
+    ///             {
+    ///                 "write",
+    ///                 "branch",
     ///             },
     ///         },
     ///         Secure = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningRepositorySecureArgs
@@ -213,13 +213,6 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1
     ///         },
     ///         Spec = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningRepositorySpecArgs
     ///         {
-    ///             Title = "My Pure Git Folder Repository",
-    ///             Description = "Folder-scoped generic Git repository authenticated with a token",
-    ///             Type = "git",
-    ///             Workflows = new[]
-    ///             {
-    ///                 "write",
-    ///             },
     ///             Sync = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningRepositorySpecSyncArgs
     ///             {
     ///                 Enabled = true,
@@ -232,6 +225,13 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1
     ///                 Branch = "main",
     ///                 Path = "grafanatftest",
     ///                 TokenUser = "git",
+    ///             },
+    ///             Title = "My Pure Git Folder Repository",
+    ///             Description = "Folder-scoped generic Git repository authenticated with a token",
+    ///             Type = "git",
+    ///             Workflows = new[]
+    ///             {
+    ///                 "write",
     ///             },
     ///         },
     ///         Secure = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningRepositorySecureArgs
@@ -265,13 +265,6 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1
     ///         },
     ///         Spec = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningRepositorySpecArgs
     ///         {
-    ///             Title = "My Local Folder Repository",
-    ///             Description = "Folder-scoped local filesystem repository",
-    ///             Type = "local",
-    ///             Workflows = new[]
-    ///             {
-    ///                 "write",
-    ///             },
     ///             Sync = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningRepositorySpecSyncArgs
     ///             {
     ///                 Enabled = true,
@@ -281,6 +274,13 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1
     ///             Local = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningRepositorySpecLocalArgs
     ///             {
     ///                 Path = "/usr/share/grafana/conf/provisioning/my-local-repo",
+    ///             },
+    ///             Title = "My Local Folder Repository",
+    ///             Description = "Folder-scoped local filesystem repository",
+    ///             Type = "local",
+    ///             Workflows = new[]
+    ///             {
+    ///                 "write",
     ///             },
     ///         },
     ///     });

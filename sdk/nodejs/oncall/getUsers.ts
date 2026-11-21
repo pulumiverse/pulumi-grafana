@@ -7,30 +7,32 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Lists every user in Grafana OnCall. Each plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `grafana.onCall.getUser`.
+ * Lists Grafana OnCall users. Without `teamId`, every plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `grafana.onCall.getUser`.
  *
  * Each user's `username` is their Grafana login, which can differ from their email address. To refer to users by email, build a map from `email` to `id`, as shown in the example.
  *
+ * Team membership is synced from Grafana and the sync is not immediate, so a user added to a team moments earlier can be missing from the first plan.
+ *
+ * Users are returned in OnCall's own order, not by name. A rotation built from team membership therefore re-orders when the team changes: keep the order in the configuration and use membership to add and remove people, as shown in the example.
+ *
  * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- * import * as std from "@pulumi/std";
- *
- * const all = grafana.onCall.getUsers({});
- * const oncallUserIdsByEmail = Promise.all([all, std.lower({
- *     input: user.email,
- * })]).then(([all, invoke]) => .reduce((__obj, user) => ({ ...__obj, [invoke.result]: user.id })));
- * export const alfaOncallUserId = oncallUserIdsByEmail["alfa@example.com"];
- * ```
  */
-export function getUsers(opts?: pulumi.InvokeOptions): Promise<GetUsersResult> {
+export function getUsers(args?: GetUsersArgs, opts?: pulumi.InvokeOptions): Promise<GetUsersResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:onCall/getUsers:getUsers", {
+        "teamId": args.teamId,
     }, opts);
+}
+
+/**
+ * A collection of arguments for invoking getUsers.
+ */
+export interface GetUsersArgs {
+    /**
+     * Return only the members of this team, using the ID from the `grafana.onCall.getTeam` data source. A team ID that does not exist returns no users instead of an error, so reference the data source rather than writing an ID by hand. Unlike `grafana.onCall.Integration`, this attribute does not accept `"null"`: there is no filter for users who belong to no team.
+     */
+    teamId?: string;
 }
 
 /**
@@ -42,33 +44,39 @@ export interface GetUsersResult {
      */
     readonly id: string;
     /**
-     * Every OnCall user, with their ID, username (the Grafana login), email, and role.
+     * Return only the members of this team, using the ID from the `grafana.onCall.getTeam` data source. A team ID that does not exist returns no users instead of an error, so reference the data source rather than writing an ID by hand. Unlike `grafana.onCall.Integration`, this attribute does not accept `"null"`: there is no filter for users who belong to no team.
+     */
+    readonly teamId?: string;
+    /**
+     * Every matching OnCall user, with their ID, username (the Grafana login), email, and role. `teams` holds the IDs of the teams the user belongs to, which are the IDs the `grafana.onCall.getTeam` data source returns.
      */
     readonly users: outputs.onCall.GetUsersUser[];
 }
 /**
- * Lists every user in Grafana OnCall. Each plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `grafana.onCall.getUser`.
+ * Lists Grafana OnCall users. Without `teamId`, every plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `grafana.onCall.getUser`.
  *
  * Each user's `username` is their Grafana login, which can differ from their email address. To refer to users by email, build a map from `email` to `id`, as shown in the example.
  *
+ * Team membership is synced from Grafana and the sync is not immediate, so a user added to a team moments earlier can be missing from the first plan.
+ *
+ * Users are returned in OnCall's own order, not by name. A rotation built from team membership therefore re-orders when the team changes: keep the order in the configuration and use membership to add and remove people, as shown in the example.
+ *
  * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- * import * as std from "@pulumi/std";
- *
- * const all = grafana.onCall.getUsers({});
- * const oncallUserIdsByEmail = Promise.all([all, std.lower({
- *     input: user.email,
- * })]).then(([all, invoke]) => .reduce((__obj, user) => ({ ...__obj, [invoke.result]: user.id })));
- * export const alfaOncallUserId = oncallUserIdsByEmail["alfa@example.com"];
- * ```
  */
-export function getUsersOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetUsersResult> {
+export function getUsersOutput(args?: GetUsersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetUsersResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:onCall/getUsers:getUsers", {
+        "teamId": args.teamId,
     }, opts);
+}
+
+/**
+ * A collection of arguments for invoking getUsers.
+ */
+export interface GetUsersOutputArgs {
+    /**
+     * Return only the members of this team, using the ID from the `grafana.onCall.getTeam` data source. A team ID that does not exist returns no users instead of an error, so reference the data source rather than writing an ID by hand. Unlike `grafana.onCall.Integration`, this attribute does not accept `"null"`: there is no filter for users who belong to no team.
+     */
+    teamId?: pulumi.Input<string>;
 }

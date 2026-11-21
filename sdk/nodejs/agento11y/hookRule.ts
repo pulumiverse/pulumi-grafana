@@ -18,6 +18,10 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const example = new grafana.agento11y.HookRule("example", {
+ *     redacts: [{
+ *         id: "emails",
+ *         regex: "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+",
+ *     }],
  *     ruleId: "block_destructive_tools",
  *     phase: "preflight",
  *     actionOnFail: "deny",
@@ -25,10 +29,6 @@ import * as utilities from "../utilities";
  *         "delete_*",
  *         "drop_*",
  *     ],
- *     redacts: [{
- *         id: "emails",
- *         regex: "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+",
- *     }],
  * });
  * ```
  *

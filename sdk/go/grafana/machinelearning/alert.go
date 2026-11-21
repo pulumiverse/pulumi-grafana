@@ -76,6 +76,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			testAlertOutlierDetector, err := machinelearning.NewOutlierDetector(ctx, "test_alert_outlier_detector", &machinelearning.OutlierDetectorArgs{
+//				Algorithm: &machinelearning.OutlierDetectorAlgorithmArgs{
+//					Config: &machinelearning.OutlierDetectorAlgorithmConfigArgs{
+//						Epsilon: pulumi.Float64(1),
+//					},
+//					Name:        pulumi.String("dbscan"),
+//					Sensitivity: pulumi.Float64(0.5),
+//				},
 //				Name:           pulumi.String("Test Outlier"),
 //				Metric:         pulumi.String("tf_test_alert_outlier"),
 //				DatasourceType: pulumi.String("prometheus"),
@@ -84,13 +91,6 @@ import (
 //					"expr": pulumi.String("grafanacloud_grafana_instance_active_user_count"),
 //				},
 //				Interval: pulumi.Int(300),
-//				Algorithm: &machinelearning.OutlierDetectorAlgorithmArgs{
-//					Name:        pulumi.String("dbscan"),
-//					Sensitivity: pulumi.Float64(0.5),
-//					Config: &machinelearning.OutlierDetectorAlgorithmConfigArgs{
-//						Epsilon: pulumi.Float64(1),
-//					},
-//				},
 //			})
 //			if err != nil {
 //				return err

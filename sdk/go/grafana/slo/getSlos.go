@@ -32,30 +32,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := slo.NewSLO(ctx, "test", &slo.SLOArgs{
-//				Name:        pulumi.String("Terraform Testing"),
-//				Description: pulumi.String("Terraform Description"),
-//				Queries: slo.SLOQueryArray{
-//					&slo.SLOQueryArgs{
-//						Freeform: &slo.SLOQueryFreeformArgs{
-//							Query: pulumi.String("sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))"),
-//						},
-//						Type: pulumi.String("freeform"),
-//					},
-//				},
-//				Objectives: slo.SLOObjectiveArray{
-//					&slo.SLOObjectiveArgs{
-//						Value:  pulumi.Float64(0.995),
-//						Window: pulumi.String("30d"),
-//					},
-//				},
 //				DestinationDatasource: &slo.SLODestinationDatasourceArgs{
 //					Uid: pulumi.String("grafanacloud-prom"),
-//				},
-//				Labels: slo.SLOLabelArray{
-//					&slo.SLOLabelArgs{
-//						Key:   pulumi.String("custom"),
-//						Value: pulumi.String("value"),
-//					},
 //				},
 //				Alerting: &slo.SLOAlertingArgs{
 //					Fastburn: &slo.SLOAlertingFastburnArgs{
@@ -87,6 +65,28 @@ import (
 //						},
 //					},
 //				},
+//				Labels: slo.SLOLabelArray{
+//					&slo.SLOLabelArgs{
+//						Key:   pulumi.String("custom"),
+//						Value: pulumi.String("value"),
+//					},
+//				},
+//				Objectives: slo.SLOObjectiveArray{
+//					&slo.SLOObjectiveArgs{
+//						Value:  pulumi.Float64(0.995),
+//						Window: pulumi.String("30d"),
+//					},
+//				},
+//				Queries: slo.SLOQueryArray{
+//					&slo.SLOQueryArgs{
+//						Freeform: &slo.SLOQueryFreeformArgs{
+//							Query: pulumi.String("sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))"),
+//						},
+//						Type: pulumi.String("freeform"),
+//					},
+//				},
+//				Name:        pulumi.String("Terraform Testing"),
+//				Description: pulumi.String("Terraform Description"),
 //			})
 //			if err != nil {
 //				return err

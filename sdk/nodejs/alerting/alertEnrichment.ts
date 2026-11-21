@@ -22,33 +22,6 @@ import * as utilities from "../utilities";
  *         uid: "test_enrichment",
  *     },
  *     spec: {
- *         title: "Comprehensive alert enrichment",
- *         description: "Demonstrates many enrichment steps and configurations",
- *         alertRuleUids: [
- *             "alert-rule-1",
- *             "alert-rule-2",
- *         ],
- *         receivers: [
- *             "webhook",
- *             "slack-critical",
- *         ],
- *         labelMatchers: [
- *             {
- *                 type: "=",
- *                 name: "severity",
- *                 value: "critical",
- *             },
- *             {
- *                 type: "=~",
- *                 name: "team",
- *                 value: "alerting|alerting-team",
- *             },
- *         ],
- *         annotationMatchers: [{
- *             type: "!=",
- *             name: "runbook_url",
- *             value: "",
- *         }],
  *         steps: [
  *             {
  *                 assign: {
@@ -66,18 +39,17 @@ import * as utilities from "../utilities";
  *             },
  *             {
  *                 dataSource: {
- *                     timeout: "30s",
  *                     logsQuery: {
  *                         dataSourceType: "loki",
  *                         dataSourceUid: "loki-uid-123",
  *                         expr: "{job=\"my-app\"} |= \"error\"",
  *                         maxLines: 5,
  *                     },
+ *                     timeout: "30s",
  *                 },
  *             },
  *             {
  *                 dataSource: {
- *                     timeout: "30s",
  *                     rawQuery: {
  *                         refId: "A",
  *                         request: JSON.stringify({
@@ -91,6 +63,7 @@ import * as utilities from "../utilities";
  *                             maxDataPoints: 43200,
  *                         }),
  *                     },
+ *                     timeout: "30s",
  *                 },
  *             },
  *             {
@@ -141,6 +114,33 @@ import * as utilities from "../utilities";
  *                 },
  *             },
  *         ],
+ *         title: "Comprehensive alert enrichment",
+ *         description: "Demonstrates many enrichment steps and configurations",
+ *         alertRuleUids: [
+ *             "alert-rule-1",
+ *             "alert-rule-2",
+ *         ],
+ *         receivers: [
+ *             "webhook",
+ *             "slack-critical",
+ *         ],
+ *         labelMatchers: [
+ *             {
+ *                 type: "=",
+ *                 name: "severity",
+ *                 value: "critical",
+ *             },
+ *             {
+ *                 type: "=~",
+ *                 name: "team",
+ *                 value: "alerting|alerting-team",
+ *             },
+ *         ],
+ *         annotationMatchers: [{
+ *             type: "!=",
+ *             name: "runbook_url",
+ *             value: "",
+ *         }],
  *     },
  * });
  * ```

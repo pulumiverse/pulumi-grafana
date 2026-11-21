@@ -20,25 +20,9 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.slo.SLO("test", {
- *     name: "Terraform Testing",
- *     description: "Terraform Description",
- *     queries: [{
- *         freeform: {
- *             query: "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
- *         },
- *         type: "freeform",
- *     }],
- *     objectives: [{
- *         value: 0.995,
- *         window: "30d",
- *     }],
  *     destinationDatasource: {
  *         uid: "grafanacloud-prom",
  *     },
- *     labels: [{
- *         key: "custom",
- *         value: "value",
- *     }],
  *     alerting: {
  *         fastburn: {
  *             annotations: [{
@@ -61,6 +45,22 @@ import * as utilities from "../utilities";
  *             }],
  *         },
  *     },
+ *     labels: [{
+ *         key: "custom",
+ *         value: "value",
+ *     }],
+ *     objectives: [{
+ *         value: 0.995,
+ *         window: "30d",
+ *     }],
+ *     queries: [{
+ *         freeform: {
+ *             query: "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+ *         },
+ *         type: "freeform",
+ *     }],
+ *     name: "Terraform Testing",
+ *     description: "Terraform Description",
  * });
  * const slos = grafana.slo.getSlos({});
  * ```
@@ -110,25 +110,9 @@ export interface GetSlosResult {
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.slo.SLO("test", {
- *     name: "Terraform Testing",
- *     description: "Terraform Description",
- *     queries: [{
- *         freeform: {
- *             query: "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
- *         },
- *         type: "freeform",
- *     }],
- *     objectives: [{
- *         value: 0.995,
- *         window: "30d",
- *     }],
  *     destinationDatasource: {
  *         uid: "grafanacloud-prom",
  *     },
- *     labels: [{
- *         key: "custom",
- *         value: "value",
- *     }],
  *     alerting: {
  *         fastburn: {
  *             annotations: [{
@@ -151,6 +135,22 @@ export interface GetSlosResult {
  *             }],
  *         },
  *     },
+ *     labels: [{
+ *         key: "custom",
+ *         value: "value",
+ *     }],
+ *     objectives: [{
+ *         value: 0.995,
+ *         window: "30d",
+ *     }],
+ *     queries: [{
+ *         freeform: {
+ *             query: "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+ *         },
+ *         type: "freeform",
+ *     }],
+ *     name: "Terraform Testing",
+ *     description: "Terraform Description",
  * });
  * const slos = grafana.slo.getSlos({});
  * ```

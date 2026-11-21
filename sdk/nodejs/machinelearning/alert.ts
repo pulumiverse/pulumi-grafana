@@ -43,6 +43,13 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const testAlertOutlierDetector = new grafana.machinelearning.OutlierDetector("test_alert_outlier_detector", {
+ *     algorithm: {
+ *         config: {
+ *             epsilon: 1,
+ *         },
+ *         name: "dbscan",
+ *         sensitivity: 0.5,
+ *     },
  *     name: "Test Outlier",
  *     metric: "tf_test_alert_outlier",
  *     datasourceType: "prometheus",
@@ -51,13 +58,6 @@ import * as utilities from "../utilities";
  *         expr: "grafanacloud_grafana_instance_active_user_count",
  *     },
  *     interval: 300,
- *     algorithm: {
- *         name: "dbscan",
- *         sensitivity: 0.5,
- *         config: {
- *             epsilon: 1,
- *         },
- *     },
  * });
  * const testOutlierAlert = new grafana.machinelearning.Alert("test_outlier_alert", {
  *     outlierId: testAlertOutlierDetector.id,

@@ -34,6 +34,23 @@ namespace Pulumiverse.Grafana.Assistant
     /// {
     ///     var dailyIncidentReport = new Grafana.Assistant.Automation("daily_incident_report", new()
     ///     {
+    ///         Notifications = new Grafana.Assistant.Inputs.AutomationNotificationsArgs
+    ///         {
+    ///             Slack = new Grafana.Assistant.Inputs.AutomationNotificationsSlackArgs
+    ///             {
+    ///                 Target = new Grafana.Assistant.Inputs.AutomationNotificationsSlackTargetArgs
+    ///                 {
+    ///                     Type = "channel",
+    ///                     ChannelId = "C0123456789",
+    ///                 },
+    ///                 Enabled = true,
+    ///                 NotifyOns = new[]
+    ///                 {
+    ///                     "completed",
+    ///                     "failed",
+    ///                 },
+    ///             },
+    ///         },
     ///         Name = "Daily ecommerce incident report",
     ///         Description = "Every morning, summarize the alerts that fired for the ecommerce app.",
     ///         Prompt = @"Produce a daily report on the incidents for the main alerts that fired in
@@ -53,23 +70,6 @@ namespace Pulumiverse.Grafana.Assistant
     ///         },
     ///         ScheduleCron = "0 9 * * *",
     ///         ScheduleTimezone = "Europe/Paris",
-    ///         Notifications = new Grafana.Assistant.Inputs.AutomationNotificationsArgs
-    ///         {
-    ///             Slack = new Grafana.Assistant.Inputs.AutomationNotificationsSlackArgs
-    ///             {
-    ///                 Enabled = true,
-    ///                 NotifyOns = new[]
-    ///                 {
-    ///                     "completed",
-    ///                     "failed",
-    ///                 },
-    ///                 Target = new Grafana.Assistant.Inputs.AutomationNotificationsSlackTargetArgs
-    ///                 {
-    ///                     Type = "channel",
-    ///                     ChannelId = "C0123456789",
-    ///                 },
-    ///             },
-    ///         },
     ///     });
     /// 
     ///     // Event-only automation. Replace the watcher UUID with an existing Watcher.

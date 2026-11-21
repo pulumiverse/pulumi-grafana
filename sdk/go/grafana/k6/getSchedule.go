@@ -44,13 +44,13 @@ import (
 //				return err
 //			}
 //			_, err = k6.NewSchedule(ctx, "test_schedule", &k6.ScheduleArgs{
-//				LoadTestId: scheduleLoadTest.ID(),
-//				Starts:     pulumi.String("2024-12-25T10:00:00Z"),
 //				RecurrenceRule: &k6.ScheduleRecurrenceRuleArgs{
 //					Frequency: pulumi.String("MONTHLY"),
 //					Interval:  pulumi.Int(12),
 //					Count:     pulumi.Int(100),
 //				},
+//				LoadTestId: scheduleLoadTest.ID(),
+//				Starts:     pulumi.String("2024-12-25T10:00:00Z"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				scheduleLoadTest,
 //			}))

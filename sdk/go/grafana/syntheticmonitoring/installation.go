@@ -59,6 +59,12 @@ import (
 //			}
 //			// Step 2: Install Synthetic Monitoring on the stack
 //			smMetricsPublish, err := cloud.NewAccessPolicy(ctx, "sm_metrics_publish", &cloud.AccessPolicyArgs{
+//				Realms: cloud.AccessPolicyRealmArray{
+//					&cloud.AccessPolicyRealmArgs{
+//						Type:       pulumi.String("stack"),
+//						Identifier: smStack.ID(),
+//					},
+//				},
 //				Region: pulumi.String(pulumi.String(cloudRegion)),
 //				Name:   pulumi.String("metric-publisher-for-sm"),
 //				Scopes: pulumi.StringArray{
@@ -66,12 +72,6 @@ import (
 //					pulumi.String("stacks:read"),
 //					pulumi.String("logs:write"),
 //					pulumi.String("traces:write"),
-//				},
-//				Realms: cloud.AccessPolicyRealmArray{
-//					&cloud.AccessPolicyRealmArgs{
-//						Type:       pulumi.String("stack"),
-//						Identifier: smStack.ID(),
-//					},
 //				},
 //			})
 //			if err != nil {

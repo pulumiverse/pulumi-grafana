@@ -31,38 +31,9 @@ namespace Pulumiverse.Grafana.Slo
         /// {
         ///     var test = new Grafana.Slo.SLO("test", new()
         ///     {
-        ///         Name = "Terraform Testing",
-        ///         Description = "Terraform Description",
-        ///         Queries = new[]
-        ///         {
-        ///             new Grafana.Slo.Inputs.SLOQueryArgs
-        ///             {
-        ///                 Freeform = new Grafana.Slo.Inputs.SLOQueryFreeformArgs
-        ///                 {
-        ///                     Query = "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
-        ///                 },
-        ///                 Type = "freeform",
-        ///             },
-        ///         },
-        ///         Objectives = new[]
-        ///         {
-        ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
-        ///             {
-        ///                 Value = 0.995,
-        ///                 Window = "30d",
-        ///             },
-        ///         },
         ///         DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs
         ///         {
         ///             Uid = "grafanacloud-prom",
-        ///         },
-        ///         Labels = new[]
-        ///         {
-        ///             new Grafana.Slo.Inputs.SLOLabelArgs
-        ///             {
-        ///                 Key = "custom",
-        ///                 Value = "value",
-        ///             },
         ///         },
         ///         Alerting = new Grafana.Slo.Inputs.SLOAlertingArgs
         ///         {
@@ -105,6 +76,35 @@ namespace Pulumiverse.Grafana.Slo
         ///                 },
         ///             },
         ///         },
+        ///         Labels = new[]
+        ///         {
+        ///             new Grafana.Slo.Inputs.SLOLabelArgs
+        ///             {
+        ///                 Key = "custom",
+        ///                 Value = "value",
+        ///             },
+        ///         },
+        ///         Objectives = new[]
+        ///         {
+        ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
+        ///             {
+        ///                 Value = 0.995,
+        ///                 Window = "30d",
+        ///             },
+        ///         },
+        ///         Queries = new[]
+        ///         {
+        ///             new Grafana.Slo.Inputs.SLOQueryArgs
+        ///             {
+        ///                 Freeform = new Grafana.Slo.Inputs.SLOQueryFreeformArgs
+        ///                 {
+        ///                     Query = "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+        ///                 },
+        ///                 Type = "freeform",
+        ///             },
+        ///         },
+        ///         Name = "Terraform Testing",
+        ///         Description = "Terraform Description",
         ///     });
         /// 
         ///     var slos = Grafana.Slo.GetSlos.Invoke();
@@ -134,38 +134,9 @@ namespace Pulumiverse.Grafana.Slo
         /// {
         ///     var test = new Grafana.Slo.SLO("test", new()
         ///     {
-        ///         Name = "Terraform Testing",
-        ///         Description = "Terraform Description",
-        ///         Queries = new[]
-        ///         {
-        ///             new Grafana.Slo.Inputs.SLOQueryArgs
-        ///             {
-        ///                 Freeform = new Grafana.Slo.Inputs.SLOQueryFreeformArgs
-        ///                 {
-        ///                     Query = "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
-        ///                 },
-        ///                 Type = "freeform",
-        ///             },
-        ///         },
-        ///         Objectives = new[]
-        ///         {
-        ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
-        ///             {
-        ///                 Value = 0.995,
-        ///                 Window = "30d",
-        ///             },
-        ///         },
         ///         DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs
         ///         {
         ///             Uid = "grafanacloud-prom",
-        ///         },
-        ///         Labels = new[]
-        ///         {
-        ///             new Grafana.Slo.Inputs.SLOLabelArgs
-        ///             {
-        ///                 Key = "custom",
-        ///                 Value = "value",
-        ///             },
         ///         },
         ///         Alerting = new Grafana.Slo.Inputs.SLOAlertingArgs
         ///         {
@@ -208,6 +179,35 @@ namespace Pulumiverse.Grafana.Slo
         ///                 },
         ///             },
         ///         },
+        ///         Labels = new[]
+        ///         {
+        ///             new Grafana.Slo.Inputs.SLOLabelArgs
+        ///             {
+        ///                 Key = "custom",
+        ///                 Value = "value",
+        ///             },
+        ///         },
+        ///         Objectives = new[]
+        ///         {
+        ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
+        ///             {
+        ///                 Value = 0.995,
+        ///                 Window = "30d",
+        ///             },
+        ///         },
+        ///         Queries = new[]
+        ///         {
+        ///             new Grafana.Slo.Inputs.SLOQueryArgs
+        ///             {
+        ///                 Freeform = new Grafana.Slo.Inputs.SLOQueryFreeformArgs
+        ///                 {
+        ///                     Query = "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+        ///                 },
+        ///                 Type = "freeform",
+        ///             },
+        ///         },
+        ///         Name = "Terraform Testing",
+        ///         Description = "Terraform Description",
         ///     });
         /// 
         ///     var slos = Grafana.Slo.GetSlos.Invoke();
@@ -237,38 +237,9 @@ namespace Pulumiverse.Grafana.Slo
         /// {
         ///     var test = new Grafana.Slo.SLO("test", new()
         ///     {
-        ///         Name = "Terraform Testing",
-        ///         Description = "Terraform Description",
-        ///         Queries = new[]
-        ///         {
-        ///             new Grafana.Slo.Inputs.SLOQueryArgs
-        ///             {
-        ///                 Freeform = new Grafana.Slo.Inputs.SLOQueryFreeformArgs
-        ///                 {
-        ///                     Query = "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
-        ///                 },
-        ///                 Type = "freeform",
-        ///             },
-        ///         },
-        ///         Objectives = new[]
-        ///         {
-        ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
-        ///             {
-        ///                 Value = 0.995,
-        ///                 Window = "30d",
-        ///             },
-        ///         },
         ///         DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs
         ///         {
         ///             Uid = "grafanacloud-prom",
-        ///         },
-        ///         Labels = new[]
-        ///         {
-        ///             new Grafana.Slo.Inputs.SLOLabelArgs
-        ///             {
-        ///                 Key = "custom",
-        ///                 Value = "value",
-        ///             },
         ///         },
         ///         Alerting = new Grafana.Slo.Inputs.SLOAlertingArgs
         ///         {
@@ -311,6 +282,35 @@ namespace Pulumiverse.Grafana.Slo
         ///                 },
         ///             },
         ///         },
+        ///         Labels = new[]
+        ///         {
+        ///             new Grafana.Slo.Inputs.SLOLabelArgs
+        ///             {
+        ///                 Key = "custom",
+        ///                 Value = "value",
+        ///             },
+        ///         },
+        ///         Objectives = new[]
+        ///         {
+        ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
+        ///             {
+        ///                 Value = 0.995,
+        ///                 Window = "30d",
+        ///             },
+        ///         },
+        ///         Queries = new[]
+        ///         {
+        ///             new Grafana.Slo.Inputs.SLOQueryArgs
+        ///             {
+        ///                 Freeform = new Grafana.Slo.Inputs.SLOQueryFreeformArgs
+        ///                 {
+        ///                     Query = "sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+        ///                 },
+        ///                 Type = "freeform",
+        ///             },
+        ///         },
+        ///         Name = "Terraform Testing",
+        ///         Description = "Terraform Description",
         ///     });
         /// 
         ///     var slos = Grafana.Slo.GetSlos.Invoke();

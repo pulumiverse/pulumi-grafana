@@ -215,14 +215,14 @@ class RoleAssignmentItem(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test_role = grafana.enterprise.Role("test_role",
-            name="Test Role",
-            uid="testrole",
-            version=1,
-            global_=True,
             permissions=[{
                 "action": "org.users:add",
                 "scope": "users:*",
-            }])
+            }],
+            name="Test Role",
+            uid="testrole",
+            version=1,
+            global_=True)
         test_team = grafana.oss.Team("test_team", name="terraform_test_team")
         test_user = grafana.oss.User("test_user",
             email="terraform_user@test.com",
@@ -274,14 +274,14 @@ class RoleAssignmentItem(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test_role = grafana.enterprise.Role("test_role",
-            name="Test Role",
-            uid="testrole",
-            version=1,
-            global_=True,
             permissions=[{
                 "action": "org.users:add",
                 "scope": "users:*",
-            }])
+            }],
+            name="Test Role",
+            uid="testrole",
+            version=1,
+            global_=True)
         test_team = grafana.oss.Team("test_team", name="terraform_test_team")
         test_user = grafana.oss.User("test_user",
             email="terraform_user@test.com",

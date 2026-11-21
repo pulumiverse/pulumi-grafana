@@ -45,6 +45,10 @@ import * as utilities from "../utilities";
  * // 3. Enables the stack with the configured datasets
  * // Step 1: Create a Cloud Access Policy with required scopes
  * const asserts = new grafana.cloud.AccessPolicy("asserts", {
+ *     realms: [{
+ *         type: "stack",
+ *         identifier: stackId,
+ *     }],
  *     name: "asserts-stack-policy",
  *     displayName: "Asserts Stack Policy",
  *     scopes: [
@@ -52,10 +56,6 @@ import * as utilities from "../utilities";
  *         "metrics:read",
  *         "metrics:write",
  *     ],
- *     realms: [{
- *         type: "stack",
- *         identifier: stackId,
- *     }],
  * });
  * // Step 2: Create a token from the Cloud Access Policy
  * const assertsAccessPolicyToken = new grafana.cloud.AccessPolicyToken("asserts", {
@@ -87,11 +87,8 @@ import * as utilities from "../utilities";
  * // Alternative: Configure the Asserts Stack with manual dataset configuration.
  * // Use this when your metrics use non-standard labels (e.g., a custom environment label).
  * const custom = new grafana.assert.Stack("custom", {
- *     cloudAccessPolicyToken: assertsAccessPolicyToken.token,
- *     grafanaToken: assertsStackServiceAccountToken.key,
  *     datasets: [
  *         {
- *             type: "kubernetes",
  *             filterGroups: [{
  *                 envLabel: "deployment_environment",
  *                 siteLabel: "cluster",
@@ -104,12 +101,10 @@ import * as utilities from "../utilities";
  *                     "eu-west-1",
  *                 ],
  *             }],
+ *             type: "kubernetes",
  *         },
  *         {
- *             type: "prometheus",
  *             filterGroups: [{
- *                 envLabel: "environment",
- *                 envName: "prod",
  *                 filters: [{
  *                     name: "region",
  *                     operator: "=~",
@@ -118,9 +113,14 @@ import * as utilities from "../utilities";
  *                         "eu-.*",
  *                     ],
  *                 }],
+ *                 envLabel: "environment",
+ *                 envName: "prod",
  *             }],
+ *             type: "prometheus",
  *         },
  *     ],
+ *     cloudAccessPolicyToken: assertsAccessPolicyToken.token,
+ *     grafanaToken: assertsStackServiceAccountToken.key,
  * });
  * export const stackEnabled = main.enabled;
  * export const stackStatus = main.status;

@@ -27,15 +27,15 @@ namespace Pulumiverse.Grafana.Assistant
     ///     var mcpToken = config.Require("mcpToken");
     ///     var example = new Grafana.Assistant.McpServer("example", new()
     ///     {
+    ///         Configuration = new Grafana.Assistant.Inputs.McpServerConfigurationArgs
+    ///         {
+    ///             Url = "https://example.com/mcp/",
+    ///         },
     ///         Name = "Example MCP server",
     ///         Scope = "tenant",
     ///         Applications = new[]
     ///         {
     ///             "assistant",
-    ///         },
-    ///         Configuration = new Grafana.Assistant.Inputs.McpServerConfigurationArgs
-    ///         {
-    ///             Url = "https://example.com/mcp/",
     ///         },
     ///         CustomHeaders = 
     ///         {
@@ -47,12 +47,6 @@ namespace Pulumiverse.Grafana.Assistant
     ///     // Authenticate a GitHub MCP server with a GitHub App installation instead of a personal access token.
     ///     var github = new Grafana.Assistant.McpServer("github", new()
     ///     {
-    ///         Name = "GitHub",
-    ///         Scope = "tenant",
-    ///         Applications = new[]
-    ///         {
-    ///             "assistant",
-    ///         },
     ///         Configuration = new Grafana.Assistant.Inputs.McpServerConfigurationArgs
     ///         {
     ///             Url = "https://api.githubcopilot.com/mcp/",
@@ -62,6 +56,12 @@ namespace Pulumiverse.Grafana.Assistant
     ///             AppId = 123456,
     ///             InstallationId = 12345678,
     ///             PrivateKey = githubAppPrivateKey,
+    ///         },
+    ///         Name = "GitHub",
+    ///         Scope = "tenant",
+    ///         Applications = new[]
+    ///         {
+    ///             "assistant",
     ///         },
     ///     });
     /// 

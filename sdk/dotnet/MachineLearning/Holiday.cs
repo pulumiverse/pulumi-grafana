@@ -52,8 +52,6 @@ namespace Pulumiverse.Grafana.MachineLearning
     /// {
     ///     var customPeriods = new Grafana.MachineLearning.Holiday("custom_periods", new()
     ///     {
-    ///         Name = "My custom periods holiday",
-    ///         Description = "My Holiday",
     ///         CustomPeriods = new[]
     ///         {
     ///             new Grafana.MachineLearning.Inputs.HolidayCustomPeriodArgs
@@ -69,6 +67,8 @@ namespace Pulumiverse.Grafana.MachineLearning
     ///                 EndTime = "2023-02-02T00:00:00Z",
     ///             },
     ///         },
+    ///         Name = "My custom periods holiday",
+    ///         Description = "My Holiday",
     ///     });
     /// 
     /// });

@@ -64,13 +64,13 @@ import (
 //				return err
 //			}
 //			_, err = k6.NewSchedule(ctx, "test_schedule_1", &k6.ScheduleArgs{
-//				LoadTestId: schedulesLoadTest.ID(),
-//				Starts:     pulumi.String("2029-12-25T10:00:00Z"),
 //				RecurrenceRule: &k6.ScheduleRecurrenceRuleArgs{
 //					Frequency: pulumi.String("MONTHLY"),
 //					Interval:  pulumi.Int(15),
 //					Count:     pulumi.Int(100),
 //				},
+//				LoadTestId: schedulesLoadTest.ID(),
+//				Starts:     pulumi.String("2029-12-25T10:00:00Z"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				schedulesLoadTest,
 //			}))
@@ -78,13 +78,13 @@ import (
 //				return err
 //			}
 //			_, err = k6.NewSchedule(ctx, "test_schedule_2", &k6.ScheduleArgs{
-//				LoadTestId: schedulesLoadTest2.ID(),
-//				Starts:     pulumi.String("2023-12-26T14:00:00Z"),
 //				RecurrenceRule: &k6.ScheduleRecurrenceRuleArgs{
 //					Frequency: pulumi.String("WEEKLY"),
 //					Interval:  pulumi.Int(2),
 //					Until:     pulumi.String("2047-01-31T23:59:59Z"),
 //				},
+//				LoadTestId: schedulesLoadTest2.ID(),
+//				Starts:     pulumi.String("2023-12-26T14:00:00Z"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				schedulesLoadTest2,
 //			}))
@@ -92,12 +92,12 @@ import (
 //				return err
 //			}
 //			_, err = k6.NewSchedule(ctx, "test_schedule_3", &k6.ScheduleArgs{
-//				LoadTestId: schedulesLoadTest3.ID(),
-//				Starts:     pulumi.String("2023-12-26T14:00:00Z"),
 //				Cron: &k6.ScheduleCronArgs{
 //					Schedule: pulumi.String("0 10 1 12 6"),
 //					Timezone: pulumi.String("UTC"),
 //				},
+//				LoadTestId: schedulesLoadTest3.ID(),
+//				Starts:     pulumi.String("2023-12-26T14:00:00Z"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				schedulesLoadTest3,
 //			}))
