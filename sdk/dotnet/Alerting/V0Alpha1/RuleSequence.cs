@@ -44,11 +44,11 @@ namespace Pulumiverse.Grafana.Alerting.V0Alpha1
     ///         },
     ///         Spec = new Grafana.Alerting.V0Alpha1.Inputs.RecordingRuleSpecArgs
     ///         {
-    ///             Title = "Example Sequence Recording Rule",
     ///             Trigger = new Grafana.Alerting.V0Alpha1.Inputs.RecordingRuleSpecTriggerArgs
     ///             {
     ///                 Interval = "1m",
     ///             },
+    ///             Title = "Example Sequence Recording Rule",
     ///             Expressions = 
     ///             {
     ///                 { "A", JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
@@ -88,11 +88,11 @@ namespace Pulumiverse.Grafana.Alerting.V0Alpha1
     ///         },
     ///         Spec = new Grafana.Alerting.V0Alpha1.Inputs.AlertRuleSpecArgs
     ///         {
-    ///             Title = "Example Sequence Alert Rule",
     ///             Trigger = new Grafana.Alerting.V0Alpha1.Inputs.AlertRuleSpecTriggerArgs
     ///             {
     ///                 Interval = "1m",
     ///             },
+    ///             Title = "Example Sequence Alert Rule",
     ///             Expressions = 
     ///             {
     ///                 { "A", JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;

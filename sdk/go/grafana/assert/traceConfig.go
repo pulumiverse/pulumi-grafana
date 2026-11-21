@@ -29,10 +29,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := assert.NewTraceConfig(ctx, "production", &assert.TraceConfigArgs{
-//				Name:          pulumi.String("production"),
-//				Priority:      pulumi.Int(1000),
-//				DefaultConfig: pulumi.Bool(false),
-//				DataSourceUid: pulumi.String("grafanacloud-traces"),
 //				Matches: assert.TraceConfigMatchArray{
 //					&assert.TraceConfigMatchArgs{
 //						Property: pulumi.String("asserts_entity_type"),
@@ -58,6 +54,10 @@ import (
 //						},
 //					},
 //				},
+//				Name:          pulumi.String("production"),
+//				Priority:      pulumi.Int(1000),
+//				DefaultConfig: pulumi.Bool(false),
+//				DataSourceUid: pulumi.String("grafanacloud-traces"),
 //				EntityPropertyToTraceLabelMapping: pulumi.StringMap{
 //					"cluster":        pulumi.String("resource.k8s.cluster.name"),
 //					"namespace":      pulumi.String("resource.k8s.namespace"),
@@ -70,10 +70,6 @@ import (
 //				return err
 //			}
 //			_, err = assert.NewTraceConfig(ctx, "development", &assert.TraceConfigArgs{
-//				Name:          pulumi.String("development"),
-//				Priority:      pulumi.Int(2000),
-//				DefaultConfig: pulumi.Bool(false),
-//				DataSourceUid: pulumi.String("grafanacloud-traces"),
 //				Matches: assert.TraceConfigMatchArray{
 //					&assert.TraceConfigMatchArgs{
 //						Property: pulumi.String("asserts_entity_type"),
@@ -105,6 +101,10 @@ import (
 //						},
 //					},
 //				},
+//				Name:          pulumi.String("development"),
+//				Priority:      pulumi.Int(2000),
+//				DefaultConfig: pulumi.Bool(false),
+//				DataSourceUid: pulumi.String("grafanacloud-traces"),
 //				EntityPropertyToTraceLabelMapping: pulumi.StringMap{
 //					"cluster":        pulumi.String("resource.k8s.cluster.name"),
 //					"namespace":      pulumi.String("resource.k8s.namespace"),
@@ -118,15 +118,15 @@ import (
 //				return err
 //			}
 //			_, err = assert.NewTraceConfig(ctx, "minimal", &assert.TraceConfigArgs{
-//				Name:          pulumi.String("minimal"),
-//				Priority:      pulumi.Int(3000),
-//				DataSourceUid: pulumi.String("tempo-minimal"),
 //				Matches: assert.TraceConfigMatchArray{
 //					&assert.TraceConfigMatchArgs{
 //						Property: pulumi.String("asserts_entity_type"),
 //						Op:       pulumi.String("IS NOT NULL"),
 //					},
 //				},
+//				Name:          pulumi.String("minimal"),
+//				Priority:      pulumi.Int(3000),
+//				DataSourceUid: pulumi.String("tempo-minimal"),
 //				EntityPropertyToTraceLabelMapping: pulumi.StringMap{
 //					"cluster":        pulumi.String("resource.k8s.cluster.name"),
 //					"otel_service":   pulumi.String("resource.service.name"),

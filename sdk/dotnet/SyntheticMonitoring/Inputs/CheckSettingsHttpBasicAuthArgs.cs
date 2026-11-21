@@ -17,7 +17,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Inputs
         private Input<string>? _password;
 
         /// <summary>
-        /// Basic auth password.
+        /// Basic auth password. It can hold a `${secrets.&lt;name&gt;}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.&lt;name&gt;}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         /// </summary>
         public Input<string>? Password
         {

@@ -404,8 +404,43 @@ class SLO(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         ratio = grafana.slo.SLO("ratio",
-            name="Terraform Testing - Ratio Query",
-            description="Terraform Description - Ratio Query",
+            destination_datasource={
+                "uid": "grafanacloud-prom",
+            },
+            alerting={
+                "fastburn": {
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate Very High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
+                    ],
+                },
+                "slowburn": {
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
+                    ],
+                },
+            },
+            labels=[{
+                "key": "slo",
+                "value": "terraform",
+            }],
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
             queries=[{
                 "ratio": {
                     "success_metric": "kubelet_http_requests_total{status!~\\"5..\\"}",
@@ -417,43 +452,8 @@ class SLO(pulumi.CustomResource):
                 },
                 "type": "ratio",
             }],
-            objectives=[{
-                "value": 0.995,
-                "window": "30d",
-            }],
-            destination_datasource={
-                "uid": "grafanacloud-prom",
-            },
-            labels=[{
-                "key": "slo",
-                "value": "terraform",
-            }],
-            alerting={
-                "fastburn": {
-                    "annotations": [
-                        {
-                            "key": "name",
-                            "value": "SLO Burn Rate Very High",
-                        },
-                        {
-                            "key": "description",
-                            "value": "Error budget is burning too fast",
-                        },
-                    ],
-                },
-                "slowburn": {
-                    "annotations": [
-                        {
-                            "key": "name",
-                            "value": "SLO Burn Rate High",
-                        },
-                        {
-                            "key": "description",
-                            "value": "Error budget is burning too fast",
-                        },
-                    ],
-                },
-            })
+            name="Terraform Testing - Ratio Query",
+            description="Terraform Description - Ratio Query")
         ```
 
         ### Advanced
@@ -463,25 +463,9 @@ class SLO(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.slo.SLO("test",
-            name="Terraform Testing",
-            description="Terraform Description",
-            queries=[{
-                "freeform": {
-                    "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
-                },
-                "type": "freeform",
-            }],
-            objectives=[{
-                "value": 0.995,
-                "window": "30d",
-            }],
             destination_datasource={
                 "uid": "grafanacloud-prom",
             },
-            labels=[{
-                "key": "slo",
-                "value": "terraform",
-            }],
             alerting={
                 "fastburn": {
                     "annotations": [
@@ -513,7 +497,23 @@ class SLO(pulumi.CustomResource):
                         "type": "assistantInvestigation",
                     }],
                 },
-            })
+            },
+            labels=[{
+                "key": "slo",
+                "value": "terraform",
+            }],
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
+            queries=[{
+                "freeform": {
+                    "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+                },
+                "type": "freeform",
+            }],
+            name="Terraform Testing",
+            description="Terraform Description")
         ```
 
         ### Separate source and destination datasources
@@ -529,8 +529,17 @@ class SLO(pulumi.CustomResource):
             name="SLO Source Prometheus",
             url="https://prometheus.example.com/")
         source_datasource = grafana.slo.SLO("source_datasource",
-            name="Terraform Testing - Separate Source Datasource",
-            description="Terraform Description - Separate Source Datasource",
+            destination_datasource={
+                "uid": "grafanacloud-prom",
+            },
+            labels=[{
+                "key": "slo",
+                "value": "terraform",
+            }],
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
             queries=[{
                 "freeform": {
                     "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
@@ -538,17 +547,8 @@ class SLO(pulumi.CustomResource):
                 },
                 "type": "freeform",
             }],
-            objectives=[{
-                "value": 0.995,
-                "window": "30d",
-            }],
-            destination_datasource={
-                "uid": "grafanacloud-prom",
-            },
-            labels=[{
-                "key": "slo",
-                "value": "terraform",
-            }])
+            name="Terraform Testing - Separate Source Datasource",
+            description="Terraform Description - Separate Source Datasource")
         ```
 
         ### Grafana Queries - Any supported datasource
@@ -561,8 +561,43 @@ class SLO(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.slo.SLO("test",
-            name="Terraform Testing",
-            description="Terraform Description",
+            destination_datasource={
+                "uid": "grafanacloud-prom",
+            },
+            alerting={
+                "fastburn": {
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate Very High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
+                    ],
+                },
+                "slowburn": {
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
+                    ],
+                },
+            },
+            labels=[{
+                "key": "slo",
+                "value": "terraform",
+            }],
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
             queries=[{
                 "grafana_queries": {
                     "grafana_queries": json.dumps([
@@ -595,43 +630,8 @@ class SLO(pulumi.CustomResource):
                 },
                 "type": "grafana_queries",
             }],
-            destination_datasource={
-                "uid": "grafanacloud-prom",
-            },
-            objectives=[{
-                "value": 0.995,
-                "window": "30d",
-            }],
-            labels=[{
-                "key": "slo",
-                "value": "terraform",
-            }],
-            alerting={
-                "fastburn": {
-                    "annotations": [
-                        {
-                            "key": "name",
-                            "value": "SLO Burn Rate Very High",
-                        },
-                        {
-                            "key": "description",
-                            "value": "Error budget is burning too fast",
-                        },
-                    ],
-                },
-                "slowburn": {
-                    "annotations": [
-                        {
-                            "key": "name",
-                            "value": "SLO Burn Rate High",
-                        },
-                        {
-                            "key": "description",
-                            "value": "Error budget is burning too fast",
-                        },
-                    ],
-                },
-            })
+            name="Terraform Testing",
+            description="Terraform Description")
         ```
 
         For a complete list, see [supported data sources](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/set-up/additionaldatasources/#supported-data-sources).
@@ -645,18 +645,6 @@ class SLO(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         search_expression = grafana.slo.SLO("search_expression",
-            name="Terraform Testing - Entity Search Expression",
-            description="Terraform Description - Entity Search Expression",
-            queries=[{
-                "freeform": {
-                    "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
-                },
-                "type": "freeform",
-            }],
-            objectives=[{
-                "value": 0.995,
-                "window": "30d",
-            }],
             destination_datasource={
                 "uid": "grafanacloud-prom",
             },
@@ -664,6 +652,18 @@ class SLO(pulumi.CustomResource):
                 "key": "slo",
                 "value": "terraform",
             }],
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
+            queries=[{
+                "freeform": {
+                    "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+                },
+                "type": "freeform",
+            }],
+            name="Terraform Testing - Entity Search Expression",
+            description="Terraform Description - Entity Search Expression",
             search_expression="shipping connected services")
         ```
 
@@ -717,8 +717,43 @@ class SLO(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         ratio = grafana.slo.SLO("ratio",
-            name="Terraform Testing - Ratio Query",
-            description="Terraform Description - Ratio Query",
+            destination_datasource={
+                "uid": "grafanacloud-prom",
+            },
+            alerting={
+                "fastburn": {
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate Very High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
+                    ],
+                },
+                "slowburn": {
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
+                    ],
+                },
+            },
+            labels=[{
+                "key": "slo",
+                "value": "terraform",
+            }],
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
             queries=[{
                 "ratio": {
                     "success_metric": "kubelet_http_requests_total{status!~\\"5..\\"}",
@@ -730,43 +765,8 @@ class SLO(pulumi.CustomResource):
                 },
                 "type": "ratio",
             }],
-            objectives=[{
-                "value": 0.995,
-                "window": "30d",
-            }],
-            destination_datasource={
-                "uid": "grafanacloud-prom",
-            },
-            labels=[{
-                "key": "slo",
-                "value": "terraform",
-            }],
-            alerting={
-                "fastburn": {
-                    "annotations": [
-                        {
-                            "key": "name",
-                            "value": "SLO Burn Rate Very High",
-                        },
-                        {
-                            "key": "description",
-                            "value": "Error budget is burning too fast",
-                        },
-                    ],
-                },
-                "slowburn": {
-                    "annotations": [
-                        {
-                            "key": "name",
-                            "value": "SLO Burn Rate High",
-                        },
-                        {
-                            "key": "description",
-                            "value": "Error budget is burning too fast",
-                        },
-                    ],
-                },
-            })
+            name="Terraform Testing - Ratio Query",
+            description="Terraform Description - Ratio Query")
         ```
 
         ### Advanced
@@ -776,25 +776,9 @@ class SLO(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.slo.SLO("test",
-            name="Terraform Testing",
-            description="Terraform Description",
-            queries=[{
-                "freeform": {
-                    "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
-                },
-                "type": "freeform",
-            }],
-            objectives=[{
-                "value": 0.995,
-                "window": "30d",
-            }],
             destination_datasource={
                 "uid": "grafanacloud-prom",
             },
-            labels=[{
-                "key": "slo",
-                "value": "terraform",
-            }],
             alerting={
                 "fastburn": {
                     "annotations": [
@@ -826,7 +810,23 @@ class SLO(pulumi.CustomResource):
                         "type": "assistantInvestigation",
                     }],
                 },
-            })
+            },
+            labels=[{
+                "key": "slo",
+                "value": "terraform",
+            }],
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
+            queries=[{
+                "freeform": {
+                    "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+                },
+                "type": "freeform",
+            }],
+            name="Terraform Testing",
+            description="Terraform Description")
         ```
 
         ### Separate source and destination datasources
@@ -842,8 +842,17 @@ class SLO(pulumi.CustomResource):
             name="SLO Source Prometheus",
             url="https://prometheus.example.com/")
         source_datasource = grafana.slo.SLO("source_datasource",
-            name="Terraform Testing - Separate Source Datasource",
-            description="Terraform Description - Separate Source Datasource",
+            destination_datasource={
+                "uid": "grafanacloud-prom",
+            },
+            labels=[{
+                "key": "slo",
+                "value": "terraform",
+            }],
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
             queries=[{
                 "freeform": {
                     "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
@@ -851,17 +860,8 @@ class SLO(pulumi.CustomResource):
                 },
                 "type": "freeform",
             }],
-            objectives=[{
-                "value": 0.995,
-                "window": "30d",
-            }],
-            destination_datasource={
-                "uid": "grafanacloud-prom",
-            },
-            labels=[{
-                "key": "slo",
-                "value": "terraform",
-            }])
+            name="Terraform Testing - Separate Source Datasource",
+            description="Terraform Description - Separate Source Datasource")
         ```
 
         ### Grafana Queries - Any supported datasource
@@ -874,8 +874,43 @@ class SLO(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         test = grafana.slo.SLO("test",
-            name="Terraform Testing",
-            description="Terraform Description",
+            destination_datasource={
+                "uid": "grafanacloud-prom",
+            },
+            alerting={
+                "fastburn": {
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate Very High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
+                    ],
+                },
+                "slowburn": {
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
+                    ],
+                },
+            },
+            labels=[{
+                "key": "slo",
+                "value": "terraform",
+            }],
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
             queries=[{
                 "grafana_queries": {
                     "grafana_queries": json.dumps([
@@ -908,43 +943,8 @@ class SLO(pulumi.CustomResource):
                 },
                 "type": "grafana_queries",
             }],
-            destination_datasource={
-                "uid": "grafanacloud-prom",
-            },
-            objectives=[{
-                "value": 0.995,
-                "window": "30d",
-            }],
-            labels=[{
-                "key": "slo",
-                "value": "terraform",
-            }],
-            alerting={
-                "fastburn": {
-                    "annotations": [
-                        {
-                            "key": "name",
-                            "value": "SLO Burn Rate Very High",
-                        },
-                        {
-                            "key": "description",
-                            "value": "Error budget is burning too fast",
-                        },
-                    ],
-                },
-                "slowburn": {
-                    "annotations": [
-                        {
-                            "key": "name",
-                            "value": "SLO Burn Rate High",
-                        },
-                        {
-                            "key": "description",
-                            "value": "Error budget is burning too fast",
-                        },
-                    ],
-                },
-            })
+            name="Terraform Testing",
+            description="Terraform Description")
         ```
 
         For a complete list, see [supported data sources](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/set-up/additionaldatasources/#supported-data-sources).
@@ -958,18 +958,6 @@ class SLO(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         search_expression = grafana.slo.SLO("search_expression",
-            name="Terraform Testing - Entity Search Expression",
-            description="Terraform Description - Entity Search Expression",
-            queries=[{
-                "freeform": {
-                    "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
-                },
-                "type": "freeform",
-            }],
-            objectives=[{
-                "value": 0.995,
-                "window": "30d",
-            }],
             destination_datasource={
                 "uid": "grafanacloud-prom",
             },
@@ -977,6 +965,18 @@ class SLO(pulumi.CustomResource):
                 "key": "slo",
                 "value": "terraform",
             }],
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
+            queries=[{
+                "freeform": {
+                    "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+                },
+                "type": "freeform",
+            }],
+            name="Terraform Testing - Entity Search Expression",
+            description="Terraform Description - Entity Search Expression",
             search_expression="shipping connected services")
         ```
 

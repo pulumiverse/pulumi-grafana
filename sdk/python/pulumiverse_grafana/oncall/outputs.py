@@ -912,10 +912,12 @@ class GetUsersUserResult(dict):
                  email: _builtins.str,
                  id: _builtins.str,
                  role: _builtins.str,
+                 teams: Sequence[_builtins.str],
                  username: _builtins.str):
         pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "teams", teams)
         pulumi.set(__self__, "username", username)
 
     @_builtins.property
@@ -932,6 +934,11 @@ class GetUsersUserResult(dict):
     @pulumi.getter
     def role(self) -> _builtins.str:
         return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter
+    def teams(self) -> Sequence[_builtins.str]:
+        return pulumi.get(self, "teams")
 
     @_builtins.property
     @pulumi.getter

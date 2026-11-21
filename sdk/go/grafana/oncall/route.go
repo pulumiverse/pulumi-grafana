@@ -41,18 +41,14 @@ import (
 //				return err
 //			}
 //			exampleIntegration, err := oncall.NewIntegration(ctx, "example_integration", &oncall.IntegrationArgs{
+//				DefaultRoute: &oncall.IntegrationDefaultRouteArgs{},
 //				Name:         pulumi.String("Grafana Integration"),
 //				Type:         pulumi.String("grafana"),
-//				DefaultRoute: &oncall.IntegrationDefaultRouteArgs{},
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = oncall.NewRoute(ctx, "example_route", &oncall.RouteArgs{
-//				IntegrationId:     exampleIntegration.ID(),
-//				EscalationChainId: _default.ID(),
-//				RoutingRegex:      pulumi.String("us-(east|west)"),
-//				Position:          pulumi.Int(0),
 //				Slack: &oncall.RouteSlackArgs{
 //					ChannelId: pulumi.String(exampleSlackChannel.SlackId),
 //					Enabled:   pulumi.Bool(true),
@@ -65,6 +61,10 @@ import (
 //					Id:      pulumi.String("ONCALLMSTEAMSID"),
 //					Enabled: pulumi.Bool(false),
 //				},
+//				IntegrationId:     exampleIntegration.ID(),
+//				EscalationChainId: _default.ID(),
+//				RoutingRegex:      pulumi.String("us-(east|west)"),
+//				Position:          pulumi.Int(0),
 //			})
 //			if err != nil {
 //				return err

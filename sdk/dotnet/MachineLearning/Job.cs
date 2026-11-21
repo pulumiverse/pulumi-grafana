@@ -212,7 +212,6 @@ namespace Pulumiverse.Grafana.MachineLearning
     /// 
     ///     var testHoliday = new Grafana.MachineLearning.Holiday("test_holiday", new()
     ///     {
-    ///         Name = "Test Holiday",
     ///         CustomPeriods = new[]
     ///         {
     ///             new Grafana.MachineLearning.Inputs.HolidayCustomPeriodArgs
@@ -222,6 +221,7 @@ namespace Pulumiverse.Grafana.MachineLearning
     ///                 EndTime = "2023-01-02T00:00:00Z",
     ///             },
     ///         },
+    ///         Name = "Test Holiday",
     ///     });
     /// 
     ///     var testJob = new Grafana.MachineLearning.Job("test_job", new()

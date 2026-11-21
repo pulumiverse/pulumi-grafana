@@ -40,11 +40,11 @@ namespace Pulumiverse.Grafana.Alerting.V1Beta1
     ///         },
     ///         Spec = new Grafana.Alerting.V1Beta1.Inputs.RecordingRuleSpecArgs
     ///         {
-    ///             Title = "Example Recording Rule",
     ///             Trigger = new Grafana.Alerting.V1Beta1.Inputs.RecordingRuleSpecTriggerArgs
     ///             {
     ///                 Interval = "1m",
     ///             },
+    ///             Title = "Example Recording Rule",
     ///             Paused = true,
     ///             Expressions = 
     ///             {

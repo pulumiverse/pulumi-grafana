@@ -46,30 +46,28 @@ namespace Pulumiverse.Grafana.K6
     /// 
     ///     var cronMonthly = new Grafana.K6.Schedule("cron_monthly", new()
     ///     {
-    ///         LoadTestId = scheduledTest.Id,
-    ///         Starts = "2024-12-25T10:00:00Z",
     ///         Cron = new Grafana.K6.Inputs.ScheduleCronArgs
     ///         {
     ///             Schedule = "0 10 1 * *",
     ///             Timezone = "UTC",
     ///         },
+    ///         LoadTestId = scheduledTest.Id,
+    ///         Starts = "2024-12-25T10:00:00Z",
     ///     });
     /// 
     ///     var daily = new Grafana.K6.Schedule("daily", new()
     ///     {
-    ///         LoadTestId = scheduledTest.Id,
-    ///         Starts = "2024-12-25T10:00:00Z",
     ///         RecurrenceRule = new Grafana.K6.Inputs.ScheduleRecurrenceRuleArgs
     ///         {
     ///             Frequency = "DAILY",
     ///             Interval = 1,
     ///         },
+    ///         LoadTestId = scheduledTest.Id,
+    ///         Starts = "2024-12-25T10:00:00Z",
     ///     });
     /// 
     ///     var weekly = new Grafana.K6.Schedule("weekly", new()
     ///     {
-    ///         LoadTestId = scheduledTest.Id,
-    ///         Starts = "2024-12-25T09:00:00Z",
     ///         RecurrenceRule = new Grafana.K6.Inputs.ScheduleRecurrenceRuleArgs
     ///         {
     ///             Frequency = "WEEKLY",
@@ -81,19 +79,21 @@ namespace Pulumiverse.Grafana.K6
     ///                 "FR",
     ///             },
     ///         },
+    ///         LoadTestId = scheduledTest.Id,
+    ///         Starts = "2024-12-25T09:00:00Z",
     ///     });
     /// 
     ///     // Example with YEARLY frequency and count
     ///     var yearly = new Grafana.K6.Schedule("yearly", new()
     ///     {
-    ///         LoadTestId = scheduledTest.Id,
-    ///         Starts = "2024-01-01T12:00:00Z",
     ///         RecurrenceRule = new Grafana.K6.Inputs.ScheduleRecurrenceRuleArgs
     ///         {
     ///             Frequency = "YEARLY",
     ///             Interval = 1,
     ///             Count = 5,
     ///         },
+    ///         LoadTestId = scheduledTest.Id,
+    ///         Starts = "2024-01-01T12:00:00Z",
     ///     });
     /// 
     ///     // One-time schedule without recurrence

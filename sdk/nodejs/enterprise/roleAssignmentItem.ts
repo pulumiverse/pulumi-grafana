@@ -14,14 +14,14 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const testRole = new grafana.enterprise.Role("test_role", {
- *     name: "Test Role",
- *     uid: "testrole",
- *     version: 1,
- *     global: true,
  *     permissions: [{
  *         action: "org.users:add",
  *         scope: "users:*",
  *     }],
+ *     name: "Test Role",
+ *     uid: "testrole",
+ *     version: 1,
+ *     global: true,
  * });
  * const testTeam = new grafana.oss.Team("test_team", {name: "terraform_test_team"});
  * const testUser = new grafana.oss.User("test_user", {

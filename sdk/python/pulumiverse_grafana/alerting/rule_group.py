@@ -255,33 +255,15 @@ class RuleGroup(pulumi.CustomResource):
 
         rule_folder = grafana.oss.Folder("rule_folder", title="My Alert Rule Folder")
         my_alert_rule = grafana.alerting.RuleGroup("my_alert_rule",
-            name="My Rule Group",
-            folder_uid=rule_folder.uid,
-            interval_seconds=240,
-            org_id="1",
             rules=[{
-                "name": "My Alert Rule 1",
-                "for_": "2m",
-                "condition": "B",
-                "no_data_state": "NoData",
-                "exec_err_state": "Alerting",
-                "annotations": {
-                    "a": "b",
-                    "c": "d",
-                },
-                "labels": {
-                    "e": "f",
-                    "g": "h",
-                },
-                "is_paused": False,
                 "datas": [
                     {
-                        "ref_id": "A",
-                        "query_type": "",
                         "relative_time_range": {
                             "from_": 600,
                             "to": 0,
                         },
+                        "ref_id": "A",
+                        "query_type": "",
                         "datasource_uid": "PD8C576611E62080A",
                         "model": json.dumps({
                             "hide": False,
@@ -291,12 +273,12 @@ class RuleGroup(pulumi.CustomResource):
                         }),
                     },
                     {
-                        "ref_id": "B",
-                        "query_type": "",
                         "relative_time_range": {
                             "from_": 0,
                             "to": 0,
                         },
+                        "ref_id": "B",
+                        "query_type": "",
                         "datasource_uid": "-100",
                         "model": \"\"\"{
             \\"conditions\\": [
@@ -335,7 +317,25 @@ class RuleGroup(pulumi.CustomResource):
         \"\"\",
                     },
                 ],
-            }])
+                "name": "My Alert Rule 1",
+                "for_": "2m",
+                "condition": "B",
+                "no_data_state": "NoData",
+                "exec_err_state": "Alerting",
+                "annotations": {
+                    "a": "b",
+                    "c": "d",
+                },
+                "labels": {
+                    "e": "f",
+                    "g": "h",
+                },
+                "is_paused": False,
+            }],
+            name="My Rule Group",
+            folder_uid=rule_folder.uid,
+            interval_seconds=240,
+            org_id="1")
         ```
 
         ## Import
@@ -378,33 +378,15 @@ class RuleGroup(pulumi.CustomResource):
 
         rule_folder = grafana.oss.Folder("rule_folder", title="My Alert Rule Folder")
         my_alert_rule = grafana.alerting.RuleGroup("my_alert_rule",
-            name="My Rule Group",
-            folder_uid=rule_folder.uid,
-            interval_seconds=240,
-            org_id="1",
             rules=[{
-                "name": "My Alert Rule 1",
-                "for_": "2m",
-                "condition": "B",
-                "no_data_state": "NoData",
-                "exec_err_state": "Alerting",
-                "annotations": {
-                    "a": "b",
-                    "c": "d",
-                },
-                "labels": {
-                    "e": "f",
-                    "g": "h",
-                },
-                "is_paused": False,
                 "datas": [
                     {
-                        "ref_id": "A",
-                        "query_type": "",
                         "relative_time_range": {
                             "from_": 600,
                             "to": 0,
                         },
+                        "ref_id": "A",
+                        "query_type": "",
                         "datasource_uid": "PD8C576611E62080A",
                         "model": json.dumps({
                             "hide": False,
@@ -414,12 +396,12 @@ class RuleGroup(pulumi.CustomResource):
                         }),
                     },
                     {
-                        "ref_id": "B",
-                        "query_type": "",
                         "relative_time_range": {
                             "from_": 0,
                             "to": 0,
                         },
+                        "ref_id": "B",
+                        "query_type": "",
                         "datasource_uid": "-100",
                         "model": \"\"\"{
             \\"conditions\\": [
@@ -458,7 +440,25 @@ class RuleGroup(pulumi.CustomResource):
         \"\"\",
                     },
                 ],
-            }])
+                "name": "My Alert Rule 1",
+                "for_": "2m",
+                "condition": "B",
+                "no_data_state": "NoData",
+                "exec_err_state": "Alerting",
+                "annotations": {
+                    "a": "b",
+                    "c": "d",
+                },
+                "labels": {
+                    "e": "f",
+                    "g": "h",
+                },
+                "is_paused": False,
+            }],
+            name="My Rule Group",
+            folder_uid=rule_folder.uid,
+            interval_seconds=240,
+            org_id="1")
         ```
 
         ## Import

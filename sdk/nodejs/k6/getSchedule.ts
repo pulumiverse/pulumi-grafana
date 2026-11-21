@@ -27,13 +27,13 @@ import * as utilities from "../utilities";
  *     dependsOn: [scheduleProject],
  * });
  * const testSchedule = new grafana.k6.Schedule("test_schedule", {
- *     loadTestId: scheduleLoadTest.id,
- *     starts: "2024-12-25T10:00:00Z",
  *     recurrenceRule: {
  *         frequency: "MONTHLY",
  *         interval: 12,
  *         count: 100,
  *     },
+ *     loadTestId: scheduleLoadTest.id,
+ *     starts: "2024-12-25T10:00:00Z",
  * }, {
  *     dependsOn: [scheduleLoadTest],
  * });
@@ -137,13 +137,13 @@ export interface GetScheduleResult {
  *     dependsOn: [scheduleProject],
  * });
  * const testSchedule = new grafana.k6.Schedule("test_schedule", {
- *     loadTestId: scheduleLoadTest.id,
- *     starts: "2024-12-25T10:00:00Z",
  *     recurrenceRule: {
  *         frequency: "MONTHLY",
  *         interval: 12,
  *         count: 100,
  *     },
+ *     loadTestId: scheduleLoadTest.id,
+ *     starts: "2024-12-25T10:00:00Z",
  * }, {
  *     dependsOn: [scheduleLoadTest],
  * });

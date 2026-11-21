@@ -51,7 +51,6 @@ import (
 //				return err
 //			}
 //			_, err = oss.NewFolderPermission(ctx, "collectionPermission", &oss.FolderPermissionArgs{
-//				FolderUid: collection.Uid,
 //				Permissions: oss.FolderPermissionPermissionArray{
 //					&oss.FolderPermissionPermissionArgs{
 //						Role:       pulumi.String("Editor"),
@@ -66,6 +65,7 @@ import (
 //						Permission: pulumi.String("Admin"),
 //					},
 //				},
+//				FolderUid: collection.Uid,
 //			})
 //			if err != nil {
 //				return err

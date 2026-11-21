@@ -29,23 +29,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := assert.NewCustomModelRules(ctx, "test", &assert.CustomModelRulesArgs{
-//				Name: pulumi.String("test-anything"),
 //				Rules: &assert.CustomModelRulesRulesArgs{
 //					Entities: assert.CustomModelRulesRulesEntityArray{
 //						&assert.CustomModelRulesRulesEntityArgs{
-//							Type: pulumi.String("Service"),
-//							Name: pulumi.String("workload | service | job"),
-//							Scope: pulumi.StringMap{
-//								"namespace": pulumi.String("namespace"),
-//								"env":       pulumi.String("asserts_env"),
-//								"site":      pulumi.String("asserts_site"),
-//							},
-//							Lookup: pulumi.StringMap{
-//								"workload":  pulumi.String("workload | deployment | statefulset | daemonset | replicaset"),
-//								"service":   pulumi.String("service"),
-//								"job":       pulumi.String("job"),
-//								"proxy_job": pulumi.String("job"),
-//							},
 //							DefinedBies: assert.CustomModelRulesRulesEntityDefinedByArray{
 //								&assert.CustomModelRulesRulesEntityDefinedByArgs{
 //									Query:    pulumi.String("up{job!=''}"),
@@ -63,9 +49,23 @@ import (
 //									Disabled: pulumi.Bool(true),
 //								},
 //							},
+//							Type: pulumi.String("Service"),
+//							Name: pulumi.String("workload | service | job"),
+//							Scope: pulumi.StringMap{
+//								"namespace": pulumi.String("namespace"),
+//								"env":       pulumi.String("asserts_env"),
+//								"site":      pulumi.String("asserts_site"),
+//							},
+//							Lookup: pulumi.StringMap{
+//								"workload":  pulumi.String("workload | deployment | statefulset | daemonset | replicaset"),
+//								"service":   pulumi.String("service"),
+//								"job":       pulumi.String("job"),
+//								"proxy_job": pulumi.String("job"),
+//							},
 //						},
 //					},
 //				},
+//				Name: pulumi.String("test-anything"),
 //			})
 //			if err != nil {
 //				return err

@@ -119,17 +119,17 @@ class CheckAlerts(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         main = grafana.syntheticmonitoring.Check("main",
-            job="Check Alert Test",
-            target="https://grafana.com",
-            enabled=True,
-            probes=[1],
-            labels={},
             settings={
                 "http": {
                     "ip_version": "V4",
                     "method": "GET",
                 },
-            })
+            },
+            job="Check Alert Test",
+            target="https://grafana.com",
+            enabled=True,
+            probes=[1],
+            labels={})
         main_check_alerts = grafana.syntheticmonitoring.CheckAlerts("main",
             check_id=main.id,
             alerts=[
@@ -184,17 +184,17 @@ class CheckAlerts(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         main = grafana.syntheticmonitoring.Check("main",
-            job="Check Alert Test",
-            target="https://grafana.com",
-            enabled=True,
-            probes=[1],
-            labels={},
             settings={
                 "http": {
                     "ip_version": "V4",
                     "method": "GET",
                 },
-            })
+            },
+            job="Check Alert Test",
+            target="https://grafana.com",
+            enabled=True,
+            probes=[1],
+            labels={})
         main_check_alerts = grafana.syntheticmonitoring.CheckAlerts("main",
             check_id=main.id,
             alerts=[
