@@ -5,6 +5,91 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AppsNotificationsTimeintervalV1beta1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations: {[key: string]: string};
+    /**
+     * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+     */
+    folderUid?: string;
+    /**
+     * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+     */
+    orgId?: number;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: string;
+    /**
+     * The full URL of the resource.
+     */
+    url: string;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid: string;
+    /**
+     * The version of the resource.
+     */
+    version: string;
+}
+
+export interface AppsNotificationsTimeintervalV1beta1Options {
+    /**
+     * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+     */
+    managerIdentity?: string;
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: boolean;
+}
+
+export interface AppsNotificationsTimeintervalV1beta1Spec {
+    /**
+     * The name of the time interval.
+     */
+    name: string;
+    /**
+     * A list of time interval definitions.
+     */
+    timeIntervals?: outputs.AppsNotificationsTimeintervalV1beta1SpecTimeInterval[];
+}
+
+export interface AppsNotificationsTimeintervalV1beta1SpecTimeInterval {
+    /**
+     * Days of the month (1-31, negative values count from end of month).
+     */
+    daysOfMonths?: string[];
+    /**
+     * IANA timezone name (e.g. America/New_York). Defaults to UTC when unset.
+     */
+    location?: string;
+    /**
+     * Months of the year (e.g. january, february).
+     */
+    months?: string[];
+    /**
+     * Ranges of time within a day.
+     */
+    times?: outputs.AppsNotificationsTimeintervalV1beta1SpecTimeIntervalTime[];
+    /**
+     * Days of the week (e.g. monday, tuesday).
+     */
+    weekdays?: string[];
+    /**
+     * Calendar years (e.g. 2024, 2025:2027).
+     */
+    years?: string[];
+}
+
+export interface AppsNotificationsTimeintervalV1beta1SpecTimeIntervalTime {
+    endTime: string;
+    startTime: string;
+}
+
 export namespace agento11y {
     export interface HookRuleRedact {
         /**
@@ -6536,6 +6621,36 @@ export namespace fleetManagement {
 
 }
 
+export namespace incident {
+    export interface CustomFieldSelectOption {
+        /**
+         * Whether the option is archived. Archived options can't be selected on new incidents, but incidents that already use them keep them. Defaults to `false`.
+         */
+        archived: boolean;
+        /**
+         * The color of the option, as a CSS color such as `#FF5286`.
+         */
+        color?: string;
+        /**
+         * A description of when the option applies.
+         */
+        description?: string;
+        /**
+         * The name of the icon shown for the option.
+         */
+        icon?: string;
+        /**
+         * The display label of the option.
+         */
+        label: string;
+        /**
+         * The value of the option, which identifies it. Changing it deletes the option and adds a new one, which fails if any incident has the option selected. Up to 63 letters, digits, `-`, `_` and `.`, starting and ending with a letter or digit.
+         */
+        value: string;
+    }
+
+}
+
 export namespace k6 {
     export interface GetLoadTestsLoadTest {
         baselineTestRunId: string;
@@ -6690,6 +6805,7 @@ export namespace onCall {
         email: string;
         id: string;
         role: string;
+        teams: string[];
         username: string;
     }
 
@@ -8241,15 +8357,15 @@ export namespace syntheticMonitoring {
 
     export interface CheckSettingsGrpcTlsConfig {
         /**
-         * CA certificate in PEM format.
+         * CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
          */
         caCert?: string;
         /**
-         * Client certificate in PEM format.
+         * Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
          */
         clientCert?: string;
         /**
-         * Client key in PEM format.
+         * Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
          */
         clientKey?: string;
         /**
@@ -8268,7 +8384,7 @@ export namespace syntheticMonitoring {
          */
         basicAuth?: outputs.syntheticMonitoring.CheckSettingsHttpBasicAuth;
         /**
-         * Token for use with bearer authorization header.
+         * Token for use with bearer authorization header. It can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
          */
         bearerToken?: string;
         /**
@@ -8332,7 +8448,9 @@ export namespace syntheticMonitoring {
          */
         proxyUrl?: string;
         /**
-         * Enable secret manager so that `${secrets.<name>}` references in the bearer token, basic auth password, and TLS certificate/key fields are resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so the reference is passed through literally rather than interpolated by Terraform. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check. Defaults to `false`.
+         * The API ignores this value. It turns on secret manager by itself when the bearer token, basic auth password, or TLS certificate/key fields hold `${secrets.<name>}` references. On refresh, the provider keeps the value from state, so changes made outside Terraform don't show a diff. Defaults to `false`.
+         *
+         * @deprecated `secretManagerEnabled` has no effect: the API turns on secret manager from the `${secrets.<name>}` references in the check settings. Remove `secretManagerEnabled` from your configuration.
          */
         secretManagerEnabled?: boolean;
         /**
@@ -8351,7 +8469,7 @@ export namespace syntheticMonitoring {
 
     export interface CheckSettingsHttpBasicAuth {
         /**
-         * Basic auth password.
+         * Basic auth password. It can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
          */
         password: string;
         /**
@@ -8392,15 +8510,15 @@ export namespace syntheticMonitoring {
 
     export interface CheckSettingsHttpTlsConfig {
         /**
-         * CA certificate in PEM format.
+         * CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
          */
         caCert?: string;
         /**
-         * Client certificate in PEM format.
+         * Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
          */
         clientCert?: string;
         /**
-         * Client key in PEM format.
+         * Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
          */
         clientKey?: string;
         /**
@@ -8597,15 +8715,15 @@ export namespace syntheticMonitoring {
 
     export interface CheckSettingsTcpTlsConfig {
         /**
-         * CA certificate in PEM format.
+         * CA certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
          */
         caCert?: string;
         /**
-         * Client certificate in PEM format.
+         * Client certificate in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
          */
         clientCert?: string;
         /**
-         * Client key in PEM format.
+         * Client key in PEM format. In HTTP checks, it can hold a `${secrets.<name>}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.<name>}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
          */
         clientKey?: string;
         /**

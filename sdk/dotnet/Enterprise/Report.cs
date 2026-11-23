@@ -38,10 +38,9 @@ namespace Pulumiverse.Grafana.Enterprise
     /// 
     ///     var testReport = new Grafana.Enterprise.Report("test", new()
     ///     {
-    ///         Name = "my report",
-    ///         Recipients = new[]
+    ///         Schedule = new Grafana.Enterprise.Inputs.ReportScheduleArgs
     ///         {
-    ///             "some@email.com",
+    ///             Frequency = "hourly",
     ///         },
     ///         Dashboards = new[]
     ///         {
@@ -50,9 +49,10 @@ namespace Pulumiverse.Grafana.Enterprise
     ///                 Uid = test.Uid,
     ///             },
     ///         },
-    ///         Schedule = new Grafana.Enterprise.Inputs.ReportScheduleArgs
+    ///         Name = "my report",
+    ///         Recipients = new[]
     ///         {
-    ///             Frequency = "hourly",
+    ///             "some@email.com",
     ///         },
     ///     });
     /// 

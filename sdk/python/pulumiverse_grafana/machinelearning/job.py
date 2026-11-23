@@ -547,12 +547,12 @@ class Job(pulumi.CustomResource):
                 "basicAuthPassword": "password",
             }))
         test_holiday = grafana.machinelearning.Holiday("test_holiday",
-            name="Test Holiday",
             custom_periods=[{
                 "name": "First of January",
                 "start_time": "2023-01-01T00:00:00Z",
                 "end_time": "2023-01-02T00:00:00Z",
-            }])
+            }],
+            name="Test Holiday")
         test_job = grafana.machinelearning.Job("test_job",
             name="Test Job",
             metric="tf_test_job",
@@ -738,12 +738,12 @@ class Job(pulumi.CustomResource):
                 "basicAuthPassword": "password",
             }))
         test_holiday = grafana.machinelearning.Holiday("test_holiday",
-            name="Test Holiday",
             custom_periods=[{
                 "name": "First of January",
                 "start_time": "2023-01-01T00:00:00Z",
                 "end_time": "2023-01-02T00:00:00Z",
-            }])
+            }],
+            name="Test Holiday")
         test_job = grafana.machinelearning.Job("test_job",
             name="Test Job",
             metric="tf_test_job",

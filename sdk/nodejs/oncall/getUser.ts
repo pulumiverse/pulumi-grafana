@@ -54,6 +54,10 @@ export interface GetUserResult {
      */
     readonly role: string;
     /**
+     * The IDs of the teams the user belongs to, which are the IDs the `grafana.onCall.getTeam` data source returns. Empty when the user belongs to no team.
+     */
+    readonly teams: string[];
+    /**
      * The user's Grafana login, which can differ from their email address. Matching is case-insensitive.
      */
     readonly username: string;

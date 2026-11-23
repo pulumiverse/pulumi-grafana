@@ -170,10 +170,10 @@ class RuleSequence(pulumi.CustomResource):
                 "folder_uid": rulesequence_folder.uid,
             },
             spec={
-                "title": "Example Sequence Recording Rule",
                 "trigger": {
                     "interval": "1m",
                 },
+                "title": "Example Sequence Recording Rule",
                 "expressions": {
                     "A": json.dumps({
                         "model": {
@@ -204,10 +204,10 @@ class RuleSequence(pulumi.CustomResource):
                 "folder_uid": rulesequence_folder.uid,
             },
             spec={
-                "title": "Example Sequence Alert Rule",
                 "trigger": {
                     "interval": "1m",
                 },
+                "title": "Example Sequence Alert Rule",
                 "expressions": {
                     "A": json.dumps({
                         "model": {
@@ -290,10 +290,10 @@ class RuleSequence(pulumi.CustomResource):
                 "folder_uid": rulesequence_folder.uid,
             },
             spec={
-                "title": "Example Sequence Recording Rule",
                 "trigger": {
                     "interval": "1m",
                 },
+                "title": "Example Sequence Recording Rule",
                 "expressions": {
                     "A": json.dumps({
                         "model": {
@@ -324,10 +324,10 @@ class RuleSequence(pulumi.CustomResource):
                 "folder_uid": rulesequence_folder.uid,
             },
             spec={
-                "title": "Example Sequence Alert Rule",
                 "trigger": {
                     "interval": "1m",
                 },
+                "title": "Example Sequence Alert Rule",
                 "expressions": {
                     "A": json.dumps({
                         "model": {

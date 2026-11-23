@@ -36,8 +36,6 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const customPeriods = new grafana.machinelearning.Holiday("custom_periods", {
- *     name: "My custom periods holiday",
- *     description: "My Holiday",
  *     customPeriods: [
  *         {
  *             name: "First of January",
@@ -50,6 +48,8 @@ import * as utilities from "../utilities";
  *             endTime: "2023-02-02T00:00:00Z",
  *         },
  *     ],
+ *     name: "My custom periods holiday",
+ *     description: "My Holiday",
  * });
  * ```
  *

@@ -21,6 +21,38 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const testAzureCredential = new grafana.cloudprovider.AzureCredential("test", {
+ *     autoDiscoveryConfigurations: [{
+ *         resourceTypeConfigurations: [
+ *             {
+ *                 metricConfiguration: [{
+ *                     name: "TotalCoresQuotaUsed",
+ *                 }],
+ *                 resourceTypeName: "Microsoft.App/containerApps",
+ *             },
+ *             {
+ *                 metricConfiguration: [{
+ *                     name: "Availability",
+ *                     dimensions: [
+ *                         "GeoType",
+ *                         "ApiName",
+ *                     ],
+ *                     aggregations: ["Average"],
+ *                 }],
+ *                 resourceTypeName: "Microsoft.Storage/storageAccounts/tableServices",
+ *             },
+ *         ],
+ *         subscriptionId: "my-subscription_id",
+ *     }],
+ *     resourceDiscoveryTagFilters: [
+ *         {
+ *             key: "key-1",
+ *             value: "value-1",
+ *         },
+ *         {
+ *             key: "key-2",
+ *             value: "value-2",
+ *         },
+ *     ],
  *     stackId: "1",
  *     name: "test-name",
  *     clientId: "my-client-id",
@@ -34,38 +66,6 @@ import * as utilities from "../utilities";
  *         label1: "value1",
  *         label2: "value2",
  *     },
- *     resourceDiscoveryTagFilters: [
- *         {
- *             key: "key-1",
- *             value: "value-1",
- *         },
- *         {
- *             key: "key-2",
- *             value: "value-2",
- *         },
- *     ],
- *     autoDiscoveryConfigurations: [{
- *         subscriptionId: "my-subscription_id",
- *         resourceTypeConfigurations: [
- *             {
- *                 resourceTypeName: "Microsoft.App/containerApps",
- *                 metricConfiguration: [{
- *                     name: "TotalCoresQuotaUsed",
- *                 }],
- *             },
- *             {
- *                 resourceTypeName: "Microsoft.Storage/storageAccounts/tableServices",
- *                 metricConfiguration: [{
- *                     name: "Availability",
- *                     dimensions: [
- *                         "GeoType",
- *                         "ApiName",
- *                     ],
- *                     aggregations: ["Average"],
- *                 }],
- *             },
- *         ],
- *     }],
  * });
  * const test = grafana.cloudProvider.getAzureCredentialOutput({
  *     stackId: testAzureCredential.stackId,
@@ -173,6 +173,38 @@ export interface GetAzureCredentialResult {
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const testAzureCredential = new grafana.cloudprovider.AzureCredential("test", {
+ *     autoDiscoveryConfigurations: [{
+ *         resourceTypeConfigurations: [
+ *             {
+ *                 metricConfiguration: [{
+ *                     name: "TotalCoresQuotaUsed",
+ *                 }],
+ *                 resourceTypeName: "Microsoft.App/containerApps",
+ *             },
+ *             {
+ *                 metricConfiguration: [{
+ *                     name: "Availability",
+ *                     dimensions: [
+ *                         "GeoType",
+ *                         "ApiName",
+ *                     ],
+ *                     aggregations: ["Average"],
+ *                 }],
+ *                 resourceTypeName: "Microsoft.Storage/storageAccounts/tableServices",
+ *             },
+ *         ],
+ *         subscriptionId: "my-subscription_id",
+ *     }],
+ *     resourceDiscoveryTagFilters: [
+ *         {
+ *             key: "key-1",
+ *             value: "value-1",
+ *         },
+ *         {
+ *             key: "key-2",
+ *             value: "value-2",
+ *         },
+ *     ],
  *     stackId: "1",
  *     name: "test-name",
  *     clientId: "my-client-id",
@@ -186,38 +218,6 @@ export interface GetAzureCredentialResult {
  *         label1: "value1",
  *         label2: "value2",
  *     },
- *     resourceDiscoveryTagFilters: [
- *         {
- *             key: "key-1",
- *             value: "value-1",
- *         },
- *         {
- *             key: "key-2",
- *             value: "value-2",
- *         },
- *     ],
- *     autoDiscoveryConfigurations: [{
- *         subscriptionId: "my-subscription_id",
- *         resourceTypeConfigurations: [
- *             {
- *                 resourceTypeName: "Microsoft.App/containerApps",
- *                 metricConfiguration: [{
- *                     name: "TotalCoresQuotaUsed",
- *                 }],
- *             },
- *             {
- *                 resourceTypeName: "Microsoft.Storage/storageAccounts/tableServices",
- *                 metricConfiguration: [{
- *                     name: "Availability",
- *                     dimensions: [
- *                         "GeoType",
- *                         "ApiName",
- *                     ],
- *                     aggregations: ["Average"],
- *                 }],
- *             },
- *         ],
- *     }],
  * });
  * const test = grafana.cloudProvider.getAzureCredentialOutput({
  *     stackId: testAzureCredential.stackId,

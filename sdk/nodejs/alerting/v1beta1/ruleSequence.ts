@@ -26,10 +26,10 @@ import * as utilities from "../../utilities";
  *         folderUid: rulesequenceFolder.uid,
  *     },
  *     spec: {
- *         title: "Example Sequence Recording Rule",
  *         trigger: {
  *             interval: "1m",
  *         },
+ *         title: "Example Sequence Recording Rule",
  *         expressions: {
  *             A: {
  *                 model: JSON.stringify({
@@ -61,10 +61,10 @@ import * as utilities from "../../utilities";
  *         folderUid: rulesequenceFolder.uid,
  *     },
  *     spec: {
- *         title: "Example Sequence Alert Rule",
  *         trigger: {
  *             interval: "1m",
  *         },
+ *         title: "Example Sequence Alert Rule",
  *         expressions: {
  *             A: {
  *                 model: JSON.stringify({

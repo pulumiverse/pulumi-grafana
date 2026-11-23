@@ -19,7 +19,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
         /// </summary>
         public readonly Outputs.CheckSettingsHttpBasicAuth? BasicAuth;
         /// <summary>
-        /// Token for use with bearer authorization header.
+        /// Token for use with bearer authorization header. It can hold a `${secrets.&lt;name&gt;}` reference, which is resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.&lt;name&gt;}`) so Terraform doesn't interpolate it. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check.
         /// </summary>
         public readonly string? BearerToken;
         /// <summary>
@@ -83,7 +83,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
         /// </summary>
         public readonly string? ProxyUrl;
         /// <summary>
-        /// Enable secret manager so that `${secrets.&lt;name&gt;}` references in the bearer token, basic auth password, and TLS certificate/key fields are resolved from Grafana Secrets Manager at check time. In Terraform HCL, escape the leading `$` (`$${secrets.&lt;name&gt;}`) so the reference is passed through literally rather than interpolated by Terraform. All probes assigned to the check must support protocol secrets, otherwise the API rejects the check. Defaults to `False`.
+        /// The API ignores this value. It turns on secret manager by itself when the bearer token, basic auth password, or TLS certificate/key fields hold `${secrets.&lt;name&gt;}` references. On refresh, the provider keeps the value from state, so changes made outside Terraform don't show a diff. Defaults to `False`.
         /// </summary>
         public readonly bool? SecretManagerEnabled;
         /// <summary>

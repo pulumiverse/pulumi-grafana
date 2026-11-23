@@ -27,10 +27,13 @@ class GetUsersResult:
     """
     A collection of values returned by getUsers.
     """
-    def __init__(__self__, id=None, users=None):
+    def __init__(__self__, id=None, team_id=None, users=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if team_id and not isinstance(team_id, str):
+            raise TypeError("Expected argument 'team_id' to be a str")
+        pulumi.set(__self__, "team_id", team_id)
         if users and not isinstance(users, list):
             raise TypeError("Expected argument 'users' to be a list")
         pulumi.set(__self__, "users", users)
@@ -44,10 +47,18 @@ class GetUsersResult:
         return pulumi.get(self, "id")
 
     @_builtins.property
+    @pulumi.getter(name="teamId")
+    def team_id(self) -> Optional[_builtins.str]:
+        """
+        Return only the members of this team, using the ID from the `on_call_get_team` data source. A team ID that does not exist returns no users instead of an error, so reference the data source rather than writing an ID by hand. Unlike `onCall.Integration`, this attribute does not accept `"null"`: there is no filter for users who belong to no team.
+        """
+        return pulumi.get(self, "team_id")
+
+    @_builtins.property
     @pulumi.getter
     def users(self) -> Sequence['outputs.GetUsersUserResult']:
         """
-        Every OnCall user, with their ID, username (the Grafana login), email, and role.
+        Every matching OnCall user, with their ID, username (the Grafana login), email, and role. `teams` holds the IDs of the teams the user belongs to, which are the IDs the `on_call_get_team` data source returns.
         """
         return pulumi.get(self, "users")
 
@@ -59,59 +70,56 @@ class AwaitableGetUsersResult(GetUsersResult):
             yield self
         return GetUsersResult(
             id=self.id,
+            team_id=self.team_id,
             users=self.users)
 
 
-def get_users(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUsersResult:
+def get_users(team_id: Optional[_builtins.str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUsersResult:
     """
-    Lists every user in Grafana OnCall. Each plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `on_call_get_user`.
+    Lists Grafana OnCall users. Without `team_id`, every plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `on_call_get_user`.
 
     Each user's `username` is their Grafana login, which can differ from their email address. To refer to users by email, build a map from `email` to `id`, as shown in the example.
 
+    Team membership is synced from Grafana and the sync is not immediate, so a user added to a team moments earlier can be missing from the first plan.
+
+    Users are returned in OnCall's own order, not by name. A rotation built from team membership therefore re-orders when the team changes: keep the order in the configuration and use membership to add and remove people, as shown in the example.
+
     * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
 
-    ## Example Usage
 
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-    import pulumi_std as std
-
-    all = grafana.onCall.get_users()
-    oncall_user_ids_by_email = {std.lower(input=user.email).result: user.id for user in all.users}
-    pulumi.export("alfaOncallUserId", oncall_user_ids_by_email["alfa@example.com"])
-    ```
+    :param _builtins.str team_id: Return only the members of this team, using the ID from the `on_call_get_team` data source. A team ID that does not exist returns no users instead of an error, so reference the data source rather than writing an ID by hand. Unlike `onCall.Integration`, this attribute does not accept `"null"`: there is no filter for users who belong to no team.
     """
     __args__ = dict()
+    __args__['teamId'] = team_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('grafana:onCall/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult).value
 
     return AwaitableGetUsersResult(
         id=pulumi.get(__ret__, 'id'),
+        team_id=pulumi.get(__ret__, 'team_id'),
         users=pulumi.get(__ret__, 'users'))
-def get_users_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUsersResult]:
+def get_users_output(team_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUsersResult]:
     """
-    Lists every user in Grafana OnCall. Each plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `on_call_get_user`.
+    Lists Grafana OnCall users. Without `team_id`, every plan reads the full user list from the API and stores it in state, so in organizations with many users every plan makes more API requests. To look up a single user, use `on_call_get_user`.
 
     Each user's `username` is their Grafana login, which can differ from their email address. To refer to users by email, build a map from `email` to `id`, as shown in the example.
 
+    Team membership is synced from Grafana and the sync is not immediate, so a user added to a team moments earlier can be missing from the first plan.
+
+    Users are returned in OnCall's own order, not by name. A rotation built from team membership therefore re-orders when the team changes: keep the order in the configuration and use membership to add and remove people, as shown in the example.
+
     * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
 
-    ## Example Usage
 
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-    import pulumi_std as std
-
-    all = grafana.onCall.get_users()
-    oncall_user_ids_by_email = {std.lower(input=user.email).result: user.id for user in all.users}
-    pulumi.export("alfaOncallUserId", oncall_user_ids_by_email["alfa@example.com"])
-    ```
+    :param _builtins.str team_id: Return only the members of this team, using the ID from the `on_call_get_team` data source. A team ID that does not exist returns no users instead of an error, so reference the data source rather than writing an ID by hand. Unlike `onCall.Integration`, this attribute does not accept `"null"`: there is no filter for users who belong to no team.
     """
     __args__ = dict()
+    __args__['teamId'] = team_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:onCall/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult)
     return __ret__.apply(lambda __response__: GetUsersResult(
         id=pulumi.get(__response__, 'id'),
+        team_id=pulumi.get(__response__, 'team_id'),
         users=pulumi.get(__response__, 'users')))
