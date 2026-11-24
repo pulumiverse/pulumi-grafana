@@ -200,6 +200,47 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### HTTP with Secrets Manager
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const main = grafana.syntheticMonitoring.getProbes({});
+ * const http = new grafana.syntheticmonitoring.Check("http", {
+ *     job: "HTTP Secret Manager",
+ *     target: "https://api.example.com",
+ *     enabled: true,
+ *     probes: [main.then(main => main.probes?.mumbai)],
+ *     labels: {
+ *         environment: "production",
+ *         service: "api",
+ *     },
+ *     settings: {
+ *         http: {
+ *             ipVersion: "V4",
+ *             method: "GET",
+ *             bearerToken: "${secrets.my-api-token}",
+ *             basicAuth: {
+ *                 username: "admin",
+ *                 password: "${secrets.my-api-password}",
+ *             },
+ *             headers: [
+ *                 "Accept: application/json",
+ *                 "User-Agent: Terraform-Synthetic-Monitoring",
+ *             ],
+ *             validStatusCodes: [
+ *                 200,
+ *                 201,
+ *                 202,
+ *             ],
+ *             failIfSsl: false,
+ *             failIfNotSsl: true,
+ *         },
+ *     },
+ * });
+ * ```
+ *
  * ### Ping Basic
  *
  * ```typescript

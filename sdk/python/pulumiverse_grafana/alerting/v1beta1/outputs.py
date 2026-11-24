@@ -87,6 +87,11 @@ __all__ = [
     'NotificationsRoutingTreeSpecRouteRouteRouteRouteMatcher',
     'NotificationsRoutingTreeSpecRouteRouteRouteRouteRoute',
     'NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher',
+    'NotificationsTimeIntervalMetadata',
+    'NotificationsTimeIntervalOptions',
+    'NotificationsTimeIntervalSpec',
+    'NotificationsTimeIntervalSpecTimeInterval',
+    'NotificationsTimeIntervalSpecTimeIntervalTime',
     'RecordingRuleMetadata',
     'RecordingRuleOptions',
     'RecordingRuleSpec',
@@ -4267,6 +4272,344 @@ class NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcher(dict):
         The label value to match against.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class NotificationsTimeIntervalMetadata(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "folderUid":
+            suggest = "folder_uid"
+        elif key == "orgId":
+            suggest = "org_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationsTimeIntervalMetadata. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationsTimeIntervalMetadata.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationsTimeIntervalMetadata.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 uid: _builtins.str,
+                 annotations: Optional[Mapping[str, _builtins.str]] = None,
+                 folder_uid: Optional[_builtins.str] = None,
+                 org_id: Optional[_builtins.int] = None,
+                 url: Optional[_builtins.str] = None,
+                 uuid: Optional[_builtins.str] = None,
+                 version: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str uid: The unique identifier of the resource.
+        :param Mapping[str, _builtins.str] annotations: Annotations of the resource.
+        :param _builtins.str folder_uid: The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+        :param _builtins.int org_id: The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `org_id` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stack_id` instead). Changing this value forces the resource to be recreated in the new organization.
+        :param _builtins.str url: The full URL of the resource.
+        :param _builtins.str uuid: The globally unique identifier of a resource, used by the API for tracking.
+        :param _builtins.str version: The version of the resource.
+        """
+        pulumi.set(__self__, "uid", uid)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if folder_uid is not None:
+            pulumi.set(__self__, "folder_uid", folder_uid)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> _builtins.str:
+        """
+        The unique identifier of the resource.
+        """
+        return pulumi.get(self, "uid")
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Annotations of the resource.
+        """
+        return pulumi.get(self, "annotations")
+
+    @_builtins.property
+    @pulumi.getter(name="folderUid")
+    def folder_uid(self) -> Optional[_builtins.str]:
+        """
+        The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+        """
+        return pulumi.get(self, "folder_uid")
+
+    @_builtins.property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[_builtins.int]:
+        """
+        The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `org_id` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stack_id` instead). Changing this value forces the resource to be recreated in the new organization.
+        """
+        return pulumi.get(self, "org_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[_builtins.str]:
+        """
+        The full URL of the resource.
+        """
+        return pulumi.get(self, "url")
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> Optional[_builtins.str]:
+        """
+        The globally unique identifier of a resource, used by the API for tracking.
+        """
+        return pulumi.get(self, "uuid")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[_builtins.str]:
+        """
+        The version of the resource.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class NotificationsTimeIntervalOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "managerIdentity":
+            suggest = "manager_identity"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationsTimeIntervalOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationsTimeIntervalOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationsTimeIntervalOptions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 manager_identity: Optional[_builtins.str] = None,
+                 overwrite: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.str manager_identity: Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+        :param _builtins.bool overwrite: Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        if manager_identity is not None:
+            pulumi.set(__self__, "manager_identity", manager_identity)
+        if overwrite is not None:
+            pulumi.set(__self__, "overwrite", overwrite)
+
+    @_builtins.property
+    @pulumi.getter(name="managerIdentity")
+    def manager_identity(self) -> Optional[_builtins.str]:
+        """
+        Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+        """
+        return pulumi.get(self, "manager_identity")
+
+    @_builtins.property
+    @pulumi.getter
+    def overwrite(self) -> Optional[_builtins.bool]:
+        """
+        Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        return pulumi.get(self, "overwrite")
+
+
+@pulumi.output_type
+class NotificationsTimeIntervalSpec(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "timeIntervals":
+            suggest = "time_intervals"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationsTimeIntervalSpec. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationsTimeIntervalSpec.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationsTimeIntervalSpec.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 time_intervals: Optional[Sequence['outputs.NotificationsTimeIntervalSpecTimeInterval']] = None):
+        """
+        :param _builtins.str name: The name of the time interval.
+        :param Sequence['NotificationsTimeIntervalSpecTimeIntervalArgs'] time_intervals: A list of time interval definitions.
+        """
+        pulumi.set(__self__, "name", name)
+        if time_intervals is not None:
+            pulumi.set(__self__, "time_intervals", time_intervals)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the time interval.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="timeIntervals")
+    def time_intervals(self) -> Optional[Sequence['outputs.NotificationsTimeIntervalSpecTimeInterval']]:
+        """
+        A list of time interval definitions.
+        """
+        return pulumi.get(self, "time_intervals")
+
+
+@pulumi.output_type
+class NotificationsTimeIntervalSpecTimeInterval(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "daysOfMonths":
+            suggest = "days_of_months"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationsTimeIntervalSpecTimeInterval. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationsTimeIntervalSpecTimeInterval.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationsTimeIntervalSpecTimeInterval.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 days_of_months: Optional[Sequence[_builtins.str]] = None,
+                 location: Optional[_builtins.str] = None,
+                 months: Optional[Sequence[_builtins.str]] = None,
+                 times: Optional[Sequence['outputs.NotificationsTimeIntervalSpecTimeIntervalTime']] = None,
+                 weekdays: Optional[Sequence[_builtins.str]] = None,
+                 years: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param Sequence[_builtins.str] days_of_months: Days of the month (1-31, negative values count from end of month).
+        :param _builtins.str location: IANA timezone name (e.g. America/New_York). Defaults to UTC when unset.
+        :param Sequence[_builtins.str] months: Months of the year (e.g. january, february).
+        :param Sequence['NotificationsTimeIntervalSpecTimeIntervalTimeArgs'] times: Ranges of time within a day.
+        :param Sequence[_builtins.str] weekdays: Days of the week (e.g. monday, tuesday).
+        :param Sequence[_builtins.str] years: Calendar years (e.g. 2024, 2025:2027).
+        """
+        if days_of_months is not None:
+            pulumi.set(__self__, "days_of_months", days_of_months)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
+        if months is not None:
+            pulumi.set(__self__, "months", months)
+        if times is not None:
+            pulumi.set(__self__, "times", times)
+        if weekdays is not None:
+            pulumi.set(__self__, "weekdays", weekdays)
+        if years is not None:
+            pulumi.set(__self__, "years", years)
+
+    @_builtins.property
+    @pulumi.getter(name="daysOfMonths")
+    def days_of_months(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Days of the month (1-31, negative values count from end of month).
+        """
+        return pulumi.get(self, "days_of_months")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        """
+        IANA timezone name (e.g. America/New_York). Defaults to UTC when unset.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
+    def months(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Months of the year (e.g. january, february).
+        """
+        return pulumi.get(self, "months")
+
+    @_builtins.property
+    @pulumi.getter
+    def times(self) -> Optional[Sequence['outputs.NotificationsTimeIntervalSpecTimeIntervalTime']]:
+        """
+        Ranges of time within a day.
+        """
+        return pulumi.get(self, "times")
+
+    @_builtins.property
+    @pulumi.getter
+    def weekdays(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Days of the week (e.g. monday, tuesday).
+        """
+        return pulumi.get(self, "weekdays")
+
+    @_builtins.property
+    @pulumi.getter
+    def years(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Calendar years (e.g. 2024, 2025:2027).
+        """
+        return pulumi.get(self, "years")
+
+
+@pulumi.output_type
+class NotificationsTimeIntervalSpecTimeIntervalTime(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "endTime":
+            suggest = "end_time"
+        elif key == "startTime":
+            suggest = "start_time"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationsTimeIntervalSpecTimeIntervalTime. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationsTimeIntervalSpecTimeIntervalTime.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationsTimeIntervalSpecTimeIntervalTime.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 end_time: _builtins.str,
+                 start_time: _builtins.str):
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "start_time", start_time)
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.str:
+        return pulumi.get(self, "end_time")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.str:
+        return pulumi.get(self, "start_time")
 
 
 @pulumi.output_type

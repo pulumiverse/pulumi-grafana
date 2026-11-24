@@ -237,6 +237,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "alerting/v1beta1/notificationsTimeInterval",
+  "fqn": "pulumiverse_grafana.alerting.v1beta1",
+  "classes": {
+   "grafana:alerting/v1beta1/notificationsTimeInterval:NotificationsTimeInterval": "NotificationsTimeInterval"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "alerting/v1beta1/recordingRule",
   "fqn": "pulumiverse_grafana.alerting.v1beta1",
   "classes": {
@@ -769,6 +777,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.frontendobservability",
   "classes": {
    "grafana:frontendObservability/app:App": "App"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "incident/customField",
+  "fqn": "pulumiverse_grafana.incident",
+  "classes": {
+   "grafana:incident/customField:CustomField": "CustomField"
   }
  },
  {

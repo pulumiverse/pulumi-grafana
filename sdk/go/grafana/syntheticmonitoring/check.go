@@ -303,6 +303,67 @@ import (
 //
 // ```
 //
+// ### HTTP with Secrets Manager
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/syntheticmonitoring"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := syntheticmonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = syntheticmonitoring.NewCheck(ctx, "http", &syntheticmonitoring.CheckArgs{
+//				Job:     pulumi.String("HTTP Secret Manager"),
+//				Target:  pulumi.String("https://api.example.com"),
+//				Enabled: pulumi.Bool(true),
+//				Probes: pulumi.IntArray{
+//					pulumi.Int(pulumi.Int(main.Probes.Mumbai)),
+//				},
+//				Labels: pulumi.StringMap{
+//					"environment": pulumi.String("production"),
+//					"service":     pulumi.String("api"),
+//				},
+//				Settings: &syntheticmonitoring.CheckSettingsArgs{
+//					Http: &syntheticmonitoring.CheckSettingsHttpArgs{
+//						IpVersion:   pulumi.String("V4"),
+//						Method:      pulumi.String("GET"),
+//						BearerToken: pulumi.String("${secrets.my-api-token}"),
+//						BasicAuth: &syntheticmonitoring.CheckSettingsHttpBasicAuthArgs{
+//							Username: pulumi.String("admin"),
+//							Password: pulumi.String("${secrets.my-api-password}"),
+//						},
+//						Headers: pulumi.StringArray{
+//							pulumi.String("Accept: application/json"),
+//							pulumi.String("User-Agent: Terraform-Synthetic-Monitoring"),
+//						},
+//						ValidStatusCodes: pulumi.IntArray{
+//							pulumi.Int(200),
+//							pulumi.Int(201),
+//							pulumi.Int(202),
+//						},
+//						FailIfSsl:    pulumi.Bool(false),
+//						FailIfNotSsl: pulumi.Bool(true),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Ping Basic
 //
 // ```go

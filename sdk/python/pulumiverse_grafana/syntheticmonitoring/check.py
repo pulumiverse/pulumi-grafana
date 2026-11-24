@@ -645,6 +645,47 @@ class Check(pulumi.CustomResource):
             })
         ```
 
+        ### HTTP with Secrets Manager
+
+        ```python
+        import pulumi
+        import pulumi_grafana as grafana
+        import pulumiverse_grafana as grafana
+
+        main = grafana.syntheticMonitoring.get_probes()
+        http = grafana.syntheticmonitoring.Check("http",
+            job="HTTP Secret Manager",
+            target="https://api.example.com",
+            enabled=True,
+            probes=[main.probes["mumbai"]],
+            labels={
+                "environment": "production",
+                "service": "api",
+            },
+            settings={
+                "http": {
+                    "ip_version": "V4",
+                    "method": "GET",
+                    "bearer_token": "${secrets.my-api-token}",
+                    "basic_auth": {
+                        "username": "admin",
+                        "password": "${secrets.my-api-password}",
+                    },
+                    "headers": [
+                        "Accept: application/json",
+                        "User-Agent: Terraform-Synthetic-Monitoring",
+                    ],
+                    "valid_status_codes": [
+                        200,
+                        201,
+                        202,
+                    ],
+                    "fail_if_ssl": False,
+                    "fail_if_not_ssl": True,
+                },
+            })
+        ```
+
         ### Ping Basic
 
         ```python
@@ -1055,6 +1096,47 @@ class Check(pulumi.CustomResource):
                             "allow_missing": True,
                         },
                     ],
+                },
+            })
+        ```
+
+        ### HTTP with Secrets Manager
+
+        ```python
+        import pulumi
+        import pulumi_grafana as grafana
+        import pulumiverse_grafana as grafana
+
+        main = grafana.syntheticMonitoring.get_probes()
+        http = grafana.syntheticmonitoring.Check("http",
+            job="HTTP Secret Manager",
+            target="https://api.example.com",
+            enabled=True,
+            probes=[main.probes["mumbai"]],
+            labels={
+                "environment": "production",
+                "service": "api",
+            },
+            settings={
+                "http": {
+                    "ip_version": "V4",
+                    "method": "GET",
+                    "bearer_token": "${secrets.my-api-token}",
+                    "basic_auth": {
+                        "username": "admin",
+                        "password": "${secrets.my-api-password}",
+                    },
+                    "headers": [
+                        "Accept: application/json",
+                        "User-Agent: Terraform-Synthetic-Monitoring",
+                    ],
+                    "valid_status_codes": [
+                        200,
+                        201,
+                        202,
+                    ],
+                    "fail_if_ssl": False,
+                    "fail_if_not_ssl": True,
                 },
             })
         ```

@@ -295,6 +295,64 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// });
     /// ```
     /// 
+    /// ### HTTP with Secrets Manager
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = Grafana.SyntheticMonitoring.GetProbes.Invoke();
+    /// 
+    ///     var http = new Grafana.SyntheticMonitoring.Check("http", new()
+    ///     {
+    ///         Job = "HTTP Secret Manager",
+    ///         Target = "https://api.example.com",
+    ///         Enabled = true,
+    ///         Probes = new[]
+    ///         {
+    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Mumbai),
+    ///         },
+    ///         Labels = 
+    ///         {
+    ///             { "environment", "production" },
+    ///             { "service", "api" },
+    ///         },
+    ///         Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs
+    ///         {
+    ///             Http = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsHttpArgs
+    ///             {
+    ///                 IpVersion = "V4",
+    ///                 Method = "GET",
+    ///                 BearerToken = "${secrets.my-api-token}",
+    ///                 BasicAuth = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsHttpBasicAuthArgs
+    ///                 {
+    ///                     Username = "admin",
+    ///                     Password = "${secrets.my-api-password}",
+    ///                 },
+    ///                 Headers = new[]
+    ///                 {
+    ///                     "Accept: application/json",
+    ///                     "User-Agent: Terraform-Synthetic-Monitoring",
+    ///                 },
+    ///                 ValidStatusCodes = new[]
+    ///                 {
+    ///                     200,
+    ///                     201,
+    ///                     202,
+    ///                 },
+    ///                 FailIfSsl = false,
+    ///                 FailIfNotSsl = true,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Ping Basic
     /// 
     /// ```csharp

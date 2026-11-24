@@ -29,6 +29,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &NotificationsInhibitionRule{}
 	case "grafana:alerting/v1beta1/notificationsRoutingTree:NotificationsRoutingTree":
 		r = &NotificationsRoutingTree{}
+	case "grafana:alerting/v1beta1/notificationsTimeInterval:NotificationsTimeInterval":
+		r = &NotificationsTimeInterval{}
 	case "grafana:alerting/v1beta1/recordingRule:RecordingRule":
 		r = &RecordingRule{}
 	case "grafana:alerting/v1beta1/ruleSequence:RuleSequence":
@@ -64,6 +66,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"alerting/v1beta1/notificationsRoutingTree",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"alerting/v1beta1/notificationsTimeInterval",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
