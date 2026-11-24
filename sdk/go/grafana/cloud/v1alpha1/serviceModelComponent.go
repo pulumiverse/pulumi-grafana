@@ -67,16 +67,8 @@ import (
 //					Uid: pulumi.String("checkout-service"),
 //				},
 //				Spec: &cloudv1alpha1.ServiceModelComponentSpecArgs{
-//					OwnerRef: &cloudv1alpha1.ServiceModelComponentSpecOwnerRefArgs{
-//						Name: checkout.TeamUid,
-//					},
-//					DependsOnRefs: cloudv1alpha1.ServiceModelComponentSpecDependsOnRefArray{
-//						&cloudv1alpha1.ServiceModelComponentSpecDependsOnRefArgs{
-//							Name: payments.Metadata.ApplyT(func(metadata cloudv1alpha1.ServiceModelComponentMetadata) (*string, error) {
-//								return &metadata.Uid, nil
-//							}).(pulumi.StringPtrOutput),
-//						},
-//					},
+//					Title:       pulumi.String("Checkout Service"),
+//					Description: pulumi.String("Handles checkout and payment orchestration."),
 //					Identifiers: cloudv1alpha1.ServiceModelComponentSpecIdentifierArray{
 //						&cloudv1alpha1.ServiceModelComponentSpecIdentifierArgs{
 //							Key:   pulumi.String("service_name"),
@@ -87,6 +79,16 @@ import (
 //							Value: pulumi.String("checkout-prod"),
 //						},
 //					},
+//					OwnerRef: &cloudv1alpha1.ServiceModelComponentSpecOwnerRefArgs{
+//						Name: checkout.TeamUid,
+//					},
+//					DependsOnRefs: cloudv1alpha1.ServiceModelComponentSpecDependsOnRefArray{
+//						&cloudv1alpha1.ServiceModelComponentSpecDependsOnRefArgs{
+//							Name: payments.Metadata.ApplyT(func(metadata cloudv1alpha1.ServiceModelComponentMetadata) (*string, error) {
+//								return &metadata.Uid, nil
+//							}).(pulumi.StringPtrOutput),
+//						},
+//					},
 //					Links: cloudv1alpha1.ServiceModelComponentSpecLinkArray{
 //						&cloudv1alpha1.ServiceModelComponentSpecLinkArgs{
 //							Url:   pulumi.String("https://github.com/example/checkout"),
@@ -94,8 +96,6 @@ import (
 //							Type:  pulumi.String("repository"),
 //						},
 //					},
-//					Title:       pulumi.String("Checkout Service"),
-//					Description: pulumi.String("Handles checkout and payment orchestration."),
 //				},
 //			})
 //			if err != nil {

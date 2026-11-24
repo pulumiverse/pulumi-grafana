@@ -35,6 +35,13 @@ import * as utilities from "../../utilities";
  *         uid: "my-github-folder-repo",
  *     },
  *     spec: {
+ *         title: "My GitHub Folder Repository",
+ *         description: "Folder-scoped GitHub repository authenticated directly with a token",
+ *         type: "github",
+ *         workflows: [
+ *             "write",
+ *             "branch",
+ *         ],
  *         sync: {
  *             enabled: true,
  *             target: "folder",
@@ -48,13 +55,6 @@ import * as utilities from "../../utilities";
  *         webhook: {
  *             baseUrl: "https://grafana.example.com",
  *         },
- *         title: "My GitHub Folder Repository",
- *         description: "Folder-scoped GitHub repository authenticated directly with a token",
- *         type: "github",
- *         workflows: [
- *             "write",
- *             "branch",
- *         ],
  *     },
  *     secure: {
  *         token: {
@@ -76,6 +76,13 @@ import * as utilities from "../../utilities";
  *         uid: "my-bitbucket-folder-repo",
  *     },
  *     spec: {
+ *         title: "My Bitbucket Folder Repository",
+ *         description: "Folder-scoped Bitbucket repository authenticated directly with an Atlassian API token",
+ *         type: "bitbucket",
+ *         workflows: [
+ *             "write",
+ *             "branch",
+ *         ],
  *         sync: {
  *             enabled: true,
  *             target: "folder",
@@ -87,13 +94,6 @@ import * as utilities from "../../utilities";
  *             path: "grafanatftest",
  *             tokenUser: "x-bitbucket-api-token-auth",
  *         },
- *         title: "My Bitbucket Folder Repository",
- *         description: "Folder-scoped Bitbucket repository authenticated directly with an Atlassian API token",
- *         type: "bitbucket",
- *         workflows: [
- *             "write",
- *             "branch",
- *         ],
  *     },
  *     secure: {
  *         token: {
@@ -115,6 +115,13 @@ import * as utilities from "../../utilities";
  *         uid: "my-gitlab-folder-repo",
  *     },
  *     spec: {
+ *         title: "My GitLab Folder Repository",
+ *         description: "Folder-scoped GitLab repository authenticated directly with a token",
+ *         type: "gitlab",
+ *         workflows: [
+ *             "write",
+ *             "branch",
+ *         ],
  *         sync: {
  *             enabled: true,
  *             target: "folder",
@@ -125,13 +132,6 @@ import * as utilities from "../../utilities";
  *             branch: "main",
  *             path: "grafanatftest",
  *         },
- *         title: "My GitLab Folder Repository",
- *         description: "Folder-scoped GitLab repository authenticated directly with a token",
- *         type: "gitlab",
- *         workflows: [
- *             "write",
- *             "branch",
- *         ],
  *     },
  *     secure: {
  *         token: {
@@ -153,6 +153,10 @@ import * as utilities from "../../utilities";
  *         uid: "my-pure-git-folder-repo",
  *     },
  *     spec: {
+ *         title: "My Pure Git Folder Repository",
+ *         description: "Folder-scoped generic Git repository authenticated with a token",
+ *         type: "git",
+ *         workflows: ["write"],
  *         sync: {
  *             enabled: true,
  *             target: "folder",
@@ -164,10 +168,6 @@ import * as utilities from "../../utilities";
  *             path: "grafanatftest",
  *             tokenUser: "git",
  *         },
- *         title: "My Pure Git Folder Repository",
- *         description: "Folder-scoped generic Git repository authenticated with a token",
- *         type: "git",
- *         workflows: ["write"],
  *     },
  *     secure: {
  *         token: {
@@ -189,6 +189,10 @@ import * as utilities from "../../utilities";
  *         uid: "my-local-folder-repo",
  *     },
  *     spec: {
+ *         title: "My Local Folder Repository",
+ *         description: "Folder-scoped local filesystem repository",
+ *         type: "local",
+ *         workflows: ["write"],
  *         sync: {
  *             enabled: true,
  *             target: "folder",
@@ -197,10 +201,6 @@ import * as utilities from "../../utilities";
  *         local: {
  *             path: "/usr/share/grafana/conf/provisioning/my-local-repo",
  *         },
- *         title: "My Local Folder Repository",
- *         description: "Folder-scoped local filesystem repository",
- *         type: "local",
- *         workflows: ["write"],
  *     },
  * });
  * ```

@@ -8,64 +8,62 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Alerting.V1Beta1.Inputs
 {
 
-    [OutputType]
-    public sealed class AppsNotificationsTimeintervalV1beta1Metadata
+    public sealed class NotificationsTimeIntervalMetadataArgs : global::Pulumi.ResourceArgs
     {
+        [Input("annotations")]
+        private InputMap<string>? _annotations;
+
         /// <summary>
         /// Annotations of the resource.
         /// </summary>
-        public readonly ImmutableDictionary<string, string>? Annotations;
+        public InputMap<string> Annotations
+        {
+            get => _annotations ?? (_annotations = new InputMap<string>());
+            set => _annotations = value;
+        }
+
         /// <summary>
         /// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
         /// </summary>
-        public readonly string? FolderUid;
+        [Input("folderUid")]
+        public Input<string>? FolderUid { get; set; }
+
         /// <summary>
         /// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `OrgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `StackId` instead). Changing this value forces the resource to be recreated in the new organization.
         /// </summary>
-        public readonly int? OrgId;
+        [Input("orgId")]
+        public Input<int>? OrgId { get; set; }
+
         /// <summary>
         /// The unique identifier of the resource.
         /// </summary>
-        public readonly string Uid;
+        [Input("uid", required: true)]
+        public Input<string> Uid { get; set; } = null!;
+
         /// <summary>
         /// The full URL of the resource.
         /// </summary>
-        public readonly string? Url;
+        [Input("url")]
+        public Input<string>? Url { get; set; }
+
         /// <summary>
         /// The globally unique identifier of a resource, used by the API for tracking.
         /// </summary>
-        public readonly string? Uuid;
+        [Input("uuid")]
+        public Input<string>? Uuid { get; set; }
+
         /// <summary>
         /// The version of the resource.
         /// </summary>
-        public readonly string? Version;
+        [Input("version")]
+        public Input<string>? Version { get; set; }
 
-        [OutputConstructor]
-        private AppsNotificationsTimeintervalV1beta1Metadata(
-            ImmutableDictionary<string, string>? annotations,
-
-            string? folderUid,
-
-            int? orgId,
-
-            string uid,
-
-            string? url,
-
-            string? uuid,
-
-            string? version)
+        public NotificationsTimeIntervalMetadataArgs()
         {
-            Annotations = annotations;
-            FolderUid = folderUid;
-            OrgId = orgId;
-            Uid = uid;
-            Url = url;
-            Uuid = uuid;
-            Version = version;
         }
+        public static new NotificationsTimeIntervalMetadataArgs Empty => new NotificationsTimeIntervalMetadataArgs();
     }
 }

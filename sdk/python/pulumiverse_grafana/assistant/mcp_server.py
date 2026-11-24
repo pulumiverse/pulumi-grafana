@@ -318,18 +318,21 @@ class McpServer(pulumi.CustomResource):
         config = pulumi.Config()
         mcp_token = config.require("mcpToken")
         example = grafana.assistant.McpServer("example",
-            configuration={
-                "url": "https://example.com/mcp/",
-            },
             name="Example MCP server",
             scope="tenant",
             applications=["assistant"],
+            configuration={
+                "url": "https://example.com/mcp/",
+            },
             custom_headers={
                 "Authorization": f"Bearer {mcp_token}",
             })
         github_app_private_key = config.require("githubAppPrivateKey")
         # Authenticate a GitHub MCP server with a GitHub App installation instead of a personal access token.
         github = grafana.assistant.McpServer("github",
+            name="GitHub",
+            scope="tenant",
+            applications=["assistant"],
             configuration={
                 "url": "https://api.githubcopilot.com/mcp/",
             },
@@ -337,10 +340,7 @@ class McpServer(pulumi.CustomResource):
                 "app_id": 123456,
                 "installation_id": 12345678,
                 "private_key": github_app_private_key,
-            },
-            name="GitHub",
-            scope="tenant",
-            applications=["assistant"])
+            })
         ```
 
         ## Import
@@ -381,18 +381,21 @@ class McpServer(pulumi.CustomResource):
         config = pulumi.Config()
         mcp_token = config.require("mcpToken")
         example = grafana.assistant.McpServer("example",
-            configuration={
-                "url": "https://example.com/mcp/",
-            },
             name="Example MCP server",
             scope="tenant",
             applications=["assistant"],
+            configuration={
+                "url": "https://example.com/mcp/",
+            },
             custom_headers={
                 "Authorization": f"Bearer {mcp_token}",
             })
         github_app_private_key = config.require("githubAppPrivateKey")
         # Authenticate a GitHub MCP server with a GitHub App installation instead of a personal access token.
         github = grafana.assistant.McpServer("github",
+            name="GitHub",
+            scope="tenant",
+            applications=["assistant"],
             configuration={
                 "url": "https://api.githubcopilot.com/mcp/",
             },
@@ -400,10 +403,7 @@ class McpServer(pulumi.CustomResource):
                 "app_id": 123456,
                 "installation_id": 12345678,
                 "private_key": github_app_private_key,
-            },
-            name="GitHub",
-            scope="tenant",
-            applications=["assistant"])
+            })
         ```
 
         ## Import

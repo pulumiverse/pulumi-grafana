@@ -247,6 +247,9 @@ func Provider() tfbridge.ProviderInfo {
 			"grafana_apps_notifications_routingtree_v1beta1": {
 				Tok: grafanaVersionedResource(alertingMod, "v1beta1", "NotificationsRoutingTree"),
 			},
+			"grafana_apps_notifications_timeinterval_v1beta1": {
+				Tok: grafanaVersionedResource(alertingMod, "v1beta1", "NotificationsTimeInterval"),
+			},
 			"grafana_apps_queries_query_v1": {
 				Tok: grafanaVersionedResource(appsMod, "v1", "Query"),
 			},

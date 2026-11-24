@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Alerting.V1Beta1.Inputs
 {
 
-    public sealed class AppsNotificationsTimeintervalV1beta1SpecArgs : global::Pulumi.ResourceArgs
+    public sealed class NotificationsTimeIntervalSpecArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the time interval.
@@ -20,20 +20,20 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string> Name { get; set; } = null!;
 
         [Input("timeIntervals")]
-        private InputList<Inputs.AppsNotificationsTimeintervalV1beta1SpecTimeIntervalArgs>? _timeIntervals;
+        private InputList<Inputs.NotificationsTimeIntervalSpecTimeIntervalArgs>? _timeIntervals;
 
         /// <summary>
         /// A list of time interval definitions.
         /// </summary>
-        public InputList<Inputs.AppsNotificationsTimeintervalV1beta1SpecTimeIntervalArgs> TimeIntervals
+        public InputList<Inputs.NotificationsTimeIntervalSpecTimeIntervalArgs> TimeIntervals
         {
-            get => _timeIntervals ?? (_timeIntervals = new InputList<Inputs.AppsNotificationsTimeintervalV1beta1SpecTimeIntervalArgs>());
+            get => _timeIntervals ?? (_timeIntervals = new InputList<Inputs.NotificationsTimeIntervalSpecTimeIntervalArgs>());
             set => _timeIntervals = value;
         }
 
-        public AppsNotificationsTimeintervalV1beta1SpecArgs()
+        public NotificationsTimeIntervalSpecArgs()
         {
         }
-        public static new AppsNotificationsTimeintervalV1beta1SpecArgs Empty => new AppsNotificationsTimeintervalV1beta1SpecArgs();
+        public static new NotificationsTimeIntervalSpecArgs Empty => new NotificationsTimeIntervalSpecArgs();
     }
 }

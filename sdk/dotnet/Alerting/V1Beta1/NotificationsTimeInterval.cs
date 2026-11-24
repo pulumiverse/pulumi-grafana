@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Alerting.V1Beta1
 {
     /// <summary>
     /// Manages Grafana Time Intervals.
@@ -25,17 +25,18 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Grafana.AppsNotificationsTimeintervalV1beta1("example", new()
+    ///     var example = new Grafana.Alerting.V1Beta1.NotificationsTimeInterval("example", new()
     ///     {
-    ///         Metadata = new Grafana.Inputs.AppsNotificationsTimeintervalV1beta1MetadataArgs
+    ///         Metadata = new Grafana.Alerting.V1Beta1.Inputs.NotificationsTimeIntervalMetadataArgs
     ///         {
     ///             Uid = "business-hours",
     ///         },
-    ///         Spec = new Grafana.Inputs.AppsNotificationsTimeintervalV1beta1SpecArgs
+    ///         Spec = new Grafana.Alerting.V1Beta1.Inputs.NotificationsTimeIntervalSpecArgs
     ///         {
+    ///             Name = "business-hours",
     ///             TimeIntervals = new[]
     ///             {
-    ///                 new Grafana.Inputs.AppsNotificationsTimeintervalV1beta1SpecTimeIntervalArgs
+    ///                 new Grafana.Alerting.V1Beta1.Inputs.NotificationsTimeIntervalSpecTimeIntervalArgs
     ///                 {
     ///                     Weekdays = new[]
     ///                     {
@@ -43,7 +44,7 @@ namespace Pulumiverse.Grafana
     ///                     },
     ///                     Times = new[]
     ///                     {
-    ///                         new Grafana.Inputs.AppsNotificationsTimeintervalV1beta1SpecTimeIntervalTimeArgs
+    ///                         new Grafana.Alerting.V1Beta1.Inputs.NotificationsTimeIntervalSpecTimeIntervalTimeArgs
     ///                         {
     ///                             StartTime = "09:00",
     ///                             EndTime = "17:00",
@@ -51,49 +52,48 @@ namespace Pulumiverse.Grafana
     ///                     },
     ///                 },
     ///             },
-    ///             Name = "business-hours",
     ///         },
     ///     });
     /// 
     /// });
     /// ```
     /// </summary>
-    [GrafanaResourceType("grafana:index/appsNotificationsTimeintervalV1beta1:AppsNotificationsTimeintervalV1beta1")]
-    public partial class AppsNotificationsTimeintervalV1beta1 : global::Pulumi.CustomResource
+    [GrafanaResourceType("grafana:alerting/v1beta1/notificationsTimeInterval:NotificationsTimeInterval")]
+    public partial class NotificationsTimeInterval : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The metadata of the resource.
         /// </summary>
         [Output("metadata")]
-        public Output<Outputs.AppsNotificationsTimeintervalV1beta1Metadata?> Metadata { get; private set; } = null!;
+        public Output<Outputs.NotificationsTimeIntervalMetadata?> Metadata { get; private set; } = null!;
 
         /// <summary>
         /// Options for applying the resource.
         /// </summary>
         [Output("options")]
-        public Output<Outputs.AppsNotificationsTimeintervalV1beta1Options?> Options { get; private set; } = null!;
+        public Output<Outputs.NotificationsTimeIntervalOptions?> Options { get; private set; } = null!;
 
         /// <summary>
         /// The spec of the resource.
         /// </summary>
         [Output("spec")]
-        public Output<Outputs.AppsNotificationsTimeintervalV1beta1Spec?> Spec { get; private set; } = null!;
+        public Output<Outputs.NotificationsTimeIntervalSpec?> Spec { get; private set; } = null!;
 
 
         /// <summary>
-        /// Create a AppsNotificationsTimeintervalV1beta1 resource with the given unique name, arguments, and options.
+        /// Create a NotificationsTimeInterval resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AppsNotificationsTimeintervalV1beta1(string name, AppsNotificationsTimeintervalV1beta1Args? args = null, CustomResourceOptions? options = null)
-            : base("grafana:index/appsNotificationsTimeintervalV1beta1:AppsNotificationsTimeintervalV1beta1", name, args ?? new AppsNotificationsTimeintervalV1beta1Args(), MakeResourceOptions(options, ""))
+        public NotificationsTimeInterval(string name, NotificationsTimeIntervalArgs? args = null, CustomResourceOptions? options = null)
+            : base("grafana:alerting/v1beta1/notificationsTimeInterval:NotificationsTimeInterval", name, args ?? new NotificationsTimeIntervalArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private AppsNotificationsTimeintervalV1beta1(string name, Input<string> id, AppsNotificationsTimeintervalV1beta1State? state = null, CustomResourceOptions? options = null)
-            : base("grafana:index/appsNotificationsTimeintervalV1beta1:AppsNotificationsTimeintervalV1beta1", name, state, MakeResourceOptions(options, id))
+        private NotificationsTimeInterval(string name, Input<string> id, NotificationsTimeIntervalState? state = null, CustomResourceOptions? options = null)
+            : base("grafana:alerting/v1beta1/notificationsTimeInterval:NotificationsTimeInterval", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -110,7 +110,7 @@ namespace Pulumiverse.Grafana
             return merged;
         }
         /// <summary>
-        /// Get an existing AppsNotificationsTimeintervalV1beta1 resource's state with the given name, ID, and optional extra
+        /// Get an existing NotificationsTimeInterval resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -118,61 +118,61 @@ namespace Pulumiverse.Grafana
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static AppsNotificationsTimeintervalV1beta1 Get(string name, Input<string> id, AppsNotificationsTimeintervalV1beta1State? state = null, CustomResourceOptions? options = null)
+        public static NotificationsTimeInterval Get(string name, Input<string> id, NotificationsTimeIntervalState? state = null, CustomResourceOptions? options = null)
         {
-            return new AppsNotificationsTimeintervalV1beta1(name, id, state, options);
+            return new NotificationsTimeInterval(name, id, state, options);
         }
     }
 
-    public sealed class AppsNotificationsTimeintervalV1beta1Args : global::Pulumi.ResourceArgs
+    public sealed class NotificationsTimeIntervalArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The metadata of the resource.
         /// </summary>
         [Input("metadata")]
-        public Input<Inputs.AppsNotificationsTimeintervalV1beta1MetadataArgs>? Metadata { get; set; }
+        public Input<Inputs.NotificationsTimeIntervalMetadataArgs>? Metadata { get; set; }
 
         /// <summary>
         /// Options for applying the resource.
         /// </summary>
         [Input("options")]
-        public Input<Inputs.AppsNotificationsTimeintervalV1beta1OptionsArgs>? Options { get; set; }
+        public Input<Inputs.NotificationsTimeIntervalOptionsArgs>? Options { get; set; }
 
         /// <summary>
         /// The spec of the resource.
         /// </summary>
         [Input("spec")]
-        public Input<Inputs.AppsNotificationsTimeintervalV1beta1SpecArgs>? Spec { get; set; }
+        public Input<Inputs.NotificationsTimeIntervalSpecArgs>? Spec { get; set; }
 
-        public AppsNotificationsTimeintervalV1beta1Args()
+        public NotificationsTimeIntervalArgs()
         {
         }
-        public static new AppsNotificationsTimeintervalV1beta1Args Empty => new AppsNotificationsTimeintervalV1beta1Args();
+        public static new NotificationsTimeIntervalArgs Empty => new NotificationsTimeIntervalArgs();
     }
 
-    public sealed class AppsNotificationsTimeintervalV1beta1State : global::Pulumi.ResourceArgs
+    public sealed class NotificationsTimeIntervalState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The metadata of the resource.
         /// </summary>
         [Input("metadata")]
-        public Input<Inputs.AppsNotificationsTimeintervalV1beta1MetadataGetArgs>? Metadata { get; set; }
+        public Input<Inputs.NotificationsTimeIntervalMetadataGetArgs>? Metadata { get; set; }
 
         /// <summary>
         /// Options for applying the resource.
         /// </summary>
         [Input("options")]
-        public Input<Inputs.AppsNotificationsTimeintervalV1beta1OptionsGetArgs>? Options { get; set; }
+        public Input<Inputs.NotificationsTimeIntervalOptionsGetArgs>? Options { get; set; }
 
         /// <summary>
         /// The spec of the resource.
         /// </summary>
         [Input("spec")]
-        public Input<Inputs.AppsNotificationsTimeintervalV1beta1SpecGetArgs>? Spec { get; set; }
+        public Input<Inputs.NotificationsTimeIntervalSpecGetArgs>? Spec { get; set; }
 
-        public AppsNotificationsTimeintervalV1beta1State()
+        public NotificationsTimeIntervalState()
         {
         }
-        public static new AppsNotificationsTimeintervalV1beta1State Empty => new AppsNotificationsTimeintervalV1beta1State();
+        public static new NotificationsTimeIntervalState Empty => new NotificationsTimeIntervalState();
     }
 }

@@ -378,6 +378,10 @@ class CustomField(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         affected_team = grafana.incident.CustomField("affected_team",
+            name="Affected team",
+            slug="affected_team",
+            type="single-select",
+            description="The team that owns the affected service.",
             select_options=[
                 {
                     "value": "payments",
@@ -393,11 +397,7 @@ class CustomField(pulumi.CustomResource):
                     "label": "Billing",
                     "archived": True,
                 },
-            ],
-            name="Affected team",
-            slug="affected_team",
-            type="single-select",
-            description="The team that owns the affected service.")
+            ])
         customer_ticket = grafana.incident.CustomField("customer_ticket",
             name="Customer ticket",
             slug="customer_ticket",
@@ -464,6 +464,10 @@ class CustomField(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         affected_team = grafana.incident.CustomField("affected_team",
+            name="Affected team",
+            slug="affected_team",
+            type="single-select",
+            description="The team that owns the affected service.",
             select_options=[
                 {
                     "value": "payments",
@@ -479,11 +483,7 @@ class CustomField(pulumi.CustomResource):
                     "label": "Billing",
                     "archived": True,
                 },
-            ],
-            name="Affected team",
-            slug="affected_team",
-            type="single-select",
-            description="The team that owns the affected service.")
+            ])
         customer_ticket = grafana.incident.CustomField("customer_ticket",
             name="Customer ticket",
             slug="customer_ticket",

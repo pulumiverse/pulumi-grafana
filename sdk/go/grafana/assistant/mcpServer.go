@@ -32,13 +32,13 @@ import (
 //			cfg := config.New(ctx, "")
 //			mcpToken := cfg.Require("mcpToken")
 //			_, err := assistant.NewMcpServer(ctx, "example", &assistant.McpServerArgs{
-//				Configuration: &assistant.McpServerConfigurationArgs{
-//					Url: pulumi.String("https://example.com/mcp/"),
-//				},
 //				Name:  pulumi.String("Example MCP server"),
 //				Scope: pulumi.String("tenant"),
 //				Applications: pulumi.StringArray{
 //					pulumi.String("assistant"),
+//				},
+//				Configuration: &assistant.McpServerConfigurationArgs{
+//					Url: pulumi.String("https://example.com/mcp/"),
 //				},
 //				CustomHeaders: pulumi.StringMap{
 //					"Authorization": pulumi.Sprintf("Bearer %v", mcpToken),
@@ -50,6 +50,11 @@ import (
 //			githubAppPrivateKey := cfg.Require("githubAppPrivateKey")
 //			// Authenticate a GitHub MCP server with a GitHub App installation instead of a personal access token.
 //			_, err = assistant.NewMcpServer(ctx, "github", &assistant.McpServerArgs{
+//				Name:  pulumi.String("GitHub"),
+//				Scope: pulumi.String("tenant"),
+//				Applications: pulumi.StringArray{
+//					pulumi.String("assistant"),
+//				},
 //				Configuration: &assistant.McpServerConfigurationArgs{
 //					Url: pulumi.String("https://api.githubcopilot.com/mcp/"),
 //				},
@@ -57,11 +62,6 @@ import (
 //					AppId:          pulumi.Int(123456),
 //					InstallationId: pulumi.Int(12345678),
 //					PrivateKey:     pulumi.String(pulumi.String(githubAppPrivateKey)),
-//				},
-//				Name:  pulumi.String("GitHub"),
-//				Scope: pulumi.String("tenant"),
-//				Applications: pulumi.StringArray{
-//					pulumi.String("assistant"),
 //				},
 //			})
 //			if err != nil {

@@ -30,6 +30,10 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const affectedTeam = new grafana.incident.CustomField("affected_team", {
+ *     name: "Affected team",
+ *     slug: "affected_team",
+ *     type: "single-select",
+ *     description: "The team that owns the affected service.",
  *     selectOptions: [
  *         {
  *             value: "payments",
@@ -46,10 +50,6 @@ import * as utilities from "../utilities";
  *             archived: true,
  *         },
  *     ],
- *     name: "Affected team",
- *     slug: "affected_team",
- *     type: "single-select",
- *     description: "The team that owns the affected service.",
  * });
  * const customerTicket = new grafana.incident.CustomField("customer_ticket", {
  *     name: "Customer ticket",

@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Alerting.V1Beta1.Outputs
 {
 
     [OutputType]
-    public sealed class AppsNotificationsTimeintervalV1beta1SpecTimeIntervalTime
+    public sealed class NotificationsTimeIntervalSpecTimeIntervalTime
     {
         public readonly string EndTime;
         public readonly string StartTime;
 
         [OutputConstructor]
-        private AppsNotificationsTimeintervalV1beta1SpecTimeIntervalTime(
+        private NotificationsTimeIntervalSpecTimeIntervalTime(
             string endTime,
 
             string startTime)

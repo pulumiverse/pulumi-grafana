@@ -320,13 +320,6 @@ class OutlierDetector(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         my_dbscan_outlier_detector = grafana.machinelearning.OutlierDetector("my_dbscan_outlier_detector",
-            algorithm={
-                "config": {
-                    "epsilon": 1,
-                },
-                "name": "dbscan",
-                "sensitivity": 0.5,
-            },
             name="My DBSCAN outlier detector",
             description="My DBSCAN Outlier Detector",
             metric="tf_test_dbscan_job",
@@ -335,7 +328,14 @@ class OutlierDetector(pulumi.CustomResource):
             query_params={
                 "expr": "grafanacloud_grafana_instance_active_user_count",
             },
-            interval=300)
+            interval=300,
+            algorithm={
+                "name": "dbscan",
+                "sensitivity": 0.5,
+                "config": {
+                    "epsilon": 1,
+                },
+            })
         ```
 
         ### MAD Outlier Detector
@@ -347,10 +347,6 @@ class OutlierDetector(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         my_mad_outlier_detector = grafana.machinelearning.OutlierDetector("my_mad_outlier_detector",
-            algorithm={
-                "name": "mad",
-                "sensitivity": 0.7,
-            },
             name="My MAD outlier detector",
             description="My MAD Outlier Detector",
             metric="tf_test_mad_job",
@@ -359,7 +355,11 @@ class OutlierDetector(pulumi.CustomResource):
             query_params={
                 "expr": "grafanacloud_grafana_instance_active_user_count",
             },
-            interval=300)
+            interval=300,
+            algorithm={
+                "name": "mad",
+                "sensitivity": 0.7,
+            })
         ```
 
         ## Import
@@ -404,13 +404,6 @@ class OutlierDetector(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         my_dbscan_outlier_detector = grafana.machinelearning.OutlierDetector("my_dbscan_outlier_detector",
-            algorithm={
-                "config": {
-                    "epsilon": 1,
-                },
-                "name": "dbscan",
-                "sensitivity": 0.5,
-            },
             name="My DBSCAN outlier detector",
             description="My DBSCAN Outlier Detector",
             metric="tf_test_dbscan_job",
@@ -419,7 +412,14 @@ class OutlierDetector(pulumi.CustomResource):
             query_params={
                 "expr": "grafanacloud_grafana_instance_active_user_count",
             },
-            interval=300)
+            interval=300,
+            algorithm={
+                "name": "dbscan",
+                "sensitivity": 0.5,
+                "config": {
+                    "epsilon": 1,
+                },
+            })
         ```
 
         ### MAD Outlier Detector
@@ -431,10 +431,6 @@ class OutlierDetector(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         my_mad_outlier_detector = grafana.machinelearning.OutlierDetector("my_mad_outlier_detector",
-            algorithm={
-                "name": "mad",
-                "sensitivity": 0.7,
-            },
             name="My MAD outlier detector",
             description="My MAD Outlier Detector",
             metric="tf_test_mad_job",
@@ -443,7 +439,11 @@ class OutlierDetector(pulumi.CustomResource):
             query_params={
                 "expr": "grafanacloud_grafana_instance_active_user_count",
             },
-            interval=300)
+            interval=300,
+            algorithm={
+                "name": "mad",
+                "sensitivity": 0.7,
+            })
         ```
 
         ## Import

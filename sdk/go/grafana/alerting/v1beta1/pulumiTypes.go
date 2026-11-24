@@ -11455,6 +11455,815 @@ func (o NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput)
 	}).(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput)
 }
 
+type NotificationsTimeIntervalMetadata struct {
+	// Annotations of the resource.
+	Annotations map[string]string `pulumi:"annotations"`
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+	FolderUid *string `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId *int `pulumi:"orgId"`
+	// The unique identifier of the resource.
+	Uid string `pulumi:"uid"`
+	// The full URL of the resource.
+	Url *string `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid *string `pulumi:"uuid"`
+	// The version of the resource.
+	Version *string `pulumi:"version"`
+}
+
+// NotificationsTimeIntervalMetadataInput is an input type that accepts NotificationsTimeIntervalMetadataArgs and NotificationsTimeIntervalMetadataOutput values.
+// You can construct a concrete instance of `NotificationsTimeIntervalMetadataInput` via:
+//
+//	NotificationsTimeIntervalMetadataArgs{...}
+type NotificationsTimeIntervalMetadataInput interface {
+	pulumi.Input
+
+	ToNotificationsTimeIntervalMetadataOutput() NotificationsTimeIntervalMetadataOutput
+	ToNotificationsTimeIntervalMetadataOutputWithContext(context.Context) NotificationsTimeIntervalMetadataOutput
+}
+
+type NotificationsTimeIntervalMetadataArgs struct {
+	// Annotations of the resource.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+	OrgId pulumi.IntPtrInput `pulumi:"orgId"`
+	// The unique identifier of the resource.
+	Uid pulumi.StringInput `pulumi:"uid"`
+	// The full URL of the resource.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
+	// The version of the resource.
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (NotificationsTimeIntervalMetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsTimeIntervalMetadata)(nil)).Elem()
+}
+
+func (i NotificationsTimeIntervalMetadataArgs) ToNotificationsTimeIntervalMetadataOutput() NotificationsTimeIntervalMetadataOutput {
+	return i.ToNotificationsTimeIntervalMetadataOutputWithContext(context.Background())
+}
+
+func (i NotificationsTimeIntervalMetadataArgs) ToNotificationsTimeIntervalMetadataOutputWithContext(ctx context.Context) NotificationsTimeIntervalMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsTimeIntervalMetadataOutput)
+}
+
+func (i NotificationsTimeIntervalMetadataArgs) ToNotificationsTimeIntervalMetadataPtrOutput() NotificationsTimeIntervalMetadataPtrOutput {
+	return i.ToNotificationsTimeIntervalMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i NotificationsTimeIntervalMetadataArgs) ToNotificationsTimeIntervalMetadataPtrOutputWithContext(ctx context.Context) NotificationsTimeIntervalMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsTimeIntervalMetadataOutput).ToNotificationsTimeIntervalMetadataPtrOutputWithContext(ctx)
+}
+
+// NotificationsTimeIntervalMetadataPtrInput is an input type that accepts NotificationsTimeIntervalMetadataArgs, NotificationsTimeIntervalMetadataPtr and NotificationsTimeIntervalMetadataPtrOutput values.
+// You can construct a concrete instance of `NotificationsTimeIntervalMetadataPtrInput` via:
+//
+//	        NotificationsTimeIntervalMetadataArgs{...}
+//
+//	or:
+//
+//	        nil
+type NotificationsTimeIntervalMetadataPtrInput interface {
+	pulumi.Input
+
+	ToNotificationsTimeIntervalMetadataPtrOutput() NotificationsTimeIntervalMetadataPtrOutput
+	ToNotificationsTimeIntervalMetadataPtrOutputWithContext(context.Context) NotificationsTimeIntervalMetadataPtrOutput
+}
+
+type notificationsTimeIntervalMetadataPtrType NotificationsTimeIntervalMetadataArgs
+
+func NotificationsTimeIntervalMetadataPtr(v *NotificationsTimeIntervalMetadataArgs) NotificationsTimeIntervalMetadataPtrInput {
+	return (*notificationsTimeIntervalMetadataPtrType)(v)
+}
+
+func (*notificationsTimeIntervalMetadataPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationsTimeIntervalMetadata)(nil)).Elem()
+}
+
+func (i *notificationsTimeIntervalMetadataPtrType) ToNotificationsTimeIntervalMetadataPtrOutput() NotificationsTimeIntervalMetadataPtrOutput {
+	return i.ToNotificationsTimeIntervalMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i *notificationsTimeIntervalMetadataPtrType) ToNotificationsTimeIntervalMetadataPtrOutputWithContext(ctx context.Context) NotificationsTimeIntervalMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsTimeIntervalMetadataPtrOutput)
+}
+
+type NotificationsTimeIntervalMetadataOutput struct{ *pulumi.OutputState }
+
+func (NotificationsTimeIntervalMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsTimeIntervalMetadata)(nil)).Elem()
+}
+
+func (o NotificationsTimeIntervalMetadataOutput) ToNotificationsTimeIntervalMetadataOutput() NotificationsTimeIntervalMetadataOutput {
+	return o
+}
+
+func (o NotificationsTimeIntervalMetadataOutput) ToNotificationsTimeIntervalMetadataOutputWithContext(ctx context.Context) NotificationsTimeIntervalMetadataOutput {
+	return o
+}
+
+func (o NotificationsTimeIntervalMetadataOutput) ToNotificationsTimeIntervalMetadataPtrOutput() NotificationsTimeIntervalMetadataPtrOutput {
+	return o.ToNotificationsTimeIntervalMetadataPtrOutputWithContext(context.Background())
+}
+
+func (o NotificationsTimeIntervalMetadataOutput) ToNotificationsTimeIntervalMetadataPtrOutputWithContext(ctx context.Context) NotificationsTimeIntervalMetadataPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NotificationsTimeIntervalMetadata) *NotificationsTimeIntervalMetadata {
+		return &v
+	}).(NotificationsTimeIntervalMetadataPtrOutput)
+}
+
+// Annotations of the resource.
+func (o NotificationsTimeIntervalMetadataOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v NotificationsTimeIntervalMetadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+func (o NotificationsTimeIntervalMetadataOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsTimeIntervalMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
+}
+
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o NotificationsTimeIntervalMetadataOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NotificationsTimeIntervalMetadata) *int { return v.OrgId }).(pulumi.IntPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o NotificationsTimeIntervalMetadataOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsTimeIntervalMetadata) string { return v.Uid }).(pulumi.StringOutput)
+}
+
+// The full URL of the resource.
+func (o NotificationsTimeIntervalMetadataOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsTimeIntervalMetadata) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o NotificationsTimeIntervalMetadataOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsTimeIntervalMetadata) *string { return v.Uuid }).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o NotificationsTimeIntervalMetadataOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsTimeIntervalMetadata) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type NotificationsTimeIntervalMetadataPtrOutput struct{ *pulumi.OutputState }
+
+func (NotificationsTimeIntervalMetadataPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationsTimeIntervalMetadata)(nil)).Elem()
+}
+
+func (o NotificationsTimeIntervalMetadataPtrOutput) ToNotificationsTimeIntervalMetadataPtrOutput() NotificationsTimeIntervalMetadataPtrOutput {
+	return o
+}
+
+func (o NotificationsTimeIntervalMetadataPtrOutput) ToNotificationsTimeIntervalMetadataPtrOutputWithContext(ctx context.Context) NotificationsTimeIntervalMetadataPtrOutput {
+	return o
+}
+
+func (o NotificationsTimeIntervalMetadataPtrOutput) Elem() NotificationsTimeIntervalMetadataOutput {
+	return o.ApplyT(func(v *NotificationsTimeIntervalMetadata) NotificationsTimeIntervalMetadata {
+		if v != nil {
+			return *v
+		}
+		var ret NotificationsTimeIntervalMetadata
+		return ret
+	}).(NotificationsTimeIntervalMetadataOutput)
+}
+
+// Annotations of the resource.
+func (o NotificationsTimeIntervalMetadataPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *NotificationsTimeIntervalMetadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+func (o NotificationsTimeIntervalMetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationsTimeIntervalMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FolderUid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+func (o NotificationsTimeIntervalMetadataPtrOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NotificationsTimeIntervalMetadata) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OrgId
+	}).(pulumi.IntPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o NotificationsTimeIntervalMetadataPtrOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationsTimeIntervalMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The full URL of the resource.
+func (o NotificationsTimeIntervalMetadataPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationsTimeIntervalMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o NotificationsTimeIntervalMetadataPtrOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationsTimeIntervalMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Uuid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o NotificationsTimeIntervalMetadataPtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationsTimeIntervalMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Version
+	}).(pulumi.StringPtrOutput)
+}
+
+type NotificationsTimeIntervalOptions struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity *string `pulumi:"managerIdentity"`
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite *bool `pulumi:"overwrite"`
+}
+
+// NotificationsTimeIntervalOptionsInput is an input type that accepts NotificationsTimeIntervalOptionsArgs and NotificationsTimeIntervalOptionsOutput values.
+// You can construct a concrete instance of `NotificationsTimeIntervalOptionsInput` via:
+//
+//	NotificationsTimeIntervalOptionsArgs{...}
+type NotificationsTimeIntervalOptionsInput interface {
+	pulumi.Input
+
+	ToNotificationsTimeIntervalOptionsOutput() NotificationsTimeIntervalOptionsOutput
+	ToNotificationsTimeIntervalOptionsOutputWithContext(context.Context) NotificationsTimeIntervalOptionsOutput
+}
+
+type NotificationsTimeIntervalOptionsArgs struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity pulumi.StringPtrInput `pulumi:"managerIdentity"`
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
+}
+
+func (NotificationsTimeIntervalOptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsTimeIntervalOptions)(nil)).Elem()
+}
+
+func (i NotificationsTimeIntervalOptionsArgs) ToNotificationsTimeIntervalOptionsOutput() NotificationsTimeIntervalOptionsOutput {
+	return i.ToNotificationsTimeIntervalOptionsOutputWithContext(context.Background())
+}
+
+func (i NotificationsTimeIntervalOptionsArgs) ToNotificationsTimeIntervalOptionsOutputWithContext(ctx context.Context) NotificationsTimeIntervalOptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsTimeIntervalOptionsOutput)
+}
+
+func (i NotificationsTimeIntervalOptionsArgs) ToNotificationsTimeIntervalOptionsPtrOutput() NotificationsTimeIntervalOptionsPtrOutput {
+	return i.ToNotificationsTimeIntervalOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i NotificationsTimeIntervalOptionsArgs) ToNotificationsTimeIntervalOptionsPtrOutputWithContext(ctx context.Context) NotificationsTimeIntervalOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsTimeIntervalOptionsOutput).ToNotificationsTimeIntervalOptionsPtrOutputWithContext(ctx)
+}
+
+// NotificationsTimeIntervalOptionsPtrInput is an input type that accepts NotificationsTimeIntervalOptionsArgs, NotificationsTimeIntervalOptionsPtr and NotificationsTimeIntervalOptionsPtrOutput values.
+// You can construct a concrete instance of `NotificationsTimeIntervalOptionsPtrInput` via:
+//
+//	        NotificationsTimeIntervalOptionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type NotificationsTimeIntervalOptionsPtrInput interface {
+	pulumi.Input
+
+	ToNotificationsTimeIntervalOptionsPtrOutput() NotificationsTimeIntervalOptionsPtrOutput
+	ToNotificationsTimeIntervalOptionsPtrOutputWithContext(context.Context) NotificationsTimeIntervalOptionsPtrOutput
+}
+
+type notificationsTimeIntervalOptionsPtrType NotificationsTimeIntervalOptionsArgs
+
+func NotificationsTimeIntervalOptionsPtr(v *NotificationsTimeIntervalOptionsArgs) NotificationsTimeIntervalOptionsPtrInput {
+	return (*notificationsTimeIntervalOptionsPtrType)(v)
+}
+
+func (*notificationsTimeIntervalOptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationsTimeIntervalOptions)(nil)).Elem()
+}
+
+func (i *notificationsTimeIntervalOptionsPtrType) ToNotificationsTimeIntervalOptionsPtrOutput() NotificationsTimeIntervalOptionsPtrOutput {
+	return i.ToNotificationsTimeIntervalOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *notificationsTimeIntervalOptionsPtrType) ToNotificationsTimeIntervalOptionsPtrOutputWithContext(ctx context.Context) NotificationsTimeIntervalOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsTimeIntervalOptionsPtrOutput)
+}
+
+type NotificationsTimeIntervalOptionsOutput struct{ *pulumi.OutputState }
+
+func (NotificationsTimeIntervalOptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsTimeIntervalOptions)(nil)).Elem()
+}
+
+func (o NotificationsTimeIntervalOptionsOutput) ToNotificationsTimeIntervalOptionsOutput() NotificationsTimeIntervalOptionsOutput {
+	return o
+}
+
+func (o NotificationsTimeIntervalOptionsOutput) ToNotificationsTimeIntervalOptionsOutputWithContext(ctx context.Context) NotificationsTimeIntervalOptionsOutput {
+	return o
+}
+
+func (o NotificationsTimeIntervalOptionsOutput) ToNotificationsTimeIntervalOptionsPtrOutput() NotificationsTimeIntervalOptionsPtrOutput {
+	return o.ToNotificationsTimeIntervalOptionsPtrOutputWithContext(context.Background())
+}
+
+func (o NotificationsTimeIntervalOptionsOutput) ToNotificationsTimeIntervalOptionsPtrOutputWithContext(ctx context.Context) NotificationsTimeIntervalOptionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NotificationsTimeIntervalOptions) *NotificationsTimeIntervalOptions {
+		return &v
+	}).(NotificationsTimeIntervalOptionsPtrOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o NotificationsTimeIntervalOptionsOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsTimeIntervalOptions) *string { return v.ManagerIdentity }).(pulumi.StringPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o NotificationsTimeIntervalOptionsOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NotificationsTimeIntervalOptions) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
+}
+
+type NotificationsTimeIntervalOptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (NotificationsTimeIntervalOptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationsTimeIntervalOptions)(nil)).Elem()
+}
+
+func (o NotificationsTimeIntervalOptionsPtrOutput) ToNotificationsTimeIntervalOptionsPtrOutput() NotificationsTimeIntervalOptionsPtrOutput {
+	return o
+}
+
+func (o NotificationsTimeIntervalOptionsPtrOutput) ToNotificationsTimeIntervalOptionsPtrOutputWithContext(ctx context.Context) NotificationsTimeIntervalOptionsPtrOutput {
+	return o
+}
+
+func (o NotificationsTimeIntervalOptionsPtrOutput) Elem() NotificationsTimeIntervalOptionsOutput {
+	return o.ApplyT(func(v *NotificationsTimeIntervalOptions) NotificationsTimeIntervalOptions {
+		if v != nil {
+			return *v
+		}
+		var ret NotificationsTimeIntervalOptions
+		return ret
+	}).(NotificationsTimeIntervalOptionsOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o NotificationsTimeIntervalOptionsPtrOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationsTimeIntervalOptions) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ManagerIdentity
+	}).(pulumi.StringPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o NotificationsTimeIntervalOptionsPtrOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *NotificationsTimeIntervalOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Overwrite
+	}).(pulumi.BoolPtrOutput)
+}
+
+type NotificationsTimeIntervalSpec struct {
+	// The name of the time interval.
+	Name string `pulumi:"name"`
+	// A list of time interval definitions.
+	TimeIntervals []NotificationsTimeIntervalSpecTimeInterval `pulumi:"timeIntervals"`
+}
+
+// NotificationsTimeIntervalSpecInput is an input type that accepts NotificationsTimeIntervalSpecArgs and NotificationsTimeIntervalSpecOutput values.
+// You can construct a concrete instance of `NotificationsTimeIntervalSpecInput` via:
+//
+//	NotificationsTimeIntervalSpecArgs{...}
+type NotificationsTimeIntervalSpecInput interface {
+	pulumi.Input
+
+	ToNotificationsTimeIntervalSpecOutput() NotificationsTimeIntervalSpecOutput
+	ToNotificationsTimeIntervalSpecOutputWithContext(context.Context) NotificationsTimeIntervalSpecOutput
+}
+
+type NotificationsTimeIntervalSpecArgs struct {
+	// The name of the time interval.
+	Name pulumi.StringInput `pulumi:"name"`
+	// A list of time interval definitions.
+	TimeIntervals NotificationsTimeIntervalSpecTimeIntervalArrayInput `pulumi:"timeIntervals"`
+}
+
+func (NotificationsTimeIntervalSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsTimeIntervalSpec)(nil)).Elem()
+}
+
+func (i NotificationsTimeIntervalSpecArgs) ToNotificationsTimeIntervalSpecOutput() NotificationsTimeIntervalSpecOutput {
+	return i.ToNotificationsTimeIntervalSpecOutputWithContext(context.Background())
+}
+
+func (i NotificationsTimeIntervalSpecArgs) ToNotificationsTimeIntervalSpecOutputWithContext(ctx context.Context) NotificationsTimeIntervalSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsTimeIntervalSpecOutput)
+}
+
+func (i NotificationsTimeIntervalSpecArgs) ToNotificationsTimeIntervalSpecPtrOutput() NotificationsTimeIntervalSpecPtrOutput {
+	return i.ToNotificationsTimeIntervalSpecPtrOutputWithContext(context.Background())
+}
+
+func (i NotificationsTimeIntervalSpecArgs) ToNotificationsTimeIntervalSpecPtrOutputWithContext(ctx context.Context) NotificationsTimeIntervalSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsTimeIntervalSpecOutput).ToNotificationsTimeIntervalSpecPtrOutputWithContext(ctx)
+}
+
+// NotificationsTimeIntervalSpecPtrInput is an input type that accepts NotificationsTimeIntervalSpecArgs, NotificationsTimeIntervalSpecPtr and NotificationsTimeIntervalSpecPtrOutput values.
+// You can construct a concrete instance of `NotificationsTimeIntervalSpecPtrInput` via:
+//
+//	        NotificationsTimeIntervalSpecArgs{...}
+//
+//	or:
+//
+//	        nil
+type NotificationsTimeIntervalSpecPtrInput interface {
+	pulumi.Input
+
+	ToNotificationsTimeIntervalSpecPtrOutput() NotificationsTimeIntervalSpecPtrOutput
+	ToNotificationsTimeIntervalSpecPtrOutputWithContext(context.Context) NotificationsTimeIntervalSpecPtrOutput
+}
+
+type notificationsTimeIntervalSpecPtrType NotificationsTimeIntervalSpecArgs
+
+func NotificationsTimeIntervalSpecPtr(v *NotificationsTimeIntervalSpecArgs) NotificationsTimeIntervalSpecPtrInput {
+	return (*notificationsTimeIntervalSpecPtrType)(v)
+}
+
+func (*notificationsTimeIntervalSpecPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationsTimeIntervalSpec)(nil)).Elem()
+}
+
+func (i *notificationsTimeIntervalSpecPtrType) ToNotificationsTimeIntervalSpecPtrOutput() NotificationsTimeIntervalSpecPtrOutput {
+	return i.ToNotificationsTimeIntervalSpecPtrOutputWithContext(context.Background())
+}
+
+func (i *notificationsTimeIntervalSpecPtrType) ToNotificationsTimeIntervalSpecPtrOutputWithContext(ctx context.Context) NotificationsTimeIntervalSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsTimeIntervalSpecPtrOutput)
+}
+
+type NotificationsTimeIntervalSpecOutput struct{ *pulumi.OutputState }
+
+func (NotificationsTimeIntervalSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsTimeIntervalSpec)(nil)).Elem()
+}
+
+func (o NotificationsTimeIntervalSpecOutput) ToNotificationsTimeIntervalSpecOutput() NotificationsTimeIntervalSpecOutput {
+	return o
+}
+
+func (o NotificationsTimeIntervalSpecOutput) ToNotificationsTimeIntervalSpecOutputWithContext(ctx context.Context) NotificationsTimeIntervalSpecOutput {
+	return o
+}
+
+func (o NotificationsTimeIntervalSpecOutput) ToNotificationsTimeIntervalSpecPtrOutput() NotificationsTimeIntervalSpecPtrOutput {
+	return o.ToNotificationsTimeIntervalSpecPtrOutputWithContext(context.Background())
+}
+
+func (o NotificationsTimeIntervalSpecOutput) ToNotificationsTimeIntervalSpecPtrOutputWithContext(ctx context.Context) NotificationsTimeIntervalSpecPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NotificationsTimeIntervalSpec) *NotificationsTimeIntervalSpec {
+		return &v
+	}).(NotificationsTimeIntervalSpecPtrOutput)
+}
+
+// The name of the time interval.
+func (o NotificationsTimeIntervalSpecOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsTimeIntervalSpec) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// A list of time interval definitions.
+func (o NotificationsTimeIntervalSpecOutput) TimeIntervals() NotificationsTimeIntervalSpecTimeIntervalArrayOutput {
+	return o.ApplyT(func(v NotificationsTimeIntervalSpec) []NotificationsTimeIntervalSpecTimeInterval {
+		return v.TimeIntervals
+	}).(NotificationsTimeIntervalSpecTimeIntervalArrayOutput)
+}
+
+type NotificationsTimeIntervalSpecPtrOutput struct{ *pulumi.OutputState }
+
+func (NotificationsTimeIntervalSpecPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationsTimeIntervalSpec)(nil)).Elem()
+}
+
+func (o NotificationsTimeIntervalSpecPtrOutput) ToNotificationsTimeIntervalSpecPtrOutput() NotificationsTimeIntervalSpecPtrOutput {
+	return o
+}
+
+func (o NotificationsTimeIntervalSpecPtrOutput) ToNotificationsTimeIntervalSpecPtrOutputWithContext(ctx context.Context) NotificationsTimeIntervalSpecPtrOutput {
+	return o
+}
+
+func (o NotificationsTimeIntervalSpecPtrOutput) Elem() NotificationsTimeIntervalSpecOutput {
+	return o.ApplyT(func(v *NotificationsTimeIntervalSpec) NotificationsTimeIntervalSpec {
+		if v != nil {
+			return *v
+		}
+		var ret NotificationsTimeIntervalSpec
+		return ret
+	}).(NotificationsTimeIntervalSpecOutput)
+}
+
+// The name of the time interval.
+func (o NotificationsTimeIntervalSpecPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationsTimeIntervalSpec) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// A list of time interval definitions.
+func (o NotificationsTimeIntervalSpecPtrOutput) TimeIntervals() NotificationsTimeIntervalSpecTimeIntervalArrayOutput {
+	return o.ApplyT(func(v *NotificationsTimeIntervalSpec) []NotificationsTimeIntervalSpecTimeInterval {
+		if v == nil {
+			return nil
+		}
+		return v.TimeIntervals
+	}).(NotificationsTimeIntervalSpecTimeIntervalArrayOutput)
+}
+
+type NotificationsTimeIntervalSpecTimeInterval struct {
+	// Days of the month (1-31, negative values count from end of month).
+	DaysOfMonths []string `pulumi:"daysOfMonths"`
+	// IANA timezone name (e.g. America/New_York). Defaults to UTC when unset.
+	Location *string `pulumi:"location"`
+	// Months of the year (e.g. january, february).
+	Months []string `pulumi:"months"`
+	// Ranges of time within a day.
+	Times []NotificationsTimeIntervalSpecTimeIntervalTime `pulumi:"times"`
+	// Days of the week (e.g. monday, tuesday).
+	Weekdays []string `pulumi:"weekdays"`
+	// Calendar years (e.g. 2024, 2025:2027).
+	Years []string `pulumi:"years"`
+}
+
+// NotificationsTimeIntervalSpecTimeIntervalInput is an input type that accepts NotificationsTimeIntervalSpecTimeIntervalArgs and NotificationsTimeIntervalSpecTimeIntervalOutput values.
+// You can construct a concrete instance of `NotificationsTimeIntervalSpecTimeIntervalInput` via:
+//
+//	NotificationsTimeIntervalSpecTimeIntervalArgs{...}
+type NotificationsTimeIntervalSpecTimeIntervalInput interface {
+	pulumi.Input
+
+	ToNotificationsTimeIntervalSpecTimeIntervalOutput() NotificationsTimeIntervalSpecTimeIntervalOutput
+	ToNotificationsTimeIntervalSpecTimeIntervalOutputWithContext(context.Context) NotificationsTimeIntervalSpecTimeIntervalOutput
+}
+
+type NotificationsTimeIntervalSpecTimeIntervalArgs struct {
+	// Days of the month (1-31, negative values count from end of month).
+	DaysOfMonths pulumi.StringArrayInput `pulumi:"daysOfMonths"`
+	// IANA timezone name (e.g. America/New_York). Defaults to UTC when unset.
+	Location pulumi.StringPtrInput `pulumi:"location"`
+	// Months of the year (e.g. january, february).
+	Months pulumi.StringArrayInput `pulumi:"months"`
+	// Ranges of time within a day.
+	Times NotificationsTimeIntervalSpecTimeIntervalTimeArrayInput `pulumi:"times"`
+	// Days of the week (e.g. monday, tuesday).
+	Weekdays pulumi.StringArrayInput `pulumi:"weekdays"`
+	// Calendar years (e.g. 2024, 2025:2027).
+	Years pulumi.StringArrayInput `pulumi:"years"`
+}
+
+func (NotificationsTimeIntervalSpecTimeIntervalArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsTimeIntervalSpecTimeInterval)(nil)).Elem()
+}
+
+func (i NotificationsTimeIntervalSpecTimeIntervalArgs) ToNotificationsTimeIntervalSpecTimeIntervalOutput() NotificationsTimeIntervalSpecTimeIntervalOutput {
+	return i.ToNotificationsTimeIntervalSpecTimeIntervalOutputWithContext(context.Background())
+}
+
+func (i NotificationsTimeIntervalSpecTimeIntervalArgs) ToNotificationsTimeIntervalSpecTimeIntervalOutputWithContext(ctx context.Context) NotificationsTimeIntervalSpecTimeIntervalOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsTimeIntervalSpecTimeIntervalOutput)
+}
+
+// NotificationsTimeIntervalSpecTimeIntervalArrayInput is an input type that accepts NotificationsTimeIntervalSpecTimeIntervalArray and NotificationsTimeIntervalSpecTimeIntervalArrayOutput values.
+// You can construct a concrete instance of `NotificationsTimeIntervalSpecTimeIntervalArrayInput` via:
+//
+//	NotificationsTimeIntervalSpecTimeIntervalArray{ NotificationsTimeIntervalSpecTimeIntervalArgs{...} }
+type NotificationsTimeIntervalSpecTimeIntervalArrayInput interface {
+	pulumi.Input
+
+	ToNotificationsTimeIntervalSpecTimeIntervalArrayOutput() NotificationsTimeIntervalSpecTimeIntervalArrayOutput
+	ToNotificationsTimeIntervalSpecTimeIntervalArrayOutputWithContext(context.Context) NotificationsTimeIntervalSpecTimeIntervalArrayOutput
+}
+
+type NotificationsTimeIntervalSpecTimeIntervalArray []NotificationsTimeIntervalSpecTimeIntervalInput
+
+func (NotificationsTimeIntervalSpecTimeIntervalArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsTimeIntervalSpecTimeInterval)(nil)).Elem()
+}
+
+func (i NotificationsTimeIntervalSpecTimeIntervalArray) ToNotificationsTimeIntervalSpecTimeIntervalArrayOutput() NotificationsTimeIntervalSpecTimeIntervalArrayOutput {
+	return i.ToNotificationsTimeIntervalSpecTimeIntervalArrayOutputWithContext(context.Background())
+}
+
+func (i NotificationsTimeIntervalSpecTimeIntervalArray) ToNotificationsTimeIntervalSpecTimeIntervalArrayOutputWithContext(ctx context.Context) NotificationsTimeIntervalSpecTimeIntervalArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsTimeIntervalSpecTimeIntervalArrayOutput)
+}
+
+type NotificationsTimeIntervalSpecTimeIntervalOutput struct{ *pulumi.OutputState }
+
+func (NotificationsTimeIntervalSpecTimeIntervalOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsTimeIntervalSpecTimeInterval)(nil)).Elem()
+}
+
+func (o NotificationsTimeIntervalSpecTimeIntervalOutput) ToNotificationsTimeIntervalSpecTimeIntervalOutput() NotificationsTimeIntervalSpecTimeIntervalOutput {
+	return o
+}
+
+func (o NotificationsTimeIntervalSpecTimeIntervalOutput) ToNotificationsTimeIntervalSpecTimeIntervalOutputWithContext(ctx context.Context) NotificationsTimeIntervalSpecTimeIntervalOutput {
+	return o
+}
+
+// Days of the month (1-31, negative values count from end of month).
+func (o NotificationsTimeIntervalSpecTimeIntervalOutput) DaysOfMonths() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsTimeIntervalSpecTimeInterval) []string { return v.DaysOfMonths }).(pulumi.StringArrayOutput)
+}
+
+// IANA timezone name (e.g. America/New_York). Defaults to UTC when unset.
+func (o NotificationsTimeIntervalSpecTimeIntervalOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationsTimeIntervalSpecTimeInterval) *string { return v.Location }).(pulumi.StringPtrOutput)
+}
+
+// Months of the year (e.g. january, february).
+func (o NotificationsTimeIntervalSpecTimeIntervalOutput) Months() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsTimeIntervalSpecTimeInterval) []string { return v.Months }).(pulumi.StringArrayOutput)
+}
+
+// Ranges of time within a day.
+func (o NotificationsTimeIntervalSpecTimeIntervalOutput) Times() NotificationsTimeIntervalSpecTimeIntervalTimeArrayOutput {
+	return o.ApplyT(func(v NotificationsTimeIntervalSpecTimeInterval) []NotificationsTimeIntervalSpecTimeIntervalTime {
+		return v.Times
+	}).(NotificationsTimeIntervalSpecTimeIntervalTimeArrayOutput)
+}
+
+// Days of the week (e.g. monday, tuesday).
+func (o NotificationsTimeIntervalSpecTimeIntervalOutput) Weekdays() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsTimeIntervalSpecTimeInterval) []string { return v.Weekdays }).(pulumi.StringArrayOutput)
+}
+
+// Calendar years (e.g. 2024, 2025:2027).
+func (o NotificationsTimeIntervalSpecTimeIntervalOutput) Years() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationsTimeIntervalSpecTimeInterval) []string { return v.Years }).(pulumi.StringArrayOutput)
+}
+
+type NotificationsTimeIntervalSpecTimeIntervalArrayOutput struct{ *pulumi.OutputState }
+
+func (NotificationsTimeIntervalSpecTimeIntervalArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsTimeIntervalSpecTimeInterval)(nil)).Elem()
+}
+
+func (o NotificationsTimeIntervalSpecTimeIntervalArrayOutput) ToNotificationsTimeIntervalSpecTimeIntervalArrayOutput() NotificationsTimeIntervalSpecTimeIntervalArrayOutput {
+	return o
+}
+
+func (o NotificationsTimeIntervalSpecTimeIntervalArrayOutput) ToNotificationsTimeIntervalSpecTimeIntervalArrayOutputWithContext(ctx context.Context) NotificationsTimeIntervalSpecTimeIntervalArrayOutput {
+	return o
+}
+
+func (o NotificationsTimeIntervalSpecTimeIntervalArrayOutput) Index(i pulumi.IntInput) NotificationsTimeIntervalSpecTimeIntervalOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationsTimeIntervalSpecTimeInterval {
+		return vs[0].([]NotificationsTimeIntervalSpecTimeInterval)[vs[1].(int)]
+	}).(NotificationsTimeIntervalSpecTimeIntervalOutput)
+}
+
+type NotificationsTimeIntervalSpecTimeIntervalTime struct {
+	EndTime   string `pulumi:"endTime"`
+	StartTime string `pulumi:"startTime"`
+}
+
+// NotificationsTimeIntervalSpecTimeIntervalTimeInput is an input type that accepts NotificationsTimeIntervalSpecTimeIntervalTimeArgs and NotificationsTimeIntervalSpecTimeIntervalTimeOutput values.
+// You can construct a concrete instance of `NotificationsTimeIntervalSpecTimeIntervalTimeInput` via:
+//
+//	NotificationsTimeIntervalSpecTimeIntervalTimeArgs{...}
+type NotificationsTimeIntervalSpecTimeIntervalTimeInput interface {
+	pulumi.Input
+
+	ToNotificationsTimeIntervalSpecTimeIntervalTimeOutput() NotificationsTimeIntervalSpecTimeIntervalTimeOutput
+	ToNotificationsTimeIntervalSpecTimeIntervalTimeOutputWithContext(context.Context) NotificationsTimeIntervalSpecTimeIntervalTimeOutput
+}
+
+type NotificationsTimeIntervalSpecTimeIntervalTimeArgs struct {
+	EndTime   pulumi.StringInput `pulumi:"endTime"`
+	StartTime pulumi.StringInput `pulumi:"startTime"`
+}
+
+func (NotificationsTimeIntervalSpecTimeIntervalTimeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsTimeIntervalSpecTimeIntervalTime)(nil)).Elem()
+}
+
+func (i NotificationsTimeIntervalSpecTimeIntervalTimeArgs) ToNotificationsTimeIntervalSpecTimeIntervalTimeOutput() NotificationsTimeIntervalSpecTimeIntervalTimeOutput {
+	return i.ToNotificationsTimeIntervalSpecTimeIntervalTimeOutputWithContext(context.Background())
+}
+
+func (i NotificationsTimeIntervalSpecTimeIntervalTimeArgs) ToNotificationsTimeIntervalSpecTimeIntervalTimeOutputWithContext(ctx context.Context) NotificationsTimeIntervalSpecTimeIntervalTimeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsTimeIntervalSpecTimeIntervalTimeOutput)
+}
+
+// NotificationsTimeIntervalSpecTimeIntervalTimeArrayInput is an input type that accepts NotificationsTimeIntervalSpecTimeIntervalTimeArray and NotificationsTimeIntervalSpecTimeIntervalTimeArrayOutput values.
+// You can construct a concrete instance of `NotificationsTimeIntervalSpecTimeIntervalTimeArrayInput` via:
+//
+//	NotificationsTimeIntervalSpecTimeIntervalTimeArray{ NotificationsTimeIntervalSpecTimeIntervalTimeArgs{...} }
+type NotificationsTimeIntervalSpecTimeIntervalTimeArrayInput interface {
+	pulumi.Input
+
+	ToNotificationsTimeIntervalSpecTimeIntervalTimeArrayOutput() NotificationsTimeIntervalSpecTimeIntervalTimeArrayOutput
+	ToNotificationsTimeIntervalSpecTimeIntervalTimeArrayOutputWithContext(context.Context) NotificationsTimeIntervalSpecTimeIntervalTimeArrayOutput
+}
+
+type NotificationsTimeIntervalSpecTimeIntervalTimeArray []NotificationsTimeIntervalSpecTimeIntervalTimeInput
+
+func (NotificationsTimeIntervalSpecTimeIntervalTimeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsTimeIntervalSpecTimeIntervalTime)(nil)).Elem()
+}
+
+func (i NotificationsTimeIntervalSpecTimeIntervalTimeArray) ToNotificationsTimeIntervalSpecTimeIntervalTimeArrayOutput() NotificationsTimeIntervalSpecTimeIntervalTimeArrayOutput {
+	return i.ToNotificationsTimeIntervalSpecTimeIntervalTimeArrayOutputWithContext(context.Background())
+}
+
+func (i NotificationsTimeIntervalSpecTimeIntervalTimeArray) ToNotificationsTimeIntervalSpecTimeIntervalTimeArrayOutputWithContext(ctx context.Context) NotificationsTimeIntervalSpecTimeIntervalTimeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationsTimeIntervalSpecTimeIntervalTimeArrayOutput)
+}
+
+type NotificationsTimeIntervalSpecTimeIntervalTimeOutput struct{ *pulumi.OutputState }
+
+func (NotificationsTimeIntervalSpecTimeIntervalTimeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationsTimeIntervalSpecTimeIntervalTime)(nil)).Elem()
+}
+
+func (o NotificationsTimeIntervalSpecTimeIntervalTimeOutput) ToNotificationsTimeIntervalSpecTimeIntervalTimeOutput() NotificationsTimeIntervalSpecTimeIntervalTimeOutput {
+	return o
+}
+
+func (o NotificationsTimeIntervalSpecTimeIntervalTimeOutput) ToNotificationsTimeIntervalSpecTimeIntervalTimeOutputWithContext(ctx context.Context) NotificationsTimeIntervalSpecTimeIntervalTimeOutput {
+	return o
+}
+
+func (o NotificationsTimeIntervalSpecTimeIntervalTimeOutput) EndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsTimeIntervalSpecTimeIntervalTime) string { return v.EndTime }).(pulumi.StringOutput)
+}
+
+func (o NotificationsTimeIntervalSpecTimeIntervalTimeOutput) StartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationsTimeIntervalSpecTimeIntervalTime) string { return v.StartTime }).(pulumi.StringOutput)
+}
+
+type NotificationsTimeIntervalSpecTimeIntervalTimeArrayOutput struct{ *pulumi.OutputState }
+
+func (NotificationsTimeIntervalSpecTimeIntervalTimeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationsTimeIntervalSpecTimeIntervalTime)(nil)).Elem()
+}
+
+func (o NotificationsTimeIntervalSpecTimeIntervalTimeArrayOutput) ToNotificationsTimeIntervalSpecTimeIntervalTimeArrayOutput() NotificationsTimeIntervalSpecTimeIntervalTimeArrayOutput {
+	return o
+}
+
+func (o NotificationsTimeIntervalSpecTimeIntervalTimeArrayOutput) ToNotificationsTimeIntervalSpecTimeIntervalTimeArrayOutputWithContext(ctx context.Context) NotificationsTimeIntervalSpecTimeIntervalTimeArrayOutput {
+	return o
+}
+
+func (o NotificationsTimeIntervalSpecTimeIntervalTimeArrayOutput) Index(i pulumi.IntInput) NotificationsTimeIntervalSpecTimeIntervalTimeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationsTimeIntervalSpecTimeIntervalTime {
+		return vs[0].([]NotificationsTimeIntervalSpecTimeIntervalTime)[vs[1].(int)]
+	}).(NotificationsTimeIntervalSpecTimeIntervalTimeOutput)
+}
+
 type RecordingRuleMetadata struct {
 	// Annotations of the resource.
 	Annotations map[string]string `pulumi:"annotations"`
@@ -13474,6 +14283,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayInput)(nil)).Elem(), NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsTimeIntervalMetadataInput)(nil)).Elem(), NotificationsTimeIntervalMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsTimeIntervalMetadataPtrInput)(nil)).Elem(), NotificationsTimeIntervalMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsTimeIntervalOptionsInput)(nil)).Elem(), NotificationsTimeIntervalOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsTimeIntervalOptionsPtrInput)(nil)).Elem(), NotificationsTimeIntervalOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsTimeIntervalSpecInput)(nil)).Elem(), NotificationsTimeIntervalSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsTimeIntervalSpecPtrInput)(nil)).Elem(), NotificationsTimeIntervalSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsTimeIntervalSpecTimeIntervalInput)(nil)).Elem(), NotificationsTimeIntervalSpecTimeIntervalArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsTimeIntervalSpecTimeIntervalArrayInput)(nil)).Elem(), NotificationsTimeIntervalSpecTimeIntervalArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsTimeIntervalSpecTimeIntervalTimeInput)(nil)).Elem(), NotificationsTimeIntervalSpecTimeIntervalTimeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationsTimeIntervalSpecTimeIntervalTimeArrayInput)(nil)).Elem(), NotificationsTimeIntervalSpecTimeIntervalTimeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleMetadataInput)(nil)).Elem(), RecordingRuleMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleMetadataPtrInput)(nil)).Elem(), RecordingRuleMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleOptionsInput)(nil)).Elem(), RecordingRuleOptionsArgs{})
@@ -13638,6 +14457,16 @@ func init() {
 	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteArrayOutput{})
 	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherOutput{})
 	pulumi.RegisterOutputType(NotificationsRoutingTreeSpecRouteRouteRouteRouteRouteMatcherArrayOutput{})
+	pulumi.RegisterOutputType(NotificationsTimeIntervalMetadataOutput{})
+	pulumi.RegisterOutputType(NotificationsTimeIntervalMetadataPtrOutput{})
+	pulumi.RegisterOutputType(NotificationsTimeIntervalOptionsOutput{})
+	pulumi.RegisterOutputType(NotificationsTimeIntervalOptionsPtrOutput{})
+	pulumi.RegisterOutputType(NotificationsTimeIntervalSpecOutput{})
+	pulumi.RegisterOutputType(NotificationsTimeIntervalSpecPtrOutput{})
+	pulumi.RegisterOutputType(NotificationsTimeIntervalSpecTimeIntervalOutput{})
+	pulumi.RegisterOutputType(NotificationsTimeIntervalSpecTimeIntervalArrayOutput{})
+	pulumi.RegisterOutputType(NotificationsTimeIntervalSpecTimeIntervalTimeOutput{})
+	pulumi.RegisterOutputType(NotificationsTimeIntervalSpecTimeIntervalTimeArrayOutput{})
 	pulumi.RegisterOutputType(RecordingRuleMetadataOutput{})
 	pulumi.RegisterOutputType(RecordingRuleMetadataPtrOutput{})
 	pulumi.RegisterOutputType(RecordingRuleOptionsOutput{})

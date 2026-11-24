@@ -188,6 +188,7 @@ class SsoSettings(pulumi.CustomResource):
 
         # Configure SSO for GitHub using OAuth2
         github_sso_settings = grafana.oss.SsoSettings("github_sso_settings",
+            provider_name="github",
             oauth2_settings={
                 "name": "Github",
                 "client_id": "<your GitHub app client id>",
@@ -198,10 +199,10 @@ class SsoSettings(pulumi.CustomResource):
                 "team_ids": "150,300",
                 "allowed_organizations": "[\\"My Organization\\", \\"Octocats\\"]",
                 "allowed_domains": "mycompany.com mycompany.org",
-            },
-            provider_name="github")
+            })
         # Configure SSO using generic OAuth2
         generic_sso_settings = grafana.oss.SsoSettings("generic_sso_settings",
+            provider_name="generic_oauth",
             oauth2_settings={
                 "name": "Auth0",
                 "auth_url": "https://<domain>/authorize",
@@ -214,10 +215,10 @@ class SsoSettings(pulumi.CustomResource):
                 "scopes": "openid profile email offline_access",
                 "use_pkce": True,
                 "use_refresh_token": True,
-            },
-            provider_name="generic_oauth")
+            })
         # Configure SSO using SAML
         saml_sso_settings = grafana.oss.SsoSettings("saml_sso_settings",
+            provider_name="saml",
             saml_settings={
                 "allow_sign_up": True,
                 "certificate_path": "/certs/saml.crt",
@@ -227,13 +228,27 @@ class SsoSettings(pulumi.CustomResource):
                 "assertion_attribute_login": "login",
                 "assertion_attribute_email": "email",
                 "name_id_format": "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
-            },
-            provider_name="saml")
+            })
         # Configure SSO using LDAP
         ldap_sso_settings = grafana.oss.SsoSettings("ldap_sso_settings",
+            provider_name="ldap",
             ldap_settings={
+                "enabled": True,
                 "config": {
                     "servers": [{
+                        "host": "127.0.0.1",
+                        "port": 389,
+                        "search_filter": "(cn=%s)",
+                        "bind_dn": "cn=admin,dc=grafana,dc=org",
+                        "bind_password": "grafana",
+                        "search_base_dns": ["dc=grafana,dc=org"],
+                        "attributes": {
+                            "name": "givenName",
+                            "surname": "sn",
+                            "username": "cn",
+                            "member_of": "memberOf",
+                            "email": "email",
+                        },
                         "group_mappings": [
                             {
                                 "group_dn": "cn=superadmins,dc=grafana,dc=org",
@@ -250,24 +265,9 @@ class SsoSettings(pulumi.CustomResource):
                                 "org_role": "Viewer",
                             },
                         ],
-                        "host": "127.0.0.1",
-                        "port": 389,
-                        "search_filter": "(cn=%s)",
-                        "bind_dn": "cn=admin,dc=grafana,dc=org",
-                        "bind_password": "grafana",
-                        "search_base_dns": ["dc=grafana,dc=org"],
-                        "attributes": {
-                            "name": "givenName",
-                            "surname": "sn",
-                            "username": "cn",
-                            "member_of": "memberOf",
-                            "email": "email",
-                        },
                     }],
                 },
-                "enabled": True,
-            },
-            provider_name="ldap")
+            })
         ```
 
         ## Import
@@ -305,6 +305,7 @@ class SsoSettings(pulumi.CustomResource):
 
         # Configure SSO for GitHub using OAuth2
         github_sso_settings = grafana.oss.SsoSettings("github_sso_settings",
+            provider_name="github",
             oauth2_settings={
                 "name": "Github",
                 "client_id": "<your GitHub app client id>",
@@ -315,10 +316,10 @@ class SsoSettings(pulumi.CustomResource):
                 "team_ids": "150,300",
                 "allowed_organizations": "[\\"My Organization\\", \\"Octocats\\"]",
                 "allowed_domains": "mycompany.com mycompany.org",
-            },
-            provider_name="github")
+            })
         # Configure SSO using generic OAuth2
         generic_sso_settings = grafana.oss.SsoSettings("generic_sso_settings",
+            provider_name="generic_oauth",
             oauth2_settings={
                 "name": "Auth0",
                 "auth_url": "https://<domain>/authorize",
@@ -331,10 +332,10 @@ class SsoSettings(pulumi.CustomResource):
                 "scopes": "openid profile email offline_access",
                 "use_pkce": True,
                 "use_refresh_token": True,
-            },
-            provider_name="generic_oauth")
+            })
         # Configure SSO using SAML
         saml_sso_settings = grafana.oss.SsoSettings("saml_sso_settings",
+            provider_name="saml",
             saml_settings={
                 "allow_sign_up": True,
                 "certificate_path": "/certs/saml.crt",
@@ -344,13 +345,27 @@ class SsoSettings(pulumi.CustomResource):
                 "assertion_attribute_login": "login",
                 "assertion_attribute_email": "email",
                 "name_id_format": "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
-            },
-            provider_name="saml")
+            })
         # Configure SSO using LDAP
         ldap_sso_settings = grafana.oss.SsoSettings("ldap_sso_settings",
+            provider_name="ldap",
             ldap_settings={
+                "enabled": True,
                 "config": {
                     "servers": [{
+                        "host": "127.0.0.1",
+                        "port": 389,
+                        "search_filter": "(cn=%s)",
+                        "bind_dn": "cn=admin,dc=grafana,dc=org",
+                        "bind_password": "grafana",
+                        "search_base_dns": ["dc=grafana,dc=org"],
+                        "attributes": {
+                            "name": "givenName",
+                            "surname": "sn",
+                            "username": "cn",
+                            "member_of": "memberOf",
+                            "email": "email",
+                        },
                         "group_mappings": [
                             {
                                 "group_dn": "cn=superadmins,dc=grafana,dc=org",
@@ -367,24 +382,9 @@ class SsoSettings(pulumi.CustomResource):
                                 "org_role": "Viewer",
                             },
                         ],
-                        "host": "127.0.0.1",
-                        "port": 389,
-                        "search_filter": "(cn=%s)",
-                        "bind_dn": "cn=admin,dc=grafana,dc=org",
-                        "bind_password": "grafana",
-                        "search_base_dns": ["dc=grafana,dc=org"],
-                        "attributes": {
-                            "name": "givenName",
-                            "surname": "sn",
-                            "username": "cn",
-                            "member_of": "memberOf",
-                            "email": "email",
-                        },
                     }],
                 },
-                "enabled": True,
-            },
-            provider_name="ldap")
+            })
         ```
 
         ## Import

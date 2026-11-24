@@ -303,7 +303,7 @@
                 }
             },
             "grafana_apps_notifications_timeinterval_v1beta1": {
-                "current": "grafana:index/appsNotificationsTimeintervalV1beta1:AppsNotificationsTimeintervalV1beta1",
+                "current": "grafana:alerting/v1beta1/notificationsTimeInterval:NotificationsTimeInterval",
                 "majorVersion": 2,
                 "fields": {
                     "spec": {
@@ -2981,6 +2981,7 @@
             "grafana:alerting/v1beta1/alertRule:AlertRule": 1,
             "grafana:alerting/v1beta1/notificationsInhibitionRule:NotificationsInhibitionRule": 1,
             "grafana:alerting/v1beta1/notificationsRoutingTree:NotificationsRoutingTree": 1,
+            "grafana:alerting/v1beta1/notificationsTimeInterval:NotificationsTimeInterval": 1,
             "grafana:alerting/v1beta1/recordingRule:RecordingRule": 1,
             "grafana:alerting/v1beta1/ruleSequence:RuleSequence": 1,
             "grafana:apps/genericResource:GenericResource": 1,
@@ -3051,7 +3052,6 @@
             "grafana:incident/customField:CustomField": 1,
             "grafana:incident/role:Role": 1,
             "grafana:incident/severity:Severity": 1,
-            "grafana:index/appsNotificationsTimeintervalV1beta1:AppsNotificationsTimeintervalV1beta1": 1,
             "grafana:k6/installation:Installation": 0,
             "grafana:k6/loadTest:LoadTest": 1,
             "grafana:k6/project:Project": 1,

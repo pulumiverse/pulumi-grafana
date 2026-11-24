@@ -237,6 +237,8 @@ class Holiday(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         custom_periods = grafana.machinelearning.Holiday("custom_periods",
+            name="My custom periods holiday",
+            description="My Holiday",
             custom_periods=[
                 {
                     "name": "First of January",
@@ -248,9 +250,7 @@ class Holiday(pulumi.CustomResource):
                     "start_time": "2023-02-01T00:00:00Z",
                     "end_time": "2023-02-02T00:00:00Z",
                 },
-            ],
-            name="My custom periods holiday",
-            description="My Holiday")
+            ])
         ```
 
         ## Import
@@ -303,6 +303,8 @@ class Holiday(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         custom_periods = grafana.machinelearning.Holiday("custom_periods",
+            name="My custom periods holiday",
+            description="My Holiday",
             custom_periods=[
                 {
                     "name": "First of January",
@@ -314,9 +316,7 @@ class Holiday(pulumi.CustomResource):
                     "start_time": "2023-02-01T00:00:00Z",
                     "end_time": "2023-02-02T00:00:00Z",
                 },
-            ],
-            name="My custom periods holiday",
-            description="My Holiday")
+            ])
         ```
 
         ## Import

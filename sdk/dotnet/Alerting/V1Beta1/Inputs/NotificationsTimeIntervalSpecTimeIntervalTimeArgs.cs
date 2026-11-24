@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Alerting.V1Beta1.Inputs
 {
 
-    public sealed class AppsNotificationsTimeintervalV1beta1SpecTimeIntervalTimeGetArgs : global::Pulumi.ResourceArgs
+    public sealed class NotificationsTimeIntervalSpecTimeIntervalTimeArgs : global::Pulumi.ResourceArgs
     {
         [Input("endTime", required: true)]
         public Input<string> EndTime { get; set; } = null!;
@@ -19,9 +19,9 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("startTime", required: true)]
         public Input<string> StartTime { get; set; } = null!;
 
-        public AppsNotificationsTimeintervalV1beta1SpecTimeIntervalTimeGetArgs()
+        public NotificationsTimeIntervalSpecTimeIntervalTimeArgs()
         {
         }
-        public static new AppsNotificationsTimeintervalV1beta1SpecTimeIntervalTimeGetArgs Empty => new AppsNotificationsTimeintervalV1beta1SpecTimeIntervalTimeGetArgs();
+        public static new NotificationsTimeIntervalSpecTimeIntervalTimeArgs Empty => new NotificationsTimeIntervalSpecTimeIntervalTimeArgs();
     }
 }

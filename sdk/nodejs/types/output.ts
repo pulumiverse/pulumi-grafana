@@ -5,91 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface AppsNotificationsTimeintervalV1beta1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations: {[key: string]: string};
-    /**
-     * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
-     */
-    folderUid?: string;
-    /**
-     * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
-     */
-    orgId?: number;
-    /**
-     * The unique identifier of the resource.
-     */
-    uid: string;
-    /**
-     * The full URL of the resource.
-     */
-    url: string;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid: string;
-    /**
-     * The version of the resource.
-     */
-    version: string;
-}
-
-export interface AppsNotificationsTimeintervalV1beta1Options {
-    /**
-     * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
-     */
-    managerIdentity?: string;
-    /**
-     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-     */
-    overwrite?: boolean;
-}
-
-export interface AppsNotificationsTimeintervalV1beta1Spec {
-    /**
-     * The name of the time interval.
-     */
-    name: string;
-    /**
-     * A list of time interval definitions.
-     */
-    timeIntervals?: outputs.AppsNotificationsTimeintervalV1beta1SpecTimeInterval[];
-}
-
-export interface AppsNotificationsTimeintervalV1beta1SpecTimeInterval {
-    /**
-     * Days of the month (1-31, negative values count from end of month).
-     */
-    daysOfMonths?: string[];
-    /**
-     * IANA timezone name (e.g. America/New_York). Defaults to UTC when unset.
-     */
-    location?: string;
-    /**
-     * Months of the year (e.g. january, february).
-     */
-    months?: string[];
-    /**
-     * Ranges of time within a day.
-     */
-    times?: outputs.AppsNotificationsTimeintervalV1beta1SpecTimeIntervalTime[];
-    /**
-     * Days of the week (e.g. monday, tuesday).
-     */
-    weekdays?: string[];
-    /**
-     * Calendar years (e.g. 2024, 2025:2027).
-     */
-    years?: string[];
-}
-
-export interface AppsNotificationsTimeintervalV1beta1SpecTimeIntervalTime {
-    endTime: string;
-    startTime: string;
-}
-
 export namespace agento11y {
     export interface HookRuleRedact {
         /**
@@ -3991,6 +3906,91 @@ export namespace alerting {
              * The label value to match against.
              */
             value: string;
+        }
+
+        export interface NotificationsTimeIntervalMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+             */
+            folderUid?: string;
+            /**
+             * The Grafana organization ID this resource belongs to, for self-hosted OSS or Enterprise Grafana. When set, it overrides the provider's `orgId` for this resource only, so a single provider configuration can manage App Platform resources across multiple organizations. Not supported on Grafana Cloud (configure a stack with `stackId` instead). Changing this value forces the resource to be recreated in the new organization.
+             */
+            orgId?: number;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface NotificationsTimeIntervalOptions {
+            /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface NotificationsTimeIntervalSpec {
+            /**
+             * The name of the time interval.
+             */
+            name: string;
+            /**
+             * A list of time interval definitions.
+             */
+            timeIntervals?: outputs.alerting.v1beta1.NotificationsTimeIntervalSpecTimeInterval[];
+        }
+
+        export interface NotificationsTimeIntervalSpecTimeInterval {
+            /**
+             * Days of the month (1-31, negative values count from end of month).
+             */
+            daysOfMonths?: string[];
+            /**
+             * IANA timezone name (e.g. America/New_York). Defaults to UTC when unset.
+             */
+            location?: string;
+            /**
+             * Months of the year (e.g. january, february).
+             */
+            months?: string[];
+            /**
+             * Ranges of time within a day.
+             */
+            times?: outputs.alerting.v1beta1.NotificationsTimeIntervalSpecTimeIntervalTime[];
+            /**
+             * Days of the week (e.g. monday, tuesday).
+             */
+            weekdays?: string[];
+            /**
+             * Calendar years (e.g. 2024, 2025:2027).
+             */
+            years?: string[];
+        }
+
+        export interface NotificationsTimeIntervalSpecTimeIntervalTime {
+            endTime: string;
+            startTime: string;
         }
 
         export interface RecordingRuleMetadata {

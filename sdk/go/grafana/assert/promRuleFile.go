@@ -30,8 +30,12 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Basic recording rule for latency metrics
 //			_, err := assert.NewPromRuleFile(ctx, "latency_metrics", &assert.PromRuleFileArgs{
+//				Name:   pulumi.String("custom-latency-metrics"),
+//				Active: pulumi.Bool(true),
 //				Groups: assert.PromRuleFileGroupArray{
 //					&assert.PromRuleFileGroupArgs{
+//						Name:     pulumi.String("latency_recording_rules"),
+//						Interval: pulumi.String("30s"),
 //						Rules: assert.PromRuleFileGroupRuleArray{
 //							&assert.PromRuleFileGroupRuleArgs{
 //								Record: pulumi.String("custom:latency:p95"),
@@ -50,20 +54,20 @@ import (
 //								},
 //							},
 //						},
-//						Name:     pulumi.String("latency_recording_rules"),
-//						Interval: pulumi.String("30s"),
 //					},
 //				},
-//				Name:   pulumi.String("custom-latency-metrics"),
-//				Active: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Alert rules for high latency
 //			_, err = assert.NewPromRuleFile(ctx, "latency_alerts", &assert.PromRuleFileArgs{
+//				Name:   pulumi.String("custom-latency-alerts"),
+//				Active: pulumi.Bool(true),
 //				Groups: assert.PromRuleFileGroupArray{
 //					&assert.PromRuleFileGroupArgs{
+//						Name:     pulumi.String("latency_alerting"),
+//						Interval: pulumi.String("30s"),
 //						Rules: assert.PromRuleFileGroupRuleArray{
 //							&assert.PromRuleFileGroupRuleArgs{
 //								Alert:    pulumi.String("HighLatency"),
@@ -92,20 +96,20 @@ import (
 //								},
 //							},
 //						},
-//						Name:     pulumi.String("latency_alerting"),
-//						Interval: pulumi.String("30s"),
 //					},
 //				},
-//				Name:   pulumi.String("custom-latency-alerts"),
-//				Active: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Comprehensive monitoring rules with multiple groups
 //			_, err = assert.NewPromRuleFile(ctx, "comprehensive_monitoring", &assert.PromRuleFileArgs{
+//				Name:   pulumi.String("custom-comprehensive-monitoring"),
+//				Active: pulumi.Bool(true),
 //				Groups: assert.PromRuleFileGroupArray{
 //					&assert.PromRuleFileGroupArgs{
+//						Name:     pulumi.String("latency_monitoring"),
+//						Interval: pulumi.String("30s"),
 //						Rules: assert.PromRuleFileGroupRuleArray{
 //							&assert.PromRuleFileGroupRuleArgs{
 //								Record: pulumi.String("custom:latency:p99"),
@@ -126,10 +130,10 @@ import (
 //								},
 //							},
 //						},
-//						Name:     pulumi.String("latency_monitoring"),
-//						Interval: pulumi.String("30s"),
 //					},
 //					&assert.PromRuleFileGroupArgs{
+//						Name:     pulumi.String("error_monitoring"),
+//						Interval: pulumi.String("1m"),
 //						Rules: assert.PromRuleFileGroupRuleArray{
 //							&assert.PromRuleFileGroupRuleArgs{
 //								Record: pulumi.String("custom:error:rate"),
@@ -152,10 +156,10 @@ import (
 //								},
 //							},
 //						},
-//						Name:     pulumi.String("error_monitoring"),
-//						Interval: pulumi.String("1m"),
 //					},
 //					&assert.PromRuleFileGroupArgs{
+//						Name:     pulumi.String("throughput_monitoring"),
+//						Interval: pulumi.String("1m"),
 //						Rules: assert.PromRuleFileGroupRuleArray{
 //							&assert.PromRuleFileGroupRuleArgs{
 //								Record: pulumi.String("custom:throughput:total"),
@@ -178,20 +182,20 @@ import (
 //								},
 //							},
 //						},
-//						Name:     pulumi.String("throughput_monitoring"),
-//						Interval: pulumi.String("1m"),
 //					},
 //				},
-//				Name:   pulumi.String("custom-comprehensive-monitoring"),
-//				Active: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Rules with conditional enablement
 //			_, err = assert.NewPromRuleFile(ctx, "conditional_rules", &assert.PromRuleFileArgs{
+//				Name:   pulumi.String("custom-conditional-rules"),
+//				Active: pulumi.Bool(true),
 //				Groups: assert.PromRuleFileGroupArray{
 //					&assert.PromRuleFileGroupArgs{
+//						Name:     pulumi.String("environment_specific_rules"),
+//						Interval: pulumi.String("30s"),
 //						Rules: assert.PromRuleFileGroupRuleArray{
 //							&assert.PromRuleFileGroupRuleArgs{
 //								Alert:    pulumi.String("TestAlert"),
@@ -219,20 +223,20 @@ import (
 //								},
 //							},
 //						},
-//						Name:     pulumi.String("environment_specific_rules"),
-//						Interval: pulumi.String("30s"),
 //					},
 //				},
-//				Name:   pulumi.String("custom-conditional-rules"),
-//				Active: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Inactive rules (for staging/testing)
 //			_, err = assert.NewPromRuleFile(ctx, "staging_rules", &assert.PromRuleFileArgs{
+//				Name:   pulumi.String("custom-staging-rules"),
+//				Active: pulumi.Bool(false),
 //				Groups: assert.PromRuleFileGroupArray{
 //					&assert.PromRuleFileGroupArgs{
+//						Name:     pulumi.String("staging_tests"),
+//						Interval: pulumi.String("1m"),
 //						Rules: assert.PromRuleFileGroupRuleArray{
 //							&assert.PromRuleFileGroupRuleArgs{
 //								Record: pulumi.String("staging:test:metric"),
@@ -242,20 +246,20 @@ import (
 //								},
 //							},
 //						},
-//						Name:     pulumi.String("staging_tests"),
-//						Interval: pulumi.String("1m"),
 //					},
 //				},
-//				Name:   pulumi.String("custom-staging-rules"),
-//				Active: pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// SLO-based alerting
 //			_, err = assert.NewPromRuleFile(ctx, "slo_alerts", &assert.PromRuleFileArgs{
+//				Name:   pulumi.String("custom-slo-alerts"),
+//				Active: pulumi.Bool(true),
 //				Groups: assert.PromRuleFileGroupArray{
 //					&assert.PromRuleFileGroupArgs{
+//						Name:     pulumi.String("slo_monitoring"),
+//						Interval: pulumi.String("1m"),
 //						Rules: assert.PromRuleFileGroupRuleArray{
 //							&assert.PromRuleFileGroupRuleArgs{
 //								Record: pulumi.String("custom:slo:availability"),
@@ -279,12 +283,8 @@ import (
 //								},
 //							},
 //						},
-//						Name:     pulumi.String("slo_monitoring"),
-//						Interval: pulumi.String("1m"),
 //					},
 //				},
-//				Name:   pulumi.String("custom-slo-alerts"),
-//				Active: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err

@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Alerting.V1Beta1.Outputs
 {
 
     [OutputType]
-    public sealed class AppsNotificationsTimeintervalV1beta1Spec
+    public sealed class NotificationsTimeIntervalSpec
     {
         /// <summary>
         /// The name of the time interval.
@@ -21,13 +21,13 @@ namespace Pulumiverse.Grafana.Outputs
         /// <summary>
         /// A list of time interval definitions.
         /// </summary>
-        public readonly ImmutableArray<Outputs.AppsNotificationsTimeintervalV1beta1SpecTimeInterval> TimeIntervals;
+        public readonly ImmutableArray<Outputs.NotificationsTimeIntervalSpecTimeInterval> TimeIntervals;
 
         [OutputConstructor]
-        private AppsNotificationsTimeintervalV1beta1Spec(
+        private NotificationsTimeIntervalSpec(
             string name,
 
-            ImmutableArray<Outputs.AppsNotificationsTimeintervalV1beta1SpecTimeInterval> timeIntervals)
+            ImmutableArray<Outputs.NotificationsTimeIntervalSpecTimeInterval> timeIntervals)
         {
             Name = name;
             TimeIntervals = timeIntervals;

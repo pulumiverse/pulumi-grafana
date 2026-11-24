@@ -883,6 +883,7 @@ class ContactPoint(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         my_contact_point = grafana.alerting.ContactPoint("my_contact_point",
+            name="My Contact Point",
             emails=[{
                 "addresses": [
                     "one@company.org",
@@ -892,8 +893,7 @@ class ContactPoint(pulumi.CustomResource):
                 "subject": "{{ template \\"default.title\\" .}}",
                 "single_email": True,
                 "disable_resolve_message": False,
-            }],
-            name="My Contact Point")
+            }])
         ```
 
         ## Import
@@ -953,6 +953,7 @@ class ContactPoint(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         my_contact_point = grafana.alerting.ContactPoint("my_contact_point",
+            name="My Contact Point",
             emails=[{
                 "addresses": [
                     "one@company.org",
@@ -962,8 +963,7 @@ class ContactPoint(pulumi.CustomResource):
                 "subject": "{{ template \\"default.title\\" .}}",
                 "single_email": True,
                 "disable_resolve_message": False,
-            }],
-            name="My Contact Point")
+            }])
         ```
 
         ## Import

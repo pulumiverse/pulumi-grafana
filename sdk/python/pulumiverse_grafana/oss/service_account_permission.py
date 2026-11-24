@@ -164,6 +164,7 @@ class ServiceAccountPermission(pulumi.CustomResource):
             login="tf_user@test.com",
             password="password")
         test_permissions = grafana.oss.ServiceAccountPermission("test_permissions",
+            service_account_id=test.id,
             permissions=[
                 {
                     "user_id": test_user.id,
@@ -173,8 +174,7 @@ class ServiceAccountPermission(pulumi.CustomResource):
                     "team_id": test_team.id,
                     "permission": "Admin",
                 },
-            ],
-            service_account_id=test.id)
+            ])
         ```
 
         ## Import
@@ -220,6 +220,7 @@ class ServiceAccountPermission(pulumi.CustomResource):
             login="tf_user@test.com",
             password="password")
         test_permissions = grafana.oss.ServiceAccountPermission("test_permissions",
+            service_account_id=test.id,
             permissions=[
                 {
                     "user_id": test_user.id,
@@ -229,8 +230,7 @@ class ServiceAccountPermission(pulumi.CustomResource):
                     "team_id": test_team.id,
                     "permission": "Admin",
                 },
-            ],
-            service_account_id=test.id)
+            ])
         ```
 
         ## Import

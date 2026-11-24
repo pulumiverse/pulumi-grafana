@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Alerting.V1Beta1.Inputs
 {
 
-    public sealed class AppsNotificationsTimeintervalV1beta1SpecTimeIntervalGetArgs : global::Pulumi.ResourceArgs
+    public sealed class NotificationsTimeIntervalSpecTimeIntervalGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("daysOfMonths")]
         private InputList<string>? _daysOfMonths;
@@ -44,14 +44,14 @@ namespace Pulumiverse.Grafana.Inputs
         }
 
         [Input("times")]
-        private InputList<Inputs.AppsNotificationsTimeintervalV1beta1SpecTimeIntervalTimeGetArgs>? _times;
+        private InputList<Inputs.NotificationsTimeIntervalSpecTimeIntervalTimeGetArgs>? _times;
 
         /// <summary>
         /// Ranges of time within a day.
         /// </summary>
-        public InputList<Inputs.AppsNotificationsTimeintervalV1beta1SpecTimeIntervalTimeGetArgs> Times
+        public InputList<Inputs.NotificationsTimeIntervalSpecTimeIntervalTimeGetArgs> Times
         {
-            get => _times ?? (_times = new InputList<Inputs.AppsNotificationsTimeintervalV1beta1SpecTimeIntervalTimeGetArgs>());
+            get => _times ?? (_times = new InputList<Inputs.NotificationsTimeIntervalSpecTimeIntervalTimeGetArgs>());
             set => _times = value;
         }
 
@@ -79,9 +79,9 @@ namespace Pulumiverse.Grafana.Inputs
             set => _years = value;
         }
 
-        public AppsNotificationsTimeintervalV1beta1SpecTimeIntervalGetArgs()
+        public NotificationsTimeIntervalSpecTimeIntervalGetArgs()
         {
         }
-        public static new AppsNotificationsTimeintervalV1beta1SpecTimeIntervalGetArgs Empty => new AppsNotificationsTimeintervalV1beta1SpecTimeIntervalGetArgs();
+        public static new NotificationsTimeIntervalSpecTimeIntervalGetArgs Empty => new NotificationsTimeIntervalSpecTimeIntervalGetArgs();
     }
 }

@@ -43,6 +43,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := incident.NewCustomField(ctx, "affected_team", &incident.CustomFieldArgs{
+//				Name:        pulumi.String("Affected team"),
+//				Slug:        pulumi.String("affected_team"),
+//				Type:        pulumi.String("single-select"),
+//				Description: pulumi.String("The team that owns the affected service."),
 //				SelectOptions: incident.CustomFieldSelectOptionArray{
 //					&incident.CustomFieldSelectOptionArgs{
 //						Value: pulumi.String("payments"),
@@ -59,10 +63,6 @@ import (
 //						Archived: pulumi.Bool(true),
 //					},
 //				},
-//				Name:        pulumi.String("Affected team"),
-//				Slug:        pulumi.String("affected_team"),
-//				Type:        pulumi.String("single-select"),
-//				Description: pulumi.String("The team that owns the affected service."),
 //			})
 //			if err != nil {
 //				return err

@@ -25,6 +25,11 @@ export type NotificationsRoutingTree = import("./notificationsRoutingTree").Noti
 export const NotificationsRoutingTree: typeof import("./notificationsRoutingTree").NotificationsRoutingTree = null as any;
 utilities.lazyLoad(exports, ["NotificationsRoutingTree"], () => require("./notificationsRoutingTree"));
 
+export { NotificationsTimeIntervalArgs, NotificationsTimeIntervalState } from "./notificationsTimeInterval";
+export type NotificationsTimeInterval = import("./notificationsTimeInterval").NotificationsTimeInterval;
+export const NotificationsTimeInterval: typeof import("./notificationsTimeInterval").NotificationsTimeInterval = null as any;
+utilities.lazyLoad(exports, ["NotificationsTimeInterval"], () => require("./notificationsTimeInterval"));
+
 export { RecordingRuleArgs, RecordingRuleState } from "./recordingRule";
 export type RecordingRule = import("./recordingRule").RecordingRule;
 export const RecordingRule: typeof import("./recordingRule").RecordingRule = null as any;
@@ -48,6 +53,8 @@ const _module = {
                 return new NotificationsInhibitionRule(name, <any>undefined, { urn })
             case "grafana:alerting/v1beta1/notificationsRoutingTree:NotificationsRoutingTree":
                 return new NotificationsRoutingTree(name, <any>undefined, { urn })
+            case "grafana:alerting/v1beta1/notificationsTimeInterval:NotificationsTimeInterval":
+                return new NotificationsTimeInterval(name, <any>undefined, { urn })
             case "grafana:alerting/v1beta1/recordingRule:RecordingRule":
                 return new RecordingRule(name, <any>undefined, { urn })
             case "grafana:alerting/v1beta1/ruleSequence:RuleSequence":
@@ -61,5 +68,6 @@ pulumi.runtime.registerResourceModule("grafana", "alerting/v1beta1/alertEnrichme
 pulumi.runtime.registerResourceModule("grafana", "alerting/v1beta1/alertRule", _module)
 pulumi.runtime.registerResourceModule("grafana", "alerting/v1beta1/notificationsInhibitionRule", _module)
 pulumi.runtime.registerResourceModule("grafana", "alerting/v1beta1/notificationsRoutingTree", _module)
+pulumi.runtime.registerResourceModule("grafana", "alerting/v1beta1/notificationsTimeInterval", _module)
 pulumi.runtime.registerResourceModule("grafana", "alerting/v1beta1/recordingRule", _module)
 pulumi.runtime.registerResourceModule("grafana", "alerting/v1beta1/ruleSequence", _module)

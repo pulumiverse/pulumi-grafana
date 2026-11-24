@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Alerting.V1Beta1.Outputs
 {
 
     [OutputType]
-    public sealed class AppsNotificationsTimeintervalV1beta1SpecTimeInterval
+    public sealed class NotificationsTimeIntervalSpecTimeInterval
     {
         /// <summary>
         /// Days of the month (1-31, negative values count from end of month).
@@ -29,7 +29,7 @@ namespace Pulumiverse.Grafana.Outputs
         /// <summary>
         /// Ranges of time within a day.
         /// </summary>
-        public readonly ImmutableArray<Outputs.AppsNotificationsTimeintervalV1beta1SpecTimeIntervalTime> Times;
+        public readonly ImmutableArray<Outputs.NotificationsTimeIntervalSpecTimeIntervalTime> Times;
         /// <summary>
         /// Days of the week (e.g. monday, tuesday).
         /// </summary>
@@ -40,14 +40,14 @@ namespace Pulumiverse.Grafana.Outputs
         public readonly ImmutableArray<string> Years;
 
         [OutputConstructor]
-        private AppsNotificationsTimeintervalV1beta1SpecTimeInterval(
+        private NotificationsTimeIntervalSpecTimeInterval(
             ImmutableArray<string> daysOfMonths,
 
             string? location,
 
             ImmutableArray<string> months,
 
-            ImmutableArray<Outputs.AppsNotificationsTimeintervalV1beta1SpecTimeIntervalTime> times,
+            ImmutableArray<Outputs.NotificationsTimeIntervalSpecTimeIntervalTime> times,
 
             ImmutableArray<string> weekdays,
 

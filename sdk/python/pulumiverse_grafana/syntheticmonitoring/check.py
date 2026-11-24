@@ -471,15 +471,15 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         dns = grafana.syntheticmonitoring.Check("dns",
-            settings={
-                "dns": {},
-            },
             job="DNS Defaults",
             target="grafana.com",
             enabled=False,
             probes=[main.probes["ohio"]],
             labels={
                 "foo": "bar",
+            },
+            settings={
+                "dns": {},
             })
         ```
 
@@ -492,8 +492,27 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         dns = grafana.syntheticmonitoring.Check("dns",
+            job="DNS Updated",
+            target="grafana.net",
+            enabled=False,
+            probes=[
+                main.probes["frankfurt"],
+                main.probes["london"],
+            ],
+            labels={
+                "foo": "baz",
+            },
             settings={
                 "dns": {
+                    "ip_version": "Any",
+                    "server": "8.8.4.4",
+                    "port": 8600,
+                    "record_type": "CNAME",
+                    "protocol": "TCP",
+                    "valid_r_codes": [
+                        "NOERROR",
+                        "NOTAUTH",
+                    ],
                     "validate_answer_rrs": {
                         "fail_if_matches_regexps": [".+-bad-stuff*"],
                         "fail_if_not_matches_regexps": [".+-good-stuff*"],
@@ -506,26 +525,7 @@ class Check(pulumi.CustomResource):
                         "fail_if_matches_regexps": [".+-bad-stuff*"],
                         "fail_if_not_matches_regexps": [".+-good-stuff*"],
                     }],
-                    "ip_version": "Any",
-                    "server": "8.8.4.4",
-                    "port": 8600,
-                    "record_type": "CNAME",
-                    "protocol": "TCP",
-                    "valid_r_codes": [
-                        "NOERROR",
-                        "NOTAUTH",
-                    ],
                 },
-            },
-            job="DNS Updated",
-            target="grafana.net",
-            enabled=False,
-            probes=[
-                main.probes["frankfurt"],
-                main.probes["london"],
-            ],
-            labels={
-                "foo": "baz",
             })
         ```
 
@@ -538,15 +538,15 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         http = grafana.syntheticmonitoring.Check("http",
-            settings={
-                "http": {},
-            },
             job="HTTP Defaults",
             target="https://grafana.com",
             enabled=False,
             probes=[main.probes["ohio"]],
             labels={
                 "foo": "bar",
+            },
+            settings={
+                "http": {},
             })
         ```
 
@@ -559,8 +559,29 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         http = grafana.syntheticmonitoring.Check("http",
+            job="HTTP Defaults",
+            target="https://grafana.org",
+            enabled=False,
+            folder_uid="test-folder-uid",
+            probes=[
+                main.probes["mumbai"],
+                main.probes["mumbai"],
+            ],
+            labels={
+                "foo": "bar",
+            },
             settings={
                 "http": {
+                    "ip_version": "V6",
+                    "method": "TRACE",
+                    "body": "and spirit",
+                    "no_follow_redirects": True,
+                    "bearer_token": "asdfjkl;",
+                    "proxy_url": "https://almost-there",
+                    "fail_if_ssl": True,
+                    "fail_if_not_ssl": True,
+                    "compression": "deflate",
+                    "cache_busting_query_param_name": "pineapple",
                     "tls_config": {
                         "server_name": "grafana.org",
                         "client_cert": \"\"\"-----BEGIN CERTIFICATE-----
@@ -592,10 +613,22 @@ class Check(pulumi.CustomResource):
         -----END CERTIFICATE-----
         \"\"\",
                     },
+                    "headers": ["Content-Type: multipart/form-data; boundary=something"],
                     "basic_auth": {
                         "username": "open",
                         "password": "sesame",
                     },
+                    "valid_status_codes": [
+                        200,
+                        201,
+                    ],
+                    "valid_http_versions": [
+                        "HTTP/1.0",
+                        "HTTP/1.1",
+                        "HTTP/2.0",
+                    ],
+                    "fail_if_body_matches_regexps": [".*bad stuff.*"],
+                    "fail_if_body_not_matches_regexps": [".*good stuff.*"],
                     "fail_if_header_matches_regexps": [
                         {
                             "header": "Content-Type",
@@ -608,40 +641,7 @@ class Check(pulumi.CustomResource):
                             "allow_missing": True,
                         },
                     ],
-                    "ip_version": "V6",
-                    "method": "TRACE",
-                    "body": "and spirit",
-                    "no_follow_redirects": True,
-                    "bearer_token": "asdfjkl;",
-                    "proxy_url": "https://almost-there",
-                    "fail_if_ssl": True,
-                    "fail_if_not_ssl": True,
-                    "compression": "deflate",
-                    "cache_busting_query_param_name": "pineapple",
-                    "headers": ["Content-Type: multipart/form-data; boundary=something"],
-                    "valid_status_codes": [
-                        200,
-                        201,
-                    ],
-                    "valid_http_versions": [
-                        "HTTP/1.0",
-                        "HTTP/1.1",
-                        "HTTP/2.0",
-                    ],
-                    "fail_if_body_matches_regexps": [".*bad stuff.*"],
-                    "fail_if_body_not_matches_regexps": [".*good stuff.*"],
                 },
-            },
-            job="HTTP Defaults",
-            target="https://grafana.org",
-            enabled=False,
-            folder_uid="test-folder-uid",
-            probes=[
-                main.probes["mumbai"],
-                main.probes["mumbai"],
-            ],
-            labels={
-                "foo": "bar",
             })
         ```
 
@@ -654,15 +654,23 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         http = grafana.syntheticmonitoring.Check("http",
+            job="HTTP Secret Manager",
+            target="https://api.example.com",
+            enabled=True,
+            probes=[main.probes["mumbai"]],
+            labels={
+                "environment": "production",
+                "service": "api",
+            },
             settings={
                 "http": {
+                    "ip_version": "V4",
+                    "method": "GET",
+                    "bearer_token": "${secrets.my-api-token}",
                     "basic_auth": {
                         "username": "admin",
                         "password": "${secrets.my-api-password}",
                     },
-                    "ip_version": "V4",
-                    "method": "GET",
-                    "bearer_token": "${secrets.my-api-token}",
                     "headers": [
                         "Accept: application/json",
                         "User-Agent: Terraform-Synthetic-Monitoring",
@@ -675,14 +683,6 @@ class Check(pulumi.CustomResource):
                     "fail_if_ssl": False,
                     "fail_if_not_ssl": True,
                 },
-            },
-            job="HTTP Secret Manager",
-            target="https://api.example.com",
-            enabled=True,
-            probes=[main.probes["mumbai"]],
-            labels={
-                "environment": "production",
-                "service": "api",
             })
         ```
 
@@ -695,15 +695,15 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         ping = grafana.syntheticmonitoring.Check("ping",
-            settings={
-                "ping": {},
-            },
             job="Ping Defaults",
             target="grafana.com",
             enabled=False,
             probes=[main.probes["ohio"]],
             labels={
                 "foo": "bar",
+            },
+            settings={
+                "ping": {},
             })
         ```
 
@@ -716,13 +716,6 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         ping = grafana.syntheticmonitoring.Check("ping",
-            settings={
-                "ping": {
-                    "ip_version": "Any",
-                    "payload_size": 20,
-                    "dont_fragment": True,
-                },
-            },
             job="Ping Updated",
             target="grafana.net",
             enabled=False,
@@ -732,6 +725,13 @@ class Check(pulumi.CustomResource):
             ],
             labels={
                 "foo": "baz",
+            },
+            settings={
+                "ping": {
+                    "ip_version": "Any",
+                    "payload_size": 20,
+                    "dont_fragment": True,
+                },
             })
         ```
 
@@ -744,15 +744,15 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         tcp = grafana.syntheticmonitoring.Check("tcp",
-            settings={
-                "tcp": {},
-            },
             job="TCP Defaults",
             target="grafana.com:80",
             enabled=False,
             probes=[main.probes["ohio"]],
             labels={
                 "foo": "bar",
+            },
+            settings={
+                "tcp": {},
             })
         ```
 
@@ -765,8 +765,31 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         tcp = grafana.syntheticmonitoring.Check("tcp",
+            job="TCP Defaults",
+            target="grafana.com:443",
+            enabled=False,
+            probes=[
+                main.probes["frankfurt"],
+                main.probes["london"],
+            ],
+            labels={
+                "foo": "baz",
+            },
             settings={
                 "tcp": {
+                    "ip_version": "V6",
+                    "tls": True,
+                    "query_responses": [
+                        {
+                            "send": "howdy",
+                            "expect": "hi",
+                        },
+                        {
+                            "send": "like this",
+                            "expect": "like that",
+                            "start_tls": True,
+                        },
+                    ],
                     "tls_config": {
                         "server_name": "grafana.com",
                         "ca_cert": \"\"\"-----BEGIN CERTIFICATE-----
@@ -798,30 +821,7 @@ class Check(pulumi.CustomResource):
         -----END CERTIFICATE-----
         \"\"\",
                     },
-                    "query_responses": [
-                        {
-                            "send": "howdy",
-                            "expect": "hi",
-                        },
-                        {
-                            "send": "like this",
-                            "expect": "like that",
-                            "start_tls": True,
-                        },
-                    ],
-                    "ip_version": "V6",
-                    "tls": True,
                 },
-            },
-            job="TCP Defaults",
-            target="grafana.com:443",
-            enabled=False,
-            probes=[
-                main.probes["frankfurt"],
-                main.probes["london"],
-            ],
-            labels={
-                "foo": "baz",
             })
         ```
 
@@ -834,9 +834,6 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         traceroute = grafana.syntheticmonitoring.Check("traceroute",
-            settings={
-                "traceroute": {},
-            },
             job="Traceroute defaults",
             target="grafana.com",
             enabled=False,
@@ -845,6 +842,9 @@ class Check(pulumi.CustomResource):
             probes=[main.probes["ohio"]],
             labels={
                 "foo": "bar",
+            },
+            settings={
+                "traceroute": {},
             })
         ```
 
@@ -857,13 +857,6 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         traceroute = grafana.syntheticmonitoring.Check("traceroute",
-            settings={
-                "traceroute": {
-                    "max_hops": 25,
-                    "max_unknown_hops": 10,
-                    "ptr_lookup": False,
-                },
-            },
             job="Traceroute complex",
             target="grafana.net",
             enabled=False,
@@ -875,6 +868,13 @@ class Check(pulumi.CustomResource):
             ],
             labels={
                 "foo": "baz",
+            },
+            settings={
+                "traceroute": {
+                    "max_hops": 25,
+                    "max_unknown_hops": 10,
+                    "ptr_lookup": False,
+                },
             })
         ```
 
@@ -926,15 +926,15 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         dns = grafana.syntheticmonitoring.Check("dns",
-            settings={
-                "dns": {},
-            },
             job="DNS Defaults",
             target="grafana.com",
             enabled=False,
             probes=[main.probes["ohio"]],
             labels={
                 "foo": "bar",
+            },
+            settings={
+                "dns": {},
             })
         ```
 
@@ -947,8 +947,27 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         dns = grafana.syntheticmonitoring.Check("dns",
+            job="DNS Updated",
+            target="grafana.net",
+            enabled=False,
+            probes=[
+                main.probes["frankfurt"],
+                main.probes["london"],
+            ],
+            labels={
+                "foo": "baz",
+            },
             settings={
                 "dns": {
+                    "ip_version": "Any",
+                    "server": "8.8.4.4",
+                    "port": 8600,
+                    "record_type": "CNAME",
+                    "protocol": "TCP",
+                    "valid_r_codes": [
+                        "NOERROR",
+                        "NOTAUTH",
+                    ],
                     "validate_answer_rrs": {
                         "fail_if_matches_regexps": [".+-bad-stuff*"],
                         "fail_if_not_matches_regexps": [".+-good-stuff*"],
@@ -961,26 +980,7 @@ class Check(pulumi.CustomResource):
                         "fail_if_matches_regexps": [".+-bad-stuff*"],
                         "fail_if_not_matches_regexps": [".+-good-stuff*"],
                     }],
-                    "ip_version": "Any",
-                    "server": "8.8.4.4",
-                    "port": 8600,
-                    "record_type": "CNAME",
-                    "protocol": "TCP",
-                    "valid_r_codes": [
-                        "NOERROR",
-                        "NOTAUTH",
-                    ],
                 },
-            },
-            job="DNS Updated",
-            target="grafana.net",
-            enabled=False,
-            probes=[
-                main.probes["frankfurt"],
-                main.probes["london"],
-            ],
-            labels={
-                "foo": "baz",
             })
         ```
 
@@ -993,15 +993,15 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         http = grafana.syntheticmonitoring.Check("http",
-            settings={
-                "http": {},
-            },
             job="HTTP Defaults",
             target="https://grafana.com",
             enabled=False,
             probes=[main.probes["ohio"]],
             labels={
                 "foo": "bar",
+            },
+            settings={
+                "http": {},
             })
         ```
 
@@ -1014,8 +1014,29 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         http = grafana.syntheticmonitoring.Check("http",
+            job="HTTP Defaults",
+            target="https://grafana.org",
+            enabled=False,
+            folder_uid="test-folder-uid",
+            probes=[
+                main.probes["mumbai"],
+                main.probes["mumbai"],
+            ],
+            labels={
+                "foo": "bar",
+            },
             settings={
                 "http": {
+                    "ip_version": "V6",
+                    "method": "TRACE",
+                    "body": "and spirit",
+                    "no_follow_redirects": True,
+                    "bearer_token": "asdfjkl;",
+                    "proxy_url": "https://almost-there",
+                    "fail_if_ssl": True,
+                    "fail_if_not_ssl": True,
+                    "compression": "deflate",
+                    "cache_busting_query_param_name": "pineapple",
                     "tls_config": {
                         "server_name": "grafana.org",
                         "client_cert": \"\"\"-----BEGIN CERTIFICATE-----
@@ -1047,10 +1068,22 @@ class Check(pulumi.CustomResource):
         -----END CERTIFICATE-----
         \"\"\",
                     },
+                    "headers": ["Content-Type: multipart/form-data; boundary=something"],
                     "basic_auth": {
                         "username": "open",
                         "password": "sesame",
                     },
+                    "valid_status_codes": [
+                        200,
+                        201,
+                    ],
+                    "valid_http_versions": [
+                        "HTTP/1.0",
+                        "HTTP/1.1",
+                        "HTTP/2.0",
+                    ],
+                    "fail_if_body_matches_regexps": [".*bad stuff.*"],
+                    "fail_if_body_not_matches_regexps": [".*good stuff.*"],
                     "fail_if_header_matches_regexps": [
                         {
                             "header": "Content-Type",
@@ -1063,40 +1096,7 @@ class Check(pulumi.CustomResource):
                             "allow_missing": True,
                         },
                     ],
-                    "ip_version": "V6",
-                    "method": "TRACE",
-                    "body": "and spirit",
-                    "no_follow_redirects": True,
-                    "bearer_token": "asdfjkl;",
-                    "proxy_url": "https://almost-there",
-                    "fail_if_ssl": True,
-                    "fail_if_not_ssl": True,
-                    "compression": "deflate",
-                    "cache_busting_query_param_name": "pineapple",
-                    "headers": ["Content-Type: multipart/form-data; boundary=something"],
-                    "valid_status_codes": [
-                        200,
-                        201,
-                    ],
-                    "valid_http_versions": [
-                        "HTTP/1.0",
-                        "HTTP/1.1",
-                        "HTTP/2.0",
-                    ],
-                    "fail_if_body_matches_regexps": [".*bad stuff.*"],
-                    "fail_if_body_not_matches_regexps": [".*good stuff.*"],
                 },
-            },
-            job="HTTP Defaults",
-            target="https://grafana.org",
-            enabled=False,
-            folder_uid="test-folder-uid",
-            probes=[
-                main.probes["mumbai"],
-                main.probes["mumbai"],
-            ],
-            labels={
-                "foo": "bar",
             })
         ```
 
@@ -1109,15 +1109,23 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         http = grafana.syntheticmonitoring.Check("http",
+            job="HTTP Secret Manager",
+            target="https://api.example.com",
+            enabled=True,
+            probes=[main.probes["mumbai"]],
+            labels={
+                "environment": "production",
+                "service": "api",
+            },
             settings={
                 "http": {
+                    "ip_version": "V4",
+                    "method": "GET",
+                    "bearer_token": "${secrets.my-api-token}",
                     "basic_auth": {
                         "username": "admin",
                         "password": "${secrets.my-api-password}",
                     },
-                    "ip_version": "V4",
-                    "method": "GET",
-                    "bearer_token": "${secrets.my-api-token}",
                     "headers": [
                         "Accept: application/json",
                         "User-Agent: Terraform-Synthetic-Monitoring",
@@ -1130,14 +1138,6 @@ class Check(pulumi.CustomResource):
                     "fail_if_ssl": False,
                     "fail_if_not_ssl": True,
                 },
-            },
-            job="HTTP Secret Manager",
-            target="https://api.example.com",
-            enabled=True,
-            probes=[main.probes["mumbai"]],
-            labels={
-                "environment": "production",
-                "service": "api",
             })
         ```
 
@@ -1150,15 +1150,15 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         ping = grafana.syntheticmonitoring.Check("ping",
-            settings={
-                "ping": {},
-            },
             job="Ping Defaults",
             target="grafana.com",
             enabled=False,
             probes=[main.probes["ohio"]],
             labels={
                 "foo": "bar",
+            },
+            settings={
+                "ping": {},
             })
         ```
 
@@ -1171,13 +1171,6 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         ping = grafana.syntheticmonitoring.Check("ping",
-            settings={
-                "ping": {
-                    "ip_version": "Any",
-                    "payload_size": 20,
-                    "dont_fragment": True,
-                },
-            },
             job="Ping Updated",
             target="grafana.net",
             enabled=False,
@@ -1187,6 +1180,13 @@ class Check(pulumi.CustomResource):
             ],
             labels={
                 "foo": "baz",
+            },
+            settings={
+                "ping": {
+                    "ip_version": "Any",
+                    "payload_size": 20,
+                    "dont_fragment": True,
+                },
             })
         ```
 
@@ -1199,15 +1199,15 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         tcp = grafana.syntheticmonitoring.Check("tcp",
-            settings={
-                "tcp": {},
-            },
             job="TCP Defaults",
             target="grafana.com:80",
             enabled=False,
             probes=[main.probes["ohio"]],
             labels={
                 "foo": "bar",
+            },
+            settings={
+                "tcp": {},
             })
         ```
 
@@ -1220,8 +1220,31 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         tcp = grafana.syntheticmonitoring.Check("tcp",
+            job="TCP Defaults",
+            target="grafana.com:443",
+            enabled=False,
+            probes=[
+                main.probes["frankfurt"],
+                main.probes["london"],
+            ],
+            labels={
+                "foo": "baz",
+            },
             settings={
                 "tcp": {
+                    "ip_version": "V6",
+                    "tls": True,
+                    "query_responses": [
+                        {
+                            "send": "howdy",
+                            "expect": "hi",
+                        },
+                        {
+                            "send": "like this",
+                            "expect": "like that",
+                            "start_tls": True,
+                        },
+                    ],
                     "tls_config": {
                         "server_name": "grafana.com",
                         "ca_cert": \"\"\"-----BEGIN CERTIFICATE-----
@@ -1253,30 +1276,7 @@ class Check(pulumi.CustomResource):
         -----END CERTIFICATE-----
         \"\"\",
                     },
-                    "query_responses": [
-                        {
-                            "send": "howdy",
-                            "expect": "hi",
-                        },
-                        {
-                            "send": "like this",
-                            "expect": "like that",
-                            "start_tls": True,
-                        },
-                    ],
-                    "ip_version": "V6",
-                    "tls": True,
                 },
-            },
-            job="TCP Defaults",
-            target="grafana.com:443",
-            enabled=False,
-            probes=[
-                main.probes["frankfurt"],
-                main.probes["london"],
-            ],
-            labels={
-                "foo": "baz",
             })
         ```
 
@@ -1289,9 +1289,6 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         traceroute = grafana.syntheticmonitoring.Check("traceroute",
-            settings={
-                "traceroute": {},
-            },
             job="Traceroute defaults",
             target="grafana.com",
             enabled=False,
@@ -1300,6 +1297,9 @@ class Check(pulumi.CustomResource):
             probes=[main.probes["ohio"]],
             labels={
                 "foo": "bar",
+            },
+            settings={
+                "traceroute": {},
             })
         ```
 
@@ -1312,13 +1312,6 @@ class Check(pulumi.CustomResource):
 
         main = grafana.syntheticMonitoring.get_probes()
         traceroute = grafana.syntheticmonitoring.Check("traceroute",
-            settings={
-                "traceroute": {
-                    "max_hops": 25,
-                    "max_unknown_hops": 10,
-                    "ptr_lookup": False,
-                },
-            },
             job="Traceroute complex",
             target="grafana.net",
             enabled=False,
@@ -1330,6 +1323,13 @@ class Check(pulumi.CustomResource):
             ],
             labels={
                 "foo": "baz",
+            },
+            settings={
+                "traceroute": {
+                    "max_hops": 25,
+                    "max_unknown_hops": 10,
+                    "ptr_lookup": False,
+                },
             })
         ```
 

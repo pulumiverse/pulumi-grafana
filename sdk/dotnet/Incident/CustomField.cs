@@ -39,6 +39,10 @@ namespace Pulumiverse.Grafana.Incident
     /// {
     ///     var affectedTeam = new Grafana.Incident.CustomField("affected_team", new()
     ///     {
+    ///         Name = "Affected team",
+    ///         Slug = "affected_team",
+    ///         Type = "single-select",
+    ///         Description = "The team that owns the affected service.",
     ///         SelectOptions = new[]
     ///         {
     ///             new Grafana.Incident.Inputs.CustomFieldSelectOptionArgs
@@ -59,10 +63,6 @@ namespace Pulumiverse.Grafana.Incident
     ///                 Archived = true,
     ///             },
     ///         },
-    ///         Name = "Affected team",
-    ///         Slug = "affected_team",
-    ///         Type = "single-select",
-    ///         Description = "The team that owns the affected service.",
     ///     });
     /// 
     ///     var customerTicket = new Grafana.Incident.CustomField("customer_ticket", new()

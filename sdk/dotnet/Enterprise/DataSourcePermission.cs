@@ -62,6 +62,7 @@ namespace Pulumiverse.Grafana.Enterprise
     /// 
     ///     var fooPermissions = new Grafana.Enterprise.DataSourcePermission("fooPermissions", new()
     ///     {
+    ///         DatasourceUid = foo.Uid,
     ///         Permissions = new[]
     ///         {
     ///             new Grafana.Enterprise.Inputs.DataSourcePermissionPermissionArgs
@@ -85,7 +86,6 @@ namespace Pulumiverse.Grafana.Enterprise
     ///                 Permission = "Query",
     ///             },
     ///         },
-    ///         DatasourceUid = foo.Uid,
     ///     });
     /// 
     /// });

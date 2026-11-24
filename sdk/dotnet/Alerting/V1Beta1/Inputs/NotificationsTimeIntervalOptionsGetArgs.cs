@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Alerting.V1Beta1.Inputs
 {
 
-    public sealed class AppsNotificationsTimeintervalV1beta1OptionsGetArgs : global::Pulumi.ResourceArgs
+    public sealed class NotificationsTimeIntervalOptionsGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
@@ -25,9 +25,9 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("overwrite")]
         public Input<bool>? Overwrite { get; set; }
 
-        public AppsNotificationsTimeintervalV1beta1OptionsGetArgs()
+        public NotificationsTimeIntervalOptionsGetArgs()
         {
         }
-        public static new AppsNotificationsTimeintervalV1beta1OptionsGetArgs Empty => new AppsNotificationsTimeintervalV1beta1OptionsGetArgs();
+        public static new NotificationsTimeIntervalOptionsGetArgs Empty => new NotificationsTimeIntervalOptionsGetArgs();
     }
 }

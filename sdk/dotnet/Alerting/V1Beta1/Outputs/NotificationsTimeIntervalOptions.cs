@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Alerting.V1Beta1.Outputs
 {
 
     [OutputType]
-    public sealed class AppsNotificationsTimeintervalV1beta1Options
+    public sealed class NotificationsTimeIntervalOptions
     {
         /// <summary>
         /// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
@@ -24,7 +24,7 @@ namespace Pulumiverse.Grafana.Outputs
         public readonly bool? Overwrite;
 
         [OutputConstructor]
-        private AppsNotificationsTimeintervalV1beta1Options(
+        private NotificationsTimeIntervalOptions(
             string? managerIdentity,
 
             bool? overwrite)

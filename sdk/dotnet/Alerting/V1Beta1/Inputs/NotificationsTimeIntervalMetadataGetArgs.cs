@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Alerting.V1Beta1.Inputs
 {
 
-    public sealed class AppsNotificationsTimeintervalV1beta1MetadataGetArgs : global::Pulumi.ResourceArgs
+    public sealed class NotificationsTimeIntervalMetadataGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("annotations")]
         private InputMap<string>? _annotations;
@@ -61,9 +61,9 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("version")]
         public Input<string>? Version { get; set; }
 
-        public AppsNotificationsTimeintervalV1beta1MetadataGetArgs()
+        public NotificationsTimeIntervalMetadataGetArgs()
         {
         }
-        public static new AppsNotificationsTimeintervalV1beta1MetadataGetArgs Empty => new AppsNotificationsTimeintervalV1beta1MetadataGetArgs();
+        public static new NotificationsTimeIntervalMetadataGetArgs Empty => new NotificationsTimeIntervalMetadataGetArgs();
     }
 }
